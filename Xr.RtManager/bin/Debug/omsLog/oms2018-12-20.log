@@ -1,0 +1,67 @@
+
+2018-12-20 09:38:55 Application_ThreadException:Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: 无. Path '', line 0, position 0.
+   在 Newtonsoft.Json.JsonTextReader.ParseValue()
+   在 Newtonsoft.Json.JsonTextReader.ReadInternal()
+   在 Newtonsoft.Json.JsonTextReader.Read()
+   在 Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)
+   在 Newtonsoft.Json.Linq.JObject.Parse(String json)
+   在 WindowsFormsApplication1.LoginForm.btnLogin_Click_1(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\LoginForm.cs:行号 45
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 CCWin.SkinControl.SkinButton.TWKlKUc9fbamQ8fb0qSX(Object , Object )
+   在 CCWin.SkinControl.SkinButton.OnMouseUp(MouseEventArgs e)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+2018-12-20 09:44:22 Application_ThreadException:Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: 远. Path '', line 0, position 0.
+   在 Newtonsoft.Json.JsonTextReader.ParseValue()
+   在 Newtonsoft.Json.JsonTextReader.ReadInternal()
+   在 Newtonsoft.Json.JsonTextReader.Read()
+   在 Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)
+   在 Newtonsoft.Json.Linq.JObject.Parse(String json)
+   在 WindowsFormsApplication1.LoginForm.btnLogin_Click_1(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\LoginForm.cs:行号 45
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 CCWin.SkinControl.SkinButton.TWKlKUc9fbamQ8fb0qSX(Object , Object )
+   在 CCWin.SkinControl.SkinButton.OnMouseUp(MouseEventArgs e)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+2018-12-20 09:45:32 Application_ThreadException:Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: 远. Path '', line 0, position 0.
+   在 Newtonsoft.Json.JsonTextReader.ParseValue()
+   在 Newtonsoft.Json.JsonTextReader.ReadInternal()
+   在 Newtonsoft.Json.JsonTextReader.Read()
+   在 Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)
+   在 Newtonsoft.Json.Linq.JObject.Parse(String json)
+   在 WindowsFormsApplication1.LoginForm.btnLogin_Click_1(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\LoginForm.cs:行号 45
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 CCWin.SkinControl.SkinButton.TWKlKUc9fbamQ8fb0qSX(Object , Object )
+   在 CCWin.SkinControl.SkinButton.OnMouseUp(MouseEventArgs e)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+2018-12-20 18:23:27 Application_ThreadException:Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: 远. Path '', line 0, position 0.
+   在 Newtonsoft.Json.JsonTextReader.ParseValue()
+   在 Newtonsoft.Json.JsonTextReader.ReadInternal()
+   在 Newtonsoft.Json.JsonTextReader.Read()
+   在 Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)
+   在 Newtonsoft.Json.Linq.JObject.Parse(String json)
+   在 WindowsFormsApplication1.OfficeEdit.btnSave_Click(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Pages\System\OfficeEdit.cs:行号 93
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 XiangRun.Controls.ButtonControl.OnClick(EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\ZeboneControl\Controls\ButtonControl.cs:行号 105
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)

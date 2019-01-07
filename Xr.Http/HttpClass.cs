@@ -1,0 +1,278 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
+using Xr;
+
+namespace Xr.Http
+{
+    public class HttpClass
+    {
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="cookie"></param>
+        /// <returns></returns>
+        public static String loginPost(String url)
+        {
+            CookieEntity.cookie = new CookieContainer();
+            string result = "";
+            HttpWebRequest request = null;
+            HttpWebResponse response = null;
+            Stream stream = null;
+            StreamReader reader = null;
+            try
+            {
+                System.GC.Collect();    // 请求之前 做一次垃圾回收
+                System.Net.ServicePointManager.DefaultConnectionLimit = 20;
+
+                // 打印 请求地址及参数
+                LogClass.WriteLog("请求数据：" + url);
+
+                request = (HttpWebRequest)WebRequest.Create(url);
+                request.Accept = "*/*";
+                request.Method = "POST";
+                request.UserAgent = "Mozilla/5.0";
+                request.CookieContainer = CookieEntity.cookie;
+                request.KeepAlive = false;          // 保持短链接
+                request.Timeout = 1 * 60 * 1000;    // 1分钟，以防网络超时
+                
+                response = (HttpWebResponse)request.GetResponse();
+                string cookieheader = request.CookieContainer.GetCookieHeader(new Uri(url));
+                CookieEntity.cookie.SetCookies(new Uri(url), cookieheader);
+
+                stream = response.GetResponseStream();
+                reader = new StreamReader(stream, Encoding.UTF8);
+                result = reader.ReadToEnd().Trim();
+
+                // 打印响应结果
+                LogClass.WriteLog("响应结果：" + result);
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                LogClass.WriteExceptionLog(e);
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                if (stream != null) stream.Close();
+                if (response != null) response.Close();
+                if (request != null) request.Abort();
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// post模拟表单提交
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="cookie"></param>
+        /// <returns></returns>
+        public static String httpPost(String url)
+        {
+            string result = "";
+            HttpWebRequest request = null;
+            HttpWebResponse response = null;
+            Stream stream = null;
+            StreamReader reader = null;
+            try
+            {
+                System.GC.Collect();    // 请求之前 做一次垃圾回收
+                System.Net.ServicePointManager.DefaultConnectionLimit = 20;
+
+                // 打印 请求地址及参数
+                LogClass.WriteLog("请求数据：" + url);
+
+                request = (HttpWebRequest)WebRequest.Create(url);
+                request.Accept = "*/*";
+                request.Method = "POST";
+                request.UserAgent = "Mozilla/5.0";
+                request.CookieContainer = CookieEntity.cookie;
+                request.KeepAlive = false;          // 保持短链接
+                request.Timeout = 1 * 60 * 1000;    // 1分钟，以防网络超时
+
+                response = (HttpWebResponse)request.GetResponse();
+                CookieEntity.cookie = request.CookieContainer;
+
+                stream = response.GetResponseStream();
+                reader = new StreamReader(stream, Encoding.UTF8);
+                result = reader.ReadToEnd().Trim();
+
+                // 打印响应结果
+                LogClass.WriteLog("响应结果：" + result);
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                LogClass.WriteExceptionLog(e);
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                if (stream != null) stream.Close();
+                if (response != null) response.Close();
+                if (request != null) request.Abort();
+            }
+            return result;
+        }
+
+        /// <summary>  
+        /// 使用Post方法获取字符串结果  
+        /// 主要用于文件上传(可携带表单数据)
+        /// </summary>  
+        /// <param name="url">请求地址</param>  
+        /// <param name="formItems">Post表单文件、内容数据</param>  
+        /// <returns></returns>  
+        public static string PostForm(string url, List<FormItemModel> formItems)
+        {
+            string result = "";
+            HttpWebRequest request = null;
+            HttpWebResponse response = null;
+            Stream stream = null;
+            StreamReader reader = null;
+            try
+            {
+                System.GC.Collect();    // 请求之前 做一次垃圾回收
+                System.Net.ServicePointManager.DefaultConnectionLimit = 20;
+
+                // 打印 请求地址及参数
+                LogClass.WriteLog("请求数据：" + url);
+
+                request = WebRequest.Create(url) as HttpWebRequest;
+
+                #region 初始化请求对象
+                request.Accept = "*/*";
+                request.Method = "POST";
+                request.UserAgent = "Mozilla/5.0";
+                request.CookieContainer = CookieEntity.cookie;
+                request.KeepAlive = false;          // 保持短链接
+                request.Timeout = 2 * 60 * 1000;    // 2分钟，以防网络超时 或 文件过大
+
+                #endregion
+
+                string boundary = "----" + DateTime.Now.Ticks.ToString("x");//分隔符  
+                request.ContentType = string.Format("multipart/form-data; boundary={0}", boundary);
+                //请求流  
+                var postStream = new MemoryStream();
+
+                #region 处理Form表单请求内容
+                //是否用Form上传文件  
+                var formUploadFile = formItems != null && formItems.Count > 0;
+                if (formUploadFile)
+                {
+                    //文件数据模板  
+                    string fileFormdataTemplate =
+                        "\r\n--" + boundary +
+                        "\r\nContent-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
+                        "\r\nContent-Type: multipart/form-data" +
+                        "\r\n\r\n";
+                    //文本数据模板  
+                    string dataFormdataTemplate =
+                        "\r\n--" + boundary +
+                        "\r\nContent-Disposition: form-data; name=\"{0}\"" +
+                        "\r\n\r\n{1}";
+                    foreach (var item in formItems)
+                    {
+                        string formdata = null;
+                        if (item.IsFile)
+                        {
+                            //上传文件  
+                            formdata = string.Format(
+                                fileFormdataTemplate,
+                                item.Key, //表单键  
+                                item.FileName);
+                        }
+                        else
+                        {
+                            //上传文本  
+                            formdata = string.Format(
+                                dataFormdataTemplate,
+                                item.Key,
+                                item.Value);
+                        }
+
+                        //统一处理  
+                        byte[] formdataBytes = null;
+                        //第一行不需要换行  
+                        if (postStream.Length == 0)
+                            formdataBytes = Encoding.UTF8.GetBytes(formdata.Substring(2, formdata.Length - 2));
+                        else
+                            formdataBytes = Encoding.UTF8.GetBytes(formdata);
+                        postStream.Write(formdataBytes, 0, formdataBytes.Length);
+
+                        //写入文件内容  
+                        if (item.FileContent != null && item.FileContent.Length > 0)
+                        {
+                            using (var streams = item.FileContent)
+                            {
+                                byte[] buffer = new byte[1024];
+                                int bytesRead = 0;
+                                while ((bytesRead = streams.Read(buffer, 0, buffer.Length)) != 0)
+                                {
+                                    postStream.Write(buffer, 0, bytesRead);
+                                }
+                            }
+                        }
+                    }
+                    //结尾  
+                    var footer = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--\r\n");
+                    postStream.Write(footer, 0, footer.Length);
+
+                }
+                else
+                {
+                    request.ContentType = "application/json;charset=UTF-8";
+                }
+                #endregion
+
+                request.ContentLength = postStream.Length;
+
+                #region 输入二进制流
+                if (postStream != null)
+                {
+                    postStream.Position = 0;
+                    //直接写入流  
+                    Stream requestStream = request.GetRequestStream();
+
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = 0;
+                    while ((bytesRead = postStream.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+                        requestStream.Write(buffer, 0, bytesRead);
+                    }
+                    postStream.Close();//关闭文件访问  
+                }
+                #endregion
+
+                response = (HttpWebResponse)request.GetResponse();
+                CookieEntity.cookie = request.CookieContainer;
+
+                stream = response.GetResponseStream();
+                reader = new StreamReader(stream, Encoding.UTF8);
+                result = reader.ReadToEnd().Trim();
+
+                // 打印响应结果
+                LogClass.WriteLog("响应结果：" + result);
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                LogClass.WriteExceptionLog(e);
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                if (stream != null) stream.Close();
+                if (response != null) response.Close();
+                if (request != null) request.Abort();
+            }
+            return result; ;
+        }
+    
+    }
+}

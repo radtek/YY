@@ -1,0 +1,418 @@
+
+2018-12-24 09:59:31 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 09:59:33 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:00:25 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:00:26 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:15:31 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:15:31 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:16:00 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:16:00 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:29:07 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:29:07 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:29:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:29:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:29:38"},"state":true}
+
+2018-12-24 10:30:08 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:30:08 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:30:08"},"state":true}
+
+2018-12-24 10:30:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:30:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:30:38"},"state":true}
+
+2018-12-24 10:31:08 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:31:08 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:31:08"},"state":true}
+
+2018-12-24 10:31:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:31:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:31:38"},"state":true}
+
+2018-12-24 10:32:08 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:32:08 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:32:08"},"state":true}
+
+2018-12-24 10:32:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:32:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:32:38"},"state":true}
+
+2018-12-24 10:33:08 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:33:08 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:33:08"},"state":true}
+
+2018-12-24 10:33:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:33:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:33:38"},"state":true}
+
+2018-12-24 10:34:08 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:34:08 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:34:08"},"state":true}
+
+2018-12-24 10:34:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:34:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:34:38"},"state":true}
+
+2018-12-24 10:35:08 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:35:08 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:35:08"},"state":true}
+
+2018-12-24 10:35:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:35:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:35:38"},"state":true}
+
+2018-12-24 10:36:52 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:36:53 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:37:20 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:37:20 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:37:50 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:37:50 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:38:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:38:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:38:21"},"state":true}
+
+2018-12-24 10:38:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:38:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:38:51"},"state":true}
+
+2018-12-24 10:39:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:39:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:39:21"},"state":true}
+
+2018-12-24 10:39:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:39:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:39:51"},"state":true}
+
+2018-12-24 10:40:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:40:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:40:21"},"state":true}
+
+2018-12-24 10:40:50 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:40:51 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:47:17 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 10:47:17 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 10:47:47 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:47:47 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:47:47"},"state":true}
+
+2018-12-24 10:48:18 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:48:18 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:48:18"},"state":true}
+
+2018-12-24 10:48:48 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:48:48 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:48:48"},"state":true}
+
+2018-12-24 10:49:18 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:49:18 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:49:18"},"state":true}
+
+2018-12-24 10:49:48 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:49:48 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:49:48"},"state":true}
+
+2018-12-24 10:50:18 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:50:18 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:50:18"},"state":true}
+
+2018-12-24 10:50:48 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:50:48 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:50:48"},"state":true}
+
+2018-12-24 10:51:18 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:51:18 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:51:18"},"state":true}
+
+2018-12-24 10:51:48 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:51:48 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:51:48"},"state":true}
+
+2018-12-24 10:52:18 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:52:18 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:52:18"},"state":true}
+
+2018-12-24 10:52:48 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:52:48 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:52:48"},"state":true}
+
+2018-12-24 10:53:18 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:53:18 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:53:18"},"state":true}
+
+2018-12-24 10:53:48 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:53:48 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:53:48"},"state":true}
+
+2018-12-24 10:54:18 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 10:54:18 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 10:54:18"},"state":true}
+
+2018-12-24 11:22:02 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 11:22:02 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 11:22:33 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:22:33 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:22:33"},"state":true}
+
+2018-12-24 11:23:03 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:23:03 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:23:03"},"state":true}
+
+2018-12-24 11:23:33 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:23:33 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:23:33"},"state":true}
+
+2018-12-24 11:24:03 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:24:03 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:24:03"},"state":true}
+
+2018-12-24 11:24:33 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:24:33 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:24:33"},"state":true}
+
+2018-12-24 11:25:03 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:25:03 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:25:03"},"state":true}
+
+2018-12-24 11:25:33 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:25:33 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:25:33"},"state":true}
+
+2018-12-24 11:26:03 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:26:03 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:26:03"},"state":true}
+
+2018-12-24 11:26:33 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:26:33 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:26:33"},"state":true}
+
+2018-12-24 11:27:03 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:27:03 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:27:03"},"state":true}
+
+2018-12-24 11:27:33 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:27:33 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:27:33"},"state":true}
+
+2018-12-24 11:28:03 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:28:03 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:28:03"},"state":true}
+
+2018-12-24 11:28:33 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:28:33 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:28:33"},"state":true}
+
+2018-12-24 11:30:42 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 11:30:43 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 11:31:10 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 11:31:10 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 11:31:48 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 11:31:48 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 11:32:19 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:32:19 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:32:19"},"state":true}
+
+2018-12-24 11:32:49 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:32:49 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:32:49"},"state":true}
+
+2018-12-24 11:33:19 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:33:19 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:33:19"},"state":true}
+
+2018-12-24 11:33:49 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:33:49 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:33:49"},"state":true}
+
+2018-12-24 11:34:19 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:34:19 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:34:19"},"state":true}
+
+2018-12-24 11:34:49 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:34:49 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:34:49"},"state":true}
+
+2018-12-24 11:35:19 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:35:19 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:35:19"},"state":true}
+
+2018-12-24 11:35:49 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:35:49 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:35:49"},"state":true}
+
+2018-12-24 11:36:19 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:36:19 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:36:19"},"state":true}
+
+2018-12-24 11:36:49 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:36:49 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:36:49"},"state":true}
+
+2018-12-24 11:37:19 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:37:19 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:37:19"},"state":true}
+
+2018-12-24 11:37:49 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:37:49 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:37:49"},"state":true}
+
+2018-12-24 11:38:19 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 11:38:19 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 11:38:19"},"state":true}
+
+2018-12-24 11:40:44 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 11:40:45 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 11:41:24 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 11:41:25 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 14:27:34 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:28:16 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:28:17 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 14:28:22 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysMenu/findAll
+
+2018-12-24 14:28:22 响应结果：{"code":200,"message":"操作成功","result":[{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"gears","id":2,"isShow":"1","name":"系统设置","parentId":1,"parentIds":"0,1,","permission":"","root":false,"sort":900,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:33"},{"createById":1,"createByName":"系统管理员","createDate":"2013-06-03 08:00:00","href":"UserForm","icon":"","id":13,"isShow":"1","name":"用户管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-10 19:26:55"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"UserForm","icon":"user","id":10,"isShow":"1","name":"用户管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:59:56"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"OfficeForm","icon":"th-large","id":9,"isShow":"1","name":"机构管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":40,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"th","id":8,"isShow":"0","name":"区域管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2017-01-12 13:26:22","href":"RoleForm","icon":"","id":14,"isShow":"1","name":"角色管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":40,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2017-03-21 15:11:49","href":"DictForm","icon":"","id":15,"isShow":"1","name":"字典管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"","id":7,"isShow":"1","name":"机构用户","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":970,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"","id":3,"isShow":"1","name":"系统设置","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":980,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"MenuForm","icon":"list-alt","id":4,"isShow":"1","name":"菜单管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"RoleForm","icon":"lock","id":5,"isShow":"1","name":"角色管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:35"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"DictForm","icon":"th-list","id":6,"isShow":"1","name":"字典管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":60,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:35"},{"createById":1,"createByName":"系统管理员","createDate":"2013-06-03 08:00:00","href":"LogForm","icon":"","id":11,"isShow":"1","name":"日志查询","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":985,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-19 20:01:05"}],"state":true}
+
+2018-12-24 14:28:39 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysMenu/treeData?extId=
+
+2018-12-24 14:28:39 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"parentId":0,"parentIds":"0,","name":"顶级菜单"},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","name":"菜单管理"},{"id":12,"parentId":0,"parentIds":"0,1,2,31,","name":"日志查询"},{"id":13,"parentId":2,"parentIds":"0,1,2,","name":"用户管理"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","name":"用户管理"},{"id":14,"parentId":2,"parentIds":"0,1,2,","name":"角色管理"},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","name":"机构管理"},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","name":"区域管理"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","name":"角色管理"},{"id":15,"parentId":2,"parentIds":"0,1,2,","name":"字典管理"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","name":"字典管理"},{"id":2,"parentId":1,"parentIds":"0,1,","name":"系统设置"},{"id":7,"parentId":2,"parentIds":"0,1,2,","name":"机构用户"},{"id":3,"parentId":2,"parentIds":"0,1,2,","name":"系统设置"},{"id":11,"parentId":2,"parentIds":"0,1,2,","name":"日志查询"}],"state":true}
+
+2018-12-24 14:28:53 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysMenu/save?id=&parent.id=1&parentIds=0,1,&name=测试&href=&target=&icon=&sort=910&isShow=1&permission=&remarks=
+
+2018-12-24 14:28:54 响应结果：{"code":200,"message":"保存 测试 成功","result":"","state":true}
+
+2018-12-24 14:28:54 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysMenu/findAll
+
+2018-12-24 14:28:54 响应结果：{"code":200,"message":"操作成功","result":[{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"gears","id":2,"isShow":"1","name":"系统设置","parentId":1,"parentIds":"0,1,","permission":"","root":false,"sort":900,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:33"},{"createById":1,"createByName":"系统管理员","createDate":"2013-06-03 08:00:00","href":"UserForm","icon":"","id":13,"isShow":"1","name":"用户管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-10 19:26:55"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"UserForm","icon":"user","id":10,"isShow":"1","name":"用户管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:59:56"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"OfficeForm","icon":"th-large","id":9,"isShow":"1","name":"机构管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":40,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"th","id":8,"isShow":"0","name":"区域管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2017-01-12 13:26:22","href":"RoleForm","icon":"","id":14,"isShow":"1","name":"角色管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":40,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2017-03-21 15:11:49","href":"DictForm","icon":"","id":15,"isShow":"1","name":"字典管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"","id":7,"isShow":"1","name":"机构用户","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":970,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"","id":3,"isShow":"1","name":"系统设置","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":980,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"MenuForm","icon":"list-alt","id":4,"isShow":"1","name":"菜单管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"RoleForm","icon":"lock","id":5,"isShow":"1","name":"角色管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:35"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"DictForm","icon":"th-list","id":6,"isShow":"1","name":"字典管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":60,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:35"},{"createById":1,"createByName":"系统管理员","createDate":"2013-06-03 08:00:00","href":"LogForm","icon":"","id":11,"isShow":"1","name":"日志查询","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":985,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-19 20:01:05"},{"createById":1,"createByName":"系统管理员","createDate":"2018-12-24 14:28:53","href":"","icon":"","id":18,"isShow":"1","name":"测试","parentId":1,"parentIds":"0,1,","permission":"","root":false,"sort":910,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-24 14:28:53"}],"state":true}
+
+2018-12-24 14:28:57 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysMenu/treeData?extId=
+
+2018-12-24 14:28:57 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"parentId":0,"parentIds":"0,","name":"顶级菜单"},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","name":"菜单管理"},{"id":12,"parentId":0,"parentIds":"0,1,2,31,","name":"日志查询"},{"id":13,"parentId":2,"parentIds":"0,1,2,","name":"用户管理"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","name":"用户管理"},{"id":14,"parentId":2,"parentIds":"0,1,2,","name":"角色管理"},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","name":"机构管理"},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","name":"区域管理"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","name":"角色管理"},{"id":15,"parentId":2,"parentIds":"0,1,2,","name":"字典管理"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","name":"字典管理"},{"id":2,"parentId":1,"parentIds":"0,1,","name":"系统设置"},{"id":18,"parentId":1,"parentIds":"0,1,","name":"测试"},{"id":7,"parentId":2,"parentIds":"0,1,2,","name":"机构用户"},{"id":3,"parentId":2,"parentIds":"0,1,2,","name":"系统设置"},{"id":11,"parentId":2,"parentIds":"0,1,2,","name":"日志查询"}],"state":true}
+
+2018-12-24 14:29:04 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysMenu/save?id=&parent.id=1&parentIds=0,1,&name=测试2&href=&target=&icon=&sort=920&isShow=1&permission=&remarks=
+
+2018-12-24 14:29:04 响应结果：{"code":200,"message":"保存 测试2 成功","result":"","state":true}
+
+2018-12-24 14:29:04 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysMenu/findAll
+
+2018-12-24 14:29:04 响应结果：{"code":200,"message":"操作成功","result":[{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"gears","id":2,"isShow":"1","name":"系统设置","parentId":1,"parentIds":"0,1,","permission":"","root":false,"sort":900,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:33"},{"createById":1,"createByName":"系统管理员","createDate":"2013-06-03 08:00:00","href":"UserForm","icon":"","id":13,"isShow":"1","name":"用户管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-10 19:26:55"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"UserForm","icon":"user","id":10,"isShow":"1","name":"用户管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:59:56"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"OfficeForm","icon":"th-large","id":9,"isShow":"1","name":"机构管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":40,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"th","id":8,"isShow":"0","name":"区域管理","parentId":13,"parentIds":"0,1,2,13,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2017-01-12 13:26:22","href":"RoleForm","icon":"","id":14,"isShow":"1","name":"角色管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":40,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2017-03-21 15:11:49","href":"DictForm","icon":"","id":15,"isShow":"1","name":"字典管理","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"","id":7,"isShow":"1","name":"机构用户","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":970,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"","icon":"","id":3,"isShow":"1","name":"系统设置","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":980,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"MenuForm","icon":"list-alt","id":4,"isShow":"1","name":"菜单管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":30,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:34"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"RoleForm","icon":"lock","id":5,"isShow":"1","name":"角色管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":50,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:35"},{"createById":1,"createByName":"系统管理员","createDate":"2013-05-27 08:00:00","href":"DictForm","icon":"th-list","id":6,"isShow":"1","name":"字典管理","parentId":3,"parentIds":"0,1,2,3,","permission":"","root":false,"sort":60,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2017-11-07 20:31:35"},{"createById":1,"createByName":"系统管理员","createDate":"2013-06-03 08:00:00","href":"LogForm","icon":"","id":11,"isShow":"1","name":"日志查询","parentId":2,"parentIds":"0,1,2,","permission":"","root":false,"sort":985,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-19 20:01:05"},{"createById":1,"createByName":"系统管理员","createDate":"2018-12-24 14:28:53","href":"","icon":"","id":18,"isShow":"1","name":"测试","parentId":1,"parentIds":"0,1,","permission":"","root":false,"sort":910,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-24 14:28:53"},{"createById":1,"createByName":"系统管理员","createDate":"2018-12-24 14:29:04","href":"","icon":"","id":19,"isShow":"1","name":"测试2","parentId":1,"parentIds":"0,1,","permission":"","root":false,"sort":920,"target":"","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-24 14:29:04"}],"state":true}
+
+2018-12-24 14:29:24 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:29:25 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 14:30:38 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:30:39 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 14:30:57 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:30:58 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 14:31:25 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:31:26 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 14:32:07 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 14:32:07 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 14:32:07"},"state":true}
+
+2018-12-24 14:32:52 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:32:53 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-24 14:33:03 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-24 14:33:03 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-24 14:33:13 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-24 14:33:14 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-24 14:33:29 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-24 14:33:29 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-24 14:33:29 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-24 14:33:29 响应结果：{"code":200,"message":"操作成功","result":{"count":3,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:46:24","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:45:00","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-20 19:43:36","email":"1242539738@qq.com","id":5,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","loginDate":"","loginIp":"","loginName":"zrj","mobile":"","name":"123","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:43:54","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-24 14:33:44 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/assign?roleId=1
+
+2018-12-24 14:33:44 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"phone":"","officeName":"博爱","name":"系统管理员","companyName":"博爱","mobile":"","loginName":"system_admin"},{"id":2,"phone":"","officeName":"博爱","name":"管理员","companyName":"博爱","mobile":"","loginName":"oms_admin"},{"id":5,"phone":"","officeName":"博爱","name":"123","companyName":"博爱","mobile":"","loginName":"zrj"}],"state":true}
+
+2018-12-24 14:33:54 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAllJson
+
+2018-12-24 14:33:54 响应结果：{"code":9999,"message":"操作失败，系统异常：failed to lazily initialize a collection of role: com.xr.modules.sys.entity.Office.userList, could not initialize proxy - no Session","result":"","state":false}
+
+2018-12-24 14:34:16 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/getDropDownData
+
+2018-12-24 14:34:17 响应结果：{"code":200,"message":"操作成功","result":{"officeList":[{"id":1,"parentId":null,"areaName":"广东省","name":"顶级","code":"100000","type":"3"},{"id":2,"parentId":1,"areaName":"广东省","name":"博爱","code":"100001","type":"1"}],"dataScopeDictList":[{"id":22,"name":"所有数据","code":"1"},{"id":23,"name":"所在公司及以下数据","code":"2"}],"menuList":[{"id":4,"parentId":3,"name":"菜单管理"},{"id":13,"parentId":2,"name":"用户管理"},{"id":10,"parentId":13,"name":"用户管理"},{"id":14,"parentId":2,"name":"角色管理"},{"id":9,"parentId":13,"name":"机构管理"},{"id":8,"parentId":13,"name":"区域管理"},{"id":5,"parentId":3,"name":"角色管理"},{"id":15,"parentId":2,"name":"字典管理"},{"id":6,"parentId":3,"name":"字典管理"},{"id":2,"parentId":1,"name":"系统设置"},{"id":18,"parentId":1,"name":"测试"},{"id":19,"parentId":1,"name":"测试2"},{"id":7,"parentId":2,"name":"机构用户"},{"id":3,"parentId":2,"name":"系统设置"},{"id":11,"parentId":2,"name":"日志查询"}]},"state":true}
+
+2018-12-24 14:34:17 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/getRole?roleId=1
+
+2018-12-24 14:34:17 响应结果：{"code":200,"message":"操作成功","result":{"menuIds":"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15","id":1,"officeId":2,"dataScope":"1","name":"管理员"},"state":true}
+
+2018-12-24 14:34:21 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/save?id=1&office.id=2&name=管理员&dataScope=1&dataScopeName=&officeName=&menuIds=2,13,10,9,8,14,15,7,3,4,5,6,11,18,19&&oldName=管理员
+
+2018-12-24 14:34:22 响应结果：{"code":200,"message":"保存角色'管理员'成功","result":"","state":true}
+
+2018-12-24 14:34:22 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-24 14:34:22 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-24 14:34:32 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:34:33 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"},{"id":18,"parentId":1,"parentIds":"0,1,","sort":910,"name":"测试","href":""},{"id":19,"parentId":1,"parentIds":"0,1,","sort":920,"name":"测试2","href":""}]},"state":true}
+
+2018-12-24 14:34:49 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:34:50 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"},{"id":18,"parentId":1,"parentIds":"0,1,","sort":910,"name":"测试","href":""},{"id":19,"parentId":1,"parentIds":"0,1,","sort":920,"name":"测试2","href":""}]},"state":true}
+
+2018-12-24 14:35:20 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 14:35:20 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 14:35:20"},"state":true}
+
+2018-12-24 14:35:50 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-24 14:35:50 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-24 14:35:50"},"state":true}
+
+2018-12-24 14:36:29 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:36:29 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"},{"id":18,"parentId":1,"parentIds":"0,1,","sort":910,"name":"测试","href":""},{"id":19,"parentId":1,"parentIds":"0,1,","sort":920,"name":"测试2","href":""}]},"state":true}
+
+2018-12-24 14:37:15 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-24 14:37:15 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"},{"id":18,"parentId":1,"parentIds":"0,1,","sort":910,"name":"测试","href":""},{"id":19,"parentId":1,"parentIds":"0,1,","sort":920,"name":"测试2","href":""}]},"state":true}

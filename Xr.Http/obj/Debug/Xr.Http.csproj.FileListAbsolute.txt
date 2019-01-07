@@ -1,0 +1,15 @@
+E:\Java\workSpace\YYFZ\YY\client\manager\Xr.Http\obj\Debug\Xr.Http.csprojResolveAssemblyReference.cache
+E:\Java\workSpace\YYFZ\YY\client\manager\Xr.Http\bin\Debug\Xr.Http.dll
+E:\Java\workSpace\YYFZ\YY\client\manager\Xr.Http\bin\Debug\Xr.Http.pdb
+E:\Java\workSpace\YYFZ\YY\client\manager\Xr.Http\bin\Debug\Xr.dll
+E:\Java\workSpace\YYFZ\YY\client\manager\Xr.Http\bin\Debug\Xr.pdb
+E:\Java\workSpace\YYFZ\YY\client\manager\Xr.Http\obj\Debug\Xr.Http.dll
+E:\Java\workSpace\YYFZ\YY\client\manager\Xr.Http\obj\Debug\Xr.Http.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\bin\Debug\Xr.Http.dll
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\bin\Debug\Xr.Http.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\bin\Debug\Xr.dll
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\bin\Debug\Xr.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\obj\Debug\Xr.Http.csprojResolveAssemblyReference.cache
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\obj\Debug\Xr.Http.dll
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\obj\Debug\Xr.Http.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Http\bin\Debug\RestSharp.dll

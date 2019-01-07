@@ -1,0 +1,470 @@
+
+2018-12-20 19:41:41 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 19:41:41 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-20 19:41:46 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:41:47 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:41:47 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 19:41:47 响应结果：{"code":200,"message":"操作成功","result":{"count":2,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"/oms/userfiles/1/_thumbs/images/user/logo/2017/10/psb.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:11:21","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"/userfiles/3/_thumbs/images/user/logo/2017/06/a.png","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2017-06-01 18:26:20","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-20 19:43:07 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 19:43:08 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-20 19:43:13 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:43:13 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:43:14 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 19:43:14 响应结果：{"code":200,"message":"操作成功","result":{"count":2,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"/oms/userfiles/1/_thumbs/images/user/logo/2017/10/psb.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:11:21","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"/userfiles/3/_thumbs/images/user/logo/2017/06/a.png","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2017-06-01 18:26:20","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-20 19:43:18 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:43:18 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:43:18 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:43:18 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:43:35 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/save?id=&imgPath=&company.id=2&office.id=2&loginName=zrj&password=123&password2=123&name=123&email=1242539738@qq.com&phone=&mobile=&remarks=&roleIds=1&roleNames=
+
+2018-12-20 19:43:36 响应结果：{"code":200,"message":"保存用户'zrj'成功","result":"","state":true}
+
+2018-12-20 19:43:36 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 19:43:36 响应结果：{"code":200,"message":"操作成功","result":{"count":3,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"/oms/userfiles/1/_thumbs/images/user/logo/2017/10/psb.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:11:21","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"/userfiles/3/_thumbs/images/user/logo/2017/06/a.png","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2017-06-01 18:26:20","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-20 19:43:36","email":"1242539738@qq.com","id":5,"imgPath":"","loginDate":"","loginIp":"","loginName":"zrj","mobile":"","name":"123","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:43:36","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-20 19:43:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:43:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:43:38"},"state":true}
+
+2018-12-20 19:43:39 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:43:39 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:43:39 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:43:39 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:43:39 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=5
+
+2018-12-20 19:43:39 响应结果：{"code":200,"message":"操作成功","result":{"id":5,"officeId":2,"phone":"","email":"1242539738@qq.com","name":"123","imgPath":"","remarks":"","companyId":2,"password":"123","roleIds":"1","mobile":"","loginName":"zrj"},"state":true}
+
+2018-12-20 19:43:46 请求数据：http://127.0.0.1:8080/dzkb/api/common/uploadFile
+
+2018-12-20 19:43:46 响应结果：{"code":200,"message":"文件上传成功","result":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","state":true}
+
+2018-12-20 19:43:54 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/save?id=5&imgPath=http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg&company.id=2&office.id=2&loginName=zrj&password=123&password2=&name=123&email=1242539738@qq.com&phone=&mobile=&remarks=&roleIds=1&roleNames=&&oldLoginName=zrj
+
+2018-12-20 19:43:54 响应结果：{"code":200,"message":"保存用户'zrj'成功","result":"","state":true}
+
+2018-12-20 19:43:54 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 19:43:54 响应结果：{"code":200,"message":"操作成功","result":{"count":3,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"/oms/userfiles/1/_thumbs/images/user/logo/2017/10/psb.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:11:21","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"/userfiles/3/_thumbs/images/user/logo/2017/06/a.png","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2017-06-01 18:26:20","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-20 19:43:36","email":"1242539738@qq.com","id":5,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","loginDate":"","loginIp":"","loginName":"zrj","mobile":"","name":"123","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:43:54","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-20 19:43:57 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:43:58 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:43:58 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:43:58 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:43:58 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=5
+
+2018-12-20 19:43:58 响应结果：{"code":200,"message":"操作成功","result":{"id":5,"officeId":2,"phone":"","email":"1242539738@qq.com","name":"123","imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","remarks":"","companyId":2,"password":"123","roleIds":"1","mobile":"","loginName":"zrj"},"state":true}
+
+2018-12-20 19:44:05 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:44:05 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:44:05 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:44:06 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:44:06 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=5
+
+2018-12-20 19:44:06 响应结果：{"code":200,"message":"操作成功","result":{"id":5,"officeId":2,"phone":"","email":"1242539738@qq.com","name":"123","imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","remarks":"","companyId":2,"password":"123","roleIds":"1","mobile":"","loginName":"zrj"},"state":true}
+
+2018-12-20 19:44:08 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:44:08 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:44:08"},"state":true}
+
+2018-12-20 19:44:09 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:44:09 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:44:09 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:44:09 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:44:09 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=2
+
+2018-12-20 19:44:09 响应结果：{"code":200,"message":"操作成功","result":{"id":2,"officeId":2,"phone":null,"email":"421231@qq.com","name":"管理员","imgPath":"/userfiles/3/_thumbs/images/user/logo/2017/06/a.png","remarks":null,"companyId":2,"password":"76cdc47086bbf89ee9ae3459104369cd7c730cb12db5445ca8377b39","roleIds":"1","mobile":null,"loginName":"oms_admin"},"state":true}
+
+2018-12-20 19:44:31 Application_ThreadException:System.Net.WebException: 未能找到路径“E:\userfiles\3\_thumbs\images\user\logo\2017\06\a.png”的一部分。 ---> System.Net.WebException: 未能找到路径“E:\userfiles\3\_thumbs\images\user\logo\2017\06\a.png”的一部分。 ---> System.IO.DirectoryNotFoundException: 未能找到路径“E:\userfiles\3\_thumbs\images\user\logo\2017\06\a.png”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.Net.FileWebStream..ctor(FileWebRequest request, String path, FileMode mode, FileAccess access, FileShare sharing, Int32 length, Boolean async)
+   在 System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean asyncHint)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean asyncHint)
+   在 System.Net.FileWebRequest.GetResponseCallback(Object state)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   在 System.Net.WebClient.DownloadData(Uri address)
+   在 WindowsFormsApplication1.UserEdit.UserEdit_Load(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Pages\System\UserEdit.cs:行号 99
+   在 System.Windows.Forms.Form.OnLoad(EventArgs e)
+   在 System.Windows.Forms.Form.OnCreateControl()
+   在 System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   在 System.Windows.Forms.Control.CreateControl()
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+2018-12-20 19:44:38 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:44:38 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:44:38"},"state":true}
+
+2018-12-20 19:44:55 请求数据：http://127.0.0.1:8080/dzkb/api/common/uploadFile
+
+2018-12-20 19:44:55 响应结果：{"code":200,"message":"文件上传成功","result":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg","state":true}
+
+2018-12-20 19:45:00 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/save?id=2&imgPath=http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg&company.id=2&office.id=2&loginName=oms_admin&password=76cdc47086bbf89ee9ae3459104369cd7c730cb12db5445ca8377b39&password2=&name=管理员&email=421231@qq.com&phone=&mobile=&remarks=&roleIds=1&roleNames=&&oldLoginName=oms_admin
+
+2018-12-20 19:45:00 响应结果：{"code":200,"message":"保存用户'oms_admin'成功","result":"","state":true}
+
+2018-12-20 19:45:00 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 19:45:00 响应结果：{"code":200,"message":"操作成功","result":{"count":3,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"/oms/userfiles/1/_thumbs/images/user/logo/2017/10/psb.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-17 10:11:21","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:45:00","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-20 19:43:36","email":"1242539738@qq.com","id":5,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","loginDate":"","loginIp":"","loginName":"zrj","mobile":"","name":"123","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:43:54","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-20 19:45:02 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:45:03 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:45:03 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:45:03 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:45:03 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=1
+
+2018-12-20 19:45:03 响应结果：{"code":200,"message":"操作成功","result":{"id":1,"officeId":2,"phone":null,"email":"243102282@qq.com","name":"系统管理员","imgPath":"/oms/userfiles/1/_thumbs/images/user/logo/2017/10/psb.jpg","remarks":null,"companyId":2,"password":"02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032","roleIds":"1","mobile":null,"loginName":"system_admin"},"state":true}
+
+2018-12-20 19:45:20 Application_ThreadException:System.Net.WebException: 未能找到路径“E:\oms\userfiles\1\_thumbs\images\user\logo\2017\10\psb.jpg”的一部分。 ---> System.Net.WebException: 未能找到路径“E:\oms\userfiles\1\_thumbs\images\user\logo\2017\10\psb.jpg”的一部分。 ---> System.IO.DirectoryNotFoundException: 未能找到路径“E:\oms\userfiles\1\_thumbs\images\user\logo\2017\10\psb.jpg”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.Net.FileWebStream..ctor(FileWebRequest request, String path, FileMode mode, FileAccess access, FileShare sharing, Int32 length, Boolean async)
+   在 System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean asyncHint)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean asyncHint)
+   在 System.Net.FileWebRequest.GetResponseCallback(Object state)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   在 System.Net.WebClient.DownloadData(Uri address)
+   在 WindowsFormsApplication1.UserEdit.UserEdit_Load(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Pages\System\UserEdit.cs:行号 99
+   在 System.Windows.Forms.Form.OnLoad(EventArgs e)
+   在 System.Windows.Forms.Form.OnCreateControl()
+   在 System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   在 System.Windows.Forms.Control.CreateControl()
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+2018-12-20 19:45:20 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:45:20 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:45:20"},"state":true}
+
+2018-12-20 19:45:28 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:45:28 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:45:28 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:45:28 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:45:28 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=5
+
+2018-12-20 19:45:28 响应结果：{"code":200,"message":"操作成功","result":{"id":5,"officeId":2,"phone":"","email":"1242539738@qq.com","name":"123","imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","remarks":"","companyId":2,"password":"123","roleIds":"1","mobile":"","loginName":"zrj"},"state":true}
+
+2018-12-20 19:45:31 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:45:31 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:45:31 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:45:32 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:45:32 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=2
+
+2018-12-20 19:45:32 响应结果：{"code":200,"message":"操作成功","result":{"id":2,"officeId":2,"phone":"","email":"421231@qq.com","name":"管理员","imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg","remarks":"","companyId":2,"password":"76cdc47086bbf89ee9ae3459104369cd7c730cb12db5445ca8377b39","roleIds":"1","mobile":"","loginName":"oms_admin"},"state":true}
+
+2018-12-20 19:45:38 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:45:38 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:45:38 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:45:38 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:45:38 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=1
+
+2018-12-20 19:45:38 响应结果：{"code":200,"message":"操作成功","result":{"id":1,"officeId":2,"phone":null,"email":"243102282@qq.com","name":"系统管理员","imgPath":"/oms/userfiles/1/_thumbs/images/user/logo/2017/10/psb.jpg","remarks":null,"companyId":2,"password":"02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032","roleIds":"1","mobile":null,"loginName":"system_admin"},"state":true}
+
+2018-12-20 19:45:42 Application_ThreadException:System.Net.WebException: 未能找到路径“E:\oms\userfiles\1\_thumbs\images\user\logo\2017\10\psb.jpg”的一部分。 ---> System.Net.WebException: 未能找到路径“E:\oms\userfiles\1\_thumbs\images\user\logo\2017\10\psb.jpg”的一部分。 ---> System.IO.DirectoryNotFoundException: 未能找到路径“E:\oms\userfiles\1\_thumbs\images\user\logo\2017\10\psb.jpg”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.Net.FileWebStream..ctor(FileWebRequest request, String path, FileMode mode, FileAccess access, FileShare sharing, Int32 length, Boolean async)
+   在 System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean asyncHint)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean asyncHint)
+   在 System.Net.FileWebRequest.GetResponseCallback(Object state)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   在 System.Net.WebClient.DownloadData(Uri address)
+   在 WindowsFormsApplication1.UserEdit.UserEdit_Load(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Pages\System\UserEdit.cs:行号 99
+   在 System.Windows.Forms.Form.OnLoad(EventArgs e)
+   在 System.Windows.Forms.Form.OnCreateControl()
+   在 System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   在 System.Windows.Forms.Control.CreateControl()
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+2018-12-20 19:45:50 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:45:50 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:45:50"},"state":true}
+
+2018-12-20 19:46:20 请求数据：http://127.0.0.1:8080/dzkb/api/common/uploadFile
+
+2018-12-20 19:46:20 响应结果：{"code":200,"message":"文件上传成功","result":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg","state":true}
+
+2018-12-20 19:46:20 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:46:20 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:46:20"},"state":true}
+
+2018-12-20 19:46:23 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/save?id=1&imgPath=http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg&company.id=2&office.id=2&loginName=system_admin&password=02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032&password2=&name=系统管理员&email=243102282@qq.com&phone=&mobile=&remarks=&roleIds=1&roleNames=&&oldLoginName=system_admin
+
+2018-12-20 19:46:24 响应结果：{"code":200,"message":"保存用户'system_admin'成功","result":"","state":true}
+
+2018-12-20 19:46:24 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 19:46:24 响应结果：{"code":200,"message":"操作成功","result":{"count":3,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:46:24","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:45:00","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-20 19:43:36","email":"1242539738@qq.com","id":5,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","loginDate":"","loginIp":"","loginName":"zrj","mobile":"","name":"123","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:43:54","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-20 19:46:31 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:46:31 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:46:31 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:46:31 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:46:31 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=1
+
+2018-12-20 19:46:31 响应结果：{"code":200,"message":"操作成功","result":{"id":1,"officeId":2,"phone":"","email":"243102282@qq.com","name":"系统管理员","imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg","remarks":"","companyId":2,"password":"02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032","roleIds":"1","mobile":"","loginName":"system_admin"},"state":true}
+
+2018-12-20 19:46:43 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:46:43 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:46:43 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysRole/findAll
+
+2018-12-20 19:46:43 响应结果：{"code":200,"message":"操作成功","result":[{"id":1,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"管理员"},{"id":2,"dataScopeName":"所有数据","officeId":2,"dataScope":"1","officeName":"博爱","name":"数据管理员"}],"state":true}
+
+2018-12-20 19:46:43 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/getUser?userId=1
+
+2018-12-20 19:46:43 响应结果：{"code":200,"message":"操作成功","result":{"id":1,"officeId":2,"phone":"","email":"243102282@qq.com","name":"系统管理员","imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg","remarks":"","companyId":2,"password":"02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032","roleIds":"1","mobile":"","loginName":"system_admin"},"state":true}
+
+2018-12-20 19:46:50 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:46:50 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:46:50"},"state":true}
+
+2018-12-20 19:47:20 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:47:20 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:47:20"},"state":true}
+
+2018-12-20 19:47:50 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:47:50 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:47:50"},"state":true}
+
+2018-12-20 19:48:20 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:48:20 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:48:20"},"state":true}
+
+2018-12-20 19:48:50 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:48:50 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:48:50"},"state":true}
+
+2018-12-20 19:49:20 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:49:20 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:49:20"},"state":true}
+
+2018-12-20 19:49:50 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:49:50 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:49:50"},"state":true}
+
+2018-12-20 19:50:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:50:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:50:21"},"state":true}
+
+2018-12-20 19:50:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:50:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:50:51"},"state":true}
+
+2018-12-20 19:51:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:51:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:51:21"},"state":true}
+
+2018-12-20 19:51:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:51:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:51:51"},"state":true}
+
+2018-12-20 19:52:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:52:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:52:21"},"state":true}
+
+2018-12-20 19:52:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:52:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:52:51"},"state":true}
+
+2018-12-20 19:53:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:53:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:53:21"},"state":true}
+
+2018-12-20 19:53:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:53:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:53:51"},"state":true}
+
+2018-12-20 19:54:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:54:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:54:21"},"state":true}
+
+2018-12-20 19:54:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:54:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:54:51"},"state":true}
+
+2018-12-20 19:55:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:55:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:55:21"},"state":true}
+
+2018-12-20 19:55:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:55:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:55:51"},"state":true}
+
+2018-12-20 19:56:21 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:56:21 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:56:21"},"state":true}
+
+2018-12-20 19:56:51 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:56:51 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:56:51"},"state":true}
+
+2018-12-20 19:57:12 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 19:57:12 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 19:57:12 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 19:57:12 响应结果：{"code":200,"message":"操作成功","result":{"count":3,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:46:24","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:45:00","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-20 19:43:36","email":"1242539738@qq.com","id":5,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","loginDate":"","loginIp":"","loginName":"zrj","mobile":"","name":"123","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:43:54","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2018-12-20 19:57:20 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 19:57:20 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-20 19:57:27 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 19:57:27 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-20 19:57:57 请求数据：http://127.0.0.1:8080/dzkb/api/getCurrentDate
+
+2018-12-20 19:57:57 响应结果：{"code":200,"message":"操作成功","result":{"currentDatetime":"2018-12-20 19:57:57"},"state":true}
+
+2018-12-20 19:58:20 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 19:58:25 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 19:58:25 程序异常信息：
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 WindowsFormsApplication1.HttpClass.loginPost(String url) 
+   在 触发文件： e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Utils\HttpClass.cs:行号 42
+   在 触发方法：System.Net.WebResponse GetResponse()
+   在 异常信息：远程服务器返回错误: (404) 未找到。
+
+2018-12-20 20:00:38 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:00:43 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:00:43 程序异常信息：
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 WindowsFormsApplication1.HttpClass.loginPost(String url) 
+   在 触发文件： e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Utils\HttpClass.cs:行号 42
+   在 触发方法：System.Net.WebResponse GetResponse()
+   在 异常信息：远程服务器返回错误: (404) 未找到。
+
+2018-12-20 20:00:56 Application_ThreadException:Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: 远. Path '', line 0, position 0.
+   在 Newtonsoft.Json.JsonTextReader.ParseValue()
+   在 Newtonsoft.Json.JsonTextReader.ReadInternal()
+   在 Newtonsoft.Json.JsonTextReader.Read()
+   在 Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)
+   在 Newtonsoft.Json.Linq.JObject.Parse(String json)
+   在 WindowsFormsApplication1.LoginForm.bw_RunWorkerCompleted(Object sender, RunWorkerCompletedEventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\LoginForm.cs:行号 66
+   在 System.ComponentModel.BackgroundWorker.OnRunWorkerCompleted(RunWorkerCompletedEventArgs e)
+
+2018-12-20 20:01:00 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:01:00 程序异常信息：
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 WindowsFormsApplication1.HttpClass.loginPost(String url) 
+   在 触发文件： e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Utils\HttpClass.cs:行号 42
+   在 触发方法：System.Net.WebResponse GetResponse()
+   在 异常信息：远程服务器返回错误: (404) 未找到。
+
+2018-12-20 20:01:20 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-20 20:01:20 Application_ThreadException:Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: 远. Path '', line 0, position 0.
+   在 Newtonsoft.Json.JsonTextReader.ParseValue()
+   在 Newtonsoft.Json.JsonTextReader.ReadInternal()
+   在 Newtonsoft.Json.JsonTextReader.Read()
+   在 Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)
+   在 Newtonsoft.Json.Linq.JObject.Parse(String json)
+   在 WindowsFormsApplication1.LoginForm.bw_RunWorkerCompleted(Object sender, RunWorkerCompletedEventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\LoginForm.cs:行号 66
+   在 System.ComponentModel.BackgroundWorker.OnRunWorkerCompleted(RunWorkerCompletedEventArgs e)
+
+2018-12-20 20:01:26 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:01:30 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:01:30 程序异常信息：
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 WindowsFormsApplication1.HttpClass.loginPost(String url) 
+   在 触发文件： e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Utils\HttpClass.cs:行号 42
+   在 触发方法：System.Net.WebResponse GetResponse()
+   在 异常信息：远程服务器返回错误: (404) 未找到。
+
+2018-12-20 20:02:53 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:03:53 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:03:53 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-20 20:08:16 请求数据：http://127.0.0.1:8080/dzkb/api/login?username=system_admin&password=admin
+
+2018-12-20 20:08:17 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":3,"parentId":2,"parentIds":"0,1,2,","sort":980,"name":"系统设置","href":null},{"id":4,"parentId":3,"parentIds":"0,1,2,3,","sort":30,"name":"菜单管理","href":"MenuForm"},{"id":5,"parentId":3,"parentIds":"0,1,2,3,","sort":50,"name":"角色管理","href":"RoleForm"},{"id":6,"parentId":3,"parentIds":"0,1,2,3,","sort":60,"name":"字典管理","href":"DictForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":970,"name":"机构用户","href":null},{"id":8,"parentId":13,"parentIds":"0,1,2,13,","sort":50,"name":"区域管理","href":null},{"id":9,"parentId":13,"parentIds":"0,1,2,13,","sort":40,"name":"机构管理","href":"OfficeForm"},{"id":10,"parentId":13,"parentIds":"0,1,2,13,","sort":30,"name":"用户管理","href":"UserForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"字典管理","href":"DictForm"}]},"state":true}
+
+2018-12-20 20:08:38 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysOffice/findAll
+
+2018-12-20 20:08:38 响应结果：{"code":200,"message":"操作成功","result":[{"phone":"","fax":"","remarks":"","code":"100001","type":"1","areaId":2,"master":"","id":2,"parentId":1,"areaName":"广东省","email":"","address":"","name":"博爱","zipCode":"","grade":"1"}],"state":true}
+
+2018-12-20 20:08:39 请求数据：http://127.0.0.1:8080/dzkb/api/sys/sysUser/findAll?companyId=&&officeId=&&loginName=&&name=&&pageNo=1
+
+2018-12-20 20:08:39 响应结果：{"code":200,"message":"操作成功","result":{"count":3,"list":[{"admin":true,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-17 10:11:21","email":"243102282@qq.com","id":1,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01bdf6a27f013a5060.jpg","loginDate":"","loginIp":"","loginName":"system_admin","mobile":"","name":"系统管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:46:24","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2016-09-23 20:54:40","email":"421231@qq.com","id":2,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/01b60f904b58a03c43.jpg","loginDate":"2018-03-27 17:57:36","loginIp":"192.168.11.42","loginName":"oms_admin","mobile":"","name":"管理员","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:45:00","userType":""},{"admin":false,"companyId":2,"companyName":"博爱","createById":1,"createByName":"系统管理员","createDate":"2018-12-20 19:43:36","email":"1242539738@qq.com","id":5,"imgPath":"http://127.0.0.1:8080/dzkb/uploadFileDir/user_1/2018-12-20/asuo_Splash_0.jpg","loginDate":"","loginIp":"","loginName":"zrj","mobile":"","name":"123","no":"","officeId":2,"officeName":"博爱","phone":"","remarks":"","roleNames":"管理员","updateById":1,"updateByName":"系统管理员","updateDate":"2018-12-20 19:43:54","userType":""}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}

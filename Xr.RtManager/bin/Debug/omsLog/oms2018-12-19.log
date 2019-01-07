@@ -1,0 +1,27 @@
+
+2018-12-19 09:45:02 Application_ThreadException:System.UriFormatException: 无效的 URI: 未能确定 URI 的格式。
+   在 System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   在 System.Net.WebRequest.Create(String requestUriString)
+   在 WindowsFormsApplication1.HttpClass.httpPost(String url) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\Utils\HttpClass.cs:行号 58
+   在 WindowsFormsApplication1.MainForm.tmHeartbeat_Tick(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\MainForm.cs:行号 267
+   在 System.Windows.Forms.Timer.OnTick(EventArgs e)
+   在 System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+2018-12-19 19:46:42 Application_ThreadException:Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: 远. Path '', line 0, position 0.
+   在 Newtonsoft.Json.JsonTextReader.ParseValue()
+   在 Newtonsoft.Json.JsonTextReader.ReadInternal()
+   在 Newtonsoft.Json.JsonTextReader.Read()
+   在 Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)
+   在 Newtonsoft.Json.Linq.JObject.Parse(String json)
+   在 WindowsFormsApplication1.LoginForm.btnLogin_Click_1(Object sender, EventArgs e) 位置 e:\Java\workSpace\电子看板管理系统\code\client\AssManager\XrEbsManager\LoginForm.cs:行号 45
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 CCWin.SkinControl.SkinButton.TWKlKUc9fbamQ8fb0qSX(Object , Object )
+   在 CCWin.SkinControl.SkinButton.OnMouseUp(MouseEventArgs e)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
