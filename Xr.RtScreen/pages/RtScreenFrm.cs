@@ -35,8 +35,7 @@ namespace Xr.RtScreen.pages
                          ButtonBorderStyle.Solid);
         }
 
-        #endregion 
-
+      
         private void panelControl1_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics,
@@ -108,5 +107,6 @@ namespace Xr.RtScreen.pages
                       1,
                       ButtonBorderStyle.Solid);
         }
+        #endregion
     }
 }

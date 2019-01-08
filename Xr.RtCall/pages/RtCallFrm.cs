@@ -14,37 +14,38 @@ namespace Xr.RtCall.pages
         public RtCallFrm()
         {
             InitializeComponent();
-            this.Height = 40;
+           this.Height = this.Height - this.panelControl2.Height;
+            //this.panelControl2.Visible = false;
+            //this.Size=new Size(615,40);
         }
-        /// <summary>
-        /// 下一位
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void simpleButton1_Click(object sender, EventArgs e)
+
+        private void skinButNext_Click(object sender, EventArgs e)
         {
             RtCallMessageFrm rcf = new RtCallMessageFrm();
             Xr.RtCall.Form1 f = new Form1();
             f.panelControl1.Controls.Clear();
-            f.Height = rcf.Height+30;
+            f.Height = rcf.Height + 30;
             f.Width = rcf.Width;
             f.labBoxInfor.Text = "";
             f.panelControl1.Controls.Add(rcf);
             f.Show();
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
+        private void skinbutBig_Click(object sender, EventArgs e)
         {
-            RtCallFrm rc = new RtCallFrm();
-            RtCallPeationFrm rcf = new RtCallPeationFrm();
-            Xr.RtCall.Form1 f = new Form1();
-            //f.panelControl1.Controls.Clear();
-            f.Height = rcf.Height + 30;
-            f.Width = rcf.Width;
-            f.labBoxInfor.Text = "叫号";
-            rcf.Location = new System.Drawing.Point(0, rc.Location.Y + rc.Height);
-            f.panelControl1.Controls.Add(rcf);
-            f.Show();
+            this.Size = new Size(615,500);
+            this.panelControl2.Visible = true;
         }
+        //private static Size lastFromSize = new Size();
+        //private bool minSizeflag = false;
+        //private void RtCallFrm_Resize(object sender, EventArgs e)
+        //{
+        //    this.panelControl2.Location = new Point(3,3+this.panelControl1.Height);
+        //    this.panelControl2.Size = new Size(this.Size.Width-6,this.Size.Height-6-this.panelControl1.Height);
+        //    if (!minSizeflag)
+        //    {
+        //        lastFromSize = this.Size;
+        //    }
+        //}
     }
 }

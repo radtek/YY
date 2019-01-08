@@ -27,3 +27,7 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\bin\Debug\X
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\obj\Debug\Xr.RtCall.exe.licenses
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\obj\Debug\Xr.RtCall.pages.RtCallMessageFrm.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\obj\Debug\Xr.RtCall.pages.RtCallPeationFrm.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\bin\Debug\CSkin.dll
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\obj\Debug\Xr.RtCall.pages.HostingForm.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\bin\Debug\HPSocketCS.dll
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\bin\Debug\HPSocketCS.pdb

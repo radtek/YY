@@ -7,3 +7,4 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr\bin\Debug\Xr.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr\bin\Debug\Xr.pdb
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr\obj\Debug\Xr.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr\obj\Debug\Xr.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr\obj\Debug\Xr.csprojResolveAssemblyReference.cache

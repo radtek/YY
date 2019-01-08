@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.skinbutNew = new CCWin.SkinControl.SkinButton();
+            this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -63,39 +64,65 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(320, 70);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "当前患者/Y001/男/王正伟";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.simpleButton2);
-            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Controls.Add(this.skinButton1);
+            this.panelControl1.Controls.Add(this.skinbutNew);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(3, 75);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(316, 46);
             this.panelControl1.TabIndex = 1;
             // 
-            // simpleButton1
+            // skinbutNew
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(59, 14);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(79, 23);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "过号下一位";
+            this.skinbutNew.BackColor = System.Drawing.Color.Transparent;
+            this.skinbutNew.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinbutNew.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinbutNew.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinbutNew.DownBack = null;
+            this.skinbutNew.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinbutNew.ForeColor = System.Drawing.Color.White;
+            this.skinbutNew.IsDrawBorder = false;
+            this.skinbutNew.IsDrawGlass = false;
+            this.skinbutNew.IsEnabledDraw = false;
+            this.skinbutNew.Location = new System.Drawing.Point(44, 7);
+            this.skinbutNew.MouseBack = null;
+            this.skinbutNew.Name = "skinbutNew";
+            this.skinbutNew.NormlBack = null;
+            this.skinbutNew.Radius = 4;
+            this.skinbutNew.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinbutNew.Size = new System.Drawing.Size(110, 30);
+            this.skinbutNew.TabIndex = 8;
+            this.skinbutNew.Text = "过号下一位";
+            this.skinbutNew.UseVisualStyleBackColor = false;
             // 
-            // simpleButton2
+            // skinButton1
             // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(175, 13);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 1;
-            this.simpleButton2.Text = "患者到诊";
+            this.skinButton1.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton1.DownBack = null;
+            this.skinButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinButton1.ForeColor = System.Drawing.Color.White;
+            this.skinButton1.IsDrawBorder = false;
+            this.skinButton1.IsDrawGlass = false;
+            this.skinButton1.IsEnabledDraw = false;
+            this.skinButton1.Location = new System.Drawing.Point(160, 7);
+            this.skinButton1.MouseBack = null;
+            this.skinButton1.Name = "skinButton1";
+            this.skinButton1.NormlBack = null;
+            this.skinButton1.Radius = 4;
+            this.skinButton1.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinButton1.Size = new System.Drawing.Size(91, 30);
+            this.skinButton1.TabIndex = 8;
+            this.skinButton1.Text = "患者到诊";
+            this.skinButton1.UseVisualStyleBackColor = false;
             // 
             // RtCallMessageFrm
             // 
@@ -117,7 +144,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private CCWin.SkinControl.SkinButton skinButton1;
+        private CCWin.SkinControl.SkinButton skinbutNew;
     }
 }

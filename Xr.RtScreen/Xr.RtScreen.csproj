@@ -41,7 +41,12 @@
     <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="HPSocketCS, Version=4.3.1.25945, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RtScreenSocket\HPSocketCS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Printing" />
@@ -54,6 +59,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TX.Framework">
+      <HintPath>..\Xr.Common\Lib\TX.Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="pages\RtDoctorSmallScreenFrm.cs">
@@ -125,6 +133,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xr.Common\Xr.Common.csproj">
+      <Project>{2A32EAC8-C9FD-4E0D-A0C5-F6D1BFEB7462}</Project>
+      <Name>Xr.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xr.Http\Xr.Http.csproj">
       <Project>{b694c623-4dab-40dc-9446-3d0bf4fb0249}</Project>
       <Name>Xr.Http</Name>
@@ -134,8 +146,12 @@
       <Name>Xr</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="RtScreenSocket\" />
+    <Content Include="RtScreenSocket\HPSocket4C-SSL_U.dll" />
+    <Content Include="RtScreenSocket\HPSocket4C_U.dll" />
+    <Content Include="RtScreenSocket\HPSocketCS.dll" />
+    <Content Include="RtScreenSocket\HPSocketCS.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
