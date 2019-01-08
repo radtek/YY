@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Xr.RtCall.pages;
+using Xr.Http.RestSharp;
+using RestSharp;
 
 namespace Xr.RtCall
 {
@@ -21,10 +23,14 @@ namespace Xr.RtCall
         /// 初始化Socket的SDK
         /// </summary>
         HPSocketCS.TcpClient client = new HPSocketCS.TcpClient();
+        public static Form1 pCurrentWin = null;//初始化的时候窗体对象赋值
+        public SynchronizationContext _context;
         public Form1()
         {
             InitializeComponent();
             this.Size = new Size(615,78);
+            pCurrentWin = this;
+            _context = SynchronizationContext.Current;
         }
         #region 键盘按Esc关闭窗体
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -128,19 +134,20 @@ namespace Xr.RtCall
         {
             if (skinbutBig.Text == "最大化")
             {
-                this.panelControl2.Visible = true;
+                this.panel_MainFrm.Visible = true;
+                panel_MainFrm.Controls.Clear();
                 this.Size = new Size(615, 500);
                 skinbutBig.Text = "最小化";
-                this.skinbutLook.Visible = true;
+                //this.skinbutLook.Visible = true;
                 RtCallPeationFrm rtcpf = new RtCallPeationFrm();
                 rtcpf.Dock = DockStyle.Fill;
-                this.panelControl2.Controls.Add(rtcpf);
+                this.panel_MainFrm.Controls.Add(rtcpf);
             }
             else
             {
                 this.Size = new Size(615, 78);
                 skinbutBig.Text = "最大化";
-                this.skinbutLook.Visible = false;
+               // this.skinbutLook.Visible = false;
             }
            
         }
@@ -170,7 +177,7 @@ namespace Xr.RtCall
             int x = SystemInformation.PrimaryMonitorSize.Width - this.Width;
             int y = 0;//要让窗体往上走 只需改变 Y的坐标
             this.Location = new Point(x, y);
-            this.TopMost = true;
+           // this.TopMost = true;
             bool HttPSocket = Convert.ToBoolean(ConfigurationManager.AppSettings["StartUpSocket"]);//StartUpSocket
             if (HttPSocket == true)
             {
@@ -190,7 +197,12 @@ namespace Xr.RtCall
         #endregion 
         #region Socket处理
         #region 事件处理方法
-
+        /// <summary>
+        /// 开始连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="socket"></param>
+        /// <returns></returns>
         private HandleResult client_OnPrepareConnect(TcpClient sender, IntPtr socket)
         {
             return HandleResult.Ok;
@@ -202,7 +214,7 @@ namespace Xr.RtCall
         /// <returns></returns>
         private HandleResult client_OnConnect(TcpClient sender)
         {
-            //如果是异步连接，更新控件状态
+            //异步连接
             return HandleResult.Ok;
         }
         /// <summary>
@@ -211,24 +223,6 @@ namespace Xr.RtCall
         /// <param name="sender"></param>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        /*
-         *  string send = this.txtSend.Text;
-                 if (send.Length == 0)
-                 {
-                     return;
-                 }
-                 byte[] bytes = Encoding.Default.GetBytes(send);
-                 IntPtr connId = client.ConnectionId;
-                 // 发送
-                 if (client.Send(bytes, bytes.Length))
-                 {
-                     AddMsg(string.Format("$ ({0}) Send OK --> {1}", connId, send));
-                 }
-                 else
-                 {
-                     AddMsg(string.Format("$ ({0}) Send Fail --> {1} ({2})", connId, send, bytes.Length));
-                 }
-         * */
         private HandleResult client_OnSend(TcpClient sender, byte[] bytes)
         {
             return HandleResult.Ok;
@@ -241,7 +235,7 @@ namespace Xr.RtCall
         /// <returns></returns>
         private HandleResult client_OnReceive(TcpClient sender, byte[] bytes)
         {
-            string recievedStr = Encoding.Default.GetString(bytes);
+            string recievedStr = Encoding.Default.GetString(bytes);//接收到的数据
             return HandleResult.Ok;
         }
 
@@ -275,10 +269,54 @@ namespace Xr.RtCall
          * */
         #endregion
         #endregion
-        #region 诊按钮
+        #region 诊按钮  0：开诊，1：停诊
         private void skinbutLook_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("", "");
+                string str = "";
+                var client = new RestSharpClient("yyfz/api/sitting/openStop");
+                var Params = "";
+                if (prament.Count != 0)
+                {
+                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                }
+                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                {
+                    switch (result.ResponseStatus)
+                    {
+                        case ResponseStatus.None:
+                            break;
+                        case ResponseStatus.Completed:
+                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                            {
+                                var data = result.Data;//返回数据
+                                str = string.Join(",", data.ToArray());
+                                _context.Send((s) =>
+                               this.skinbutLook.Text = "继续开诊"
+                                , null);
+                            }
+                            break;
+                        case ResponseStatus.Error:
+                            MessageBox.Show("请求错误");
+                            break;
+                        case ResponseStatus.TimedOut:
+                            MessageBox.Show("请求超时");
+                            break;
+                        case ResponseStatus.Aborted:
+                            MessageBox.Show("请求终止");
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
 
+            }
         }
         #endregion 
     }

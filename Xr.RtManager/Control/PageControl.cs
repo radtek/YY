@@ -199,7 +199,7 @@ namespace Xr.RtManager.Control
             if (parentName != null)
             {
                 // 弹出加载提示框
-                DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
+                //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
 
                 if (parentName.Equals("UserForm"))
                 {
@@ -214,6 +214,11 @@ namespace Xr.RtManager.Control
                 else if (parentName.Equals("LogForm"))
                 {
                     LogForm form = this.Parent as LogForm;
+                    form.SearchData(false, CurrentPage);
+                }
+                else if (parentName.Equals("ClientVersionForm"))
+                {
+                    ClientVersionForm form = this.Parent as ClientVersionForm;
                     form.SearchData(false, CurrentPage);
                 }
             }

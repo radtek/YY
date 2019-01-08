@@ -32,8 +32,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.skinbutNew = new CCWin.SkinControl.SkinButton();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
+            this.skinbutNew = new CCWin.SkinControl.SkinButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -57,6 +57,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(1, 1);
@@ -69,6 +70,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Appearance.BackColor = System.Drawing.Color.White;
+            this.panelControl1.Appearance.Options.UseBackColor = true;
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.skinButton1);
             this.panelControl1.Controls.Add(this.skinbutNew);
@@ -77,29 +80,6 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(316, 46);
             this.panelControl1.TabIndex = 1;
-            // 
-            // skinbutNew
-            // 
-            this.skinbutNew.BackColor = System.Drawing.Color.Transparent;
-            this.skinbutNew.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.skinbutNew.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.skinbutNew.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinbutNew.DownBack = null;
-            this.skinbutNew.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinbutNew.ForeColor = System.Drawing.Color.White;
-            this.skinbutNew.IsDrawBorder = false;
-            this.skinbutNew.IsDrawGlass = false;
-            this.skinbutNew.IsEnabledDraw = false;
-            this.skinbutNew.Location = new System.Drawing.Point(44, 7);
-            this.skinbutNew.MouseBack = null;
-            this.skinbutNew.Name = "skinbutNew";
-            this.skinbutNew.NormlBack = null;
-            this.skinbutNew.Radius = 4;
-            this.skinbutNew.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinbutNew.Size = new System.Drawing.Size(110, 30);
-            this.skinbutNew.TabIndex = 8;
-            this.skinbutNew.Text = "过号下一位";
-            this.skinbutNew.UseVisualStyleBackColor = false;
             // 
             // skinButton1
             // 
@@ -124,10 +104,35 @@
             this.skinButton1.Text = "患者到诊";
             this.skinButton1.UseVisualStyleBackColor = false;
             // 
+            // skinbutNew
+            // 
+            this.skinbutNew.BackColor = System.Drawing.Color.Transparent;
+            this.skinbutNew.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinbutNew.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinbutNew.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinbutNew.DownBack = null;
+            this.skinbutNew.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinbutNew.ForeColor = System.Drawing.Color.White;
+            this.skinbutNew.IsDrawBorder = false;
+            this.skinbutNew.IsDrawGlass = false;
+            this.skinbutNew.IsEnabledDraw = false;
+            this.skinbutNew.Location = new System.Drawing.Point(44, 7);
+            this.skinbutNew.MouseBack = null;
+            this.skinbutNew.Name = "skinbutNew";
+            this.skinbutNew.NormlBack = null;
+            this.skinbutNew.Radius = 4;
+            this.skinbutNew.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinbutNew.Size = new System.Drawing.Size(110, 30);
+            this.skinbutNew.TabIndex = 8;
+            this.skinbutNew.Text = "过号下一位";
+            this.skinbutNew.UseVisualStyleBackColor = false;
+            this.skinbutNew.Click += new System.EventHandler(this.skinbutNew_Click);
+            // 
             // RtCallMessageFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "RtCallMessageFrm";
             this.Size = new System.Drawing.Size(322, 124);

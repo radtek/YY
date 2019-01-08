@@ -43,7 +43,7 @@ namespace Xr.RtManager
             try
             {
                 String url = AppContext.Session.serverUrl + "sys/sysOffice/findAll";
-                e.Result = HttpClass.loginPost(url);
+                e.Result = HttpClass.httpPost(url);
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace Xr.RtManager
                 + "&&officeId=" + treeOffice.EditValue + "&&loginName=" + tbLoginName.Text + "&&name=" + tbName.Text
                 + "&&pageNo=" + currPageNo;
                 String url = AppContext.Session.serverUrl + "sys/sysUser/findAll" + param;
-                e.Result = HttpClass.loginPost(url);
+                e.Result = HttpClass.httpPost(url);
             }
             catch (Exception ex)
             {

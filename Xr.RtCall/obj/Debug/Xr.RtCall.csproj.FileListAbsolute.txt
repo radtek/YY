@@ -31,3 +31,4 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\bin\Debug\C
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\obj\Debug\Xr.RtCall.pages.HostingForm.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\bin\Debug\HPSocketCS.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\bin\Debug\HPSocketCS.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtCall\obj\Debug\Xr.RtCall.pages.RtIntersectionAppointmentFrm.resources

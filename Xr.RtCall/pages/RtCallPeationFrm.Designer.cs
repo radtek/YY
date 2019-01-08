@@ -45,6 +45,9 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.复诊预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.延后ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,6 +59,7 @@
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Pateion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Pateion)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -139,6 +143,7 @@
             this.checkEdit1.Properties.RadioGroupIndex = 1;
             this.checkEdit1.Size = new System.Drawing.Size(75, 25);
             this.checkEdit1.TabIndex = 5;
+            this.checkEdit1.TabStop = false;
             // 
             // checkEdit2
             // 
@@ -150,6 +155,7 @@
             this.checkEdit2.Properties.RadioGroupIndex = 1;
             this.checkEdit2.Size = new System.Drawing.Size(53, 25);
             this.checkEdit2.TabIndex = 6;
+            this.checkEdit2.TabStop = false;
             // 
             // panelControl3
             // 
@@ -163,6 +169,7 @@
             // 
             // gc_Pateion
             // 
+            this.gc_Pateion.ContextMenuStrip = this.contextMenuStrip1;
             this.gc_Pateion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gc_Pateion.Location = new System.Drawing.Point(0, 0);
             this.gc_Pateion.MainView = this.gv_Pateion;
@@ -187,6 +194,7 @@
             this.gv_Pateion.OptionsView.ShowGroupPanel = false;
             this.gv_Pateion.OptionsView.ShowIndicator = false;
             this.gv_Pateion.RowHeight = 25;
+            this.gv_Pateion.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gv_Pateion_PopupMenuShowing);
             // 
             // gridColumn1
             // 
@@ -278,6 +286,28 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.复诊预约ToolStripMenuItem,
+            this.延后ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            // 
+            // 复诊预约ToolStripMenuItem
+            // 
+            this.复诊预约ToolStripMenuItem.Name = "复诊预约ToolStripMenuItem";
+            this.复诊预约ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.复诊预约ToolStripMenuItem.Text = "复诊预约";
+            this.复诊预约ToolStripMenuItem.Click += new System.EventHandler(this.复诊预约ToolStripMenuItem_Click);
+            // 
+            // 延后ToolStripMenuItem
+            // 
+            this.延后ToolStripMenuItem.Name = "延后ToolStripMenuItem";
+            this.延后ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.延后ToolStripMenuItem.Text = "延后";
+            this.延后ToolStripMenuItem.Click += new System.EventHandler(this.延后ToolStripMenuItem_Click);
+            // 
             // RtCallPeationFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -297,6 +327,7 @@
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_Pateion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Pateion)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -319,5 +350,8 @@
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private CCWin.SkinControl.SkinButton skinbutNew;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 复诊预约ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 延后ToolStripMenuItem;
     }
 }

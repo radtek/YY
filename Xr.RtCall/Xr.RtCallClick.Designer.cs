@@ -34,17 +34,17 @@
             this.labBoxInfor = new DevExpress.XtraEditors.LabelControl();
             this.button3 = new System.Windows.Forms.Button();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.panel_MainFrm = new DevExpress.XtraEditors.PanelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.skinbutLook = new CCWin.SkinControl.SkinButton();
             this.skinbutBig = new CCWin.SkinControl.SkinButton();
             this.skinButNext = new CCWin.SkinControl.SkinButton();
-            this.skinbutLook = new CCWin.SkinControl.SkinButton();
             this.GreenFrmPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panel_MainFrm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             this.SuspendLayout();
@@ -97,7 +97,7 @@
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.panelControl2);
+            this.panelControl1.Controls.Add(this.panel_MainFrm);
             this.panelControl1.Controls.Add(this.panelControl3);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 30);
@@ -105,14 +105,14 @@
             this.panelControl1.Size = new System.Drawing.Size(615, 470);
             this.panelControl1.TabIndex = 10;
             // 
-            // panelControl2
+            // panel_MainFrm
             // 
-            this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 48);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(615, 422);
-            this.panelControl2.TabIndex = 3;
+            this.panel_MainFrm.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panel_MainFrm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_MainFrm.Location = new System.Drawing.Point(0, 48);
+            this.panel_MainFrm.Name = "panel_MainFrm";
+            this.panel_MainFrm.Size = new System.Drawing.Size(615, 422);
+            this.panel_MainFrm.TabIndex = 3;
             // 
             // panelControl3
             // 
@@ -150,6 +150,30 @@
             this.label1.Size = new System.Drawing.Size(132, 27);
             this.label1.TabIndex = 1;
             this.label1.Text = "等待呼叫病人";
+            // 
+            // skinbutLook
+            // 
+            this.skinbutLook.BackColor = System.Drawing.Color.Transparent;
+            this.skinbutLook.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinbutLook.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
+            this.skinbutLook.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinbutLook.DownBack = null;
+            this.skinbutLook.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinbutLook.ForeColor = System.Drawing.Color.White;
+            this.skinbutLook.IsDrawBorder = false;
+            this.skinbutLook.IsDrawGlass = false;
+            this.skinbutLook.IsEnabledDraw = false;
+            this.skinbutLook.Location = new System.Drawing.Point(439, 8);
+            this.skinbutLook.MouseBack = null;
+            this.skinbutLook.Name = "skinbutLook";
+            this.skinbutLook.NormlBack = null;
+            this.skinbutLook.Radius = 4;
+            this.skinbutLook.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinbutLook.Size = new System.Drawing.Size(83, 30);
+            this.skinbutLook.TabIndex = 0;
+            this.skinbutLook.Text = "临时停诊";
+            this.skinbutLook.UseVisualStyleBackColor = false;
+            this.skinbutLook.Click += new System.EventHandler(this.skinbutLook_Click);
             // 
             // skinbutBig
             // 
@@ -199,31 +223,6 @@
             this.skinButNext.UseVisualStyleBackColor = false;
             this.skinButNext.Click += new System.EventHandler(this.skinButNext_Click);
             // 
-            // skinbutLook
-            // 
-            this.skinbutLook.BackColor = System.Drawing.Color.Transparent;
-            this.skinbutLook.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.skinbutLook.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.skinbutLook.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinbutLook.DownBack = null;
-            this.skinbutLook.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinbutLook.ForeColor = System.Drawing.Color.White;
-            this.skinbutLook.IsDrawBorder = false;
-            this.skinbutLook.IsDrawGlass = false;
-            this.skinbutLook.IsEnabledDraw = false;
-            this.skinbutLook.Location = new System.Drawing.Point(447, 8);
-            this.skinbutLook.MouseBack = null;
-            this.skinbutLook.Name = "skinbutLook";
-            this.skinbutLook.NormlBack = null;
-            this.skinbutLook.Radius = 4;
-            this.skinbutLook.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinbutLook.Size = new System.Drawing.Size(75, 30);
-            this.skinbutLook.TabIndex = 0;
-            this.skinbutLook.Text = "诊";
-            this.skinbutLook.UseVisualStyleBackColor = false;
-            this.skinbutLook.Visible = false;
-            this.skinbutLook.Click += new System.EventHandler(this.skinbutLook_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -240,7 +239,7 @@
             this.GreenFrmPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panel_MainFrm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -254,13 +253,13 @@
         private System.Windows.Forms.Button button3;
         public DevExpress.XtraEditors.PanelControl panelControl1;
         public DevExpress.XtraEditors.LabelControl labBoxInfor;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private CCWin.SkinControl.SkinButton skinbutBig;
         private CCWin.SkinControl.SkinButton skinButNext;
         private CCWin.SkinControl.SkinButton skinbutLook;
+        public DevExpress.XtraEditors.PanelControl panel_MainFrm;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label1;
 
     }
 }

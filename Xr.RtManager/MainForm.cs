@@ -413,7 +413,7 @@ namespace Xr.RtManager
                 Xuser.BackColor = Color.Transparent;
                 //使用一个有双缓存的panel做背景，避免背景图片闪烁
                 PanelEnhanced panelE = new PanelEnhanced();
-                panelE.BackgroundImage = Properties.Resources.bg;
+                panelE.BackgroundImage = Properties.Resources.bg2;
                 panelE.Dock = DockStyle.Fill;
                 panelE.Controls.Add(Xuser);
 

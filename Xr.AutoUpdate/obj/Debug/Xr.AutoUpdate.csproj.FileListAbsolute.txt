@@ -14,3 +14,6 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\obj\Deb
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\obj\Debug\Xr.AutoUpdate.exe
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\obj\Debug\Xr.AutoUpdate.pdb
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\obj\Debug\Xr.AutoUpdate.csprojResolveAssemblyReference.cache
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\bin\Debug\Newtonsoft.Json.dll
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\obj\Debug\Xr.AutoUpdate.Form1.resources

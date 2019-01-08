@@ -255,7 +255,7 @@ namespace Xr.RtManager
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     WebClient web = new WebClient();
-                    var bytes = web.DownloadData(objT["result"].ToString());
+                    var bytes = web.DownloadData(objT["result"][0].ToString());
                     this.pictureBox1.Image = Bitmap.FromStream(new MemoryStream(bytes));
                     serviceFilePath = objT["result"].ToString();
                     MessageBoxUtils.Hint("上传图片成功");

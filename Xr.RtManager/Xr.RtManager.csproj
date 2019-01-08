@@ -126,6 +126,7 @@
     <Compile Include="MainFormTwo.designer.cs">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\ClientVersionEntity.cs" />
     <Compile Include="Module\LogEntity.cs" />
     <Compile Include="Module\RoleEntity.cs" />
     <Compile Include="Module\DictEntity.cs" />
@@ -133,6 +134,18 @@
     <Compile Include="Module\MenuEntity.cs" />
     <Compile Include="Module\UserEntity.cs" />
     <Compile Include="Module\SessionInfo.cs" />
+    <Compile Include="Pages\System\ClientVersionForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\System\ClientVersionForm.Designer.cs">
+      <DependentUpon>ClientVersionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\System\ClientVersionEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\System\ClientVersionEdit.Designer.cs">
+      <DependentUpon>ClientVersionEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\System\LogForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -243,6 +256,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFormTwo.resx">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\System\ClientVersionForm.resx">
+      <DependentUpon>ClientVersionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\System\ClientVersionEdit.resx">
+      <DependentUpon>ClientVersionEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\System\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
