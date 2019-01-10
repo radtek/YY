@@ -109,5 +109,25 @@ namespace Xr.RtManager
 
             return list;
         }
+
+        /// <summary>
+        /// 是否启用  0：启用 1：停用
+        /// </summary>
+        /// <returns></returns>
+        public static List<Dict> sfqy()
+        {
+            List<Dict> list = new List<Dict>();
+            Dict dict = new Dict();
+            dict.code = "0";
+            dict.name = "启用";
+            list.Add(dict);
+
+            dict = new Dict();
+            dict.code = "1";
+            dict.name = "停用";
+            list.Add(dict);
+
+            return list;
+        }
     }
 }

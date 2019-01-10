@@ -105,7 +105,7 @@
             // 
             // panelEnhanced1
             // 
-            this.panelEnhanced1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelEnhanced1.BackgroundImage")));
+            this.panelEnhanced1.BackgroundImage = global::Xr.RtManager.Properties.Resources.bg1;
             this.panelEnhanced1.Controls.Add(this.xtraTabControl1);
             this.panelEnhanced1.Controls.Add(this.panel4);
             this.panelEnhanced1.Controls.Add(this.panel5);
@@ -115,6 +115,7 @@
             this.panelEnhanced1.Name = "panelEnhanced1";
             this.panelEnhanced1.Size = new System.Drawing.Size(1005, 516);
             this.panelEnhanced1.TabIndex = 0;
+            this.panelEnhanced1.SizeChanged += new System.EventHandler(this.panelEnhanced1_SizeChanged);
             // 
             // xtraTabControl1
             // 
@@ -170,7 +171,7 @@
             this.panMenuBar.Name = "panMenuBar";
             this.panMenuBar.Padding = new System.Windows.Forms.Padding(1);
             this.panMenuBar.Size = new System.Drawing.Size(151, 488);
-            this.panMenuBar.TabIndex = 1;
+            this.panMenuBar.TabIndex = 5;
             // 
             // panelEx1
             // 
@@ -187,6 +188,7 @@
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(149, 164);
             this.panelEx1.TabIndex = 0;
+            this.panelEx1.Visible = false;
             // 
             // panelEx3
             // 
@@ -232,7 +234,7 @@
             this.panel6.Location = new System.Drawing.Point(0, 488);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(151, 4);
-            this.panel6.TabIndex = 0;
+            this.panel6.TabIndex = 4;
             // 
             // panel1
             // 
@@ -322,6 +324,7 @@
             this.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "主界面";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelEnhanced1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
@@ -353,12 +356,6 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private Xr.Common.Controls.PanelEx panMenuBar;
-        private Xr.Common.Controls.PanelEx panelEx1;
-        private Xr.Common.Controls.PanelEx panelEx3;
-        private Xr.Common.Controls.PanelEx panelEx2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label SysTime;
@@ -366,6 +363,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel6;
+        private Xr.Common.Controls.PanelEx panMenuBar;
+        private Xr.Common.Controls.PanelEx panelEx1;
+        private Xr.Common.Controls.PanelEx panelEx3;
+        private Xr.Common.Controls.PanelEx panelEx2;
+        private System.Windows.Forms.Label label3;
 
     }
 }

@@ -49,23 +49,24 @@
             this.progressPanel1.Location = new System.Drawing.Point(1, 1);
             this.progressPanel1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.progressPanel1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.progressPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.progressPanel1.Name = "progressPanel1";
-            this.progressPanel1.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.progressPanel1.Size = new System.Drawing.Size(298, 67);
+            this.progressPanel1.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
+            this.progressPanel1.Size = new System.Drawing.Size(223, 53);
             this.progressPanel1.TabIndex = 0;
             this.progressPanel1.Text = "progressPanel1";
             // 
             // WaitingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.ClientSize = new System.Drawing.Size(300, 70);
+            this.ClientSize = new System.Drawing.Size(225, 56);
             this.Controls.Add(this.progressPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "WaitingForm";
             this.Padding = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "HintMessageBoxForm";
             this.TopMost = true;
             this.ResumeLayout(false);

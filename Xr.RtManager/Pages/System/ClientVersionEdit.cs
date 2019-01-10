@@ -29,7 +29,7 @@ namespace Xr.RtManager
 
         private void ClientVersionEdit_Load(object sender, EventArgs e)
         {
-            String url = AppContext.Session.serverUrl + "sys/sysDict/findByType?type=client_version_type";
+            String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=client_version_type";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -47,7 +47,7 @@ namespace Xr.RtManager
             dcClientVersion.DataType = typeof(ClientVersionEntity);
             if (clientVersion != null)
             {
-                data = HttpClass.httpPost(AppContext.Session.serverUrl + "sys/clientVersion/get?id=" + clientVersion.id);
+                data = HttpClass.httpPost(AppContext.AppConfig.serverUrl + "sys/clientVersion/get?id=" + clientVersion.id);
                 objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
@@ -83,7 +83,7 @@ namespace Xr.RtManager
             }
             clientVersion.updateFilePath = serviceFilePath;
             String param = "?" + PackReflectionEntity<ClientVersionEntity>.GetEntityToRequestParameters(clientVersion);
-            String url = AppContext.Session.serverUrl + "sys/clientVersion/save" + param;
+            String url = AppContext.AppConfig.serverUrl + "sys/clientVersion/save" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -125,7 +125,7 @@ namespace Xr.RtManager
         {
             if (filePath != "")
             {
-                string url = AppContext.Session.serverUrl + "common/uploadFile";
+                string url = AppContext.AppConfig.serverUrl + "common/uploadFile";
                 List<FormItemModel> lstPara = new List<FormItemModel>();
                 FormItemModel model = new FormItemModel();
                 // 文件

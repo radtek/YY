@@ -54,7 +54,6 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\bin\Debu
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\bin\Debug\Xr.pdb
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.csprojResolveAssemblyReference.cache
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.MyTextBox.resources
-F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Control.PageControl.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.FrmProcessing.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.WaitingForm.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Form1.resources
@@ -80,3 +79,6 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debu
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\bin\Debug\RestSharp.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.ClientVersionForm.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.ClientVersionEdit.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Control.MenuControl.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Pages.cms.HospitalSettingsForm.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Pages.cms.UserControl1.resources

@@ -94,7 +94,7 @@ namespace Xr.RtManager
             {
                 this.StartPosition = FormStartPosition.Manual;
                 //this.Location = new Point(this.Owner.Left, this.Owner.Top);
-                this.Location = new Point(this.Owner.Left+8, this.Owner.Top+60);
+                this.Location = new Point(this.Owner.Left+150, this.Owner.Top+60);
                 //MessageBox.Show(string.Format("X={0},Y={1}", this.Owner.Left, this.Owner.Top));
                 this.Width = this.Owner.Width-16;
                 this.Height = this.Owner.Height-68;

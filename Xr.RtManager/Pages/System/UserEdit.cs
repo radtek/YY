@@ -34,7 +34,7 @@ namespace Xr.RtManager
         private void UserEdit_Load(object sender, EventArgs e)
         {
             dcUser.DataType = typeof(UserEntity);
-            String url = AppContext.Session.serverUrl + "sys/sysOffice/findAll";
+            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -60,7 +60,7 @@ namespace Xr.RtManager
                 return;
             }
 
-            data = HttpClass.httpPost(AppContext.Session.serverUrl + "sys/sysRole/findAll");
+            data = HttpClass.httpPost(AppContext.AppConfig.serverUrl + "sys/sysRole/findAll");
             objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
@@ -77,7 +77,7 @@ namespace Xr.RtManager
 
             if (user != null)
             {
-                data = HttpClass.httpPost(AppContext.Session.serverUrl + "sys/sysUser/getUser?userId=" + user.id);
+                data = HttpClass.httpPost(AppContext.AppConfig.serverUrl + "sys/sysUser/getUser?userId=" + user.id);
                 objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
@@ -195,7 +195,7 @@ namespace Xr.RtManager
             {
                 param = param + "&&oldLoginName=" + oldLoginName;
             }
-            String url = AppContext.Session.serverUrl + "sys/sysUser/save?" + param;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysUser/save?" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -239,7 +239,7 @@ namespace Xr.RtManager
         {
             if (filePath != "")
             {
-                string url = AppContext.Session.serverUrl+"common/uploadFile";
+                string url = AppContext.AppConfig.serverUrl+"common/uploadFile";
                 List<FormItemModel> lstPara = new List<FormItemModel>();
                 FormItemModel model = new FormItemModel();
                 // 文件

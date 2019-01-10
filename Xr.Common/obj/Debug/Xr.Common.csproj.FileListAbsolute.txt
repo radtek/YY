@@ -46,3 +46,7 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\X
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\Xr.Common.dll.licenses
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\Xr.Common.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\Xr.Common.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\Xr.Common.csprojResolveAssemblyReference.cache
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\Xr.Common.Controls.PageControl.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\Xr.Common.Controls.RichEditorForm.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.Common\obj\Debug\Xr.Common.Controls.ToolBarButton.resources

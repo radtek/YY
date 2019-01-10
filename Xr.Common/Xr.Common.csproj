@@ -94,6 +94,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ISupportHotkeys.cs" />
+    <Compile Include="Controls\PageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PageControl.Designer.cs">
+      <DependentUpon>PageControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PanelEnhanced.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -132,6 +138,12 @@
     </Compile>
     <Compile Include="Controls\RichEditor\RichEditor.designer.cs">
       <DependentUpon>RichEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RichEditor\RichEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\RichEditor\RichEditorForm.Designer.cs">
+      <DependentUpon>RichEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ToolBar.cs">
       <SubType>Component</SubType>
@@ -222,6 +234,9 @@
     <None Include="Resources\bg.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\PageControl.resx">
+      <DependentUpon>PageControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\RichEditor\frmAddImage.resx">
       <DependentUpon>frmAddImage.cs</DependentUpon>
     </EmbeddedResource>
@@ -234,8 +249,14 @@
     <EmbeddedResource Include="Controls\RichEditor\RichEditor.resx">
       <DependentUpon>RichEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RichEditor\RichEditorForm.resx">
+      <DependentUpon>RichEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ToolBar.resx">
       <DependentUpon>ToolBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ToolBarButton.resx">
+      <DependentUpon>ToolBarButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Internal\HintTextEditForm.resx">
       <DependentUpon>HintTextEditForm.cs</DependentUpon>

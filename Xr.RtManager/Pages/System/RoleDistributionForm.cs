@@ -31,7 +31,7 @@ namespace Xr.RtManager
 
         private void SearchData()
         {
-            String url = AppContext.Session.serverUrl + "sys/sysRole/assign?roleId=" + id;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysRole/assign?roleId=" + id;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -65,7 +65,7 @@ namespace Xr.RtManager
 
             if (dr == DialogResult.OK)
             {
-                String url = AppContext.Session.serverUrl + "sys/sysRole/outrole?userId=" + selectedRow.id + "&&roleId=" + id;
+                String url = AppContext.AppConfig.serverUrl + "sys/sysRole/outrole?userId=" + selectedRow.id + "&&roleId=" + id;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)

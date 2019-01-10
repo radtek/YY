@@ -40,7 +40,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pageControl1 = new Xr.RtManager.Control.PageControl();
+            this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.tbTitle = new System.Windows.Forms.TextBox();
@@ -213,10 +213,11 @@
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pageControl1.Location = new System.Drawing.Point(15, 352);
             this.pageControl1.Name = "pageControl1";
-            this.pageControl1.PageSize = 20;
+            this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
             this.pageControl1.Size = new System.Drawing.Size(1007, 39);
             this.pageControl1.TabIndex = 12;
+            this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
             // panel1
             // 
@@ -376,7 +377,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private Control.PageControl pageControl1;
+        private Xr.Common.Controls.PageControl pageControl1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private Xr.Common.Controls.BorderPanel borderPanel1;
         private Xr.Common.Controls.ButtonControl buttonControl4;

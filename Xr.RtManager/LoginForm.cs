@@ -55,7 +55,7 @@ namespace Xr.RtManager
             try
             {
                 String param = "username=" + tbLoginName.Text + "&password=" + tbPassword.Text;
-                String url = AppContext.Session.serverUrl + "login?" + param;
+                String url = AppContext.AppConfig.serverUrl + "login?" + param;
                 e.Result = HttpClass.loginPost(url);
             }
             catch (Exception ex)
@@ -78,7 +78,19 @@ namespace Xr.RtManager
                     AppContext.Session.menuList = objT["result"]["menuList"].ToObject<List<MenuEntity>>();
                     AppContext.Session.UserId = objT["result"]["id"].ToString();
                     AppContext.Session.userType = objT["result"]["userType"].ToString();
-                    this.DialogResult = DialogResult.OK;
+                    String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+                    String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+                    data = HttpClass.httpPost(url);
+                    objT = JObject.Parse(data);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        AppContext.Session.deptList = objT["result"].ToObject<List<DeptEntity>>();
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                    }
                 }
                 else
                 {

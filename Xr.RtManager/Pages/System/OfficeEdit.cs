@@ -26,7 +26,7 @@ namespace Xr.RtManager
             dcOffice.DataType = typeof(OfficeEntity);
 
             //获取下拉框数据
-            String url = AppContext.Session.serverUrl + "sys/sysOffice/getDropDownData";
+            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/getDropDownData";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -55,7 +55,7 @@ namespace Xr.RtManager
                 {
                     if (office.id != null)
                     {
-                        url = AppContext.Session.serverUrl + "sys/sysOffice/getOffice?officeId=" + office.id;
+                        url = AppContext.AppConfig.serverUrl + "sys/sysOffice/getOffice?officeId=" + office.id;
                         data = HttpClass.httpPost(url);
                         objT = JObject.Parse(data);
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -89,7 +89,7 @@ namespace Xr.RtManager
             }
             dcOffice.GetValue(office);
             String param = "?" + PackReflectionEntity<OfficeEntity>.GetEntityToRequestParameters(office, true);
-            String url = AppContext.Session.serverUrl + "sys/sysOffice/save" + param;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/save" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)

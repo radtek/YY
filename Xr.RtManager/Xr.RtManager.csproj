@@ -83,11 +83,11 @@
     <Compile Include="Control\MyTextBox.designer.cs">
       <DependentUpon>MyTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\PageControl.cs">
+    <Compile Include="Control\MenuControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Control\PageControl.Designer.cs">
-      <DependentUpon>PageControl.cs</DependentUpon>
+    <Compile Include="Control\MenuControl.Designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Common.cs" />
     <Compile Include="Dialog\FrmProcessing.cs">
@@ -126,14 +126,36 @@
     <Compile Include="MainFormTwo.designer.cs">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\ClientVersionEntity.cs" />
-    <Compile Include="Module\LogEntity.cs" />
-    <Compile Include="Module\RoleEntity.cs" />
-    <Compile Include="Module\DictEntity.cs" />
-    <Compile Include="Module\OfficeEntity.cs" />
-    <Compile Include="Module\MenuEntity.cs" />
-    <Compile Include="Module\UserEntity.cs" />
-    <Compile Include="Module\SessionInfo.cs" />
+    <Compile Include="Module\cms\DeptInfoEntity.cs" />
+    <Compile Include="Module\cms\HospitalInfoEntity.cs" />
+    <Compile Include="Module\System\ClientVersionEntity.cs" />
+    <Compile Include="Module\System\AppConfigEntity.cs" />
+    <Compile Include="Module\System\DeptEntity.cs" />
+    <Compile Include="Module\System\LogEntity.cs" />
+    <Compile Include="Module\System\RoleEntity.cs" />
+    <Compile Include="Module\System\DictEntity.cs" />
+    <Compile Include="Module\System\OfficeEntity.cs" />
+    <Compile Include="Module\System\MenuEntity.cs" />
+    <Compile Include="Module\System\UserEntity.cs" />
+    <Compile Include="Module\System\SessionInfo.cs" />
+    <Compile Include="Pages\cms\DeptSettingsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\DeptSettingsForm.Designer.cs">
+      <DependentUpon>DeptSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\cms\HospitalSettingsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\HospitalSettingsForm.Designer.cs">
+      <DependentUpon>HospitalSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\cms\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\System\ClientVersionForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -236,8 +258,8 @@
     <EmbeddedResource Include="Control\MyTextBox.resx">
       <DependentUpon>MyTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control\PageControl.resx">
-      <DependentUpon>PageControl.cs</DependentUpon>
+    <EmbeddedResource Include="Control\MenuControl.resx">
+      <DependentUpon>MenuControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\FrmProcessing.resx">
       <DependentUpon>FrmProcessing.cs</DependentUpon>
@@ -256,6 +278,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFormTwo.resx">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\cms\DeptSettingsForm.resx">
+      <DependentUpon>DeptSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\cms\HospitalSettingsForm.resx">
+      <DependentUpon>HospitalSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\cms\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\System\ClientVersionForm.resx">
       <DependentUpon>ClientVersionForm.cs</DependentUpon>
@@ -332,6 +363,7 @@
     <Content Include="ExDll\CSkin.dll" />
     <Content Include="ExDll\Newtonsoft.Json.dll" />
     <Content Include="Image\bg.png" />
+    <None Include="Image\bg1.png" />
     <Content Include="Image\loading.gif" />
     <Content Include="Image\图片1.png" />
     <None Include="Resources\bg.png" />

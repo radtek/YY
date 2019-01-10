@@ -81,7 +81,7 @@ namespace Xr.RtManager
             if (context.MainForm == null)
             {
                 AppContext.Load();
-                AppContext.Session.serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
+                AppContext.AppConfig.serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
                 LoginForm login = new LoginForm();
                 login.ShowDialog();
                 if (login.DialogResult == DialogResult.OK)

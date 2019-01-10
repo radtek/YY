@@ -17,6 +17,7 @@ using System.Configuration;
 using Xr.Common;
 using DevExpress.XtraNavBar;
 using Xr.Common.Controls;
+using Xr.Http;
 
 namespace Xr.RtManager
 {
@@ -31,8 +32,6 @@ namespace Xr.RtManager
 
         private Color borderColor = Color.FromArgb(157, 160, 170);
         private string dialogText = "正在加载中，请稍候...";
-
-        public delegate void ShowDatatableDelegate(XtraTabPage page, String ucName);
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -55,11 +54,13 @@ namespace Xr.RtManager
             menuList = menuList.OrderBy(x => x.sort).ToList();
             //循环添加菜单
             panMenuBar.Controls.Clear();
-            foreach(MenuEntity menu in menuList){
+            foreach (MenuEntity menu in menuList)
+            {
                 AddContextMenu(menu.id, menu.name, menu.href, panMenuBar);
             }
         }
 
+        #region 菜单相关事件
         //添加菜单
         private void AddContextMenu(String menuId, String Caption, String tag, Panel parentPanel)
         {
@@ -187,7 +188,7 @@ namespace Xr.RtManager
             PanelEx selectionPanelTop = (PanelEx)item.Parent; //选中的一级菜单(头部)
             PanelEx selectionPanel = (PanelEx)selectionPanelTop.Parent; //选中的一级菜单（包含二级菜单panel）
             //隐藏所有二级菜单
-            for (int i = panMenuBar.Controls.Count-1; i >= 0; i--)
+            for (int i = panMenuBar.Controls.Count - 1; i >= 0; i--)
             {
                 System.Windows.Forms.Control control = panMenuBar.Controls[i]; //一级菜单（包含二级菜单panel）
                 PanelEx panelTop = new PanelEx(); //一级菜单（有二级菜单的时候取[1]，没有取[]）
@@ -197,7 +198,9 @@ namespace Xr.RtManager
                     //隐藏二级菜单
                     PanelEx panel = (PanelEx)control.Controls[0]; //二级菜单  
                     panel.Visible = false;
-                }else{
+                }
+                else
+                {
                     panelTop = (PanelEx)control.Controls[0];
                 }
                 panelTop.BackColor = Color.Transparent;
@@ -261,7 +264,7 @@ namespace Xr.RtManager
             //修改选择的二级菜单背景色
             selectionPanel.BackColor = Color.FromArgb(24, 166, 137);
             selectionLabel.ForeColor = Color.White;
-            if (selectionLabel.Tag != null)
+            if (selectionLabel.Tag != null && selectionLabel.Tag.ToString().Length>0)
             {
                 param[0] = selectionLabel.Tag.ToString();
                 param[1] = selectionLabel.Name;
@@ -356,6 +359,7 @@ namespace Xr.RtManager
         /// <param name="e"></param>
         public void timer1EventProcessor(object source, EventArgs e)
         {
+            menuTimer.Stop();
             String href = param[0];
             String id = param[1];
             String name = param[2];
@@ -373,8 +377,8 @@ namespace Xr.RtManager
                     xtraTabControl1.SelectedTabPageIndex = i;
                 }
             }
-            menuTimer.Stop();
         }
+        #endregion 
 
         /// <summary>  
         /// 遍历打开的窗口  
@@ -394,6 +398,26 @@ namespace Xr.RtManager
             return count;
         }
 
+        public delegate void ShowDatatableDelegate(XtraTabPage page, UserControl Xuser);
+        private void showPage(XtraTabPage page, UserControl Xuser)
+        {
+            Xuser.BackColor = Color.Transparent;
+            //使用一个有双缓存的panel做背景，避免背景图片闪烁
+            PanelEnhanced panelE = new PanelEnhanced();
+            panelE.BackgroundImage = Properties.Resources.bg2;
+            panelE.Dock = DockStyle.Fill;
+            panelE.Controls.Add(Xuser);
+            page.Controls.Add(panelE);
+            xtraTabControl1.TabPages.Add(page);
+            xtraTabControl1.SelectedTabPage.ResetBackColor();
+            xtraTabControl1.SelectedTabPage.BackColor = Color.Transparent;
+            xtraTabControl1.SelectedTabPage = page;  //首页显示  
+        }
+        private void setUcUI(XtraTabPage page, UserControl Xuser)
+        {
+            Xuser.Parent = this;
+            Xuser.Dock = DockStyle.Fill;  //dock属性 全屏撑大  
+        }
         /// <summary>  
         /// 添加到Tab控件里  
         /// </summary>  
@@ -404,24 +428,12 @@ namespace Xr.RtManager
         {
             try
             {
+                this.Invoke(new ShowDatatableDelegate(setUcUI), new object[] { null, Xuser});
                 XtraTabPage page = new XtraTabPage();
                 page.BackColor = Color.Transparent;
-                Xuser.Parent = this;
                 page.Name = name;   //控件标示  
                 page.Text = caption;  //显示标题  
-                Xuser.Dock = DockStyle.Fill;  //dock属性 全屏撑大  
-                Xuser.BackColor = Color.Transparent;
-                //使用一个有双缓存的panel做背景，避免背景图片闪烁
-                PanelEnhanced panelE = new PanelEnhanced();
-                panelE.BackgroundImage = Properties.Resources.bg2;
-                panelE.Dock = DockStyle.Fill;
-                panelE.Controls.Add(Xuser);
-
-                page.Controls.Add(panelE);
-                xtraTabControl1.TabPages.Add(page);
-                xtraTabControl1.SelectedTabPage.ResetBackColor();
-                xtraTabControl1.SelectedTabPage.BackColor = Color.Transparent;
-                xtraTabControl1.SelectedTabPage = page;  //首页显示  
+                this.Invoke(new ShowDatatableDelegate(showPage), new object[] { page, Xuser});
             }
             catch (Exception ex)
             {
@@ -496,6 +508,50 @@ namespace Xr.RtManager
             DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs c = (DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs)e;
             DevExpress.XtraTab.XtraTabPage page = (DevExpress.XtraTab.XtraTabPage)c.PrevPage;
             this.xtraTabControl1.TabPages.Remove(page);
+        }
+
+        /// <summary>
+        /// 背景图片随窗体的大小而改变大小
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void panelEnhanced1_SizeChanged(object sender, EventArgs e)
+        {
+            loadBackImage();
+        }
+
+        private void loadBackImage()
+        {
+            Bitmap bit = new Bitmap(this.Width, this.Height);
+            Graphics g = Graphics.FromImage(bit);
+            g.DrawImage(Properties.Resources.bg1, new Rectangle(0, 0, bit.Width, bit.Height), 0, 0, Properties.Resources.bg1.Width, Properties.Resources.bg1.Height, GraphicsUnit.Pixel);
+            panelEnhanced1.BackgroundImage = bit;
+            g.Dispose();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("你确定退出系统吗！", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (result == DialogResult.OK)
+            {
+                String url = AppContext.AppConfig.serverUrl + "logout";
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    AppContext.Unload();
+                    //Application.Exit();
+                    e.Cancel = false;  //点击OK   
+                }
+                else
+                {
+                    MessageBox.Show("退出系统失败:"+objT["message"].ToString());
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }    
         }
     }
 }

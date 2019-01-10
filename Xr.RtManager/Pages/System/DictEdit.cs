@@ -42,7 +42,7 @@ namespace Xr.RtManager
             }
             dcDict.GetValue(dict);
             String param = "?" + PackReflectionEntity<DictEntity>.GetEntityToRequestParameters(dict);
-            String url = AppContext.Session.serverUrl + "sys/sysDict/save" + param;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysDict/save" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)

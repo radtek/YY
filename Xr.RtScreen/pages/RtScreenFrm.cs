@@ -16,7 +16,6 @@ namespace Xr.RtScreen.pages
             InitializeComponent();
         }
         #region 
-
         private void panelControl2_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics,
@@ -30,7 +29,7 @@ namespace Xr.RtScreen.pages
                          Color.Red,
                          1,
                          ButtonBorderStyle.Solid,
-                         Color.Transparent,
+                         Color.Red,
                          1,
                          ButtonBorderStyle.Solid);
         }
@@ -97,7 +96,7 @@ namespace Xr.RtScreen.pages
                       Color.Red,//7f9db9
                       1,
                       ButtonBorderStyle.Solid,
-                      Color.Red,
+                      Color.Transparent,
                       1,
                       ButtonBorderStyle.Solid,
                       Color.Red,
@@ -107,6 +106,41 @@ namespace Xr.RtScreen.pages
                       1,
                       ButtonBorderStyle.Solid);
         }
-        #endregion
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics,
+                     this.panel1.ClientRectangle,
+                     Color.Red,//7f9db9
+                     1,
+                     ButtonBorderStyle.Solid,
+                     Color.Transparent,
+                     1,
+                     ButtonBorderStyle.Solid,
+                     Color.Red,
+                     1,
+                     ButtonBorderStyle.Solid,
+                     Color.Red,
+                     1,
+                     ButtonBorderStyle.Solid);
+        }
+       
+        //private void gridControl1_Paint(object sender, PaintEventArgs e)
+        //{
+        //      ControlPaint.DrawBorder(e.Graphics,
+        //             this.gridControl1.ClientRectangle,
+        //             Color.Red,//7f9db9
+        //             1,
+        //             ButtonBorderStyle.Solid,
+        //             Color.Red,
+        //             1,
+        //             ButtonBorderStyle.Solid,
+        //             Color.Red,
+        //             1,
+        //             ButtonBorderStyle.Solid,
+        //             Color.Red,
+        //             1,
+        //             ButtonBorderStyle.Solid);
+        //}
+        #endregion   
     }
 }

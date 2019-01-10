@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.GreenFrmPanel = new System.Windows.Forms.Panel();
             this.labBoxInfor = new DevExpress.XtraEditors.LabelControl();
@@ -195,7 +194,7 @@
             this.skinbutBig.RoundStyle = CCWin.SkinClass.RoundStyle.All;
             this.skinbutBig.Size = new System.Drawing.Size(75, 30);
             this.skinbutBig.TabIndex = 0;
-            this.skinbutBig.Text = "最大化";
+            this.skinbutBig.Text = "展开";
             this.skinbutBig.UseVisualStyleBackColor = false;
             this.skinbutBig.Click += new System.EventHandler(this.skinbutBig_Click);
             // 

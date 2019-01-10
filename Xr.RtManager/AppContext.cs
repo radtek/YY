@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
+using System.Configuration;
 
 namespace Xr.RtManager
 {
@@ -15,18 +15,33 @@ namespace Xr.RtManager
         /// 获取应用程序会话信息
         /// </summary>
         public static SessionInfo Session { get; private set; }
+        /// <summary>
+        /// 本地配置信息
+        /// </summary>
+        public static AppConfigEntity AppConfig { get; private set; }
 
         public static void Load()
         {
             //AppContext.Client = new ClientInfo();
-            AppContext.Session = new SessionInfo();
-            Session.cookie = new CookieContainer();
+            Session = new SessionInfo();
+            loadAppConfig();
             //AppContext.CommandLineArgs = new AppCommandLineArgs();
             //AppContext.Directories = new AppDirectories();
             //AppContext.Configuration = new ConfigurationManager();
             //AppContext.Configuration.Load();
 
             //AppContext.Parameter = new SysParameter();
+        }
+
+        /// <summary>
+        /// 加载本地配置信息
+        /// </summary>
+        private static void loadAppConfig()
+        {
+            AppConfig = new AppConfigEntity();
+            AppConfig.serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
+            AppConfig.hospitalCode = ConfigurationManager.AppSettings["hospitalCode"].ToString();
+            AppConfig.deptCode = ConfigurationManager.AppSettings["deptCode"].ToString();
         }
 
         /// <summary>

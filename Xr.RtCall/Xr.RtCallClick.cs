@@ -132,12 +132,12 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void skinbutBig_Click(object sender, EventArgs e)
         {
-            if (skinbutBig.Text == "最大化")
+            if (skinbutBig.Text == "展开")
             {
                 this.panel_MainFrm.Visible = true;
                 panel_MainFrm.Controls.Clear();
                 this.Size = new Size(615, 500);
-                skinbutBig.Text = "最小化";
+                skinbutBig.Text = "收缩";
                 //this.skinbutLook.Visible = true;
                 RtCallPeationFrm rtcpf = new RtCallPeationFrm();
                 rtcpf.Dock = DockStyle.Fill;
@@ -146,7 +146,7 @@ namespace Xr.RtCall
             else
             {
                 this.Size = new Size(615, 78);
-                skinbutBig.Text = "最大化";
+                skinbutBig.Text = "展开";
                // this.skinbutLook.Visible = false;
             }
            

@@ -29,7 +29,7 @@ namespace Xr.RtManager
             dcRole.DataType = typeof(RoleEntity);
 
             //获取下拉框数据
-            String url = AppContext.Session.serverUrl + "sys/sysRole/getDropDownData";
+            String url = AppContext.AppConfig.serverUrl + "sys/sysRole/getDropDownData";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -59,7 +59,7 @@ namespace Xr.RtManager
 
             if (role != null)
             {
-                url = AppContext.Session.serverUrl + "sys/sysRole/getRole?roleId=" + role.id;
+                url = AppContext.AppConfig.serverUrl + "sys/sysRole/getRole?roleId=" + role.id;
                 data = HttpClass.httpPost(url);
                 objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -168,7 +168,7 @@ namespace Xr.RtManager
             role.menuIds = idStr;
             //string strJson = JsonConvert.SerializeObject(test);
             String param = "?" + PackReflectionEntity<RoleEntity>.GetEntityToRequestParameters(role, true) + "&&oldName=" + oldName;
-            String url = AppContext.Session.serverUrl + "sys/sysRole/save" + param;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysRole/save" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)

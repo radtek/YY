@@ -29,8 +29,6 @@ namespace Xr.RtManager
         private void UserForm_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(243, 243, 243);
-            pageControl1.Parent = this;
-            pageControl1.parentName = "UserForm";
             // 弹出加载提示框
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
             // 开始异步
@@ -42,7 +40,7 @@ namespace Xr.RtManager
         {
             try
             {
-                String url = AppContext.Session.serverUrl + "sys/sysOffice/findAll";
+                String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
                 e.Result = HttpClass.httpPost(url);
             }
             catch (Exception ex)
@@ -73,7 +71,7 @@ namespace Xr.RtManager
                     treeOffice.Properties.DisplayMember = "name";  //要在树里展示的
                     treeOffice.Properties.ValueMember = "id";    //对应的value
 
-                    SearchData(1);
+                    SearchData(1, 10);
                 }
                 else
                 {
@@ -88,9 +86,11 @@ namespace Xr.RtManager
 
 
         int currPageNo = 1;
-        public void SearchData(int pageNo)
+        int pageSize = 10;
+        public void SearchData(int pageNo, int pageSize)
         {
             currPageNo = pageNo;
+            this.pageSize = pageSize;
             BackgroundWorkerUtil.start_run(grid_bw_DoWork, grid_bw_RunWorkerCompleted, null, false);
         }
 
@@ -100,8 +100,8 @@ namespace Xr.RtManager
             {
                 String param = "?companyId=" + treeCompany.EditValue
                 + "&&officeId=" + treeOffice.EditValue + "&&loginName=" + tbLoginName.Text + "&&name=" + tbName.Text
-                + "&&pageNo=" + currPageNo;
-                String url = AppContext.Session.serverUrl + "sys/sysUser/findAll" + param;
+                + "&&pageNo=" + currPageNo + "&&pageSize=" + pageSize;
+                String url = AppContext.AppConfig.serverUrl + "sys/sysUser/findAll" + param;
                 e.Result = HttpClass.httpPost(url);
             }
             catch (Exception ex)
@@ -143,7 +143,7 @@ namespace Xr.RtManager
         {
             // 弹出加载提示框
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
-            SearchData(1);
+            SearchData(1, pageControl1.PageSize);
         }
 
         private void skinButton2_Click(object sender, EventArgs e)
@@ -151,7 +151,7 @@ namespace Xr.RtManager
             var edit = new UserEdit();
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                SearchData(1);
+                SearchData(1, pageControl1.PageSize);
                 MessageBoxUtils.Hint("保存成功!");
             }
         }
@@ -167,7 +167,7 @@ namespace Xr.RtManager
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 MessageBoxUtils.Hint("修改用户成功!");
-                SearchData(1);
+                SearchData(1, pageControl1.PageSize);
             }
         }
 
@@ -181,13 +181,13 @@ namespace Xr.RtManager
 
             if (dr == DialogResult.OK)
             {
-                String url = AppContext.Session.serverUrl + "sys/sysUser/delete?id=" + selectedRow.id;
+                String url = AppContext.AppConfig.serverUrl + "sys/sysUser/delete?id=" + selectedRow.id;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("删除用户成功!");
-                    SearchData(1);
+                    SearchData(1, pageControl1.PageSize);
                 }
                 else
                 {
@@ -221,19 +221,24 @@ namespace Xr.RtManager
 
             if (dr == DialogResult.OK)
             {
-                String url = AppContext.Session.serverUrl + "sys/sysUser/userUnlock?id=" + selectedRow.id;
+                String url = AppContext.AppConfig.serverUrl + "sys/sysUser/userUnlock?id=" + selectedRow.id;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("解锁用户成功!");
-                    SearchData(1);
+                    SearchData(1, pageControl1.PageSize);
                 }
                 else
                 {
                     MessageBox.Show(objT["message"].ToString());
                 }
             }
+        }
+
+        private void pageControl1_Query(int CurrentPage, int PageSize)
+        {
+            SearchData(CurrentPage, PageSize);
         }
     }
 }

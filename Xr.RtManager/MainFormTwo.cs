@@ -315,7 +315,7 @@ namespace Xr.RtManager
         private void tmHeartbeat_Tick(object sender, EventArgs e)
         {
             tmHeartbeat.Enabled = false;
-            String url = AppContext.Session.serverUrl + "getCurrentDate";
+            String url = AppContext.AppConfig.serverUrl + "getCurrentDate";
             String data = HttpClass.httpPost(url);
             if (!data.Equals("远程服务器返回错误: (404) 未找到。"))
             {

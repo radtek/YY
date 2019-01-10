@@ -29,7 +29,7 @@ namespace Xr.RtManager
                 extId = menu.id;
             //获取下拉框数据
             String param = "?extId=" + extId;
-            String url = AppContext.Session.serverUrl + "sys/sysMenu/treeData" + param;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysMenu/treeData" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -45,7 +45,7 @@ namespace Xr.RtManager
                 {
                     if(menu.id != null)
                     {
-                        data = HttpClass.httpPost(AppContext.Session.serverUrl + "sys/sysMenu/getMenu?menuId=" + menu.id);
+                        data = HttpClass.httpPost(AppContext.AppConfig.serverUrl + "sys/sysMenu/getMenu?menuId=" + menu.id);
                         objT = JObject.Parse(data);
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
@@ -84,7 +84,7 @@ namespace Xr.RtManager
             List<MenuEntity> entityList = treeParent.Properties.TreeList.DataSource as List<MenuEntity>;
             menu.parentIds = entityList[index].parentIds + menu.parentId + ",";
             String param = PackReflectionEntity<MenuEntity>.GetEntityToRequestParameters(menu, true);
-            String data = HttpClass.httpPost(AppContext.Session.serverUrl + "sys/sysMenu/save?" + param);
+            String data = HttpClass.httpPost(AppContext.AppConfig.serverUrl + "sys/sysMenu/save?" + param);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {

@@ -44,7 +44,8 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.pageControl1 = new Xr.RtManager.Control.PageControl();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.buttonControl4 = new Xr.Common.Controls.ButtonControl();
@@ -80,11 +81,12 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.gcDict);
+            this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.pageControl1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 70);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(15, 20, 15, 20);
+            this.panel4.Padding = new System.Windows.Forms.Padding(15, 20, 15, 10);
             this.panel4.Size = new System.Drawing.Size(906, 411);
             this.panel4.TabIndex = 63;
             // 
@@ -101,8 +103,8 @@
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1,
             this.repositoryItemCheckEdit1});
-            this.gcDict.Size = new System.Drawing.Size(876, 332);
-            this.gcDict.TabIndex = 13;
+            this.gcDict.Size = new System.Drawing.Size(876, 336);
+            this.gcDict.TabIndex = 15;
             this.gcDict.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -239,7 +241,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "添加键值", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
             // 
             // repositoryItemMemoEdit1
             // 
@@ -254,16 +255,25 @@
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             this.repositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(15, 356);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(876, 5);
+            this.panel2.TabIndex = 14;
+            // 
             // pageControl1
             // 
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageControl1.Location = new System.Drawing.Point(15, 352);
+            this.pageControl1.Location = new System.Drawing.Point(15, 361);
             this.pageControl1.Name = "pageControl1";
-            this.pageControl1.PageSize = 20;
+            this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(876, 39);
+            this.pageControl1.Size = new System.Drawing.Size(876, 40);
             this.pageControl1.TabIndex = 12;
+            this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
             // panel1
             // 
@@ -307,7 +317,7 @@
             this.buttonControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl4.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl4.Location = new System.Drawing.Point(770, 10);
+            this.buttonControl4.Location = new System.Drawing.Point(760, 10);
             this.buttonControl4.Name = "buttonControl4";
             this.buttonControl4.Size = new System.Drawing.Size(75, 30);
             this.buttonControl4.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -320,7 +330,7 @@
             this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl3.Location = new System.Drawing.Point(680, 10);
+            this.buttonControl3.Location = new System.Drawing.Point(670, 10);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
             this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -333,7 +343,7 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(590, 10);
+            this.buttonControl2.Location = new System.Drawing.Point(580, 10);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -346,7 +356,7 @@
             this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(500, 10);
+            this.buttonControl1.Location = new System.Drawing.Point(490, 10);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 30);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -376,7 +386,7 @@
             // tbDescription
             // 
             this.tbDescription.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbDescription.Location = new System.Drawing.Point(321, 12);
+            this.tbDescription.Location = new System.Drawing.Point(307, 12);
             this.tbDescription.Name = "tbDescription";
             this.tbDescription.Size = new System.Drawing.Size(146, 27);
             this.tbDescription.TabIndex = 83;
@@ -420,19 +430,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraGrid.GridControl gcDict;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        public DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
-        private Control.PageControl pageControl1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private Xr.Common.Controls.PageControl pageControl1;
         private Xr.Common.Controls.BorderPanel borderPanel1;
         private Xr.Common.Controls.ButtonControl buttonControl4;
         private Xr.Common.Controls.ButtonControl buttonControl3;
@@ -442,6 +440,19 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbDescription;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraGrid.GridControl gcDict;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        public DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private System.Windows.Forms.Panel panel2;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

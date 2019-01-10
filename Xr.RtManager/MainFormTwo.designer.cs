@@ -184,7 +184,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(200, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(5, 705);
+            this.panel5.Size = new System.Drawing.Size(406, 705);
             this.panel5.TabIndex = 12;
             // 
             // xtraTabControl1
@@ -195,9 +195,9 @@
             this.xtraTabControl1.AppearancePage.Header.Options.UseFont = true;
             this.xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(205, 0);
+            this.xtraTabControl1.Location = new System.Drawing.Point(606, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(803, 705);
+            this.xtraTabControl1.Size = new System.Drawing.Size(402, 705);
             this.xtraTabControl1.TabIndex = 13;
             // 
             // MainFormTwo

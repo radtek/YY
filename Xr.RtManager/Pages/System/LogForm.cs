@@ -33,9 +33,7 @@ namespace Xr.RtManager
         private void LogForm_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(243, 243, 243);
-            pageControl1.Parent = this;
-            pageControl1.parentName = "LogForm";
-            String url = AppContext.Session.serverUrl + "sys/sysOffice/findAll";
+            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -53,7 +51,7 @@ namespace Xr.RtManager
                 treeOffice.Properties.DisplayMember = "name";  //要在树里展示的
                 treeOffice.Properties.ValueMember = "id";    //对应的value
 
-                SearchData(true, 1);
+                SearchData(true, 1, pageControl1.PageSize);
             }
             else
             {
@@ -61,7 +59,7 @@ namespace Xr.RtManager
             }
         }
 
-        public void SearchData(bool flag, int pageNo)
+        public void SearchData(bool flag, int pageNo, int pageSize)
         {
             String exception = "";
             if (checkEdit1.Checked) exception = "true"; //不为空白字符串就行
@@ -69,8 +67,8 @@ namespace Xr.RtManager
                 + "&&officeId=" + treeOffice.EditValue + "&&createByName=" + tbUserName.Text
                 + "&&requestUri=" + tbURL.Text + "&&exception=" + exception
                 + "&&beginDate=" + deStart.EditValue + "&&endDate=" + deEnd.EditValue
-                + "&&pageNo=" + pageNo;
-            String url = AppContext.Session.serverUrl + "sys/sysLog/findAll" + param;
+                + "&&pageNo=" + pageNo + "&&pageSize=" + pageSize;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysLog/findAll" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -88,7 +86,7 @@ namespace Xr.RtManager
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
-            SearchData(false, 1);
+            SearchData(false, 1, pageControl1.PageSize);
         }
 
         private void skinButton2_Click(object sender, EventArgs e)
@@ -97,7 +95,7 @@ namespace Xr.RtManager
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 MessageBoxUtils.Hint("保存成功!");
-                SearchData(true, 1);
+                SearchData(true, 1, pageControl1.PageSize);
             }
         }
 
@@ -112,13 +110,13 @@ namespace Xr.RtManager
              if (dr == DialogResult.OK)
              {
                  String param = "?id=" + selectedRow.id;
-                 String url = AppContext.Session.serverUrl + "sys/sysDict/delete" + param;
+                 String url = AppContext.AppConfig.serverUrl + "sys/sysDict/delete" + param;
                  String data = HttpClass.httpPost(url);
                  JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("删除成功!");
-                    SearchData(false, pageControl1.CurrentPage);
+                    SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
                 }
                 else
                 {
@@ -138,7 +136,7 @@ namespace Xr.RtManager
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 MessageBoxUtils.Hint("修改成功!");
-                SearchData(true, pageControl1.CurrentPage);
+                SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
             }
         }
 
@@ -159,6 +157,11 @@ namespace Xr.RtManager
             MessageBoxUtils.HintTextEdit(text, 174, 208 + ((i + 1) * 29), gcDict.Width);
             //SetActiveWindow(activeForm); // 在把焦点还给之前的活动窗体
             
+        }
+
+        private void pageControl1_Query(int CurrentPage, int pageSize)
+        {
+            SearchData(false, CurrentPage, pageSize);
         }
     }
 }

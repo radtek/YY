@@ -31,7 +31,7 @@ namespace Xr.RtManager
 
         private void SearchData()
         {
-            String url = AppContext.Session.serverUrl + "sys/sysOffice/findAll";
+            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -83,7 +83,7 @@ namespace Xr.RtManager
 
             if (dr == DialogResult.OK)
             {
-                String url = AppContext.Session.serverUrl + "sys/sysOffice/delete?id=" + id;
+                String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/delete?id=" + id;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)

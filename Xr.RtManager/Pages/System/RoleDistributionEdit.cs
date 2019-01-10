@@ -33,7 +33,7 @@ namespace Xr.RtManager
             treeList2.KeyFieldName = "id";//设置ID  
             treeList3.KeyFieldName = "id";//设置ID 
 
-            String url = AppContext.Session.serverUrl + "sys/sysOffice/findAllJson";
+            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAllJson";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -43,7 +43,7 @@ namespace Xr.RtManager
                 treeList1.KeyFieldName = "id";//设置ID  
                 treeList1.ParentFieldName = "parentId";//设置PreID   
 
-                url = AppContext.Session.serverUrl + "sys/sysRole/assign?roleId=" + roleId;
+                url = AppContext.AppConfig.serverUrl + "sys/sysRole/assign?roleId=" + roleId;
                 data = HttpClass.httpPost(url);
                 objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -125,7 +125,7 @@ namespace Xr.RtManager
                 ids = ids + user.id + ",";
             }
             ids.Substring(0, ids.Length-1);
-            String url = AppContext.Session.serverUrl + "sys/sysRole/assignrole?roleId=" + roleId + "&&ids=" + ids;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysRole/assignrole?roleId=" + roleId + "&&ids=" + ids;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)

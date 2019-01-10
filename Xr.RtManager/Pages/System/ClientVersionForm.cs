@@ -26,17 +26,16 @@ namespace Xr.RtManager
         private void UserForm_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(243, 243, 243);
-            pageControl1.Parent = this;
-            pageControl1.parentName = "ClientVersionForm";
-            SearchData(true, 1);
+            SearchData(true, 1, pageControl1.PageSize);
 
         }
 
-        public void SearchData(bool flag, int pageNo)
+        public void SearchData(bool flag, int pageNo, int pageSize)
         {
             String param = "?title=" + tbTitle.Text
-                + "&&version=" + tbVersion.Text + "&&pageNo=" + pageNo;
-            String url = AppContext.Session.serverUrl + "sys/clientVersion/list" + param;
+                + "&&version=" + tbVersion.Text + "&&pageNo=" + pageNo
+                + "&&pageSize=" + pageSize;
+            String url = AppContext.AppConfig.serverUrl + "sys/clientVersion/list" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -54,7 +53,7 @@ namespace Xr.RtManager
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
-            SearchData(false, 1);
+            SearchData(false, 1, pageControl1.PageSize);
         }
 
         private void skinButton2_Click(object sender, EventArgs e)
@@ -63,7 +62,7 @@ namespace Xr.RtManager
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 MessageBoxUtils.Hint("保存成功!");
-                SearchData(true, 1);
+                SearchData(true, 1, pageControl1.PageSize);
             }
         }
 
@@ -78,13 +77,13 @@ namespace Xr.RtManager
              if (dr == DialogResult.OK)
              {
                 String param = "?id=" + selectedRow.id;
-                String url = AppContext.Session.serverUrl + "sys/clientVersion/delete" + param;
+                String url = AppContext.AppConfig.serverUrl + "sys/clientVersion/delete" + param;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("删除成功!");
-                    SearchData(false, pageControl1.CurrentPage);
+                    SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
                 }
                 else
                 {
@@ -104,8 +103,13 @@ namespace Xr.RtManager
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 MessageBoxUtils.Hint("修改成功!");
-                SearchData(true, pageControl1.CurrentPage);
+                SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
             }
+        }
+
+        private void pageControl1_Query(int CurrentPage, int pageSize)
+        {
+            SearchData(false, CurrentPage, pageSize);
         }
     }
 }
