@@ -1,0 +1,9 @@
+
+2019-01-10 19:01:45 请求数据：http://127.0.0.1:8080/yyfz/api/sys/clientVersion/findUpdateVersion?type=0&version=0
+
+2019-01-10 19:01:47 程序异常信息：
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Xr.AutoUpdate.Form1.httpPost(String url) 
+   在 触发文件： f:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.AutoUpdate\Form1.cs:行号 198
+   在 触发方法：System.Net.WebResponse GetResponse()
+   在 异常信息：无法连接到远程服务器

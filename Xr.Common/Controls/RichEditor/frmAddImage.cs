@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Net;
 using System.Web;
+using Xr.Http;
+using Newtonsoft.Json.Linq;
 
 namespace Xr.Common.Controls
 {
@@ -17,10 +19,11 @@ namespace Xr.Common.Controls
         public delegate void ReturnValue(string URLAddress);
         public ReturnValue _ReturnValue;
         //private FileUploader _FileUploader;
-
-        public frmAddImage()
+        private String _imagUploadUrl;
+        public frmAddImage(string ImagUploadUrl)
         {
             InitializeComponent();
+            _imagUploadUrl = ImagUploadUrl;
             this.ShowInTaskbar = false;
             this.Text = "插入图片";
             this.StartPosition = FormStartPosition.CenterParent;
@@ -92,29 +95,30 @@ namespace Xr.Common.Controls
                     this._ReturnValue(this.OnImageUpdate(txtFileName.Text.Trim()));
                     btnCancel_Click(null, null);
                 }
-                //上传图片到WEB服务器上
+                //上传图片到服务器上
                 string tempFileName = txtFileName.Text.Trim(); ;
 
                 string saveFileName = DateTime.Now.ToString("yyyyMMddhhmmss") + DateTime.Now.Millisecond.ToString() + ".jpg";
                 try
                 {
-                    if (Upload(tempFileName, "192.168.1.104", saveFileName))
-                        {
-                            //this.Info("图片上传成功!");
+                    string refMsg = String.Empty;
+                    if (Upload(tempFileName, saveFileName, ref refMsg))
+                    {
+                        //this.Info("图片上传成功!");
+                        string url = refMsg; // @"http://image.tianxiahotel.com/" + saveFileName;
+                        _ReturnValue(url);
+                        btnCancel_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBoxUtils.Hint("上传图片失败：" + refMsg);
+                    }
 
-                        string url = @"http://image.tianxiahotel.com/"+ saveFileName;
-                            _ReturnValue(url);
-                            btnCancel_Click(null, null);
-                        }
-                        else
-                        {
-                            //this.Error("图片上传失败，请联系管理员", "错误");
-                        }
-                    
                 }
                 catch (Exception ex)
                 {
                     //this.Error("图片上传失败，请联系管理员!错误信息：\n" + ex.Message, "错误");
+                    MessageBoxUtils.Hint("上传图片失败：" + ex.Message);
                 }
 
                 //上传图片到WEB服务器上
@@ -152,11 +156,54 @@ namespace Xr.Common.Controls
         }
 
         #endregion Events
+
         /// <summary>
-        /// 上传文件
+        /// 通过后台统一接口上传图片
+        /// </summary>
+        /// <param name="localpath"></param>
+        /// <param name="saveName"></param>
+        /// <param name="refStr"></param>
+        /// <returns></returns>
+        public bool Upload(string localpath, string saveName ,ref string refMsg)
+        {
+            FileInfo fileInf = new FileInfo(localpath);
+            FileStream fs = fileInf.OpenRead();
+            try
+            {
+                string requestUrl = _imagUploadUrl + "common/uploadFile";// @"http://192.168.11.43:8080/yyfz/api/common/uploadFile";//AppContext.AppConfig.severUrl + "";
+                FormItemModel uploadFile = new FormItemModel() { FileName = saveName, FileContent = fs, Key = "multipartFile" };
+                List<FormItemModel> formItems = new List<FormItemModel>();
+                formItems.Add(uploadFile);
+
+                string refStr = HttpClass.PostForm(requestUrl, formItems);//{"code":200,"message":"文件上传成功","result":["http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-11/2019011110115179.jpg"],"state":true}
+                JObject objT = JObject.Parse(refStr);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    refMsg = objT["result"][0].ToString();
+                    return true;
+                }
+                else
+                {
+                    refMsg = objT["message"].ToString();
+                    return false;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                refMsg = e.Message;
+                return false;
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+        /// <summary>
+        /// 通过FTP上传文件
         /// </summary>
         /// <param name="localpath">上传文件的全路径 例@"D:\123.txt"</param>
-        /// <param name="ftppath">FTP地址</param>
+        /// <param name="ftppath">FTP地址</param>//"192.168.1.104"
         /// /// <param name="saveName">保存文件名</param>
         /// <returns></returns>
         public bool Upload(string localpath, string ftppath,string saveName)

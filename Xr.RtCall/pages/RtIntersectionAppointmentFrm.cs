@@ -40,6 +40,5 @@ namespace Xr.RtCall.pages
             }
         }
         #endregion 
-
     }
 }

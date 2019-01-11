@@ -21,7 +21,7 @@ namespace Xr.RtScreen
             //this.Height = rcf.Height;
             //this.Width = rcf.Width;
             rcf.Dock = DockStyle.Fill;
-            this.Controls.Add(rcf);
+            this.panelControl1.Controls.Add(rcf);
         }
         #region 键盘按Esc关闭窗体
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -52,12 +52,9 @@ namespace Xr.RtScreen
                 switch (keyData)
                 {
                     case Keys.Escape:
-                        //按ESC键后退出对话框
                         if (MessageBox.Show("真的要退出程序吗？", "退出程序", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
                             this.Close();
-                            //Environment.Exit(Environment.ExitCode);
-                            // Application.ExitThread();
                         }
                         break;
                 }
@@ -65,19 +62,5 @@ namespace Xr.RtScreen
             return false;
         }
         #endregion
-        Point downPoint;
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            downPoint = new Point(e.X, e.Y);
-        }
-
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.Location = new Point(this.Location.X + e.X - downPoint.X,
-                    this.Location.Y + e.Y - downPoint.Y);
-            }
-        }
     }
 }

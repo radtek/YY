@@ -69,7 +69,7 @@ namespace Xr.Common.Controls
         /// </summary>        
         [Description("转角处圆角半径")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public CornerRadius CornerRadius { get; private set; }
+        public CornerRadius CornerRadius { get;  set; }
 
         /// <summary>
         /// 获取或设置边框颜色
@@ -298,7 +298,7 @@ namespace Xr.Common.Controls
             return path;
         }
 
-        private void RefreshFillBrush()
+        protected void RefreshFillBrush()
         {
             if (fillBrush != null) fillBrush.Dispose();
 
@@ -349,6 +349,7 @@ namespace Xr.Common.Controls
     /// 表示圆角半径
     /// </summary>
     [Serializable]
+    [Browsable(true)]
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class CornerRadius
     {

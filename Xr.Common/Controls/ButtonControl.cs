@@ -154,7 +154,8 @@ namespace Xr.Common.Controls
             e.Graphics.FillRectangle(backgroundBrush, e.ClipRectangle);
 
             //绘制边框
-            if (this.Enabled) e.Graphics.DrawRectangle(buttonAppearence.BorderBrush, e.ClipRectangle.Left, e.ClipRectangle.Top, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
+            if (this.Enabled) 
+                e.Graphics.DrawRectangle(buttonAppearence.BorderBrush, e.ClipRectangle.Left, e.ClipRectangle.Top, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
 
             //绘制获得焦点时的样式
             if (this.Focused)

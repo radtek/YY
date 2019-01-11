@@ -144,6 +144,12 @@
     <Compile Include="Pages\cms\DeptSettingsForm.Designer.cs">
       <DependentUpon>DeptSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\cms\HolidaySettingForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\HolidaySettingForm.Designer.cs">
+      <DependentUpon>HolidaySettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\cms\HospitalSettingsForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -281,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\DeptSettingsForm.resx">
       <DependentUpon>DeptSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\cms\HolidaySettingForm.resx">
+      <DependentUpon>HolidaySettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\HospitalSettingsForm.resx">
       <DependentUpon>HospitalSettingsForm.cs</DependentUpon>

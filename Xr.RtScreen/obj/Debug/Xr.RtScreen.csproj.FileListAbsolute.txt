@@ -24,8 +24,9 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\obj\Debug
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\obj\Debug\Xr.RtScreen.pages.RtDoctorSmallScreenFrm.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\obj\Debug\Xr.RtScreen.pages.RtSmallScreenFrm.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\obj\Debug\Xr.RtScreen.exe.licenses
-F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\bin\Debug\HPSocketCS.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\bin\Debug\TX.Framework.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\bin\Debug\Xr.Common.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\bin\Debug\Xr.Common.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\bin\Debug\HPSocketCS.dll
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\bin\Debug\HPSocketCS.pdb
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtScreen\bin\Debug\Newtonsoft.Json.dll

@@ -113,7 +113,7 @@
             this.panelEnhanced1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEnhanced1.Location = new System.Drawing.Point(3, 0);
             this.panelEnhanced1.Name = "panelEnhanced1";
-            this.panelEnhanced1.Size = new System.Drawing.Size(1005, 516);
+            this.panelEnhanced1.Size = new System.Drawing.Size(1005, 729);
             this.panelEnhanced1.TabIndex = 0;
             this.panelEnhanced1.SizeChanged += new System.EventHandler(this.panelEnhanced1_SizeChanged);
             // 
@@ -132,7 +132,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(156, 0);
             this.xtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(849, 492);
+            this.xtraTabControl1.Size = new System.Drawing.Size(849, 705);
             this.xtraTabControl1.TabIndex = 20;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             // 
@@ -142,7 +142,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(151, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(5, 492);
+            this.panel4.Size = new System.Drawing.Size(5, 705);
             this.panel4.TabIndex = 19;
             // 
             // panel5
@@ -153,7 +153,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(151, 492);
+            this.panel5.Size = new System.Drawing.Size(151, 705);
             this.panel5.TabIndex = 17;
             // 
             // panMenuBar
@@ -170,7 +170,7 @@
             this.panMenuBar.Location = new System.Drawing.Point(0, 0);
             this.panMenuBar.Name = "panMenuBar";
             this.panMenuBar.Padding = new System.Windows.Forms.Padding(1);
-            this.panMenuBar.Size = new System.Drawing.Size(151, 488);
+            this.panMenuBar.Size = new System.Drawing.Size(151, 701);
             this.panMenuBar.TabIndex = 5;
             // 
             // panelEx1
@@ -231,7 +231,7 @@
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 488);
+            this.panel6.Location = new System.Drawing.Point(0, 701);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(151, 4);
             this.panel6.TabIndex = 4;
@@ -242,7 +242,7 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 492);
+            this.panel1.Location = new System.Drawing.Point(0, 705);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1005, 24);
             this.panel1.TabIndex = 4;
@@ -316,7 +316,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 516);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.panelEnhanced1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

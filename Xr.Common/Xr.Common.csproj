@@ -44,6 +44,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Utils\Microsoft.mshtml.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Xr.RtManager\ExDll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -77,6 +81,9 @@
     <Compile Include="Common\TypeUtils.cs" />
     <Compile Include="Common\WorkingProgressEventArgs.cs" />
     <Compile Include="Common\XmlExtensions.cs" />
+    <Compile Include="Controls\BorderPanelButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\BorderPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -93,7 +100,14 @@
     <Compile Include="Controls\FlyoutControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\GroupBorderPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GroupBorderPanel.Designer.cs">
+      <DependentUpon>GroupBorderPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ISupportHotkeys.cs" />
+    <Compile Include="Controls\OpaqueCommand.cs" />
     <Compile Include="Controls\PageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -234,6 +248,12 @@
     <None Include="Resources\bg.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\BorderPanelButton.resx">
+      <DependentUpon>BorderPanelButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GroupBorderPanel.resx">
+      <DependentUpon>GroupBorderPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PageControl.resx">
       <DependentUpon>PageControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,7 +293,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Xr.Http\Xr.Http.csproj">
+      <Project>{b694c623-4dab-40dc-9446-3d0bf4fb0249}</Project>
+      <Name>Xr.Http</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

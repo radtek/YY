@@ -22,20 +22,36 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
         }
 
-        public HospitalInfoEntity hospitalInfo { get; set; }
+        public DeptInfoEntity deptInfo { get; set; }
 
-        private void HospitalSettingsForm_Load(object sender, EventArgs e)
+        private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
-            dcHospitalInfo.DataType = typeof(HospitalInfoEntity);
-            //查询医院类型下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=hospital_type";
+            dcDeptInfo.DataType = typeof(DeptInfoEntity);
+            //查询医院下拉框数据
+            String url = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
-                lueHospitalType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueHospitalType.Properties.DisplayMember = "label";
-                lueHospitalType.Properties.ValueMember = "value";
+                lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
+                lueHospital.Properties.DisplayMember = "name";
+                lueHospital.Properties.ValueMember = "id";
+            }
+            else
+            {
+                MessageBox.Show(objT["message"].ToString());
+                return;
+            }
+            
+            //查询宣传显示下拉框数据
+            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
+            data = HttpClass.httpPost(url);
+            objT = JObject.Parse(data);
+            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            {
+                lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                lueIsShow.Properties.DisplayMember = "label";
+                lueIsShow.Properties.ValueMember = "value";
             }
             else
             {
@@ -62,12 +78,13 @@ namespace Xr.RtManager.Pages.cms
 
         public void SearchData(int pageNo, int pageSize)
         {
-            String url = AppContext.AppConfig.serverUrl + "cms/hospital/list?pageNo="+pageNo;
+            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/list?"+param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
-                gcHospitalInfo.DataSource = objT["result"]["list"].ToObject<List<HospitalInfoEntity>>();
+                gcDeptInfo.DataSource = objT["result"]["list"].ToObject<List<DeptInfoEntity>>();
                 pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                 int.Parse(objT["result"]["pageSize"].ToString()),
                 int.Parse(objT["result"]["pageNo"].ToString()));
@@ -210,26 +227,28 @@ namespace Xr.RtManager.Pages.cms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             groupBox1.Enabled = true;
-            hospitalInfo = new HospitalInfoEntity();
+            deptInfo = new DeptInfoEntity();
         }
 
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            hospitalInfo = new HospitalInfoEntity();
-            var selectedRow = gridView1.GetFocusedRow() as HospitalInfoEntity;
+            deptInfo = new DeptInfoEntity();
+            var selectedRow = gridView1.GetFocusedRow() as DeptInfoEntity;
             if (selectedRow == null)
                 return;
-            String url = AppContext.AppConfig.serverUrl + "cms/hospital/findById?id=" + selectedRow.id;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findById?id=" + selectedRow.id;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
-                hospitalInfo = objT["result"].ToObject<HospitalInfoEntity>();
-                dcHospitalInfo.SetValue(hospitalInfo);
+                deptInfo = objT["result"].ToObject<DeptInfoEntity>();
+                deptInfo.hospitalId = deptInfo.hospital.id;
+                deptInfo.parentId = deptInfo.parent.id;
+                dcDeptInfo.SetValue(deptInfo);
                 //显示图片
-                logoServiceFilePath = hospitalInfo.logoUrl;
-                pictureServiceFilePath = hospitalInfo.pictureUrl;
+                logoServiceFilePath = deptInfo.logoUrl;
+                pictureServiceFilePath = deptInfo.pictureUrl;
                 WebClient web;
                 if (logoServiceFilePath != null && logoServiceFilePath.Length > 0)
                 {
@@ -254,26 +273,28 @@ namespace Xr.RtManager.Pages.cms
         private void btnSave_Click(object sender, EventArgs e)
         {
             //检验并取值
-            if (!dcHospitalInfo.Validate())
+            if (!dcDeptInfo.Validate())
             {
                 return;
             }
-            dcHospitalInfo.GetValue(hospitalInfo);
+            dcDeptInfo.GetValue(deptInfo);
+
             if (logoServiceFilePath == null || logoServiceFilePath.Length == 0)
             {
-                dcHospitalInfo.ShowError(pbLogo, "请先上传文件");
+                dcDeptInfo.ShowError(pbLogo, "请先上传文件");
                 return;
             }
-            hospitalInfo.logoUrl = logoServiceFilePath;
+            deptInfo.logoUrl = logoServiceFilePath;
             if (pictureServiceFilePath == null || pictureServiceFilePath.Length == 0)
             {
-                dcHospitalInfo.ShowError(pbPicture, "请先上传文件");
+                dcDeptInfo.ShowError(pbPicture, "请先上传文件");
                 return;
             }
-            hospitalInfo.pictureUrl = pictureServiceFilePath;
+            deptInfo.pictureUrl = pictureServiceFilePath;
+            
             //请求接口
-            String param = "?" + PackReflectionEntity<HospitalInfoEntity>.GetEntityToRequestParameters(hospitalInfo);
-            String url = AppContext.AppConfig.serverUrl + "cms/hospital/save" + param;
+            String param = "?" + PackReflectionEntity<DeptInfoEntity>.GetEntityToRequestParameters(deptInfo, true);
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/save" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -282,7 +303,7 @@ namespace Xr.RtManager.Pages.cms
                 pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
                 groupBox1.Enabled = false;
                 //清除值
-                dcHospitalInfo.ClearValue();
+                dcDeptInfo.ClearValue();
                 pbLogo.Image = null;
                 pbLogo.Refresh();
                 logoServiceFilePath = null;
@@ -298,16 +319,16 @@ namespace Xr.RtManager.Pages.cms
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            var selectedRow = gridView1.GetFocusedRow() as HospitalInfoEntity;
+            var selectedRow = gridView1.GetFocusedRow() as DeptInfoEntity;
             if (selectedRow == null)
                 return;
             MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-            DialogResult dr = MessageBox.Show("确定要删除吗?", "删除医院信息", messButton);
+            DialogResult dr = MessageBox.Show("确定要删除吗?", "删除科室信息", messButton);
 
             if (dr == DialogResult.OK)
             {
                 String param = "?id=" + selectedRow.id;
-                String url = AppContext.AppConfig.serverUrl + "cms/hospital/delete" + param;
+                String url = AppContext.AppConfig.serverUrl + "cms/dept/delete" + param;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -325,10 +346,40 @@ namespace Xr.RtManager.Pages.cms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             var edit = new RichEditorForm();
-            edit.text = hospitalInfo.information;
+            edit.text = deptInfo.synopsis;
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                hospitalInfo.information = edit.text;
+                deptInfo.synopsis = edit.text;
+            }
+        }
+
+        private void lueHospital_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueHospital.EditValue == null || lueHospital.EditValue.ToString().Length == 0)
+            {
+                lueParentDept.Properties.DataSource = null;
+                return;
+            }
+            HospitalInfoEntity hospitalInfo = lueHospital.GetSelectedDataRow() as HospitalInfoEntity;
+            //查询上级科室下拉框数据
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code;
+            String data = HttpClass.httpPost(url);
+            JObject objT = JObject.Parse(data);
+            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            {
+                List<DeptEntity> deptLsit = objT["result"].ToObject<List<DeptEntity>>();
+                DeptEntity dept = new DeptEntity();
+                dept.id = "0";
+                dept.name = "无";
+                deptLsit.Insert(0, dept);
+                lueParentDept.Properties.DataSource = deptLsit;
+                lueParentDept.Properties.DisplayMember = "name";
+                lueParentDept.Properties.ValueMember = "id";
+            }
+            else
+            {
+                MessageBox.Show(objT["message"].ToString());
+                return;
             }
         }
     }

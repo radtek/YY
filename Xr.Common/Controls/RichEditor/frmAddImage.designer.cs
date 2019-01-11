@@ -41,13 +41,11 @@ namespace Xr.Common.Controls
             // rBtn_URL
             // 
             this.rBtn_URL.AutoSize = true;
-            this.rBtn_URL.Checked = true;
             this.rBtn_URL.Location = new System.Drawing.Point(12, 9);
             this.rBtn_URL.MinimumSize = new System.Drawing.Size(22, 22);
             this.rBtn_URL.Name = "rBtn_URL";
             this.rBtn_URL.Size = new System.Drawing.Size(137, 22);
             this.rBtn_URL.TabIndex = 3;
-            this.rBtn_URL.TabStop = true;
             this.rBtn_URL.Text = "URL地址（网络图片）";
             this.rBtn_URL.UseVisualStyleBackColor = true;
             this.rBtn_URL.CheckedChanged += new System.EventHandler(this.rBtn_URL_CheckedChanged);
@@ -55,11 +53,13 @@ namespace Xr.Common.Controls
             // rBtn_Local
             // 
             this.rBtn_Local.AutoSize = true;
+            this.rBtn_Local.Checked = true;
             this.rBtn_Local.Location = new System.Drawing.Point(12, 67);
             this.rBtn_Local.MinimumSize = new System.Drawing.Size(22, 22);
             this.rBtn_Local.Name = "rBtn_Local";
             this.rBtn_Local.Size = new System.Drawing.Size(71, 22);
             this.rBtn_Local.TabIndex = 2;
+            this.rBtn_Local.TabStop = true;
             this.rBtn_Local.Text = "本地图片";
             this.rBtn_Local.UseVisualStyleBackColor = true;
             // 
@@ -92,7 +92,9 @@ namespace Xr.Common.Controls
             this.btnCancel.Location = new System.Drawing.Point(247, 148);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(108, 25);
+            this.btnCancel.Style = Xr.Common.Controls.ButtonStyle.Return;
             this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabStop = false;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -104,7 +106,9 @@ namespace Xr.Common.Controls
             this.btnOK.Location = new System.Drawing.Point(96, 148);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(108, 25);
+            this.btnOK.Style = Xr.Common.Controls.ButtonStyle.Green;
             this.btnOK.TabIndex = 4;
+            this.btnOK.TabStop = false;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.OnBtnOkClick);
             // 
@@ -116,7 +120,9 @@ namespace Xr.Common.Controls
             this.btn_LocalImageUpdate.Location = new System.Drawing.Point(36, 95);
             this.btn_LocalImageUpdate.Name = "btn_LocalImageUpdate";
             this.btn_LocalImageUpdate.Size = new System.Drawing.Size(108, 21);
+            this.btn_LocalImageUpdate.Style = Xr.Common.Controls.ButtonStyle.Green;
             this.btn_LocalImageUpdate.TabIndex = 1;
+            this.btn_LocalImageUpdate.TabStop = false;
             this.btn_LocalImageUpdate.Text = "上传本地图片...";
             this.btn_LocalImageUpdate.Click += new System.EventHandler(this.btn_LocalImageUpdate_Click);
             // 

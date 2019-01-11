@@ -117,6 +117,20 @@ namespace Xr.Common.Controls
                 this._HeightLightBolorColor = value;
             }
 
+
+        }
+        private String _ImagUploadUrl;
+        [Description("图片上传路径")]
+        public String ImagUploadUrl
+        {
+            get
+            {
+                return this._ImagUploadUrl;
+            }
+            set
+            {
+                this._ImagUploadUrl = value;
+            }
         }
         /// <summary>
         /// 获取全部Html文本
@@ -164,7 +178,7 @@ namespace Xr.Common.Controls
         /// <param name="htmlText"></param>
         public void LoadText (string htmlText)
         {
-
+            if (htmlText!=null)
             webBrowserBody.Document.Write(htmlText);
         }
 
@@ -489,7 +503,7 @@ namespace Xr.Common.Controls
             {
                 return;
             }
-            frmAddImage f = new frmAddImage();
+            frmAddImage f = new frmAddImage(_ImagUploadUrl);
             f.OnImageUpdate = this.OnLocalImageUpdate;
             f._ReturnValue = insertImage;
             f.ShowDialog();
