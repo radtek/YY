@@ -84,3 +84,5 @@ F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debu
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Pages.cms.UserControl1.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Pages.cms.DeptSettingsForm.resources
 F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Pages.cms.HolidaySettingForm.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Pages.cms.ClinicSettingForm.resources
+F:\工作（博爱医院）\预约分诊\YY\client\manager\Xr.RtManager\obj\Debug\Xr.RtManager.Pages.cms.MessageManagement.resources

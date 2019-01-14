@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.gc_Holiday = new DevExpress.XtraGrid.GridControl();
             this.gv_Holiday = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -40,6 +41,7 @@
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Holiday)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Holiday)).BeginInit();
@@ -50,6 +52,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.pageControl1);
             this.panel4.Controls.Add(this.gc_Holiday);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 70);
@@ -58,13 +61,26 @@
             this.panel4.Size = new System.Drawing.Size(920, 444);
             this.panel4.TabIndex = 65;
             // 
+            // pageControl1
+            // 
+            this.pageControl1.CurrentPage = 1;
+            this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pageControl1.Location = new System.Drawing.Point(15, 385);
+            this.pageControl1.Name = "pageControl1";
+            this.pageControl1.PageSize = 20;
+            this.pageControl1.Record = 0;
+            this.pageControl1.Size = new System.Drawing.Size(890, 39);
+            this.pageControl1.TabIndex = 50;
+            // 
             // gc_Holiday
             // 
-            this.gc_Holiday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gc_Holiday.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gc_Holiday.Location = new System.Drawing.Point(15, 20);
             this.gc_Holiday.MainView = this.gv_Holiday;
             this.gc_Holiday.Name = "gc_Holiday";
-            this.gc_Holiday.Size = new System.Drawing.Size(890, 404);
+            this.gc_Holiday.Size = new System.Drawing.Size(890, 359);
             this.gc_Holiday.TabIndex = 49;
             this.gc_Holiday.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Holiday});
@@ -88,6 +104,7 @@
             this.gv_Holiday.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gv_Holiday.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gv_Holiday.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn5,
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
@@ -225,6 +242,12 @@
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "主键";
+            this.gridColumn5.FieldName = "id";
+            this.gridColumn5.Name = "gridColumn5";
+            // 
             // HolidaySettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -257,5 +280,7 @@
         private Xr.Common.Controls.ButtonControl btnDel;
         private Xr.Common.Controls.ButtonControl btnSave;
         private Xr.Common.Controls.ButtonControl btnAdd;
+        private Xr.Common.Controls.PageControl pageControl1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
     }
 }

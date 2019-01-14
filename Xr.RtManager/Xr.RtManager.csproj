@@ -138,6 +138,12 @@
     <Compile Include="Module\System\MenuEntity.cs" />
     <Compile Include="Module\System\UserEntity.cs" />
     <Compile Include="Module\System\SessionInfo.cs" />
+    <Compile Include="Pages\cms\ClinicSettingForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\ClinicSettingForm.Designer.cs">
+      <DependentUpon>ClinicSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\cms\DeptSettingsForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,12 @@
     </Compile>
     <Compile Include="Pages\cms\HospitalSettingsForm.Designer.cs">
       <DependentUpon>HospitalSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\cms\MessageManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\MessageManagement.Designer.cs">
+      <DependentUpon>MessageManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\cms\UserControl1.cs">
       <SubType>UserControl</SubType>
@@ -285,6 +297,9 @@
     <EmbeddedResource Include="MainFormTwo.resx">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\cms\ClinicSettingForm.resx">
+      <DependentUpon>ClinicSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\DeptSettingsForm.resx">
       <DependentUpon>DeptSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\HospitalSettingsForm.resx">
       <DependentUpon>HospitalSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\cms\MessageManagement.resx">
+      <DependentUpon>MessageManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>

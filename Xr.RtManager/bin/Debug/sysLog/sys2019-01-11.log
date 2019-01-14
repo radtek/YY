@@ -667,3 +667,27 @@
 2019-01-11 16:21:09 请求数据：http://192.168.11.43:8080/yyfz/api/logout
 
 2019-01-11 16:21:09 响应结果：{"code":200,"message":"退出成功","result":"","state":true}
+
+2019-01-11 16:57:34 请求数据：http://192.168.11.43:8080/yyfz/api/login?username=system_admin&password=admin
+
+2019-01-11 16:57:34 响应结果：{"code":200,"message":"登录成功","result":{"id":1,"name":"系统管理员","roleNames":"管理员","officeId":2,"userType":"1","menuList":[{"id":2,"parentId":1,"parentIds":"0,1,","sort":900,"name":"系统设置","href":null},{"id":4,"parentId":2,"parentIds":"0,1,2,","sort":50,"name":"菜单管理","href":"MenuForm"},{"id":7,"parentId":2,"parentIds":"0,1,2,","sort":80,"name":"机构用户","href":""},{"id":8,"parentId":2,"parentIds":"0,1,2,","sort":90,"name":"区域管理","href":""},{"id":9,"parentId":2,"parentIds":"0,1,2,","sort":70,"name":"机构管理","href":"OfficeForm"},{"id":11,"parentId":2,"parentIds":"0,1,2,","sort":985,"name":"日志查询","href":"LogForm"},{"id":13,"parentId":2,"parentIds":"0,1,2,","sort":30,"name":"用户管理","href":"UserForm"},{"id":14,"parentId":2,"parentIds":"0,1,2,","sort":40,"name":"角色管理","href":"RoleForm"},{"id":15,"parentId":2,"parentIds":"0,1,2,","sort":60,"name":"字典管理","href":"DictForm"},{"id":18,"parentId":1,"parentIds":"0,1,","sort":910,"name":"基础信息","href":""},{"id":20,"parentId":18,"parentIds":"0,1,18,","sort":10,"name":"医院设置","href":"Pages.cms.HospitalSettingsForm"},{"id":21,"parentId":18,"parentIds":"0,1,18,","sort":20,"name":"科室设置","href":"Pages.cms.DeptSettingsForm"},{"id":22,"parentId":1,"parentIds":"0,1,","sort":920,"name":"测试2","href":""},{"id":23,"parentId":22,"parentIds":"0,1,22,","sort":30,"name":"测试21","href":"Pages.cms.UserControl1"},{"id":24,"parentId":22,"parentIds":"0,1,22,","sort":40,"name":"测试22","href":"SignInForm"},{"id":25,"parentId":2,"parentIds":"0,1,2,","sort":100,"name":"客户端版本","href":"ClientVersionForm"},{"id":26,"parentId":18,"parentIds":"0,1,18,","sort":30,"name":"医生设置","href":"Pages.cms.DoctorSettingsForm"},{"id":27,"parentId":18,"parentIds":"0,1,18,","sort":40,"name":"诊室设置","href":""},{"id":28,"parentId":18,"parentIds":"0,1,18,","sort":50,"name":"默认出诊时间设置","href":""},{"id":29,"parentId":18,"parentIds":"0,1,18,","sort":60,"name":"节假日设置","href":"Pages.cms.HolidaySettingForm"}]},"state":true}
+
+2019-01-11 16:57:34 请求数据：http://192.168.11.43:8080/yyfz/api/cms/dept/findAll?hospital.code=00000&code=1000011
+
+2019-01-11 16:57:35 响应结果：{"code":200,"message":"操作成功","result":[{"id":2,"name":"急诊科","hospitalId":12,"code":"1000011"},{"id":9,"name":"急诊科2","hospitalId":12,"code":"10000111"},{"id":10,"name":"急诊科3","hospitalId":12,"code":"10000112"},{"id":15,"name":"测试科室二","hospitalId":12,"code":"001"},{"id":14,"name":"测试科室","hospitalId":12,"code":"1234566789"},{"id":16,"name":"测试科室3","hospitalId":12,"code":"003"},{"id":17,"name":"测试科室4444444444","hospitalId":12,"code":"004"}],"state":true}
+
+2019-01-11 16:57:54 请求数据：http://192.168.11.43:8080/yyfz/api/sys/sysDict/findByType?type=hospital_type
+
+2019-01-11 16:57:55 响应结果：{"code":200,"message":"操作成功","result":[{"value":"1","label":"一甲医院"},{"value":"2","label":"二甲医院"},{"value":"3","label":"三甲医院"}],"state":true}
+
+2019-01-11 16:57:55 请求数据：http://192.168.11.43:8080/yyfz/api/sys/sysDict/findByType?type=is_use
+
+2019-01-11 16:57:55 响应结果：{"code":200,"message":"操作成功","result":[{"value":"0","label":"启用"},{"value":"1","label":"禁用"}],"state":true}
+
+2019-01-11 16:57:55 请求数据：http://192.168.11.43:8080/yyfz/api/cms/hospital/list?pageNo=1
+
+2019-01-11 16:57:55 响应结果：{"code":200,"message":"操作成功","result":{"count":1,"list":[{"address":"中山市城桂路6号","code":"00000","createDate":"2019-01-08 09:53:05","hospitalType":"2","hospitalTypeLabel":"二甲医院","id":12,"isUse":"0","isUserLabel":"启用","name":"中山市博爱医院","telPhoneNo":"15013369764","updateDate":"2019-01-08 09:53:05"}],"pageNo":1,"pageSize":10,"sumPage":1},"state":true}
+
+2019-01-11 16:58:05 请求数据：http://192.168.11.43:8080/yyfz/api/logout
+
+2019-01-11 16:58:05 响应结果：{"code":200,"message":"退出成功","result":"","state":true}

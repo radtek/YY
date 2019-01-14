@@ -275,7 +275,15 @@ namespace Xr.RtCall
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("", "");
+                prament.Add("id", "");//医生坐诊记录主键
+                if (skinbutLook.Text == "临时停诊")
+                {
+                    prament.Add("isStop", "1");//临时停诊 0：开诊，1：停诊
+                }
+                else
+                {
+                    prament.Add("isStop", "0");//临时停诊 0：开诊，1：停诊
+                }
                 string str = "";
                 var client = new RestSharpClient("yyfz/api/sitting/openStop");
                 var Params = "";

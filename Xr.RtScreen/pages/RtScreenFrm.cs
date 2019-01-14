@@ -7,24 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Xr.RtScreen.RtUserContronl;
+using System.Threading;
+using Xr.Http.RestSharp;
+using RestSharp;
+using System.Net;
+using Xr.RtScreen.VoiceCall;
 
 namespace Xr.RtScreen.pages
 {
     public partial class RtScreenFrm : UserControl
     {
+        public SynchronizationContext _context;
         public RtScreenFrm()
         {
             InitializeComponent();
+            _context = SynchronizationContext.Current;
             DynamicLayout(this.tableLayoutPanel1, 7, 6);
             #region 
             //try
             //{
-            //this.tableLayoutPanel1.ColumnStyles[0].Width = 30;
-            //this.tableLayoutPanel1.ColumnStyles[1].Width = 40;
-            //this.tableLayoutPanel1.ColumnStyles[2].Width = 40;
-            //this.tableLayoutPanel1.ColumnStyles[3].Width = 80;
-            //this.tableLayoutPanel1.ColumnStyles[4].Width = 40;
-            //this.tableLayoutPanel1.ColumnStyles[5].Width = 40;
+            this.tableLayoutPanel1.ColumnStyles[0].Width = 30;
+            this.tableLayoutPanel1.ColumnStyles[1].Width = 40;
+            this.tableLayoutPanel1.ColumnStyles[2].Width = 40;
+            this.tableLayoutPanel1.ColumnStyles[3].Width = 80;
+            this.tableLayoutPanel1.ColumnStyles[4].Width = 40;
+            this.tableLayoutPanel1.ColumnStyles[5].Width = 40;
 
             //}
             //catch (Exception)
@@ -33,8 +40,157 @@ namespace Xr.RtScreen.pages
             //    throw;
             //}
             #endregion 
+            SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
+            speakVoiceform.Show(this);
         }
-        #region
+        #region 医生坐诊诊间列表（定时自动查询）
+        public void DoctorSittingConsultations()
+        {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("deptId", "");//科室主键
+                string str = "";
+                var client = new RestSharpClient("/yyfz/api/triage/findByDept");
+                var Params = "";
+                if (prament.Count != 0)
+                {
+                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                }
+                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                {
+                    switch (result.ResponseStatus)
+                    {
+                        case ResponseStatus.None:
+                            break;
+                        case ResponseStatus.Completed:
+                            if (result.StatusCode == HttpStatusCode.OK)
+                            {
+                                var data = result.Data;//返回数据
+                                str = string.Join(",", data.ToArray());
+                                _context.Send((s) =>
+                                    MessageBox.Show("获取陈宫")
+                                , null);
+                            }
+                            break;
+                        case ResponseStatus.Error:
+                            MessageBox.Show("请求错误");
+                            break;
+                        case ResponseStatus.TimedOut:
+                            MessageBox.Show("请求超时");
+                            break;
+                        case ResponseStatus.Aborted:
+                            MessageBox.Show("请求终止");
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        #endregion
+        #region 科室候诊说明
+        public void DepartmentWaitingList()
+        {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("deptId", "");//科室主键
+                string str = "";
+                var client = new RestSharpClient("/yyfz/api/dept/findWaitingDesc");
+                var Params = "";
+                if (prament.Count != 0)
+                {
+                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                }
+                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                {
+                    switch (result.ResponseStatus)
+                    {
+                        case ResponseStatus.None:
+                            break;
+                        case ResponseStatus.Completed:
+                            if (result.StatusCode == HttpStatusCode.OK)
+                            {
+                                var data = result.Data;//返回数据
+                                str = string.Join(",", data.ToArray());
+                                _context.Send((s) =>
+                                    MessageBox.Show("获取陈宫")
+                                , null);
+                            }
+                            break;
+                        case ResponseStatus.Error:
+                            MessageBox.Show("请求错误");
+                            break;
+                        case ResponseStatus.TimedOut:
+                            MessageBox.Show("请求超时");
+                            break;
+                        case ResponseStatus.Aborted:
+                            MessageBox.Show("请求终止");
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        #endregion
+        #region 呼号信息（定时自动查询）
+        public void CallSignInformation()
+        {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("deptId", "");//科室主键
+                string str = "";
+                var client = new RestSharpClient("/yyfz/api/call/findCalls");
+                var Params = "";
+                if (prament.Count != 0)
+                {
+                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                }
+                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                {
+                    switch (result.ResponseStatus)
+                    {
+                        case ResponseStatus.None:
+                            break;
+                        case ResponseStatus.Completed:
+                            if (result.StatusCode == HttpStatusCode.OK)
+                            {
+                                var data = result.Data;//返回数据
+                                str = string.Join(",", data.ToArray());
+                                _context.Send((s) =>
+                                    MessageBox.Show("获取陈宫")
+                                , null);
+                            }
+                            break;
+                        case ResponseStatus.Error:
+                            MessageBox.Show("请求错误");
+                            break;
+                        case ResponseStatus.TimedOut:
+                            MessageBox.Show("请求超时");
+                            break;
+                        case ResponseStatus.Aborted:
+                            MessageBox.Show("请求终止");
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        #endregion
+        #region 动态布局
         /// <summary>
         /// 动态布局
         /// </summary>
@@ -122,8 +278,7 @@ namespace Xr.RtScreen.pages
             }
         }
         #endregion
-
-        #region
+        #region 画线条
         private void panelControl2_Paint(object sender, PaintEventArgs e)
         {
             try

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -38,7 +37,7 @@
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gc_Pateion = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.复诊预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.延后ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gv_Pateion = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -337,7 +336,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.CheckEdit checkEdit2;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
-        private DevExpress.XtraGrid.GridControl gc_Pateion;
         private DevExpress.XtraGrid.Views.Grid.GridView gv_Pateion;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
@@ -353,5 +351,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 复诊预约ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 延后ToolStripMenuItem;
+        private DevExpress.XtraGrid.GridControl gc_Pateion;
     }
 }

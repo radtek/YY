@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Xr.Http;
+using Newtonsoft.Json.Linq;
 
 namespace Xr.RtManager.Pages.cms
 {
@@ -29,6 +31,37 @@ namespace Xr.RtManager.Pages.cms
             public string StardTime { get; set; }
             public string EndTime { get; set; }
         }
+        #region 节假日列表
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageNo">页码</param>
+        /// <param name="pageSize">页数</param>
+        /// <param name="hospitalId">所属医院</param>
+        public void HolidaySettingList(int pageNo, int pageSize, string hospitalId)
+        {
+            try
+            {
+                String url = AppContext.AppConfig.serverUrl + "yyfz/api/holiday/findPage?pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospitalId=" + hospitalId;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    this.gc_Holiday.DataSource = objT["result"]["list"].ToObject<List<Holiday>>();
+                    pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
+                    int.Parse(objT["result"]["pageSize"].ToString()),
+                    int.Parse(objT["result"]["pageNo"].ToString()));
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        #endregion
         #region 新增
         /// <summary>
         /// 新增
@@ -53,25 +86,53 @@ namespace Xr.RtManager.Pages.cms
 
             }
         }
-        #endregion 
+        #endregion
         #region 保存
         /// <summary>
         /// 保存
         /// </summary>
+        /// id	        主键，修改时不能为空
+        ///hospitalId	所属医院
+        ///name		    节假日名称
+        ///year		    年份
+        ///beginDate	开始日期
+        ///endDate      结束日期
+        ///isUse        是否启用
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-
+                string id = "";
+                string hospitalId = "";
+                string name = "";
+                string year = "";
+                string beginDate = "";
+                string endDate = "";
+                string isUse = "";
+                String url = AppContext.AppConfig.serverUrl + "yyfz/api/holiday/save?id=" + id + "&hospitalId=" + hospitalId + "&name=" + name + "&year=" + year + "&beginDate=" + beginDate + "&endDate=" + endDate + "&isUse=" + isUse;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    Xr.Common.MessageBoxUtils.Hint("保存成功");
+                    ///this.gc_Holiday.DataSource = objT["result"]["list"].ToObject<List<Holiday>>();
+                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
+                    //int.Parse(objT["result"]["pageSize"].ToString()),
+                    //int.Parse(objT["result"]["pageNo"].ToString()));
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
             }
             catch (Exception)
             {
 
             }
         }
-        #endregion 
+        #endregion
         #region 删除
         /// <summary>
         /// 删除
@@ -84,9 +145,21 @@ namespace Xr.RtManager.Pages.cms
             {
                 int selectRow = gv_Holiday.GetSelectedRows()[0];
                 string name = this.gv_Holiday.GetRowCellValue(selectRow, "name").ToString();
-                if (DialogResult.Yes == Xr.Common.MessageBoxUtils.Show("是否删除" + name + "节假日",MessageBoxButtons.YesNo,MessageBoxIcon.None, MessageBoxDefaultButton.Button1))
+                string id = this.gv_Holiday.GetRowCellValue(selectRow, "id").ToString();
+                if (DialogResult.Yes == Xr.Common.MessageBoxUtils.Show("是否删除" + name + "节假日", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1))
                 {
-                    Xr.Common.MessageBoxUtils.Hint("删除成功");
+                    String url = AppContext.AppConfig.serverUrl + "yyfz/api/holiday/delete?ids=" + id;
+                    String data = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(data);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        Xr.Common.MessageBoxUtils.Hint("删除成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                    }
+                 
                 }
             }
             catch (Exception)
@@ -94,7 +167,7 @@ namespace Xr.RtManager.Pages.cms
 
             }
         }
-        #endregion 
+        #endregion
         #region 控制编辑
         /// <summary>
         /// 控制编辑
@@ -113,6 +186,6 @@ namespace Xr.RtManager.Pages.cms
                 //  }
             }
         }
-        #endregion 
+        #endregion
     }
 }

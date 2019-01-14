@@ -16,10 +16,12 @@ namespace Xr.RtCall.pages
     public partial class RtCallPeationFrm : UserControl
     {
         public SynchronizationContext _context;
+        public static RtCallPeationFrm RTCallfrm = null;//初始化的时候窗体对象赋值
         public RtCallPeationFrm()
         {
             InitializeComponent();
             _context = SynchronizationContext.Current;
+            RTCallfrm = this;
         }
         #region 患者列表
         public void PatientList()
@@ -27,7 +29,11 @@ namespace Xr.RtCall.pages
             try
             {
                Dictionary<string, string> prament = new Dictionary<string, string>();
-               prament.Add("","");
+               prament.Add("deptId", "");//科室主键
+               prament.Add("doctorId", "");//医生主键
+               prament.Add("workDate", "");//就诊日期
+               prament.Add("period", "");//时段，0 上午，1下午，2晚上
+               prament.Add("status", "");//状态：0预约、1候诊中、2已就诊、null全部
                string str = "";
                var client = new RestSharpClient("/yyfz/api/register/findToDoctor");
                var Params = "";

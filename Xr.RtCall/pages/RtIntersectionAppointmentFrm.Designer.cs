@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBorderPanel2 = new Xr.Common.Controls.GroupBorderPanel();
@@ -349,6 +348,7 @@
             this.skinButYes.TabIndex = 18;
             this.skinButYes.Text = "确定预约";
             this.skinButYes.UseVisualStyleBackColor = false;
+            this.skinButYes.Click += new System.EventHandler(this.skinButYes_Click);
             // 
             // label8
             // 
