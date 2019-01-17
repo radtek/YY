@@ -32,6 +32,7 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.gc_Holiday = new DevExpress.XtraGrid.GridControl();
             this.gv_Holiday = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -41,7 +42,6 @@
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Holiday)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Holiday)).BeginInit();
@@ -119,7 +119,12 @@
             this.gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_Holiday.OptionsView.RowAutoHeight = true;
             this.gv_Holiday.OptionsView.ShowGroupPanel = false;
-            this.gv_Holiday.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gv_Holiday_ShowingEditor);
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "主键";
+            this.gridColumn5.FieldName = "id";
+            this.gridColumn5.Name = "gridColumn5";
             // 
             // gridColumn1
             // 
@@ -141,7 +146,7 @@
             this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn2.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn2.Caption = "所属年份";
-            this.gridColumn2.FieldName = "code";
+            this.gridColumn2.FieldName = "year";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -154,7 +159,7 @@
             this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn3.Caption = "开始日期";
-            this.gridColumn3.FieldName = "StardTime";
+            this.gridColumn3.FieldName = "beginDate";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -167,7 +172,7 @@
             this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn4.Caption = "结束日期";
-            this.gridColumn4.FieldName = "EndTime";
+            this.gridColumn4.FieldName = "endDate";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
@@ -226,7 +231,7 @@
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btnSave.TabIndex = 75;
-            this.btnSave.Text = "保存";
+            this.btnSave.Text = "修改";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
@@ -241,12 +246,6 @@
             this.btnAdd.TabIndex = 74;
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "主键";
-            this.gridColumn5.FieldName = "id";
-            this.gridColumn5.Name = "gridColumn5";
             // 
             // HolidaySettingForm
             // 

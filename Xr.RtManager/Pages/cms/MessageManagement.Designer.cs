@@ -33,7 +33,6 @@
             this.gc_Message = new DevExpress.XtraGrid.GridControl();
             this.gv_Message = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -89,7 +88,7 @@
             // 
             this.gv_Message.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.gv_Message.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gv_Message.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_Message.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.gv_Message.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_Message.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gv_Message.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -97,7 +96,7 @@
             this.gv_Message.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gv_Message.Appearance.OddRow.BackColor = System.Drawing.Color.White;
             this.gv_Message.Appearance.OddRow.Options.UseBackColor = true;
-            this.gv_Message.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gv_Message.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_Message.Appearance.Row.Options.UseFont = true;
             this.gv_Message.Appearance.Row.Options.UseTextOptions = true;
             this.gv_Message.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -105,7 +104,6 @@
             this.gv_Message.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gv_Message.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn5,
-            this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4});
@@ -126,31 +124,17 @@
             this.gridColumn5.FieldName = "id";
             this.gridColumn5.Name = "gridColumn5";
             // 
-            // gridColumn1
-            // 
-            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn1.Caption = "名称";
-            this.gridColumn1.FieldName = "name";
-            this.gridColumn1.MinWidth = 25;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
             // gridColumn2
             // 
             this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn2.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn2.Caption = "所属年份";
-            this.gridColumn2.FieldName = "code";
+            this.gridColumn2.Caption = "所属医院";
+            this.gridColumn2.FieldName = "Hostile";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 154;
             // 
             // gridColumn3
             // 
@@ -158,12 +142,13 @@
             this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn3.Caption = "开始日期";
-            this.gridColumn3.FieldName = "StardTime";
+            this.gridColumn3.Caption = "模本类型";
+            this.gridColumn3.FieldName = "type";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 158;
             // 
             // gridColumn4
             // 
@@ -171,12 +156,13 @@
             this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn4.Caption = "结束日期";
-            this.gridColumn4.FieldName = "EndTime";
+            this.gridColumn4.Caption = "模版内容";
+            this.gridColumn4.FieldName = "content";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 485;
             // 
             // panel1
             // 
@@ -231,7 +217,7 @@
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btnSave.TabIndex = 75;
-            this.btnSave.Text = "保存";
+            this.btnSave.Text = "修改";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
@@ -272,7 +258,6 @@
         private DevExpress.XtraGrid.GridControl gc_Message;
         private DevExpress.XtraGrid.Views.Grid.GridView gv_Message;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;

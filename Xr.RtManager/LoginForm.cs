@@ -85,6 +85,14 @@ namespace Xr.RtManager
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         AppContext.Session.deptList = objT["result"].ToObject<List<DeptEntity>>();
+                        foreach (DeptEntity dept in AppContext.Session.deptList)
+                        {
+                            if (AppContext.AppConfig.deptCode.Equals(dept.code))
+                            {
+                                AppContext.Session.hospitalId = dept.hospitalId;
+                                AppContext.Session.deptId = dept.id;
+                            }
+                        }
                         this.DialogResult = DialogResult.OK;
                     }
                     else

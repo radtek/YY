@@ -29,18 +29,12 @@
         private void InitializeComponent()
         {
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.scrollingText1 = new Xr.RtScreen.RtUserContronl.ScrollingText();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            //this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            //this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            //this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            //this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            //this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            //this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.scrollingTexts1 = new Xr.RtScreen.RtUserContronl.ScrollingTexts();
-            this.scrollingText1 = new Xr.RtScreen.RtUserContronl.ScrollingText();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -61,6 +55,30 @@
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // scrollingText1
+            // 
+            this.scrollingText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            this.scrollingText1.BorderColor = System.Drawing.Color.Black;
+            this.scrollingText1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.scrollingText1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scrollingText1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.scrollingText1.ForeColor = System.Drawing.Color.Yellow;
+            this.scrollingText1.ForegroundBrush = null;
+            this.scrollingText1.Location = new System.Drawing.Point(0, 0);
+            this.scrollingText1.Margin = new System.Windows.Forms.Padding(1);
+            this.scrollingText1.Name = "scrollingText1";
+            this.scrollingText1.ScrollDirection = Xr.RtScreen.RtUserContronl.ScrollDirection.RightToLeft;
+            this.scrollingText1.ScrollText = "请【预约2号张无】到【01室】就诊";
+            this.scrollingText1.ShowBorder = true;
+            this.scrollingText1.Size = new System.Drawing.Size(1024, 56);
+            this.scrollingText1.StopScrollOnMouseOver = false;
+            this.scrollingText1.TabIndex = 0;
+            this.scrollingText1.Text = "scrollingText1";
+            this.scrollingText1.TextScrollDistance = 2;
+            this.scrollingText1.TextScrollSpeed = 1;
+            this.scrollingText1.VerticleTextPosition = Xr.RtScreen.RtUserContronl.VerticleTextPosition.Center;
+            this.scrollingText1.Paint += new System.Windows.Forms.PaintEventHandler(this.scrollingText1_Paint);
+            // 
             // panelControl2
             // 
             this.panelControl2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
@@ -73,6 +91,20 @@
             this.panelControl2.Size = new System.Drawing.Size(1024, 431);
             this.panelControl2.TabIndex = 1;
             this.panelControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl2_Paint);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 431);
+            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // panelControl3
             // 
@@ -97,142 +129,6 @@
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // gridColumn1
-            // 
-            //this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 18F);
-            //this.gridColumn1.AppearanceCell.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn1.AppearanceCell.Options.UseFont = true;
-            //this.gridColumn1.AppearanceCell.Options.UseForeColor = true;
-            //this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
-            //this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn1.AppearanceHeader.BackColor = System.Drawing.Color.Red;
-            //this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 21.75F);
-            //this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn1.AppearanceHeader.Options.UseBackColor = true;
-            //this.gridColumn1.AppearanceHeader.Options.UseFont = true;
-            //this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
-            //this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
-            //this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn1.Caption = "诊室";
-            //this.gridColumn1.Name = "gridColumn1";
-            //this.gridColumn1.Visible = true;
-            //this.gridColumn1.VisibleIndex = 0;
-            //this.gridColumn1.Width = 87;
-            //// 
-            //// gridColumn2
-            //// 
-            //this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 18F);
-            //this.gridColumn2.AppearanceCell.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn2.AppearanceCell.Options.UseFont = true;
-            //this.gridColumn2.AppearanceCell.Options.UseForeColor = true;
-            //this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
-            //this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 21.75F);
-            //this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn2.AppearanceHeader.Options.UseFont = true;
-            //this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
-            //this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
-            //this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn2.Caption = "在诊患者";
-            //this.gridColumn2.Name = "gridColumn2";
-            //this.gridColumn2.Visible = true;
-            //this.gridColumn2.VisibleIndex = 1;
-            //this.gridColumn2.Width = 125;
-            //// 
-            //// gridColumn3
-            //// 
-            //this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 18F);
-            //this.gridColumn3.AppearanceCell.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn3.AppearanceCell.Options.UseFont = true;
-            //this.gridColumn3.AppearanceCell.Options.UseForeColor = true;
-            //this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
-            //this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 21.75F);
-            //this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn3.AppearanceHeader.Options.UseFont = true;
-            //this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
-            //this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
-            //this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn3.Caption = "下一位";
-            //this.gridColumn3.Name = "gridColumn3";
-            //this.gridColumn3.Visible = true;
-            //this.gridColumn3.VisibleIndex = 2;
-            //this.gridColumn3.Width = 97;
-            //// 
-            //// gridColumn4
-            //// 
-            //this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 18F);
-            //this.gridColumn4.AppearanceCell.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn4.AppearanceCell.Options.UseFont = true;
-            //this.gridColumn4.AppearanceCell.Options.UseForeColor = true;
-            //this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
-            //this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 21.75F);
-            //this.gridColumn4.AppearanceHeader.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn4.AppearanceHeader.Options.UseFont = true;
-            //this.gridColumn4.AppearanceHeader.Options.UseForeColor = true;
-            //this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
-            //this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn4.Caption = "候诊患者";
-            //this.gridColumn4.Name = "gridColumn4";
-            //this.gridColumn4.Visible = true;
-            //this.gridColumn4.VisibleIndex = 3;
-            //this.gridColumn4.Width = 230;
-            //// 
-            //// gridColumn5
-            //// 
-            //this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 18F);
-            //this.gridColumn5.AppearanceCell.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn5.AppearanceCell.Options.UseFont = true;
-            //this.gridColumn5.AppearanceCell.Options.UseForeColor = true;
-            //this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
-            //this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 21.75F);
-            //this.gridColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn5.AppearanceHeader.Options.UseFont = true;
-            //this.gridColumn5.AppearanceHeader.Options.UseForeColor = true;
-            //this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            //this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn5.Caption = "已预约总数";
-            //this.gridColumn5.Name = "gridColumn5";
-            //this.gridColumn5.Visible = true;
-            //this.gridColumn5.VisibleIndex = 4;
-            //this.gridColumn5.Width = 120;
-            //// 
-            //// gridColumn6
-            //// 
-            //this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 18F);
-            //this.gridColumn6.AppearanceCell.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn6.AppearanceCell.Options.UseFont = true;
-            //this.gridColumn6.AppearanceCell.Options.UseForeColor = true;
-            //this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
-            //this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 21.75F);
-            //this.gridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.Yellow;
-            //this.gridColumn6.AppearanceHeader.Options.UseFont = true;
-            //this.gridColumn6.AppearanceHeader.Options.UseForeColor = true;
-            //this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
-            //this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            //this.gridColumn6.Caption = "已签到总数";
-            //this.gridColumn6.Name = "gridColumn6";
-            //this.gridColumn6.Visible = true;
-            //this.gridColumn6.VisibleIndex = 5;
-            //this.gridColumn6.Width = 121;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 431);
-            this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
             // scrollingTexts1
             // 
             this.scrollingTexts1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -254,30 +150,6 @@
             this.scrollingTexts1.TextScrollDistance = 1;
             this.scrollingTexts1.TextScrollSpeed = 25;
             this.scrollingTexts1.Paint += new System.Windows.Forms.PaintEventHandler(this.scrollingTexts1_Paint);
-            // 
-            // scrollingText1
-            // 
-            this.scrollingText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            this.scrollingText1.BorderColor = System.Drawing.Color.Black;
-            this.scrollingText1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.scrollingText1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scrollingText1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.scrollingText1.ForeColor = System.Drawing.Color.Yellow;
-            this.scrollingText1.ForegroundBrush = null;
-            this.scrollingText1.Location = new System.Drawing.Point(0, 0);
-            this.scrollingText1.Margin = new System.Windows.Forms.Padding(1);
-            this.scrollingText1.Name = "scrollingText1";
-            this.scrollingText1.ScrollDirection = Xr.RtScreen.RtUserContronl.ScrollDirection.RightToLeft;
-            this.scrollingText1.ScrollText = "请【预约2号张无】到【01室】就诊";
-            this.scrollingText1.ShowBorder = true;
-            this.scrollingText1.Size = new System.Drawing.Size(1024, 56);
-            this.scrollingText1.StopScrollOnMouseOver = false;
-            this.scrollingText1.TabIndex = 0;
-            this.scrollingText1.Text = "scrollingText1";
-            this.scrollingText1.TextScrollDistance = 2;
-            this.scrollingText1.TextScrollSpeed = 10;
-            this.scrollingText1.VerticleTextPosition = Xr.RtScreen.RtUserContronl.VerticleTextPosition.Center;
-            this.scrollingText1.Paint += new System.Windows.Forms.PaintEventHandler(this.scrollingText1_Paint);
             // 
             // RtScreenFrm
             // 

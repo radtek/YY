@@ -20,6 +20,10 @@ namespace Xr.RtCall.pages
         public RtCallPeationFrm()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.ResizeRedraw |
+                  ControlStyles.OptimizedDoubleBuffer |
+                  ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
             _context = SynchronizationContext.Current;
             RTCallfrm = this;
         }
@@ -104,6 +108,7 @@ namespace Xr.RtCall.pages
                 Form1.pCurrentWin.panel_MainFrm.Controls.Clear();
                 RtIntersectionAppointmentFrm rtcpf = new RtIntersectionAppointmentFrm();
                 rtcpf.Dock = DockStyle.Fill;
+              //  rtcpf.Height = rtcpf.Height + 30;
                 Form1.pCurrentWin.panel_MainFrm.Controls.Add(rtcpf);
             }
             catch (Exception)

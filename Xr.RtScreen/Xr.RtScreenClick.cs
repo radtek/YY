@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Xr.RtScreen.pages;
+using System.Configuration;
 
 namespace Xr.RtScreen
 {
@@ -17,11 +18,31 @@ namespace Xr.RtScreen
         public Form1()
         {
             InitializeComponent();
-            RtScreenFrm rcf = new RtScreenFrm();
-            //this.Height = rcf.Height;
-            //this.Width = rcf.Width;
-            rcf.Dock = DockStyle.Fill;
-            this.panelControl1.Controls.Add(rcf);
+            this.SetStyle(ControlStyles.ResizeRedraw |
+                  ControlStyles.OptimizedDoubleBuffer |
+                  ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
+            string StartupScreen = ConfigurationManager.AppSettings["StartupScreen"];//1（公共大屏）2（科室小屏）3（医生小屏）
+            #region 
+            switch (StartupScreen)
+            {
+                case "1":
+                    RtScreenFrm rcf = new RtScreenFrm();
+                    rcf.Dock = DockStyle.Fill;
+                    this.panelControl1.Controls.Add(rcf);
+                    break;
+                case "2":
+                    RtSmallScreenFrm rscf = new RtSmallScreenFrm();
+                    rscf.Dock = DockStyle.Fill;
+                    this.panelControl1.Controls.Add(rscf);
+                    break;
+                case "3":
+                    RtDoctorSmallScreenFrm rdscf = new RtDoctorSmallScreenFrm();
+                    rdscf.Dock = DockStyle.Fill;
+                    this.panelControl1.Controls.Add(rdscf);
+                    break;
+            }
+            #endregion 
         }
         #region 键盘按Esc关闭窗体
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]

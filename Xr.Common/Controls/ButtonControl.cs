@@ -15,6 +15,7 @@ namespace Xr.Common.Controls
         private static readonly ButtonAppearence QueryButtonAppearence = new ButtonAppearence(ButtonStyle.Query);
         private static readonly ButtonAppearence SaveButtonAppearence = new ButtonAppearence(ButtonStyle.Save);
         private static readonly ButtonAppearence DelButtonAppearence = new ButtonAppearence(ButtonStyle.Del);
+        private static readonly ButtonAppearence TodayButtonAppearence = new ButtonAppearence(ButtonStyle.Today);
         private static readonly ButtonAppearence ReturnButtonAppearence = new ButtonAppearence(ButtonStyle.Return);
 
         private bool hovering;
@@ -106,6 +107,10 @@ namespace Xr.Common.Controls
                 else if (style == ButtonStyle.Return)
                 {
                     buttonAppearence = ReturnButtonAppearence;
+                }
+                else if (style == ButtonStyle.Today)
+                {
+                    buttonAppearence = TodayButtonAppearence;
                 }
                 else
                 {
@@ -275,6 +280,18 @@ namespace Xr.Common.Controls
                         this.HoveringBackground = new SolidBrush(Color.FromArgb(255, 104, 34));
                         this.FocusedBackground = new SolidBrush(Color.FromArgb(255, 64, 34));
                         break;
+                    case ButtonStyle.Today:
+                        this.BorderBrush = new Pen(Color.FromArgb(255, 87, 34), 0);
+                        this.FocusCuesBrush1 = new Pen(Color.FromArgb(255, 64, 34), 0);
+                        this.FocusCuesBrush2 = new Pen(Color.FromArgb(255, 64, 34), 1);
+                        this.TextBrush = new SolidBrush(Color.White);
+                        this.DisabledTextBrush = new SolidBrush(Color.FromArgb(85, 85, 85));
+                        this.HoveringTextBrush = new SolidBrush(Color.White);
+                        this.Background = new SolidBrush(Color.FromArgb(255, 87, 34));
+                        this.DisabledBackground = new SolidBrush(Color.FromArgb(255, 107, 54));
+                        this.HoveringBackground = new SolidBrush(Color.FromArgb(255, 104, 34));
+                        this.FocusedBackground = new SolidBrush(Color.FromArgb(255, 64, 34));
+                        break;
                     case ButtonStyle.Return:
                         this.BorderBrush = new Pen(Color.FromArgb(190, 190, 190), 0);
                         this.FocusCuesBrush1 = new Pen(Color.FromArgb(170, 170, 170), 0);
@@ -372,7 +389,10 @@ namespace Xr.Common.Controls
         /// 删除样式
         /// </summary>
         Del,
-
+        /// <summary>
+        /// 今日样式
+        /// </summary>
+        Today,
         /// <summary>
         /// 返回样式
         /// </summary>

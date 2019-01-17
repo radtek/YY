@@ -66,6 +66,16 @@ namespace Xr.RtManager
         public CookieContainer cookie { get; set; }
 
         /// <summary>
+        /// 医院id
+        /// </summary>
+        public String hospitalId { get; set; }
+
+        /// <summary>
+        /// 科室id
+        /// </summary>
+        public String deptId { get; set; }
+
+        /// <summary>
         /// 科室列表
         /// </summary>
         public List<DeptEntity> deptList { get; set; }

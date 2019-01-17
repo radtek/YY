@@ -15,7 +15,7 @@ using DevExpress.XtraEditors.Controls;
 namespace Xr.Common.Controls
 {
     /// <summary>
-    /// 带边框和圆角的Panel
+    /// 带边框和圆角的Panel按钮
     /// </summary>
     [ToolboxItem(true)]
     public class BorderPanelButton : BorderPanel
@@ -25,6 +25,42 @@ namespace Xr.Common.Controls
             InitializeComponent();
         }
 
+        private string _Text;
+         [Description("按钮文字")]
+        public  string BtnText
+        {
+            get { return _Text; }
+            set { _Text = value; }
+        }
+         private Font _BtnFont=new Font("微软雅黑",12f);
+        [DefaultValue(typeof(Font), "微软雅黑,12px")]
+         [Description("按钮文字样式")]
+         public Font BtnFont
+         {
+             get { return _BtnFont; }
+             set { _BtnFont = value; }
+         }
+
+        private Color _BackColor=Color.White;
+        [Description("按钮背景颜色")]
+        public Color BackColor
+        {
+            get
+            {
+                return _BackColor;
+            }
+            set
+            {
+                _BackColor = value;
+            }
+        }
+        private Color _SelctedColor = Color.FromArgb(60, 195, 245);
+        [Description("按钮选中颜色")]
+        public Color SelctedColor
+        {
+            get { return _SelctedColor; }
+            set { _SelctedColor = value; }
+        }
         private void InitializeComponent()
         {
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -33,6 +69,7 @@ namespace Xr.Common.Controls
             // BorderPanelButton
             // 
             this.Click += new System.EventHandler(this.BorderPanelButton_Click);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.BorderPanelButton_Paint);
             this.MouseEnter += new System.EventHandler(this.BorderPanelButton_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.BorderPanelButton_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -48,42 +85,46 @@ namespace Xr.Common.Controls
             get { return isCheck; }
             set
             {
-                //如果赋的值与原值不同
-                if (value != isCheck)
+                if (this.Enabled)
                 {
-                    //就触发该事件!
-                    WhenMyValueChange();
-                }
-                if (value == true)
-                {
-                    if (this.Parent != null)
+                    if (value != isCheck)
                     {
-                        foreach (Control c in this.Parent.Controls)
-                        {
-                            if (c is BorderPanelButton && c != this)
-                            {
-                                (c as BorderPanelButton).IsCheck = false;
-                            }
-                        }
-                        
+                        ChangeBackColor();
                     }
+                    if (value == true)
+                    {
+                        if (this.Parent != null)
+                        {
+                            foreach (Control c in this.Parent.Controls)
+                            {
+                                if (c is BorderPanelButton && c != this)
+                                {
+                                    (c as BorderPanelButton).IsCheck = false;
+                                }
+                            }
+
+                        }
+                    }
+                    isCheck = value;
                 }
-                 
-                isCheck = value;
+                else
+                {
+                    isCheck = false;
+                }
             }
         }
-        private void WhenMyValueChange()
+        protected void ChangeBackColor()
         {
             if (isCheck)
             {
-                this.FillColor1 = Color.FromArgb(60, 195, 245);
-                this.FillColor2 = Color.FromArgb(60, 195, 245);
+                this.FillColor1 = _BackColor;
+                this.FillColor2 = _BackColor;
                 //RefreshFillBrush();
             }
-            else
+            else//选中颜色
             {
-                this.FillColor1 = Color.DarkBlue;
-                this.FillColor2 = Color.DarkBlue;
+                this.FillColor1 = _SelctedColor;
+                this.FillColor2 = _SelctedColor;
                 //RefreshFillBrush();
             }
         }
@@ -91,13 +132,13 @@ namespace Xr.Common.Controls
         {
             if (!isCheck)
             {
-                this.FillColor1 = Color.FromArgb(55, 190, 240);
-                this.FillColor2 = Color.FromArgb(55, 190, 240);
+                this.FillColor1 = Color.WhiteSmoke;
+                this.FillColor2 = Color.WhiteSmoke;
             }
             else
             {
-                this.FillColor1 = Color.DarkBlue;
-                this.FillColor2 = Color.DarkBlue;
+                this.FillColor1 = _SelctedColor;
+                this.FillColor2 = _SelctedColor;
             }
         }
 
@@ -105,31 +146,53 @@ namespace Xr.Common.Controls
         {
             if (!isCheck)
             {
-                this.FillColor1 = Color.FromArgb(60, 195, 245);
-                this.FillColor2 = Color.FromArgb(60, 195, 245);
+                this.FillColor1 = _BackColor;
+                this.FillColor2 = _BackColor;
             }
             else
             {
-                this.FillColor1 = Color.DarkBlue;
-                this.FillColor2 = Color.DarkBlue;
+                this.FillColor1 = _SelctedColor;
+                this.FillColor2 = _SelctedColor;
             }
         }
 
         private void BorderPanelButton_Click(object sender, EventArgs e)
         {
             if (isCheck)
-            { 
-                IsCheck = false;
-                this.FillColor1 = Color.FromArgb(60, 195, 245);
-                this.FillColor2 = Color.FromArgb(60, 195, 245);
+            {
+                if (this.Parent != null)
+                {
+                    foreach (Control c in this.Parent.Controls)
+                    {
+                        if (c is BorderPanelButton && c != this)
+                        {
+                            (c as BorderPanelButton).IsCheck = false;
+                        }
+                    }
+                }
+                //IsCheck = false;
             }
             else
             {
                 IsCheck = true;
-                this.FillColor1 = Color.DarkBlue;
-                this.FillColor2 = Color.DarkBlue;
             }
 
+        }
+
+        private void BorderPanelButton_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            var textSize = e.Graphics.MeasureString(this._Text, this._BtnFont);
+            Brush br;
+            if (IsCheck)
+            {
+                br = Brushes.White;
+            }
+            else
+            {
+                br = Brushes.Black; 
+            }
+            e.Graphics.DrawString(this._Text, _BtnFont, br, (this.Width - (int)textSize.Width) / 2, (this.Height - (int)textSize.Height) / 2);
         }
 
     }

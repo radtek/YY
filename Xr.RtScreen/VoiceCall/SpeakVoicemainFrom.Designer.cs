@@ -110,7 +110,7 @@
             this.Controls.Add(this.lab_failedCount);
             this.Controls.Add(this.lab_succeedCount);
             this.Name = "SpeakVoicemainFrom";
-            this.Text = "SpeakVoicemainFrom";
+            this.Text = "播放语音";
             this.Load += new System.EventHandler(this.SpeakVoicemainFrom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

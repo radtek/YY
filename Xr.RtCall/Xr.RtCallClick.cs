@@ -28,6 +28,12 @@ namespace Xr.RtCall
         public Form1()
         {
             InitializeComponent();
+            #region 
+            this.SetStyle(ControlStyles.ResizeRedraw |
+                  ControlStyles.OptimizedDoubleBuffer |
+                  ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
+            #endregion 
             this.Size = new Size(615,78);
             pCurrentWin = this;
             _context = SynchronizationContext.Current;
@@ -82,13 +88,10 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            //Form f = this.Parent as Form1;
-            //if (f != null)
-            //    System.Environment.Exit(0);
-            //System.Environment.Exit(0);
-            //this.Dispose();
-           this.Close();
-           //this.Dispose();
+            if (MessageBox.Show("真的要退出程序吗？", "退出程序", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                this.Close();
+            }
         }
         #endregion 
         #region 鼠标按下移动
@@ -276,16 +279,19 @@ namespace Xr.RtCall
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("id", "");//医生坐诊记录主键
+                int isStop = 0;
                 if (skinbutLook.Text == "临时停诊")
                 {
                     prament.Add("isStop", "1");//临时停诊 0：开诊，1：停诊
+                    isStop = 1;
                 }
                 else
                 {
                     prament.Add("isStop", "0");//临时停诊 0：开诊，1：停诊
+                    isStop = 0;
                 }
                 string str = "";
-                var client = new RestSharpClient("yyfz/api/sitting/openStop");
+                var client = new RestSharpClient("/yyfz/api/sitting/openStop");
                 var Params = "";
                 if (prament.Count != 0)
                 {
@@ -302,8 +308,17 @@ namespace Xr.RtCall
                             {
                                 var data = result.Data;//返回数据
                                 str = string.Join(",", data.ToArray());
+                                string a = "";
+                                if (isStop == 1)
+                                {
+                                    a = "继续开诊";
+                                }
+                                else
+                                {
+                                    a = "临时停诊";
+                                }
                                 _context.Send((s) =>
-                               this.skinbutLook.Text = "继续开诊"
+                               this.skinbutLook.Text = a
                                 , null);
                             }
                             break;

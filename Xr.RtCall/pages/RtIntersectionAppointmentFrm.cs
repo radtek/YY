@@ -19,12 +19,14 @@ namespace Xr.RtCall.pages
         public RtIntersectionAppointmentFrm()
         {
             InitializeComponent();
+            Dictionary<int, DateTime> dc = new Dictionary<int, DateTime>();
+            for (int i = 18; i < 25; i++)
+            {
+                dc.Add(i, System.DateTime.Now);
+            }
+            reservationCalendar1.ValidDateList = dc;
+            reservationCalendar1.SetGridClanderValue();
             _context = SynchronizationContext.Current;
-            listTimes.Items.Add("9:00-9:30<5>");
-            listTimes.Items.Add("9:30-10:00<5>");
-            listTimes.Items.Add("10:00-10:30<5>");
-            listTimes.Items.Add("11:00-11:30<5>");
-            listTimes.Items.Add("11:30-12:00<5>");
         }
         #region 医生排班日期
         public void DoctorScheduling()
@@ -137,7 +139,7 @@ namespace Xr.RtCall.pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void skinButReturn_Click(object sender, EventArgs e)
+        private void butReturn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -218,5 +220,27 @@ namespace Xr.RtCall.pages
             }
         }
         #endregion
+        #region 
+        private void reservationCalendar1_SelectDate(DateTime SelectedDate)
+        {
+            MessageBox.Show(SelectedDate.ToShortDateString());
+        }
+
+        private void reservationCalendar1_SelectDateTest(DateTime SelectedDate)
+        {
+            MessageBox.Show(SelectedDate.ToShortDateString() + "测试事件");
+        }
+
+        private void reservationCalendar1_ChangeMonth(DateTime SelectedMonth)
+        {
+            Dictionary<int, DateTime> dc = new Dictionary<int, DateTime>();
+            for (int i = 10; i < SelectedMonth.Month + 20; i++)
+            {
+                dc.Add(i, System.DateTime.Now);
+            }
+            reservationCalendar1.ValidDateList = dc;
+            reservationCalendar1.SetGridClanderValue();
+        }
+        #endregion 
     }
 }

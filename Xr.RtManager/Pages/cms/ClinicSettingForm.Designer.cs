@@ -30,8 +30,12 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.teCode = new DevExpress.XtraEditors.TextEdit();
+            this.radioGroup2 = new DevExpress.XtraEditors.RadioGroup();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
+            this.butSelect = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -43,18 +47,20 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Clinic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Clinic)).BeginInit();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -71,8 +77,12 @@
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.teCode);
+            this.borderPanel1.Controls.Add(this.radioGroup2);
+            this.borderPanel1.Controls.Add(this.label4);
             this.borderPanel1.Controls.Add(this.btnDel);
             this.borderPanel1.Controls.Add(this.btnSave);
+            this.borderPanel1.Controls.Add(this.butSelect);
             this.borderPanel1.Controls.Add(this.btnAdd);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -87,12 +97,47 @@
             this.borderPanel1.Size = new System.Drawing.Size(890, 50);
             this.borderPanel1.TabIndex = 1;
             // 
+            // teCode
+            // 
+            this.teCode.Location = new System.Drawing.Point(190, 10);
+            this.teCode.Name = "teCode";
+            this.teCode.Properties.AutoHeight = false;
+            this.teCode.Size = new System.Drawing.Size(134, 28);
+            this.teCode.TabIndex = 104;
+            // 
+            // radioGroup2
+            // 
+            this.radioGroup2.EditValue = "1";
+            this.radioGroup2.Location = new System.Drawing.Point(72, 9);
+            this.radioGroup2.Name = "radioGroup2";
+            this.radioGroup2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.radioGroup2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioGroup2.Properties.Appearance.Options.UseBackColor = true;
+            this.radioGroup2.Properties.Appearance.Options.UseFont = true;
+            this.radioGroup2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.radioGroup2.Properties.Columns = 2;
+            this.radioGroup2.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "编号"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "编码")});
+            this.radioGroup2.Size = new System.Drawing.Size(126, 30);
+            this.radioGroup2.TabIndex = 102;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(2, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 20);
+            this.label4.TabIndex = 103;
+            this.label4.Text = "查询类型：";
+            // 
             // btnDel
             // 
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(205, 10);
+            this.btnDel.Location = new System.Drawing.Point(590, 9);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -105,20 +150,33 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(115, 10);
+            this.btnSave.Location = new System.Drawing.Point(504, 9);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btnSave.TabIndex = 75;
-            this.btnSave.Text = "保存";
+            this.btnSave.Text = "修改";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // butSelect
+            // 
+            this.butSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.butSelect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.butSelect.HoverBackColor = System.Drawing.Color.Empty;
+            this.butSelect.Location = new System.Drawing.Point(334, 9);
+            this.butSelect.Name = "butSelect";
+            this.butSelect.Size = new System.Drawing.Size(75, 30);
+            this.butSelect.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.butSelect.TabIndex = 74;
+            this.butSelect.Text = "查询";
+            this.butSelect.Click += new System.EventHandler(this.butSelect_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnAdd.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnAdd.Location = new System.Drawing.Point(30, 10);
+            this.btnAdd.Location = new System.Drawing.Point(419, 9);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -240,7 +298,7 @@
             this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn3.Caption = "诊室号";
-            this.gridColumn3.FieldName = "parent.name";
+            this.gridColumn3.FieldName = "parent";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -267,6 +325,16 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 4;
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Items.AddRange(new object[] {
+            "正常",
+            "停用"});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             // 
             // gridColumn6
             // 
@@ -306,16 +374,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "诊断列表";
             // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Items.AddRange(new object[] {
-            "正常",
-            "停用"});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
-            // 
             // ClinicSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -328,11 +386,14 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
+            this.borderPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_Clinic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Clinic)).EndInit();
-            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -358,5 +419,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox listBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraEditors.RadioGroup radioGroup2;
+        private System.Windows.Forms.Label label4;
+        private DevExpress.XtraEditors.TextEdit teCode;
+        private Xr.Common.Controls.ButtonControl butSelect;
     }
 }

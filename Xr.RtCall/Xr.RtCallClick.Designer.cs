@@ -101,7 +101,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 30);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(615, 470);
+            this.panelControl1.Size = new System.Drawing.Size(615, 500);
             this.panelControl1.TabIndex = 10;
             // 
             // panel_MainFrm
@@ -110,7 +110,7 @@
             this.panel_MainFrm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_MainFrm.Location = new System.Drawing.Point(0, 48);
             this.panel_MainFrm.Name = "panel_MainFrm";
-            this.panel_MainFrm.Size = new System.Drawing.Size(615, 422);
+            this.panel_MainFrm.Size = new System.Drawing.Size(615, 452);
             this.panel_MainFrm.TabIndex = 3;
             // 
             // panelControl3
@@ -226,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 500);
+            this.ClientSize = new System.Drawing.Size(615, 530);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.GreenFrmPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Xr.RtScreen.VoiceCall;
 
 namespace Xr.RtScreen.pages
 {
@@ -19,6 +20,8 @@ namespace Xr.RtScreen.pages
             SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true); // 双缓冲
             this.UpdateStyles();
+            SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
+            speakVoiceform.Show(this);
         }
         #region 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)

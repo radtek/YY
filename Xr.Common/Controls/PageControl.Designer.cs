@@ -45,7 +45,7 @@
             // 
             this.labelControl1.AutoSize = true;
             this.labelControl1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelControl1.Location = new System.Drawing.Point(486, 10);
+            this.labelControl1.Location = new System.Drawing.Point(433, 7);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(103, 20);
             this.labelControl1.TabIndex = 0;
@@ -54,7 +54,7 @@
             // teJumpPage
             // 
             this.teJumpPage.EditValue = "1";
-            this.teJumpPage.Location = new System.Drawing.Point(316, 6);
+            this.teJumpPage.Location = new System.Drawing.Point(280, 5);
             this.teJumpPage.Name = "teJumpPage";
             this.teJumpPage.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teJumpPage.Properties.Appearance.Options.UseFont = true;
@@ -64,14 +64,14 @@
             this.teJumpPage.Properties.Mask.EditMask = "[0-9]*";
             this.teJumpPage.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.teJumpPage.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.teJumpPage.Size = new System.Drawing.Size(30, 28);
+            this.teJumpPage.Size = new System.Drawing.Size(30, 25);
             this.teJumpPage.TabIndex = 12;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(352, 10);
+            this.label1.Location = new System.Drawing.Point(312, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 20);
             this.label1.TabIndex = 15;
@@ -80,7 +80,7 @@
             // tePageSize
             // 
             this.tePageSize.EditValue = "10";
-            this.tePageSize.Location = new System.Drawing.Point(373, 6);
+            this.tePageSize.Location = new System.Drawing.Point(330, 5);
             this.tePageSize.Name = "tePageSize";
             this.tePageSize.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tePageSize.Properties.Appearance.Options.UseFont = true;
@@ -90,7 +90,7 @@
             this.tePageSize.Properties.Mask.EditMask = "[0-9]*";
             this.tePageSize.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.tePageSize.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.tePageSize.Size = new System.Drawing.Size(31, 28);
+            this.tePageSize.Size = new System.Drawing.Size(31, 25);
             this.tePageSize.TabIndex = 16;
             // 
             // btnJump
@@ -98,9 +98,9 @@
             this.btnJump.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnJump.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnJump.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnJump.Location = new System.Drawing.Point(410, 6);
+            this.btnJump.Location = new System.Drawing.Point(370, 5);
             this.btnJump.Name = "btnJump";
-            this.btnJump.Size = new System.Drawing.Size(70, 28);
+            this.btnJump.Size = new System.Drawing.Size(60, 25);
             this.btnJump.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnJump.TabIndex = 11;
             this.btnJump.Text = "跳转";
@@ -111,9 +111,9 @@
             this.btnLast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnLast.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnLast.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnLast.Location = new System.Drawing.Point(240, 6);
+            this.btnLast.Location = new System.Drawing.Point(210, 5);
             this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(70, 28);
+            this.btnLast.Size = new System.Drawing.Size(60, 25);
             this.btnLast.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnLast.TabIndex = 10;
             this.btnLast.Text = "末页";
@@ -124,9 +124,9 @@
             this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnNext.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnNext.Location = new System.Drawing.Point(160, 6);
+            this.btnNext.Location = new System.Drawing.Point(140, 5);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(70, 28);
+            this.btnNext.Size = new System.Drawing.Size(60, 25);
             this.btnNext.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnNext.TabIndex = 9;
             this.btnNext.Text = "下一页";
@@ -137,9 +137,9 @@
             this.btnPre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnPre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnPre.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnPre.Location = new System.Drawing.Point(80, 6);
+            this.btnPre.Location = new System.Drawing.Point(70, 5);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(70, 28);
+            this.btnPre.Size = new System.Drawing.Size(60, 25);
             this.btnPre.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnPre.TabIndex = 8;
             this.btnPre.Text = "上一页";
@@ -150,9 +150,9 @@
             this.btnFirst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnFirst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnFirst.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnFirst.Location = new System.Drawing.Point(0, 6);
+            this.btnFirst.Location = new System.Drawing.Point(0, 5);
             this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(70, 28);
+            this.btnFirst.Size = new System.Drawing.Size(60, 25);
             this.btnFirst.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnFirst.TabIndex = 7;
             this.btnFirst.Text = "首页";
@@ -172,7 +172,7 @@
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.labelControl1);
             this.Name = "PageControl";
-            this.Size = new System.Drawing.Size(842, 40);
+            this.Size = new System.Drawing.Size(842, 35);
             ((System.ComponentModel.ISupportInitialize)(this.teJumpPage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePageSize.Properties)).EndInit();
             this.ResumeLayout(false);
