@@ -30,15 +30,15 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.teCode = new DevExpress.XtraEditors.TextEdit();
-            this.radioGroup2 = new DevExpress.XtraEditors.RadioGroup();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.butSelect = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.gc_Clinic = new DevExpress.XtraGrid.GridControl();
             this.gv_Clinic = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,8 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Clinic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Clinic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
@@ -77,8 +75,9 @@
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.radioButton2);
+            this.borderPanel1.Controls.Add(this.radioButton1);
             this.borderPanel1.Controls.Add(this.teCode);
-            this.borderPanel1.Controls.Add(this.radioGroup2);
             this.borderPanel1.Controls.Add(this.label4);
             this.borderPanel1.Controls.Add(this.btnDel);
             this.borderPanel1.Controls.Add(this.btnSave);
@@ -97,6 +96,32 @@
             this.borderPanel1.Size = new System.Drawing.Size(890, 50);
             this.borderPanel1.TabIndex = 1;
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radioButton2.Location = new System.Drawing.Point(131, 13);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(50, 21);
+            this.radioButton2.TabIndex = 106;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "编码";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radioButton1.Location = new System.Drawing.Point(77, 13);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(50, 21);
+            this.radioButton1.TabIndex = 105;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "编号";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
+            // 
             // teCode
             // 
             this.teCode.Location = new System.Drawing.Point(190, 10);
@@ -104,23 +129,6 @@
             this.teCode.Properties.AutoHeight = false;
             this.teCode.Size = new System.Drawing.Size(134, 28);
             this.teCode.TabIndex = 104;
-            // 
-            // radioGroup2
-            // 
-            this.radioGroup2.EditValue = "1";
-            this.radioGroup2.Location = new System.Drawing.Point(72, 9);
-            this.radioGroup2.Name = "radioGroup2";
-            this.radioGroup2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.radioGroup2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioGroup2.Properties.Appearance.Options.UseBackColor = true;
-            this.radioGroup2.Properties.Appearance.Options.UseFont = true;
-            this.radioGroup2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.radioGroup2.Properties.Columns = 2;
-            this.radioGroup2.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "编号"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "编码")});
-            this.radioGroup2.Size = new System.Drawing.Size(126, 30);
-            this.radioGroup2.TabIndex = 102;
             // 
             // label4
             // 
@@ -186,7 +194,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(0, 70);
@@ -195,17 +202,6 @@
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "科室列表";
-            // 
-            // listBox1
-            // 
-            this.listBox1.BackColor = System.Drawing.Color.White;
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 19;
-            this.listBox1.Location = new System.Drawing.Point(3, 21);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(199, 420);
-            this.listBox1.TabIndex = 0;
             // 
             // gc_Clinic
             // 
@@ -224,7 +220,7 @@
             // 
             this.gv_Clinic.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.gv_Clinic.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gv_Clinic.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_Clinic.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.gv_Clinic.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_Clinic.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gv_Clinic.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -232,7 +228,7 @@
             this.gv_Clinic.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gv_Clinic.Appearance.OddRow.BackColor = System.Drawing.Color.White;
             this.gv_Clinic.Appearance.OddRow.Options.UseBackColor = true;
-            this.gv_Clinic.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gv_Clinic.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_Clinic.Appearance.Row.Options.UseFont = true;
             this.gv_Clinic.Appearance.Row.Options.UseTextOptions = true;
             this.gv_Clinic.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -258,6 +254,7 @@
             this.gv_Clinic.OptionsView.EnableAppearanceOddRow = true;
             this.gv_Clinic.OptionsView.RowAutoHeight = true;
             this.gv_Clinic.OptionsView.ShowGroupPanel = false;
+            this.gv_Clinic.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gv_Clinic_CustomColumnDisplayText);
             // 
             // gridColumn8
             // 
@@ -272,11 +269,12 @@
             this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn1.Caption = "所属科室";
-            this.gridColumn1.FieldName = "name";
+            this.gridColumn1.FieldName = "deptname";
             this.gridColumn1.MinWidth = 25;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 113;
             // 
             // gridColumn2
             // 
@@ -285,11 +283,12 @@
             this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn2.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn2.Caption = "诊室名称";
-            this.gridColumn2.FieldName = "code";
+            this.gridColumn2.FieldName = "name";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 98;
             // 
             // gridColumn3
             // 
@@ -298,11 +297,12 @@
             this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn3.Caption = "诊室号";
-            this.gridColumn3.FieldName = "parent";
+            this.gridColumn3.FieldName = "code";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 91;
             // 
             // gridColumn4
             // 
@@ -311,20 +311,22 @@
             this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn4.Caption = "分诊标识";
-            this.gridColumn4.FieldName = "showSort";
+            this.gridColumn4.FieldName = "prefix";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 105;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "状态";
             this.gridColumn9.ColumnEdit = this.repositoryItemComboBox1;
-            this.gridColumn9.FieldName = "printSort";
+            this.gridColumn9.FieldName = "isUse";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 4;
+            this.gridColumn9.Width = 104;
             // 
             // repositoryItemComboBox1
             // 
@@ -348,6 +350,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.Width = 136;
             // 
             // gridColumn7
             // 
@@ -361,6 +364,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.Width = 150;
             // 
             // groupBox2
             // 
@@ -388,8 +392,6 @@
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_Clinic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Clinic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
@@ -417,11 +419,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox listBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
-        private DevExpress.XtraEditors.RadioGroup radioGroup2;
         private System.Windows.Forms.Label label4;
         private DevExpress.XtraEditors.TextEdit teCode;
         private Xr.Common.Controls.ButtonControl butSelect;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

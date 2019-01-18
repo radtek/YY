@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Xr.RtManager.Control;
 
 namespace Xr.RtManager.Pages.cms
 {
@@ -19,16 +18,20 @@ namespace Xr.RtManager.Pages.cms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Item> itemList = new List<Item>();
-            Item item = new Item();
-            item.name = "测试1";
-            item.value = "0";
-            itemList.Add(item);
-            item = new Item();
-            item.name = "测试2";
-            item.value = "2";
-            itemList.Add(item);
-            menuControl1.setDataSource(itemList);
+            //List<Item> itemList = new List<Item>();
+            //Item item = new Item();
+            //item.name = "测试12222222222";
+            //item.value = "0";
+            //itemList.Add(item);
+            //item = new Item();
+            //item.name = "测试2";
+            //item.value = "2";
+            //itemList.Add(item);
+            //item = new Item();
+            //item.name = "测试测试测试测试";
+            //item.value = "3";
+            //itemList.Add(item);
+            //menuControl1.setDataSource(itemList);
         }
 
         private void menuControl1_MenuItemClick(object sender, EventArgs e)

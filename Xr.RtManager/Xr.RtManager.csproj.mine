@@ -86,6 +86,12 @@
     <Compile Include="Control\MyTextBox.designer.cs">
       <DependentUpon>MyTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\MenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\MenuControl.Designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\Common.cs" />
     <Compile Include="Dialog\FrmProcessing.cs">
       <SubType>Form</SubType>
@@ -123,20 +129,9 @@
     <Compile Include="MainFormTwo.designer.cs">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
     </Compile>
-<!--<<<<<<< .mine-->
     <Compile Include="Module\cms\ClinicInfoEntity.cs" />
-<!--||||||| .r7799
-=======-->
-    <Compile Include="Module\cms\DefaultVisitEntity.cs" />
-    <Compile Include="Module\cms\DoctorInfoEntity.cs" />
-<!-->>>>>>> .r7835-->
     <Compile Include="Module\cms\DeptInfoEntity.cs" />
-<!--<<<<<<< .mine-->
     <Compile Include="Module\cms\HolidayInfoEntity.cs" />
-<!--||||||| .r7799
-=======-->
-    <Compile Include="Module\cms\WorkingDayEntity.cs" />
-<!-->>>>>>> .r7835-->
     <Compile Include="Module\cms\HospitalInfoEntity.cs" />
     <Compile Include="Module\cms\MessageInfoEntity.cs" />
     <Compile Include="Module\System\ClientVersionEntity.cs" />
@@ -167,22 +162,12 @@
     <Compile Include="Pages\cms\DeptSettingsForm.Designer.cs">
       <DependentUpon>DeptSettingsForm.cs</DependentUpon>
     </Compile>
-<!--<<<<<<< .mine-->
     <Compile Include="Pages\cms\HolidaySettingEdit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pages\cms\HolidaySettingEdit.Designer.cs">
       <DependentUpon>HolidaySettingEdit.cs</DependentUpon>
     </Compile>
-<!--||||||| .r7799
-=======-->
-    <Compile Include="Pages\cms\DoctorSettingsForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\cms\DoctorSettingsForm.Designer.cs">
-      <DependentUpon>DoctorSettingsForm.cs</DependentUpon>
-    </Compile>
-<!-->>>>>>> .r7835-->
     <Compile Include="Pages\cms\HolidaySettingForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -336,6 +321,9 @@
     <EmbeddedResource Include="Control\MyTextBox.resx">
       <DependentUpon>MyTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\MenuControl.resx">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\FrmProcessing.resx">
       <DependentUpon>FrmProcessing.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,16 +351,9 @@
     <EmbeddedResource Include="Pages\cms\DeptSettingsForm.resx">
       <DependentUpon>DeptSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-<!--<<<<<<< .mine-->
     <EmbeddedResource Include="Pages\cms\HolidaySettingEdit.resx">
       <DependentUpon>HolidaySettingEdit.cs</DependentUpon>
     </EmbeddedResource>
-<!--||||||| .r7799
-=======-->
-    <EmbeddedResource Include="Pages\cms\DoctorSettingsForm.resx">
-      <DependentUpon>DoctorSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-<!-->>>>>>> .r7835-->
     <EmbeddedResource Include="Pages\cms\HolidaySettingForm.resx">
       <DependentUpon>HolidaySettingForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -226,6 +226,15 @@ namespace Xr.RtManager.Pages.cms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //清除值
+            dcDeptInfo.ClearValue();
+            pbLogo.Image = null;
+            pbLogo.Refresh();
+            logoServiceFilePath = null;
+            pbPicture.Image = null;
+            pbPicture.Refresh();
+            pictureServiceFilePath = null;
+
             groupBox1.Enabled = true;
             deptInfo = new DeptInfoEntity();
         }
@@ -233,6 +242,15 @@ namespace Xr.RtManager.Pages.cms
 
         private void btnUp_Click(object sender, EventArgs e)
         {
+            //清除值
+            dcDeptInfo.ClearValue();
+            pbLogo.Image = null;
+            pbLogo.Refresh();
+            logoServiceFilePath = null;
+            pbPicture.Image = null;
+            pbPicture.Refresh();
+            pictureServiceFilePath = null;
+
             deptInfo = new DeptInfoEntity();
             var selectedRow = gridView1.GetFocusedRow() as DeptInfoEntity;
             if (selectedRow == null)

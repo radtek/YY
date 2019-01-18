@@ -113,7 +113,7 @@
             this.panelEnhanced1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEnhanced1.Location = new System.Drawing.Point(3, 0);
             this.panelEnhanced1.Name = "panelEnhanced1";
-            this.panelEnhanced1.Size = new System.Drawing.Size(1005, 729);
+            this.panelEnhanced1.Size = new System.Drawing.Size(1061, 729);
             this.panelEnhanced1.TabIndex = 0;
             this.panelEnhanced1.SizeChanged += new System.EventHandler(this.panelEnhanced1_SizeChanged);
             // 
@@ -132,7 +132,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(156, 0);
             this.xtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(849, 705);
+            this.xtraTabControl1.Size = new System.Drawing.Size(905, 705);
             this.xtraTabControl1.TabIndex = 20;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             // 
@@ -244,7 +244,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 705);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1005, 24);
+            this.panel1.Size = new System.Drawing.Size(1061, 24);
             this.panel1.TabIndex = 4;
             // 
             // panel3
@@ -253,7 +253,7 @@
             this.panel3.Controls.Add(this.userName);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(609, 0);
+            this.panel3.Location = new System.Drawing.Point(665, 0);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(10, 5, 10, 0);
             this.panel3.Size = new System.Drawing.Size(396, 24);
@@ -309,14 +309,14 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "欢迎使用床边结算系统";
+            this.label1.Text = "欢迎使用预约分诊系统";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1064, 729);
             this.Controls.Add(this.panelEnhanced1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

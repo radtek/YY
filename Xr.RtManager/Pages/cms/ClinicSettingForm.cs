@@ -17,10 +17,24 @@ namespace Xr.RtManager.Pages.cms
         public ClinicSettingForm()
         {
             InitializeComponent();
-            //Date = new List<ClinicInfoEntity> { 
-            //new ClinicInfoEntity{name="测试",code="10202",parent="测试",showSort="1",printSort="1",createDate="2019-01-08",updateDate="2018-18-08"},
-            //};
-            //this.gc_Clinic.DataSource = Date;
+            ClinicSettingList(AppContext.Session.hospitalId,AppContext.Session.deptId);
+            #region 
+            foreach (var item in AppContext.Session.deptList)
+            {
+                Xr.Common.Controls.BorderPanelButton bpb = new Xr.Common.Controls.BorderPanelButton();
+                bpb.BackColor = Color.White;
+                bpb.BorderColor = Color.Black;
+                bpb.BorderWidth = 1;
+                bpb.BtnFont = new Font("微软雅黑", 12);
+                bpb.Dock = DockStyle.Top;
+                bpb.FillColor1 = Color.White;
+                bpb.FillColor2 = Color.White;
+                bpb.Height = 25;
+                bpb.BtnText = item.name;
+                bpb.Click += new EventHandler(bpb_Click);
+                groupBox1.Controls.Add(bpb);
+            }
+            #endregion 
         }
         #region 测试
         public List<ClinicInfoEntity> Date = new List<ClinicInfoEntity>();
@@ -32,16 +46,29 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
         /// <param name="deptId">所属科室</param>
+        List<ClinicInfoEntity> clinicInfo;
         public void ClinicSettingList(string hospitalid, string deptId)
         {
             try
             {
+                clinicInfo = new List<ClinicInfoEntity>();
                 String url = AppContext.AppConfig.serverUrl + "cms/clinic/list?hospital.id" + hospitalid + "&dept.id=" + deptId;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    this.gc_Clinic.DataSource = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
+                    if (objT["result"].ToString() == "" || objT["result"].ToString() == "{}")
+                    {
+                        this.gc_Clinic.DataSource = null;
+                        return;
+                    }
+                    clinicInfo = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
+                    for (int i = 0; i <Convert.ToInt32(objT["result"]["count"]); i++)
+                    {
+                        String name = objT["result"]["list"][i]["dept"]["name"].ToString();
+                        clinicInfo[i].deptname = name;
+                    }
+                    this.gc_Clinic.DataSource = clinicInfo;
                     //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     //int.Parse(objT["result"]["pageSize"].ToString()),
                     //int.Parse(objT["result"]["pageNo"].ToString()));
@@ -67,22 +94,35 @@ namespace Xr.RtManager.Pages.cms
             try
             {
                 String url = "";
-                if (radioGroup2.EditValue == "1")
+                if (this.radioButton1.Checked)
                 {
-                    url = AppContext.AppConfig.serverUrl + "api/cms/clinic/findById?id=" + code;//编号
+                    url = AppContext.AppConfig.serverUrl + "cms/clinic/findById?id=" + code;//编号
+                }
+                else if (this.radioButton2.Checked)
+                {
+                    url = AppContext.AppConfig.serverUrl + "cms/clinic/findByCode?id=" + code;//编码
                 }
                 else
                 {
-                    url = AppContext.AppConfig.serverUrl + "api/cms/clinic/findByCode?id=" + code;//编码
+                    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
+                    return;
                 }
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    this.gc_Clinic.DataSource = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
-                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                    //int.Parse(objT["result"]["pageSize"].ToString()),
-                    //int.Parse(objT["result"]["pageNo"].ToString()));
+                    if (objT["result"].ToString()=="")
+                    {
+                        this.gc_Clinic.DataSource = null;
+                        return;
+                    }
+                    clinicInfo = new List<ClinicInfoEntity>();
+                    string a = objT["result"].ToString();//Dept
+                    ClinicInfoEntity two = Newtonsoft.Json.JsonConvert.DeserializeObject<ClinicInfoEntity>(a);
+                    String name = objT["result"]["dept"]["name"].ToString();
+                    two.deptname = name;
+                    clinicInfo.Add(two);
+                    this.gc_Clinic.DataSource = clinicInfo;
                 }
                 else
                 {
@@ -105,15 +145,23 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
-                String url = AppContext.AppConfig.serverUrl + "api/cms/clinic/findAll?hospital.id=" + hospital + "&dept.id=" + deptId;
+                String url = AppContext.AppConfig.serverUrl + "cms/clinic/findAll?hospital.id=" + hospital + "&dept.id=" + deptId;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    this.gc_Clinic.DataSource = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
-                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                    //int.Parse(objT["result"]["pageSize"].ToString()),
-                    //int.Parse(objT["result"]["pageNo"].ToString()));
+                    if ( objT["result"].ToString()=="[]")
+                    {
+                        this.gc_Clinic.DataSource = null;
+                        return;
+                    }
+                    clinicInfo = objT["result"].ToObject<List<ClinicInfoEntity>>();
+                    for (int i = 0; i < clinicInfo.Count; i++)
+                    {
+                        String name = objT["result"][i]["dept"]["name"].ToString();
+                        clinicInfo[i].deptname = name;
+                    }
+                    this.gc_Clinic.DataSource = clinicInfo;
                 }
                 else
                 {
@@ -140,7 +188,8 @@ namespace Xr.RtManager.Pages.cms
                 if (edit.ShowDialog() == DialogResult.OK)
                 {
                     MessageBoxUtils.Hint("保存成功!");
-                  //  SearchData(true, 1, pageControl1.PageSize);
+                    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
+                    //SearchData(true, 1, pageControl1.PageSize);
                 }
             }
             catch (Exception ex)
@@ -167,6 +216,7 @@ namespace Xr.RtManager.Pages.cms
                 if (edit.ShowDialog() == DialogResult.OK)
                 {
                     MessageBoxUtils.Hint("修改成功!");
+                    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
                    // SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
                 }
             }
@@ -193,13 +243,14 @@ namespace Xr.RtManager.Pages.cms
 
                 if (dr == DialogResult.OK)
                 {
-                    String param = "?ids=" + selectedRow.id;
-                    String url = AppContext.AppConfig.serverUrl + "yyfz/api/clinic/delete" + param;
+                    String param = "?id=" + selectedRow.id;
+                    String url = AppContext.AppConfig.serverUrl + "cms/clinic/delete" + param;
                     String data = HttpClass.httpPost(url);
                     JObject objT = JObject.Parse(data);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         Xr.Common.MessageBoxUtils.Hint("删除成功");
+                        ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
                     }
                     else
                     {
@@ -213,11 +264,67 @@ namespace Xr.RtManager.Pages.cms
             }
         }
         #endregion
-        #region 编号或者编码查询诊室信息
+        #region 编号或者编码查询诊室信息或者查询所有信息
         private void butSelect_Click(object sender, EventArgs e)
         {
             SelectInforList(this.teCode.Text.Trim());
         }
         #endregion
+        #region 科室列表点击事件 
+        public void bpb_Click(object sender, EventArgs e)
+        {
+            Xr.Common.Controls.BorderPanelButton lbl = (Xr.Common.Controls.BorderPanelButton)(sender);
+            var id = from a in AppContext.Session.deptList where a.name == lbl.BtnText select a.id;
+            string am = string.Join(",", id);
+            ClinicsDepartment(AppContext.Session.hospitalId, am);
+        }
+        #endregion 
+        #region 
+        private void gv_Clinic_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "isUse")
+            {
+                switch (e.Value.ToString().Trim())
+                {
+                    case "0":
+                        e.DisplayText = "停用";//
+                        break;
+                    case "1":
+                        e.DisplayText = "正常";//
+                        break;
+                }
+            }
+        }
+        #endregion 
+        #region 
+        bool rdbcheck = false;
+        private void radioButton1_Click(object sender, EventArgs e)
+        {
+            if (rdbcheck)
+            {
+                radioButton1.Checked = false;
+                rdbcheck = false;
+            }
+            else
+            {
+                radioButton1.Checked = true;
+                rdbcheck = true;
+            }
+        }
+        bool rdbchecks = false;
+        private void radioButton2_Click(object sender, EventArgs e)
+        {
+            if (rdbchecks)
+            {
+                radioButton2.Checked = false;
+                rdbchecks = false;
+            }
+            else
+            {
+                radioButton2.Checked = true;
+                rdbchecks = true;
+            }
+        }
+        #endregion 
     }
 }

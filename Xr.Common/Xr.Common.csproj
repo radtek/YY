@@ -107,6 +107,12 @@
       <DependentUpon>GroupBorderPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ISupportHotkeys.cs" />
+    <Compile Include="Controls\MenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MenuControl.Designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OpaqueCommand.cs" />
     <Compile Include="Controls\PageControl.cs">
       <SubType>UserControl</SubType>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GroupBorderPanel.resx">
       <DependentUpon>GroupBorderPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MenuControl.resx">
+      <DependentUpon>MenuControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PageControl.resx">
       <DependentUpon>PageControl.cs</DependentUpon>

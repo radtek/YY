@@ -17,6 +17,7 @@ namespace Xr.RtCall
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            // new Form1().Show();
+            Xr.RtCall.Model.AppContext.Load();
             Application.Run(new Form1());
         }
     }

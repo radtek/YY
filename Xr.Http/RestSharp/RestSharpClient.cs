@@ -131,6 +131,7 @@ namespace Xr.Http.RestSharp
         public RestRequestAsyncHandle ExecuteAsync<T>(IRestRequest request, Action<IRestResponse<T>> callback) where T : new()
         {
             // request.DateFormat = string.IsNullOrEmpty(request.DateFormat) ? DefaultDateParameterFormat : request.DateFormat;
+            client.Timeout = 1 * 60 * 1000;
             return client.ExecuteAsync<T>(request, callback);
         }
     }

@@ -16,6 +16,7 @@ namespace Xr.RtScreen
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Xr.RtScreen.Models.AppContext.Load();
             Application.Run(new Form1());
         }
     }

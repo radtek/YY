@@ -29,25 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.teEndTime = new DevExpress.XtraEditors.TextEdit();
             this.teStardTime = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.meUpdateDesc = new DevExpress.XtraEditors.MemoEdit();
             this.butClose = new Xr.Common.Controls.ButtonControl();
             this.butAdd = new Xr.Common.Controls.ButtonControl();
             this.dcMessage = new Xr.Common.Controls.DataController(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.teEndTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // teEndTime
-            // 
-            this.dcMessage.SetDataMember(this.teEndTime, "content");
-            this.teEndTime.Location = new System.Drawing.Point(135, 84);
-            this.teEndTime.Name = "teEndTime";
-            this.teEndTime.Properties.AutoHeight = false;
-            this.teEndTime.Size = new System.Drawing.Size(300, 28);
-            this.teEndTime.TabIndex = 4;
             // 
             // teStardTime
             // 
@@ -78,12 +69,21 @@
             this.label3.TabIndex = 113;
             this.label3.Text = "模板类型：";
             // 
+            // meUpdateDesc
+            // 
+            this.dcMessage.SetDataMember(this.meUpdateDesc, "content");
+            this.meUpdateDesc.Location = new System.Drawing.Point(135, 86);
+            this.meUpdateDesc.Name = "meUpdateDesc";
+            this.meUpdateDesc.Size = new System.Drawing.Size(300, 102);
+            this.meUpdateDesc.TabIndex = 4;
+            this.meUpdateDesc.UseOptimizedRendering = true;
+            // 
             // butClose
             // 
             this.butClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butClose.HoverBackColor = System.Drawing.Color.Empty;
-            this.butClose.Location = new System.Drawing.Point(336, 143);
+            this.butClose.Location = new System.Drawing.Point(336, 205);
             this.butClose.Name = "butClose";
             this.butClose.Size = new System.Drawing.Size(75, 30);
             this.butClose.Style = Xr.Common.Controls.ButtonStyle.Return;
@@ -96,7 +96,7 @@
             this.butAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butAdd.HoverBackColor = System.Drawing.Color.Empty;
-            this.butAdd.Location = new System.Drawing.Point(227, 143);
+            this.butAdd.Location = new System.Drawing.Point(227, 205);
             this.butAdd.Name = "butAdd";
             this.butAdd.Size = new System.Drawing.Size(75, 30);
             this.butAdd.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -110,18 +110,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(540, 247);
+            this.Controls.Add(this.meUpdateDesc);
             this.Controls.Add(this.butClose);
             this.Controls.Add(this.butAdd);
-            this.Controls.Add(this.teEndTime);
             this.Controls.Add(this.teStardTime);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MessageSettingEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "新增消息模板";
             this.Load += new System.EventHandler(this.MessageSettingEdit_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.teEndTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,9 +134,9 @@
         private Xr.Common.Controls.DataController dcMessage;
         private Xr.Common.Controls.ButtonControl butClose;
         private Xr.Common.Controls.ButtonControl butAdd;
-        private DevExpress.XtraEditors.TextEdit teEndTime;
         private DevExpress.XtraEditors.TextEdit teStardTime;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.MemoEdit meUpdateDesc;
     }
 }

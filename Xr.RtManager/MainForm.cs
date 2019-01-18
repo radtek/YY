@@ -144,14 +144,6 @@ namespace Xr.RtManager
                     label22.Click += new EventHandler(TwoLevelMenuClicked);
                     label22.MouseEnter += new EventHandler(TwoLevelMouseEnter);
                     label22.MouseLeave += new EventHandler(TwoLevelMouseLeave);
-                    //label22.Click += delegate
-                    //{
-                    //    MenuClicked(menu.id, menu.name, menu.href);
-                    //};
-                    //panel25.Click += delegate
-                    //{
-                    //    MenuClicked(menu.id, menu.name, menu.href);
-                    //};
                     panel25.Controls.Add(label22);
                     panel23.Controls.Add(panel25);
                     panel25.BringToFront();

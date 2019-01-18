@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Xr.RtScreen.pages;
 using System.Configuration;
+using Xr.RtScreen.Models;
 
 namespace Xr.RtScreen
 {
@@ -22,9 +23,9 @@ namespace Xr.RtScreen
                   ControlStyles.OptimizedDoubleBuffer |
                   ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
-            string StartupScreen = ConfigurationManager.AppSettings["StartupScreen"];//1（公共大屏）2（科室小屏）3（医生小屏）
+            //string StartupScreen = ConfigurationManager.AppSettings["StartupScreen"];//1（公共大屏）2（科室小屏）3（医生小屏）
             #region 
-            switch (StartupScreen)
+            switch (AppContext.AppConfig.StartupScreen)
             {
                 case "1":
                     RtScreenFrm rcf = new RtScreenFrm();

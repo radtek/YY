@@ -18,10 +18,6 @@ namespace Xr.RtManager.Pages.cms
         {
             InitializeComponent();
             MessageContentTemplateList(AppContext.Session.hospitalId);
-            //Date = new List<MessageInfoEntity> { 
-            //new MessageInfoEntity{name="测试",code="01000",StardTime="2019-01-08",EndTime="2019-05-08"},
-            //};
-            //this.gc_Message.DataSource = Date;
         }
         #region 测试
         public List<MessageInfoEntity> Date = new List<MessageInfoEntity>();

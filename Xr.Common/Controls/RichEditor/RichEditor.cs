@@ -178,8 +178,11 @@ namespace Xr.Common.Controls
         /// <param name="htmlText"></param>
         public void LoadText (string htmlText)
         {
-            if (htmlText!=null)
-            webBrowserBody.Document.Write(htmlText);
+            if (htmlText == null || htmlText==String.Empty)
+                webBrowserBody.Document.Write("<HTML><HEAD></HEAD><BODY></BODY></HTML>");
+            else
+                webBrowserBody.Document.Write(htmlText);
+            
         }
 
         /// <summary>

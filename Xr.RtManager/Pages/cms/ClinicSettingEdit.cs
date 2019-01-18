@@ -34,8 +34,8 @@ namespace Xr.RtManager.Pages.cms
                     return;
                 }
                 dcClinic.GetValue(clinicInfoEntity);
-                String param = "?" + PackReflectionEntity<ClinicInfoEntity>.GetEntityToRequestParameters(clinicInfoEntity);
-                String url = AppContext.AppConfig.serverUrl + "yyfz/api/clinic/save" + param;
+                String param = "?" + PackReflectionEntity<ClinicInfoEntity>.GetEntityToRequestParameters(clinicInfoEntity,true);
+                String url = AppContext.AppConfig.serverUrl + "cms/clinic/save" + param;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
