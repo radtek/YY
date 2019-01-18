@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using Xr.RtCall.pages;
 using Xr.Http.RestSharp;
 using RestSharp;
+using Xr.RtCall.Model;
 
 namespace Xr.RtCall
 {
@@ -181,8 +182,8 @@ namespace Xr.RtCall
             int y = 0;//要让窗体往上走 只需改变 Y的坐标
             this.Location = new Point(x, y);
            // this.TopMost = true;
-            bool HttPSocket = Convert.ToBoolean(ConfigurationManager.AppSettings["StartUpSocket"]);//StartUpSocket
-            if (HttPSocket == true)
+            bool TcpSocket =Convert.ToBoolean(AppContext.AppConfig.StartUpSocket);
+            if (TcpSocket)
             {
                 //绑定事件
                 //开始连接前触发

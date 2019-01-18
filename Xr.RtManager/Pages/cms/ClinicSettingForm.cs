@@ -184,13 +184,15 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
-                var edit = new ClinicSettingEdit();
-                if (edit.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBoxUtils.Hint("保存成功!");
-                    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
-                    //SearchData(true, 1, pageControl1.PageSize);
-                }
+                groupBox3.Enabled = true;
+                dcClinc.ClearValue();
+                //var edit = new ClinicSettingEdit();
+                //if (edit.ShowDialog() == DialogResult.OK)
+                //{
+                //    MessageBoxUtils.Hint("保存成功!");
+                //    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
+                //    //SearchData(true, 1, pageControl1.PageSize);
+                //}
             }
             catch (Exception ex)
             {
@@ -210,15 +212,17 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow = this.gv_Clinic.GetFocusedRow() as ClinicInfoEntity;
                 if (selectedRow == null)
                     return;
-                var edit = new ClinicSettingEdit();
-                edit.clinicInfoEntity = selectedRow;
-                edit.Text = "诊室修改";
-                if (edit.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBoxUtils.Hint("修改成功!");
-                    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
-                   // SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-                }
+                dcClinc.SetValue(selectedRow);
+                groupBox3.Enabled = true;
+                //var edit = new ClinicSettingEdit();
+                //edit.clinicInfoEntity = selectedRow;
+                //edit.Text = "诊室修改";
+                //if (edit.ShowDialog() == DialogResult.OK)
+                //{
+                //    MessageBoxUtils.Hint("修改成功!");
+                //    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
+                //   // SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                //}
             }
             catch (Exception ex)
             {
@@ -323,6 +327,57 @@ namespace Xr.RtManager.Pages.cms
             {
                 radioButton2.Checked = true;
                 rdbchecks = true;
+            }
+        }
+        #endregion 
+        #region 保存
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butContronl_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!dcClinc.Validate())
+                {
+                    return;
+                }
+                dcClinc.GetValue(clinicInfoEntity);
+                String param = "?" + PackReflectionEntity<ClinicInfoEntity>.GetEntityToRequestParameters(clinicInfoEntity, true);
+                String url = AppContext.AppConfig.serverUrl + "cms/clinic/save" + param;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    MessageBoxUtils.Hint("保存成功!");
+                    dcClinc.ClearValue();
+                    ClinicSettingList(AppContext.Session.hospitalId, AppContext.Session.deptId);
+                    groupBox3.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        #endregion
+        #region 
+        public ClinicInfoEntity clinicInfoEntity { get; set; }
+        private void ClinicSettingForm_Load(object sender, EventArgs e)
+        {
+            dcClinc.DataType = typeof(ClinicInfoEntity);
+            if (clinicInfoEntity != null)
+            {
+                dcClinc.SetValue(clinicInfoEntity);
+            }
+            else
+            {
+                clinicInfoEntity = new ClinicInfoEntity();
             }
         }
         #endregion 

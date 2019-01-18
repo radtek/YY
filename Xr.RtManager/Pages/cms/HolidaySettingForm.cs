@@ -149,13 +149,15 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
-                var edit = new HolidaySettingEdit();
-                if (edit.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBoxUtils.Hint("保存成功!");
-                    HolidaySettingList(AppContext.Session.hospitalId);
-                    //  SearchData(true, 1, pageControl1.PageSize);
-                }
+                groupBox1.Enabled = true;
+                dcHodily.ClearValue();
+                //var edit = new HolidaySettingEdit();
+                //if (edit.ShowDialog() == DialogResult.OK)
+                //{
+                //    MessageBoxUtils.Hint("保存成功!");
+                //    HolidaySettingList(AppContext.Session.hospitalId);
+                //    //  SearchData(true, 1, pageControl1.PageSize);
+                //}
             }
             catch (Exception)
             {
@@ -176,15 +178,17 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow = gv_Holiday.GetFocusedRow() as HolidayInfoEntity;
                 if (selectedRow == null)
                     return;
-                var edit = new HolidaySettingEdit();
-                edit.holidayInfoEntity = selectedRow;
-                edit.Text = "节假日修改";
-                if (edit.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBoxUtils.Hint("修改成功!");
-                    HolidaySettingList(AppContext.Session.hospitalId);
-                 //   SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-                }
+                dcHodily.SetValue(selectedRow);
+                groupBox1.Enabled = true ;
+                //var edit = new HolidaySettingEdit();
+                //edit.holidayInfoEntity = selectedRow;
+                //edit.Text = "节假日修改";
+                //if (edit.ShowDialog() == DialogResult.OK)
+                //{
+                //    MessageBoxUtils.Hint("修改成功!");
+                //    HolidaySettingList(AppContext.Session.hospitalId);
+                // //   SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                //}
             }
             catch (Exception)
             {
@@ -248,6 +252,57 @@ namespace Xr.RtManager.Pages.cms
                 //{
                 e.Cancel = true;
                 //  }
+            }
+        }
+        #endregion
+        #region 保存按钮
+        /// <summary>
+        /// 保存按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butContronl_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!dcHodily.Validate())
+                {
+                    return;
+                }
+                dcHodily.GetValue(holidayInfoEntity);
+                String param = "?" + PackReflectionEntity<HolidayInfoEntity>.GetEntityToRequestParameters(holidayInfoEntity, true);
+                String url = AppContext.AppConfig.serverUrl + "cms/holiday/save" + param;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    MessageBoxUtils.Hint("保存成功!");
+                    HolidaySettingList(AppContext.Session.hospitalId);
+                    dcHodily.ClearValue();
+                    groupBox1.Enabled = false ;
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        #endregion 
+        #region 
+        public HolidayInfoEntity holidayInfoEntity { get; set; }
+        private void HolidaySettingForm_Load(object sender, EventArgs e)
+        {
+            dcHodily.DataType = typeof(HolidayInfoEntity);
+            if (holidayInfoEntity != null)
+            {
+                dcHodily.SetValue(holidayInfoEntity);
+            }
+            else
+            {
+                holidayInfoEntity = new HolidayInfoEntity();
             }
         }
         #endregion

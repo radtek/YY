@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.meUpdateDesc = new DevExpress.XtraEditors.MemoEdit();
+            this.teStardTime = new DevExpress.XtraEditors.TextEdit();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.butClose = new Xr.Common.Controls.ButtonControl();
+            this.butContronl = new Xr.Common.Controls.ButtonControl();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.gc_Message = new DevExpress.XtraGrid.GridControl();
             this.gv_Message = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -41,7 +50,12 @@
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
+            this.dcMessage = new Xr.Common.Controls.DataController(this.components);
             this.panel4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Message)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Message)).BeginInit();
             this.panel1.SuspendLayout();
@@ -51,9 +65,10 @@
             // 
             // pageControl1
             // 
+            this.pageControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pageControl1.CurrentPage = 1;
-            this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageControl1.Location = new System.Drawing.Point(15, 385);
+            this.pageControl1.Location = new System.Drawing.Point(12, 219);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
@@ -62,6 +77,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.groupBox1);
             this.panel4.Controls.Add(this.pageControl1);
             this.panel4.Controls.Add(this.gc_Message);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -71,6 +87,99 @@
             this.panel4.Size = new System.Drawing.Size(920, 444);
             this.panel4.TabIndex = 67;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.meUpdateDesc);
+            this.groupBox1.Controls.Add(this.teStardTime);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.butClose);
+            this.groupBox1.Controls.Add(this.butContronl);
+            this.groupBox1.Controls.Add(this.textEdit1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Enabled = false;
+            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.Location = new System.Drawing.Point(15, 256);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(890, 168);
+            this.groupBox1.TabIndex = 52;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "信息编辑区";
+            // 
+            // meUpdateDesc
+            // 
+            this.dcMessage.SetDataMember(this.meUpdateDesc, "content");
+            this.meUpdateDesc.Location = new System.Drawing.Point(87, 66);
+            this.meUpdateDesc.Name = "meUpdateDesc";
+            this.meUpdateDesc.Size = new System.Drawing.Size(300, 77);
+            this.meUpdateDesc.TabIndex = 119;
+            this.meUpdateDesc.UseOptimizedRendering = true;
+            // 
+            // teStardTime
+            // 
+            this.dcMessage.SetDataMember(this.teStardTime, "type");
+            this.teStardTime.Location = new System.Drawing.Point(87, 23);
+            this.teStardTime.Name = "teStardTime";
+            this.teStardTime.Properties.AutoHeight = false;
+            this.teStardTime.Size = new System.Drawing.Size(300, 28);
+            this.teStardTime.TabIndex = 118;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(16, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 20);
+            this.label6.TabIndex = 121;
+            this.label6.Text = "模板内容：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(16, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 20);
+            this.label3.TabIndex = 120;
+            this.label3.Text = "模板类型：";
+            // 
+            // butClose
+            // 
+            this.butClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.butClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.butClose.HoverBackColor = System.Drawing.Color.Empty;
+            this.butClose.Location = new System.Drawing.Point(524, 113);
+            this.butClose.Name = "butClose";
+            this.butClose.Size = new System.Drawing.Size(75, 30);
+            this.butClose.Style = Xr.Common.Controls.ButtonStyle.Return;
+            this.butClose.TabIndex = 117;
+            this.butClose.Text = "关闭";
+            this.butClose.Visible = false;
+            // 
+            // butContronl
+            // 
+            this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
+            this.butContronl.Location = new System.Drawing.Point(415, 113);
+            this.butContronl.Name = "butContronl";
+            this.butContronl.Size = new System.Drawing.Size(75, 30);
+            this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.butContronl.TabIndex = 116;
+            this.butContronl.Text = "保存";
+            this.butContronl.Click += new System.EventHandler(this.butContronl_Click);
+            // 
+            // textEdit1
+            // 
+            this.dcMessage.SetDataMember(this.textEdit1, "id");
+            this.textEdit1.Location = new System.Drawing.Point(809, 26);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.AutoHeight = false;
+            this.textEdit1.Size = new System.Drawing.Size(14, 28);
+            this.textEdit1.TabIndex = 111;
+            this.textEdit1.Visible = false;
+            // 
             // gc_Message
             // 
             this.gc_Message.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -79,7 +188,7 @@
             this.gc_Message.Location = new System.Drawing.Point(15, 20);
             this.gc_Message.MainView = this.gv_Message;
             this.gc_Message.Name = "gc_Message";
-            this.gc_Message.Size = new System.Drawing.Size(890, 359);
+            this.gc_Message.Size = new System.Drawing.Size(890, 193);
             this.gc_Message.TabIndex = 49;
             this.gc_Message.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Message});
@@ -241,7 +350,13 @@
             this.Controls.Add(this.panel1);
             this.Name = "MessageManagement";
             this.Size = new System.Drawing.Size(920, 514);
+            this.Load += new System.EventHandler(this.MessageManagement_Load);
             this.panel4.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Message)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Message)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -266,5 +381,14 @@
         private Xr.Common.Controls.ButtonControl btnDel;
         private Xr.Common.Controls.ButtonControl btnSave;
         private Xr.Common.Controls.ButtonControl btnAdd;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Xr.Common.Controls.ButtonControl butClose;
+        private Xr.Common.Controls.ButtonControl butContronl;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.MemoEdit meUpdateDesc;
+        private DevExpress.XtraEditors.TextEdit teStardTime;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private Xr.Common.Controls.DataController dcMessage;
     }
 }

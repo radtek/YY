@@ -123,13 +123,15 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
-                var edit = new MessageSettingEdit();
-                if (edit.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBoxUtils.Hint("保存成功!");
-                    MessageContentTemplateList(AppContext.Session.hospitalId);
-                    //  SearchData(true, 1, pageControl1.PageSize);
-                }
+                groupBox1.Enabled = true;
+                dcMessage.ClearValue();
+                //var edit = new MessageSettingEdit();
+                //if (edit.ShowDialog() == DialogResult.OK)
+                //{
+                //    MessageBoxUtils.Hint("保存成功!");
+                //    MessageContentTemplateList(AppContext.Session.hospitalId);
+                //    //  SearchData(true, 1, pageControl1.PageSize);
+                //}
             }
             catch (Exception ex)
             {
@@ -149,15 +151,17 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow = gv_Message.GetFocusedRow() as MessageInfoEntity;
                 if (selectedRow == null)
                     return;
-                var edit = new MessageSettingEdit();
-                edit.messageInfoEntity = selectedRow;
-                edit.Text = "节假日修改";
-                if (edit.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBoxUtils.Hint("修改成功!");
-                    MessageContentTemplateList(AppContext.Session.hospitalId);
-                    // SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-                }
+                groupBox1.Enabled = true;
+                dcMessage.SetValue(selectedRow);
+                //var edit = new MessageSettingEdit();
+                //edit.messageInfoEntity = selectedRow;
+                //edit.Text = "节假日修改";
+                //if (edit.ShowDialog() == DialogResult.OK)
+                //{
+                //    MessageBoxUtils.Hint("修改成功!");
+                //    MessageContentTemplateList(AppContext.Session.hospitalId);
+                //    // SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                //}
             }
             catch (Exception ex)
             {
@@ -200,6 +204,57 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
+            }
+        }
+        #endregion 
+        #region 保存
+        public MessageInfoEntity messageInfoEntity { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butContronl_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!dcMessage.Validate())
+                {
+                    return;
+                }
+                dcMessage.GetValue(messageInfoEntity);
+                String param = "?" + PackReflectionEntity<MessageInfoEntity>.GetEntityToRequestParameters(messageInfoEntity, true);
+                String url = AppContext.AppConfig.serverUrl + "cms/messageTemplate/save" + param;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    MessageBoxUtils.Hint("保存成功!");
+                    dcMessage.ClearValue();
+                    MessageContentTemplateList(AppContext.Session.hospitalId);
+                    groupBox1.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+#endregion 
+        #region 
+        private void MessageManagement_Load(object sender, EventArgs e)
+        {
+            dcMessage.DataType = typeof(MessageInfoEntity);
+            if (messageInfoEntity != null)
+            {
+                dcMessage.SetValue(messageInfoEntity);
+            }
+            else
+            {
+                messageInfoEntity = new MessageInfoEntity();
             }
         }
         #endregion 
