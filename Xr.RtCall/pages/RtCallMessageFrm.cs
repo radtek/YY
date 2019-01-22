@@ -35,13 +35,6 @@ namespace Xr.RtCall.pages
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("triageId", triageId);
                 prament.Add("Type", type);
-                //string str = "";
-                //var client = new RestSharpClient("/api/sch/clinicCall/inPlace");
-                //var Params = "";
-                //if (prament.Count != 0)
-                //{
-                //    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                //}
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
                 result =>
                 {
@@ -52,19 +45,9 @@ namespace Xr.RtCall.pages
                         case ResponseStatus.Completed:
                             if (result.StatusCode == System.Net.HttpStatusCode.OK)
                             {
-                                var data = result.Data;
-                                string b = string.Join(",", data.ToArray());
-                                JObject objT = JObject.Parse(b);
+                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    //if (isStop == 1)
-                                    //{
-                                    //    _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
-                                    //}
-                                    //else
-                                    //{
-                                    //    _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
-                                    //}
                                 }
                                 else
                                 {

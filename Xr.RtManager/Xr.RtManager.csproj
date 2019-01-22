@@ -123,20 +123,13 @@
     <Compile Include="MainFormTwo.designer.cs">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
     </Compile>
-    <!--<<<<<<< .mine-->
+    <Compile Include="Module\cms\DoctorVSEntity.cs" />
     <Compile Include="Module\cms\ClinicInfoEntity.cs" />
-    <!--||||||| .r7799
-=======-->
     <Compile Include="Module\cms\DefaultVisitEntity.cs" />
     <Compile Include="Module\cms\DoctorInfoEntity.cs" />
-    <!-->>>>>>> .r7835-->
     <Compile Include="Module\cms\DeptInfoEntity.cs" />
-    <!--<<<<<<< .mine-->
     <Compile Include="Module\cms\HolidayInfoEntity.cs" />
-    <!--||||||| .r7799
-=======-->
     <Compile Include="Module\cms\WorkingDayEntity.cs" />
-    <!-->>>>>>> .r7835-->
     <Compile Include="Module\cms\HospitalInfoEntity.cs" />
     <Compile Include="Module\cms\MessageInfoEntity.cs" />
     <Compile Include="Module\System\ClientVersionEntity.cs" />
@@ -161,16 +154,18 @@
     <Compile Include="Pages\cms\DeptSettingsForm.Designer.cs">
       <DependentUpon>DeptSettingsForm.cs</DependentUpon>
     </Compile>
-    <!--<<<<<<< .mine-->
-    <!--||||||| .r7799
-=======-->
+    <Compile Include="Pages\cms\VisitingTimeSettingsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\VisitingTimeSettingsForm.Designer.cs">
+      <DependentUpon>VisitingTimeSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\cms\DoctorSettingsForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\cms\DoctorSettingsForm.Designer.cs">
       <DependentUpon>DoctorSettingsForm.cs</DependentUpon>
     </Compile>
-    <!-->>>>>>> .r7835-->
     <Compile Include="Pages\cms\HolidaySettingForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,12 +183,6 @@
     </Compile>
     <Compile Include="Pages\cms\MessageManagement.Designer.cs">
       <DependentUpon>MessageManagement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\cms\UserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\cms\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\System\ClientVersionForm.cs">
       <SubType>UserControl</SubType>
@@ -342,13 +331,12 @@
     <EmbeddedResource Include="Pages\cms\DeptSettingsForm.resx">
       <DependentUpon>DeptSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <!--<<<<<<< .mine-->
-    <!--||||||| .r7799
-=======-->
+    <EmbeddedResource Include="Pages\cms\VisitingTimeSettingsForm.resx">
+      <DependentUpon>VisitingTimeSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\DoctorSettingsForm.resx">
       <DependentUpon>DoctorSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <!-->>>>>>> .r7835-->
     <EmbeddedResource Include="Pages\cms\HolidaySettingForm.resx">
       <DependentUpon>HolidaySettingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -357,9 +345,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\MessageManagement.resx">
       <DependentUpon>MessageManagement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\cms\UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\System\ClientVersionForm.resx">
       <DependentUpon>ClientVersionForm.cs</DependentUpon>

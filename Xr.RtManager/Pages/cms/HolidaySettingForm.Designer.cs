@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbYear = new System.Windows.Forms.ComboBox();
             this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.butClose = new Xr.Common.Controls.ButtonControl();
@@ -90,6 +91,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbYear);
             this.groupBox1.Controls.Add(this.dateEdit2);
             this.groupBox1.Controls.Add(this.dateEdit1);
             this.groupBox1.Controls.Add(this.butClose);
@@ -112,6 +114,15 @@
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息编辑区";
+            // 
+            // cmbYear
+            // 
+            this.cmbYear.FormattingEnabled = true;
+            this.cmbYear.Location = new System.Drawing.Point(693, 119);
+            this.cmbYear.Name = "cmbYear";
+            this.cmbYear.Size = new System.Drawing.Size(191, 27);
+            this.cmbYear.TabIndex = 118;
+            this.cmbYear.Visible = false;
             // 
             // dateEdit2
             // 
@@ -538,5 +549,6 @@
         private DevExpress.XtraEditors.DateEdit dateEdit2;
         private Xr.Common.Controls.DataController dcHodily;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private System.Windows.Forms.ComboBox cmbYear;
     }
 }

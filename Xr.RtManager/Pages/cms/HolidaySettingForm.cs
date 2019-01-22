@@ -22,6 +22,10 @@ namespace Xr.RtManager.Pages.cms
             gv_Holiday.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
             gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
             gv_Holiday.OptionsView.EnableAppearanceOddRow = true;
+            //string StartYear = (DateTime.Now.Year-2).ToString();//获取当前年份
+            //string SeparatedYear = (DateTime.Now.Year -(Convert.ToInt32(StartYear)-5)).ToString();
+            //cmbYear.DataSource = Enumerable.Range(Convert.ToInt32(StartYear), Convert.ToInt32(SeparatedYear)).ToList();
+            //cmbYear.SelectedIndex = cmbYear.Items.IndexOf(DateTime.Now.Year);
         }
         public List<HolidayInfoEntity> Data = new List<HolidayInfoEntity>();
         #region 节假日列表
@@ -154,13 +158,6 @@ namespace Xr.RtManager.Pages.cms
             {
                 groupBox1.Enabled = true;
                 dcHodily.ClearValue();
-                //var edit = new HolidaySettingEdit();
-                //if (edit.ShowDialog() == DialogResult.OK)
-                //{
-                //    MessageBoxUtils.Hint("保存成功!");
-                //    HolidaySettingList(AppContext.Session.hospitalId);
-                //    //  SearchData(true, 1, pageControl1.PageSize);
-                //}
             }
             catch (Exception)
             {

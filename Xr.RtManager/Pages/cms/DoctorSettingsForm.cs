@@ -288,6 +288,15 @@ namespace Xr.RtManager.Pages.cms
             defaultVisit.nOpen = hyArr[1];
             defaultVisit.nRoom = hyArr[2];
             defaultVisit.nEmergency = hyArr[3];
+
+            defaultVisit.allStart = defaultVisitTemplate.defaultVisitTimeAllDay.Substring(0, 5);
+            defaultVisit.allEnd = defaultVisitTemplate.defaultVisitTimeAllDay.Substring(6, 5);
+            defaultVisit.allSubsection = defaultVisitTemplate.segmentalDuration;
+            defaultVisit.allScene = hyArr[0];
+            defaultVisit.allOpen = hyArr[1];
+            defaultVisit.allRoom = hyArr[2];
+            defaultVisit.allEmergency = hyArr[3];
+
             dcDefaultVisit.SetValue(defaultVisit);
         }
 
@@ -338,6 +347,10 @@ namespace Xr.RtManager.Pages.cms
                 doctorInfo = objT["result"].ToObject<DoctorInfoEntity>();
                 doctorInfo.hospitalId = doctorInfo.dept.hospital.id;
                 doctorInfo.deptId = doctorInfo.dept.id;
+                if (doctorInfo.ignoreHoliday.Equals("1"))
+                    cbIgnoreHoliday.CheckState = CheckState.Checked;
+                if (doctorInfo.ignoreYear.Equals("1"))
+                    cbIgnoreYear.CheckState = CheckState.Checked;
                 dcDoctorInfo.SetValue(doctorInfo);
                 //显示图片
                 pictureServiceFilePath = doctorInfo.pictureUrl;
@@ -389,9 +402,9 @@ namespace Xr.RtManager.Pages.cms
             else
                 doctorInfo.ignoreHoliday = "1";
 
-            if (cbIgnoreHoliday.CheckState == CheckState.Checked)
-                doctorInfo.ignoreHoliday = "1";
-            else doctorInfo.ignoreHoliday = "0";
+            if (cbIgnoreYear.CheckState == CheckState.Checked)
+                doctorInfo.ignoreYear = "1";
+            else doctorInfo.ignoreYear = "0";
 
             if (pictureServiceFilePath == null || pictureServiceFilePath.Length == 0)
             {
@@ -407,8 +420,23 @@ namespace Xr.RtManager.Pages.cms
             {
                 for (int i = 0; i < days; i++)
                 {
+                    String week = "";
+                    if (i == 0)
+                        week = "一";
+                    else if(i == 1)
+                        week = "二";
+                    else if (i == 2)
+                        week = "三";
+                    else if (i == 3)
+                        week = "四";
+                    else if (i == 4)
+                        week = "五";
+                    else if (i == 5)
+                        week = "六";
+                    else if (i == 6)
+                        week = "日";
                     GroupBox groupBoy = (GroupBox)panScheduling.Controls[i];//周几的面板
-                    for (int period = 0; period < 3; period++)//循环上午、下午、晚上
+                    for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
                     {
                         TableLayoutPanel tlp = (TableLayoutPanel)groupBoy.Controls[period];
                         if (tlp.Enabled)
@@ -420,8 +448,8 @@ namespace Xr.RtManager.Pages.cms
                             for (int r = 1; r < tlp.RowCount; r++)//行
                             {
                                 WorkingDayEntity wordingDay = new WorkingDayEntity();
-                                wordingDay.week = i + 1 + ""; //周几
-                                wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上
+                                wordingDay.week = week; //周几
+                                wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上 3：全天
                                 if (cbIsUse.CheckState == CheckState.Checked)
                                     wordingDay.isUse = "0";
                                 else
@@ -578,8 +606,9 @@ namespace Xr.RtManager.Pages.cms
             CheckState morning = cbMorning.CheckState;
             CheckState afternoon = cbAfternoon.CheckState;
             CheckState night = cbNight.CheckState;
+            CheckState allDay = cbAllAay.CheckState;
             if (morning != CheckState.Checked && afternoon != CheckState.Checked
-                && night != CheckState.Checked)
+                && night != CheckState.Checked && allDay != CheckState.Checked)
             {
                 return;
             }
@@ -591,6 +620,7 @@ namespace Xr.RtManager.Pages.cms
             int rowMorningNum = 0;
             int rowAfternoonNum = 0;
             int rowNightNum = 0;
+            int rowAllDayNum = 0;
 
             #region 计算分段数量
             //计算早上的分段数量
@@ -694,6 +724,8 @@ namespace Xr.RtManager.Pages.cms
                 DateTime d2 = new DateTime();
                 if (endArr[0].Equals("24"))
                     d2 = new DateTime(2004, 1, 2, 00, int.Parse(endArr[1]), 00);
+                if (int.Parse(endArr[0]) < int.Parse(startArr[0]))
+                    d2 = new DateTime(2004, 1, 2, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
                 else
                     d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
                 TimeSpan d3 = d2.Subtract(d1);
@@ -709,6 +741,48 @@ namespace Xr.RtManager.Pages.cms
                     return;
                 }
                 rowNightNum = minute / int.Parse(defaultVisit.nSubsection);
+            }
+
+            //计算全天的分段数量
+            if (allDay == CheckState.Checked)
+            {
+                if (defaultVisit.allStart.Trim().Length == 0 || defaultVisit.allEnd.Trim().Length == 0
+                    || defaultVisit.allSubsection.Trim().Length == 0)
+                {
+                    MessageBoxUtils.Hint("全天的设置不能为空");
+                    return;
+                }
+                String[] startArr = defaultVisit.allStart.Split(new char[] { ':', '：' });
+                String[] endArr = defaultVisit.allEnd.Split(new char[] { ':', '：' });
+                if (startArr.Length != 2)
+                {
+                    MessageBoxUtils.Hint("全天的开始时间设置有误");
+                    return;
+                }
+                if (endArr.Length != 2)
+                {
+                    MessageBoxUtils.Hint("全天的结束时间设置有误");
+                    return;
+                }
+                DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
+                DateTime d2 = new DateTime();
+                if (endArr[0].Equals("24"))
+                    d2 = new DateTime(2004, 1, 2, 00, int.Parse(endArr[1]), 00);
+                else
+                    d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
+                TimeSpan d3 = d2.Subtract(d1);
+                int minute = d3.Hours * 60 + d3.Minutes;
+                if (minute <= 0)
+                {
+                    MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间");
+                    return;
+                }
+                if (minute < int.Parse(defaultVisit.nSubsection))
+                {
+                    MessageBoxUtils.Hint("全天分段时间大于总时间");
+                    return;
+                }
+                rowAllDayNum = minute / int.Parse(defaultVisit.allSubsection);
             }
             #endregion
 
@@ -750,9 +824,9 @@ namespace Xr.RtManager.Pages.cms
                     default: break;
                 }
 
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    //j=0:上午 j=1:下午 j=2:晚上
+                    //j=0:上午 j=1:下午 j=2:晚上 j=3:全天 
                     TableLayoutPanel tlpMorning = new TableLayoutPanel();
                     int row = 0;//行数(包括标题)
                     DateTime dt1 = new DateTime();//开始时间
@@ -793,7 +867,19 @@ namespace Xr.RtManager.Pages.cms
                             tlpMorning.Enabled = false;
                         }
                     }
-                    
+                    else if (j == 3)
+                    {
+                        if (rowAllDayNum > 3) row = rowAllDayNum + 1;
+                        else row = 4;
+                        dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.allStart + ":00");
+                        dt2 = dt1.AddMinutes(int.Parse(defaultVisit.allSubsection));
+                        timeInterval = "全天";
+                        if (allDay != CheckState.Checked)
+                        {
+                            tlpMorning.Enabled = false;
+                        }
+                    }
+
                     tlpMorning.ColumnCount = 7;
                     tlpMorning.RowCount = row;
 
@@ -881,15 +967,20 @@ namespace Xr.RtManager.Pages.cms
                         emergency = defaultVisit.nEmergency;
                         checkState = CheckState.Checked;
                     }
+                    if (j == 3 && allDay == CheckState.Checked)
+                    {
+                        scene = defaultVisit.allScene;
+                        open = defaultVisit.allOpen;
+                        room = defaultVisit.allRoom;
+                        emergency = defaultVisit.allEmergency;
+                        checkState = CheckState.Checked;
+                    }
                     for (int r = 1; r < row; r++)
                     {
                         if (j == 0 && morning == CheckState.Checked)
                         {
                             start = dt1.ToString().Substring(11, 5);
-                            if (dt2.ToString().Substring(11, 2).Equals("00"))
-                                end = "24" + dt2.ToString().Substring(13, 3);
-                            else
-                                end = dt2.ToString().Substring(11, 5);
+                            end = dt2.ToString().Substring(11, 5);
                             dt1 = dt2;
                             dt2 = dt1.AddMinutes(int.Parse(defaultVisit.mSubsection));
                             if (r > rowMorningNum)
@@ -906,10 +997,7 @@ namespace Xr.RtManager.Pages.cms
                         if (j == 1 && afternoon == CheckState.Checked)
                         {
                             start = dt1.ToString().Substring(11, 5);
-                            if (dt2.ToString().Substring(11, 2).Equals("00"))
-                                end = "24" + dt2.ToString().Substring(13, 3);
-                            else
-                                end = dt2.ToString().Substring(11, 5);
+                            end = dt2.ToString().Substring(11, 5);
                             dt1 = dt2;
                             dt2 = dt1.AddMinutes(int.Parse(defaultVisit.aSubsection));
                             if (r > rowAfternoonNum)
@@ -926,13 +1014,27 @@ namespace Xr.RtManager.Pages.cms
                         if (j == 2 && night == CheckState.Checked)
                         {
                             start = dt1.ToString().Substring(11, 5);
-                            if (dt2.ToString().Substring(11, 2).Equals("00"))
-                                end = "24" + dt2.ToString().Substring(13, 3);
-                            else
-                                end = dt2.ToString().Substring(11, 5);
+                            end = dt2.ToString().Substring(11, 5);
                             dt1 = dt2;
                             dt2 = dt1.AddMinutes(int.Parse(defaultVisit.nSubsection));
                             if (r > rowNightNum)
+                            {
+                                start = "";
+                                end = "";
+                                scene = "";
+                                open = "";
+                                room = "";
+                                emergency = "";
+                                teEnabled = false;
+                            }
+                        }
+                        if (j == 3 && allDay == CheckState.Checked)
+                        {
+                            start = dt1.ToString().Substring(11, 5);
+                            end = dt2.ToString().Substring(11, 5);
+                            dt1 = dt2;
+                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.allSubsection));
+                            if (r > rowAllDayNum)
                             {
                                 start = "";
                                 end = "";
@@ -1100,39 +1202,47 @@ namespace Xr.RtManager.Pages.cms
                 groupBox.Width = 415;
                 groupBox.Location = new System.Drawing.Point(0, gbY);
                 groupBox.AutoSize = true;
+                String week = "";
                 switch (i)
                 {
                     case 1:
                         groupBox.Text = "周一";
+                        week = "一";
                         break;
                     case 2:
                         groupBox.Text = "周二";
+                        week = "二";
                         break;
                     case 3:
                         groupBox.Text = "周三";
+                        week = "三";
                         break;
                     case 4:
                         groupBox.Text = "周四";
+                        week = "四";
                         break;
                     case 5:
                         groupBox.Text = "周五";
+                        week = "五";
                         break;
                     case 6:
                         groupBox.Text = "周六";
+                        week = "六";
                         break;
                     case 7:
                         groupBox.Text = "周日";
+                        week = "日";
                         break;
                     default: break;
                 }
 
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     //当前TableLayoutPanel的数量
-                    List<WorkingDayEntity> wdwpList = getWorkingDayData(workingDayList, i.ToString(), j.ToString());
+                    List<WorkingDayEntity> wdwpList = getWorkingDayData(workingDayList, week, j.ToString());
                     //多少行数据
                     int rowNum = wdwpList.Count;
-                    //j=0:上午 j=1:下午 j=2:晚上
+                    //j=0:上午 j=1:下午 j=2:晚上 j=3:全天
                     TableLayoutPanel tlpMorning = new TableLayoutPanel();
                     if (rowNum == 0) tlpMorning.Enabled = false;
                     int row = 0;//行数(包括标题)
@@ -1164,6 +1274,10 @@ namespace Xr.RtManager.Pages.cms
                     else if (j == 2)
                     {
                         timeInterval = "晚上";
+                    }
+                    else if (j == 3)
+                    {
+                        timeInterval = "全天";
                     }
 
                     tlpMorning.ColumnCount = 7;

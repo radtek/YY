@@ -31,34 +31,40 @@ namespace Xr.RtCall.pages
             _context = SynchronizationContext.Current;
             RTCallfrm = this;
             #endregion 
-            PatientList();
+           // PatientList();
         }
         #region 患者列表
         public void PatientList()
         {
             try
             {
-                string Url = ConfigurationManager.AppSettings["ServerUrl"];
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("hospital.id", "12");
-                string b = "";
+                prament.Add("deptId", "12");
+                prament.Add("doctorId", "12");
+                prament.Add("workDate", "12");
+                prament.Add("period", "12");
+                if (checkEdit1.Checked)
+                {
+                    prament.Add("status", "0");//候诊中
+                }
+                else
+                {
+                    prament.Add("status", "1");//完成
+                }
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("cms/holiday/findAll", prament,Method.POST,
                  result =>
                 {
                     switch (result.ResponseStatus)
                     {
-                        case ResponseStatus.None:
-                            break;
                         case ResponseStatus.Completed:
                             if (result.StatusCode == HttpStatusCode.OK)
                             {
-                                var data = result.Data;
-                                b = string.Join(",", data.ToArray());
-                                JObject objT = JObject.Parse(b);
+                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
                                     List<HolidayInfoEntity> a = objT["result"].ToObject<List<HolidayInfoEntity>>();
                                     _context.Send((s) => this.gc_Pateion.DataSource = a,null);
+                                    _context.Send((s) => label1.Text=a.Count+"人", null);
                                 }
                                 else
                                 {
@@ -66,54 +72,8 @@ namespace Xr.RtCall.pages
                                 }
                             }
                             break;
-                        case ResponseStatus.Error:
-                            break;
-                        case ResponseStatus.TimedOut:
-                            break;
-                        case ResponseStatus.Aborted:
-                            break;
                     }
                 });
-                #region
-                // prament.Add("deptId", "");//科室主键
-                //prament.Add("doctorId", "");//医生主键
-                //prament.Add("workDate", "");//就诊日期
-                //prament.Add("period", "");//时段，0 上午，1下午，2晚上
-                //prament.Add("status", "");//状态：0预约、1候诊中、2已就诊、null全部
-                //string str = "";
-                //var client = new RestSharpClient(Url+"cms/holiday/findAll");
-                //var Params = "";
-                //if (prament.Count != 0)
-                //{
-                //    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                //}
-                //client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
-                //{
-                //    switch (result.ResponseStatus)
-                //    {
-                //        case ResponseStatus.None:
-                //            break;
-                //        case ResponseStatus.Completed:
-                //            if (result.StatusCode == HttpStatusCode.OK)
-                //            {
-                //                var data = result.Data;//返回数据
-                //                str = string.Join(",", data.ToArray());
-                //            }
-                //            break;
-                //        case ResponseStatus.Error:
-                //            MessageBox.Show("请求错误");
-                //            break;
-                //        case ResponseStatus.TimedOut:
-                //            MessageBox.Show("请求超时");
-                //            break;
-                //        case ResponseStatus.Aborted:
-                //            MessageBox.Show("请求终止");
-                //            break;
-                //        default:
-                //            break;
-                //    }
-                //});
-                #endregion
             }
             catch (Exception ex)
             {

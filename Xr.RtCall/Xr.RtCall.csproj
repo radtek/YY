@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="Model\AppConfigEntity.cs" />
     <Compile Include="Model\AppContext.cs" />
+    <Compile Include="Model\PatientList.cs" />
     <Compile Include="Model\RestSharpHelper.cs" />
     <Compile Include="pages\HostingForm.cs">
       <SubType>Form</SubType>

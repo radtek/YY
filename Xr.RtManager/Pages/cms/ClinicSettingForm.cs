@@ -166,7 +166,7 @@ namespace Xr.RtManager.Pages.cms
                         return;
                     }
                     clinicInfo = new List<ClinicInfoEntity>();
-                    string a = objT["result"].ToString();//Dept
+                    string a = objT["result"].ToString();
                     ClinicInfoEntity two = Newtonsoft.Json.JsonConvert.DeserializeObject<ClinicInfoEntity>(a);
                     String name = objT["result"]["dept"]["name"].ToString();
                     two.deptname = name;
@@ -358,10 +358,10 @@ namespace Xr.RtManager.Pages.cms
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("保存成功!");
-                    dcClinc.ClearValue();
                     SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
                    // ClinicSettingList(AppContext.Sess, AppContext.Session.hospitalId, AppContext.Session.deptIdion.hospitalId, AppContext.Session.deptId);
                     groupBox3.Enabled = false;
+                    dcClinc.ClearValue();
                 }
                 else
                 {

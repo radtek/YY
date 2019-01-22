@@ -12,6 +12,16 @@ namespace Xr.RtManager
     public class WorkingDayEntity
     {
         /// <summary>
+        /// 科室id
+        /// </summary>
+        public String deptId { get; set; }
+
+        /// <summary>
+        /// 医生id
+        /// </summary>
+        public String doctorId { get; set; }
+
+        /// <summary>
         /// 周几
         /// </summary>
         public String week { get; set; }

@@ -125,25 +125,18 @@ namespace Xr.RtCall
             prament.Add("deptId", "");
             prament.Add("doctorId", "");
             prament.Add("triageId", "");
-            RestSharpHelper.ReturnResult<List<string>>("sch/clinicCall/callNextPerson", prament, Method.POST, result =>
+            RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/callNextPerson", prament, Method.POST, result =>
             {
                 if (result.ResponseStatus==ResponseStatus.Completed)
                 {
                     if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        var data = result.Data;
-                        string b = string.Join(",", data.ToArray());
-                        JObject objT = JObject.Parse(b);
+                        //var data = result.Data;
+                        //string b = string.Join(",", data.ToArray());
+                        JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
-                            //if (isStop == 1)
-                            //{
-                            //    _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
-                            //}
-                            //else
-                            //{
-                            //    _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
-                            //}
+                           
                         }
                         else
                         {
@@ -189,7 +182,7 @@ namespace Xr.RtCall
            
         }
         #endregion 
-        #region 
+        #region 画边框
         private void panelControl3_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics,
@@ -334,9 +327,9 @@ namespace Xr.RtCall
                        case ResponseStatus.Completed:
                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
                            {
-                               var data = result.Data;
-                               string b = string.Join(",", data.ToArray());
-                               JObject objT = JObject.Parse(b);
+                               //var data = result.Data;
+                               //string data = string.Join(",", result.Data.ToArray());
+                               JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                {
                                    if (isStop == 1)

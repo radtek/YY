@@ -288,6 +288,7 @@ namespace Xr.RtManager
             OneLevelMouseOriginally = selectionPanel.BackColor;
             selectionPanel.BackColor = Color.FromArgb(26, 179, 148);
             label.ForeColor = Color.White;
+            toolTip1.SetToolTip(label, label.Text);
         }
 
         /// <summary>
@@ -322,6 +323,7 @@ namespace Xr.RtManager
             OneLevelMouseOriginally = selectionPanel.BackColor;
             selectionPanel.BackColor = Color.FromArgb(26, 179, 148);
             label.ForeColor = Color.White;
+            toolTip1.SetToolTip(label, label.Text);
         }
 
         /// <summary>

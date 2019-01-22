@@ -40,6 +40,11 @@ namespace Xr.RtManager
         public String ignoreHoliday { get; set; }
 
         /// <summary>
+        /// 忽略春节 0：忽略，1：不忽略, 默认0
+        /// </summary>
+        public String ignoreYear { get; set; }
+
+        /// <summary>
         /// 排序号
         /// </summary>
         [Required]

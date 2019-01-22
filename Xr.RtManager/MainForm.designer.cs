@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tmHeartbeat = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
+            this.tmHeartbeat = new System.Windows.Forms.Timer();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -42,10 +41,10 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panMenuBar = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx3 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx2 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panMenuBar = new Xr.Common.Controls.PanelEx();
+            this.panelEx1 = new Xr.Common.Controls.PanelEx();
+            this.panelEx3 = new Xr.Common.Controls.PanelEx();
+            this.panelEx2 = new Xr.Common.Controls.PanelEx();
             this.label3 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,6 +54,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
             this.panelEnhanced1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.panel5.SuspendLayout();
@@ -369,6 +369,7 @@
         private Xr.Common.Controls.PanelEx panelEx3;
         private Xr.Common.Controls.PanelEx panelEx2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolTip toolTip1;
 
     }
 }

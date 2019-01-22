@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -38,7 +37,7 @@
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gc_Pateion = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.复诊预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.延后ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gv_Pateion = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -135,6 +134,7 @@
             // 
             // checkEdit1
             // 
+            this.checkEdit1.EditValue = true;
             this.checkEdit1.Location = new System.Drawing.Point(15, 9);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -143,7 +143,6 @@
             this.checkEdit1.Properties.RadioGroupIndex = 1;
             this.checkEdit1.Size = new System.Drawing.Size(75, 25);
             this.checkEdit1.TabIndex = 5;
-            this.checkEdit1.TabStop = false;
             // 
             // checkEdit2
             // 

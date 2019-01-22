@@ -224,6 +224,7 @@
             // 
             // textEdit1
             // 
+            this.dcClinc.SetDataMember(this.textEdit1, "id");
             this.textEdit1.Location = new System.Drawing.Point(809, 26);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.AutoHeight = false;
@@ -233,6 +234,7 @@
             // 
             // teName
             // 
+            this.dcClinc.SetDataMember(this.teName, "name");
             this.teName.Location = new System.Drawing.Point(84, 30);
             this.teName.Name = "teName";
             this.teName.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -243,6 +245,7 @@
             // 
             // teID
             // 
+            this.dcClinc.SetDataMember(this.teID, "code");
             this.teID.Location = new System.Drawing.Point(84, 73);
             this.teID.Name = "teID";
             this.teID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -253,6 +256,7 @@
             // 
             // teType
             // 
+            this.dcClinc.SetDataMember(this.teType, "prefix");
             this.teType.Location = new System.Drawing.Point(460, 30);
             this.teType.Name = "teType";
             this.teType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -263,6 +267,7 @@
             // 
             // radioGroup2
             // 
+            this.dcClinc.SetDataMember(this.radioGroup2, "isUse");
             this.radioGroup2.EditValue = "1";
             this.radioGroup2.Location = new System.Drawing.Point(460, 69);
             this.radioGroup2.Name = "radioGroup2";

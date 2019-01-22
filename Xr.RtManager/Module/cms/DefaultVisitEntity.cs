@@ -27,6 +27,11 @@ namespace Xr.RtManager
         public String defaultVisitTimeNight { get; set; }
 
         /// <summary>
+        /// 全天开始到结束(8:00-18:00)
+        /// </summary>
+        public String defaultVisitTimeAllDay { get; set; }
+
+        /// <summary>
         /// 分段时间
         /// </summary>
         public String segmentalDuration { get; set; }
@@ -140,5 +145,40 @@ namespace Xr.RtManager
         /// 晚上应急号源
         /// </summary>
         public String nEmergency { get; set; }
+
+        /// <summary>
+        /// 全天开始时间
+        /// </summary>
+        public String allStart { get; set; }
+
+        /// <summary>
+        /// 全天结束时间
+        /// </summary>
+        public String allEnd { get; set; }
+
+        /// <summary>
+        /// 全天分段时间
+        /// </summary>
+        public String allSubsection { get; set; }
+
+        /// <summary>
+        /// 全天现场号源
+        /// </summary>
+        public String allScene { get; set; }
+
+        /// <summary>
+        /// 全天公开号源
+        /// </summary>
+        public String allOpen { get; set; }
+
+        /// <summary>
+        /// 全天诊间号源
+        /// </summary>
+        public String allRoom { get; set; }
+
+        /// <summary>
+        /// 全天应急号源
+        /// </summary>
+        public String allEmergency { get; set; }
     }
 }

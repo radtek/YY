@@ -95,7 +95,73 @@ namespace Xr.Common.Controls
                 //itemPanel.Height = MenuItemHeight + textHeight * row;                
             }
         }
-
+        #region 更改上面的添加List<string>类型的数据
+        private List<string> dataSources { get; set; }
+        public void setDataSources(List<string> menuList)
+        {
+            labMeasure.Font = font;
+            dataSources = menuList;
+            //if (isSort)
+            //{
+            //    //排序菜单
+            //    menuList = menuList.OrderBy(x => x.sort).ToList();
+            //}
+            Graphics graphics = CreateGraphics();
+            panelEx1.Controls.Clear();
+            //循环添加菜单
+            foreach (string item in menuList)
+            {
+                PanelEx itemPanel = new PanelEx();
+                itemPanel.Controls.Clear();
+                itemPanel.BorderColor = borderColor;
+                itemPanel.BorderStyleTop = ButtonBorderStyle.None;
+                itemPanel.BorderStyleBottom = ButtonBorderStyle.None;
+                itemPanel.BorderStyleLeft = ButtonBorderStyle.None;
+                itemPanel.BackColor = Color.Transparent;
+                itemPanel.Height = MenuItemHeight;
+                itemPanel.Dock = DockStyle.Top;
+                itemPanel.Padding = new Padding(10, 6, 10, 1);
+                Label label = new Label();
+                label.BackColor = Color.Transparent;
+                label.Font = font;
+                //label.Name = item.value;
+                //label.Tag = item.tag;
+                label.Dock = DockStyle.Fill;
+                //label.AutoSize = false;
+                label.Text = item.ToString();
+                label.Click += new EventHandler(MenuClicked);
+                label.MouseEnter += new EventHandler(TwoLevelMouseEnter);
+                label.MouseLeave += new EventHandler(TwoLevelMouseLeave);
+                itemPanel.Controls.Add(label);
+                panelEx1.Controls.Add(itemPanel);
+                panelEx1.BringToFront();
+                //String name = ""; //重新组织的字符串
+                //float currentLineWidth = 0f; //当前行文字宽度
+                //float rowWidht = this.Width - 20; //行宽度，不能取label的，不知道什么原因，取label比实际的小
+                //int row = 0; //多加的行数
+                //int textHeight = 0; //字的高度
+                //labMeasure.Text = item.name;
+                //for (int i = 0; i < item.name.Length; i++)
+                //{
+                //    labMeasure.Text = item.name.Substring(i, 1);
+                //    textHeight = (int)labMeasure.Height;
+                //    currentLineWidth += labMeasure.Width-9; //label左右内边距加起来为9
+                //    if (currentLineWidth+9 < rowWidht || currentLineWidth+9 == rowWidht)//比较要加上边距
+                //    {
+                //        name += item.name.Substring(i, 1);
+                //    }
+                //    else
+                //    {
+                //        name += "\r\n" + item.name.Substring(i, 1);
+                //        currentLineWidth = 0f;
+                //        row += 1; 
+                //    }
+                //}
+                //label.Text = name;
+                //itemPanel.Height = MenuItemHeight + textHeight * row;                
+            }
+        }
+        #endregion 
         /// <summary>
         /// 菜单点击事件
         /// </summary>
