@@ -10,6 +10,7 @@ using System.Threading;
 using Xr.Http.RestSharp;
 using RestSharp;
 using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace Xr.RtCall.pages
 {
@@ -37,43 +38,44 @@ namespace Xr.RtCall.pages
                 prament.Add("deptId", "");//科室主键
                 prament.Add("doctorId", "");//医生主键
                 prament.Add("type", "");//类型：0公开预约号源、1诊间预约号源
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/scheduPlan/findByDeptAndDoctor");
-                var Params = "";
-                if (prament.Count != 0)
-                {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
-                {
-                    switch (result.ResponseStatus)
-                    {
-                        case ResponseStatus.None:
-                            break;
-                        case ResponseStatus.Completed:
-                            if (result.StatusCode == HttpStatusCode.OK)
-                            {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                _context.Send((s) =>
-                                    MessageBox.Show("剩余号源数")
-                                    //this..DataSource = str
-                                , null);
-                            }
-                            break;
-                        case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
-                            break;
-                        case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
-                            break;
-                        case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
-                            break;
-                    }
-                });
+                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
+               result =>
+               {
+                   switch (result.ResponseStatus)
+                   {
+                       case ResponseStatus.None:
+                           break;
+                       case ResponseStatus.Completed:
+                           if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                           {
+                               var data = result.Data;
+                               string b = string.Join(",", data.ToArray());
+                               JObject objT = JObject.Parse(b);
+                               if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                               {
+                                   //if (isStop == 1)
+                                   //{
+                                   //    _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                                   //}
+                                   //else
+                                   //{
+                                   //    _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                                   //}
+                               }
+                               else
+                               {
+                                   MessageBox.Show(objT["message"].ToString());
+                               }
+                           }
+                           break;
+                       case ResponseStatus.Error:
+                           break;
+                       case ResponseStatus.TimedOut:
+                           break;
+                       case ResponseStatus.Aborted:
+                           break;
+                   }
+               });
             }
             catch (Exception ex)
             {
@@ -90,40 +92,41 @@ namespace Xr.RtCall.pages
                 prament.Add("doctorId", "");//医生主键
                 prament.Add("workDate", "");//排班日期
                 prament.Add("type", "");//类型：0公开预约号源、1诊间预约号源
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/scheduPlan/findTimeNum");
-                var Params = "";
-                if (prament.Count != 0)
-                {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
+                result =>
                 {
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.None:
                             break;
                         case ResponseStatus.Completed:
-                            if (result.StatusCode == HttpStatusCode.OK)
+                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
                             {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                _context.Send((s) =>
-                                    MessageBox.Show("剩余号源数")
-                                    //this..DataSource = str
-                                , null);
+                                var data = result.Data;
+                                string b = string.Join(",", data.ToArray());
+                                JObject objT = JObject.Parse(b);
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    //if (isStop == 1)
+                                    //{
+                                    //    _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                                    //}
+                                    //else
+                                    //{
+                                    //    _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                                    //}
+                                }
+                                else
+                                {
+                                    MessageBox.Show(objT["message"].ToString());
+                                }
                             }
                             break;
                         case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
                             break;
                         case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
                             break;
                         case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
                             break;
                     }
                 });
@@ -177,40 +180,48 @@ namespace Xr.RtCall.pages
                 prament.Add("isYwzz", "");//院外转诊：0是、1否
                 prament.Add("isCyfz", "");//出院复诊：0是、1否
                 prament.Add("registerWay", "");//预约途径：0分诊台、1诊间、2自助机、3公众号、4市平台
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/register/confirmBooking");
-                var Params = "";
-                if (prament.Count != 0)
-                {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                //string str = "";
+                //var client = new RestSharpClient("/yyfz/api/register/confirmBooking");
+                //var Params = "";
+                //if (prament.Count != 0)
+                //{
+                //    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                //}
+                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
+                result =>
                 {
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.None:
                             break;
                         case ResponseStatus.Completed:
-                            if (result.StatusCode == HttpStatusCode.OK)
+                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
                             {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                _context.Send((s) =>
-                                    MessageBox.Show("预约成功")
-                                    //this..DataSource = str
-                                , null);
+                                var data = result.Data;
+                                string b = string.Join(",", data.ToArray());
+                                JObject objT = JObject.Parse(b);
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    //if (isStop == 1)
+                                    //{
+                                    //    _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                                    //}
+                                    //else
+                                    //{
+                                    //    _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                                    //}
+                                }
+                                else
+                                {
+                                    MessageBox.Show(objT["message"].ToString());
+                                }
                             }
                             break;
                         case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
                             break;
                         case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
                             break;
                         case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
                             break;
                     }
                 });

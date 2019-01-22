@@ -15,6 +15,7 @@ using Xr.RtCall.pages;
 using Xr.Http.RestSharp;
 using RestSharp;
 using Xr.RtCall.Model;
+using Newtonsoft.Json.Linq;
 
 namespace Xr.RtCall
 {
@@ -119,6 +120,38 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void skinButNext_Click(object sender, EventArgs e)
         {
+            Dictionary<string, string> prament = new Dictionary<string, string>();
+            prament.Add("hospitalId", "");
+            prament.Add("deptId", "");
+            prament.Add("doctorId", "");
+            prament.Add("triageId", "");
+            RestSharpHelper.ReturnResult<List<string>>("sch/clinicCall/callNextPerson", prament, Method.POST, result =>
+            {
+                if (result.ResponseStatus==ResponseStatus.Completed)
+                {
+                    if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var data = result.Data;
+                        string b = string.Join(",", data.ToArray());
+                        JObject objT = JObject.Parse(b);
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            //if (isStop == 1)
+                            //{
+                            //    _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                            //}
+                            //else
+                            //{
+                            //    _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                            //}
+                        }
+                        else
+                        {
+                            MessageBox.Show(objT["message"].ToString());
+                        }
+                    }
+                }
+            });
             RtCallMessageFrm rcf = new RtCallMessageFrm();
             HostingForm f = new HostingForm();
             f.Height = rcf.Height + 30;
@@ -291,51 +324,91 @@ namespace Xr.RtCall
                     prament.Add("isStop", "0");//临时停诊 0：开诊，1：停诊
                     isStop = 0;
                 }
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/sitting/openStop");
-                var Params = "";
-                if (prament.Count != 0)
-                {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
-                {
-                    switch (result.ResponseStatus)
-                    {
-                        case ResponseStatus.None:
-                            break;
-                        case ResponseStatus.Completed:
-                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
-                            {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                string a = "";
-                                if (isStop == 1)
-                                {
-                                    a = "继续开诊";
-                                }
-                                else
-                                {
-                                    a = "临时停诊";
-                                }
-                                _context.Send((s) =>
-                               this.skinbutLook.Text = a
-                                , null);
-                            }
-                            break;
-                        case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
-                            break;
-                        case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
-                            break;
-                        case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
-                            break;
-                    }
-                });
+                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/openStop", prament, Method.POST,
+               result =>
+               {
+                   switch (result.ResponseStatus)
+                   {
+                       case ResponseStatus.None:
+                           break;
+                       case ResponseStatus.Completed:
+                           if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                           {
+                               var data = result.Data;
+                               string b = string.Join(",", data.ToArray());
+                               JObject objT = JObject.Parse(b);
+                               if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                               {
+                                   if (isStop == 1)
+                                   {
+                                       _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                                   }
+                                   else
+                                   {
+                                       _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                                   }
+                               }
+                               else
+                               {
+                                   MessageBox.Show(objT["message"].ToString());
+                               }
+                           }
+                           break;
+                       case ResponseStatus.Error:
+                           break;
+                       case ResponseStatus.TimedOut:
+                           break;
+                       case ResponseStatus.Aborted:
+                           break;
+                   }
+               });
+                #region
+                //string str = "";
+                //var client = new RestSharpClient("/yyfz/api/sitting/openStop");
+                //var Params = "";
+                //if (prament.Count != 0)
+                //{
+                //    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                //}
+                //client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                //{
+                //    switch (result.ResponseStatus)
+                //    {
+                //        case ResponseStatus.None:
+                //            break;
+                //        case ResponseStatus.Completed:
+                //            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                //            {
+                //                var data = result.Data;//返回数据
+                //                str = string.Join(",", data.ToArray());
+                //                string a = "";
+                //                if (isStop == 1)
+                //                {
+                //                    a = "继续开诊";
+                //                }
+                //                else
+                //                {
+                //                    a = "临时停诊";
+                //                }
+                //                _context.Send((s) =>
+                //               this.skinbutLook.Text = a
+                //                , null);
+                //            }
+                //            break;
+                //        case ResponseStatus.Error:
+                //            MessageBox.Show("请求错误");
+                //            break;
+                //        case ResponseStatus.TimedOut:
+                //            MessageBox.Show("请求超时");
+                //            break;
+                //        case ResponseStatus.Aborted:
+                //            MessageBox.Show("请求终止");
+                //            break;
+                //        default:
+                //            break;
+                //    }
+                //});
+                #endregion
             }
             catch (Exception ex)
             {

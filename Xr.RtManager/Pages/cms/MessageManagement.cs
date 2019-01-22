@@ -17,7 +17,12 @@ namespace Xr.RtManager.Pages.cms
         public MessageManagement()
         {
             InitializeComponent();
-            MessageContentTemplateList(AppContext.Session.hospitalId);
+            this.gv_Message.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
+            gv_Message.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
+            gv_Message.OptionsView.EnableAppearanceEvenRow = true;
+            gv_Message.OptionsView.EnableAppearanceOddRow = true;
+            MessageContentTemplateList(1,pageControl1.PageSize);
+            TemplateType();
         }
         #region 测试
         public List<MessageInfoEntity> Date = new List<MessageInfoEntity>();
@@ -29,11 +34,11 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
         /// <param name="hospitalId"></param>
-        public void MessageContentTemplateList(string hospitalId)
+        public void MessageContentTemplateList(int pageNo, int pageSize)
         {
             try
             {
-                String url = AppContext.AppConfig.serverUrl + "cms/messageTemplate/list?hospital.id=" + hospitalId;
+                String url = AppContext.AppConfig.serverUrl + "cms/messageTemplate/list?pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.id=" + AppContext.Session.hospitalId;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -193,7 +198,7 @@ namespace Xr.RtManager.Pages.cms
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         Xr.Common.MessageBoxUtils.Hint("删除成功");
-                        MessageContentTemplateList(AppContext.Session.hospitalId);
+                        MessageContentTemplateList(1, pageControl1.PageSize);
                     }
                     else
                     {
@@ -231,7 +236,7 @@ namespace Xr.RtManager.Pages.cms
                 {
                     MessageBoxUtils.Hint("保存成功!");
                     dcMessage.ClearValue();
-                    MessageContentTemplateList(AppContext.Session.hospitalId);
+                    MessageContentTemplateList(1, pageControl1.PageSize);
                     groupBox1.Enabled = false;
                 }
                 else
@@ -244,7 +249,36 @@ namespace Xr.RtManager.Pages.cms
             }
         }
 #endregion 
-        #region 
+        #region 获取消息内容模板类型
+        List<DictEntity> listentity;
+        public void TemplateType()
+        {
+            try
+            {
+                //查询状态下拉框数据
+                String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=message_template";
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    listentity = new List<DictEntity>();
+                    listentity = objT["result"].ToObject<List<DictEntity>>();
+                    lueType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                    lueType.Properties.DisplayMember = "label";
+                    lueType.Properties.ValueMember = "value";
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        #endregion 
+        #region 窗体Load事件
         private void MessageManagement_Load(object sender, EventArgs e)
         {
             dcMessage.DataType = typeof(MessageInfoEntity);
@@ -255,6 +289,22 @@ namespace Xr.RtManager.Pages.cms
             else
             {
                 messageInfoEntity = new MessageInfoEntity();
+            }
+        }
+        #endregion 
+        #region 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gv_Message_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName=="type")
+            {
+                //var value = from a in listentity where a.value == e.Value.ToString() select a.label;
+               // string ids = string.Join(",", value);
+                e.DisplayText = string.Join(",", from a in listentity where a.value == e.Value.ToString() select a.label);
             }
         }
         #endregion 

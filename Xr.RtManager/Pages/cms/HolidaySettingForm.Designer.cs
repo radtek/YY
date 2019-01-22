@@ -31,12 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.butClose = new Xr.Common.Controls.ButtonControl();
             this.butContronl = new Xr.Common.Controls.ButtonControl();
             this.radioGroup2 = new DevExpress.XtraEditors.RadioGroup();
             this.label5 = new System.Windows.Forms.Label();
-            this.teEndTime = new DevExpress.XtraEditors.TextEdit();
-            this.teStardTime = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tename = new DevExpress.XtraEditors.TextEdit();
@@ -51,18 +52,21 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.dcHodily = new Xr.Common.Controls.DataController(this.components);
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.panel4.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teEndTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tename.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tecode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Holiday)).BeginInit();
@@ -70,7 +74,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -87,13 +90,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dateEdit2);
+            this.groupBox1.Controls.Add(this.dateEdit1);
             this.groupBox1.Controls.Add(this.butClose);
             this.groupBox1.Controls.Add(this.butContronl);
             this.groupBox1.Controls.Add(this.radioGroup2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textEdit1);
-            this.groupBox1.Controls.Add(this.teEndTime);
-            this.groupBox1.Controls.Add(this.teStardTime);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tename);
@@ -109,6 +112,46 @@
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息编辑区";
+            // 
+            // dateEdit2
+            // 
+            this.dcHodily.SetDataMember(this.dateEdit2, "endDate");
+            this.dateEdit2.EditValue = null;
+            this.dateEdit2.Location = new System.Drawing.Point(503, 69);
+            this.dateEdit2.Name = "dateEdit2";
+            this.dateEdit2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEdit2.Properties.Appearance.Options.UseFont = true;
+            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit2.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit2.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dateEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit2.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.dateEdit2.Size = new System.Drawing.Size(300, 26);
+            this.dateEdit2.TabIndex = 109;
+            // 
+            // dateEdit1
+            // 
+            this.dcHodily.SetDataMember(this.dateEdit1, "beginDate");
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(503, 28);
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateEdit1.Properties.Appearance.Options.UseFont = true;
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.dateEdit1.Size = new System.Drawing.Size(300, 26);
+            this.dateEdit1.TabIndex = 108;
             // 
             // butClose
             // 
@@ -132,7 +175,7 @@
             this.butContronl.Name = "butContronl";
             this.butContronl.Size = new System.Drawing.Size(75, 30);
             this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
-            this.butContronl.TabIndex = 116;
+            this.butContronl.TabIndex = 112;
             this.butContronl.Text = "保存";
             this.butContronl.Click += new System.EventHandler(this.butContronl_Click);
             // 
@@ -147,10 +190,10 @@
             this.radioGroup2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioGroup2.Properties.Columns = 2;
             this.radioGroup2.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "是"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "否")});
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "启用"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "禁用")});
             this.radioGroup2.Size = new System.Drawing.Size(299, 30);
-            this.radioGroup2.TabIndex = 115;
+            this.radioGroup2.TabIndex = 110;
             // 
             // label5
             // 
@@ -162,23 +205,15 @@
             this.label5.TabIndex = 114;
             this.label5.Text = "是否启用：";
             // 
-            // teEndTime
+            // textEdit1
             // 
-            this.dcHodily.SetDataMember(this.teEndTime, "endDate");
-            this.teEndTime.Location = new System.Drawing.Point(503, 67);
-            this.teEndTime.Name = "teEndTime";
-            this.teEndTime.Properties.AutoHeight = false;
-            this.teEndTime.Size = new System.Drawing.Size(300, 28);
-            this.teEndTime.TabIndex = 111;
-            // 
-            // teStardTime
-            // 
-            this.dcHodily.SetDataMember(this.teStardTime, "beginDate");
-            this.teStardTime.Location = new System.Drawing.Point(503, 26);
-            this.teStardTime.Name = "teStardTime";
-            this.teStardTime.Properties.AutoHeight = false;
-            this.teStardTime.Size = new System.Drawing.Size(300, 28);
-            this.teStardTime.TabIndex = 110;
+            this.dcHodily.SetDataMember(this.textEdit1, "id");
+            this.textEdit1.Location = new System.Drawing.Point(853, 29);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.AutoHeight = false;
+            this.textEdit1.Size = new System.Drawing.Size(14, 28);
+            this.textEdit1.TabIndex = 111;
+            this.textEdit1.Visible = false;
             // 
             // label6
             // 
@@ -205,6 +240,8 @@
             this.dcHodily.SetDataMember(this.tename, "name");
             this.tename.Location = new System.Drawing.Point(111, 26);
             this.tename.Name = "tename";
+            this.tename.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tename.Properties.Appearance.Options.UseFont = true;
             this.tename.Properties.AutoHeight = false;
             this.tename.Size = new System.Drawing.Size(300, 28);
             this.tename.TabIndex = 106;
@@ -214,6 +251,8 @@
             this.dcHodily.SetDataMember(this.tecode, "year");
             this.tecode.Location = new System.Drawing.Point(111, 69);
             this.tecode.Name = "tecode";
+            this.tecode.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tecode.Properties.Appearance.Options.UseFont = true;
             this.tecode.Properties.AutoHeight = false;
             this.tecode.Size = new System.Drawing.Size(300, 28);
             this.tecode.TabIndex = 107;
@@ -281,12 +320,14 @@
             this.gv_Holiday.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_Holiday.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gv_Holiday.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gv_Holiday.ColumnPanelRowHeight = 30;
             this.gv_Holiday.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn5,
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
-            this.gridColumn4});
+            this.gridColumn4,
+            this.gridColumn6});
             this.gv_Holiday.GridControl = this.gc_Holiday;
             this.gv_Holiday.Name = "gv_Holiday";
             this.gv_Holiday.OptionsBehavior.ReadOnly = true;
@@ -297,6 +338,7 @@
             this.gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_Holiday.OptionsView.RowAutoHeight = true;
             this.gv_Holiday.OptionsView.ShowGroupPanel = false;
+            this.gv_Holiday.RowHeight = 25;
             // 
             // gridColumn5
             // 
@@ -314,6 +356,7 @@
             this.gridColumn1.FieldName = "name";
             this.gridColumn1.MinWidth = 25;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -327,6 +370,7 @@
             this.gridColumn2.FieldName = "year";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
@@ -340,6 +384,7 @@
             this.gridColumn3.FieldName = "beginDate";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
@@ -353,8 +398,15 @@
             this.gridColumn4.FieldName = "endDate";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "gridColumn6";
+            this.gridColumn6.FieldName = "isUse";
+            this.gridColumn6.Name = "gridColumn6";
             // 
             // panel1
             // 
@@ -425,16 +477,6 @@
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // textEdit1
-            // 
-            this.dcHodily.SetDataMember(this.textEdit1, "id");
-            this.textEdit1.Location = new System.Drawing.Point(809, 26);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.AutoHeight = false;
-            this.textEdit1.Size = new System.Drawing.Size(14, 28);
-            this.textEdit1.TabIndex = 111;
-            this.textEdit1.Visible = false;
-            // 
             // HolidaySettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -447,9 +489,12 @@
             this.panel4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teEndTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tename.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tecode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Holiday)).EndInit();
@@ -457,7 +502,6 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -483,15 +527,16 @@
         private DevExpress.XtraEditors.TextEdit tecode;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.TextEdit teEndTime;
-        private DevExpress.XtraEditors.TextEdit teStardTime;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private DevExpress.XtraEditors.RadioGroup radioGroup2;
         private System.Windows.Forms.Label label5;
         private Xr.Common.Controls.ButtonControl butClose;
         private Xr.Common.Controls.ButtonControl butContronl;
-        private Xr.Common.Controls.DataController dcHodily;
         private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.DateEdit dateEdit2;
+        private Xr.Common.Controls.DataController dcHodily;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

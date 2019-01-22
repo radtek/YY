@@ -10,6 +10,7 @@ using System.Threading;
 using Xr.Http.RestSharp;
 using RestSharp;
 using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace Xr.RtCall.pages
 {
@@ -34,39 +35,48 @@ namespace Xr.RtCall.pages
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("triageId", triageId);
                 prament.Add("Type", type);
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/call/callNextPerson");
-                var Params = "";
-                if (prament.Count != 0)
-                {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
+                //string str = "";
+                //var client = new RestSharpClient("/api/sch/clinicCall/inPlace");
+                //var Params = "";
+                //if (prament.Count != 0)
+                //{
+                //    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                //}
+                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
+                result =>
                 {
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.None:
                             break;
                         case ResponseStatus.Completed:
-                            if (result.StatusCode == HttpStatusCode.OK)
+                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
                             {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                _context.Send((s) =>
-                                   MessageBox.Show("")
-                                , null);
+                                var data = result.Data;
+                                string b = string.Join(",", data.ToArray());
+                                JObject objT = JObject.Parse(b);
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    //if (isStop == 1)
+                                    //{
+                                    //    _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                                    //}
+                                    //else
+                                    //{
+                                    //    _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                                    //}
+                                }
+                                else
+                                {
+                                    MessageBox.Show(objT["message"].ToString());
+                                }
                             }
                             break;
                         case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
                             break;
                         case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
                             break;
                         case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
                             break;
                     }
                 });

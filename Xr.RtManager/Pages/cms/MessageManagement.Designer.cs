@@ -29,16 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lueType = new DevExpress.XtraEditors.LookUpEdit();
             this.meUpdateDesc = new DevExpress.XtraEditors.MemoEdit();
-            this.teStardTime = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.butClose = new Xr.Common.Controls.ButtonControl();
             this.butContronl = new Xr.Common.Controls.ButtonControl();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gc_Message = new DevExpress.XtraGrid.GridControl();
             this.gv_Message = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,10 +55,13 @@
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.dcMessage = new Xr.Common.Controls.DataController(this.components);
             this.panel4.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Message)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Message)).BeginInit();
             this.panel1.SuspendLayout();
@@ -65,21 +71,18 @@
             // 
             // pageControl1
             // 
-            this.pageControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pageControl1.CurrentPage = 1;
-            this.pageControl1.Location = new System.Drawing.Point(12, 219);
+            this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pageControl1.Location = new System.Drawing.Point(0, 359);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(890, 39);
+            this.pageControl1.Size = new System.Drawing.Size(483, 39);
             this.pageControl1.TabIndex = 50;
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.groupBox1);
-            this.panel4.Controls.Add(this.pageControl1);
-            this.panel4.Controls.Add(this.gc_Message);
+            this.panel4.Controls.Add(this.tableLayoutPanel1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 70);
             this.panel4.Name = "panel4";
@@ -87,42 +90,79 @@
             this.panel4.Size = new System.Drawing.Size(920, 444);
             this.panel4.TabIndex = 67;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelControl1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 20);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(890, 404);
+            this.tableLayoutPanel1.TabIndex = 53;
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lueType);
             this.groupBox1.Controls.Add(this.meUpdateDesc);
-            this.groupBox1.Controls.Add(this.teStardTime);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.butClose);
             this.groupBox1.Controls.Add(this.butContronl);
             this.groupBox1.Controls.Add(this.textEdit1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 256);
+            this.groupBox1.Location = new System.Drawing.Point(492, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(890, 168);
+            this.groupBox1.Size = new System.Drawing.Size(395, 398);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息编辑区";
+            // 
+            // lueType
+            // 
+            this.dcMessage.SetDataMember(this.lueType, "type");
+            this.lueType.Location = new System.Drawing.Point(87, 22);
+            this.lueType.Name = "lueType";
+            this.lueType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueType.Properties.Appearance.Options.UseFont = true;
+            this.lueType.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueType.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.lueType.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueType.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lueType.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueType.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.lueType.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueType.Properties.AppearanceFocused.Options.UseFont = true;
+            this.lueType.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueType.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.lueType.Properties.AutoHeight = false;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.Options.UseFont = true;
+            this.lueType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.lueType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "类型")});
+            this.lueType.Properties.NullText = "";
+            this.lueType.Size = new System.Drawing.Size(272, 29);
+            this.lueType.TabIndex = 122;
             // 
             // meUpdateDesc
             // 
             this.dcMessage.SetDataMember(this.meUpdateDesc, "content");
             this.meUpdateDesc.Location = new System.Drawing.Point(87, 66);
             this.meUpdateDesc.Name = "meUpdateDesc";
-            this.meUpdateDesc.Size = new System.Drawing.Size(300, 77);
+            this.meUpdateDesc.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meUpdateDesc.Properties.Appearance.Options.UseFont = true;
+            this.meUpdateDesc.Size = new System.Drawing.Size(272, 77);
             this.meUpdateDesc.TabIndex = 119;
             this.meUpdateDesc.UseOptimizedRendering = true;
-            // 
-            // teStardTime
-            // 
-            this.dcMessage.SetDataMember(this.teStardTime, "type");
-            this.teStardTime.Location = new System.Drawing.Point(87, 23);
-            this.teStardTime.Name = "teStardTime";
-            this.teStardTime.Properties.AutoHeight = false;
-            this.teStardTime.Size = new System.Drawing.Size(300, 28);
-            this.teStardTime.TabIndex = 118;
             // 
             // label6
             // 
@@ -162,7 +202,7 @@
             this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
-            this.butContronl.Location = new System.Drawing.Point(415, 113);
+            this.butContronl.Location = new System.Drawing.Point(87, 173);
             this.butContronl.Name = "butContronl";
             this.butContronl.Size = new System.Drawing.Size(75, 30);
             this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -180,15 +220,24 @@
             this.textEdit1.TabIndex = 111;
             this.textEdit1.Visible = false;
             // 
+            // panelControl1
+            // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.gc_Message);
+            this.panelControl1.Controls.Add(this.pageControl1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(3, 3);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(483, 398);
+            this.panelControl1.TabIndex = 53;
+            // 
             // gc_Message
             // 
-            this.gc_Message.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gc_Message.Location = new System.Drawing.Point(15, 20);
+            this.gc_Message.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gc_Message.Location = new System.Drawing.Point(0, 0);
             this.gc_Message.MainView = this.gv_Message;
             this.gc_Message.Name = "gc_Message";
-            this.gc_Message.Size = new System.Drawing.Size(890, 193);
+            this.gc_Message.Size = new System.Drawing.Size(483, 359);
             this.gc_Message.TabIndex = 49;
             this.gc_Message.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Message});
@@ -211,6 +260,7 @@
             this.gv_Message.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_Message.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gv_Message.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gv_Message.ColumnPanelRowHeight = 30;
             this.gv_Message.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn5,
             this.gridColumn2,
@@ -226,6 +276,8 @@
             this.gv_Message.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_Message.OptionsView.RowAutoHeight = true;
             this.gv_Message.OptionsView.ShowGroupPanel = false;
+            this.gv_Message.RowHeight = 25;
+            this.gv_Message.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gv_Message_CustomColumnDisplayText);
             // 
             // gridColumn5
             // 
@@ -248,30 +300,32 @@
             // gridColumn3
             // 
             this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn3.Caption = "模本类型";
+            this.gridColumn3.Caption = "模板类型";
             this.gridColumn3.FieldName = "type";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 158;
+            this.gridColumn3.Width = 226;
             // 
             // gridColumn4
             // 
             this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn4.Caption = "模版内容";
             this.gridColumn4.FieldName = "content";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
-            this.gridColumn4.Width = 485;
+            this.gridColumn4.Width = 571;
             // 
             // panel1
             // 
@@ -352,11 +406,14 @@
             this.Size = new System.Drawing.Size(920, 514);
             this.Load += new System.EventHandler(this.MessageManagement_Load);
             this.panel4.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teStardTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_Message)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Message)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -386,9 +443,11 @@
         private Xr.Common.Controls.ButtonControl butContronl;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.MemoEdit meUpdateDesc;
-        private DevExpress.XtraEditors.TextEdit teStardTime;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private Xr.Common.Controls.DataController dcMessage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.LookUpEdit lueType;
     }
 }

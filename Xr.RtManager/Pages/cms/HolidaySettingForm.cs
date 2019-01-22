@@ -17,7 +17,11 @@ namespace Xr.RtManager.Pages.cms
         public HolidaySettingForm()
         {
             InitializeComponent();
-            HolidaySettingList(AppContext.Session.hospitalId);
+            HolidaySettingList(1,pageControl1.PageSize);
+            this.gv_Holiday.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
+            gv_Holiday.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
+            gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
+            gv_Holiday.OptionsView.EnableAppearanceOddRow = true;
         }
         public List<HolidayInfoEntity> Data = new List<HolidayInfoEntity>();
         #region 节假日列表
@@ -26,12 +30,11 @@ namespace Xr.RtManager.Pages.cms
         /// </summary>
         /// <param name="pageNo">页码</param>
         /// <param name="pageSize">页数</param>
-        /// <param name="hospitalId">所属医院</param>
-        public void HolidaySettingList(string hospitalId)
+        public void HolidaySettingList(int pageNo, int pageSize)
         {
             try
             {
-                String url = AppContext.AppConfig.serverUrl + "cms/holiday/list?hospital.id=" + hospitalId;
+                String url = AppContext.AppConfig.serverUrl + "cms/holiday/list?pageNo=" + pageNo + "&pageSize=" + pageSize +"&hospital.id=" + AppContext.Session.hospitalId;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -221,7 +224,7 @@ namespace Xr.RtManager.Pages.cms
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         Xr.Common.MessageBoxUtils.Hint("删除成功");
-                        HolidaySettingList(AppContext.Session.hospitalId);
+                        HolidaySettingList(1, pageControl1.PageSize);
                     }
                     else
                     {
@@ -277,9 +280,9 @@ namespace Xr.RtManager.Pages.cms
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("保存成功!");
-                    HolidaySettingList(AppContext.Session.hospitalId);
                     dcHodily.ClearValue();
                     groupBox1.Enabled = false ;
+                    HolidaySettingList(1, pageControl1.PageSize);
                 }
                 else
                 {
@@ -291,7 +294,7 @@ namespace Xr.RtManager.Pages.cms
             }
         }
         #endregion 
-        #region 
+        #region 窗体Load事件
         public HolidayInfoEntity holidayInfoEntity { get; set; }
         private void HolidaySettingForm_Load(object sender, EventArgs e)
         {
