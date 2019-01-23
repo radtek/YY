@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel2 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.gcDeptInfo = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gc_Patients = new DevExpress.XtraGrid.GridControl();
+            this.gv_Patients = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,6 +53,12 @@
             this.borderPanelButton5 = new Xr.Common.Controls.BorderPanelButton();
             this.groupBorderPanel3 = new Xr.Common.Controls.GroupBorderPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.roomPanelButton1 = new Xr.RtManager.Control.RoomPanelButton();
+            this.roomPanelButton2 = new Xr.RtManager.Control.RoomPanelButton();
+            this.roomPanelButton3 = new Xr.RtManager.Control.RoomPanelButton();
+            this.roomPanelButton4 = new Xr.RtManager.Control.RoomPanelButton();
+            this.roomPanelButton5 = new Xr.RtManager.Control.RoomPanelButton();
+            this.roomPanelButton6 = new Xr.RtManager.Control.RoomPanelButton();
             this.borderPanel2 = new Xr.Common.Controls.BorderPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -68,20 +75,20 @@
             this.deEnd = new DevExpress.XtraEditors.DateEdit();
             this.label3 = new System.Windows.Forms.Label();
             this.lueIsUse = new DevExpress.XtraEditors.LookUpEdit();
-            this.roomPanelButton1 = new Xr.RtManager.Control.RoomPanelButton();
-            this.roomPanelButton2 = new Xr.RtManager.Control.RoomPanelButton();
-            this.roomPanelButton3 = new Xr.RtManager.Control.RoomPanelButton();
-            this.roomPanelButton4 = new Xr.RtManager.Control.RoomPanelButton();
-            this.roomPanelButton5 = new Xr.RtManager.Control.RoomPanelButton();
-            this.roomPanelButton6 = new Xr.RtManager.Control.RoomPanelButton();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.排号前移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.排号后移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.排号作废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.现场预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).BeginInit();
             this.groupBorderPanel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcDeptInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gc_Patients)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel3)).BeginInit();
             this.borderPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -93,6 +100,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel3)).BeginInit();
             this.groupBorderPanel3.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).BeginInit();
             this.borderPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -108,12 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueIsUse.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton6)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -179,7 +187,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.gcDeptInfo, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.gc_Patients, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.borderPanel3, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 20);
@@ -190,37 +198,37 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(606, 603);
             this.tableLayoutPanel2.TabIndex = 177;
             // 
-            // gcDeptInfo
+            // gc_Patients
             // 
-            this.gcDeptInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcDeptInfo.Location = new System.Drawing.Point(3, 43);
-            this.gcDeptInfo.MainView = this.gridView1;
-            this.gcDeptInfo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.gcDeptInfo.Name = "gcDeptInfo";
-            this.gcDeptInfo.Size = new System.Drawing.Size(600, 560);
-            this.gcDeptInfo.TabIndex = 178;
-            this.gcDeptInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gc_Patients.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gc_Patients.Location = new System.Drawing.Point(3, 43);
+            this.gc_Patients.MainView = this.gv_Patients;
+            this.gc_Patients.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.gc_Patients.Name = "gc_Patients";
+            this.gc_Patients.Size = new System.Drawing.Size(600, 560);
+            this.gc_Patients.TabIndex = 178;
+            this.gc_Patients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv_Patients});
             // 
-            // gridView1
+            // gv_Patients
             // 
-            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.OddRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gv_Patients.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gv_Patients.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gv_Patients.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_Patients.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gv_Patients.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gv_Patients.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gv_Patients.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gv_Patients.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gv_Patients.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            this.gv_Patients.Appearance.OddRow.Options.UseBackColor = true;
+            this.gv_Patients.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gv_Patients.Appearance.Row.Options.UseFont = true;
+            this.gv_Patients.Appearance.Row.Options.UseTextOptions = true;
+            this.gv_Patients.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gv_Patients.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gv_Patients.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gv_Patients.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn8,
             this.gridColumn2,
             this.gridColumn1,
@@ -228,17 +236,19 @@
             this.gridColumn4,
             this.gridColumn9,
             this.gridColumn6});
-            this.gridView1.GridControl = this.gcDeptInfo;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.ReadOnly = true;
-            this.gridView1.OptionsCustomization.AllowFilter = false;
-            this.gridView1.OptionsCustomization.AllowSort = false;
-            this.gridView1.OptionsMenu.EnableColumnMenu = false;
-            this.gridView1.OptionsView.AllowHtmlDrawHeaders = true;
-            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
-            this.gridView1.OptionsView.RowAutoHeight = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gv_Patients.GridControl = this.gc_Patients;
+            this.gv_Patients.Name = "gv_Patients";
+            this.gv_Patients.OptionsBehavior.ReadOnly = true;
+            this.gv_Patients.OptionsCustomization.AllowFilter = false;
+            this.gv_Patients.OptionsCustomization.AllowSort = false;
+            this.gv_Patients.OptionsMenu.EnableColumnMenu = false;
+            this.gv_Patients.OptionsView.AllowHtmlDrawHeaders = true;
+            this.gv_Patients.OptionsView.EnableAppearanceEvenRow = true;
+            this.gv_Patients.OptionsView.EnableAppearanceOddRow = true;
+            this.gv_Patients.OptionsView.RowAutoHeight = true;
+            this.gv_Patients.OptionsView.ShowGroupPanel = false;
+            this.gv_Patients.OptionsView.ShowIndicator = false;
+            this.gv_Patients.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gv_patients_MouseDown);
             // 
             // gridColumn8
             // 
@@ -487,6 +497,111 @@
             this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.flowLayoutPanel3.Size = new System.Drawing.Size(373, 565);
             this.flowLayoutPanel3.TabIndex = 174;
+            // 
+            // roomPanelButton1
+            // 
+            this.roomPanelButton1.BorderColor = System.Drawing.Color.Aqua;
+            this.roomPanelButton1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.roomPanelButton1.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
+            this.roomPanelButton1.BtnText = "桂琴";
+            this.roomPanelButton1.Enabled = false;
+            this.roomPanelButton1.FillColor1 = System.Drawing.Color.White;
+            this.roomPanelButton1.FillColor2 = System.Drawing.Color.White;
+            this.roomPanelButton1.Location = new System.Drawing.Point(13, 3);
+            this.roomPanelButton1.Name = "roomPanelButton1";
+            this.roomPanelButton1.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
+            this.roomPanelButton1.RoomText = "A1诊室";
+            this.roomPanelButton1.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.roomPanelButton1.Size = new System.Drawing.Size(160, 110);
+            this.roomPanelButton1.TabIndex = 12;
+            this.roomPanelButton1.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            // 
+            // roomPanelButton2
+            // 
+            this.roomPanelButton2.BorderColor = System.Drawing.Color.Aqua;
+            this.roomPanelButton2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.roomPanelButton2.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
+            this.roomPanelButton2.BtnText = "桂琴";
+            this.roomPanelButton2.FillColor1 = System.Drawing.Color.White;
+            this.roomPanelButton2.FillColor2 = System.Drawing.Color.White;
+            this.roomPanelButton2.Location = new System.Drawing.Point(179, 3);
+            this.roomPanelButton2.Name = "roomPanelButton2";
+            this.roomPanelButton2.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
+            this.roomPanelButton2.RoomText = "A1诊室";
+            this.roomPanelButton2.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.roomPanelButton2.Size = new System.Drawing.Size(160, 110);
+            this.roomPanelButton2.TabIndex = 13;
+            this.roomPanelButton2.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            // 
+            // roomPanelButton3
+            // 
+            this.roomPanelButton3.BorderColor = System.Drawing.Color.Aqua;
+            this.roomPanelButton3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.roomPanelButton3.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
+            this.roomPanelButton3.BtnText = "桂琴";
+            this.roomPanelButton3.Enabled = false;
+            this.roomPanelButton3.FillColor1 = System.Drawing.Color.White;
+            this.roomPanelButton3.FillColor2 = System.Drawing.Color.White;
+            this.roomPanelButton3.Location = new System.Drawing.Point(13, 119);
+            this.roomPanelButton3.Name = "roomPanelButton3";
+            this.roomPanelButton3.Noon = Xr.RtManager.Control.RoomPanelButton.NoonSpan.Afternoon;
+            this.roomPanelButton3.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
+            this.roomPanelButton3.RoomText = "A1诊室";
+            this.roomPanelButton3.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.roomPanelButton3.Size = new System.Drawing.Size(160, 110);
+            this.roomPanelButton3.TabIndex = 14;
+            this.roomPanelButton3.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            // 
+            // roomPanelButton4
+            // 
+            this.roomPanelButton4.BorderColor = System.Drawing.Color.Aqua;
+            this.roomPanelButton4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.roomPanelButton4.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
+            this.roomPanelButton4.BtnText = "桂琴";
+            this.roomPanelButton4.FillColor1 = System.Drawing.Color.White;
+            this.roomPanelButton4.FillColor2 = System.Drawing.Color.White;
+            this.roomPanelButton4.Location = new System.Drawing.Point(179, 119);
+            this.roomPanelButton4.Name = "roomPanelButton4";
+            this.roomPanelButton4.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
+            this.roomPanelButton4.RoomText = "A1诊室";
+            this.roomPanelButton4.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.roomPanelButton4.Size = new System.Drawing.Size(160, 110);
+            this.roomPanelButton4.TabIndex = 15;
+            this.roomPanelButton4.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            // 
+            // roomPanelButton5
+            // 
+            this.roomPanelButton5.BorderColor = System.Drawing.Color.Aqua;
+            this.roomPanelButton5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.roomPanelButton5.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
+            this.roomPanelButton5.BtnText = "桂琴";
+            this.roomPanelButton5.FillColor1 = System.Drawing.Color.White;
+            this.roomPanelButton5.FillColor2 = System.Drawing.Color.White;
+            this.roomPanelButton5.Location = new System.Drawing.Point(13, 235);
+            this.roomPanelButton5.Name = "roomPanelButton5";
+            this.roomPanelButton5.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
+            this.roomPanelButton5.RoomText = "A1诊室";
+            this.roomPanelButton5.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.roomPanelButton5.Size = new System.Drawing.Size(160, 110);
+            this.roomPanelButton5.TabIndex = 16;
+            this.roomPanelButton5.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            // 
+            // roomPanelButton6
+            // 
+            this.roomPanelButton6.BorderColor = System.Drawing.Color.Aqua;
+            this.roomPanelButton6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.roomPanelButton6.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
+            this.roomPanelButton6.BtnText = "桂琴";
+            this.roomPanelButton6.FillColor1 = System.Drawing.Color.White;
+            this.roomPanelButton6.FillColor2 = System.Drawing.Color.White;
+            this.roomPanelButton6.Location = new System.Drawing.Point(179, 235);
+            this.roomPanelButton6.Name = "roomPanelButton6";
+            this.roomPanelButton6.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
+            this.roomPanelButton6.RoomText = "A1诊室";
+            this.roomPanelButton6.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.roomPanelButton6.Size = new System.Drawing.Size(160, 110);
+            this.roomPanelButton6.TabIndex = 17;
+            this.roomPanelButton6.TipFont = new System.Drawing.Font("微软雅黑", 12F);
             // 
             // borderPanel2
             // 
@@ -748,10 +863,10 @@
             this.lueIsUse.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIsUse.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueIsUse.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lueIsUse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lueIsUse.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -759,110 +874,46 @@
             this.lueIsUse.Size = new System.Drawing.Size(124, 30);
             this.lueIsUse.TabIndex = 177;
             // 
-            // roomPanelButton1
+            // contextMenuStrip1
             // 
-            this.roomPanelButton1.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton1.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton1.BtnText = "桂琴";
-            this.roomPanelButton1.Enabled = false;
-            this.roomPanelButton1.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton1.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton1.Location = new System.Drawing.Point(13, 3);
-            this.roomPanelButton1.Name = "roomPanelButton1";
-            this.roomPanelButton1.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton1.RoomText = "A1诊室";
-            this.roomPanelButton1.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton1.Size = new System.Drawing.Size(160, 110);
-            this.roomPanelButton1.TabIndex = 12;
-            this.roomPanelButton1.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.测试ToolStripMenuItem,
+            this.排号前移ToolStripMenuItem,
+            this.排号后移ToolStripMenuItem,
+            this.排号作废ToolStripMenuItem,
+            this.现场预约ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 114);
             // 
-            // roomPanelButton2
+            // 测试ToolStripMenuItem
             // 
-            this.roomPanelButton2.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton2.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton2.BtnText = "桂琴";
-            this.roomPanelButton2.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton2.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton2.Location = new System.Drawing.Point(179, 3);
-            this.roomPanelButton2.Name = "roomPanelButton2";
-            this.roomPanelButton2.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton2.RoomText = "A1诊室";
-            this.roomPanelButton2.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton2.Size = new System.Drawing.Size(160, 110);
-            this.roomPanelButton2.TabIndex = 13;
-            this.roomPanelButton2.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.测试ToolStripMenuItem.Text = "加急";
             // 
-            // roomPanelButton3
+            // 排号前移ToolStripMenuItem
             // 
-            this.roomPanelButton3.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton3.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton3.BtnText = "桂琴";
-            this.roomPanelButton3.Enabled = false;
-            this.roomPanelButton3.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton3.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton3.Location = new System.Drawing.Point(13, 119);
-            this.roomPanelButton3.Name = "roomPanelButton3";
-            this.roomPanelButton3.Noon = Xr.RtManager.Control.RoomPanelButton.NoonSpan.Afternoon;
-            this.roomPanelButton3.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton3.RoomText = "A1诊室";
-            this.roomPanelButton3.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton3.Size = new System.Drawing.Size(160, 110);
-            this.roomPanelButton3.TabIndex = 14;
-            this.roomPanelButton3.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.排号前移ToolStripMenuItem.Name = "排号前移ToolStripMenuItem";
+            this.排号前移ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.排号前移ToolStripMenuItem.Text = "排号前移";
             // 
-            // roomPanelButton4
+            // 排号后移ToolStripMenuItem
             // 
-            this.roomPanelButton4.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton4.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton4.BtnText = "桂琴";
-            this.roomPanelButton4.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton4.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton4.Location = new System.Drawing.Point(179, 119);
-            this.roomPanelButton4.Name = "roomPanelButton4";
-            this.roomPanelButton4.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton4.RoomText = "A1诊室";
-            this.roomPanelButton4.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton4.Size = new System.Drawing.Size(160, 110);
-            this.roomPanelButton4.TabIndex = 15;
-            this.roomPanelButton4.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.排号后移ToolStripMenuItem.Name = "排号后移ToolStripMenuItem";
+            this.排号后移ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.排号后移ToolStripMenuItem.Text = "排号后移";
             // 
-            // roomPanelButton5
+            // 排号作废ToolStripMenuItem
             // 
-            this.roomPanelButton5.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton5.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton5.BtnText = "桂琴";
-            this.roomPanelButton5.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton5.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton5.Location = new System.Drawing.Point(13, 235);
-            this.roomPanelButton5.Name = "roomPanelButton5";
-            this.roomPanelButton5.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton5.RoomText = "A1诊室";
-            this.roomPanelButton5.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton5.Size = new System.Drawing.Size(160, 110);
-            this.roomPanelButton5.TabIndex = 16;
-            this.roomPanelButton5.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.排号作废ToolStripMenuItem.Name = "排号作废ToolStripMenuItem";
+            this.排号作废ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.排号作废ToolStripMenuItem.Text = "排号作废";
             // 
-            // roomPanelButton6
+            // 现场预约ToolStripMenuItem
             // 
-            this.roomPanelButton6.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton6.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton6.BtnText = "桂琴";
-            this.roomPanelButton6.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton6.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton6.Location = new System.Drawing.Point(179, 235);
-            this.roomPanelButton6.Name = "roomPanelButton6";
-            this.roomPanelButton6.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton6.RoomText = "A1诊室";
-            this.roomPanelButton6.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton6.Size = new System.Drawing.Size(160, 110);
-            this.roomPanelButton6.TabIndex = 17;
-            this.roomPanelButton6.TipFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.现场预约ToolStripMenuItem.Name = "现场预约ToolStripMenuItem";
+            this.现场预约ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.现场预约ToolStripMenuItem.Text = "现场预约";
             // 
             // WaitingTreatmentForm
             // 
@@ -879,8 +930,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).EndInit();
             this.groupBorderPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcDeptInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gc_Patients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel3)).EndInit();
             this.borderPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -892,6 +943,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel3)).EndInit();
             this.groupBorderPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).EndInit();
             this.borderPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -908,12 +965,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueIsUse.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton6)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -950,8 +1002,8 @@
         private Xr.Common.Controls.BorderPanelButton borderPanelButton2;
         private Xr.Common.Controls.BorderPanelButton borderPanelButton3;
         private Xr.Common.Controls.BorderPanelButton borderPanelButton5;
-        private DevExpress.XtraGrid.GridControl gcDeptInfo;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gc_Patients;
+        private DevExpress.XtraGrid.Views.Grid.GridView gv_Patients;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -965,6 +1017,12 @@
         private Control.RoomPanelButton roomPanelButton4;
         private Control.RoomPanelButton roomPanelButton5;
         private Control.RoomPanelButton roomPanelButton6;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 排号前移ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 排号后移ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 排号作废ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 现场预约ToolStripMenuItem;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

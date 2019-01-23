@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel5 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.menuList = new Xr.Common.Controls.MenuControl();
             this.groupBorderPanel4 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel23 = new System.Windows.Forms.Panel();
@@ -69,8 +71,7 @@
             this.butReturn = new Xr.Common.Controls.ButtonControl();
             this.groupBorderPanel2 = new Xr.Common.Controls.GroupBorderPanel();
             this.reservationCalendar1 = new Xr.Common.Controls.ReservationCalendar();
-            this.dcTimeNum = new Xr.Common.Controls.DataController();
-            this.menuList = new Xr.Common.Controls.MenuControl();
+            this.dcTimeNum = new Xr.Common.Controls.DataController(this.components);
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).BeginInit();
             this.groupBorderPanel5.SuspendLayout();
@@ -139,6 +140,15 @@
             this.panel5.Size = new System.Drawing.Size(170, 172);
             this.panel5.TabIndex = 177;
             // 
+            // menuList
+            // 
+            this.menuList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuList.Location = new System.Drawing.Point(0, 0);
+            this.menuList.Name = "menuList";
+            this.menuList.Size = new System.Drawing.Size(170, 172);
+            this.menuList.TabIndex = 0;
+            this.menuList.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuList_MenuItemClick);
+            // 
             // groupBorderPanel4
             // 
             this.groupBorderPanel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
@@ -192,9 +202,9 @@
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.75F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.02326F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.11628F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.75F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.40909F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.44186F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.76744F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.90698F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(389, 172);
@@ -207,7 +217,7 @@
             this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel23.Location = new System.Drawing.Point(267, 3);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(119, 26);
+            this.panel23.Size = new System.Drawing.Size(119, 25);
             this.panel23.TabIndex = 188;
             // 
             // panel24
@@ -215,7 +225,7 @@
             this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel24.Location = new System.Drawing.Point(47, 0);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(10, 26);
+            this.panel24.Size = new System.Drawing.Size(10, 25);
             this.panel24.TabIndex = 2;
             // 
             // label13
@@ -227,15 +237,14 @@
             this.label13.Location = new System.Drawing.Point(0, 0);
             this.label13.Margin = new System.Windows.Forms.Padding(5);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(47, 26);
+            this.label13.Size = new System.Drawing.Size(47, 25);
             this.label13.TabIndex = 111;
-            this.label13.Text = "09:40";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lueIsUse
             // 
             this.lueIsUse.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lueIsUse.Location = new System.Drawing.Point(73, 35);
+            this.lueIsUse.Location = new System.Drawing.Point(73, 34);
             this.lueIsUse.Name = "lueIsUse";
             this.lueIsUse.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lueIsUse.Properties.Appearance.Options.UseFont = true;
@@ -258,17 +267,17 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "卡类型")});
             this.lueIsUse.Properties.NullText = "";
-            this.lueIsUse.Size = new System.Drawing.Size(115, 25);
+            this.lueIsUse.Size = new System.Drawing.Size(115, 24);
             this.lueIsUse.TabIndex = 178;
             // 
             // label19
             // 
             this.label19.Dock = System.Windows.Forms.DockStyle.Right;
             this.label19.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(5, 37);
+            this.label19.Location = new System.Drawing.Point(5, 36);
             this.label19.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 21);
+            this.label19.Size = new System.Drawing.Size(65, 20);
             this.label19.TabIndex = 99;
             this.label19.Text = "卡类型";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -277,10 +286,10 @@
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Right;
             this.label15.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(199, 37);
+            this.label15.Location = new System.Drawing.Point(199, 36);
             this.label15.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 21);
+            this.label15.Size = new System.Drawing.Size(65, 20);
             this.label15.TabIndex = 95;
             this.label15.Text = "卡号";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -291,12 +300,11 @@
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(269, 37);
+            this.label14.Location = new System.Drawing.Point(269, 36);
             this.label14.Margin = new System.Windows.Forms.Padding(5);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(115, 21);
+            this.label14.Size = new System.Drawing.Size(115, 20);
             this.label14.TabIndex = 94;
-            this.label14.Text = "6969919658";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
@@ -308,9 +316,8 @@
             this.label8.Location = new System.Drawing.Point(75, 5);
             this.label8.Margin = new System.Windows.Forms.Padding(5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 22);
+            this.label8.Size = new System.Drawing.Size(114, 21);
             this.label8.TabIndex = 88;
-            this.label8.Text = "2019-01-02";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
@@ -320,7 +327,7 @@
             this.label7.Location = new System.Drawing.Point(199, 5);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 22);
+            this.label7.Size = new System.Drawing.Size(65, 21);
             this.label7.TabIndex = 87;
             this.label7.Text = "时间";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -332,7 +339,7 @@
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 22);
+            this.label1.Size = new System.Drawing.Size(65, 21);
             this.label1.TabIndex = 85;
             this.label1.Text = "预约日期";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -341,10 +348,10 @@
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Right;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(5, 68);
+            this.label2.Location = new System.Drawing.Point(5, 66);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.Size = new System.Drawing.Size(65, 19);
             this.label2.TabIndex = 100;
             this.label2.Text = "就诊类别";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -353,10 +360,10 @@
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Right;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(5, 94);
+            this.label3.Location = new System.Drawing.Point(5, 95);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 22);
+            this.label3.Size = new System.Drawing.Size(65, 23);
             this.label3.TabIndex = 101;
             this.label3.Text = "术后复诊";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -367,9 +374,9 @@
             this.panel13.Controls.Add(this.panel14);
             this.panel13.Controls.Add(this.radioButton8);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(73, 66);
+            this.panel13.Location = new System.Drawing.Point(73, 64);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(118, 20);
+            this.panel13.Size = new System.Drawing.Size(118, 23);
             this.panel13.TabIndex = 183;
             // 
             // radioButton7
@@ -378,7 +385,7 @@
             this.radioButton7.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton7.Location = new System.Drawing.Point(65, 0);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(47, 20);
+            this.radioButton7.Size = new System.Drawing.Size(47, 23);
             this.radioButton7.TabIndex = 1;
             this.radioButton7.Text = "复诊";
             this.radioButton7.UseVisualStyleBackColor = true;
@@ -388,19 +395,17 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel14.Location = new System.Drawing.Point(47, 0);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(18, 20);
+            this.panel14.Size = new System.Drawing.Size(18, 23);
             this.panel14.TabIndex = 2;
             // 
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
-            this.radioButton8.Checked = true;
             this.radioButton8.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton8.Location = new System.Drawing.Point(0, 0);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(47, 20);
+            this.radioButton8.Size = new System.Drawing.Size(47, 23);
             this.radioButton8.TabIndex = 0;
-            this.radioButton8.TabStop = true;
             this.radioButton8.Text = "初诊";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
@@ -408,10 +413,10 @@
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Right;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(199, 68);
+            this.label9.Location = new System.Drawing.Point(199, 66);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 16);
+            this.label9.Size = new System.Drawing.Size(65, 19);
             this.label9.TabIndex = 105;
             this.label9.Text = "地址类别";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -420,10 +425,10 @@
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Right;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(199, 94);
+            this.label6.Location = new System.Drawing.Point(199, 95);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 22);
+            this.label6.Size = new System.Drawing.Size(65, 23);
             this.label6.TabIndex = 104;
             this.label6.Text = "外院转诊";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -434,9 +439,9 @@
             this.panel15.Controls.Add(this.panel16);
             this.panel15.Controls.Add(this.radioButton10);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel15.Location = new System.Drawing.Point(267, 66);
+            this.panel15.Location = new System.Drawing.Point(267, 64);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(119, 20);
+            this.panel15.Size = new System.Drawing.Size(119, 23);
             this.panel15.TabIndex = 184;
             // 
             // radioButton9
@@ -445,7 +450,7 @@
             this.radioButton9.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton9.Location = new System.Drawing.Point(65, 0);
             this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(47, 20);
+            this.radioButton9.Size = new System.Drawing.Size(47, 23);
             this.radioButton9.TabIndex = 1;
             this.radioButton9.Text = "市外";
             this.radioButton9.UseVisualStyleBackColor = true;
@@ -455,19 +460,17 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel16.Location = new System.Drawing.Point(47, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(18, 20);
+            this.panel16.Size = new System.Drawing.Size(18, 23);
             this.panel16.TabIndex = 2;
             // 
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
             this.radioButton10.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton10.Location = new System.Drawing.Point(0, 0);
             this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(47, 20);
+            this.radioButton10.Size = new System.Drawing.Size(47, 23);
             this.radioButton10.TabIndex = 0;
-            this.radioButton10.TabStop = true;
             this.radioButton10.Text = "市内";
             this.radioButton10.UseVisualStyleBackColor = true;
             // 
@@ -477,9 +480,9 @@
             this.panel17.Controls.Add(this.panel18);
             this.panel17.Controls.Add(this.radioButton12);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel17.Location = new System.Drawing.Point(267, 92);
+            this.panel17.Location = new System.Drawing.Point(267, 93);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(119, 26);
+            this.panel17.Size = new System.Drawing.Size(119, 27);
             this.panel17.TabIndex = 185;
             // 
             // radioButton11
@@ -488,7 +491,7 @@
             this.radioButton11.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton11.Location = new System.Drawing.Point(65, 0);
             this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(35, 26);
+            this.radioButton11.Size = new System.Drawing.Size(35, 27);
             this.radioButton11.TabIndex = 1;
             this.radioButton11.Text = "是";
             this.radioButton11.UseVisualStyleBackColor = true;
@@ -498,19 +501,17 @@
             this.panel18.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel18.Location = new System.Drawing.Point(35, 0);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(30, 26);
+            this.panel18.Size = new System.Drawing.Size(30, 27);
             this.panel18.TabIndex = 2;
             // 
             // radioButton12
             // 
             this.radioButton12.AutoSize = true;
-            this.radioButton12.Checked = true;
             this.radioButton12.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton12.Location = new System.Drawing.Point(0, 0);
             this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(35, 26);
+            this.radioButton12.Size = new System.Drawing.Size(35, 27);
             this.radioButton12.TabIndex = 0;
-            this.radioButton12.TabStop = true;
             this.radioButton12.Text = "否";
             this.radioButton12.UseVisualStyleBackColor = true;
             // 
@@ -520,9 +521,9 @@
             this.panel11.Controls.Add(this.panel12);
             this.panel11.Controls.Add(this.radioButton6);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(73, 92);
+            this.panel11.Location = new System.Drawing.Point(73, 93);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(118, 26);
+            this.panel11.Size = new System.Drawing.Size(118, 27);
             this.panel11.TabIndex = 182;
             // 
             // radioButton5
@@ -531,7 +532,7 @@
             this.radioButton5.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton5.Location = new System.Drawing.Point(65, 0);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(35, 26);
+            this.radioButton5.Size = new System.Drawing.Size(35, 27);
             this.radioButton5.TabIndex = 1;
             this.radioButton5.Text = "是";
             this.radioButton5.UseVisualStyleBackColor = true;
@@ -541,19 +542,17 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(35, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(30, 26);
+            this.panel12.Size = new System.Drawing.Size(30, 27);
             this.panel12.TabIndex = 2;
             // 
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Checked = true;
             this.radioButton6.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioButton6.Location = new System.Drawing.Point(0, 0);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(35, 26);
+            this.radioButton6.Size = new System.Drawing.Size(35, 27);
             this.radioButton6.TabIndex = 0;
-            this.radioButton6.TabStop = true;
             this.radioButton6.Text = "否";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
@@ -564,9 +563,9 @@
             this.panelControl1.Controls.Add(this.butOk);
             this.panelControl1.Controls.Add(this.butReturn);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(3, 124);
+            this.panelControl1.Location = new System.Drawing.Point(3, 126);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(383, 45);
+            this.panelControl1.Size = new System.Drawing.Size(383, 43);
             this.panelControl1.TabIndex = 189;
             // 
             // butOk
@@ -581,6 +580,7 @@
             this.butOk.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.butOk.TabIndex = 181;
             this.butOk.Text = "确认预约";
+            this.butOk.Click += new System.EventHandler(this.skinButYes_Click);
             // 
             // butReturn
             // 
@@ -629,15 +629,6 @@
             this.reservationCalendar1.TabIndex = 0;
             this.reservationCalendar1.SelectDate += new Xr.Common.Controls.ReservationCalendar.SelectDateDelegate(this.reservationCalendar1_SelectDate);
             this.reservationCalendar1.ChangeMonth += new Xr.Common.Controls.ReservationCalendar.ChangeMonthDelegate(this.reservationCalendar1_ChangeMonth);
-            // 
-            // menuList
-            // 
-            this.menuList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuList.Location = new System.Drawing.Point(0, 0);
-            this.menuList.Name = "menuList";
-            this.menuList.Size = new System.Drawing.Size(170, 172);
-            this.menuList.TabIndex = 0;
-            this.menuList.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuList_MenuItemClick);
             // 
             // RtIntersectionAppointmentFrm
             // 

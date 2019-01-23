@@ -17,10 +17,14 @@ namespace Xr.RtCall.pages
     public partial class RtIntersectionAppointmentFrm : UserControl
     {
         public SynchronizationContext _context;
-        public RtIntersectionAppointmentFrm()
+        int selectLue = 0;
+        public RtIntersectionAppointmentFrm(Xr.RtCall.Model.Patient patient)
         {
             InitializeComponent();
-            GetCardType();
+            label14.Text = patient.cradNo;
+            GetCardType();//获取卡类型
+            DoctorScheduling();//获取医生排班日期
+            selectLue = Convert.ToInt32(patient.cradType);
             Dictionary<int, DateTime> dc = new Dictionary<int, DateTime>();
             for (int i = 18; i < 25; i++)
             {
@@ -31,6 +35,9 @@ namespace Xr.RtCall.pages
             _context = SynchronizationContext.Current;
         }
         #region 获取卡类型
+        /// <summary>
+        /// 获取卡类型
+        /// </summary>
         public void GetCardType()
         {
             try
@@ -40,6 +47,7 @@ namespace Xr.RtCall.pages
                  Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sys/sysDict/findByType", prament, Method.POST,
                 result =>
                 {
+                  LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     #region 
                     switch (result.ResponseStatus)
                     {
@@ -50,7 +58,9 @@ namespace Xr.RtCall.pages
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
                                     _context.Send((s) => lueIsUse.Properties.DataSource = objT["result"].ToObject<List<Xr.RtCall.Model.CardType>>(), null);
-                                    _context.Send((s) =>  lueIsUse.Properties.DisplayMember = "label", null); _context.Send((s) =>  lueIsUse.Properties.ValueMember = "value", null);
+                                    _context.Send((s) =>  lueIsUse.Properties.DisplayMember = "label", null); 
+                                    _context.Send((s) =>  lueIsUse.Properties.ValueMember = "value", null);
+                                    _context.Send((s) => lueIsUse.ItemIndex=selectLue, null);
                                 }
                                 else
                                 {
@@ -64,10 +74,14 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("获取卡类型错误信息："+ex.Message);
             }
         }
         #endregion 
         #region 医生排班日期
+        /// <summary>
+        ///  医生排班日期
+        /// </summary>
         public void DoctorScheduling()
         {
             try
@@ -82,8 +96,6 @@ namespace Xr.RtCall.pages
                {
                    switch (result.ResponseStatus)
                    {
-                       case ResponseStatus.None:
-                           break;
                        case ResponseStatus.Completed:
                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
                            {
@@ -98,17 +110,12 @@ namespace Xr.RtCall.pages
                                }
                            }
                            break;
-                       case ResponseStatus.Error:
-                           break;
-                       case ResponseStatus.TimedOut:
-                           break;
-                       case ResponseStatus.Aborted:
-                           break;
                    }
                });
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("获取医生排班号源错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -130,6 +137,7 @@ namespace Xr.RtCall.pages
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/doctorScheduPlan/findTimeNum", prament, Method.POST,
                 result =>
                 {
+                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     #region
                     switch (result.ResponseStatus)
                     {
@@ -159,6 +167,7 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("获取日期排班号源错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -193,12 +202,12 @@ namespace Xr.RtCall.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("scheduPlanId", "");//排班记录主键
-                prament.Add("patientId", "");//患者主键
-                prament.Add("patientName", "");//患者姓名
-                prament.Add("cradType", "");//卡类型
+                prament.Add("scheduPlanId", "10");//排班记录主键
+                prament.Add("patientId", "000675493100");//患者主键
+                prament.Add("patientName", "李鹏真");//患者姓名
+                prament.Add("cradType", "1");//卡类型
                 prament.Add("cradNo", label14.Text.Trim());//卡号
-                prament.Add("tempPhone", "");//手机号
+                prament.Add("tempPhone", "17666476268");//手机号
                 prament.Add("note", "");//备注
                 #region 
                 if (radioButton8.Checked)
@@ -235,13 +244,11 @@ namespace Xr.RtCall.pages
                 }
                 #endregion
                 prament.Add("registerWay", "1");//预约途径：0分诊台、1诊间、2自助机、3公众号、4市平台
-                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
+                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/doctorScheduRegister/confirmBooking", prament, Method.POST,
                 result =>
                 {
                     switch (result.ResponseStatus)
                     {
-                        case ResponseStatus.None:
-                            break;
                         case ResponseStatus.Completed:
                             if (result.StatusCode == System.Net.HttpStatusCode.OK)
                             {
@@ -256,17 +263,12 @@ namespace Xr.RtCall.pages
                                 }
                             }
                             break;
-                        case ResponseStatus.Error:
-                            break;
-                        case ResponseStatus.TimedOut:
-                            break;
-                        case ResponseStatus.Aborted:
-                            break;
                     }
                 });
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("确认预约错误信息：" + ex.Message);
             }
         }
         #endregion

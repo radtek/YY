@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBorderPanel3 = new Xr.Common.Controls.GroupBorderPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.roomPanelButton1 = new Xr.RtManager.Control.RoomPanelButton();
@@ -89,6 +87,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.buttonControl4 = new Xr.Common.Controls.ButtonControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -98,15 +97,20 @@
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lueIsUse = new DevExpress.XtraEditors.LookUpEdit();
-            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx12 = new Xr.Common.Controls.PanelEx();
+            this.panelEx15 = new Xr.Common.Controls.PanelEx();
+            this.panelEx16 = new Xr.Common.Controls.PanelEx();
+            this.panelEx17 = new Xr.Common.Controls.PanelEx();
+            this.panelEx13 = new Xr.Common.Controls.PanelEx();
+            this.panelEx14 = new Xr.Common.Controls.PanelEx();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.排号前移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.排号后移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.排号作废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.现场预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel3)).BeginInit();
             this.groupBorderPanel3.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -135,10 +139,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).BeginInit();
             this.groupBorderPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueIsUse.Properties)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -162,16 +168,6 @@
             this.panel4.Padding = new System.Windows.Forms.Padding(15, 5, 15, 0);
             this.panel4.Size = new System.Drawing.Size(1049, 648);
             this.panel4.TabIndex = 63;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.borderPanel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(1049, 70);
-            this.panel1.TabIndex = 8;
             // 
             // groupBorderPanel3
             // 
@@ -660,6 +656,7 @@
             this.buttonControl10.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl10.TabIndex = 103;
             this.buttonControl10.Text = "更多》";
+            this.buttonControl10.Click += new System.EventHandler(this.buttonControl10_Click);
             // 
             // buttonControl9
             // 
@@ -1055,6 +1052,16 @@
             this.label1.Text = "姓    名";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.borderPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
+            this.panel1.Size = new System.Drawing.Size(1049, 70);
+            this.panel1.TabIndex = 8;
+            // 
             // borderPanel1
             // 
             this.borderPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -1299,6 +1306,47 @@
             this.panelEx14.Size = new System.Drawing.Size(250, 150);
             this.panelEx14.TabIndex = 0;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.测试ToolStripMenuItem,
+            this.排号前移ToolStripMenuItem,
+            this.排号后移ToolStripMenuItem,
+            this.排号作废ToolStripMenuItem,
+            this.现场预约ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 114);
+            // 
+            // 测试ToolStripMenuItem
+            // 
+            this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.测试ToolStripMenuItem.Text = "加急";
+            // 
+            // 排号前移ToolStripMenuItem
+            // 
+            this.排号前移ToolStripMenuItem.Name = "排号前移ToolStripMenuItem";
+            this.排号前移ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.排号前移ToolStripMenuItem.Text = "排号前移";
+            // 
+            // 排号后移ToolStripMenuItem
+            // 
+            this.排号后移ToolStripMenuItem.Name = "排号后移ToolStripMenuItem";
+            this.排号后移ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.排号后移ToolStripMenuItem.Text = "排号后移";
+            // 
+            // 排号作废ToolStripMenuItem
+            // 
+            this.排号作废ToolStripMenuItem.Name = "排号作废ToolStripMenuItem";
+            this.排号作废ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.排号作废ToolStripMenuItem.Text = "排号作废";
+            // 
+            // 现场预约ToolStripMenuItem
+            // 
+            this.现场预约ToolStripMenuItem.Name = "现场预约ToolStripMenuItem";
+            this.现场预约ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.现场预约ToolStripMenuItem.Text = "现场预约";
+            // 
             // SignInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1310,7 +1358,6 @@
             this.Load += new System.EventHandler(this.UserForm_Load);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel3)).EndInit();
             this.groupBorderPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
@@ -1340,11 +1387,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).EndInit();
             this.groupBorderPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lueIsUse.Properties)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1423,6 +1472,12 @@
         private Xr.Common.Controls.PanelEx panelEx17;
         private Xr.Common.Controls.PanelEx panelEx13;
         private Xr.Common.Controls.PanelEx panelEx14;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 排号前移ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 排号后移ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 排号作废ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 现场预约ToolStripMenuItem;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

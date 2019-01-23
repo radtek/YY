@@ -12,6 +12,7 @@ using Xr.Http.RestSharp;
 using RestSharp;
 using System.Net;
 using Xr.RtScreen.VoiceCall;
+using Newtonsoft.Json.Linq;
 
 namespace Xr.RtScreen.pages
 {
@@ -54,39 +55,25 @@ namespace Xr.RtScreen.pages
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("deptId", "");//科室主键
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/triage/findByDept");
-                var Params = "";
-                if (prament.Count != 0)
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findPublicScreenData", prament, Method.POST, result =>
                 {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
-                {
+                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     switch (result.ResponseStatus)
                     {
-                        case ResponseStatus.None:
-                            break;
                         case ResponseStatus.Completed:
                             if (result.StatusCode == HttpStatusCode.OK)
                             {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                _context.Send((s) =>
-                                    MessageBox.Show("获取陈宫")
-                                , null);
+                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    _context.Send((s) => MessageBox.Show("获取陈宫"), null);
+                                }
+                                else
+                                {
+                                    MessageBox.Show(objT["message"].ToString());
+                                }
+
                             }
-                            break;
-                        case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
-                            break;
-                        case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
-                            break;
-                        case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
                             break;
                     }
                 });
@@ -103,39 +90,25 @@ namespace Xr.RtScreen.pages
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("deptId", "");//科室主键
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/dept/findWaitingDesc");
-                var Params = "";
-                if (prament.Count != 0)
+               Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("", prament, Method.POST, result =>
                 {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
-                {
+                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     switch (result.ResponseStatus)
                     {
-                        case ResponseStatus.None:
-                            break;
                         case ResponseStatus.Completed:
                             if (result.StatusCode == HttpStatusCode.OK)
                             {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                _context.Send((s) =>
-                                    MessageBox.Show("获取陈宫")
-                                , null);
+                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    _context.Send((s) => MessageBox.Show("获取陈宫") , null);
+                                }
+                                else
+                                {
+                                    MessageBox.Show(objT["message"].ToString());
+                                }
+                               
                             }
-                            break;
-                        case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
-                            break;
-                        case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
-                            break;
-                        case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
                             break;
                     }
                 });

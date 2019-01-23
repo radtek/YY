@@ -38,10 +38,9 @@ namespace Xr.RtCall.pages
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
                 result =>
                 {
+                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     switch (result.ResponseStatus)
                     {
-                        case ResponseStatus.None:
-                            break;
                         case ResponseStatus.Completed:
                             if (result.StatusCode == System.Net.HttpStatusCode.OK)
                             {
@@ -55,18 +54,12 @@ namespace Xr.RtCall.pages
                                 }
                             }
                             break;
-                        case ResponseStatus.Error:
-                            break;
-                        case ResponseStatus.TimedOut:
-                            break;
-                        case ResponseStatus.Aborted:
-                            break;
                     }
                 });
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("获取完成下一位/过号下一位错误信息：" + ex.Message);
             }
         }
         #endregion

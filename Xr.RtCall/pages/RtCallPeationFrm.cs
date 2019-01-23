@@ -12,6 +12,7 @@ using System.Net;
 using System.Threading;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
+using Xr.RtCall.Model;
 
 namespace Xr.RtCall.pages
 {
@@ -31,29 +32,34 @@ namespace Xr.RtCall.pages
             _context = SynchronizationContext.Current;
             RTCallfrm = this;
             #endregion 
-           // PatientList();
+            PatientList();
         }
         #region 患者列表
+        /// <summary>
+        /// 患者列表
+        /// </summary>
         public void PatientList()
         {
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("deptId", "12");
-                prament.Add("doctorId", "12");
-                prament.Add("workDate", "12");
-                prament.Add("period", "12");
-                if (checkEdit1.Checked)
-                {
-                    prament.Add("status", "0");//候诊中
-                }
-                else
-                {
+                prament.Add("hospitalId", "12");//医院主键
+                prament.Add("deptId", "2");//科室主键
+                prament.Add("doctorId", "1");//医生主键
+                prament.Add("workDate", "2019-01-10");//坐诊日期
+                prament.Add("period", "2");//坐诊时段
+                //if (checkEdit1.Checked)
+                //{
+                //    prament.Add("status", "0");//候诊中
+                //}
+                //else
+                //{
                     prament.Add("status", "1");//完成
-                }
-                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("cms/holiday/findAll", prament,Method.POST,
+               // }
+                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/registerTriage/findPatientListByDoctor", prament, Method.POST,
                  result =>
                 {
+                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.Completed:
@@ -62,7 +68,7 @@ namespace Xr.RtCall.pages
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    List<HolidayInfoEntity> a = objT["result"].ToObject<List<HolidayInfoEntity>>();
+                                    List<Patient> a = objT["result"].ToObject<List<Patient>>();
                                     _context.Send((s) => this.gc_Pateion.DataSource = a,null);
                                     _context.Send((s) => label1.Text=a.Count+"人", null);
                                 }
@@ -77,37 +83,10 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("获取患者列表错误信息：" + ex.Message);
             }
         }
-
-        /// <summary>
-        /// 节假日
-        /// </summary>
-        public class HolidayInfoEntity
-        {
-            public String id { set; get; }
-            public String name { get; set; }
-            public String year { get; set; }
-            public String beginDate { get; set; }
-            public String endDate { get; set; }
-            public String isUse { get; set; }
-        }
         #endregion
-
-        #region 菜单选项
-        /// <summary>
-        /// 菜单选项
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gv_Pateion_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
-        {
-            //获取选择的行数
-            int select = gv_Pateion.SelectedRowsCount;
-        }
-        #endregion
-
         #region 右键菜单
         /// <summary>
         /// 复诊预约
@@ -118,15 +97,17 @@ namespace Xr.RtCall.pages
         {
             try
             {
+                var selectedRow = this.gv_Pateion.GetFocusedRow() as Patient;
+                  if (selectedRow == null)
+                    return;
                 Form1.pCurrentWin.panel_MainFrm.Controls.Clear();
-                RtIntersectionAppointmentFrm rtcpf = new RtIntersectionAppointmentFrm();
+                RtIntersectionAppointmentFrm rtcpf = new RtIntersectionAppointmentFrm(selectedRow);
                 rtcpf.Dock = DockStyle.Fill;
-              //  rtcpf.Height = rtcpf.Height + 30;
                 Form1.pCurrentWin.panel_MainFrm.Controls.Add(rtcpf);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                LogClass.WriteLog("复诊预约错误信息："+ex.Message);
             }
         }
         /// <summary>
@@ -136,7 +117,27 @@ namespace Xr.RtCall.pages
         /// <param name="e"></param>
         private void 延后ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var selectedRow = this.gv_Pateion.GetFocusedRow() as Patient;
+                if (selectedRow == null)
+                    return;
+            }
+            catch (Exception ex)
+            {
+                LogClass.WriteLog("患者延后错误信息："+ex.Message);
+            }
+        }
+        #endregion 
+        #region 刷新按钮
+        /// <summary>
+        /// 刷新按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void skinbutNew_Click(object sender, EventArgs e)
+        {
+            PatientList();
         }
         #endregion 
     }

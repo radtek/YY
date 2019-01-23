@@ -53,7 +53,27 @@ namespace Xr.RtManager
                 SearchData(true, 1);
             }
         }
-        
+        private void gv_patients_MouseDown(object sender, MouseEventArgs e)
+        {
+            //鼠标右键点击
+            System.Threading.Thread.Sleep(10);
+            if (e.Button == MouseButtons.Right)
+            {
+
+                //GridHitInfo gridHitInfo = gridView.CalcHitInfo(e.X, e.Y);
+                DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo gridHitInfo = gv_Patients.CalcHitInfo(e.X, e.Y);
+
+                //在列标题栏内且列标题name是"colName"
+                if (gridHitInfo.Column != null)
+                {
+                    if (!gridHitInfo.InColumnPanel)//判断是否在单元格内
+                    {
+                        contextMenuStrip1.Show(gc_Patients, e.Location);
+                        int i = gridHitInfo.RowHandle;
+                    }
+                }
+            }
+        }
         private void btnDel_Click(object sender, EventArgs e)
         {
 

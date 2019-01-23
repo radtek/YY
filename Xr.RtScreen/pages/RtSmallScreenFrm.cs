@@ -8,14 +8,20 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Xr.RtScreen.VoiceCall;
+using RestSharp;
+using System.Net;
+using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace Xr.RtScreen.pages
 {
     public partial class RtSmallScreenFrm : UserControl
     {
+        public SynchronizationContext _context;
         public RtSmallScreenFrm()
         {
             InitializeComponent();
+            _context = new SynchronizationContext();
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true); // 双缓冲
@@ -23,7 +29,7 @@ namespace Xr.RtScreen.pages
             SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
             speakVoiceform.Show(this);
         }
-        #region 
+        #region 画线条
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics,
@@ -68,21 +74,41 @@ namespace Xr.RtScreen.pages
             }
         }
         #endregion
+        #region 获取信息
+        public void GetSmallScreenInfo()
+        {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("","");
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findRoomScreenDataOne", prament, Method.POST, result =>
+                {
+                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
+                    switch (result.ResponseStatus)
+                    {
+                        case ResponseStatus.Completed:
+                            if (result.StatusCode == HttpStatusCode.OK)
+                            {
+                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    _context.Send((s) => MessageBox.Show("获取陈宫"), null);
+                                }
+                                else
+                                {
+                                    MessageBox.Show(objT["message"].ToString());
+                                }
 
-        //ControlPaint.DrawBorder(e.Graphics,
-            //             this.panelControl1.ClientRectangle,
-            //             Color.Transparent,//7f9db9
-            //             1,
-            //             ButtonBorderStyle.Solid,
-            //             Color.Transparent,
-            //             1,
-            //             ButtonBorderStyle.Solid,
-            //             Color.Red,
-            //             1,
-            //             ButtonBorderStyle.Solid,
-            //             Color.Transparent,
-            //             1,
-            //             ButtonBorderStyle.Solid);
-      
+                            }
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                LogClass.WriteLog("获取诊室小屏错误信息："+ex.Message);
+            }
+        }
+        #endregion
     }
 }

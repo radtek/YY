@@ -21,16 +21,13 @@ namespace Xr.RtCall
 {
     public partial class Form1 : Form
     {
-        /// <summary>
-        /// 初始化Socket的SDK
-        /// </summary>
         HPSocketCS.TcpClient client = new HPSocketCS.TcpClient();
         public static Form1 pCurrentWin = null;//初始化的时候窗体对象赋值
         public SynchronizationContext _context;
         public Form1()
         {
             InitializeComponent();
-            #region 
+            #region 双缓冲
             this.SetStyle(ControlStyles.ResizeRedraw |
                   ControlStyles.OptimizedDoubleBuffer |
                   ControlStyles.AllPaintingInWmPaint, true);
@@ -40,6 +37,7 @@ namespace Xr.RtCall
             pCurrentWin = this;
             _context = SynchronizationContext.Current;
         }
+        #region 帮助事件
         #region 键盘按Esc关闭窗体
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
@@ -60,7 +58,7 @@ namespace Xr.RtCall
         /// <param name="msg"></param>
         /// <param name="keyData"></param>
         /// <returns></returns>
-        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             int WM_KEYDOWN = 256;
             int WM_SYSKEYDOWN = 260;
@@ -69,12 +67,9 @@ namespace Xr.RtCall
                 switch (keyData)
                 {
                     case Keys.Escape:
-                        //按ESC键后退出对话框
                         if (MessageBox.Show("真的要退出程序吗？", "退出程序", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
                             this.Close();
-                            //Environment.Exit(Environment.ExitCode);
-                            // Application.ExitThread();
                         }
                         break;
                 }
@@ -82,7 +77,7 @@ namespace Xr.RtCall
             return false;
         }
         #endregion
-        #region
+        #region 关闭按钮
         /// <summary>
         /// 关闭
         /// </summary>
@@ -112,6 +107,52 @@ namespace Xr.RtCall
             }
         }
         #endregion
+        #region 最大化
+        /// <summary>
+        /// 最大化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void skinbutBig_Click(object sender, EventArgs e)
+        {
+            if (skinbutBig.Text == "展开")
+            {
+                this.panel_MainFrm.Visible = true;
+                panel_MainFrm.Controls.Clear();
+                this.Size = new Size(615, 500);
+                skinbutBig.Text = "收缩";
+                RtCallPeationFrm rtcpf = new RtCallPeationFrm();
+                rtcpf.Dock = DockStyle.Fill;
+                this.panel_MainFrm.Controls.Add(rtcpf);
+            }
+            else
+            {
+                this.Size = new Size(615, 78);
+                skinbutBig.Text = "展开";
+            }
+
+        }
+        #endregion
+        #region 画边框
+        private void panelControl3_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics,
+                         this.panelControl3.ClientRectangle,
+                         Color.Transparent,//7f9db9
+                         1,
+                         ButtonBorderStyle.Solid,
+                         Color.Transparent,
+                         1,
+                         ButtonBorderStyle.Solid,
+                         Color.Transparent,
+                         1,
+                         ButtonBorderStyle.Solid,
+                         Color.Black,
+                         1,
+                         ButtonBorderStyle.Solid);
+        }
+        #endregion
+        #endregion
         #region 下一位
         /// <summary>
         /// 下一位
@@ -131,8 +172,6 @@ namespace Xr.RtCall
                 {
                     if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        //var data = result.Data;
-                        //string b = string.Join(",", data.ToArray());
                         JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
@@ -154,53 +193,6 @@ namespace Xr.RtCall
             f.Show();
         }
         #endregion 
-        #region 最大化
-        /// <summary>
-        /// 最大化
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void skinbutBig_Click(object sender, EventArgs e)
-        {
-            if (skinbutBig.Text == "展开")
-            {
-                this.panel_MainFrm.Visible = true;
-                panel_MainFrm.Controls.Clear();
-                this.Size = new Size(615, 500);
-                skinbutBig.Text = "收缩";
-                //this.skinbutLook.Visible = true;
-                RtCallPeationFrm rtcpf = new RtCallPeationFrm();
-                rtcpf.Dock = DockStyle.Fill;
-                this.panel_MainFrm.Controls.Add(rtcpf);
-            }
-            else
-            {
-                this.Size = new Size(615, 78);
-                skinbutBig.Text = "展开";
-               // this.skinbutLook.Visible = false;
-            }
-           
-        }
-        #endregion 
-        #region 画边框
-        private void panelControl3_Paint(object sender, PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics,
-                         this.panelControl3.ClientRectangle,
-                         Color.Transparent,//7f9db9
-                         1,
-                         ButtonBorderStyle.Solid,
-                         Color.Transparent,
-                         1,
-                         ButtonBorderStyle.Solid,
-                         Color.Transparent,
-                         1,
-                         ButtonBorderStyle.Solid,
-                         Color.Black,
-                         1,
-                         ButtonBorderStyle.Solid);
-        }
-        #endregion
         #region 窗体Load事件
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -305,7 +297,7 @@ namespace Xr.RtCall
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("id", "");//医生坐诊记录主键
+                prament.Add("id", "1");//医生坐诊记录主键
                 int isStop = 0;
                 if (skinbutLook.Text == "临时停诊")
                 {
@@ -320,15 +312,12 @@ namespace Xr.RtCall
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/openStop", prament, Method.POST,
                result =>
                {
+                   LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                    switch (result.ResponseStatus)
                    {
-                       case ResponseStatus.None:
-                           break;
                        case ResponseStatus.Completed:
                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
                            {
-                               //var data = result.Data;
-                               //string data = string.Join(",", result.Data.ToArray());
                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                {
@@ -347,65 +336,12 @@ namespace Xr.RtCall
                                }
                            }
                            break;
-                       case ResponseStatus.Error:
-                           break;
-                       case ResponseStatus.TimedOut:
-                           break;
-                       case ResponseStatus.Aborted:
-                           break;
                    }
                });
-                #region
-                //string str = "";
-                //var client = new RestSharpClient("/yyfz/api/sitting/openStop");
-                //var Params = "";
-                //if (prament.Count != 0)
-                //{
-                //    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                //}
-                //client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
-                //{
-                //    switch (result.ResponseStatus)
-                //    {
-                //        case ResponseStatus.None:
-                //            break;
-                //        case ResponseStatus.Completed:
-                //            if (result.StatusCode == System.Net.HttpStatusCode.OK)
-                //            {
-                //                var data = result.Data;//返回数据
-                //                str = string.Join(",", data.ToArray());
-                //                string a = "";
-                //                if (isStop == 1)
-                //                {
-                //                    a = "继续开诊";
-                //                }
-                //                else
-                //                {
-                //                    a = "临时停诊";
-                //                }
-                //                _context.Send((s) =>
-                //               this.skinbutLook.Text = a
-                //                , null);
-                //            }
-                //            break;
-                //        case ResponseStatus.Error:
-                //            MessageBox.Show("请求错误");
-                //            break;
-                //        case ResponseStatus.TimedOut:
-                //            MessageBox.Show("请求超时");
-                //            break;
-                //        case ResponseStatus.Aborted:
-                //            MessageBox.Show("请求终止");
-                //            break;
-                //        default:
-                //            break;
-                //    }
-                //});
-                #endregion
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("设置临时停诊和开诊错误信息："+ex.Message);
             }
         }
         #endregion 

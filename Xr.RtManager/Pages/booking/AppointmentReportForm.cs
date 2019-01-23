@@ -12,13 +12,14 @@ using Newtonsoft.Json.Linq;
 using Xr.Common;
 using Xr.Http;
 using Xr.Common.Controls;
+using DevExpress.Utils.Drawing;
 
 namespace Xr.RtManager
 {
-    public partial class SignInForm : UserControl
+    public partial class AppointmentReportForm : UserControl
     {
         Xr.Common.Controls.OpaqueCommand cmd;
-        public SignInForm()
+        public AppointmentReportForm()
         {
             InitializeComponent();
             //cmd = new Xr.Common.Controls.OpaqueCommand(this);
@@ -80,6 +81,29 @@ namespace Xr.RtManager
         {
             ButtonControl bc = sender as ButtonControl;
             contextMenuStrip1.Show(bc,0, 0);
+        }
+        /// <summary>
+        /// 自定义表头颜色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bandedGridView1_CustomDrawBandHeader(object sender, DevExpress.XtraGrid.Views.BandedGrid.BandHeaderCustomDrawEventArgs e)
+        {
+              //背景颜色没有设置且为空，则默认
+            if (e.Band.AppearanceHeader == null || (e.Band.AppearanceHeader.BackColor == Color.Empty && !e.Band.AppearanceHeader.Options.UseBackColor))
+               return;
+           Rectangle rect = e.Bounds;
+           rect.Inflate(-1, -1);
+           // 填充标题颜色.
+           e.Graphics.FillRectangle(new SolidBrush(e.Band.AppearanceHeader.BackColor), rect);
+           e.Appearance.DrawString(e.Cache, e.Info.Caption, e.Info.CaptionRect);
+           // 绘制过滤和排序按钮.
+           foreach (DrawElementInfo info in e.Info.InnerElements)
+           {
+               if (!info.Visible) continue;
+               ObjectPainter.DrawObject(e.Cache, info.ElementPainter, info.ElementInfo);
+           }
+           e.Handled = true;
         }
 
 

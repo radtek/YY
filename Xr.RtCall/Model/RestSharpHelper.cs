@@ -29,6 +29,7 @@ namespace Xr.RtCall.Model
            {
                Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
            }
+           LogClass.WriteLog("请求地址：" + AppContext.AppConfig.serverUrl + Url + Params);
            client.ExecuteAsync<T>(new RestRequest(Params, methoh), callback);
        }
     }

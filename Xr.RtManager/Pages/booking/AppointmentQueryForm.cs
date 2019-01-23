@@ -15,10 +15,10 @@ using Xr.Common.Controls;
 
 namespace Xr.RtManager
 {
-    public partial class SignInForm : UserControl
+    public partial class AppointmentQueryForm : UserControl
     {
         Xr.Common.Controls.OpaqueCommand cmd;
-        public SignInForm()
+        public AppointmentQueryForm()
         {
             InitializeComponent();
             //cmd = new Xr.Common.Controls.OpaqueCommand(this);
