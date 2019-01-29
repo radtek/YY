@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Xr.RtCall.Model
 {
+    /// <summary>
+    /// 记录主键帮助类
+    /// </summary>
     public class HelperClass
     {
         /// <summary>

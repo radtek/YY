@@ -191,7 +191,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DictEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "字典添加";
             this.Load += new System.EventHandler(this.DictEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teValue.Properties)).EndInit();

@@ -79,5 +79,8 @@ namespace Xr.RtManager
         /// 科室列表
         /// </summary>
         public List<DeptEntity> deptList { get; set; }
+
+
+        public System.Windows.Forms.Control waitControl { get; set; }
     }
 }

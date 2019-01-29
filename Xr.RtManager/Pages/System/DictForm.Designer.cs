@@ -42,8 +42,6 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -61,8 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcDict)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
@@ -84,10 +80,10 @@
             this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.pageControl1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 70);
+            this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(15, 20, 15, 10);
-            this.panel4.Size = new System.Drawing.Size(906, 411);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel4.Size = new System.Drawing.Size(906, 421);
             this.panel4.TabIndex = 63;
             // 
             // gcDict
@@ -96,14 +92,12 @@
             gridLevelNode1.RelationName = "Level1";
             this.gcDict.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gcDict.Location = new System.Drawing.Point(15, 20);
+            this.gcDict.Location = new System.Drawing.Point(10, 10);
             this.gcDict.MainView = this.gridView1;
             this.gcDict.Name = "gcDict";
             this.gcDict.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEdit1,
-            this.repositoryItemMemoEdit1,
-            this.repositoryItemCheckEdit1});
-            this.gcDict.Size = new System.Drawing.Size(876, 336);
+            this.repositoryItemButtonEdit1});
+            this.gcDict.Size = new System.Drawing.Size(886, 366);
             this.gcDict.TabIndex = 15;
             this.gcDict.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -232,7 +226,6 @@
             // 
             // repositoryItemButtonEdit1
             // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
             serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             serializableAppearanceObject1.ForeColor = System.Drawing.Color.SteelBlue;
             serializableAppearanceObject1.Options.UseFont = true;
@@ -242,36 +235,23 @@
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
-            this.repositoryItemMemoEdit1.ReadOnly = true;
-            this.repositoryItemMemoEdit1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            // 
-            // repositoryItemCheckEdit1
-            // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Caption = "Check";
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            this.repositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(15, 356);
+            this.panel2.Location = new System.Drawing.Point(10, 376);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(876, 5);
+            this.panel2.Size = new System.Drawing.Size(886, 5);
             this.panel2.TabIndex = 14;
             // 
             // pageControl1
             // 
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageControl1.Location = new System.Drawing.Point(15, 361);
+            this.pageControl1.Location = new System.Drawing.Point(10, 381);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(876, 40);
+            this.pageControl1.Size = new System.Drawing.Size(886, 40);
             this.pageControl1.TabIndex = 12;
             this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
@@ -281,8 +261,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(906, 70);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(906, 60);
             this.panel1.TabIndex = 8;
             // 
             // borderPanel1
@@ -307,9 +287,9 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(15, 20);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(876, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(886, 50);
             this.borderPanel1.TabIndex = 0;
             // 
             // buttonControl4
@@ -415,8 +395,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcDict)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
@@ -450,8 +428,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        public DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private System.Windows.Forms.Panel panel2;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;

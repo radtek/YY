@@ -10,7 +10,7 @@ using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Xr.Http;
 
-namespace Xr.RtManager
+namespace Xr.RtManager.Pages.triage
 {
     public partial class TranDocFrm : Form
     {

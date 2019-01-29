@@ -36,20 +36,26 @@ namespace Xr.RtManager
                 treeParent.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
                 treeParent.Properties.DisplayMember = "name";  //要在树里展示的
                 treeParent.Properties.ValueMember = "id";    //对应的value
+                treeParent.EditValue = "2";
 
                 treeArea.Properties.DataSource = objT["result"]["areaList"].ToObject<List<OfficeEntity>>();
                 treeArea.Properties.TreeList.KeyFieldName = "id";//设置ID  
                 treeArea.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
                 treeArea.Properties.DisplayMember = "name";  //要在树里展示的
                 treeArea.Properties.ValueMember = "id";    //对应的value
+                treeArea.EditValue = "2";
 
                 lueType.Properties.DataSource = objT["result"]["typeDictList"].ToObject<List<OfficeEntity>>();
                 lueType.Properties.DisplayMember = "name";
                 lueType.Properties.ValueMember = "code";
+                if (objT["result"]["typeDictList"].Count() > 0)
+                    lueType.EditValue = objT["result"]["typeDictList"][0]["code"].ToString();
 
                 lueGrade.Properties.DataSource = objT["result"]["gradeDictList"].ToObject<List<OfficeEntity>>();
                 lueGrade.Properties.DisplayMember = "name";
                 lueGrade.Properties.ValueMember = "code";
+                if (objT["result"]["gradeDictList"].Count() > 0)
+                    lueGrade.EditValue = objT["result"]["gradeDictList"][0]["code"].ToString();
 
                 if (office != null)
                 {

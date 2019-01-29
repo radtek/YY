@@ -39,10 +39,13 @@ namespace Xr.RtManager
                 treeParent.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
                 treeParent.Properties.DisplayMember = "name";  //要在树里展示的
                 treeParent.Properties.ValueMember = "id";    //对应的value
+                treeParent.EditValue = "2";
 
                 lueDataScope.Properties.DataSource = objT["result"]["dataScopeDictList"].ToObject<List<OfficeEntity>>();
                 lueDataScope.Properties.DisplayMember = "name";
                 lueDataScope.Properties.ValueMember = "code";
+                if (objT["result"]["dataScopeDictList"].Count()>0)
+                    lueDataScope.EditValue = objT["result"]["dataScopeDictList"][0]["code"].ToString();
 
                 treeList1.DataSource = objT["result"]["menuList"].ToObject<List<MenuEntity>>();
                 treeList1.KeyFieldName = "id";//设置ID  

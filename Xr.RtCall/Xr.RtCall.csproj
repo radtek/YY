@@ -69,8 +69,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSkin">
-      <HintPath>D:\ORM框架\Cskin\CSkin.dll</HintPath>
+    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RtCallSocket\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -212,6 +213,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="RtCallSocket\CSkin.dll" />
     <Content Include="RtCallSocket\HPSocket4C-SSL_U.dll" />
     <Content Include="RtCallSocket\HPSocket4C_U.dll" />
     <Content Include="RtCallSocket\HPSocketCS.dll" />

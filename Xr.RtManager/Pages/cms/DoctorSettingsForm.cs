@@ -561,12 +561,12 @@ namespace Xr.RtManager.Pages.cms
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
-                List<DeptEntity> deptLsit = objT["result"].ToObject<List<DeptEntity>>();
+                List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
                 DeptEntity dept = new DeptEntity();
                 dept.id = "0";
                 dept.name = "无";
-                deptLsit.Insert(0, dept);
-                lueDept.Properties.DataSource = deptLsit;
+                deptList.Insert(0, dept);
+                lueDept.Properties.DataSource = deptList;
                 lueDept.Properties.DisplayMember = "name";
                 lueDept.Properties.ValueMember = "id";
             }

@@ -85,12 +85,21 @@ namespace Xr.RtManager
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         AppContext.Session.deptList = objT["result"].ToObject<List<DeptEntity>>();
-                        foreach (DeptEntity dept in AppContext.Session.deptList)
+                        if (AppContext.AppConfig.deptCode == null || AppContext.AppConfig.deptCode.Trim().Length == 0)
                         {
-                            if (AppContext.AppConfig.deptCode.Equals(dept.code))
+                            if(AppContext.Session.deptList.Count>0){
+                                AppContext.Session.hospitalId = AppContext.Session.deptList[0].hospitalId;
+                                AppContext.Session.deptId = AppContext.Session.deptList[0].id;
+                            }
+                        }else{
+                            foreach (DeptEntity dept in AppContext.Session.deptList)
                             {
-                                AppContext.Session.hospitalId = dept.hospitalId;
-                                AppContext.Session.deptId = dept.id;
+                                if (AppContext.AppConfig.deptCode.Equals(dept.code))
+                                {
+                                    AppContext.Session.hospitalId = dept.hospitalId;
+                                    AppContext.Session.deptId = dept.id;
+                                    break;
+                                }
                             }
                         }
                         this.DialogResult = DialogResult.OK;

@@ -70,5 +70,10 @@ namespace Xr.RtManager
         /// 应急数量
         /// </summary>
         public String numYj { get; set; }
+
+        /// <summary>
+        /// 现场数量(numSource是一样的，只是不同接口用的入参名不一样)
+        /// </summary>
+        public String numSite { get; set; }
     }
 }

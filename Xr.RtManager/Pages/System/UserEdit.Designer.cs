@@ -508,6 +508,7 @@
             // 
             this.richEditor1.BorderColor = System.Drawing.Color.Black;
             this.richEditor1.HeightLightBolorColor = System.Drawing.Color.Black;
+            this.richEditor1.ImagUploadUrl = null;
             this.richEditor1.Location = new System.Drawing.Point(122, 390);
             this.richEditor1.Name = "richEditor1";
             this.richEditor1.Padding = new System.Windows.Forms.Padding(3);
@@ -555,7 +556,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UserEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "用户添加";
             this.Load += new System.EventHandler(this.UserEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.treeCompany.Properties)).EndInit();

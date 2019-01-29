@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
@@ -40,11 +40,11 @@
             this.treeListColumn6 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
-            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
-            this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl3 = new Xr.Common.Controls.ButtonControl();
+            this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
+            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -69,10 +69,10 @@
             this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.Controls.Add(this.treeList1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 70);
+            this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(15, 20, 15, 20);
-            this.panel4.Size = new System.Drawing.Size(1091, 411);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10);
+            this.panel4.Size = new System.Drawing.Size(1091, 421);
             this.panel4.TabIndex = 63;
             // 
             // treeList1
@@ -93,11 +93,11 @@
             this.treeListColumn5,
             this.treeListColumn6});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.Location = new System.Drawing.Point(15, 20);
+            this.treeList1.Location = new System.Drawing.Point(10, 10);
             this.treeList1.Name = "treeList1";
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.treeList1.Size = new System.Drawing.Size(1061, 371);
+            this.treeList1.Size = new System.Drawing.Size(1071, 401);
             this.treeList1.TabIndex = 0;
             // 
             // treeListColumn1
@@ -153,9 +153,12 @@
             // 
             // repositoryItemButtonEdit1
             // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.ForeColor = System.Drawing.Color.SteelBlue;
+            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject1.Options.UseForeColor = true;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "添加下级菜单", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "添加下级菜单", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
@@ -167,8 +170,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(1091, 70);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(1091, 60);
             this.panel1.TabIndex = 8;
             // 
             // borderPanel1
@@ -186,23 +189,23 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(15, 20);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(1061, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(1071, 50);
             this.borderPanel1.TabIndex = 0;
             // 
-            // buttonControl1
+            // buttonControl3
             // 
-            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(30, 10);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Save;
-            this.buttonControl1.TabIndex = 0;
-            this.buttonControl1.Text = "新增";
-            this.buttonControl1.Click += new System.EventHandler(this.btnAdd_Click);
+            this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl3.Location = new System.Drawing.Point(210, 10);
+            this.buttonControl3.Name = "buttonControl3";
+            this.buttonControl3.Size = new System.Drawing.Size(75, 30);
+            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Del;
+            this.buttonControl3.TabIndex = 2;
+            this.buttonControl3.Text = "删除";
+            this.buttonControl3.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // buttonControl2
             // 
@@ -217,18 +220,18 @@
             this.buttonControl2.Text = "修改";
             this.buttonControl2.Click += new System.EventHandler(this.btnUp_Click);
             // 
-            // buttonControl3
+            // buttonControl1
             // 
-            this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl3.Location = new System.Drawing.Point(210, 10);
-            this.buttonControl3.Name = "buttonControl3";
-            this.buttonControl3.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Del;
-            this.buttonControl3.TabIndex = 2;
-            this.buttonControl3.Text = "删除";
-            this.buttonControl3.Click += new System.EventHandler(this.btnDel_Click);
+            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl1.Location = new System.Drawing.Point(30, 10);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(75, 30);
+            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl1.TabIndex = 0;
+            this.buttonControl1.Text = "新增";
+            this.buttonControl1.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // MenuForm
             // 

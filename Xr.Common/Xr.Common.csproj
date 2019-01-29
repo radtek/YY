@@ -263,6 +263,9 @@
     <EmbeddedResource Include="Controls\BorderPanelButton.resx">
       <DependentUpon>BorderPanelButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataController.resx">
+      <DependentUpon>DataController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\GroupBorderPanel.resx">
       <DependentUpon>GroupBorderPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,7 +308,6 @@
     <EmbeddedResource Include="Internal\MessageBoxForm.resx">
       <DependentUpon>MessageBoxForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

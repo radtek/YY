@@ -273,7 +273,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ClientVersionEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "版本添加";
             this.Load += new System.EventHandler(this.ClientVersionEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).EndInit();

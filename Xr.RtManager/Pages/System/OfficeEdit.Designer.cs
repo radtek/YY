@@ -506,7 +506,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.Name = "OfficeEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "机构添加";
             this.Load += new System.EventHandler(this.OfficeEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).EndInit();

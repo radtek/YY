@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -132,7 +133,7 @@
             this.label38 = new System.Windows.Forms.Label();
             this.panel79 = new System.Windows.Forms.Panel();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.panelEx1 = new Xr.Common.Controls.PanelEx();
+            this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
@@ -325,8 +326,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
-            this.dcDoctorInfo = new Xr.Common.Controls.DataController();
-            this.dcDefaultVisit = new Xr.Common.Controls.DataController();
+            this.dcDoctorInfo = new Xr.Common.Controls.DataController(this.components);
+            this.dcDefaultVisit = new Xr.Common.Controls.DataController(this.components);
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel15.SuspendLayout();
@@ -509,11 +510,11 @@
             this.tableLayoutPanel1.Controls.Add(this.panel15, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 70);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 60);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1345, 545);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1345, 555);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
             // panel15
@@ -523,8 +524,8 @@
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(3, 3);
             this.panel15.Name = "panel15";
-            this.panel15.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.panel15.Size = new System.Drawing.Size(454, 539);
+            this.panel15.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.panel15.Size = new System.Drawing.Size(454, 549);
             this.panel15.TabIndex = 68;
             // 
             // groupBox4
@@ -533,9 +534,9 @@
             this.groupBox4.Controls.Add(this.panelEx1);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox4.Location = new System.Drawing.Point(15, 0);
+            this.groupBox4.Location = new System.Drawing.Point(10, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(439, 539);
+            this.groupBox4.Size = new System.Drawing.Size(444, 549);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "默认出诊时间";
@@ -547,7 +548,7 @@
             this.panScheduling.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panScheduling.Location = new System.Drawing.Point(3, 181);
             this.panScheduling.Name = "panScheduling";
-            this.panScheduling.Size = new System.Drawing.Size(433, 355);
+            this.panScheduling.Size = new System.Drawing.Size(438, 365);
             this.panScheduling.TabIndex = 3;
             // 
             // groupBox5
@@ -1772,7 +1773,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(3, 21);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(433, 160);
+            this.panelEx1.Size = new System.Drawing.Size(438, 160);
             this.panelEx1.TabIndex = 2;
             // 
             // tableLayoutPanel4
@@ -2723,8 +2724,8 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(463, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 17, 0);
-            this.panel2.Size = new System.Drawing.Size(879, 539);
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.panel2.Size = new System.Drawing.Size(879, 549);
             this.panel2.TabIndex = 69;
             // 
             // groupBox2
@@ -2736,7 +2737,7 @@
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(862, 309);
+            this.groupBox2.Size = new System.Drawing.Size(869, 319);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "科室医生列表";
@@ -2750,7 +2751,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(128, 21);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(731, 285);
+            this.panel5.Size = new System.Drawing.Size(738, 295);
             this.panel5.TabIndex = 2;
             // 
             // gcDoctor
@@ -3550,16 +3551,19 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(123, 21);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(5, 285);
+            this.panel4.Size = new System.Drawing.Size(5, 295);
             this.panel4.TabIndex = 1;
             // 
             // menuControl2
             // 
             this.menuControl2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuControl2.itemName = null;
+            this.menuControl2.itemTag = null;
+            this.menuControl2.itemText = null;
             this.menuControl2.Location = new System.Drawing.Point(3, 21);
             this.menuControl2.Margin = new System.Windows.Forms.Padding(1, 5, 4, 5);
             this.menuControl2.Name = "menuControl2";
-            this.menuControl2.Size = new System.Drawing.Size(120, 285);
+            this.menuControl2.Size = new System.Drawing.Size(120, 295);
             this.menuControl2.TabIndex = 0;
             this.menuControl2.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuControl2_MenuItemClick);
             // 
@@ -3573,9 +3577,9 @@
             this.borderPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.borderPanel2.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel2.Location = new System.Drawing.Point(0, 309);
+            this.borderPanel2.Location = new System.Drawing.Point(0, 319);
             this.borderPanel2.Name = "borderPanel2";
-            this.borderPanel2.Size = new System.Drawing.Size(862, 50);
+            this.borderPanel2.Size = new System.Drawing.Size(869, 50);
             this.borderPanel2.TabIndex = 2;
             // 
             // btnClear
@@ -3621,9 +3625,9 @@
             // 
             this.groupBox1.Controls.Add(this.gridControl1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 359);
+            this.groupBox1.Location = new System.Drawing.Point(0, 369);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(862, 180);
+            this.groupBox1.Size = new System.Drawing.Size(869, 180);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "已选医生";
@@ -3964,8 +3968,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(1345, 70);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(1345, 60);
             this.panel1.TabIndex = 8;
             // 
             // borderPanel1
@@ -3981,9 +3985,9 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(15, 20);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(1315, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(1325, 50);
             this.borderPanel1.TabIndex = 1;
             // 
             // btnSave

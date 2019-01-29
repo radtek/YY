@@ -17,7 +17,7 @@ namespace Xr.RtManager
 {
     public partial class UserForm : UserControl
     {
-
+        Xr.Common.Controls.OpaqueCommand cmd;
         private JObject obj { get; set; }
 
         public UserForm()
@@ -29,8 +29,10 @@ namespace Xr.RtManager
         private void UserForm_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(243, 243, 243);
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             // 弹出加载提示框
-            DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
+            //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
+            cmd.ShowOpaqueLayer(225, true);
             // 开始异步
             BackgroundWorkerUtil.start_run(bw_DoWork, bw_RunWorkerCompleted, null, false);
 
@@ -40,6 +42,7 @@ namespace Xr.RtManager
         {
             try
             {
+                System.Threading.Thread.Sleep(5000);
                 String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
                 e.Result = HttpClass.httpPost(url);
             }
@@ -98,6 +101,7 @@ namespace Xr.RtManager
         {
             try
             {
+                System.Threading.Thread.Sleep(500);
                 String param = "?companyId=" + treeCompany.EditValue
                 + "&&officeId=" + treeOffice.EditValue + "&&loginName=" + tbLoginName.Text + "&&name=" + tbName.Text
                 + "&&pageNo=" + currPageNo + "&&pageSize=" + pageSize;
@@ -135,14 +139,17 @@ namespace Xr.RtManager
             finally
             {
                 // 关闭加载提示框
-                DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
+                //DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
+                cmd.HideOpaqueLayer();
             }
         }
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
             // 弹出加载提示框
-            DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
+            //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
+            cmd.ShowOpaqueLayer(225, true);
             SearchData(1, pageControl1.PageSize);
         }
 

@@ -232,7 +232,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Name = "RoleEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "角色添加";
             this.Load += new System.EventHandler(this.RoleEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).EndInit();

@@ -76,6 +76,11 @@ namespace Xr.Common.Controls
                 label.MouseEnter += new EventHandler(TwoLevelMouseEnter);
                 label.MouseLeave += new EventHandler(TwoLevelMouseLeave);
                 itemPanel.Controls.Add(label);
+
+                itemPanel.Click += new EventHandler(PanelMenuClicked);
+                itemPanel.MouseEnter += new EventHandler(PanelMouseEnter);
+                itemPanel.MouseLeave += new EventHandler(PanelMouseLeave);
+
                 panelEx1.Controls.Add(itemPanel);
                 //panelEx1.BringToFront();
                 //String name = ""; //重新组织的字符串
@@ -179,8 +184,38 @@ namespace Xr.Common.Controls
             }
         }
         #endregion 
+        
         /// <summary>
-        /// 菜单点击事件
+        /// 菜单点击事件（panel）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void PanelMenuClicked(object sender, EventArgs e)
+        {
+            PanelEx selectionPanel = (PanelEx)sender;
+            Label selectionLabel = (Label)selectionPanel.Controls[0];
+            PanelEx allPanel = (PanelEx)selectionPanel.Parent;
+            //当前面板下所有二级菜单背景改为透明,文字颜色改为黑色
+            foreach (System.Windows.Forms.Control control in allPanel.Controls)
+            {
+                PanelEx panel = (PanelEx)control;
+                Label label = (Label)panel.Controls[0];
+                control.BackColor = Color.Transparent;
+                label.ForeColor = Color.Black;
+            }
+            //修改选择的二级菜单背景色
+            selectionPanel.BackColor = Color.FromArgb(24, 166, 137);
+            selectionLabel.ForeColor = Color.White;
+            if (MenuItemClick != null)
+                MenuItemClick(sender, new EventArgs());
+
+            itemName = selectionLabel.Name;
+            itemText = selectionLabel.Text;
+            itemTag = selectionLabel.Tag.ToString();
+        }
+        
+        /// <summary>
+        /// 菜单点击事件（label）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -211,7 +246,22 @@ namespace Xr.Common.Controls
         Color MouseOriginally = Color.Transparent;//菜单原色
 
         /// <summary>
-        /// 菜单鼠标悬停事件
+        /// 菜单鼠标悬停事件（panel）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void PanelMouseEnter(object sender, EventArgs e)
+        {
+            PanelEx selectionPanel = (PanelEx)sender;
+            Label label = (Label)selectionPanel.Controls[0];
+            MouseOriginally = selectionPanel.BackColor;
+            selectionPanel.BackColor = Color.FromArgb(26, 179, 148);
+            label.ForeColor = Color.White;
+            toolTip1.SetToolTip(label, label.Text.Replace("\r\n", ""));
+        }
+
+        /// <summary>
+        /// 菜单鼠标悬停事件（label）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -226,7 +276,27 @@ namespace Xr.Common.Controls
         }
 
         /// <summary>
-        /// 菜单鼠标离开事件
+        /// 菜单鼠标离开事件（panel）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void PanelMouseLeave(object sender, EventArgs e)
+        {
+            PanelEx selectionPanel = (PanelEx)sender;
+            Label label = (Label)selectionPanel.Controls[0];
+            if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137))
+            {
+                selectionPanel.BackColor = MouseOriginally;
+            }
+            if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137)
+                && selectionPanel.BackColor != Color.FromArgb(26, 179, 148))
+            {
+                label.ForeColor = Color.Black;
+            }
+        }
+
+        /// <summary>
+        /// 菜单鼠标离开事件（label）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -253,7 +323,6 @@ namespace Xr.Common.Controls
         public String name { get; set; }
         public String sort { get; set; }
         public String tag { get; set; }
-
         public String parentId { get; set; }
     }
 }

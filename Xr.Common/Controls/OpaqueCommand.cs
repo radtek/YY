@@ -48,8 +48,8 @@ namespace Xr.Common.Controls
                 {
                     
                     ProgressPanel _Loading = new ProgressPanel();
-
-                    _Loading.Appearance.BackColor = System.Drawing.Color.FromArgb(60, Color.Black);
+                    //_Loading.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                    _Loading.Appearance.BackColor = System.Drawing.Color.FromArgb(60, Color.WhiteSmoke);
                     _Loading.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     _Loading.Appearance.ForeColor = System.Drawing.Color.Black;
                     _Loading.Appearance.Options.UseBackColor = true;
@@ -65,17 +65,21 @@ namespace Xr.Common.Controls
                     _Loading.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
                     _Loading.Name = "progressPanel1";
                     _Loading.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-                    _Loading.Size = new System.Drawing.Size(223, 53);
-                    _Loading.Location = new Point((Control.Width - _Loading.Width) / 2,  (Control.Height - _Loading.Height) / 2);//居中
+                    //_Loading.Size = new System.Drawing.Size(223, 53);
+                    //_Loading.Location = new Point((Control.Width - _Loading.Width) / 2,  (Control.Height - _Loading.Height) / 2);//居中
+                    _Loading.Dock = DockStyle.Fill;
                     _Loading.LookAndFeel.SkinName = "Visual Studio 2013 Light";
                     _Loading.LookAndFeel.UseDefaultLookAndFeel = false;
 
                     _Loading.TabIndex = 0;
                     _Loading.Text = "progressPanel1";
 
-
-                    waitingBox.Controls.Add(_Loading);
-
+                    PanelEx pe = new PanelEx();
+                    pe.Size = new System.Drawing.Size(223, 53);
+                    pe.Location = new Point((Control.Width - _Loading.Width) / 2, (Control.Height - _Loading.Height) / 2);//居中
+                    pe.BorderColor = Color.LightGray;
+                    pe.Controls.Add(_Loading);
+                    waitingBox.Controls.Add(pe);
                     Control.Controls.Add(waitingBox);
                     
                 }
@@ -91,9 +95,8 @@ namespace Xr.Common.Controls
             //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
             waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
             waitingBox.Visible = true;
-            Control.Enabled = false;
             waitingBox.BringToFront();
-
+            waitingBox.Focus();
         }
         /// <summary>
         /// 创建临时背景图片
@@ -102,7 +105,7 @@ namespace Xr.Common.Controls
         /// User:Ryan  CreateTime:2012-8-5 16:21.
         private Bitmap CreateBacgroundImage()
         {
-            Rectangle rect = Control.DisplayRectangle;
+            Rectangle rect = Control.ClientRectangle;
             int w = rect.Width;
             int h = rect.Height;
 
@@ -138,13 +141,13 @@ namespace Xr.Common.Controls
         /// </summary>
        public void HideOpaqueLayer()
         {
-            if (this.waitingBox==null||!this.waitingBox.Visible)
+            if (this.waitingBox==null)
             {
                 return;
             }
             else
             {
-                Control.Enabled = true;
+                //Control.Enabled = true;
                 waitingBox.Visible = false;
             }
         }

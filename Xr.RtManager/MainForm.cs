@@ -58,6 +58,7 @@ namespace Xr.RtManager
             {
                 AddContextMenu(menu.id, menu.name, menu.href, panMenuBar);
             }
+            //AppContext.Session.waitControl = xtraTabControl1;
         }
 
         #region 菜单相关事件
@@ -363,8 +364,8 @@ namespace Xr.RtManager
                 if (i == -1)
                 {
                     System.Type tab = System.Type.GetType("Xr.RtManager." + href);
-                    UserControl uc = (UserControl)Activator.CreateInstance(tab);
-                    AaddUserControl(uc, id, name);
+                    UserControl uc ;//= (UserControl)Activator.CreateInstance(tab);
+                    AaddUserControl(tab, id, name);
                 }
                 else
                 {
@@ -407,6 +408,21 @@ namespace Xr.RtManager
             xtraTabControl1.SelectedTabPage.BackColor = Color.Transparent;
             xtraTabControl1.SelectedTabPage = page;  //首页显示  
         }
+
+        public delegate void ShowDatatableTypeDelegate(XtraTabPage page, System.Type type );
+        private void showPage(XtraTabPage page, System.Type type)
+        {
+            UserControl uc = (UserControl)Activator.CreateInstance(type);
+            uc.BackColor = Color.Transparent;
+            setUcUI(null, uc);
+            //使用一个有双缓存的panel做背景，避免背景图片闪烁
+            PanelEnhanced panelE = new PanelEnhanced();
+            panelE.BackgroundImage = Properties.Resources.bg2;
+            panelE.Dock = DockStyle.Fill;
+            panelE.Controls.Add(uc);
+            page.Controls.Add(panelE);
+           
+        }
         private void setUcUI(XtraTabPage page, UserControl Xuser)
         {
             Xuser.Parent = this;
@@ -434,7 +450,35 @@ namespace Xr.RtManager
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>  
+        /// 添加到Tab控件里  
+        /// </summary>  
+        /// <param name="Xuser">要添加的用户控件实例</param>  
+        /// <param name="name"> 控件唯一的 name 属性</param>  
+        /// <param name="caption">显示标题 caption</param>  
+        private void AaddUserControl(System.Type type, string name, string caption)
+        {
+            try
+            {
+                //this.Invoke(new ShowDatatableDelegate(setUcUI), new object[] { null, Xuser });
+                XtraTabPage page = new XtraTabPage();
+                page.BackColor = Color.Transparent;
+                page.Name = name;   //控件标示  
+                page.Text = caption;  //显示标题  
 
+                xtraTabControl1.TabPages.Add(page);
+                xtraTabControl1.SelectedTabPage.ResetBackColor();
+                xtraTabControl1.SelectedTabPage.BackColor = Color.Transparent;
+                xtraTabControl1.SelectedTabPage = page;  //首页显示  
+
+                AppContext.Session.waitControl = page;
+                this.Invoke(new ShowDatatableTypeDelegate(showPage), new object[] { page, type });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         /// <summary>
         /// 子界面添加新的tab界面的方法（给子界面用的）
         /// </summary>

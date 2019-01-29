@@ -1,4 +1,4 @@
-﻿namespace Xr.RtManager
+﻿namespace Xr.RtManager.Pages.triage
 {
     partial class SpotBookingForm
     {
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBorderPanel6 = new Xr.Common.Controls.GroupBorderPanel();
@@ -309,6 +309,7 @@
             this.gridView2.OptionsView.EnableAppearanceOddRow = true;
             this.gridView2.OptionsView.RowAutoHeight = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.OptionsView.ShowIndicator = false;
             // 
             // gridColumn5
             // 
@@ -437,6 +438,8 @@
             // 
             // groupBorderPanel1
             // 
+            this.groupBorderPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupBorderPanel1.Appearance.Options.UseBackColor = true;
             this.groupBorderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBorderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBorderPanel1.Controls.Add(this.panel2);
@@ -460,6 +463,7 @@
             // panel2
             // 
             this.panel2.AutoScroll = true;
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.borderPanelButton3);
             this.panel2.Controls.Add(this.borderPanelButton4);
             this.panel2.Controls.Add(this.borderPanelButton5);
@@ -483,7 +487,7 @@
             // 
             // borderPanelButton3
             // 
-            this.borderPanelButton3.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton3.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton3.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton3.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -500,7 +504,7 @@
             // 
             // borderPanelButton4
             // 
-            this.borderPanelButton4.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton4.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton4.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton4.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -517,7 +521,7 @@
             // 
             // borderPanelButton5
             // 
-            this.borderPanelButton5.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton5.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton5.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton5.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -534,7 +538,7 @@
             // 
             // borderPanelButton7
             // 
-            this.borderPanelButton7.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton7.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton7.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton7.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -551,7 +555,7 @@
             // 
             // borderPanelButton8
             // 
-            this.borderPanelButton8.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton8.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton8.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton8.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -568,7 +572,7 @@
             // 
             // borderPanelButton9
             // 
-            this.borderPanelButton9.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton9.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton9.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton9.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -585,7 +589,7 @@
             // 
             // borderPanelButton16
             // 
-            this.borderPanelButton16.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton16.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton16.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton16.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton16.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -602,7 +606,7 @@
             // 
             // borderPanelButton17
             // 
-            this.borderPanelButton17.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton17.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton17.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton17.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton17.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -619,7 +623,7 @@
             // 
             // borderPanelButton18
             // 
-            this.borderPanelButton18.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton18.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton18.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton18.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton18.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -636,7 +640,7 @@
             // 
             // borderPanelButton19
             // 
-            this.borderPanelButton19.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton19.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton19.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton19.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -653,7 +657,7 @@
             // 
             // borderPanelButton20
             // 
-            this.borderPanelButton20.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton20.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton20.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton20.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton20.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -670,7 +674,7 @@
             // 
             // borderPanelButton21
             // 
-            this.borderPanelButton21.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton21.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton21.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton21.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton21.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -687,7 +691,7 @@
             // 
             // borderPanelButton22
             // 
-            this.borderPanelButton22.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton22.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton22.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton22.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton22.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -704,7 +708,7 @@
             // 
             // borderPanelButton23
             // 
-            this.borderPanelButton23.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton23.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton23.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton23.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton23.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -721,7 +725,7 @@
             // 
             // borderPanelButton24
             // 
-            this.borderPanelButton24.BorderColor = System.Drawing.Color.Black;
+            this.borderPanelButton24.BorderColor = System.Drawing.Color.White;
             this.borderPanelButton24.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton24.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton24.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -761,6 +765,7 @@
             // panel6
             // 
             this.panel6.AutoScroll = true;
+            this.panel6.BackColor = System.Drawing.Color.White;
             this.panel6.Controls.Add(this.borderPanelButton50);
             this.panel6.Controls.Add(this.borderPanelButton51);
             this.panel6.Controls.Add(this.borderPanelButton52);
@@ -773,7 +778,6 @@
             // 
             // borderPanelButton50
             // 
-            this.borderPanelButton50.BorderColor = System.Drawing.Color.Black;
             this.borderPanelButton50.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton50.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton50.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -790,7 +794,6 @@
             // 
             // borderPanelButton51
             // 
-            this.borderPanelButton51.BorderColor = System.Drawing.Color.Black;
             this.borderPanelButton51.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton51.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton51.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -807,7 +810,6 @@
             // 
             // borderPanelButton52
             // 
-            this.borderPanelButton52.BorderColor = System.Drawing.Color.Black;
             this.borderPanelButton52.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton52.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton52.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -824,7 +826,6 @@
             // 
             // borderPanelButton53
             // 
-            this.borderPanelButton53.BorderColor = System.Drawing.Color.Black;
             this.borderPanelButton53.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanelButton53.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton53.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
@@ -905,7 +906,7 @@
             // borderPanelButton2
             // 
             this.borderPanelButton2.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton2.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton2.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton2.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton2.BtnText = "下午";
@@ -922,7 +923,7 @@
             // borderPanelButton25
             // 
             this.borderPanelButton25.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton25.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton25.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton25.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton25.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton25.BtnText = "下午";
@@ -939,7 +940,7 @@
             // borderPanelButton26
             // 
             this.borderPanelButton26.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton26.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton26.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton26.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton26.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton26.BtnText = "下午";
@@ -956,7 +957,7 @@
             // borderPanelButton27
             // 
             this.borderPanelButton27.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton27.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton27.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton27.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton27.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton27.BtnText = "下午";
@@ -973,7 +974,7 @@
             // borderPanelButton28
             // 
             this.borderPanelButton28.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton28.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton28.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton28.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton28.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton28.BtnText = "下午";
@@ -990,7 +991,7 @@
             // borderPanelButton29
             // 
             this.borderPanelButton29.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton29.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton29.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton29.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton29.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton29.BtnText = "下午";
@@ -1007,7 +1008,7 @@
             // borderPanelButton30
             // 
             this.borderPanelButton30.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton30.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton30.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton30.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton30.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton30.BtnText = "下午";
@@ -1024,7 +1025,7 @@
             // borderPanelButton31
             // 
             this.borderPanelButton31.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton31.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton31.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton31.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton31.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton31.BtnText = "下午";
@@ -1041,7 +1042,7 @@
             // borderPanelButton32
             // 
             this.borderPanelButton32.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton32.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton32.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton32.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton32.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton32.BtnText = "下午";
@@ -1058,7 +1059,7 @@
             // borderPanelButton33
             // 
             this.borderPanelButton33.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton33.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton33.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton33.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton33.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton33.BtnText = "下午";
@@ -1075,7 +1076,7 @@
             // borderPanelButton34
             // 
             this.borderPanelButton34.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton34.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton34.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton34.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton34.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton34.BtnText = "下午";
@@ -1092,7 +1093,7 @@
             // borderPanelButton35
             // 
             this.borderPanelButton35.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton35.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton35.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton35.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton35.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton35.BtnText = "下午";
@@ -1109,7 +1110,7 @@
             // borderPanelButton36
             // 
             this.borderPanelButton36.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton36.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton36.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton36.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton36.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton36.BtnText = "下午";
@@ -1126,7 +1127,7 @@
             // borderPanelButton37
             // 
             this.borderPanelButton37.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton37.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton37.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton37.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton37.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton37.BtnText = "下午";
@@ -1143,7 +1144,7 @@
             // borderPanelButton38
             // 
             this.borderPanelButton38.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton38.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanelButton38.BorderSides = Xr.Common.Controls.BorderSides.Top;
             this.borderPanelButton38.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanelButton38.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.borderPanelButton38.BtnText = "下午";
@@ -1182,7 +1183,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1248,7 +1249,7 @@
             this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(57, 0);
+            this.buttonControl1.Location = new System.Drawing.Point(65, 0);
             this.buttonControl1.Margin = new System.Windows.Forms.Padding(0);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(60, 23);
@@ -1261,7 +1262,7 @@
             this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel24.Location = new System.Drawing.Point(47, 0);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(10, 23);
+            this.panel24.Size = new System.Drawing.Size(18, 23);
             this.panel24.TabIndex = 2;
             // 
             // label13
@@ -1582,7 +1583,8 @@
             // lookUpEdit1
             // 
             this.lookUpEdit1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lookUpEdit1.Location = new System.Drawing.Point(364, 90);
+            this.lookUpEdit1.Location = new System.Drawing.Point(366, 92);
+            this.lookUpEdit1.Margin = new System.Windows.Forms.Padding(5);
             this.lookUpEdit1.Name = "lookUpEdit1";
             this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
@@ -1597,21 +1599,22 @@
             this.lookUpEdit1.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEdit1.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lookUpEdit1.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.Options.UseFont = true;
             this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
             this.lookUpEdit1.Properties.NullText = "";
-            this.lookUpEdit1.Size = new System.Drawing.Size(116, 23);
+            this.lookUpEdit1.Size = new System.Drawing.Size(116, 19);
             this.lookUpEdit1.TabIndex = 179;
             // 
             // lueIsUse
             // 
             this.lueIsUse.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lueIsUse.Location = new System.Drawing.Point(73, 32);
+            this.lueIsUse.Location = new System.Drawing.Point(75, 34);
+            this.lueIsUse.Margin = new System.Windows.Forms.Padding(5);
             this.lueIsUse.Name = "lueIsUse";
             this.lueIsUse.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lueIsUse.Properties.Appearance.Options.UseFont = true;
@@ -1626,15 +1629,15 @@
             this.lueIsUse.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIsUse.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueIsUse.Properties.AutoHeight = false;
-            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject2.Options.UseFont = true;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.Options.UseFont = true;
             this.lueIsUse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.lueIsUse.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
             this.lueIsUse.Properties.NullText = "";
-            this.lueIsUse.Size = new System.Drawing.Size(115, 23);
+            this.lueIsUse.Size = new System.Drawing.Size(115, 19);
             this.lueIsUse.TabIndex = 178;
             // 
             // label18

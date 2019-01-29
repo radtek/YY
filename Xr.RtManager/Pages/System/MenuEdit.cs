@@ -59,6 +59,7 @@ namespace Xr.RtManager
                     }
                     else
                     {
+                        menu.isShow = "1";
                         dcMenu.SetValue(menu);
                     }
                 }

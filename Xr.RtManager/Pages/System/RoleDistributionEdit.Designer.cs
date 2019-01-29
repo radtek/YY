@@ -245,7 +245,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "RoleDistributionEdit";
             this.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "分配角色";
             this.Load += new System.EventHandler(this.RoleDistributionEdit_Load);
             this.panel1.ResumeLayout(false);

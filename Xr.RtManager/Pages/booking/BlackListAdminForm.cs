@@ -13,7 +13,7 @@ using Xr.Common;
 using Xr.Http;
 using Xr.Common.Controls;
 
-namespace Xr.RtManager
+namespace Xr.RtManager.Pages.booking
 {
     public partial class BlackListAdminForm : UserControl
     {

@@ -75,10 +75,10 @@
             this.panel4.Controls.Add(this.gcDict);
             this.panel4.Controls.Add(this.pageControl1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 70);
+            this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(15, 20, 15, 20);
-            this.panel4.Size = new System.Drawing.Size(1037, 411);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel4.Size = new System.Drawing.Size(1037, 421);
             this.panel4.TabIndex = 63;
             // 
             // gcDict
@@ -89,10 +89,10 @@
             this.gcDict.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1,
             gridLevelNode2});
-            this.gcDict.Location = new System.Drawing.Point(15, 20);
+            this.gcDict.Location = new System.Drawing.Point(10, 10);
             this.gcDict.MainView = this.gridView1;
             this.gcDict.Name = "gcDict";
-            this.gcDict.Size = new System.Drawing.Size(1007, 332);
+            this.gcDict.Size = new System.Drawing.Size(1017, 372);
             this.gcDict.TabIndex = 13;
             this.gcDict.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -211,11 +211,11 @@
             // 
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageControl1.Location = new System.Drawing.Point(15, 352);
+            this.pageControl1.Location = new System.Drawing.Point(10, 382);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(1007, 39);
+            this.pageControl1.Size = new System.Drawing.Size(1017, 39);
             this.pageControl1.TabIndex = 12;
             this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
@@ -225,8 +225,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(1037, 70);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(1037, 60);
             this.panel1.TabIndex = 8;
             // 
             // borderPanel1
@@ -251,9 +251,9 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(15, 20);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(1007, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(1017, 50);
             this.borderPanel1.TabIndex = 0;
             // 
             // tbTitle
@@ -269,7 +269,7 @@
             this.buttonControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl4.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl4.Location = new System.Drawing.Point(810, 10);
+            this.buttonControl4.Location = new System.Drawing.Point(790, 10);
             this.buttonControl4.Name = "buttonControl4";
             this.buttonControl4.Size = new System.Drawing.Size(75, 30);
             this.buttonControl4.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -282,7 +282,7 @@
             this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl3.Location = new System.Drawing.Point(720, 10);
+            this.buttonControl3.Location = new System.Drawing.Point(700, 10);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
             this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -295,7 +295,7 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(630, 10);
+            this.buttonControl2.Location = new System.Drawing.Point(610, 10);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -308,7 +308,7 @@
             this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(540, 10);
+            this.buttonControl1.Location = new System.Drawing.Point(520, 10);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 30);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Query;

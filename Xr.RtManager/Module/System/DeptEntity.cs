@@ -30,5 +30,10 @@ namespace Xr.RtManager
         /// 医院id
         /// </summary>
         public String hospitalId { get; set; }
+
+        /// <summary>
+        /// 父级科室
+        /// </summary>
+        public String parentId { get; set; }
     }
 }

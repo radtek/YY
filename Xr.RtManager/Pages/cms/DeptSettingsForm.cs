@@ -78,7 +78,7 @@ namespace Xr.RtManager.Pages.cms
 
         public void SearchData(int pageNo, int pageSize)
         {
-            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=";
             String url = AppContext.AppConfig.serverUrl + "cms/dept/list?"+param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);

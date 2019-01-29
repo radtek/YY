@@ -187,6 +187,7 @@
             // rgIsShow
             // 
             this.dcMenu.SetDataMember(this.rgIsShow, "isShow");
+            this.rgIsShow.EditValue = "1";
             this.rgIsShow.Location = new System.Drawing.Point(487, 161);
             this.rgIsShow.Name = "rgIsShow";
             this.rgIsShow.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -305,7 +306,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MenuEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "菜单添加";
             this.Load += new System.EventHandler(this.MenuEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teHref.Properties)).EndInit();

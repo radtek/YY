@@ -1,4 +1,4 @@
-﻿namespace Xr.RtManager
+﻿namespace Xr.RtManager.Pages.booking
 {
     partial class TodayAppointmentForm
     {

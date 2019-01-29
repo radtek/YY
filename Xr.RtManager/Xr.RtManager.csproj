@@ -56,6 +56,7 @@
     <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v13.2.Extensions, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -123,6 +124,8 @@
     <Compile Include="MainFormTwo.designer.cs">
       <DependentUpon>MainFormTwo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\cms\Article.cs" />
+    <Compile Include="Module\cms\ArticleInfoEntity.cs" />
     <Compile Include="Module\cms\DoctorVSEntity.cs" />
     <Compile Include="Module\cms\ClinicInfoEntity.cs" />
     <Compile Include="Module\cms\DefaultVisitEntity.cs" />
@@ -132,6 +135,9 @@
     <Compile Include="Module\cms\WorkingDayEntity.cs" />
     <Compile Include="Module\cms\HospitalInfoEntity.cs" />
     <Compile Include="Module\cms\MessageInfoEntity.cs" />
+    <Compile Include="Module\scheduling\ScheduledEntity.cs" />
+    <Compile Include="Module\scheduling\SchedulingSubEntity.cs" />
+    <Compile Include="Module\scheduling\SchedulingEntity.cs" />
     <Compile Include="Module\System\ClientVersionEntity.cs" />
     <Compile Include="Module\System\AppConfigEntity.cs" />
     <Compile Include="Module\System\DeptEntity.cs" />
@@ -142,17 +148,18 @@
     <Compile Include="Module\System\MenuEntity.cs" />
     <Compile Include="Module\System\UserEntity.cs" />
     <Compile Include="Module\System\SessionInfo.cs" />
+    <Compile Include="Module\triage\DoctorSittingInfoEntity.cs" />
     <Compile Include="Pages\booking\AppointmentQueryForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\booking\AppointmentQueryForm.Designer.cs">
       <DependentUpon>AppointmentQueryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\booking\AppointmentReportForm.cs">
+    <Compile Include="Pages\booking\AppointmentStatisticsForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\booking\AppointmentReportForm.Designer.cs">
-      <DependentUpon>AppointmentReportForm.cs</DependentUpon>
+    <Compile Include="Pages\booking\AppointmentStatisticsForm.Designer.cs">
+      <DependentUpon>AppointmentStatisticsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\booking\BlackListAdminForm.cs">
       <SubType>UserControl</SubType>
@@ -165,6 +172,12 @@
     </Compile>
     <Compile Include="Pages\booking\TodayAppointmentForm.Designer.cs">
       <DependentUpon>TodayAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\cms\ArticleManagementSettingForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\cms\ArticleManagementSettingForm.Designer.cs">
+      <DependentUpon>ArticleManagementSettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\cms\ClinicSettingForm.cs">
       <SubType>UserControl</SubType>
@@ -207,6 +220,30 @@
     </Compile>
     <Compile Include="Pages\cms\MessageManagement.Designer.cs">
       <DependentUpon>MessageManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\scheduling\RemarksEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\scheduling\RemarksEdit.Designer.cs">
+      <DependentUpon>RemarksEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\scheduling\ScheduledListForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\scheduling\ScheduledListForm.Designer.cs">
+      <DependentUpon>ScheduledListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\scheduling\BatchSchedulingForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\scheduling\BatchSchedulingForm.Designer.cs">
+      <DependentUpon>BatchSchedulingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\scheduling\SingleSchedulingForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\scheduling\SingleSchedulingForm.Designer.cs">
+      <DependentUpon>SingleSchedulingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\System\ClientVersionForm.cs">
       <SubType>UserControl</SubType>
@@ -298,6 +335,12 @@
     <Compile Include="Pages\System\UserForm.Designer.cs">
       <DependentUpon>UserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\triage\DoctorSittingSettingForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\triage\DoctorSittingSettingForm.Designer.cs">
+      <DependentUpon>DoctorSittingSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\triage\SpotBookingForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -359,14 +402,17 @@
     <EmbeddedResource Include="Pages\booking\AppointmentQueryForm.resx">
       <DependentUpon>AppointmentQueryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\booking\AppointmentReportForm.resx">
-      <DependentUpon>AppointmentReportForm.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\booking\AppointmentStatisticsForm.resx">
+      <DependentUpon>AppointmentStatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\booking\BlackListAdminForm.resx">
       <DependentUpon>BlackListAdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\booking\TodayAppointmentForm.resx">
       <DependentUpon>TodayAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\cms\ArticleManagementSettingForm.resx">
+      <DependentUpon>ArticleManagementSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\ClinicSettingForm.resx">
       <DependentUpon>ClinicSettingForm.cs</DependentUpon>
@@ -388,6 +434,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\MessageManagement.resx">
       <DependentUpon>MessageManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\scheduling\RemarksEdit.resx">
+      <DependentUpon>RemarksEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\scheduling\ScheduledListForm.resx">
+      <DependentUpon>ScheduledListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\scheduling\BatchSchedulingForm.resx">
+      <DependentUpon>BatchSchedulingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\scheduling\SingleSchedulingForm.resx">
+      <DependentUpon>SingleSchedulingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\System\ClientVersionForm.resx">
       <DependentUpon>ClientVersionForm.cs</DependentUpon>
@@ -434,6 +492,9 @@
     <EmbeddedResource Include="Pages\System\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\triage\DoctorSittingSettingForm.resx">
+      <DependentUpon>DoctorSittingSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\triage\SpotBookingForm.resx">
       <DependentUpon>SpotBookingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -446,7 +507,6 @@
     <EmbeddedResource Include="Pages\triage\SignInForm.resx">
       <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -495,6 +555,7 @@
       <Name>Xr</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

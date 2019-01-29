@@ -143,7 +143,7 @@ namespace Xr.Http
                 System.Net.ServicePointManager.DefaultConnectionLimit = 20;
 
                 // 打印 请求地址及参数
-                LogClass.WriteLog("请求数据：" + url);
+                LogClass.WriteLog("请求数据：" + url + postDataStr);
 
                 request = (HttpWebRequest)WebRequest.Create(url);
                 byte[] requestBytes = System.Text.Encoding.ASCII.GetBytes(postDataStr);
@@ -161,6 +161,72 @@ namespace Xr.Http
                 requestStream.Write(postData, 0, postData.Length);
                 requestStream.Close();
                 
+                response = (HttpWebResponse)request.GetResponse();
+                CookieEntity.cookie = request.CookieContainer;
+
+                stream = response.GetResponseStream();
+                reader = new StreamReader(stream, Encoding.UTF8);
+                result = reader.ReadToEnd().Trim();
+                // 打印响应结果
+                LogClass.WriteLog("响应结果：" + result);
+                //if (result.Equals("远程服务器返回错误: (404) 未找到。"))
+                //{
+                //    throw new Exception(result);
+                //}
+            }
+            catch (Exception e)
+            {
+                result = "{'state': false, 'message':'" + e.Message + "'}";
+                LogClass.WriteExceptionLog(e);
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                if (stream != null) stream.Close();
+                if (response != null) response.Close();
+                if (request != null) request.Abort();
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// post模拟表单提交(参数太长的时候用),可自定义超时时间
+        /// </summary>
+        /// <param name="url">请求路径</param>
+        /// <param name="postDataStr">参数</param>
+        /// <param name="minute">超时时间，单位分钟，例如：10就是10分钟</param>
+        /// <returns></returns>
+        public static String httpPost(String url, String postDataStr, int minute)
+        {
+            string result = "";
+            HttpWebRequest request = null;
+            HttpWebResponse response = null;
+            Stream stream = null;
+            StreamReader reader = null;
+            try
+            {
+                System.GC.Collect();    // 请求之前 做一次垃圾回收
+                System.Net.ServicePointManager.DefaultConnectionLimit = 20;
+
+                // 打印 请求地址及参数
+                LogClass.WriteLog("请求数据：" + url + postDataStr);
+
+                request = (HttpWebRequest)WebRequest.Create(url);
+                byte[] requestBytes = System.Text.Encoding.ASCII.GetBytes(postDataStr);
+                //request.Accept = "*/*";
+                request.Method = "POST";
+                //request.UserAgent = "Mozilla/5.0";
+                request.CookieContainer = CookieEntity.cookie;
+                request.KeepAlive = false;          // 保持短链接
+                request.Timeout = minute * 60 * 1000;    // 1分钟，以防网络超时
+                request.ContentType = "application/x-www-form-urlencoded";
+                Encoding encoding = Encoding.UTF8;//根据网站的编码自定义
+                byte[] postData = encoding.GetBytes(postDataStr);//postDataStr即为发送的数据，
+                request.ContentLength = postData.Length;
+                Stream requestStream = request.GetRequestStream();
+                requestStream.Write(postData, 0, postData.Length);
+                requestStream.Close();
+
                 response = (HttpWebResponse)request.GetResponse();
                 CookieEntity.cookie = request.CookieContainer;
 
