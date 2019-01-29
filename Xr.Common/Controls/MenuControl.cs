@@ -20,6 +20,10 @@ namespace Xr.Common.Controls
             this.panelEx1.HorizontalScroll.Visible = true;
         }
 
+        public String itemName { get; set; }
+        public String itemText { get; set; }
+        public String itemTag { get; set; }
+
         private List<Item> dataSource { get; set; }
         public bool isSort;//是否进行排序
         public Color borderColor = Color.FromArgb(157, 160, 170);
@@ -34,6 +38,7 @@ namespace Xr.Common.Controls
 
         public void setDataSource(List<Item> menuList)
         {
+            panelEx1.Controls.Clear();
             labMeasure.Font = font;
             dataSource = menuList;
             if (isSort)
@@ -44,8 +49,9 @@ namespace Xr.Common.Controls
 
             Graphics graphics = CreateGraphics();
             //循环添加菜单
-            foreach (Item item in menuList)
+            for (int i = menuList.Count-1; i >= 0; i--)
             {
+                Item item = menuList[i];
                 PanelEx itemPanel = new PanelEx();
                 itemPanel.BorderColor = borderColor;
                 itemPanel.BorderStyleTop = ButtonBorderStyle.None;
@@ -54,7 +60,10 @@ namespace Xr.Common.Controls
                 itemPanel.BackColor = Color.Transparent;
                 itemPanel.Height = MenuItemHeight;
                 itemPanel.Dock = DockStyle.Top;
-                itemPanel.Padding = new Padding(10, 6, 10, 1);
+                if (item.parentId != null && item.parentId.Length != 0)
+                    itemPanel.Padding = new Padding(20, 6, 10, 1);
+                else
+                    itemPanel.Padding = new Padding(10, 6, 10, 1);
                 Label label = new Label();
                 label.BackColor = Color.Transparent;
                 label.Font = font;
@@ -68,7 +77,7 @@ namespace Xr.Common.Controls
                 label.MouseLeave += new EventHandler(TwoLevelMouseLeave);
                 itemPanel.Controls.Add(label);
                 panelEx1.Controls.Add(itemPanel);
-                panelEx1.BringToFront();
+                //panelEx1.BringToFront();
                 //String name = ""; //重新组织的字符串
                 //float currentLineWidth = 0f; //当前行文字宽度
                 //float rowWidht = this.Width - 20; //行宽度，不能取label的，不知道什么原因，取label比实际的小
@@ -97,7 +106,7 @@ namespace Xr.Common.Controls
         }
         #region 更改上面的添加List<string>类型的数据
         private List<string> dataSources { get; set; }
-        public void setDataSources(List<string> menuList)
+        public void setDataSources(List<string> menuList,bool BorderColor)
         {
             labMeasure.Font = font;
             dataSources = menuList;
@@ -107,7 +116,7 @@ namespace Xr.Common.Controls
             //    menuList = menuList.OrderBy(x => x.sort).ToList();
             //}
             Graphics graphics = CreateGraphics();
-            panelEx1.Controls.Clear();
+            panelEx1.Controls.Clear();//先清空一遍 防止重复添加
             //循环添加菜单
             foreach (string item in menuList)
             {
@@ -135,6 +144,14 @@ namespace Xr.Common.Controls
                 itemPanel.Controls.Add(label);
                 panelEx1.Controls.Add(itemPanel);
                 panelEx1.BringToFront();
+                if (BorderColor)
+                {
+                    this.BorderStyle = BorderStyle.None;
+                    panelEx1.BorderStyleBottom = ButtonBorderStyle.None;
+                    panelEx1.BorderStyleLeft = ButtonBorderStyle.None;
+                    panelEx1.BorderStyleRight = ButtonBorderStyle.None; 
+                    panelEx1.BorderStyleTop = ButtonBorderStyle.None; 
+                }
                 //String name = ""; //重新组织的字符串
                 //float currentLineWidth = 0f; //当前行文字宽度
                 //float rowWidht = this.Width - 20; //行宽度，不能取label的，不知道什么原因，取label比实际的小
@@ -185,6 +202,10 @@ namespace Xr.Common.Controls
             selectionLabel.ForeColor = Color.White;
             if (MenuItemClick != null)
                 MenuItemClick(sender, new EventArgs());
+
+            itemName = selectionLabel.Name;
+            itemText = selectionLabel.Text;
+            itemTag = selectionLabel.Tag.ToString();
         }
 
         Color MouseOriginally = Color.Transparent;//菜单原色
@@ -232,5 +253,7 @@ namespace Xr.Common.Controls
         public String name { get; set; }
         public String sort { get; set; }
         public String tag { get; set; }
+
+        public String parentId { get; set; }
     }
 }

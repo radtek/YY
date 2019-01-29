@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="Model\AppConfigEntity.cs" />
     <Compile Include="Model\AppContext.cs" />
+    <Compile Include="Model\HelperClass.cs" />
     <Compile Include="Model\PatientList.cs" />
     <Compile Include="Model\RestSharpHelper.cs" />
     <Compile Include="pages\HostingForm.cs">
@@ -191,7 +192,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xr.Common\Xr.Common.csproj">

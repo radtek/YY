@@ -26,6 +26,10 @@ namespace Xr.RtCall.Model
             AppConfig.hospitalCode = ConfigurationManager.AppSettings["hospitalCode"].ToString();
             AppConfig.deptCode = ConfigurationManager.AppSettings["deptCode"].ToString();
             AppConfig.StartUpSocket = ConfigurationManager.AppSettings["StartUpSocket"].ToString();
+            AppConfig.OutPutLocationX = ConfigurationManager.AppSettings["OutPutLocationX"].ToString();
+            AppConfig.OutPutLocationY = ConfigurationManager.AppSettings["OutPutLocationY"].ToString();
+            AppConfig.sleepOutPutTime = ConfigurationManager.AppSettings["sleepOutPutTime"].ToString();
+            AppConfig.WhetherToAssign = ConfigurationManager.AppSettings["WhetherToAssign"].ToString();
         }
     }
 }

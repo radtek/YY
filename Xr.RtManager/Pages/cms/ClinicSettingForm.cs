@@ -18,10 +18,10 @@ namespace Xr.RtManager.Pages.cms
         {
             InitializeComponent();
             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
-            this.gv_Clinic.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
-            gv_Clinic.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
-            gv_Clinic.OptionsView.EnableAppearanceEvenRow = true;
-            gv_Clinic.OptionsView.EnableAppearanceOddRow = true;
+            //this.gv_Clinic.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
+            //gv_Clinic.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
+            //gv_Clinic.OptionsView.EnableAppearanceEvenRow = true;
+            //gv_Clinic.OptionsView.EnableAppearanceOddRow = true;
             //ClinicSettingList(AppContext.Session.hospitalId,AppContext.Session.deptId);
             #region 注释
             //foreach (var item in AppContext.Session.deptList)
@@ -118,6 +118,7 @@ namespace Xr.RtManager.Pages.cms
                         clinicInfo[i].deptname = name;
                     }
                     this.gc_Clinic.DataSource = clinicInfo;
+                   
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
@@ -438,6 +439,26 @@ namespace Xr.RtManager.Pages.cms
             }
         }
         #endregion 
+        #region 加粗GroupBox线条颜色
+        /// <summary>
+        /// 画边框线条颜色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void groupBox1_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBox gBox = (GroupBox)sender;
+            //e.Graphics.Clear(gBox.BackColor);
+           //e.Graphics.DrawString(gBox.Text, gBox.Font, Brushes.Gray, 10, 1);
+            var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
+            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
+            e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
+            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
+            e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
+            e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+        }
         #endregion 
+        #endregion
+
     }
 }

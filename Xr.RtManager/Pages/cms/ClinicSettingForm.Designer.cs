@@ -66,9 +66,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.butClose = new Xr.Common.Controls.ButtonControl();
             this.butContronl = new Xr.Common.Controls.ButtonControl();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
@@ -85,10 +85,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -225,10 +225,10 @@
             // textEdit1
             // 
             this.dcClinc.SetDataMember(this.textEdit1, "id");
-            this.textEdit1.Location = new System.Drawing.Point(809, 26);
+            this.textEdit1.Location = new System.Drawing.Point(813, 34);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.AutoHeight = false;
-            this.textEdit1.Size = new System.Drawing.Size(14, 28);
+            this.textEdit1.Size = new System.Drawing.Size(10, 20);
             this.textEdit1.TabIndex = 111;
             this.textEdit1.Visible = false;
             // 
@@ -286,34 +286,37 @@
             this.groupBox1.Controls.Add(this.menuControl1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(13, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(171, 267);
+            this.groupBox1.Size = new System.Drawing.Size(168, 276);
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "科室列表";
+            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
             // 
             // menuControl1
             // 
+            this.menuControl1.BackColor = System.Drawing.Color.Transparent;
             this.menuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuControl1.itemName = null;
+            this.menuControl1.itemTag = null;
+            this.menuControl1.itemText = null;
             this.menuControl1.Location = new System.Drawing.Point(3, 21);
             this.menuControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.menuControl1.Name = "menuControl1";
-            this.menuControl1.Size = new System.Drawing.Size(165, 243);
+            this.menuControl1.Size = new System.Drawing.Size(162, 252);
             this.menuControl1.TabIndex = 0;
             this.menuControl1.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuControl1_MenuItemClick);
             // 
             // gc_Clinic
             // 
-            this.gc_Clinic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gc_Clinic.Location = new System.Drawing.Point(3, 3);
+            this.gc_Clinic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gc_Clinic.Location = new System.Drawing.Point(3, 21);
             this.gc_Clinic.MainView = this.gv_Clinic;
             this.gc_Clinic.Name = "gc_Clinic";
             this.gc_Clinic.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
-            this.gc_Clinic.Size = new System.Drawing.Size(725, 223);
+            this.gc_Clinic.Size = new System.Drawing.Size(714, 212);
             this.gc_Clinic.TabIndex = 51;
             this.gc_Clinic.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Clinic,
@@ -500,12 +503,13 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Enabled = false;
             this.groupBox3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox3.Location = new System.Drawing.Point(3, 276);
+            this.groupBox3.Location = new System.Drawing.Point(13, 285);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(908, 141);
+            this.groupBox3.Size = new System.Drawing.Size(894, 146);
             this.groupBox3.TabIndex = 68;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "信息编辑区";
+            this.groupBox3.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
             // 
             // label6
             // 
@@ -573,18 +577,6 @@
             this.butContronl.Text = "保存";
             this.butContronl.Click += new System.EventHandler(this.butContronl_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 70);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(920, 444);
-            this.groupBox2.TabIndex = 67;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "诊断列表";
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -594,43 +586,57 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelControl1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 21);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 70);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(914, 420);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(920, 444);
             this.tableLayoutPanel1.TabIndex = 69;
             // 
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.pageControl1);
-            this.panelControl1.Controls.Add(this.gc_Clinic);
+            this.panelControl1.Controls.Add(this.groupBox4);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(180, 3);
+            this.panelControl1.Location = new System.Drawing.Point(187, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(731, 267);
+            this.panelControl1.Size = new System.Drawing.Size(720, 276);
             this.panelControl1.TabIndex = 69;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.gc_Clinic);
+            this.groupBox4.Controls.Add(this.pageControl1);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(720, 276);
+            this.groupBox4.TabIndex = 67;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "诊断列表";
+            this.groupBox4.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
             // 
             // pageControl1
             // 
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pageControl1.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageControl1.Location = new System.Drawing.Point(0, 227);
+            this.pageControl1.Location = new System.Drawing.Point(3, 233);
             this.pageControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(731, 40);
+            this.pageControl1.Size = new System.Drawing.Size(714, 40);
             this.pageControl1.TabIndex = 52;
             // 
             // ClinicSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "ClinicSettingForm";
             this.Size = new System.Drawing.Size(920, 514);
@@ -652,10 +658,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -698,10 +704,10 @@
         private Xr.Common.Controls.ButtonControl butClose;
         private Xr.Common.Controls.ButtonControl butContronl;
         private DevExpress.XtraEditors.TextEdit textEdit1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private Xr.Common.Controls.PageControl pageControl1;
         private Xr.Common.Controls.MenuControl menuControl1;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }

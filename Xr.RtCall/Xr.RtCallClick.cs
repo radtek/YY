@@ -16,6 +16,8 @@ using Xr.Http.RestSharp;
 using RestSharp;
 using Xr.RtCall.Model;
 using Newtonsoft.Json.Linq;
+using Xr.Common;
+using Xr.Http;
 
 namespace Xr.RtCall
 {
@@ -33,6 +35,7 @@ namespace Xr.RtCall
                   ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             #endregion 
+            GetDoctorAndClinc();
             this.Size = new Size(615,78);
             pCurrentWin = this;
             _context = SynchronizationContext.Current;
@@ -162,34 +165,41 @@ namespace Xr.RtCall
         private void skinButNext_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> prament = new Dictionary<string, string>();
-            prament.Add("hospitalId", "");
-            prament.Add("deptId", "");
-            prament.Add("doctorId", "");
-            prament.Add("triageId", "");
+            prament.Add("hospitalId", HelperClass.hospitalId);
+            prament.Add("deptId", HelperClass.deptId);
+            prament.Add("doctorId", "1");
+            prament.Add("triageId", "7");
             RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/callNextPerson", prament, Method.POST, result =>
             {
-                if (result.ResponseStatus==ResponseStatus.Completed)
+                if (result.ResponseStatus == ResponseStatus.Completed)
                 {
                     if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
-                           
+                            _context.Send((s) => HelperClass.triageId = objT["triageId"].ToString(), null);
+                            _context.Send((s) => label1.Text = objT["smallCellShow"].ToString(), null);
+                            _context.Send((s) => CallNextPatient(), null);
                         }
                         else
                         {
-                            MessageBox.Show(objT["message"].ToString());
+                           _context.Send((s) =>  MessageBox.Show(objT["message"].ToString()),null);
                         }
                     }
                 }
             });
+        }
+        public void CallNextPatient()
+        {
             RtCallMessageFrm rcf = new RtCallMessageFrm();
             HostingForm f = new HostingForm();
             f.Height = rcf.Height + 30;
             f.Width = rcf.Width;
             f.panelControl1.Controls.Add(rcf);
             f.StartPosition = FormStartPosition.CenterScreen;
+            //int x = SystemInformation.PrimaryMonitorSize.Width - this.Width;
+            //f.Location = new Point(x, 0);
             f.Show();
         }
         #endregion 
@@ -292,6 +302,11 @@ namespace Xr.RtCall
         #endregion
         #endregion
         #region 诊按钮  0：开诊，1：停诊
+        /// <summary>
+        /// 停诊和开诊按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void skinbutLook_Click(object sender, EventArgs e)
         {
             try
@@ -323,11 +338,17 @@ namespace Xr.RtCall
                                {
                                    if (isStop == 1)
                                    {
-                                       _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                                       _context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
+                                       _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);//skinButNext 59, 175, 218
+                                       _context.Send((s) => skinButNext.Enabled=false, null);
+                                       _context.Send((s) => skinButNext.BaseColor=Color.Gray, null);
                                    }
                                    else
                                    {
+                                       _context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
                                        _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                                       _context.Send((s) => skinButNext.Enabled = true, null);
+                                       _context.Send((s) => skinButNext.BaseColor = Color.FromArgb(59, 175, 218), null);
                                    }
                                }
                                else
@@ -342,6 +363,34 @@ namespace Xr.RtCall
             catch (Exception ex)
             {
                 LogClass.WriteLog("设置临时停诊和开诊错误信息："+ex.Message);
+            }
+        }
+        #endregion 
+        #region 获取医院和科室主键
+        HelperClass hc = new HelperClass();
+        public void GetDoctorAndClinc()
+        {
+            try
+            {
+                  //查询科室数据
+                String url = AppContext.AppConfig.serverUrl + "/api/cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + "";
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    HelperClass.list = objT["result"].ToObject<List<HelperClassDoctor>>();
+                    //hc.deptId = string.Join(",", from w in hc.list where w.code == AppContext.AppConfig.deptCode select w.id);
+                    //hc.hospitalId = string.Join(",", from ws in hc.list where ws.code == AppContext.AppConfig.hospitalCode select ws.hospitalId);
+                }
+                //else
+                //{
+                //    MessageBox.Show(objT["message"].ToString());
+                //    return;
+                //}
+            }
+            catch (Exception ex)
+            {
+                LogClass.WriteLog("叫号获取科室和医院主键错误信息："+ex.Message);
             }
         }
         #endregion 

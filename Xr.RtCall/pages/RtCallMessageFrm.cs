@@ -11,6 +11,9 @@ using Xr.Http.RestSharp;
 using RestSharp;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using Xr.Common;
+using Xr.RtCall.Model;
+using System.Runtime.InteropServices;
 
 namespace Xr.RtCall.pages
 {
@@ -24,38 +27,54 @@ namespace Xr.RtCall.pages
         }
         #region 完成下一位/过号下一位
         /// <summary>
-        /// 完成下一位/过号下一位
+        /// 呼号到诊/过号重排
         /// </summary>
         /// <param name="triageId">分诊记录主键，第一次可空</param>
-        /// <param name="type">操作类型：0完成、1过号</param>
-        public void PatientOkAndNext(string triageId,string type)
+        /// <param name="type">类型：0呼号到诊、1过号重排</param>
+        public void PatientOkAndNext(string triageId, string type)
         {
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("triageId", triageId);
-                prament.Add("Type", type);
-                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/inPlace", prament, Method.POST,
-                result =>
+                string Url = "";
+                if (type == "0")
                 {
-                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
-                    switch (result.ResponseStatus)
-                    {
-                        case ResponseStatus.Completed:
-                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
-                            {
-                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
-                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                                {
-                                }
-                                else
-                                {
-                                    MessageBox.Show(objT["message"].ToString());
-                                }
-                            }
-                            break;
-                    }
-                });
+                    Url = "api/sch/clinicCall/inPlace";//呼号到诊接口
+                }
+                else
+                {
+                    Url = "api/sch/registerTriage/passNum";//过号重排接口
+                }
+                RestSharpHelper.ReturnResult<List<string>>(Url, prament, Method.POST,
+                 result =>
+                 {
+                     LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
+                     switch (result.ResponseStatus)
+                     {
+                         case ResponseStatus.Completed:
+                             if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                             {
+                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                 {
+                                     if (type == "0")
+                                     {
+                                         if (Convert.ToBoolean(AppContext.AppConfig.WhetherToAssign))
+                                         {
+                                             _context.Send((s) => Assignment(""), null);//把患者ID传给医生工作站
+                                         }
+                                     }
+                                     _context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
+                                 }
+                                 else
+                                 {
+                                     _context.Send((s) => MessageBox.Show(objT["message"].ToString()), null);
+                                 }
+                             }
+                             break;
+                     }
+                 });
             }
             catch (Exception ex)
             {
@@ -63,6 +82,47 @@ namespace Xr.RtCall.pages
             }
         }
         #endregion
+        #region 把ID传给医生工作站
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        private readonly int MOUSEEVENTF_LEFTDOWN = 0x0002;//模拟鼠标移动
+        private readonly int MOUSEEVENTF_MOVE = 0x0001;//模拟鼠标左键按下
+        private readonly int MOUSEEVENTF_LEFTUP = 0x0004;//模拟鼠标左键抬起
+        private readonly int MOUSEEVENTF_ABSOLUTE = 0x8000;//鼠标绝对位置
+        private readonly int MOUSEEVENTF_RIGHTDOWN = 0x0008; //模拟鼠标右键按下 
+        private readonly int MOUSEEVENTF_RIGHTUP = 0x0010; //模拟鼠标右键抬起 
+        private readonly int MOUSEEVENTF_MIDDLEDOWN = 0x0020; //模拟鼠标中键按下 
+        private readonly int MOUSEEVENTF_MIDDLEUP = 0x0040;// 模拟鼠标中键抬起 
+
+        [System.Runtime.InteropServices.DllImport("user32")]
+        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        public void Assignment(string id)
+        {
+            string printid = id;
+            int cx = Cursor.Position.X + 1;
+            int cy = Cursor.Position.Y + 1;
+            if (AppContext.AppConfig.OutPutLocationX !="" || AppContext.AppConfig.OutPutLocationY != "")
+            {
+                int x = Int32.Parse(AppContext.AppConfig.OutPutLocationX);
+                int y = Int32.Parse(AppContext.AppConfig.OutPutLocationY);
+                Clipboard.SetDataObject(printid);
+                //绝对位置
+                mouse_event(MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//移动到需要点击的位置
+                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//点击
+                mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//抬起
+                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//点击
+                mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//抬起
+                mouse_event(MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE, cx * 65535 / Screen.PrimaryScreen.Bounds.Width, cy * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//移回到点击前的位置
+                System.Threading.Thread.Sleep(Int32.Parse(AppContext.AppConfig.sleepOutPutTime));
+                keybd_event((byte)Keys.ControlKey, 0, 0, 0);//按下
+                keybd_event((byte)Keys.V, 0, 0, 0);
+                keybd_event((byte)Keys.ControlKey, 0, 0x2, 0);//松开
+                keybd_event((byte)Keys.V, 0, 0x2, 0);
+                keybd_event((byte)Keys.Enter, 0, 0, 0);//按下
+                keybd_event((byte)Keys.Enter, 0, 0x2, 0);//松开
+            }
+        }
+        #endregion 
         #region 过号下一位
         /// <summary>
         /// 过号下一位
@@ -71,7 +131,7 @@ namespace Xr.RtCall.pages
         /// <param name="e"></param>
         private void skinbutNew_Click(object sender, EventArgs e)
         {
-            PatientOkAndNext("","1");
+            PatientOkAndNext(HelperClass.triageId, "1");
         }
         #endregion 
         #region 患者到诊
@@ -82,7 +142,7 @@ namespace Xr.RtCall.pages
         /// <param name="e"></param>
         private void skinButton1_Click(object sender, EventArgs e)
         {
-            PatientOkAndNext("", "0");
+            PatientOkAndNext(HelperClass.triageId, "0");
         }
         #endregion 
     }

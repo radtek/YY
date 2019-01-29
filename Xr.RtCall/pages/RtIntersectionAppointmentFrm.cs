@@ -11,6 +11,7 @@ using Xr.Http.RestSharp;
 using RestSharp;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using Xr.RtCall.Model;
 
 namespace Xr.RtCall.pages
 {
@@ -26,7 +27,7 @@ namespace Xr.RtCall.pages
             DoctorScheduling();//获取医生排班日期
             selectLue = Convert.ToInt32(patient.cradType);
             Dictionary<int, DateTime> dc = new Dictionary<int, DateTime>();
-            for (int i = 18; i < 25; i++)
+            for (int i = 18; i < 30; i++)
             {
                 dc.Add(i, System.DateTime.Now);
             }
@@ -47,7 +48,10 @@ namespace Xr.RtCall.pages
                  Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sys/sysDict/findByType", prament, Method.POST,
                 result =>
                 {
-                  LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
+                    if (result.Data != null)
+                    {
+                        LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
+                    }
                     #region 
                     switch (result.ResponseStatus)
                     {
@@ -57,7 +61,8 @@ namespace Xr.RtCall.pages
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    _context.Send((s) => lueIsUse.Properties.DataSource = objT["result"].ToObject<List<Xr.RtCall.Model.CardType>>(), null);
+                                    List<CardType> lsit=objT["result"].ToObject<List<CardType>>();
+                                    _context.Send((s) => lueIsUse.Properties.DataSource =lsit, null);
                                     _context.Send((s) =>  lueIsUse.Properties.DisplayMember = "label", null); 
                                     _context.Send((s) =>  lueIsUse.Properties.ValueMember = "value", null);
                                     _context.Send((s) => lueIsUse.ItemIndex=selectLue, null);
@@ -87,8 +92,8 @@ namespace Xr.RtCall.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("hospitalId", "12");
-                prament.Add("deptId", "2");//科室主键
+                prament.Add("hospitalId", HelperClass.hospitalId);
+                prament.Add("deptId", HelperClass.deptId);//科室主键
                 prament.Add("doctorId", "1");//医生主键
                 prament.Add("type", "1");//类型：0公开预约号源、1诊间预约号源
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/doctorScheduPlan/findByDeptAndDoctor", prament, Method.POST,
@@ -121,7 +126,7 @@ namespace Xr.RtCall.pages
         #endregion
         #region 日期排班号源
         List<string> list;
-        public void TimeScheduling()
+        public void TimeScheduling(string time)
         {
             try
             {
@@ -129,10 +134,10 @@ namespace Xr.RtCall.pages
                // AddContronl();
                 //this.menuList.setDataSources(null);
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("hospitalId", "12");//医院主键
-                prament.Add("deptId", "2");//科室主键
-                prament.Add("doctorId", "1");//医生主键
-                prament.Add("workDate", "2019-01-16");//排班日期
+                prament.Add("hospitalId", HelperClass.hospitalId);//医院主键
+                prament.Add("deptId", HelperClass.deptId);//科室主键
+                prament.Add("doctorId","1");//医生主键
+                prament.Add("workDate", time);//排班日期
                 prament.Add("type", "1");//类型：0公开预约号源、1诊间预约号源
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/doctorScheduPlan/findTimeNum", prament, Method.POST,
                 result =>
@@ -148,12 +153,12 @@ namespace Xr.RtCall.pages
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
                                    
-                                    List<Xr.RtCall.Model.TimeNum> timenum = objT["result"].ToObject<List<Xr.RtCall.Model.TimeNum>>();
+                                    List<TimeNum> timenum = objT["result"].ToObject<List<TimeNum>>();
                                     foreach (var item in timenum)
                                     {
                                         list.Add(item.beginTime + "-" + item.endTime + "" + "<" + item.num + ">");
                                     }
-                                     _context.Send((s) => this.menuList.setDataSources(list), null);
+                                     _context.Send((s) => this.menuList.setDataSources(list,true), null);
                                 }
                                 else
                                 {
@@ -280,7 +285,7 @@ namespace Xr.RtCall.pages
         private void reservationCalendar1_SelectDate(DateTime SelectedDate)
         {
             label8.Text = SelectedDate.ToString("yyyy-MM-dd");
-            TimeScheduling();
+            TimeScheduling(SelectedDate.ToString("yyyy-MM-dd"));
             //MessageBox.Show(SelectedDate.ToShortDateString());
         }
 

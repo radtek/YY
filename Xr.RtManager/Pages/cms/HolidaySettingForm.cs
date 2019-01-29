@@ -18,10 +18,10 @@ namespace Xr.RtManager.Pages.cms
         {
             InitializeComponent();
             HolidaySettingList(1,pageControl1.PageSize);
-            this.gv_Holiday.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
-            gv_Holiday.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
-            gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
-            gv_Holiday.OptionsView.EnableAppearanceOddRow = true;
+            //this.gv_Holiday.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
+            //gv_Holiday.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
+            //gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
+            //gv_Holiday.OptionsView.EnableAppearanceOddRow = true;
             //string StartYear = (DateTime.Now.Year-2).ToString();//获取当前年份
             //string SeparatedYear = (DateTime.Now.Year -(Convert.ToInt32(StartYear)-5)).ToString();
             //cmbYear.DataSource = Enumerable.Range(Convert.ToInt32(StartYear), Convert.ToInt32(SeparatedYear)).ToList();
@@ -306,5 +306,24 @@ namespace Xr.RtManager.Pages.cms
             }
         }
         #endregion
+        #region 加粗线条颜色
+        /// <summary>
+        /// 加粗线条颜色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void groupBox1_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBox gBox = (GroupBox)sender;
+            //e.Graphics.Clear(gBox.BackColor);
+            //e.Graphics.DrawString(gBox.Text, gBox.Font, Brushes.Gray, 10, 1);
+            var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
+            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
+            e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
+            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
+            e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
+            e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+        }
+        #endregion 
     }
 }

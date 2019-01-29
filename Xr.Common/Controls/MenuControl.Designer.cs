@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.panelEx1 = new Xr.Common.Controls.PanelEx();
             this.labMeasure = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 

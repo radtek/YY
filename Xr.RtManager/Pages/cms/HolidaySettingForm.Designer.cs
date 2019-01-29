@@ -85,7 +85,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 70);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(15, 20, 15, 20);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10);
             this.panel4.Size = new System.Drawing.Size(920, 444);
             this.panel4.TabIndex = 65;
             // 
@@ -108,12 +108,13 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 248);
+            this.groupBox1.Location = new System.Drawing.Point(10, 258);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(890, 176);
+            this.groupBox1.Size = new System.Drawing.Size(900, 176);
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息编辑区";
+            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
             // 
             // cmbYear
             // 
@@ -293,11 +294,11 @@
             this.pageControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pageControl1.CurrentPage = 1;
-            this.pageControl1.Location = new System.Drawing.Point(15, 203);
+            this.pageControl1.Location = new System.Drawing.Point(10, 213);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(890, 39);
+            this.pageControl1.Size = new System.Drawing.Size(900, 39);
             this.pageControl1.TabIndex = 50;
             // 
             // gc_Holiday
@@ -305,10 +306,10 @@
             this.gc_Holiday.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gc_Holiday.Location = new System.Drawing.Point(15, 20);
+            this.gc_Holiday.Location = new System.Drawing.Point(10, 10);
             this.gc_Holiday.MainView = this.gv_Holiday;
             this.gc_Holiday.Name = "gc_Holiday";
-            this.gc_Holiday.Size = new System.Drawing.Size(890, 183);
+            this.gc_Holiday.Size = new System.Drawing.Size(900, 203);
             this.gc_Holiday.TabIndex = 49;
             this.gc_Holiday.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Holiday});

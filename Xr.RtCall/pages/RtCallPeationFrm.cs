@@ -43,10 +43,10 @@ namespace Xr.RtCall.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("hospitalId", "12");//医院主键
-                prament.Add("deptId", "2");//科室主键
+                prament.Add("hospitalId", HelperClass.hospitalId);//医院主键
+                prament.Add("deptId", HelperClass.deptId);//科室主键
                 prament.Add("doctorId", "1");//医生主键
-                prament.Add("workDate", "2019-01-10");//坐诊日期
+                prament.Add("workDate", "2019-01-10");//坐诊日期 DateTime.Now.ToString("yyy-MM-dd")当前日期
                 prament.Add("period", "2");//坐诊时段
                 //if (checkEdit1.Checked)
                 //{
@@ -56,10 +56,13 @@ namespace Xr.RtCall.pages
                 //{
                     prament.Add("status", "1");//完成
                // }
-                Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/registerTriage/findPatientListByDoctor", prament, Method.POST,
+               RestSharpHelper.ReturnResult<List<string>>("api/sch/registerTriage/findPatientListByDoctor", prament, Method.POST,
                  result =>
                 {
-                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
+                    if (result.Data != null)
+                    {
+                        LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
+                    }
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.Completed:

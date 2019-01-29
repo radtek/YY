@@ -54,7 +54,7 @@ namespace Xr.RtScreen.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("deptId", "");//科室主键
+               // prament.Add("deptId", "");//科室主键
                 Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findPublicScreenData", prament, Method.POST, result =>
                 {
                     LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));

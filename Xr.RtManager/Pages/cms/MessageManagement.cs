@@ -17,10 +17,10 @@ namespace Xr.RtManager.Pages.cms
         public MessageManagement()
         {
             InitializeComponent();
-            this.gv_Message.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
-            gv_Message.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
-            gv_Message.OptionsView.EnableAppearanceEvenRow = true;
-            gv_Message.OptionsView.EnableAppearanceOddRow = true;
+            //this.gv_Message.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
+            //gv_Message.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
+            //gv_Message.OptionsView.EnableAppearanceEvenRow = true;
+            //gv_Message.OptionsView.EnableAppearanceOddRow = true;
             MessageContentTemplateList(1,pageControl1.PageSize);
             TemplateType();
         }
@@ -144,6 +144,26 @@ namespace Xr.RtManager.Pages.cms
         }
         #endregion 
         #region 修改
+
+        /// <summary>
+        /// 单击替代修改按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gc_Message_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedRow = gv_Message.GetFocusedRow() as MessageInfoEntity;
+                if (selectedRow == null)
+                    return;
+                groupBox1.Enabled = true;
+                dcMessage.SetValue(selectedRow);
+            }
+            catch (Exception)
+            {
+            }
+        }
         /// <summary>
         /// 修改
         /// </summary>
@@ -308,5 +328,16 @@ namespace Xr.RtManager.Pages.cms
             }
         }
         #endregion 
+
+        private void groupBox1_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBox gBox = (GroupBox)sender;
+            var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
+            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
+            e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
+            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
+            e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
+            e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+        }
     }
 }

@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Xr.RtScreen.pages;
 using System.Configuration;
 using Xr.RtScreen.Models;
+using Newtonsoft.Json.Linq;
+using Xr.Http;
 
 namespace Xr.RtScreen
 {
@@ -23,7 +25,7 @@ namespace Xr.RtScreen
                   ControlStyles.OptimizedDoubleBuffer |
                   ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
-            //string StartupScreen = ConfigurationManager.AppSettings["StartupScreen"];//1（公共大屏）2（科室小屏）3（医生小屏）
+            GetDoctorAndClinc();
             #region 
             switch (AppContext.AppConfig.StartupScreen)
             {
@@ -45,6 +47,26 @@ namespace Xr.RtScreen
             }
             #endregion 
         }
+        #region 获取医院和科室主键
+        public void GetDoctorAndClinc()
+        {
+            try
+            {
+                //查询科室数据
+                String url = AppContext.AppConfig.serverUrl + "/api/cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + "";
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    HelperClass.list = objT["result"].ToObject<List<HelperClassDoctor>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogClass.WriteLog("叫号获取科室和医院主键错误信息：" + ex.Message);
+            }
+        }
+        #endregion 
         #region 键盘按Esc关闭窗体
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);

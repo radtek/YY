@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Xr.RtManager.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle1 = new Xr.RtManager.TTextBoxBorderRenderStyle();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.myTextBox1 = new Xr.RtManager.MyTextBox();
             this.lueType = new DevExpress.XtraEditors.LookUpEdit();
             this.meUpdateDesc = new DevExpress.XtraEditors.MemoEdit();
             this.label6 = new System.Windows.Forms.Label();
@@ -71,13 +73,15 @@
             // 
             // pageControl1
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.pageControl1, 2);
             this.pageControl1.CurrentPage = 1;
-            this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageControl1.Location = new System.Drawing.Point(0, 359);
+            this.pageControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageControl1.Location = new System.Drawing.Point(2, 390);
+            this.pageControl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 3);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(483, 39);
+            this.pageControl1.Size = new System.Drawing.Size(896, 31);
             this.pageControl1.TabIndex = 50;
             // 
             // panel4
@@ -86,7 +90,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 70);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(15, 20, 15, 20);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10);
             this.panel4.Size = new System.Drawing.Size(920, 444);
             this.panel4.TabIndex = 67;
             // 
@@ -96,17 +100,20 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pageControl1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panelControl1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 20);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(890, 404);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(900, 424);
             this.tableLayoutPanel1.TabIndex = 53;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.myTextBox1);
             this.groupBox1.Controls.Add(this.lueType);
             this.groupBox1.Controls.Add(this.meUpdateDesc);
             this.groupBox1.Controls.Add(this.label6);
@@ -116,18 +123,39 @@
             this.groupBox1.Controls.Add(this.textEdit1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Enabled = false;
-            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(492, 3);
+            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.Location = new System.Drawing.Point(498, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 398);
+            this.groupBox1.Size = new System.Drawing.Size(399, 384);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息编辑区";
+            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
+            // 
+            // myTextBox1
+            // 
+            this.myTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            tTextBoxBorderRenderStyle1.LineColor = System.Drawing.Color.LightGray;
+            tTextBoxBorderRenderStyle1.LineWidth = 1F;
+            this.myTextBox1.BorderRenderStyle = tTextBoxBorderRenderStyle1;
+            this.myTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.myTextBox1.Enabled = false;
+            this.myTextBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.myTextBox1.Location = new System.Drawing.Point(15, 242);
+            this.myTextBox1.Multiline = true;
+            this.myTextBox1.Name = "myTextBox1";
+            this.myTextBox1.Size = new System.Drawing.Size(378, 126);
+            this.myTextBox1.TabIndex = 123;
+            this.myTextBox1.Text = "模本内容，内容中需替换的内容部分使用【1】替代，第一项内容使用1,第二项内容使用2，以此类推。\r\n如：李某某 在 2018年12月28日 10点24分预约了外科/" +
+    "张主任/2018年12月29日9点30分就诊，请提前20分诊到场签到就诊。\r\n则：【1】在【2】预约了【3】【4】【5】就诊，请提前【6】分诊到场签到就诊。";
+            this.myTextBox1.TextMargin = new System.Windows.Forms.Padding(1);
             // 
             // lueType
             // 
-            this.dcMessage.SetDataMember(this.lueType, "type");
-            this.lueType.Location = new System.Drawing.Point(87, 22);
+            this.lueType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lueType.Location = new System.Drawing.Point(15, 53);
             this.lueType.Name = "lueType";
             this.lueType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueType.Properties.Appearance.Options.UseFont = true;
@@ -150,17 +178,18 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "类型")});
             this.lueType.Properties.NullText = "";
-            this.lueType.Size = new System.Drawing.Size(272, 29);
+            this.lueType.Size = new System.Drawing.Size(378, 29);
             this.lueType.TabIndex = 122;
             // 
             // meUpdateDesc
             // 
-            this.dcMessage.SetDataMember(this.meUpdateDesc, "content");
-            this.meUpdateDesc.Location = new System.Drawing.Point(87, 66);
+            this.meUpdateDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.meUpdateDesc.Location = new System.Drawing.Point(15, 119);
             this.meUpdateDesc.Name = "meUpdateDesc";
             this.meUpdateDesc.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meUpdateDesc.Properties.Appearance.Options.UseFont = true;
-            this.meUpdateDesc.Size = new System.Drawing.Size(272, 77);
+            this.meUpdateDesc.Size = new System.Drawing.Size(378, 77);
             this.meUpdateDesc.TabIndex = 119;
             this.meUpdateDesc.UseOptimizedRendering = true;
             // 
@@ -168,7 +197,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(16, 67);
+            this.label6.Location = new System.Drawing.Point(11, 96);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 20);
             this.label6.TabIndex = 121;
@@ -178,7 +207,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(16, 26);
+            this.label3.Location = new System.Drawing.Point(11, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 120;
@@ -202,7 +231,7 @@
             this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
-            this.butContronl.Location = new System.Drawing.Point(87, 173);
+            this.butContronl.Location = new System.Drawing.Point(15, 204);
             this.butContronl.Name = "butContronl";
             this.butContronl.Size = new System.Drawing.Size(75, 30);
             this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -212,7 +241,6 @@
             // 
             // textEdit1
             // 
-            this.dcMessage.SetDataMember(this.textEdit1, "id");
             this.textEdit1.Location = new System.Drawing.Point(809, 26);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.AutoHeight = false;
@@ -224,23 +252,25 @@
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.gc_Message);
-            this.panelControl1.Controls.Add(this.pageControl1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(3, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(483, 398);
+            this.panelControl1.Size = new System.Drawing.Size(489, 384);
             this.panelControl1.TabIndex = 53;
             // 
             // gc_Message
             // 
-            this.gc_Message.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_Message.Location = new System.Drawing.Point(0, 0);
+            this.gc_Message.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gc_Message.Location = new System.Drawing.Point(0, 9);
             this.gc_Message.MainView = this.gv_Message;
             this.gc_Message.Name = "gc_Message";
-            this.gc_Message.Size = new System.Drawing.Size(483, 359);
+            this.gc_Message.Size = new System.Drawing.Size(489, 375);
             this.gc_Message.TabIndex = 49;
             this.gc_Message.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Message});
+            this.gc_Message.Click += new System.EventHandler(this.gc_Message_Click);
             // 
             // gv_Message
             // 
@@ -362,7 +392,7 @@
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(205, 10);
+            this.btnDel.Location = new System.Drawing.Point(121, 10);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -375,12 +405,13 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(115, 10);
+            this.btnSave.Location = new System.Drawing.Point(211, 10);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btnSave.TabIndex = 75;
             this.btnSave.Text = "修改";
+            this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
@@ -449,5 +480,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LookUpEdit lueType;
+        private MyTextBox myTextBox1;
     }
 }
