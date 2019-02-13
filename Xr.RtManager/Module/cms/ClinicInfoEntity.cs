@@ -25,10 +25,12 @@ namespace Xr.RtManager
         [ObjectPoint("dept.id")]
         public String deptId
         {
-            get
-            {
-                return AppContext.Session.deptId;
-            }
+            get;
+            set;
+            //get
+            //{
+            //    return AppContext.Session.deptId;
+            //}
         }
         [IgnoreParam]
         public String deptname { get; set; }

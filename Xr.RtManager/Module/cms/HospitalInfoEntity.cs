@@ -46,18 +46,15 @@ namespace Xr.RtManager
         public String isUse { get; set; }
 
         /// <summary>
-        /// 状态
-        /// </summary>
-        public String status { get { return DictUtils.getName(DictUtils.sfqy(), this.isUse); } }
-
-        /// <summary>
         /// 创建时间
         /// </summary>
+        [IgnoreParam]
         public String createDate { get; set; }
 
         /// <summary>
         /// 更新时间
         /// </summary>
+        [IgnoreParam]
         public String updateDate { get; set; }
 
         /// <summary>

@@ -89,7 +89,8 @@ namespace Xr.RtManager
                         {
                             if(AppContext.Session.deptList.Count>0){
                                 AppContext.Session.hospitalId = AppContext.Session.deptList[0].hospitalId;
-                                AppContext.Session.deptId = AppContext.Session.deptList[0].id;
+                                AppContext.Session.deptId = "";
+                                AppContext.Session.deptName = "全院";
                             }
                         }else{
                             foreach (DeptEntity dept in AppContext.Session.deptList)
@@ -98,6 +99,7 @@ namespace Xr.RtManager
                                 {
                                     AppContext.Session.hospitalId = dept.hospitalId;
                                     AppContext.Session.deptId = dept.id;
+                                    AppContext.Session.deptName = dept.name;
                                     break;
                                 }
                             }

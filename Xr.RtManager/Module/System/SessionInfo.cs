@@ -76,6 +76,11 @@ namespace Xr.RtManager
         public String deptId { get; set; }
 
         /// <summary>
+        /// 科室名称
+        /// </summary>
+        public String deptName { get; set; }
+
+        /// <summary>
         /// 科室列表
         /// </summary>
         public List<DeptEntity> deptList { get; set; }

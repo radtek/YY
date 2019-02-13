@@ -261,7 +261,7 @@
             this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn5.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn5.Caption = "状态";
-            this.gridColumn5.FieldName = "status";
+            this.gridColumn5.FieldName = "isUse";
             this.gridColumn5.MinWidth = 25;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;

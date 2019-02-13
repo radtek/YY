@@ -42,9 +42,9 @@
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.tePassword2 = new DevExpress.XtraEditors.TextEdit();
             this.teEmail = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
             this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
             this.radioGroup2 = new DevExpress.XtraEditors.RadioGroup();
+            this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
             this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -76,9 +76,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teEmail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -233,17 +233,6 @@
             this.teEmail.Size = new System.Drawing.Size(233, 29);
             this.teEmail.TabIndex = 84;
             // 
-            // textEdit7
-            // 
-            this.dcUser.SetDataMember(this.textEdit7, "mobile");
-            this.textEdit7.Location = new System.Drawing.Point(489, 252);
-            this.textEdit7.Name = "textEdit7";
-            this.textEdit7.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEdit7.Properties.Appearance.Options.UseFont = true;
-            this.textEdit7.Properties.AutoHeight = false;
-            this.textEdit7.Size = new System.Drawing.Size(234, 29);
-            this.textEdit7.TabIndex = 85;
-            // 
             // radioGroup1
             // 
             this.dcUser.SetDataMember(this.radioGroup1, "userType");
@@ -275,6 +264,17 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "否")});
             this.radioGroup2.Size = new System.Drawing.Size(234, 30);
             this.radioGroup2.TabIndex = 95;
+            // 
+            // textEdit7
+            // 
+            this.textEdit7.Location = new System.Drawing.Point(489, 252);
+            this.textEdit7.Name = "textEdit7";
+            this.textEdit7.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit7.Properties.Appearance.Options.UseFont = true;
+            this.textEdit7.Properties.AutoHeight = false;
+            this.textEdit7.Size = new System.Drawing.Size(234, 29);
+            this.textEdit7.TabIndex = 85;
+            this.textEdit7.Visible = false;
             // 
             // checkedListBoxControl1
             // 
@@ -419,6 +419,7 @@
             this.label10.TabIndex = 46;
             this.label10.Text = "手机：";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label10.Visible = false;
             // 
             // pictureBox1
             // 
@@ -569,9 +570,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teEmail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

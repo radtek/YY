@@ -29,13 +29,15 @@ namespace Xr.RtManager
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             panMenuBar.BorderColor = borderColor;
         }
-
+        Xr.Common.Controls.OpaqueCommand cmd;
         private Color borderColor = Color.FromArgb(157, 160, 170);
         private string dialogText = "正在加载中，请稍候...";
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            userName.Text = AppContext.Session.name;
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
+            cmd.ShowOpaqueLayer(225, false);
+            labBottomLeft.Text = AppContext.Session.deptName+" | "+AppContext.Session.name;
             this.timer1.Start();
 
             tmHeartbeat.Enabled = true;
@@ -58,6 +60,17 @@ namespace Xr.RtManager
             {
                 AddContextMenu(menu.id, menu.name, menu.href, panMenuBar);
             }
+
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                Thread.Sleep(1000);
+                return null;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                cmd.HideOpaqueLayer();
+                
+            });
             //AppContext.Session.waitControl = xtraTabControl1;
         }
 
@@ -65,7 +78,7 @@ namespace Xr.RtManager
         //添加菜单
         private void AddContextMenu(String menuId, String Caption, String tag, Panel parentPanel)
         {
-            Font font = new Font("微软雅黑", 12);//菜单字体样式
+            Font font = new Font("微软雅黑", 11);//菜单字体样式
             int MenuItemHeight = 34; //菜单选项高度
 
             //选项
@@ -487,16 +500,24 @@ namespace Xr.RtManager
         /// <param name="navigationData">参数</param>
         public void JumpInterface(string name, string caption, object navigationData)
         {
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            data = (Dictionary<String, Object>)navigationData;
-            //this._pkPv = data["pkPv"].ToString();
+            //int i = GetTabName(name);
+            //if (i == -1)
+            //{
+                Dictionary<string, object> data = new Dictionary<string, object>();
+                data = (Dictionary<String, Object>)navigationData;
+                //this._pkPv = data["pkPv"].ToString();
 
-            if (name.Equals("RoleDistributionForm"))
-            {
-                RoleDistributionForm tab = new RoleDistributionForm();
-                tab.id = data["id"].ToString();
-                AaddUserControl(tab, name, caption);
-            }
+                if (name.Equals("RoleDistributionForm"))
+                {
+                    RoleDistributionForm tab = new RoleDistributionForm();
+                    tab.id = data["id"].ToString();
+                    AaddUserControl(tab, name, caption);
+                }
+            //}
+            //else
+            //{
+            //    xtraTabControl1.SelectedTabPageIndex = i;
+            //}
         }
 
         /// <summary>
@@ -562,11 +583,11 @@ namespace Xr.RtManager
         {
             Bitmap bit = new Bitmap(this.Width, this.Height);
             Graphics g = Graphics.FromImage(bit);
-            g.DrawImage(Properties.Resources.bg1, new Rectangle(0, 0, bit.Width, bit.Height), 0, 0, Properties.Resources.bg1.Width, Properties.Resources.bg1.Height, GraphicsUnit.Pixel);
+            g.DrawImage(Properties.Resources.bg, new Rectangle(0, 0, bit.Width, bit.Height), 0, 0, Properties.Resources.bg1.Width, Properties.Resources.bg1.Height, GraphicsUnit.Pixel);
             panelEnhanced1.BackgroundImage = bit;
             g.Dispose();
         }
-
+        #region 标签右键关闭操作
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("你确定退出系统吗！", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
@@ -591,5 +612,145 @@ namespace Xr.RtManager
                 e.Cancel = true;
             }    
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.labBottomRight.Text = System.DateTime.Now.ToString();
+        }
+        private void xtraTabControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                xtraTabControl1.ContextMenuStrip = null;
+
+                //TreeListHitInfo hInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y));
+                //TreeListNode node = hInfo.Node;
+                //treeList1.FocusedNode = node;
+
+                xtraTabControl1.ContextMenuStrip = contextMenuStrip1;
+
+            }
+        }
+
+        private void xtraTabControl_MouseUp(object sender, MouseEventArgs e)
+        {
+        }
+        /// <summary>
+        /// 关闭当前页签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmCloseCurrent_Click(object sender, EventArgs e)
+        {
+
+            string name = xtraTabControl1.SelectedTabPage.Text;//得到关闭的选项卡的text
+            foreach (XtraTabPage page in xtraTabControl1.TabPages)//遍历得到和关闭的选项卡一样的Text
+            {
+                if (page.Text == name)
+                {
+                    xtraTabControl1.TabPages.Remove(page);
+                    page.Dispose();
+                    return;
+                }
+            }
+        }
+        /// <summary>
+        /// 关闭其他页签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmCloseOther_Click(object sender, EventArgs e)
+        {
+            int index = xtraTabControl1.SelectedTabPageIndex;//得到关闭的选项卡的索引
+            for (int i = xtraTabControl1.TabPages.Count - 1; i >= 0; i--)
+            {
+                if (i != index)
+                {
+                    xtraTabControl1.TabPages.RemoveAt(i);
+
+                }
+            }
+
+        }
+        /// <summary>
+        /// 关闭全部页签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmCloseAll_Click(object sender, EventArgs e)
+        {
+            //for (int i = xtraTabControl1.TabPages.Count - 1; i > 0; i--)
+            //{
+              //  xtraTabControl1.TabPages.RemoveAt(i);
+                // xtraTabControl.TabPages[i].Dispose();
+           // }
+            xtraTabControl1.TabPages.Clear();
+        }
+        /*
+        /// <summary>
+        /// 双击关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void xtraTabControl_DoubleClick(object sender, EventArgs e)
+        {
+            DevExpress.XtraTab.ViewInfo.XtraTabHitInfo tabHitInfo = ((XtraTabControl)sender).CalcHitInfo(((XtraTabControl)sender).PointToClient(Control.MousePosition));
+            ((XtraTabControl)sender).TabPages.Remove(tabHitInfo.Page);
+        }
+         */
+        #endregion
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+                try
+                {
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    LogClass.WriteLog(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(500);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+    
     }
 }

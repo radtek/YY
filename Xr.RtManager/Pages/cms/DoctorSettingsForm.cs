@@ -13,6 +13,7 @@ using System.Net;
 using Xr.Common;
 using Xr.Common.Controls;
 using DevExpress.XtraEditors;
+using System.Threading;
 
 namespace Xr.RtManager.Pages.cms
 {
@@ -22,6 +23,8 @@ namespace Xr.RtManager.Pages.cms
         {
             InitializeComponent();
         }
+
+        Xr.Common.Controls.OpaqueCommand cmd;
 
         public DoctorInfoEntity doctorInfo { get; set; }
         public DefaultVisitEntity defaultVisit { get; set; }
@@ -35,13 +38,13 @@ namespace Xr.RtManager.Pages.cms
 
         private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             //把这行删了，再显示分页控件，就是分页了，不过宽度不够显示分页控件
             pageControl1.PageSize = 10000;//一页一万条，不显示分页；
             dcDoctorInfo.DataType = typeof(DoctorInfoEntity);
             dcDefaultVisit.DataType = typeof(DefaultVisitEntity);
-            //清除排班数据
+            //清除默认出诊时间模板数据
             dcDefaultVisit.ClearValue();
-            panScheduling.Controls.Clear();
 
             List<Item> itemList = new List<Item>();
             foreach (DeptEntity dept in AppContext.Session.deptList)
@@ -50,103 +53,153 @@ namespace Xr.RtManager.Pages.cms
                 item.name = dept.name;
                 item.value = dept.id;
                 item.tag = dept.hospitalId;
+                item.parentId = dept.parentId;
                 itemList.Add(item);
             }
             menuControl2.setDataSource(itemList);
-
+            cmd.ShowOpaqueLayer(0f);
             //查询医院下拉框数据
             String url = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync( 100, (o) => 
             {
-                lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
-                lueHospital.Properties.DisplayMember = "name";
-                lueHospital.Properties.ValueMember = "id";
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
-            
-            //查询状态下拉框数据
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
-            data = HttpClass.httpPost(url);
-            objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueIsUse.Properties.DisplayMember = "label";
-                lueIsUse.Properties.ValueMember = "value";
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                String data = HttpClass.httpPost(url);
+                return data;
 
-            //查询挂号类型下拉框数据
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=register_type";
-            data = HttpClass.httpPost(url);
-            objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            }, null, (data) => 
             {
-                lueRegisterType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueRegisterType.Properties.DisplayMember = "label";
-                lueRegisterType.Properties.ValueMember = "value";
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
+                    lueHospital.Properties.DisplayMember = "name";
+                    lueHospital.Properties.ValueMember = "id";
 
-            //查询性别下拉框数据
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=sex";
-            data = HttpClass.httpPost(url);
-            objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                lueSex.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueSex.Properties.DisplayMember = "label";
-                lueSex.Properties.ValueMember = "value";
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                    //查询状态下拉框数据
+                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
+                    this.DoWorkAsync( 100, (o) => 
+                    {
+                        data = HttpClass.httpPost(url);
+                        return data;
 
-            //查询是否显示下拉框数据
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
-            data = HttpClass.httpPost(url);
-            objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueIsShow.Properties.DisplayMember = "label";
-                lueIsShow.Properties.ValueMember = "value";
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                    }, null, (data2) => 
+                    {
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                            lueIsUse.Properties.DisplayMember = "label";
+                            lueIsUse.Properties.ValueMember = "value";
 
-            //获取默认出诊时间字典配置
-            url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
-            data = HttpClass.httpPost(url);
-            objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                            //查询挂号类型下拉框数据
+                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=register_type";
+                            this.DoWorkAsync(100, (o) => 
+                            {
+                                data = HttpClass.httpPost(url);
+                                return data;
+
+                            }, null, (data3) => 
+                            {
+                                objT = JObject.Parse(data3.ToString());
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    lueRegisterType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                    lueRegisterType.Properties.DisplayMember = "label";
+                                    lueRegisterType.Properties.ValueMember = "value";
+
+                                    //查询性别下拉框数据
+                                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=sex";
+                                    this.DoWorkAsync(100, (o) =>
+                                    {
+                                        data = HttpClass.httpPost(url);
+                                        return data;
+
+                                    }, null, (data4) =>
+                                    {
+                                        objT = JObject.Parse(data4.ToString());
+                                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                        {
+                                            lueSex.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                            lueSex.Properties.DisplayMember = "label";
+                                            lueSex.Properties.ValueMember = "value";
+
+                                            //查询是否显示下拉框数据
+                                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
+                                            this.DoWorkAsync(100, (o) =>
+                                            {
+                                                data = HttpClass.httpPost(url);
+                                                return data;
+
+                                            }, null, (data5) =>
+                                            {
+                                                objT = JObject.Parse(data5.ToString());
+                                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                                {
+                                                    lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                                    lueIsShow.Properties.DisplayMember = "label";
+                                                    lueIsShow.Properties.ValueMember = "value";
+
+                                                    //获取默认出诊时间字典配置
+                                                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
+                                                    this.DoWorkAsync(100, (o) =>
+                                                    {
+                                                        data = HttpClass.httpPost(url);
+                                                        return data;
+
+                                                    }, null, (data6) =>
+                                                    {
+                                                        cmd.HideOpaqueLayer();
+                                                        objT = JObject.Parse(data6.ToString());
+                                                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                                        {
+                                                            defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
+                                                        }
+                                                        else
+                                                        {
+                                                            MessageBox.Show(objT["message"].ToString());
+                                                            return;
+                                                        }
+                                                    });
+                                                }
+                                                else
+                                                {
+                                                    cmd.HideOpaqueLayer();
+                                                    MessageBox.Show(objT["message"].ToString());
+                                                    return;
+                                                }
+                                            });
+                                        }
+                                        else
+                                        {
+                                            cmd.HideOpaqueLayer();
+                                            MessageBox.Show(objT["message"].ToString());
+                                            return;
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    cmd.HideOpaqueLayer();
+                                    MessageBox.Show(objT["message"].ToString());
+                                    return;
+                                }
+                            });
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBox.Show(objT["message"].ToString());
+                            return;
+                        }
+                    });
+
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBox.Show(objT["message"].ToString());
+                    return;
+                }
+            });
         }
 
         public void SearchData(int pageNo, int pageSize)
@@ -154,38 +207,48 @@ namespace Xr.RtManager.Pages.cms
             //缩小后宽度不够分页控件显示，所以这里不显示分页了，当前页传10000条，以后要分页的话，把这个10000条去掉就行了
             String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.id=" + hospitalId + "&dept.id=" + deptId;
             String url = AppContext.AppConfig.serverUrl + "cms/doctor/list?"+param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync(500, (o) =>
             {
-                List<DoctorInfoEntity> doctorList = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
-                List<DictEntity> useDictList = lueIsUse.Properties.DataSource as List<DictEntity>;
-                foreach (DoctorInfoEntity doctor in doctorList)
-                {
-                    if (doctor.isShow.Equals("1"))
-                        doctor.isShow = "√";
-                    else
-                        doctor.isShow = "";
-                    if (doctor.ignoreHoliday.Equals("1"))
-                        doctor.ignoreHoliday = "√";
-                    else
-                        doctor.ignoreHoliday = "";
-                    foreach(DictEntity dict in useDictList){
-                        if(doctor.isUse.Equals(dict.value))
-                            doctor.isUse = dict.label;
-                    }
-                }
+                String data = HttpClass.httpPost(url);
+                return data;
 
-                gcDoctor.DataSource = doctorList;
-                pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                int.Parse(objT["result"]["pageSize"].ToString()),
-                int.Parse(objT["result"]["pageNo"].ToString()));
-            }
-            else
+            }, null, (data) =>
             {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    List<DoctorInfoEntity> doctorList = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
+                    List<DictEntity> useDictList = lueIsUse.Properties.DataSource as List<DictEntity>;
+                    foreach (DoctorInfoEntity doctor in doctorList)
+                    {
+                        if (doctor.isShow.Equals("1"))
+                            doctor.isShow = "√";
+                        else
+                            doctor.isShow = "";
+                        if (doctor.ignoreHoliday.Equals("1"))
+                            doctor.ignoreHoliday = "√";
+                        else
+                            doctor.ignoreHoliday = "";
+                        foreach (DictEntity dict in useDictList)
+                        {
+                            if (doctor.isUse.Equals(dict.value))
+                                doctor.isUse = dict.label;
+                        }
+                    }
+
+                    gcDoctor.DataSource = doctorList;
+                    pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
+                    int.Parse(objT["result"]["pageSize"].ToString()),
+                    int.Parse(objT["result"]["pageNo"].ToString()));
+                    cmd.HideOpaqueLayer();
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBox.Show(objT["message"].ToString());
+                    return;
+                }
+            });
         }
 
         private void pageControl1_Query(int CurrentPage, int PageSize)
@@ -233,22 +296,31 @@ namespace Xr.RtManager.Pages.cms
                 model.FileName = pictureFilePath.Substring(i, l - i);
                 model.FileContent = new FileStream(pictureFilePath, FileMode.Open);
                 lstPara.Add(model);
+                cmd.ShowOpaqueLayer();
+                this.DoWorkAsync( 500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                {
+                    String data = HttpClass.PostForm(url, lstPara);
+                    return data;
 
-                String data = HttpClass.PostForm(url, lstPara);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    WebClient web = new WebClient();
-                    var bytes = web.DownloadData(objT["result"][0].ToString());
-                    this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
-                    pictureServiceFilePath = objT["result"][0].ToString();
-                    MessageBoxUtils.Hint("上传图片成功");
-                }
-                else
-                {
-                    MessageBox.Show(objT["message"].ToString());
-                    return;
-                }
+                    JObject objT = JObject.Parse(data.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        WebClient web = new WebClient();
+                        var bytes = web.DownloadData(objT["result"][0].ToString());
+                        this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        pictureServiceFilePath = objT["result"][0].ToString();
+                        cmd.HideOpaqueLayer();
+                        MessageBoxUtils.Hint("上传图片成功");
+                    }
+                    else
+                    {
+                        cmd.HideOpaqueLayer();
+                        MessageBox.Show(objT["message"].ToString());
+                        return;
+                    }
+                });
             }
             else
             {
@@ -312,7 +384,7 @@ namespace Xr.RtManager.Pages.cms
             //清除排班数据
             dcDefaultVisit.ClearValue();
             tableLayoutPanel4.Enabled = false;
-            panScheduling.Controls.Clear();
+            pbDispose();
 
             setDefaultVisit();
             tableLayoutPanel4.Enabled = true;
@@ -333,181 +405,224 @@ namespace Xr.RtManager.Pages.cms
             //清除排班数据
             dcDefaultVisit.ClearValue();
             tableLayoutPanel4.Enabled = false;
-            panScheduling.Controls.Clear();
+            pbDispose();
 
             doctorInfo = new DoctorInfoEntity();
             var selectedRow = gridView1.GetFocusedRow() as DoctorInfoEntity;
             if (selectedRow == null)
                 return;
-            String url = AppContext.AppConfig.serverUrl + "cms/doctor/findById?id=" + selectedRow.id;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                doctorInfo = objT["result"].ToObject<DoctorInfoEntity>();
-                doctorInfo.hospitalId = doctorInfo.dept.hospital.id;
-                doctorInfo.deptId = doctorInfo.dept.id;
-                if (doctorInfo.ignoreHoliday.Equals("1"))
-                    cbIgnoreHoliday.CheckState = CheckState.Checked;
-                if (doctorInfo.ignoreYear.Equals("1"))
-                    cbIgnoreYear.CheckState = CheckState.Checked;
-                dcDoctorInfo.SetValue(doctorInfo);
-                //显示图片
-                pictureServiceFilePath = doctorInfo.pictureUrl;
-                WebClient web;
-                if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
-                {
-                    web = new WebClient();
-                    var bytes = web.DownloadData(pictureServiceFilePath);
-                    this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
-                }
-                groupBox1.Enabled = true;
-                setDefaultVisit();
-                tableLayoutPanel4.Enabled = true;
 
-                //获取已排班信息
-                url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingList?deptId=" + doctorInfo.dept.id + "&doctorId=" + selectedRow.id;
-                data = HttpClass.httpPost(url);
-                objT = JObject.Parse(data);
+            cmd.ShowOpaqueLayer();
+            String url = AppContext.AppConfig.serverUrl + "cms/doctor/findById?id=" + selectedRow.id;
+            this.DoWorkAsync(250, (o) =>
+            {
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) =>
+            {
+                JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    List<WorkingDayEntity> workingDayList = objT["result"].ToObject<List<WorkingDayEntity>>();
-                    if (workingDayList.Count > 0)
+                    doctorInfo = objT["result"].ToObject<DoctorInfoEntity>();
+                    doctorInfo.hospitalId = doctorInfo.dept.hospital.id;
+                    doctorInfo.deptId = doctorInfo.dept.id;
+                    if (doctorInfo.ignoreHoliday.Equals("1"))
+                        cbIgnoreHoliday.CheckState = CheckState.Checked;
+                    if (doctorInfo.ignoreYear.Equals("1"))
+                        cbIgnoreYear.CheckState = CheckState.Checked;
+                    dcDoctorInfo.SetValue(doctorInfo);
+                    //显示图片
+                    pictureServiceFilePath = doctorInfo.pictureUrl;
+                    WebClient web;
+                    if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
                     {
-                        setWorkingDay(workingDayList);
+                        try
+                        {
+                            web = new WebClient();
+                            var bytes = web.DownloadData(pictureServiceFilePath);
+                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
                     }
+                    groupBox1.Enabled = true;
+                    setDefaultVisit();
+                    tableLayoutPanel4.Enabled = true;
+
+                    //获取已排班信息
+                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingList?deptId=" + doctorInfo.dept.id + "&doctorId=" + selectedRow.id;
+                    this.DoWorkAsync(250, (o) =>
+                    {
+                        data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (data2) =>
+                    {
+                        cmd.HideOpaqueLayer();
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            List<WorkingDayEntity> workingDayList = objT["result"].ToObject<List<WorkingDayEntity>>();
+                            if (workingDayList.Count > 0)
+                            {
+                                setWorkingDay(workingDayList);
+                            }
+                            cmd.HideOpaqueLayer();
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBox.Show(objT["message"].ToString());
+                        }
+                    });
                 }
                 else
                 {
+                    cmd.HideOpaqueLayer();
                     MessageBox.Show(objT["message"].ToString());
                 }
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-            }
+            });
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //检验并取值
-            if (!dcDoctorInfo.Validate())
+            cmd.ShowOpaqueLayer();
+            try
             {
-                return;
-            }
-            dcDoctorInfo.GetValue(doctorInfo);
-
-            if (cbIgnoreHoliday.CheckState == CheckState.Checked)
-                doctorInfo.ignoreHoliday = "0";
-            else
-                doctorInfo.ignoreHoliday = "1";
-
-            if (cbIgnoreYear.CheckState == CheckState.Checked)
-                doctorInfo.ignoreYear = "1";
-            else doctorInfo.ignoreYear = "0";
-
-            if (pictureServiceFilePath == null || pictureServiceFilePath.Length == 0)
-            {
-                dcDoctorInfo.ShowError(pbPicture, "请先上传文件");
-                return;
-            }
-            doctorInfo.pictureUrl = pictureServiceFilePath;
-
-            List<WorkingDayEntity> workingDayList = new List<WorkingDayEntity>();
-            //获取排班信息
-            int days = panScheduling.Controls.Count; //排班天数
-            if (days > 0)
-            {
-                for (int i = 0; i < days; i++)
+                //检验并取值
+                if (!dcDoctorInfo.Validate())
                 {
-                    String week = "";
-                    if (i == 0)
-                        week = "一";
-                    else if(i == 1)
-                        week = "二";
-                    else if (i == 2)
-                        week = "三";
-                    else if (i == 3)
-                        week = "四";
-                    else if (i == 4)
-                        week = "五";
-                    else if (i == 5)
-                        week = "六";
-                    else if (i == 6)
-                        week = "日";
-                    GroupBox groupBoy = (GroupBox)panScheduling.Controls[i];//周几的面板
-                    for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
-                    {
-                        TableLayoutPanel tlp = (TableLayoutPanel)groupBoy.Controls[period];
-                        if (tlp.Enabled)
-                        {
-                            Panel pCb = (Panel)tlp.GetControlFromPosition(0, 1);
-                            CheckBox cbIsUse = (CheckBox)pCb.Controls[0];
-                            Panel pAuto = (Panel)tlp.GetControlFromPosition(0, 2);
-                            CheckBox cbAuto = (CheckBox)pAuto.Controls[0];
-                            for (int r = 1; r < tlp.RowCount; r++)//行
-                            {
-                                WorkingDayEntity wordingDay = new WorkingDayEntity();
-                                wordingDay.week = week; //周几
-                                wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上 3：全天
-                                if (cbIsUse.CheckState == CheckState.Checked)
-                                    wordingDay.isUse = "0";
-                                else
-                                    wordingDay.isUse = "1";
-                                if (cbAuto.CheckState == CheckState.Checked)
-                                    wordingDay.autoSchedule = "0";
-                                else
-                                    wordingDay.autoSchedule = "1";
+                    return;
+                }
+                dcDoctorInfo.GetValue(doctorInfo);
 
-                                for (int c = 1; c < tlp.ColumnCount; c++)//列
+                if (cbIgnoreHoliday.CheckState == CheckState.Checked)
+                    doctorInfo.ignoreHoliday = "1";
+                else
+                    doctorInfo.ignoreHoliday = "0";
+
+                if (cbIgnoreYear.CheckState == CheckState.Checked)
+                    doctorInfo.ignoreYear = "1";
+                else doctorInfo.ignoreYear = "0";
+
+                if (pictureServiceFilePath == null || pictureServiceFilePath.Length == 0)
+                {
+                    dcDoctorInfo.ShowError(pbPicture, "请先上传文件");
+                    return;
+                }
+                doctorInfo.pictureUrl = pictureServiceFilePath;
+
+                List<WorkingDayEntity> workingDayList = new List<WorkingDayEntity>();
+                //获取排班信息
+                int days = tabControl1.Controls.Count; //排班天数
+                if (days > 0)
+                {
+                    for (int i = 0; i < days; i++)
+                    {
+                        String week = "";
+                        if (i == 0)
+                            week = "一";
+                        else if(i == 1)
+                            week = "二";
+                        else if (i == 2)
+                            week = "三";
+                        else if (i == 3)
+                            week = "四";
+                        else if (i == 4)
+                            week = "五";
+                        else if (i == 5)
+                            week = "六";
+                        else if (i == 6)
+                            week = "日";
+                        TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
+                        for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
+                        {
+                            TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
+                            if (tlp.Enabled)
+                            {
+                                CheckBox cbIsUse = (CheckBox)tlp.GetControlFromPosition(0, 1);
+                                CheckBox cbAuto = (CheckBox)tlp.GetControlFromPosition(0, 2);
+                                for (int r = 1; r < tlp.RowCount; r++)//行
                                 {
-                                    Panel panel = (Panel)tlp.GetControlFromPosition(c, r);
-                                    TextEdit te = (TextEdit)panel.Controls[0];
-                                    if (c == 1)
-                                        wordingDay.beginTime = te.Text;
-                                    else if (c == 2)
-                                        wordingDay.endTime = te.Text;
-                                    else if (c == 3)
-                                        wordingDay.numSource = te.Text;
-                                    else if (c == 4)
-                                        wordingDay.numOpen = te.Text;
-                                    else if (c == 5)
-                                        wordingDay.numClinic = te.Text;
-                                    else if (c == 6)
-                                        wordingDay.numYj = te.Text;
+                                    WorkingDayEntity wordingDay = new WorkingDayEntity();
+                                    wordingDay.week = week; //周几
+                                    wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上 3：全天
+                                    if (cbIsUse.CheckState == CheckState.Checked)
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                    if (cbAuto.CheckState == CheckState.Checked)
+                                        wordingDay.autoSchedule = "0";
+                                    else
+                                        wordingDay.autoSchedule = "1";
+
+                                    for (int c = 1; c < tlp.ColumnCount; c++)//列
+                                    {
+                                        TextEdit te = (TextEdit)tlp.GetControlFromPosition(c, r);
+                                        if (c == 1)
+                                            wordingDay.beginTime = te.Text;
+                                        else if (c == 2)
+                                            wordingDay.endTime = te.Text;
+                                        else if (c == 3)
+                                            wordingDay.numSource = te.Text;
+                                        else if (c == 4)
+                                            wordingDay.numOpen = te.Text;
+                                        else if (c == 5)
+                                            wordingDay.numClinic = te.Text;
+                                        else if (c == 6)
+                                            wordingDay.numYj = te.Text;
+                                    }
+                                    workingDayList.Add(wordingDay);
                                 }
-                                workingDayList.Add(wordingDay);
                             }
                         }
                     }
                 }
-            }
-            String workStr = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
+                String workStr = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
 
-            String param =  PackReflectionEntity<DoctorInfoEntity>.GetEntityToRequestParameters(doctorInfo, true);
-            param += "&workStr=" + workStr;
-            //请求接口
-            String url = AppContext.AppConfig.serverUrl + "cms/doctor/save?";
-            String data = HttpClass.httpPost(url, param);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                MessageBoxUtils.Hint("保存成功！");
-                pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
-                groupBox1.Enabled = false;
-                //清除医生数据
-                dcDoctorInfo.ClearValue();
-                pbPicture.Image = null;
-                pbPicture.Refresh();
-                pictureServiceFilePath = null;
-                //清除排班数据
-                dcDefaultVisit.ClearValue();
-                tableLayoutPanel4.Enabled = false;
-                panScheduling.Controls.Clear();
+                String param =  PackReflectionEntity<DoctorInfoEntity>.GetEntityToRequestParameters(doctorInfo, true);
+                param += "&workStr=" + workStr;
+                //请求接口
+                String url = AppContext.AppConfig.serverUrl + "cms/doctor/save?";
+                this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                {
+                    String data = HttpClass.httpPost(url, param);
+                    return data;
+
+                }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                {
+                    JObject objT = JObject.Parse(data.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        groupBox1.Enabled = false;
+                        //清除医生数据
+                        dcDoctorInfo.ClearValue();
+                        pbPicture.Image = null;
+                        pbPicture.Refresh();
+                        pictureServiceFilePath = null;
+                        //清除排班数据
+                        dcDefaultVisit.ClearValue();
+                        tableLayoutPanel4.Enabled = false;
+                        pbDispose();
+                        pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
+                        MessageBoxUtils.Hint("保存成功！");
+                    }
+                    else
+                    {
+                        cmd.HideOpaqueLayer();
+                        MessageBox.Show(objT["message"].ToString());
+                    }
+                });
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(objT["message"].ToString());
+                cmd.HideOpaqueLayer();
+                LogClass.WriteLog(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -523,23 +638,33 @@ namespace Xr.RtManager.Pages.cms
             {
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "cms/doctor/delete" + param;
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                cmd.ShowOpaqueLayer();
+                this.DoWorkAsync( 500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
-                    MessageBoxUtils.Hint("删除成功!");
-                    SearchData(pageControl1.CurrentPage, pageControl1.PageSize);
-                }
-                else
+                    String data = HttpClass.httpPost(url);
+                    return data;
+
+                }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    MessageBox.Show(objT["message"].ToString());
-                }
+                    JObject objT = JObject.Parse(r.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        SearchData(pageControl1.CurrentPage, pageControl1.PageSize);
+                        MessageBoxUtils.Hint("删除成功!");
+                    }
+                    else
+                    {
+                        cmd.HideOpaqueLayer();
+                        MessageBox.Show(objT["message"].ToString());
+                    }
+                });
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             var edit = new RichEditorForm();
+            edit.ImagUploadUrl = AppContext.AppConfig.serverUrl;
             edit.text = doctorInfo.synopsis;
             if (edit.ShowDialog() == DialogResult.OK)
             {
@@ -582,660 +707,645 @@ namespace Xr.RtManager.Pages.cms
             Label label = (Label)sender;
             hospitalId = label.Tag.ToString();
             deptId = label.Name;
+            cmd.ShowOpaqueLayer();
             SearchData(1, pageControl1.PageSize);
         }
 
-        private void DoctorSettingsForm_Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// 清空排班控件（释放资源）
+        /// </summary>
+        private void pbDispose()
         {
-            float tlpWidth = this.Width * 30 / 100;
-            if (tlpWidth < 460)
-                tableLayoutPanel1.ColumnStyles[1].Width = tlpWidth;
-            else
-                tableLayoutPanel1.ColumnStyles[1].Width = 460;
+            //清空周一的控件
+            int CntControls = tabPage1.Controls.Count;
+            for (int i = 0; i < CntControls; i++)
+            {
+                if (tabPage1.Controls[0] != null)
+                    tabPage1.Controls[0].Dispose();
+            }
+            //清空周二的控件
+            CntControls = tabPage7.Controls.Count;
+            for (int i = 0; i < CntControls; i++)
+            {
+                if (tabPage7.Controls[0] != null)
+                    tabPage7.Controls[0].Dispose();
+            }
+            //清空周三的控件
+            CntControls = tabPage6.Controls.Count;
+            for (int i = 0; i < CntControls; i++)
+            {
+                if (tabPage6.Controls[0] != null)
+                    tabPage6.Controls[0].Dispose();
+            }
+            //清空周四的控件
+            CntControls = tabPage5.Controls.Count;
+            for (int i = 0; i < CntControls; i++)
+            {
+                if (tabPage5.Controls[0] != null)
+                    tabPage5.Controls[0].Dispose();
+            }
+            //清空周五的控件
+            CntControls = tabPage4.Controls.Count;
+            for (int i = 0; i < CntControls; i++)
+            {
+                if (tabPage4.Controls[0] != null)
+                    tabPage4.Controls[0].Dispose();
+            }
+            //清空周六的控件
+            CntControls = tabPage3.Controls.Count;
+            for (int i = 0; i < CntControls; i++)
+            {
+                if (tabPage3.Controls[0] != null)
+                    tabPage3.Controls[0].Dispose();
+            }
+            //清空周日的控件
+            CntControls = tabPage2.Controls.Count;
+            for (int i = 0; i < CntControls; i++)
+            {
+                if (tabPage2.Controls[0] != null)
+                    tabPage2.Controls[0].Dispose();
+            }
         }
+
 
         private void buttonControl2_Click(object sender, EventArgs e)
         {
-            //数据验证
-            //if (!dcDefaultVisit.Validate())
-            //{
-            //    return;
-            //}
             //清除排班数据
-            panScheduling.Controls.Clear();
-            CheckState morning = cbMorning.CheckState;
-            CheckState afternoon = cbAfternoon.CheckState;
-            CheckState night = cbNight.CheckState;
-            CheckState allDay = cbAllAay.CheckState;
-            if (morning != CheckState.Checked && afternoon != CheckState.Checked
-                && night != CheckState.Checked && allDay != CheckState.Checked)
+            pbDispose();
+            cmd.ShowOpaqueLayer();
+
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                return;
-            }
-            //获取默认排班数据
-            defaultVisit = new DefaultVisitEntity();
-            dcDefaultVisit.GetValue(defaultVisit);
+                return null;
 
-            //分段数量
-            int rowMorningNum = 0;
-            int rowAfternoonNum = 0;
-            int rowNightNum = 0;
-            int rowAllDayNum = 0;
-
-            #region 计算分段数量
-            //计算早上的分段数量
-            if (morning == CheckState.Checked)
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                if(defaultVisit.mStart.Trim().Length==0||defaultVisit.mEnd.Trim().Length==0
-                    || defaultVisit.mSubsection.Trim().Length == 0)
+                CheckState morning = cbMorning.CheckState;
+                CheckState afternoon = cbAfternoon.CheckState;
+                CheckState night = cbNight.CheckState;
+                CheckState allDay = cbAllAay.CheckState;
+                if (morning != CheckState.Checked && afternoon != CheckState.Checked
+                    && night != CheckState.Checked && allDay != CheckState.Checked)
                 {
-                    MessageBoxUtils.Hint("上午的设置不能为空");
                     return;
                 }
-                String[] startArr = defaultVisit.mStart.Split(new char[] { ':', '：' });
-                String[] endArr = defaultVisit.mEnd.Split(new char[] { ':', '：' });
-                if (startArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("上午的开始时间设置有误");
-                    return;
-                }
-                if (endArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("上午的结束时间设置有误");
-                    return;
-                }
-                DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
-                DateTime d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
-                TimeSpan d3 = d2.Subtract(d1);
-                int minute = d3.Hours * 60 + d3.Minutes;
-                if (minute <= 0)
-                {
-                    MessageBoxUtils.Hint("上午结束时间不能小于或等于开始时间");
-                    return;
-                }
-                if (minute < int.Parse(defaultVisit.mSubsection))
-                {
-                    MessageBoxUtils.Hint("上午分段时间大于总时间");
-                    return;
-                }
-                rowMorningNum = minute / int.Parse(defaultVisit.mSubsection);
-            }
+                //获取默认排班数据
+                defaultVisit = new DefaultVisitEntity();
+                dcDefaultVisit.GetValue(defaultVisit);
 
-            //计算下午的分段数量
-            if (afternoon == CheckState.Checked)
-            {
-                if (defaultVisit.aStart.Trim().Length == 0 || defaultVisit.aEnd.Trim().Length == 0
-                    || defaultVisit.aSubsection.Trim().Length == 0)
-                {
-                    MessageBoxUtils.Hint("下午的设置不能为空");
-                    return;
-                }
-                String[] startArr = defaultVisit.aStart.Split(new char[] { ':', '：' });
-                String[] endArr = defaultVisit.aEnd.Split(new char[] { ':', '：' });
-                if (startArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("下午的开始时间设置有误");
-                    return;
-                }
-                if (endArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("下午的结束时间设置有误");
-                    return;
-                }
-                DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
-                DateTime d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
-                TimeSpan d3 = d2.Subtract(d1);
-                int minute = d3.Hours * 60 + d3.Minutes;
-                if (minute <= 0)
-                {
-                    MessageBoxUtils.Hint("下午结束时间不能小于或等于开始时间");
-                    return;
-                }
-                if (minute < int.Parse(defaultVisit.aSubsection))
-                {
-                    MessageBoxUtils.Hint("下午分段时间大于总时间");
-                    return;
-                }
-                rowAfternoonNum = minute / int.Parse(defaultVisit.aSubsection);
-            }
+                //分段数量
+                int rowMorningNum = 0;
+                int rowAfternoonNum = 0;
+                int rowNightNum = 0;
+                int rowAllDayNum = 0;
 
-            //计算晚上的分段数量
-            if (night == CheckState.Checked)
-            {
-                if (defaultVisit.nStart.Trim().Length == 0 || defaultVisit.nEnd.Trim().Length == 0
-                    || defaultVisit.nSubsection.Trim().Length == 0)
+                #region 计算分段数量
+                //计算早上的分段数量
+                if (morning == CheckState.Checked)
                 {
-                    MessageBoxUtils.Hint("晚上的设置不能为空");
-                    return;
-                }
-                String[] startArr = defaultVisit.nStart.Split(new char[] { ':', '：' });
-                String[] endArr = defaultVisit.nEnd.Split(new char[] { ':', '：' });
-                if (startArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("晚上的开始时间设置有误");
-                    return;
-                }
-                if (endArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("晚上的结束时间设置有误");
-                    return;
-                }
-                DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
-                DateTime d2 = new DateTime();
-                if (endArr[0].Equals("24"))
-                    d2 = new DateTime(2004, 1, 2, 00, int.Parse(endArr[1]), 00);
-                if (int.Parse(endArr[0]) < int.Parse(startArr[0]))
-                    d2 = new DateTime(2004, 1, 2, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
-                else
-                    d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
-                TimeSpan d3 = d2.Subtract(d1);
-                int minute = d3.Hours * 60 + d3.Minutes;
-                if (minute <= 0)
-                {
-                    MessageBoxUtils.Hint("晚上结束时间不能小于或等于开始时间");
-                    return;
-                }
-                if (minute < int.Parse(defaultVisit.nSubsection))
-                {
-                    MessageBoxUtils.Hint("晚上分段时间大于总时间");
-                    return;
-                }
-                rowNightNum = minute / int.Parse(defaultVisit.nSubsection);
-            }
-
-            //计算全天的分段数量
-            if (allDay == CheckState.Checked)
-            {
-                if (defaultVisit.allStart.Trim().Length == 0 || defaultVisit.allEnd.Trim().Length == 0
-                    || defaultVisit.allSubsection.Trim().Length == 0)
-                {
-                    MessageBoxUtils.Hint("全天的设置不能为空");
-                    return;
-                }
-                String[] startArr = defaultVisit.allStart.Split(new char[] { ':', '：' });
-                String[] endArr = defaultVisit.allEnd.Split(new char[] { ':', '：' });
-                if (startArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("全天的开始时间设置有误");
-                    return;
-                }
-                if (endArr.Length != 2)
-                {
-                    MessageBoxUtils.Hint("全天的结束时间设置有误");
-                    return;
-                }
-                DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
-                DateTime d2 = new DateTime();
-                if (endArr[0].Equals("24"))
-                    d2 = new DateTime(2004, 1, 2, 00, int.Parse(endArr[1]), 00);
-                else
-                    d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
-                TimeSpan d3 = d2.Subtract(d1);
-                int minute = d3.Hours * 60 + d3.Minutes;
-                if (minute <= 0)
-                {
-                    MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间");
-                    return;
-                }
-                if (minute < int.Parse(defaultVisit.nSubsection))
-                {
-                    MessageBoxUtils.Hint("全天分段时间大于总时间");
-                    return;
-                }
-                rowAllDayNum = minute / int.Parse(defaultVisit.allSubsection);
-            }
-            #endregion
-
-            int gbY = 0; //groupBox的Y轴位置
-
-            #region 生成周一到周日的排班
-            //生成周一到周日的排班
-            for (int i = 1; i <= 7; i++)
-            {
-                if (i != 1) gbY += 40;
-                int blpY = 20; //TableLayoutPanel的y轴位置
-                GroupBox groupBox = new GroupBox();
-                groupBox.Width = 415;
-                groupBox.Location = new System.Drawing.Point(0, gbY);
-                groupBox.AutoSize = true;
-                switch (i)
-                {
-                    case 1:
-                        groupBox.Text = "周一";
-                        break;
-                    case 2:
-                        groupBox.Text = "周二";
-                        break;
-                    case 3:
-                        groupBox.Text = "周三";
-                        break;
-                    case 4:
-                        groupBox.Text = "周四";
-                        break;
-                    case 5:
-                        groupBox.Text = "周五";
-                        break;
-                    case 6:
-                        groupBox.Text = "周六";
-                        break;
-                    case 7:
-                        groupBox.Text = "周日";
-                        break;
-                    default: break;
-                }
-
-                for (int j = 0; j < 4; j++)
-                {
-                    //j=0:上午 j=1:下午 j=2:晚上 j=3:全天 
-                    TableLayoutPanel tlpMorning = new TableLayoutPanel();
-                    int row = 0;//行数(包括标题)
-                    DateTime dt1 = new DateTime();//开始时间
-                    DateTime dt2 = new DateTime();//结束时间
-                    String timeInterval = ""; //
-                    if (j == 0)
+                    if (defaultVisit.mStart.Trim().Length == 0 || defaultVisit.mEnd.Trim().Length == 0
+                        || defaultVisit.mSubsection.Trim().Length == 0)
                     {
-                        if (rowMorningNum > 3) row = rowMorningNum + 1;
-                        else row = 4;
-                        dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.mStart + ":00");
-                        dt2 = dt1.AddMinutes(int.Parse(defaultVisit.mSubsection));
-                        timeInterval = "上午";
-                        if(morning != CheckState.Checked){
-                            tlpMorning.Enabled = false;
-                        }
+                        MessageBoxUtils.Hint("上午的设置不能为空");
+                        return;
                     }
-                    else if (j == 1)
+                    String[] startArr = defaultVisit.mStart.Split(new char[] { ':', '：' });
+                    String[] endArr = defaultVisit.mEnd.Split(new char[] { ':', '：' });
+                    if (startArr.Length != 2)
                     {
-                        if (rowAfternoonNum > 3) row = rowAfternoonNum + 1;
-                        else row = 4;
-                        dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.aStart + ":00");
-                        dt2 = dt1.AddMinutes(int.Parse(defaultVisit.aSubsection));
-                        timeInterval = "下午";
-                        if (afternoon != CheckState.Checked)
+                        MessageBoxUtils.Hint("上午的开始时间设置有误");
+                        return;
+                    }
+                    if (endArr.Length != 2)
+                    {
+                        MessageBoxUtils.Hint("上午的结束时间设置有误");
+                        return;
+                    }
+                    DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
+                    DateTime d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
+                    TimeSpan d3 = d2.Subtract(d1);
+                    int minute = d3.Hours * 60 + d3.Minutes;
+                    if (minute <= 0)
+                    {
+                        MessageBoxUtils.Hint("上午结束时间不能小于或等于开始时间");
+                        return;
+                    }
+                    if (minute < int.Parse(defaultVisit.mSubsection))
+                    {
+                        MessageBoxUtils.Hint("上午分段时间大于总时间");
+                        return;
+                    }
+                    rowMorningNum = minute / int.Parse(defaultVisit.mSubsection);
+                }
+
+                //计算下午的分段数量
+                if (afternoon == CheckState.Checked)
+                {
+                    if (defaultVisit.aStart.Trim().Length == 0 || defaultVisit.aEnd.Trim().Length == 0
+                        || defaultVisit.aSubsection.Trim().Length == 0)
+                    {
+                        MessageBoxUtils.Hint("下午的设置不能为空");
+                        return;
+                    }
+                    String[] startArr = defaultVisit.aStart.Split(new char[] { ':', '：' });
+                    String[] endArr = defaultVisit.aEnd.Split(new char[] { ':', '：' });
+                    if (startArr.Length != 2)
+                    {
+                        MessageBoxUtils.Hint("下午的开始时间设置有误");
+                        return;
+                    }
+                    if (endArr.Length != 2)
+                    {
+                        MessageBoxUtils.Hint("下午的结束时间设置有误");
+                        return;
+                    }
+                    DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
+                    DateTime d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
+                    TimeSpan d3 = d2.Subtract(d1);
+                    int minute = d3.Hours * 60 + d3.Minutes;
+                    if (minute <= 0)
+                    {
+                        MessageBoxUtils.Hint("下午结束时间不能小于或等于开始时间");
+                        return;
+                    }
+                    if (minute < int.Parse(defaultVisit.aSubsection))
+                    {
+                        MessageBoxUtils.Hint("下午分段时间大于总时间");
+                        return;
+                    }
+                    rowAfternoonNum = minute / int.Parse(defaultVisit.aSubsection);
+                }
+
+                //计算晚上的分段数量
+                if (night == CheckState.Checked)
+                {
+                    if (defaultVisit.nStart.Trim().Length == 0 || defaultVisit.nEnd.Trim().Length == 0
+                        || defaultVisit.nSubsection.Trim().Length == 0)
+                    {
+                        MessageBoxUtils.Hint("晚上的设置不能为空");
+                        return;
+                    }
+                    String[] startArr = defaultVisit.nStart.Split(new char[] { ':', '：' });
+                    String[] endArr = defaultVisit.nEnd.Split(new char[] { ':', '：' });
+                    if (startArr.Length != 2)
+                    {
+                        MessageBoxUtils.Hint("晚上的开始时间设置有误");
+                        return;
+                    }
+                    if (endArr.Length != 2)
+                    {
+                        MessageBoxUtils.Hint("晚上的结束时间设置有误");
+                        return;
+                    }
+                    DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
+                    DateTime d2 = new DateTime();
+                    if (endArr[0].Equals("24"))
+                        d2 = new DateTime(2004, 1, 2, 00, int.Parse(endArr[1]), 00);
+                    if (int.Parse(endArr[0]) < int.Parse(startArr[0]))
+                        d2 = new DateTime(2004, 1, 2, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
+                    else
+                        d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
+                    TimeSpan d3 = d2.Subtract(d1);
+                    int minute = d3.Hours * 60 + d3.Minutes;
+                    if (minute <= 0)
+                    {
+                        MessageBoxUtils.Hint("晚上结束时间不能小于或等于开始时间");
+                        return;
+                    }
+                    if (minute < int.Parse(defaultVisit.nSubsection))
+                    {
+                        MessageBoxUtils.Hint("晚上分段时间大于总时间");
+                        return;
+                    }
+                    rowNightNum = minute / int.Parse(defaultVisit.nSubsection);
+                }
+
+                //计算全天的分段数量
+                if (allDay == CheckState.Checked)
+                {
+                    if (defaultVisit.allStart.Trim().Length == 0 || defaultVisit.allEnd.Trim().Length == 0
+                        || defaultVisit.allSubsection.Trim().Length == 0)
+                    {
+                        MessageBoxUtils.Hint("全天的设置不能为空");
+                        return;
+                    }
+                    String[] startArr = defaultVisit.allStart.Split(new char[] { ':', '：' });
+                    String[] endArr = defaultVisit.allEnd.Split(new char[] { ':', '：' });
+                    if (startArr.Length != 2)
+                    {
+                        MessageBoxUtils.Hint("全天的开始时间设置有误");
+                        return;
+                    }
+                    if (endArr.Length != 2)
+                    {
+                        MessageBoxUtils.Hint("全天的结束时间设置有误");
+                        return;
+                    }
+                    DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
+                    DateTime d2 = new DateTime();
+                    if (endArr[0].Equals("24"))
+                        d2 = new DateTime(2004, 1, 2, 00, int.Parse(endArr[1]), 00);
+                    else
+                        d2 = new DateTime(2004, 1, 1, int.Parse(endArr[0]), int.Parse(endArr[1]), 00);
+                    TimeSpan d3 = d2.Subtract(d1);
+                    int minute = d3.Hours * 60 + d3.Minutes;
+                    if (minute <= 0)
+                    {
+                        MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间");
+                        return;
+                    }
+                    if (minute < int.Parse(defaultVisit.nSubsection))
+                    {
+                        MessageBoxUtils.Hint("全天分段时间大于总时间");
+                        return;
+                    }
+                    rowAllDayNum = minute / int.Parse(defaultVisit.allSubsection);
+                }
+                #endregion
+
+                #region 生成周一到周日的排班
+                //生成周一到周日的排班
+                for (int i = 1; i <= 7; i++)
+                {
+                    int blpY = 20; //TableLayoutPanel的y轴位置
+                    for (int j = 0; j < 4; j++)
+                    {
+                        //j=0:上午 j=1:下午 j=2:晚上 j=3:全天 
+                        TableLayoutPanel tlpMorning = new TableLayoutPanel();
+                        int row = 0;//行数(包括标题)
+                        DateTime dt1 = new DateTime();//开始时间
+                        DateTime dt2 = new DateTime();//结束时间
+                        String timeInterval = ""; //
+                        if (j == 0)
                         {
-                            tlpMorning.Enabled = false;
+                            if (rowMorningNum > 3) row = rowMorningNum + 1;
+                            else row = 4;
+                            dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.mStart + ":00");
+                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.mSubsection));
+                            timeInterval = "上午";
+                            if (morning != CheckState.Checked)
+                            {
+                                tlpMorning.Enabled = false;
+                            }
                         }
-                    }
-                    else if (j == 2)
-                    {
-                        if (rowNightNum > 3) row = rowNightNum + 1;
-                        else row = 4;
-                        dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.nStart + ":00");
-                        dt2 = dt1.AddMinutes(int.Parse(defaultVisit.nSubsection));
-                        timeInterval = "晚上";
-                        if (night != CheckState.Checked)
+                        else if (j == 1)
                         {
-                            tlpMorning.Enabled = false;
+                            if (rowAfternoonNum > 3) row = rowAfternoonNum + 1;
+                            else row = 4;
+                            dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.aStart + ":00");
+                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.aSubsection));
+                            timeInterval = "下午";
+                            if (afternoon != CheckState.Checked)
+                            {
+                                tlpMorning.Enabled = false;
+                            }
                         }
-                    }
-                    else if (j == 3)
-                    {
-                        if (rowAllDayNum > 3) row = rowAllDayNum + 1;
-                        else row = 4;
-                        dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.allStart + ":00");
-                        dt2 = dt1.AddMinutes(int.Parse(defaultVisit.allSubsection));
-                        timeInterval = "全天";
-                        if (allDay != CheckState.Checked)
+                        else if (j == 2)
                         {
-                            tlpMorning.Enabled = false;
+                            if (rowNightNum > 3) row = rowNightNum + 1;
+                            else row = 4;
+                            dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.nStart + ":00");
+                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.nSubsection));
+                            timeInterval = "晚上";
+                            if (night != CheckState.Checked)
+                            {
+                                tlpMorning.Enabled = false;
+                            }
                         }
-                    }
+                        else if (j == 3)
+                        {
+                            if (rowAllDayNum > 3) row = rowAllDayNum + 1;
+                            else row = 4;
+                            dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.allStart + ":00");
+                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.allSubsection));
+                            timeInterval = "全天";
+                            if (allDay != CheckState.Checked)
+                            {
+                                tlpMorning.Enabled = false;
+                            }
+                        }
 
-                    tlpMorning.ColumnCount = 7;
-                    tlpMorning.RowCount = row;
+                        tlpMorning.ColumnCount = 7;
+                        tlpMorning.RowCount = row;
 
-                    tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-                    tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-                    tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-                    tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-                    tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-                    tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-                    tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
 
-                    for (int n = 0; n < row; n++)
-                    {
-                        tlpMorning.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-                    }
-                    tlpMorning.Size = new System.Drawing.Size(342, row * 30);
-                    //标题栏
-                    Panel panel = new Panel();
-                    panel.Dock = DockStyle.Fill;
-                    //tlpMorning.Controls.Add(panel);
-                    Label label = new Label();
-                    label.Dock = DockStyle.Fill;
-                    label.TextAlign = ContentAlignment.BottomCenter;
-                    label.Font = new Font("微软雅黑", 10);
-                    label.Text = "开始";
-                    tlpMorning.Controls.Add(label, 1, 0);
-                    label = new Label();
-                    label.Dock = DockStyle.Fill;
-                    label.TextAlign = ContentAlignment.BottomCenter;
-                    label.Font = new Font("微软雅黑", 10);
-                    label.Text = "结束";
-                    tlpMorning.Controls.Add(label, 2, 0);
-                    label = new Label();
-                    label.Dock = DockStyle.Fill;
-                    label.TextAlign = ContentAlignment.BottomCenter;
-                    label.Font = new Font("微软雅黑", 10);
-                    label.Text = "现场";
-                    tlpMorning.Controls.Add(label, 3, 0);
-                    label = new Label();
-                    label.Dock = DockStyle.Fill;
-                    label.TextAlign = ContentAlignment.BottomCenter;
-                    label.Font = new Font("微软雅黑", 10);
-                    label.Text = "公开";
-                    tlpMorning.Controls.Add(label, 4, 0);
-                    label = new Label();
-                    label.Dock = DockStyle.Fill;
-                    label.TextAlign = ContentAlignment.BottomCenter;
-                    label.Font = new Font("微软雅黑", 10);
-                    label.Text = "诊间";
-                    tlpMorning.Controls.Add(label, 5, 0);
-                    label = new Label();
-                    label.Dock = DockStyle.Fill;
-                    label.TextAlign = ContentAlignment.BottomCenter;
-                    label.Font = new Font("微软雅黑", 10);
-                    label.Text = "应急";
-                    tlpMorning.Controls.Add(label, 6, 0);
+                        for (int n = 0; n < row; n++)
+                        {
+                            tlpMorning.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+                        }
+                        tlpMorning.Size = new System.Drawing.Size(342, row * 30);
+                        //标题栏
+                        Label label = new Label();
+                        label.Dock = DockStyle.Fill;
+                        label.TextAlign = ContentAlignment.BottomCenter;
+                        label.Font = new Font("微软雅黑", 10);
+                        label.Text = "开始";
+                        tlpMorning.Controls.Add(label, 1, 0);
+                        label = new Label();
+                        label.Dock = DockStyle.Fill;
+                        label.TextAlign = ContentAlignment.BottomCenter;
+                        label.Font = new Font("微软雅黑", 10);
+                        label.Text = "结束";
+                        tlpMorning.Controls.Add(label, 2, 0);
+                        label = new Label();
+                        label.Dock = DockStyle.Fill;
+                        label.TextAlign = ContentAlignment.BottomCenter;
+                        label.Font = new Font("微软雅黑", 10);
+                        label.Text = "现场";
+                        tlpMorning.Controls.Add(label, 3, 0);
+                        label = new Label();
+                        label.Dock = DockStyle.Fill;
+                        label.TextAlign = ContentAlignment.BottomCenter;
+                        label.Font = new Font("微软雅黑", 10);
+                        label.Text = "公开";
+                        tlpMorning.Controls.Add(label, 4, 0);
+                        label = new Label();
+                        label.Dock = DockStyle.Fill;
+                        label.TextAlign = ContentAlignment.BottomCenter;
+                        label.Font = new Font("微软雅黑", 10);
+                        label.Text = "诊间";
+                        tlpMorning.Controls.Add(label, 5, 0);
+                        label = new Label();
+                        label.Dock = DockStyle.Fill;
+                        label.TextAlign = ContentAlignment.BottomCenter;
+                        label.Font = new Font("微软雅黑", 10);
+                        label.Text = "应急";
+                        tlpMorning.Controls.Add(label, 6, 0);
 
-                    bool teEnabled = true;//当行数小于3的时候，空白文本框需要设为不可选
-                    String start = "";
-                    String end = "";
-                    String scene = "";
-                    String open = "";
-                    String room = "";
-                    String emergency = "";
-                    CheckState checkState = CheckState.Unchecked;
-                    if (j == 0 && morning == CheckState.Checked)
-                    {
-                        scene = defaultVisit.mScene;
-                        open = defaultVisit.mOpen;
-                        room = defaultVisit.mRoom;
-                        emergency = defaultVisit.mEmergency;
-                        checkState = CheckState.Checked;
-                    }
-                    if(j==1 && afternoon == CheckState.Checked){
-                        scene = defaultVisit.aScene;
-                        open = defaultVisit.aOpen;
-                        room = defaultVisit.aRoom;
-                        emergency = defaultVisit.aEmergency;
-                        checkState = CheckState.Checked;
-                    }
-                    if(j==2 && night == CheckState.Checked){
-                        scene = defaultVisit.nScene;
-                        open = defaultVisit.nOpen;
-                        room = defaultVisit.nRoom;
-                        emergency = defaultVisit.nEmergency;
-                        checkState = CheckState.Checked;
-                    }
-                    if (j == 3 && allDay == CheckState.Checked)
-                    {
-                        scene = defaultVisit.allScene;
-                        open = defaultVisit.allOpen;
-                        room = defaultVisit.allRoom;
-                        emergency = defaultVisit.allEmergency;
-                        checkState = CheckState.Checked;
-                    }
-                    for (int r = 1; r < row; r++)
-                    {
+                        bool teEnabled = true;//当行数小于3的时候，空白文本框需要设为不可选
+                        String start = "";
+                        String end = "";
+                        String scene = "";
+                        String open = "";
+                        String room = "";
+                        String emergency = "";
+                        CheckState checkState = CheckState.Unchecked;
                         if (j == 0 && morning == CheckState.Checked)
                         {
-                            start = dt1.ToString().Substring(11, 5);
-                            end = dt2.ToString().Substring(11, 5);
-                            dt1 = dt2;
-                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.mSubsection));
-                            if (r > rowMorningNum)
-                            {
-                                start = "";
-                                end = "";
-                                scene = "";
-                                open = "";
-                                room = "";
-                                emergency = "";
-                                teEnabled = false;
-                            }
+                            scene = defaultVisit.mScene;
+                            open = defaultVisit.mOpen;
+                            room = defaultVisit.mRoom;
+                            emergency = defaultVisit.mEmergency;
+                            checkState = CheckState.Checked;
                         }
                         if (j == 1 && afternoon == CheckState.Checked)
                         {
-                            start = dt1.ToString().Substring(11, 5);
-                            end = dt2.ToString().Substring(11, 5);
-                            dt1 = dt2;
-                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.aSubsection));
-                            if (r > rowAfternoonNum)
-                            {
-                                start = "";
-                                end = "";
-                                scene = "";
-                                open = "";
-                                room = "";
-                                emergency = "";
-                                teEnabled = false;
-                            }
+                            scene = defaultVisit.aScene;
+                            open = defaultVisit.aOpen;
+                            room = defaultVisit.aRoom;
+                            emergency = defaultVisit.aEmergency;
+                            checkState = CheckState.Checked;
                         }
                         if (j == 2 && night == CheckState.Checked)
                         {
-                            start = dt1.ToString().Substring(11, 5);
-                            end = dt2.ToString().Substring(11, 5);
-                            dt1 = dt2;
-                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.nSubsection));
-                            if (r > rowNightNum)
-                            {
-                                start = "";
-                                end = "";
-                                scene = "";
-                                open = "";
-                                room = "";
-                                emergency = "";
-                                teEnabled = false;
-                            }
+                            scene = defaultVisit.nScene;
+                            open = defaultVisit.nOpen;
+                            room = defaultVisit.nRoom;
+                            emergency = defaultVisit.nEmergency;
+                            checkState = CheckState.Checked;
                         }
                         if (j == 3 && allDay == CheckState.Checked)
                         {
-                            start = dt1.ToString().Substring(11, 5);
-                            end = dt2.ToString().Substring(11, 5);
-                            dt1 = dt2;
-                            dt2 = dt1.AddMinutes(int.Parse(defaultVisit.allSubsection));
-                            if (r > rowAllDayNum)
-                            {
-                                start = "";
-                                end = "";
-                                scene = "";
-                                open = "";
-                                room = "";
-                                emergency = "";
-                                teEnabled = false;
-                            }
+                            scene = defaultVisit.allScene;
+                            open = defaultVisit.allOpen;
+                            room = defaultVisit.allRoom;
+                            emergency = defaultVisit.allEmergency;
+                            checkState = CheckState.Checked;
                         }
-                        for (int c = 0; c < 7; c++)
+                        for (int r = 1; r < row; r++)
                         {
-                            if (r == 1 && c == 0)
+                            if (j == 0 && morning == CheckState.Checked)
                             {
-                                //第一行第一列
-                                panel = new Panel();
-                                panel.Dock = DockStyle.Fill;
-                                CheckBox checkBox = new CheckBox();
-                                checkBox.Dock = DockStyle.Fill;
-                                checkBox.Font = new Font("微软雅黑", 10);
-                                checkBox.Text = timeInterval;
-                                checkBox.CheckState = checkState;
-                                panel.Controls.Add(checkBox);
-                                tlpMorning.Controls.Add(panel, 0, 1);
+                                start = dt1.ToString().Substring(11, 5);
+                                end = dt2.ToString().Substring(11, 5);
+                                dt1 = dt2;
+                                dt2 = dt1.AddMinutes(int.Parse(defaultVisit.mSubsection));
+                                if (r > rowMorningNum)
+                                {
+                                    start = "";
+                                    end = "";
+                                    scene = "";
+                                    open = "";
+                                    room = "";
+                                    emergency = "";
+                                    teEnabled = false;
+                                }
                             }
-                            else if (r == 2 && c == 0)
+                            if (j == 1 && afternoon == CheckState.Checked)
                             {
-                                //第二行第一列
-                                //需跨1行
-                                panel = new Panel();
-                                panel.Dock = DockStyle.Fill;
-                                CheckBox checkBox = new CheckBox();
-                                checkBox.Dock = DockStyle.Fill;
-                                checkBox.Font = new Font("微软雅黑", 10);
-                                checkBox.ForeColor = Color.FromArgb(255, 153, 102);
-                                checkBox.Text = "自动排班";
-                                panel.Controls.Add(checkBox);
-                                tlpMorning.SetRowSpan(panel, 2);
-                                tlpMorning.Controls.Add(panel, c, r);
+                                start = dt1.ToString().Substring(11, 5);
+                                end = dt2.ToString().Substring(11, 5);
+                                dt1 = dt2;
+                                dt2 = dt1.AddMinutes(int.Parse(defaultVisit.aSubsection));
+                                if (r > rowAfternoonNum)
+                                {
+                                    start = "";
+                                    end = "";
+                                    scene = "";
+                                    open = "";
+                                    room = "";
+                                    emergency = "";
+                                    teEnabled = false;
+                                }
                             }
-                            else if (c == 0)
+                            if (j == 2 && night == CheckState.Checked)
                             {
-                                //不做处理
+                                start = dt1.ToString().Substring(11, 5);
+                                end = dt2.ToString().Substring(11, 5);
+                                dt1 = dt2;
+                                dt2 = dt1.AddMinutes(int.Parse(defaultVisit.nSubsection));
+                                if (r > rowNightNum)
+                                {
+                                    start = "";
+                                    end = "";
+                                    scene = "";
+                                    open = "";
+                                    room = "";
+                                    emergency = "";
+                                    teEnabled = false;
+                                }
                             }
-                            else
+                            if (j == 3 && allDay == CheckState.Checked)
                             {
-                                if (c == 1)
+                                start = dt1.ToString().Substring(11, 5);
+                                end = dt2.ToString().Substring(11, 5);
+                                dt1 = dt2;
+                                dt2 = dt1.AddMinutes(int.Parse(defaultVisit.allSubsection));
+                                if (r > rowAllDayNum)
                                 {
-                                    //第二列
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
-                                    TextEdit textEdit = new TextEdit();
-                                    textEdit.Properties.AutoHeight = false;
-                                    textEdit.Dock = DockStyle.Fill;
-                                    textEdit.Font = new Font("微软雅黑", 10);
-                                    textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-                                    textEdit.Text = start;
-                                    textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    start = "";
+                                    end = "";
+                                    scene = "";
+                                    open = "";
+                                    room = "";
+                                    emergency = "";
+                                    teEnabled = false;
                                 }
-                                else if (c == 2)
+                            }
+                            for (int c = 0; c < 7; c++)
+                            {
+                                if (r == 1 && c == 0)
                                 {
-                                    //第三列
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
-                                    TextEdit textEdit = new TextEdit();
-                                    textEdit.Properties.AutoHeight = false;
-                                    textEdit.Dock = DockStyle.Fill;
-                                    textEdit.Font = new Font("微软雅黑", 10);
-                                    textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-                                    textEdit.Text = end;
-                                    textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    //第一行第一列
+                                    CheckBox checkBox = new CheckBox();
+                                    checkBox.Dock = DockStyle.Fill;
+                                    checkBox.Font = new Font("微软雅黑", 10);
+                                    checkBox.Text = timeInterval;
+                                    checkBox.CheckState = checkState;
+                                    tlpMorning.Controls.Add(checkBox, 0, 1);
                                 }
-                                else if (c == 3)
+                                else if (r == 2 && c == 0)
                                 {
-                                    //第四列 现场
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
-                                    TextEdit textEdit = new TextEdit();
-                                    textEdit.Properties.AutoHeight = false;
-                                    textEdit.Dock = DockStyle.Fill;
-                                    textEdit.Font = new Font("微软雅黑", 10);
-                                    textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-                                    textEdit.Text = scene;
-                                    textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    //第二行第一列
+                                    //需跨1行
+                                    CheckBox checkBox = new CheckBox();
+                                    checkBox.Dock = DockStyle.Fill;
+                                    checkBox.Font = new Font("微软雅黑", 10);
+                                    checkBox.ForeColor = Color.FromArgb(255, 153, 102);
+                                    checkBox.Text = "自动排班";
+                                    tlpMorning.SetRowSpan(checkBox, 2);
+                                    tlpMorning.Controls.Add(checkBox, c, r);
                                 }
-                                else if (c == 4)
+                                else if (c == 0)
                                 {
-                                    //第五列 公开
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
-                                    TextEdit textEdit = new TextEdit();
-                                    textEdit.Properties.AutoHeight = false;
-                                    textEdit.Dock = DockStyle.Fill;
-                                    textEdit.Font = new Font("微软雅黑", 10);
-                                    textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-                                    textEdit.Text = open;
-                                    textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    //不做处理
                                 }
-                                else if (c == 5)
+                                else
                                 {
-                                    //第六列 诊间
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
-                                    TextEdit textEdit = new TextEdit();
-                                    textEdit.Properties.AutoHeight = false;
-                                    textEdit.Dock = DockStyle.Fill;
-                                    textEdit.Font = new Font("微软雅黑", 10);
-                                    textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-                                    textEdit.Text = room;
-                                    textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
-                                }
-                                else if (c == 6)
-                                {
-                                    //第七列 应急
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
-                                    TextEdit textEdit = new TextEdit();
-                                    textEdit.Properties.AutoHeight = false;
-                                    textEdit.Dock = DockStyle.Fill;
-                                    textEdit.Font = new Font("微软雅黑", 10);
-                                    textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-                                    textEdit.Text = emergency;
-                                    textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    if (c == 1)
+                                    {
+                                        //第二列
+                                        TextEdit textEdit = new TextEdit();
+                                        textEdit.Properties.AutoHeight = false;
+                                        textEdit.Dock = DockStyle.Fill;
+                                        textEdit.Font = new Font("微软雅黑", 10);
+                                        textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                                        textEdit.Text = start;
+                                        textEdit.Enabled = teEnabled;
+                                        tlpMorning.Controls.Add(textEdit, c, r);
+                                    }
+                                    else if (c == 2)
+                                    {
+                                        //第三列
+                                        TextEdit textEdit = new TextEdit();
+                                        textEdit.Properties.AutoHeight = false;
+                                        textEdit.Dock = DockStyle.Fill;
+                                        textEdit.Font = new Font("微软雅黑", 10);
+                                        textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                                        textEdit.Text = end;
+                                        textEdit.Enabled = teEnabled;
+                                        tlpMorning.Controls.Add(textEdit, c, r);
+                                    }
+                                    else if (c == 3)
+                                    {
+                                        //第四列 现场
+                                        TextEdit textEdit = new TextEdit();
+                                        textEdit.Properties.AutoHeight = false;
+                                        textEdit.Dock = DockStyle.Fill;
+                                        textEdit.Font = new Font("微软雅黑", 10);
+                                        textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                                        textEdit.Text = scene;
+                                        textEdit.Enabled = teEnabled;
+                                        tlpMorning.Controls.Add(textEdit, c, r);
+                                    }
+                                    else if (c == 4)
+                                    {
+                                        //第五列 公开
+                                        TextEdit textEdit = new TextEdit();
+                                        textEdit.Properties.AutoHeight = false;
+                                        textEdit.Dock = DockStyle.Fill;
+                                        textEdit.Font = new Font("微软雅黑", 10);
+                                        textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                                        textEdit.Text = open;
+                                        textEdit.Enabled = teEnabled;
+                                        tlpMorning.Controls.Add(textEdit, c, r);
+                                    }
+                                    else if (c == 5)
+                                    {
+                                        //第六列 诊间
+                                        TextEdit textEdit = new TextEdit();
+                                        textEdit.Properties.AutoHeight = false;
+                                        textEdit.Dock = DockStyle.Fill;
+                                        textEdit.Font = new Font("微软雅黑", 10);
+                                        textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                                        textEdit.Text = room;
+                                        textEdit.Enabled = teEnabled;
+                                        tlpMorning.Controls.Add(textEdit, c, r);
+                                    }
+                                    else if (c == 6)
+                                    {
+                                        //第七列 应急
+                                        TextEdit textEdit = new TextEdit();
+                                        textEdit.Properties.AutoHeight = false;
+                                        textEdit.Dock = DockStyle.Fill;
+                                        textEdit.Font = new Font("微软雅黑", 10);
+                                        textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                                        textEdit.Text = emergency;
+                                        textEdit.Enabled = teEnabled;
+                                        tlpMorning.Controls.Add(textEdit, c, r);
+                                    }
                                 }
                             }
                         }
+                        tlpMorning.Location = new System.Drawing.Point(0, blpY);
+                        blpY += tlpMorning.Height;
+                        if (i == 1) tabPage1.Controls.Add(tlpMorning);
+                        if (i == 2) tabPage2.Controls.Add(tlpMorning);
+                        if (i == 3) tabPage3.Controls.Add(tlpMorning);
+                        if (i == 4) tabPage4.Controls.Add(tlpMorning);
+                        if (i == 5) tabPage5.Controls.Add(tlpMorning);
+                        if (i == 6) tabPage6.Controls.Add(tlpMorning);
+                        if (i == 7) tabPage7.Controls.Add(tlpMorning);
                     }
-                    tlpMorning.Location = new System.Drawing.Point(0, blpY);
-                    blpY += tlpMorning.Height;
-                    gbY += tlpMorning.Height;
-                    groupBox.Controls.Add(tlpMorning);
                 }
-                panScheduling.Controls.Add(groupBox);
-            }
-            #endregion
+                #endregion
+                cmd.HideOpaqueLayer();
+            });
         }
 
         private void setWorkingDay(List<WorkingDayEntity> workingDayList)
         {
             //清除排班数据
-            panScheduling.Controls.Clear();
-
-
-            int gbY = 0; //groupBox的Y轴位置
+            pbDispose();
 
             #region 生成周一到周日的排班
             //生成周一到周日的排班
             for (int i = 1; i <= 7; i++)
             {
-                if (i != 1) gbY += 40;
                 int blpY = 20; //TableLayoutPanel的y轴位置
-                GroupBox groupBox = new GroupBox();
-                groupBox.Width = 415;
-                groupBox.Location = new System.Drawing.Point(0, gbY);
-                groupBox.AutoSize = true;
                 String week = "";
                 switch (i)
                 {
                     case 1:
-                        groupBox.Text = "周一";
                         week = "一";
                         break;
                     case 2:
-                        groupBox.Text = "周二";
                         week = "二";
                         break;
                     case 3:
-                        groupBox.Text = "周三";
                         week = "三";
                         break;
                     case 4:
-                        groupBox.Text = "周四";
                         week = "四";
                         break;
                     case 5:
-                        groupBox.Text = "周五";
                         week = "五";
                         break;
                     case 6:
-                        groupBox.Text = "周六";
                         week = "六";
                         break;
                     case 7:
-                        groupBox.Text = "周日";
                         week = "日";
                         break;
                     default: break;
                 }
-
                 for (int j = 0; j < 4; j++)
                 {
                     //当前TableLayoutPanel的数量
@@ -1297,9 +1407,6 @@ namespace Xr.RtManager.Pages.cms
                     }
                     tlpMorning.Size = new System.Drawing.Size(342, row * 30);
                     //标题栏
-                    Panel panel = new Panel();
-                    panel.Dock = DockStyle.Fill;
-                    //tlpMorning.Controls.Add(panel);
                     Label label = new Label();
                     label.Dock = DockStyle.Fill;
                     label.TextAlign = ContentAlignment.BottomCenter;
@@ -1372,31 +1479,25 @@ namespace Xr.RtManager.Pages.cms
                             if (r == 1 && c == 0)
                             {
                                 //第一行第一列
-                                panel = new Panel();
-                                panel.Dock = DockStyle.Fill;
                                 CheckBox checkBox = new CheckBox();
                                 checkBox.Dock = DockStyle.Fill;
                                 checkBox.Font = new Font("微软雅黑", 10);
                                 checkBox.Text = timeInterval;
                                 checkBox.CheckState = checkState;
-                                panel.Controls.Add(checkBox);
-                                tlpMorning.Controls.Add(panel, 0, 1);
+                                tlpMorning.Controls.Add(checkBox, 0, 1);
                             }
                             else if (r == 2 && c == 0)
                             {
                                 //第二行第一列
                                 //需跨1行
-                                panel = new Panel();
-                                panel.Dock = DockStyle.Fill;
                                 CheckBox checkBox = new CheckBox();
                                 checkBox.Dock = DockStyle.Fill;
                                 checkBox.Font = new Font("微软雅黑", 10);
                                 checkBox.ForeColor = Color.FromArgb(255, 153, 102);
                                 checkBox.Text = "自动排班";
                                 checkBox.CheckState = checkAuto;
-                                panel.Controls.Add(checkBox);
-                                tlpMorning.SetRowSpan(panel, 2);
-                                tlpMorning.Controls.Add(panel, c, r);
+                                tlpMorning.SetRowSpan(checkBox, 2);
+                                tlpMorning.Controls.Add(checkBox, c, r);
                             }
                             else if (c == 0)
                             {
@@ -1407,8 +1508,6 @@ namespace Xr.RtManager.Pages.cms
                                 if (c == 1)
                                 {
                                     //第二列
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
                                     TextEdit textEdit = new TextEdit();
                                     textEdit.Properties.AutoHeight = false;
                                     textEdit.Dock = DockStyle.Fill;
@@ -1416,14 +1515,11 @@ namespace Xr.RtManager.Pages.cms
                                     textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                     textEdit.Text = start;
                                     textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    tlpMorning.Controls.Add(textEdit, c, r);
                                 }
                                 else if (c == 2)
                                 {
                                     //第三列
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
                                     TextEdit textEdit = new TextEdit();
                                     textEdit.Properties.AutoHeight = false;
                                     textEdit.Dock = DockStyle.Fill;
@@ -1431,14 +1527,11 @@ namespace Xr.RtManager.Pages.cms
                                     textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                     textEdit.Text = end;
                                     textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    tlpMorning.Controls.Add(textEdit, c, r);
                                 }
                                 else if (c == 3)
                                 {
                                     //第四列 现场
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
                                     TextEdit textEdit = new TextEdit();
                                     textEdit.Properties.AutoHeight = false;
                                     textEdit.Dock = DockStyle.Fill;
@@ -1446,14 +1539,11 @@ namespace Xr.RtManager.Pages.cms
                                     textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                     textEdit.Text = scene;
                                     textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    tlpMorning.Controls.Add(textEdit, c, r);
                                 }
                                 else if (c == 4)
                                 {
                                     //第五列 公开
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
                                     TextEdit textEdit = new TextEdit();
                                     textEdit.Properties.AutoHeight = false;
                                     textEdit.Dock = DockStyle.Fill;
@@ -1461,14 +1551,11 @@ namespace Xr.RtManager.Pages.cms
                                     textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                     textEdit.Text = open;
                                     textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    tlpMorning.Controls.Add(textEdit, c, r);
                                 }
                                 else if (c == 5)
                                 {
                                     //第六列 诊间
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
                                     TextEdit textEdit = new TextEdit();
                                     textEdit.Properties.AutoHeight = false;
                                     textEdit.Dock = DockStyle.Fill;
@@ -1476,14 +1563,11 @@ namespace Xr.RtManager.Pages.cms
                                     textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                     textEdit.Text = room;
                                     textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    tlpMorning.Controls.Add(textEdit, c, r);
                                 }
                                 else if (c == 6)
                                 {
                                     //第七列 应急
-                                    panel = new Panel();
-                                    panel.Dock = DockStyle.Fill;
                                     TextEdit textEdit = new TextEdit();
                                     textEdit.Properties.AutoHeight = false;
                                     textEdit.Dock = DockStyle.Fill;
@@ -1491,18 +1575,21 @@ namespace Xr.RtManager.Pages.cms
                                     textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                     textEdit.Text = emergency;
                                     textEdit.Enabled = teEnabled;
-                                    panel.Controls.Add(textEdit);
-                                    tlpMorning.Controls.Add(panel, c, r);
+                                    tlpMorning.Controls.Add(textEdit, c, r);
                                 }
                             }
                         }
                     }
                     tlpMorning.Location = new System.Drawing.Point(0, blpY);
                     blpY += tlpMorning.Height;
-                    gbY += tlpMorning.Height;
-                    groupBox.Controls.Add(tlpMorning);
+                    if (i == 1) tabPage1.Controls.Add(tlpMorning);
+                    if (i == 2) tabPage2.Controls.Add(tlpMorning);
+                    if (i == 3) tabPage3.Controls.Add(tlpMorning);
+                    if (i == 4) tabPage4.Controls.Add(tlpMorning);
+                    if (i == 5) tabPage5.Controls.Add(tlpMorning);
+                    if (i == 6) tabPage6.Controls.Add(tlpMorning);
+                    if (i == 7) tabPage7.Controls.Add(tlpMorning);
                 }
-                panScheduling.Controls.Add(groupBox);
             }
             #endregion
         }
@@ -1523,6 +1610,68 @@ namespace Xr.RtManager.Pages.cms
                     workingDayByWeekList.Add(workingDay);
             }
             return workingDayByWeekList;
+        }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="time">线程延迟多少</param>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+                try
+                {
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    LogClass.WriteLog(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(time);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+        private void DoctorSettingsForm_Resize(object sender, EventArgs e)
+        {
+            float tlpWidth = this.Width * 30 / 100;
+            if (tlpWidth < 410)
+                tableLayoutPanel1.ColumnStyles[1].Width = tlpWidth;
+            else
+                tableLayoutPanel1.ColumnStyles[1].Width = 410;
         }
     }
 }

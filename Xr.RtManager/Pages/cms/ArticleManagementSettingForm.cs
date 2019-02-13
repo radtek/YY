@@ -16,11 +16,15 @@ namespace Xr.RtManager.Pages.cms
 {
     public partial class ArticleManagementSettingForm : UserControl
     {
+        Xr.Common.Controls.OpaqueCommand cmd;
         public ArticleManagementSettingForm()
         {
             InitializeComponent();
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(225, false);
             First();
             ArticleCategoryCollection();
+            cmd.HideOpaqueLayer();
         }
         #region 类型设置
         List<FirstOne> firs;
@@ -112,7 +116,15 @@ namespace Xr.RtManager.Pages.cms
                 this.gc_Article.DataSource = list;
                 gc_Article.RefreshDataSource();
             }
+            finally
+            {
+                //list
+                lookUpEdit2.Properties.DataSource = list;
+                lookUpEdit2.Properties.DisplayMember = "name";
+                lookUpEdit2.Properties.ValueMember = "id";
+            }
         }
+
         #endregion
         #region 新增
         /// <summary>
@@ -191,44 +203,23 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
-                if (click==1)
+                MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
+                DialogResult dr = MessageBox.Show("确定要删除吗?", "删除节假日", messButton);
+
+                if (dr == DialogResult.OK)
                 {
-                    if (CickInfo != null)
+                    String param = "?" + "id=" + CickInfo.id;
+                    String url = AppContext.AppConfig.serverUrl + "cms/articleCategory/delete" + param;
+                    String data = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(data);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        String param = "?" + "id=" + CickInfo.id;
-                        String url = AppContext.AppConfig.serverUrl + "cms/articleCategory/delete" + param;
-                        String data = HttpClass.httpPost(url);
-                        JObject objT = JObject.Parse(data);
-                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                        {
-                            MessageBoxUtils.Hint("删除成功!");
-                            ArticleCategoryCollection();
-                        }
-                        else
-                        {
-                            MessageBox.Show(objT["message"].ToString());
-                        }
+                        MessageBoxUtils.Hint("删除成功!");
+                        ArticleCategoryCollection();
                     }
-                }
-                else if (click == 2)
-                {
-                    if (CickInfo != null)
+                    else
                     {
-                        String param = "?" + "id=" + CickInfo.id;
-                        String url = AppContext.AppConfig.serverUrl + "cms/article/delete" + param;
-                        String data = HttpClass.httpPost(url);
-                        JObject objT = JObject.Parse(data);
-                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                        {
-                            MessageBoxUtils.Hint("删除成功!");
-                            groupBox3.Enabled = false;
-                            SelectInfoPage(1, pageControl1.PageSize);
-                            dcArticle.ClearValue();
-                        }
-                        else
-                        {
-                            MessageBox.Show(objT["message"].ToString());
-                        }
+                        MessageBox.Show(objT["message"].ToString());
                     }
                 }
             }
@@ -241,7 +232,7 @@ namespace Xr.RtManager.Pages.cms
         #endregion
         #region 文章
         #region 获取科室信息
-        #region 
+        #region
         List<TreeList> listoffice;
         List<HospitalInfoEntity> doctorInfoEntity;
         #endregion
@@ -256,8 +247,21 @@ namespace Xr.RtManager.Pages.cms
                     Doc = 1;
                     SelectDoctor(AppContext.Session.deptId);
                     break;
+                case "全部":
+                    listoffice = new List<TreeList>();
+                    listoffice.Add(new TreeList { id = "", parentId = "", name = "全部" });
+                    treeKeshi.Properties.DataSource = listoffice;
+                    treeKeshi.Properties.TreeList.KeyFieldName = "id";
+                    treeKeshi.Properties.TreeList.ParentFieldName = "parentId";
+                    treeKeshi.Properties.DisplayMember = "name";
+                    treeKeshi.Properties.ValueMember = "id";
+                    doctorInfoEntity = new List<HospitalInfoEntity>();
+                    doctorInfoEntity.Add(new HospitalInfoEntity { id = "", name = "全部" });
+                    luDoctords.Properties.DataSource = doctorInfoEntity;
+                    luDoctords.Properties.DisplayMember = "name";
+                    luDoctords.Properties.ValueMember = "id";
+                    break;
             }
-           
         }
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
@@ -293,9 +297,9 @@ namespace Xr.RtManager.Pages.cms
                 listoffice.Add(new TreeList { id = "", parentId = "", name = "全部" });
                 treeKeshi.Properties.DataSource = listoffice;
                 treeKeshi.Properties.TreeList.KeyFieldName = "id";
-                treeKeshi.Properties.TreeList.ParentFieldName = "parentId"; 
-                treeKeshi.Properties.DisplayMember = "name"; 
-                treeKeshi.Properties.ValueMember = "id"; 
+                treeKeshi.Properties.TreeList.ParentFieldName = "parentId";
+                treeKeshi.Properties.DisplayMember = "name";
+                treeKeshi.Properties.ValueMember = "id";
                 treeWKe.Properties.DataSource = listoffice;
                 treeWKe.Properties.TreeList.KeyFieldName = "id";
                 treeWKe.Properties.TreeList.ParentFieldName = "parentId";
@@ -307,7 +311,7 @@ namespace Xr.RtManager.Pages.cms
 
             }
         }
-        #endregion 
+        #endregion
         #region 查询
         /// <summary>
         /// 查询
@@ -319,7 +323,7 @@ namespace Xr.RtManager.Pages.cms
             try
             {
                 groupBox3.Enabled = false;
-                SelectInfoPage(1,pageControl1.PageSize);
+                SelectInfoPage(1, pageControl1.PageSize, "");
                 dcArticle.ClearValue();
             }
             catch (Exception ex)
@@ -332,29 +336,57 @@ namespace Xr.RtManager.Pages.cms
         /// </summary>
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
-        public void SelectInfoPage(int pageNo, int pageSize) 
+        public void SelectInfoPage(int pageNo, int pageSize, string categoryId)
         {
             try
             {
-                //科室主键<type为2时必填>  医生主键<type为3时必填>  类型：1医院文章、2科室文章、3医生文章 from p in listUser where p.Age > 12 && p.Address == "上海" select p listoffice doctorInfoEntity firs
-                #region 
+                #region
                 switch (lueType.Text.Trim())
                 {
                     case "科室":
                         if (treeKeshi.Text.Trim() == "" || treeKeshi.Text.Trim() == "全部")
                         {
                             MessageBox.Show("当类型为科室时,科室不能为空");
+                            return;
                         }
                         break;
                     case "医生":
                         if (luDoctords.Text.Trim() == "" || luDoctords.Text.Trim() == "全部")
                         {
                             MessageBox.Show("当类型为医生时,医生不能为空");
+                            return;
                         }
                         break;
                 }
-                #endregion 
-                String url = AppContext.AppConfig.serverUrl + "cms/article?pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + string.Join(",", from p in listoffice where p.name == treeKeshi.Text.Trim() select p.id) + "&doctorId=" + string.Join(",",from d in doctorInfoEntity where d.name == luDoctords.Text.Trim() select d.id )+ "&type=" + string.Join(",",from s in firs where s.name == lueType.Text.Trim() select s.id )+ "&categoryId=" + "" + "&title=" + txtTitle.Text.Trim();
+                string deptId = "";
+                if (treeKeshi.Text.Trim() == "")
+                {
+                    deptId = "";
+                }
+                else
+                {
+                    deptId = string.Join(",", from p in listoffice where p.name == treeKeshi.Text.Trim() select p.id);
+                }
+                string doctorId = "";
+                if (treeKeshi.Text.Trim() == "")
+                {
+                    doctorId = "";
+                }
+                else
+                {
+                    doctorId = string.Join(",", from d in doctorInfoEntity where d.name == luDoctords.Text.Trim() select d.id);
+                }
+                string type = "";
+                if (lueType.Text.Trim() == "")
+                {
+                    type = "";
+                }
+                else
+                {
+                    type = string.Join(",", from s in firs where s.name == lueType.Text.Trim() select s.id);
+                }
+                #endregion
+                String url = AppContext.AppConfig.serverUrl + "cms/article?pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + deptId + "&doctorId=" + doctorId + "&type=" + type + "&categoryId=" + categoryId + "&title=" + txtTitle.Text.Trim();
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -364,7 +396,7 @@ namespace Xr.RtManager.Pages.cms
                         this.gc_Atrlices.DataSource = null;
                         return;
                     }
-                    this.gc_Atrlices.DataSource = objT["result"]["list"].ToObject<List<Article>>(); 
+                    this.gc_Atrlices.DataSource = objT["result"]["list"].ToObject<List<Article>>();
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
@@ -379,7 +411,7 @@ namespace Xr.RtManager.Pages.cms
                 LogClass.WriteLog("查询列表错误信息：" + ex.Message);
             }
         }
-        #endregion 
+        #endregion
         #endregion
         #endregion
         #region 编辑文章信息
@@ -399,34 +431,36 @@ namespace Xr.RtManager.Pages.cms
                     return;
                 }
                 dcArticle.GetValue(clinicInfoEntity);
-                #region 
+                #region
                 switch (clinicInfoEntity.type)
                 {
                     case "2":
-                        if (clinicInfoEntity.deptId == "")
+                        if (clinicInfoEntity.deptId == "" || clinicInfoEntity.deptId == null)
                         {
-                            MessageBoxUtils.Hint("请选择科室!");
+                            // MessageBoxUtils.Show("请选择科室!",MessageBoxButtons.YesNo);
+                            MessageBox.Show("请选择科室");
                             return;
                         }
                         break;
                     case "3":
-                        if (clinicInfoEntity.doctorId == "")
+                        if (clinicInfoEntity.doctorId == "" || clinicInfoEntity.doctorId == null)
                         {
-                            MessageBoxUtils.Hint("请选择医生!");
+                            // MessageBoxUtils.Show("请选择医生!", MessageBoxButtons.YesNo);
+                            MessageBox.Show("请选择医生");
                             return;
                         }
                         break;
                 }
-                #endregion 
-                String param = "?" + PackReflectionEntity<Article>.GetEntityToRequestParameters(clinicInfoEntity,true);
-                String url = AppContext.AppConfig.serverUrl + "cms/article/save" + param;
-                String data = HttpClass.httpPost(url);
+                #endregion
+                String param = PackReflectionEntity<Article>.GetEntityToRequestParameters(clinicInfoEntity, true);
+                String url = AppContext.AppConfig.serverUrl + "cms/article/save?";
+                String data = HttpClass.httpPost(url, param);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("保存成功!");
                     groupBox3.Enabled = false;
-                    SelectInfoPage(1, pageControl1.PageSize);
+                    SelectInfoPage(1, pageControl1.PageSize, "");
                     dcArticle.ClearValue();
                 }
                 else
@@ -436,7 +470,6 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                dcArticle.ClearValue();
             }
         }
         #endregion
@@ -500,15 +533,15 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="e"></param>
         private void gc_Atrlices_Click(object sender, EventArgs e)
         {
-            click = 2;
+            clinicInfoEntity = new Article();
             var selectedRow = gv_Atrlices.GetFocusedRow() as Article;
-            CickInfo = selectedRow;
+            clinicInfoEntity = selectedRow;
             if (selectedRow == null)
                 return;
             dcArticle.SetValue(selectedRow);
             groupBox3.Enabled = true;
         }
-        #endregion 
+        #endregion
         #endregion
         #region 窗体Load
         /// <summary>
@@ -528,14 +561,13 @@ namespace Xr.RtManager.Pages.cms
                 clinicInfoEntity = new Article();
             }
         }
-        #endregion 
+        #endregion
         #region 记录点击列表事件
-        int click = 0;
         dynamic CickInfo;
         private void gc_Article_Click(object sender, EventArgs e)
         {
-                click = 1;
-                CickInfo = gv_Article.GetFocusedRow() as ArticleInfoEntity;
+            CickInfo = gv_Article.GetFocusedRow() as ArticleInfoEntity;
+            SelectInfoPage(1, pageControl1.PageSize, CickInfo.id);
         }
         #endregion
         #region 点击科室时获取去当前科室下的医生
@@ -592,36 +624,89 @@ namespace Xr.RtManager.Pages.cms
 
             }
         }
-        #endregion 
-        #region  新增
+        #endregion
+        #region 画边框颜色
+        private void groupBox1_Paint(object sender, PaintEventArgs e)
+        {
+            //GroupBox gBox = (GroupBox)sender;
+            //var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
+            //e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
+            //e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
+            //e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
+            //e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
+            //e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+        }
+        #endregion
+        #region 编辑文章正文
+        //编辑文章正文
+        private void buttonControl2_Click_1(object sender, EventArgs e)
+        {
+            if (DianJi)
+            {
+                clinicInfoEntity.content = "";
+                DianJi = false;
+            }
+            var edit = new RichEditorForm();
+            edit.text = clinicInfoEntity.content;
+            if (edit.ShowDialog() == DialogResult.OK)
+            {
+                clinicInfoEntity.content = edit.text;
+            }
+        }
+        #endregion
+        #region 新增和删除按钮
+        bool DianJi = false;//判断是否新增
         /// <summary>
         /// 新增
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonControl2_Click(object sender, EventArgs e)
+        private void buttonControl3_Click(object sender, EventArgs e)
         {
             try
             {
+                DianJi = true;
                 groupBox3.Enabled = true;
                 dcArticle.ClearValue();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
         }
-        #endregion 
-        #region 
-        private void groupBox1_Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonControl4_Click(object sender, EventArgs e)
         {
-            GroupBox gBox = (GroupBox)sender;
-            var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
-            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
-            e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
-            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
-            e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
-            e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+            try
+            {
+                MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
+                DialogResult dr = MessageBox.Show("确定要删除吗?", "删除节假日", messButton);
+                if (dr == DialogResult.OK)
+                {
+                    String param = "?" + "id=" + clinicInfoEntity.id;
+                    String url = AppContext.AppConfig.serverUrl + "cms/article/delete" + param;
+                    String data = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(data);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        MessageBoxUtils.Hint("删除成功!");
+                        groupBox3.Enabled = false;
+                        SelectInfoPage(1, pageControl1.PageSize, "");
+                        dcArticle.ClearValue();
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
         }
-        #endregion 
+        #endregion
     }
 }

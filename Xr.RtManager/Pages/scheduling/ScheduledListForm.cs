@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Xr.Http;
 using Newtonsoft.Json.Linq;
-using System.IO;
-using System.Net;
 using Xr.Common;
-using Xr.Common.Controls;
-using DevExpress.XtraEditors;
 
 namespace Xr.RtManager.Pages.scheduling
 {
     public partial class ScheduledListForm : UserControl
     {
+        Xr.Common.Controls.OpaqueCommand cmd;
+
         public ScheduledListForm()
         {
             InitializeComponent();
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
+            //cmd.ShowOpaqueLayer(225, true);
+            //cmd.HideOpaqueLayer();
         }
 
         private void ScheduledListForm_Load(object sender, EventArgs e)
         {
             gridView1.OptionsView.AllowCellMerge = true;
-            
-            List<DeptEntity> deptList = AppContext.Session.deptList;
+            //这里不能直接用，不然下面添加全部科室会导致session里面的科室列表也添加了全部科室
+            List<DeptEntity> deptList = new List<DeptEntity>();
+            foreach(DeptEntity deptEntity in AppContext.Session.deptList){
+                deptList.Add(deptEntity);
+            }
             DeptEntity dept = new DeptEntity();
             dept.id = "";
             dept.name = "全部科室";
@@ -89,6 +89,7 @@ namespace Xr.RtManager.Pages.scheduling
             String param = "beginDate=" + deBegin.Text + "&endDate=" + deEnd.Text
     + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + lueDept.EditValue
     + "&doctorId=" + lueDoctor.EditValue;
+            cmd.ShowOpaqueLayer(225, true);
             String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findByPropertys?" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
@@ -102,6 +103,7 @@ namespace Xr.RtManager.Pages.scheduling
                     scheduled.num = (i + 1).ToString();
                     dataSource.Add(scheduled);
                 }
+                cmd.HideOpaqueLayer();
                 gcScheduled.DataSource = dataSource;
             }
             else

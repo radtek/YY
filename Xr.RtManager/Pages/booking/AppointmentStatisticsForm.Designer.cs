@@ -266,10 +266,10 @@
             // 
             this.panel4.Controls.Add(this.xtraTabControl1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 70);
+            this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(15, 5, 15, 5);
-            this.panel4.Size = new System.Drawing.Size(1049, 648);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10);
+            this.panel4.Size = new System.Drawing.Size(1049, 658);
             this.panel4.TabIndex = 63;
             // 
             // xtraTabControl1
@@ -283,12 +283,12 @@
             this.xtraTabControl1.AppearancePage.HeaderActive.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(166)))), ((int)(((byte)(137)))));
             this.xtraTabControl1.AppearancePage.HeaderActive.Options.UseForeColor = true;
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(15, 5);
+            this.xtraTabControl1.Location = new System.Drawing.Point(10, 10);
             this.xtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1019, 638);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1029, 638);
             this.xtraTabControl1.TabIndex = 21;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -303,7 +303,7 @@
             this.xtraTabPage1.Controls.Add(this.panel2);
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1013, 606);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1023, 606);
             this.xtraTabPage1.Text = "汇总信息";
             // 
             // panel5
@@ -313,17 +313,18 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 59);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1013, 347);
+            this.panel5.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.panel5.Size = new System.Drawing.Size(1023, 347);
             this.panel5.TabIndex = 1;
             // 
             // xtraScrollableControl1
             // 
             this.xtraScrollableControl1.Controls.Add(this.chartControl1);
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 31);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 41);
             this.xtraScrollableControl1.Margin = new System.Windows.Forms.Padding(0);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1013, 316);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1023, 306);
             this.xtraScrollableControl1.TabIndex = 0;
             // 
             // chartControl1
@@ -335,7 +336,7 @@
             this.chartControl1.Name = "chartControl1";
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
             this.chartControl1.SeriesTemplate.View = lineSeriesView1;
-            this.chartControl1.Size = new System.Drawing.Size(1013, 316);
+            this.chartControl1.Size = new System.Drawing.Size(1023, 306);
             this.chartControl1.TabIndex = 167;
             chartTitle1.Text = "数据统计";
             chartTitle1.Visible = false;
@@ -346,9 +347,9 @@
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 18F);
-            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Location = new System.Drawing.Point(0, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1013, 31);
+            this.label4.Size = new System.Drawing.Size(1023, 31);
             this.label4.TabIndex = 0;
             this.label4.Text = "预约总数趋势图";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -359,7 +360,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 406);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1013, 200);
+            this.panel6.Size = new System.Drawing.Size(1023, 200);
             this.panel6.TabIndex = 2;
             // 
             // gc_statistics
@@ -372,7 +373,7 @@
             this.gc_statistics.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemPopupContainerEdit1});
-            this.gc_statistics.Size = new System.Drawing.Size(1013, 200);
+            this.gc_statistics.Size = new System.Drawing.Size(1023, 200);
             this.gc_statistics.TabIndex = 44;
             this.gc_statistics.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_statistics});
@@ -551,9 +552,9 @@
             this.panel2.Controls.Add(this.tPanel_registerWay);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1013, 59);
+            this.panel2.Size = new System.Drawing.Size(1023, 59);
             this.panel2.TabIndex = 0;
             // 
             // tPanel_registerWay
@@ -590,7 +591,7 @@
             this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tPanel_registerWay.Size = new System.Drawing.Size(1013, 59);
+            this.tPanel_registerWay.Size = new System.Drawing.Size(1023, 59);
             this.tPanel_registerWay.TabIndex = 0;
             // 
             // label18
@@ -600,7 +601,7 @@
             this.label18.Location = new System.Drawing.Point(5, 33);
             this.label18.Margin = new System.Windows.Forms.Padding(3);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(137, 21);
+            this.label18.Size = new System.Drawing.Size(138, 21);
             this.label18.TabIndex = 14;
             this.label18.Text = "0";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -609,10 +610,10 @@
             // 
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label17.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label17.Location = new System.Drawing.Point(437, 33);
+            this.label17.Location = new System.Drawing.Point(440, 33);
             this.label17.Margin = new System.Windows.Forms.Padding(3);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(137, 21);
+            this.label17.Size = new System.Drawing.Size(138, 21);
             this.label17.TabIndex = 13;
             this.label17.Text = "0";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -621,10 +622,10 @@
             // 
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label16.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label16.Location = new System.Drawing.Point(725, 33);
+            this.label16.Location = new System.Drawing.Point(730, 33);
             this.label16.Margin = new System.Windows.Forms.Padding(3);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(137, 21);
+            this.label16.Size = new System.Drawing.Size(138, 21);
             this.label16.TabIndex = 12;
             this.label16.Text = "0";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -633,10 +634,10 @@
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label15.Location = new System.Drawing.Point(293, 33);
+            this.label15.Location = new System.Drawing.Point(295, 33);
             this.label15.Margin = new System.Windows.Forms.Padding(3);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(137, 21);
+            this.label15.Size = new System.Drawing.Size(138, 21);
             this.label15.TabIndex = 11;
             this.label15.Text = "0";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -645,10 +646,10 @@
             // 
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label14.Location = new System.Drawing.Point(149, 33);
+            this.label14.Location = new System.Drawing.Point(150, 33);
             this.label14.Margin = new System.Windows.Forms.Padding(3);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(137, 21);
+            this.label14.Size = new System.Drawing.Size(138, 21);
             this.label14.TabIndex = 10;
             this.label14.Text = "0";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -657,10 +658,10 @@
             // 
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label13.Location = new System.Drawing.Point(869, 33);
+            this.label13.Location = new System.Drawing.Point(875, 33);
             this.label13.Margin = new System.Windows.Forms.Padding(3);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(139, 21);
+            this.label13.Size = new System.Drawing.Size(143, 21);
             this.label13.TabIndex = 9;
             this.label13.Text = "0";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -670,10 +671,10 @@
             this.label12.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label12.Location = new System.Drawing.Point(146, 2);
+            this.label12.Location = new System.Drawing.Point(147, 2);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(143, 27);
+            this.label12.Size = new System.Drawing.Size(144, 27);
             this.label12.TabIndex = 8;
             this.label12.Text = "诊间";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -683,10 +684,10 @@
             this.label11.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label11.Location = new System.Drawing.Point(578, 2);
+            this.label11.Location = new System.Drawing.Point(582, 2);
             this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(143, 27);
+            this.label11.Size = new System.Drawing.Size(144, 27);
             this.label11.TabIndex = 7;
             this.label11.Text = "卫计局平台";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -695,10 +696,10 @@
             // 
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label10.Location = new System.Drawing.Point(581, 33);
+            this.label10.Location = new System.Drawing.Point(585, 33);
             this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(137, 21);
+            this.label10.Size = new System.Drawing.Size(138, 21);
             this.label10.TabIndex = 6;
             this.label10.Text = "0";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -708,10 +709,10 @@
             this.label9.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label9.Location = new System.Drawing.Point(722, 2);
+            this.label9.Location = new System.Drawing.Point(727, 2);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 27);
+            this.label9.Size = new System.Drawing.Size(144, 27);
             this.label9.TabIndex = 5;
             this.label9.Text = "官网";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -721,10 +722,10 @@
             this.label8.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label8.Location = new System.Drawing.Point(866, 2);
+            this.label8.Location = new System.Drawing.Point(872, 2);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(145, 27);
+            this.label8.Size = new System.Drawing.Size(149, 27);
             this.label8.TabIndex = 4;
             this.label8.Text = "预约总数";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -737,7 +738,7 @@
             this.label7.Location = new System.Drawing.Point(2, 2);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(143, 27);
+            this.label7.Size = new System.Drawing.Size(144, 27);
             this.label7.TabIndex = 3;
             this.label7.Text = "分诊台";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -747,10 +748,10 @@
             this.label6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label6.Location = new System.Drawing.Point(290, 2);
+            this.label6.Location = new System.Drawing.Point(292, 2);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(143, 27);
+            this.label6.Size = new System.Drawing.Size(144, 27);
             this.label6.TabIndex = 2;
             this.label6.Text = "自助机";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -760,10 +761,10 @@
             this.label5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label5.Location = new System.Drawing.Point(434, 2);
+            this.label5.Location = new System.Drawing.Point(437, 2);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(143, 27);
+            this.label5.Size = new System.Drawing.Size(144, 27);
             this.label5.TabIndex = 1;
             this.label5.Text = "公众号";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -772,7 +773,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.tableLayoutPanel3);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1013, 606);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1023, 606);
             this.xtraTabPage2.Text = "详细信息";
             // 
             // tableLayoutPanel3
@@ -788,16 +789,16 @@
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 606F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1013, 606);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1023, 606);
             this.tableLayoutPanel3.TabIndex = 181;
             // 
             // gc_docInfo
             // 
             this.gc_docInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_docInfo.Location = new System.Drawing.Point(509, 3);
+            this.gc_docInfo.Location = new System.Drawing.Point(514, 3);
             this.gc_docInfo.MainView = this.gv_docInfo;
             this.gc_docInfo.Name = "gc_docInfo";
-            this.gc_docInfo.Size = new System.Drawing.Size(501, 600);
+            this.gc_docInfo.Size = new System.Drawing.Size(506, 600);
             this.gc_docInfo.TabIndex = 184;
             this.gc_docInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_docInfo});
@@ -1087,7 +1088,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(500, 600);
+            this.panel7.Size = new System.Drawing.Size(505, 600);
             this.panel7.TabIndex = 183;
             // 
             // gc_deptInfo
@@ -1097,7 +1098,7 @@
             this.gc_deptInfo.MainView = this.gv_deptInfo;
             this.gc_deptInfo.Margin = new System.Windows.Forms.Padding(0);
             this.gc_deptInfo.Name = "gc_deptInfo";
-            this.gc_deptInfo.Size = new System.Drawing.Size(500, 600);
+            this.gc_deptInfo.Size = new System.Drawing.Size(505, 600);
             this.gc_deptInfo.TabIndex = 182;
             this.gc_deptInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_deptInfo});
@@ -1391,7 +1392,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.tableLayoutPanel1);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1013, 606);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1023, 606);
             this.xtraTabPage3.Text = "慢病统计";
             // 
             // tableLayoutPanel1
@@ -1407,16 +1408,16 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 606F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1013, 606);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1023, 606);
             this.tableLayoutPanel1.TabIndex = 182;
             // 
             // gc_docInfoNCD
             // 
             this.gc_docInfoNCD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_docInfoNCD.Location = new System.Drawing.Point(509, 3);
+            this.gc_docInfoNCD.Location = new System.Drawing.Point(514, 3);
             this.gc_docInfoNCD.MainView = this.gv_docInfoNCD;
             this.gc_docInfoNCD.Name = "gc_docInfoNCD";
-            this.gc_docInfoNCD.Size = new System.Drawing.Size(501, 600);
+            this.gc_docInfoNCD.Size = new System.Drawing.Size(506, 600);
             this.gc_docInfoNCD.TabIndex = 184;
             this.gc_docInfoNCD.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_docInfoNCD});
@@ -1706,7 +1707,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(3, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(500, 600);
+            this.panel8.Size = new System.Drawing.Size(505, 600);
             this.panel8.TabIndex = 183;
             // 
             // gc_deptInfoNCD
@@ -1716,7 +1717,7 @@
             this.gc_deptInfoNCD.MainView = this.gv_deptInfoNCD;
             this.gc_deptInfoNCD.Margin = new System.Windows.Forms.Padding(0);
             this.gc_deptInfoNCD.Name = "gc_deptInfoNCD";
-            this.gc_deptInfoNCD.Size = new System.Drawing.Size(500, 600);
+            this.gc_deptInfoNCD.Size = new System.Drawing.Size(505, 600);
             this.gc_deptInfoNCD.TabIndex = 182;
             this.gc_deptInfoNCD.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_deptInfoNCD});
@@ -2011,8 +2012,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(1049, 70);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(1049, 60);
             this.panel1.TabIndex = 8;
             // 
             // borderPanel1
@@ -2037,10 +2038,10 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(15, 20);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Padding = new System.Windows.Forms.Padding(10, 10, 20, 10);
-            this.borderPanel1.Size = new System.Drawing.Size(1019, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(1029, 50);
             this.borderPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2

@@ -265,8 +265,6 @@
             this.gridColumn7.FieldName = "mobile";
             this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
             // 
             // gridColumn8
             // 
@@ -279,7 +277,7 @@
             this.gridColumn8.MinWidth = 25;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
+            this.gridColumn8.VisibleIndex = 6;
             // 
             // gridColumn9
             // 
@@ -287,7 +285,7 @@
             this.gridColumn9.FieldName = "lockedName";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 8;
+            this.gridColumn9.VisibleIndex = 7;
             // 
             // gridColumn11
             // 
@@ -295,7 +293,7 @@
             this.gridColumn11.ColumnEdit = this.repositoryItemButtonEdit1;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 9;
+            this.gridColumn11.VisibleIndex = 8;
             // 
             // repositoryItemButtonEdit1
             // 

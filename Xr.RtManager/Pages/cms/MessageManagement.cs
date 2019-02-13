@@ -9,20 +9,22 @@ using System.Windows.Forms;
 using Xr.Http;
 using Newtonsoft.Json.Linq;
 using Xr.Common;
+using System.Threading;
 
 namespace Xr.RtManager.Pages.cms
 {
     public partial class MessageManagement : UserControl
     {
+        Xr.Common.Controls.OpaqueCommand cmd;
         public MessageManagement()
         {
             InitializeComponent();
-            //this.gv_Message.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
-            //gv_Message.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
-            //gv_Message.OptionsView.EnableAppearanceEvenRow = true;
-            //gv_Message.OptionsView.EnableAppearanceOddRow = true;
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(225, false);
             MessageContentTemplateList(1,pageControl1.PageSize);
             TemplateType();
+            Thread.Sleep(500);
+            cmd.HideOpaqueLayer();
         }
         #region 测试
         public List<MessageInfoEntity> Date = new List<MessageInfoEntity>();
@@ -328,16 +330,17 @@ namespace Xr.RtManager.Pages.cms
             }
         }
         #endregion 
-
+        #region 
         private void groupBox1_Paint(object sender, PaintEventArgs e)
         {
-            GroupBox gBox = (GroupBox)sender;
-            var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
-            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
-            e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
-            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
-            e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
-            e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+            //GroupBox gBox = (GroupBox)sender;
+            //var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
+            //e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
+            //e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
+            //e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
+            //e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
+            //e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
         }
+        #endregion 
     }
 }

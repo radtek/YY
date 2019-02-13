@@ -49,13 +49,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.SysTime = new System.Windows.Forms.Label();
-            this.userName = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.labBottomRight = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labBottomLeft = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.关闭其他页签ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关闭全部页签ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelEnhanced1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.panel5.SuspendLayout();
@@ -63,9 +64,13 @@
             this.panelEx1.SuspendLayout();
             this.panelEx2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tmHeartbeat
             // 
@@ -106,7 +111,8 @@
             // 
             // panelEnhanced1
             // 
-            this.panelEnhanced1.BackgroundImage = global::Xr.RtManager.Properties.Resources.bg1;
+            this.panelEnhanced1.BackgroundImage = global::Xr.RtManager.Properties.Resources.bg;
+            this.panelEnhanced1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelEnhanced1.Controls.Add(this.xtraTabControl1);
             this.panelEnhanced1.Controls.Add(this.panel4);
             this.panelEnhanced1.Controls.Add(this.panel5);
@@ -136,6 +142,7 @@
             this.xtraTabControl1.Size = new System.Drawing.Size(905, 705);
             this.xtraTabControl1.TabIndex = 20;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
+            this.xtraTabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.xtraTabControl_MouseDown);
             // 
             // panel4
             // 
@@ -240,78 +247,88 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 705);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1061, 24);
             this.panel1.TabIndex = 4;
             // 
-            // panel3
+            // tableLayoutPanel1
             // 
-            this.panel3.Controls.Add(this.SysTime);
-            this.panel3.Controls.Add(this.userName);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(665, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10, 5, 10, 0);
-            this.panel3.Size = new System.Drawing.Size(396, 24);
-            this.panel3.TabIndex = 1;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.Controls.Add(this.labBottomRight, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labBottomLeft, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1061, 24);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // SysTime
+            // labBottomRight
             // 
-            this.SysTime.AutoSize = true;
-            this.SysTime.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SysTime.Location = new System.Drawing.Point(321, 5);
-            this.SysTime.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.SysTime.Name = "SysTime";
-            this.SysTime.Size = new System.Drawing.Size(65, 12);
-            this.SysTime.TabIndex = 3;
-            this.SysTime.Text = "2018-10-20";
-            // 
-            // userName
-            // 
-            this.userName.AutoSize = true;
-            this.userName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.userName.Location = new System.Drawing.Point(69, 5);
-            this.userName.Name = "userName";
-            this.userName.Size = new System.Drawing.Size(41, 12);
-            this.userName.TabIndex = 2;
-            this.userName.Text = "用户名";
+            this.labBottomRight.AutoSize = true;
+            this.labBottomRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labBottomRight.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labBottomRight.Location = new System.Drawing.Point(745, 0);
+            this.labBottomRight.Name = "labBottomRight";
+            this.labBottomRight.Size = new System.Drawing.Size(313, 24);
+            this.labBottomRight.TabIndex = 2;
+            this.labBottomRight.Text = "2018-10-10 10:10:10";
+            this.labBottomRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Location = new System.Drawing.Point(10, 5);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(321, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 12);
+            this.label2.Size = new System.Drawing.Size(418, 24);
             this.label2.TabIndex = 1;
-            this.label2.Text = "当前用户:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label2.Text = "技术支持：广州湘润信息科技有限公司 ";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel2
+            // labBottomLeft
             // 
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(200, 24);
-            this.panel2.TabIndex = 0;
+            this.labBottomLeft.AutoSize = true;
+            this.labBottomLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labBottomLeft.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labBottomLeft.Location = new System.Drawing.Point(3, 0);
+            this.labBottomLeft.Name = "labBottomLeft";
+            this.labBottomLeft.Size = new System.Drawing.Size(312, 24);
+            this.labBottomLeft.TabIndex = 0;
+            this.labBottomLeft.Text = "科室|姓名";
+            this.labBottomLeft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // contextMenuStrip1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(10, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "欢迎使用预约分诊系统";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.关闭其他页签ToolStripMenuItem,
+            this.关闭全部页签ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 48);
+            // 
+            // 关闭其他页签ToolStripMenuItem
+            // 
+            this.关闭其他页签ToolStripMenuItem.Name = "关闭其他页签ToolStripMenuItem";
+            this.关闭其他页签ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.关闭其他页签ToolStripMenuItem.Text = "关闭其他页签";
+            this.关闭其他页签ToolStripMenuItem.Click += new System.EventHandler(this.tsmCloseOther_Click);
+            // 
+            // 关闭全部页签ToolStripMenuItem
+            // 
+            this.关闭全部页签ToolStripMenuItem.Name = "关闭全部页签ToolStripMenuItem";
+            this.关闭全部页签ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.关闭全部页签ToolStripMenuItem.Text = "关闭全部页签";
+            this.关闭全部页签ToolStripMenuItem.Click += new System.EventHandler(this.tsmCloseAll_Click);
             // 
             // MainForm
             // 
@@ -335,10 +352,9 @@
             this.panelEx2.ResumeLayout(false);
             this.panelEx2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -354,16 +370,9 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private System.Windows.Forms.Panel panel7;
         private Xr.Common.Controls.PanelEnhanced panelEnhanced1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label SysTime;
-        private System.Windows.Forms.Label userName;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel6;
         private Xr.Common.Controls.PanelEx panMenuBar;
         private Xr.Common.Controls.PanelEx panelEx1;
@@ -371,6 +380,14 @@
         private Xr.Common.Controls.PanelEx panelEx2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolTip toolTip1;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label labBottomRight;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labBottomLeft;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 关闭其他页签ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 关闭全部页签ToolStripMenuItem;
 
     }
 }

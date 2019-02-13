@@ -33,6 +33,23 @@ namespace Xr.RtManager.Module.triage
        //坐诊日期
        public String workDate { get; set; }
     }
+    /// <summary>
+    /// 获取医生坐诊查询
+    /// </summary>
+   public class DoctorSrtting
+   {
+       public String deptName { get; set; }
+       public String doctorName { get; set; }
+       //坐诊日期
+       public String workDate { get; set; }
+       //坐诊时段中文
+       public String periodTxt { get; set; }
+       //时段(0 上午，1下午，2晚上，3全天)
+       public String period { get; set; }
+       //诊室ID
+       public String clinicId { get; set; }
+   }
+
    /*
            [{"workDate":"2019-02-01", "values":[{"period":"0", "clinicId":"1"}, {"period":"1", "clinicId":"1"}, {"period":"2", "clinicId":"1"}]},{"workDate":"2019-02-02", "values":[{"period":"0", "clinicId":"1"}, {"period":"1", "clinicId":"1"}]},{"workDate":"2019-02-03", "values":[{"period":"0", "clinicId":"1"}]}]
            */

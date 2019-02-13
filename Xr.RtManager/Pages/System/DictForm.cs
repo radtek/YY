@@ -21,11 +21,15 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        Xr.Common.Controls.OpaqueCommand cmd;
+
         private JObject obj { get; set; }
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(243, 243, 243);
+            //this.BackColor = Color.FromArgb(243, 243, 243);
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(0f);
             SearchData(true, 1, pageControl1.PageSize);
 
         }
@@ -36,28 +40,37 @@ namespace Xr.RtManager
                 + "&&description=" + tbDescription.Text + "&&pageNo=" + pageNo
                 + "&&pageSize=" + pageSize;
             String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findAll" + param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                gcDict.DataSource = objT["result"]["list"].ToObject<List<DictEntity>>();
-                pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                int.Parse(objT["result"]["pageSize"].ToString()),
-                int.Parse(objT["result"]["pageNo"].ToString()));
-                if (flag)
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                cmd.HideOpaqueLayer();
+                JObject objT = JObject.Parse(r.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    cbType.DataSource = objT["result"]["typeList"];
-                    cbType.SelectedIndex = -1;
+                    gcDict.DataSource = objT["result"]["list"].ToObject<List<DictEntity>>();
+                    pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
+                    int.Parse(objT["result"]["pageSize"].ToString()),
+                    int.Parse(objT["result"]["pageNo"].ToString()));
+                    if (flag)
+                    {
+                        cbType.DataSource = objT["result"]["typeList"];
+                        cbType.SelectedIndex = -1;
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            });
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
+            cmd.ShowOpaqueLayer();
             SearchData(false, 1, pageControl1.PageSize);
         }
 
@@ -66,8 +79,10 @@ namespace Xr.RtManager
             var edit = new DictEdit();
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("保存成功!");
+                Thread.Sleep(300);
+                cmd.ShowOpaqueLayer();
                 SearchData(true, 1, pageControl1.PageSize);
+                MessageBoxUtils.Hint("保存成功!");
             }
         }
 
@@ -78,22 +93,32 @@ namespace Xr.RtManager
                 return;
              MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
              DialogResult dr = MessageBox.Show("确定要删除吗?", "删除字典", messButton);
-
+             
              if (dr == DialogResult.OK)
              {
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "sys/sysDict/delete" + param;
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                cmd.ShowOpaqueLayer();
+                 this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
-                    MessageBoxUtils.Hint("删除成功!");
-                    SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
-                }
-                else
+                    String data = HttpClass.httpPost(url);
+                    return data;
+
+                }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    MessageBox.Show(objT["message"].ToString());
-                }
+                    
+                    JObject objT = JObject.Parse(r.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
+                        MessageBoxUtils.Hint("删除成功!");
+                    }
+                    else
+                    {
+                        cmd.HideOpaqueLayer();
+                        MessageBox.Show(objT["message"].ToString());
+                    }
+                });
              }
         }
 
@@ -107,12 +132,14 @@ namespace Xr.RtManager
             edit.Text = "字典修改";
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("修改成功!");
+                Thread.Sleep(300);
+                cmd.ShowOpaqueLayer();
                 SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                MessageBoxUtils.Hint("修改成功!");
             }
         }
 
-        private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
         {
             var selectedRow = gridView1.GetFocusedRow() as DictEntity;
             if (selectedRow == null)
@@ -125,14 +152,63 @@ namespace Xr.RtManager
             edit.dict = dict;
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("添加成功!");
+                Thread.Sleep(300);
+                cmd.ShowOpaqueLayer();
                 SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                MessageBoxUtils.Hint("添加成功!");
             }
         }
 
         private void pageControl1_Query(int CurrentPage, int pageSize)
         {
+            cmd.ShowOpaqueLayer();
             SearchData(false, CurrentPage, pageSize);
         }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+
+                bgWorkder.Dispose();
+
+                if (workCompleted != null)
+                {
+                    workCompleted(arg.Result);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(500);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+
     }
 }

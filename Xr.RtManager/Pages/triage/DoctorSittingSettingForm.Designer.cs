@@ -29,9 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.repositoryItemComboBox10 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBox11 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBox12 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBox16 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.borderPanel2 = new Xr.Common.Controls.BorderPanel();
             this.endDate = new DevExpress.XtraEditors.DateEdit();
             this.beginDate = new DevExpress.XtraEditors.DateEdit();
@@ -58,26 +62,18 @@
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.gc_VitalSignsInfo = new DevExpress.XtraGrid.GridControl();
-            this.gv_VitalSignsInfo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
-            this.bandedGridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.gcScheduled = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.deptName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.workDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridColumn14 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridColumn15 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemComboBox4 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridColumn16 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemComboBox5 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridColumn17 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemComboBox7 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridColumn18 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemComboBox8 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridColumn19 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemComboBox9 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.repositoryItemComboBox6 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.dateEdit4 = new DevExpress.XtraEditors.DateEdit();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
@@ -89,19 +85,13 @@
             this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
-            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand10 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand11 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand13 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand14 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand17 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand18 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonControl3 = new Xr.Common.Controls.ButtonControl();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).BeginInit();
             this.borderPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.endDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -117,17 +107,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gv_Atrlices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gc_VitalSignsInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_VitalSignsInfo)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcScheduled)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit4.Properties.CalendarTimeProperties)).BeginInit();
@@ -137,12 +123,43 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.panelEx1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // repositoryItemComboBox10
+            // 
+            this.repositoryItemComboBox10.AutoHeight = false;
+            this.repositoryItemComboBox10.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox10.LookAndFeel.SkinName = "Visual Studio 2013 Light";
+            this.repositoryItemComboBox10.Name = "repositoryItemComboBox10";
+            // 
+            // repositoryItemComboBox11
+            // 
+            this.repositoryItemComboBox11.AutoHeight = false;
+            this.repositoryItemComboBox11.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox11.Name = "repositoryItemComboBox11";
+            // 
+            // repositoryItemComboBox12
+            // 
+            this.repositoryItemComboBox12.AutoHeight = false;
+            this.repositoryItemComboBox12.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox12.Name = "repositoryItemComboBox12";
+            // 
+            // repositoryItemComboBox16
+            // 
+            this.repositoryItemComboBox16.AutoHeight = false;
+            this.repositoryItemComboBox16.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox16.Name = "repositoryItemComboBox16";
             // 
             // borderPanel2
             // 
+            this.borderPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.borderPanel2.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.borderPanel2.Appearance.Options.UseBackColor = true;
             this.borderPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
@@ -161,11 +178,10 @@
             this.borderPanel2.CornerRadius.BottomRight = 4;
             this.borderPanel2.CornerRadius.TopLeft = 4;
             this.borderPanel2.CornerRadius.TopRight = 4;
-            this.borderPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanel2.Location = new System.Drawing.Point(3, 21);
+            this.borderPanel2.Location = new System.Drawing.Point(14, 13);
             this.borderPanel2.Name = "borderPanel2";
             this.borderPanel2.ScrollBarSmallChange = 4;
-            this.borderPanel2.Size = new System.Drawing.Size(914, 50);
+            this.borderPanel2.Size = new System.Drawing.Size(896, 50);
             this.borderPanel2.TabIndex = 53;
             // 
             // endDate
@@ -231,10 +247,10 @@
             this.luDoctords.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luDoctords.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.luDoctords.Properties.AutoHeight = false;
-            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject3.Options.UseFont = true;
+            serializableAppearanceObject6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject6.Options.UseFont = true;
             this.luDoctords.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
             this.luDoctords.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "医生姓名")});
@@ -332,7 +348,7 @@
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
             this.buttonControl1.Location = new System.Drawing.Point(654, 10);
             this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(75, 30);
+            this.buttonControl1.Size = new System.Drawing.Size(75, 28);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl1.TabIndex = 123;
             this.buttonControl1.Text = "查询";
@@ -382,7 +398,7 @@
             this.gc_Atrlices.Name = "gc_Atrlices";
             this.gc_Atrlices.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox2});
-            this.gc_Atrlices.Size = new System.Drawing.Size(914, 158);
+            this.gc_Atrlices.Size = new System.Drawing.Size(896, 143);
             this.gc_Atrlices.TabIndex = 54;
             this.gc_Atrlices.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Atrlices});
@@ -522,135 +538,189 @@
             // 
             // pageControl1
             // 
+            this.pageControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pageControl1.CurrentPage = 1;
-            this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pageControl1.Font = new System.Drawing.Font("微软雅黑", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageControl1.Location = new System.Drawing.Point(3, 235);
+            this.pageControl1.Location = new System.Drawing.Point(13, 222);
             this.pageControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(914, 35);
+            this.pageControl1.Size = new System.Drawing.Size(894, 35);
             this.pageControl1.TabIndex = 55;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.gc_VitalSignsInfo);
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.panel2);
             this.groupBox3.Controls.Add(this.borderPanel1);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox3.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox3.Location = new System.Drawing.Point(0, 273);
+            this.groupBox3.Location = new System.Drawing.Point(13, 263);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(920, 241);
+            this.groupBox3.Size = new System.Drawing.Size(897, 241);
             this.groupBox3.TabIndex = 56;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "医生坐诊设置";
             // 
-            // gc_VitalSignsInfo
+            // panel2
             // 
-            this.gc_VitalSignsInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gc_VitalSignsInfo.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.gc_VitalSignsInfo.Location = new System.Drawing.Point(3, 69);
-            this.gc_VitalSignsInfo.MainView = this.gv_VitalSignsInfo;
-            this.gc_VitalSignsInfo.Name = "gc_VitalSignsInfo";
-            this.gc_VitalSignsInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemMemoEdit1,
+            this.panel2.Controls.Add(this.gcScheduled);
+            this.panel2.Location = new System.Drawing.Point(3, 70);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(891, 166);
+            this.panel2.TabIndex = 56;
+            // 
+            // gcScheduled
+            // 
+            this.gcScheduled.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcScheduled.Location = new System.Drawing.Point(0, 0);
+            this.gcScheduled.MainView = this.gridView1;
+            this.gcScheduled.Name = "gcScheduled";
+            this.gcScheduled.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemLookUpEdit2,
             this.repositoryItemComboBox1,
-            this.repositoryItemComboBox3,
-            this.repositoryItemComboBox4,
-            this.repositoryItemComboBox5,
-            this.repositoryItemComboBox6,
-            this.repositoryItemComboBox7,
-            this.repositoryItemComboBox8,
-            this.repositoryItemComboBox9});
-            this.gc_VitalSignsInfo.Size = new System.Drawing.Size(917, 170);
-            this.gc_VitalSignsInfo.TabIndex = 55;
-            this.gc_VitalSignsInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gv_VitalSignsInfo});
+            this.repositoryItemLookUpEdit3});
+            this.gcScheduled.Size = new System.Drawing.Size(891, 166);
+            this.gcScheduled.TabIndex = 51;
+            this.gcScheduled.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
             // 
-            // gv_VitalSignsInfo
+            // gridView1
             // 
-            this.gv_VitalSignsInfo.BandPanelRowHeight = 30;
-            this.gv_VitalSignsInfo.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.gridBand1,
-            this.gridBand2,
-            this.gridBand3,
-            this.gridBand4});
-            this.gv_VitalSignsInfo.ColumnPanelRowHeight = 30;
-            this.gv_VitalSignsInfo.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
-            this.bandedGridColumn1,
-            this.bandedGridColumn2,
-            this.gridColumn13,
+            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            this.gridView1.Appearance.OddRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.deptName,
+            this.gridColumn5,
+            this.workDate,
             this.gridColumn14,
-            this.gridColumn15,
-            this.gridColumn16,
-            this.gridColumn17,
-            this.gridColumn18,
-            this.gridColumn19});
-            styleFormatCondition2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            styleFormatCondition2.Appearance.Options.UseBackColor = true;
-            styleFormatCondition2.ApplyToRow = true;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition2.Value1 = "保存";
-            this.gv_VitalSignsInfo.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition2});
-            this.gv_VitalSignsInfo.GridControl = this.gc_VitalSignsInfo;
-            this.gv_VitalSignsInfo.Name = "gv_VitalSignsInfo";
-            this.gv_VitalSignsInfo.OptionsMenu.EnableColumnMenu = false;
-            this.gv_VitalSignsInfo.OptionsView.ShowColumnHeaders = false;
-            this.gv_VitalSignsInfo.OptionsView.ShowGroupPanel = false;
-            this.gv_VitalSignsInfo.RowHeight = 25;
-            this.gv_VitalSignsInfo.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            this.gridColumn15});
+            this.gridView1.GridControl = this.gcScheduled;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsCustomization.AllowFilter = false;
+            this.gridView1.OptionsCustomization.AllowSort = false;
+            this.gridView1.OptionsMenu.EnableColumnMenu = false;
+            this.gridView1.OptionsView.AllowCellMerge = true;
+            this.gridView1.OptionsView.AllowHtmlDrawHeaders = true;
+            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
+            this.gridView1.OptionsView.RowAutoHeight = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
+            this.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView1_CustomColumnDisplayText);
             // 
-            // bandedGridColumn1
+            // deptName
             // 
-            this.bandedGridColumn1.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.bandedGridColumn1.AppearanceCell.Options.UseFont = true;
-            this.bandedGridColumn1.AppearanceCell.Options.UseTextOptions = true;
-            this.bandedGridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.bandedGridColumn1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.bandedGridColumn1.AppearanceHeader.Options.UseFont = true;
-            this.bandedGridColumn1.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn1.Caption = "科室";
-            this.bandedGridColumn1.Name = "bandedGridColumn1";
-            this.bandedGridColumn1.Visible = true;
-            this.bandedGridColumn1.Width = 94;
+            this.deptName.AppearanceCell.Options.UseTextOptions = true;
+            this.deptName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.deptName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.deptName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.deptName.Caption = "科室";
+            this.deptName.FieldName = "deptName";
+            this.deptName.MinWidth = 25;
+            this.deptName.Name = "deptName";
+            this.deptName.OptionsColumn.AllowEdit = false;
+            this.deptName.Visible = true;
+            this.deptName.VisibleIndex = 0;
             // 
-            // bandedGridColumn2
+            // gridColumn5
             // 
-            this.bandedGridColumn2.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.bandedGridColumn2.AppearanceCell.Options.UseFont = true;
-            this.bandedGridColumn2.AppearanceCell.Options.UseTextOptions = true;
-            this.bandedGridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.bandedGridColumn2.AppearanceHeader.Options.UseFont = true;
-            this.bandedGridColumn2.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn2.Caption = "医生";
-            this.bandedGridColumn2.FieldName = "Doctor";
-            this.bandedGridColumn2.Name = "bandedGridColumn2";
-            this.bandedGridColumn2.Visible = true;
-            this.bandedGridColumn2.Width = 100;
+            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn5.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn5.Caption = "医生";
+            this.gridColumn5.FieldName = "doctorName";
+            this.gridColumn5.MinWidth = 25;
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 1;
             // 
-            // gridColumn13
+            // workDate
             // 
-            this.gridColumn13.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.gridColumn13.AppearanceCell.Options.UseFont = true;
-            this.gridColumn13.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn13.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridColumn13.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn13.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn13.Caption = "上午";
-            this.gridColumn13.ColumnEdit = this.repositoryItemComboBox1;
-            this.gridColumn13.FieldName = "morning";
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.Width = 73;
+            this.workDate.AppearanceCell.Options.UseTextOptions = true;
+            this.workDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.workDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.workDate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.workDate.Caption = "日期";
+            this.workDate.FieldName = "workDate";
+            this.workDate.MinWidth = 25;
+            this.workDate.Name = "workDate";
+            this.workDate.OptionsColumn.AllowEdit = false;
+            this.workDate.Visible = true;
+            this.workDate.VisibleIndex = 2;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "时段";
+            this.gridColumn14.FieldName = "period";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 3;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "诊室";
+            this.gridColumn15.ColumnEdit = this.repositoryItemLookUpEdit3;
+            this.gridColumn15.FieldName = "clinicId";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 4;
+            // 
+            // repositoryItemLookUpEdit3
+            // 
+            this.repositoryItemLookUpEdit3.AutoHeight = false;
+            this.repositoryItemLookUpEdit3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.repositoryItemLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit3.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "诊室名称"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default)});
+            this.repositoryItemLookUpEdit3.Name = "repositoryItemLookUpEdit3";
+            this.repositoryItemLookUpEdit3.EditValueChanged += new System.EventHandler(this.repositoryItemLookUpEdit3_EditValueChanged);
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            serializableAppearanceObject4.Font = new System.Drawing.Font("微软雅黑", 10F);
+            serializableAppearanceObject4.Options.UseFont = true;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "value", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "名称")});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.NullText = "";
+            // 
+            // repositoryItemLookUpEdit2
+            // 
+            this.repositoryItemLookUpEdit2.AutoHeight = false;
+            this.repositoryItemLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit2.Name = "repositoryItemLookUpEdit2";
             // 
             // repositoryItemComboBox1
             // 
@@ -658,169 +728,6 @@
             this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
-            this.repositoryItemComboBox1.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.gridColumn14.AppearanceCell.Options.UseFont = true;
-            this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn14.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridColumn14.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn14.Caption = "下午";
-            this.gridColumn14.ColumnEdit = this.repositoryItemComboBox3;
-            this.gridColumn14.FieldName = "afternoon";
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.Width = 76;
-            // 
-            // repositoryItemComboBox3
-            // 
-            this.repositoryItemComboBox3.AutoHeight = false;
-            this.repositoryItemComboBox3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox3.Name = "repositoryItemComboBox3";
-            this.repositoryItemComboBox3.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.gridColumn15.AppearanceCell.Options.UseFont = true;
-            this.gridColumn15.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn15.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridColumn15.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn15.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn15.Caption = "晚上";
-            this.gridColumn15.ColumnEdit = this.repositoryItemComboBox4;
-            this.gridColumn15.FieldName = "DarkNight";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.Width = 69;
-            // 
-            // repositoryItemComboBox4
-            // 
-            this.repositoryItemComboBox4.AutoHeight = false;
-            this.repositoryItemComboBox4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox4.Name = "repositoryItemComboBox4";
-            this.repositoryItemComboBox4.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.gridColumn16.AppearanceCell.Options.UseFont = true;
-            this.gridColumn16.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn16.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridColumn16.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn16.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn16.Caption = "全天";
-            this.gridColumn16.ColumnEdit = this.repositoryItemComboBox5;
-            this.gridColumn16.FieldName = "AllDay";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.Width = 74;
-            // 
-            // repositoryItemComboBox5
-            // 
-            this.repositoryItemComboBox5.AutoHeight = false;
-            this.repositoryItemComboBox5.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox5.Name = "repositoryItemComboBox5";
-            this.repositoryItemComboBox5.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.gridColumn17.AppearanceCell.Options.UseFont = true;
-            this.gridColumn17.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn17.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridColumn17.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn17.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn17.Caption = "上午";
-            this.gridColumn17.ColumnEdit = this.repositoryItemComboBox7;
-            this.gridColumn17.FieldName = "mornings";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.Width = 69;
-            // 
-            // repositoryItemComboBox7
-            // 
-            this.repositoryItemComboBox7.AutoHeight = false;
-            this.repositoryItemComboBox7.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox7.Name = "repositoryItemComboBox7";
-            this.repositoryItemComboBox7.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            // 
-            // gridColumn18
-            // 
-            this.gridColumn18.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.gridColumn18.AppearanceCell.Options.UseFont = true;
-            this.gridColumn18.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn18.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridColumn18.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn18.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn18.Caption = "下午";
-            this.gridColumn18.ColumnEdit = this.repositoryItemComboBox8;
-            this.gridColumn18.FieldName = "afternoons";
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.Width = 70;
-            // 
-            // repositoryItemComboBox8
-            // 
-            this.repositoryItemComboBox8.AutoHeight = false;
-            this.repositoryItemComboBox8.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox8.Name = "repositoryItemComboBox8";
-            this.repositoryItemComboBox8.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            // 
-            // gridColumn19
-            // 
-            this.gridColumn19.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.gridColumn19.AppearanceCell.Options.UseFont = true;
-            this.gridColumn19.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn19.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridColumn19.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn19.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn19.Caption = "晚上";
-            this.gridColumn19.ColumnEdit = this.repositoryItemComboBox9;
-            this.gridColumn19.FieldName = "DarkNights";
-            this.gridColumn19.Name = "gridColumn19";
-            this.gridColumn19.Visible = true;
-            this.gridColumn19.Width = 66;
-            // 
-            // repositoryItemComboBox9
-            // 
-            this.repositoryItemComboBox9.AutoHeight = false;
-            this.repositoryItemComboBox9.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox9.Name = "repositoryItemComboBox9";
-            this.repositoryItemComboBox9.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
-            // 
-            // repositoryItemComboBox6
-            // 
-            this.repositoryItemComboBox6.AutoHeight = false;
-            this.repositoryItemComboBox6.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox6.Name = "repositoryItemComboBox6";
-            this.repositoryItemComboBox6.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
             // 
             // borderPanel1
             // 
@@ -833,6 +740,7 @@
             this.borderPanel1.Controls.Add(this.dateEdit3);
             this.borderPanel1.Controls.Add(this.treeListLookUpEdit2);
             this.borderPanel1.Controls.Add(this.label4);
+            this.borderPanel1.Controls.Add(this.buttonControl3);
             this.borderPanel1.Controls.Add(this.buttonControl2);
             this.borderPanel1.Controls.Add(this.label6);
             this.borderPanel1.Controls.Add(this.label5);
@@ -845,7 +753,7 @@
             this.borderPanel1.Location = new System.Drawing.Point(3, 21);
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.ScrollBarSmallChange = 4;
-            this.borderPanel1.Size = new System.Drawing.Size(914, 42);
+            this.borderPanel1.Size = new System.Drawing.Size(891, 42);
             this.borderPanel1.TabIndex = 54;
             // 
             // dateEdit4
@@ -890,16 +798,17 @@
             this.lookUpEdit1.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEdit1.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lookUpEdit1.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.Options.UseFont = true;
             this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "医生姓名")});
             this.lookUpEdit1.Properties.NullText = "";
             this.lookUpEdit1.Size = new System.Drawing.Size(93, 28);
             this.lookUpEdit1.TabIndex = 127;
+            this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.lookUpEdit1_EditValueChanged);
             // 
             // dateEdit3
             // 
@@ -984,10 +893,10 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(654, 9);
+            this.buttonControl2.Location = new System.Drawing.Point(736, 8);
             this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.buttonControl2.Size = new System.Drawing.Size(75, 28);
+            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.buttonControl2.TabIndex = 123;
             this.buttonControl2.Text = "保存设置";
             this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
@@ -1016,23 +925,9 @@
             this.label5.TabIndex = 122;
             this.label5.Text = "医生：";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.panelEx1);
-            this.groupBox1.Controls.Add(this.borderPanel2);
-            this.groupBox1.Controls.Add(this.pageControl1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(920, 273);
-            this.groupBox1.TabIndex = 57;
-            this.groupBox1.TabStop = false;
-            // 
             // panelEx1
             // 
-            this.panelEx1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelEx1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelEx1.BackColor = System.Drawing.Color.Transparent;
             this.panelEx1.BorderColor = System.Drawing.Color.Transparent;
@@ -1042,158 +937,51 @@
             this.panelEx1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.None;
             this.panelEx1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.None;
             this.panelEx1.Controls.Add(this.gc_Atrlices);
-            this.panelEx1.Location = new System.Drawing.Point(3, 77);
+            this.panelEx1.Location = new System.Drawing.Point(14, 73);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(914, 158);
+            this.panelEx1.Size = new System.Drawing.Size(896, 143);
             this.panelEx1.TabIndex = 56;
             // 
-            // gridBand1
+            // panel1
             // 
-            this.gridBand1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand1.AppearanceHeader.Options.UseFont = true;
-            this.gridBand1.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand1.Caption = "科室";
-            this.gridBand1.Columns.Add(this.bandedGridColumn1);
-            this.gridBand1.Name = "gridBand1";
-            this.gridBand1.VisibleIndex = 0;
-            this.gridBand1.Width = 94;
+            this.panel1.Controls.Add(this.pageControl1);
+            this.panel1.Controls.Add(this.borderPanel2);
+            this.panel1.Controls.Add(this.panelEx1);
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(920, 514);
+            this.panel1.TabIndex = 58;
             // 
-            // gridBand2
+            // buttonControl3
             // 
-            this.gridBand2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand2.AppearanceHeader.Options.UseFont = true;
-            this.gridBand2.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand2.Caption = "医生";
-            this.gridBand2.Columns.Add(this.bandedGridColumn2);
-            this.gridBand2.Name = "gridBand2";
-            this.gridBand2.VisibleIndex = 1;
-            this.gridBand2.Width = 100;
-            // 
-            // gridBand3
-            // 
-            this.gridBand3.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand3.AppearanceHeader.Options.UseFont = true;
-            this.gridBand3.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand3.Caption = "日期";
-            this.gridBand3.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.gridBand10,
-            this.gridBand12,
-            this.gridBand11,
-            this.gridBand13});
-            this.gridBand3.Name = "gridBand3";
-            this.gridBand3.VisibleIndex = 2;
-            this.gridBand3.Width = 292;
-            // 
-            // gridBand10
-            // 
-            this.gridBand10.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand10.AppearanceHeader.Options.UseFont = true;
-            this.gridBand10.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand10.Caption = "上午";
-            this.gridBand10.Columns.Add(this.gridColumn13);
-            this.gridBand10.Name = "gridBand10";
-            this.gridBand10.VisibleIndex = 0;
-            this.gridBand10.Width = 73;
-            // 
-            // gridBand12
-            // 
-            this.gridBand12.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand12.AppearanceHeader.Options.UseFont = true;
-            this.gridBand12.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand12.Caption = "下午";
-            this.gridBand12.Columns.Add(this.gridColumn14);
-            this.gridBand12.Name = "gridBand12";
-            this.gridBand12.VisibleIndex = 1;
-            this.gridBand12.Width = 76;
-            // 
-            // gridBand11
-            // 
-            this.gridBand11.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand11.AppearanceHeader.Options.UseFont = true;
-            this.gridBand11.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand11.Caption = "晚上";
-            this.gridBand11.Columns.Add(this.gridColumn15);
-            this.gridBand11.Name = "gridBand11";
-            this.gridBand11.VisibleIndex = 2;
-            this.gridBand11.Width = 69;
-            // 
-            // gridBand13
-            // 
-            this.gridBand13.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand13.AppearanceHeader.Options.UseFont = true;
-            this.gridBand13.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand13.Caption = "全天";
-            this.gridBand13.Columns.Add(this.gridColumn16);
-            this.gridBand13.Name = "gridBand13";
-            this.gridBand13.VisibleIndex = 3;
-            this.gridBand13.Width = 74;
-            // 
-            // gridBand4
-            // 
-            this.gridBand4.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand4.AppearanceHeader.Options.UseFont = true;
-            this.gridBand4.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand4.Caption = "日期";
-            this.gridBand4.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.gridBand14,
-            this.gridBand17,
-            this.gridBand18});
-            this.gridBand4.Name = "gridBand4";
-            this.gridBand4.VisibleIndex = 3;
-            this.gridBand4.Width = 205;
-            // 
-            // gridBand14
-            // 
-            this.gridBand14.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand14.AppearanceHeader.Options.UseFont = true;
-            this.gridBand14.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand14.Caption = "上午";
-            this.gridBand14.Columns.Add(this.gridColumn17);
-            this.gridBand14.Name = "gridBand14";
-            this.gridBand14.VisibleIndex = 0;
-            this.gridBand14.Width = 69;
-            // 
-            // gridBand17
-            // 
-            this.gridBand17.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand17.AppearanceHeader.Options.UseFont = true;
-            this.gridBand17.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand17.Caption = "下午";
-            this.gridBand17.Columns.Add(this.gridColumn18);
-            this.gridBand17.Name = "gridBand17";
-            this.gridBand17.VisibleIndex = 1;
-            // 
-            // gridBand18
-            // 
-            this.gridBand18.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.gridBand18.AppearanceHeader.Options.UseFont = true;
-            this.gridBand18.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand18.Caption = "晚上";
-            this.gridBand18.Columns.Add(this.gridColumn19);
-            this.gridBand18.Name = "gridBand18";
-            this.gridBand18.VisibleIndex = 2;
-            this.gridBand18.Width = 66;
+            this.buttonControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl3.Location = new System.Drawing.Point(652, 8);
+            this.buttonControl3.Name = "buttonControl3";
+            this.buttonControl3.Size = new System.Drawing.Size(75, 28);
+            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.buttonControl3.TabIndex = 123;
+            this.buttonControl3.Text = "查询";
+            this.buttonControl3.Click += new System.EventHandler(this.buttonControl3_Click);
             // 
             // DoctorSittingSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.panel1);
             this.Name = "DoctorSittingSettingForm";
             this.Size = new System.Drawing.Size(920, 514);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).EndInit();
             this.borderPanel2.ResumeLayout(false);
             this.borderPanel2.PerformLayout();
@@ -1210,17 +998,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gv_Atrlices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gc_VitalSignsInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_VitalSignsInfo)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcScheduled)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
@@ -1231,8 +1015,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1276,38 +1060,29 @@
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private DevExpress.XtraEditors.DateEdit dateEdit3;
         private Xr.Common.Controls.ButtonControl buttonControl2;
-        private System.Windows.Forms.GroupBox groupBox1;
         private Xr.Common.Controls.PanelEx panelEx1;
-        private DevExpress.XtraGrid.GridControl gc_VitalSignsInfo;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView gv_VitalSignsInfo;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn1;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn2;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn13;
+        //private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        //private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox4;
+        //private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox7;
+        //private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox8;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox10;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox11;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox12;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox16;
+        private DevExpress.XtraGrid.GridControl gcScheduled;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn deptName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn workDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn14;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox3;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn15;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox4;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn16;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox5;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn17;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox6;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn18;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn19;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox7;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox8;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox9;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand10;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand11;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand13;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand14;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand17;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand18;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
+        private Xr.Common.Controls.ButtonControl buttonControl3;
+       // private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox3;
     }
 }

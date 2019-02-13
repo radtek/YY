@@ -77,11 +77,6 @@ namespace Xr.RtManager
         public String phone { get; set; }
 
         /// <summary>
-        /// 手机
-        /// </summary>
-        public String mobile { get; set; }
-
-        /// <summary>
         /// 备注
         /// </summary>
         public String remarks { get; set; }

@@ -40,7 +40,6 @@
             this.gc_Pateion = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复诊预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.延后ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gv_Pateion = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -183,10 +182,9 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.复诊预约ToolStripMenuItem,
-            this.延后ToolStripMenuItem});
+            this.复诊预约ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
             // 
             // 复诊预约ToolStripMenuItem
             // 
@@ -194,13 +192,6 @@
             this.复诊预约ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.复诊预约ToolStripMenuItem.Text = "复诊预约";
             this.复诊预约ToolStripMenuItem.Click += new System.EventHandler(this.复诊预约ToolStripMenuItem_Click);
-            // 
-            // 延后ToolStripMenuItem
-            // 
-            this.延后ToolStripMenuItem.Name = "延后ToolStripMenuItem";
-            this.延后ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.延后ToolStripMenuItem.Text = "延后";
-            this.延后ToolStripMenuItem.Click += new System.EventHandler(this.延后ToolStripMenuItem_Click);
             // 
             // gv_Pateion
             // 
@@ -217,7 +208,6 @@
             this.gv_Pateion.OptionsView.ShowGroupPanel = false;
             this.gv_Pateion.OptionsView.ShowIndicator = false;
             this.gv_Pateion.RowHeight = 25;
-           // this.gv_Pateion.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gv_Pateion_PopupMenuShowing);
             // 
             // gridColumn1
             // 
@@ -370,7 +360,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 复诊预约ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 延后ToolStripMenuItem;
         private DevExpress.XtraGrid.GridControl gc_Pateion;
     }
 }

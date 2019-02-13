@@ -13,11 +13,14 @@ using System.Net;
 using Xr.Common;
 using Xr.Common.Controls;
 using DevExpress.XtraEditors;
+using System.Threading;
 
 namespace Xr.RtManager.Pages.scheduling
 {
     public partial class BatchSchedulingForm : UserControl
     {
+        Xr.Common.Controls.OpaqueCommand cmd;
+
         public BatchSchedulingForm()
         {
             InitializeComponent();
@@ -25,6 +28,7 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void BatchSchedulingForm_Load(object sender, EventArgs e)
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
             //设置科室列表
             List<Item> itemList = new List<Item>();
             foreach (DeptEntity dept in AppContext.Session.deptList)
@@ -635,16 +639,80 @@ namespace Xr.RtManager.Pages.scheduling
             String scheduSets = Newtonsoft.Json.JsonConvert.SerializeObject(schedulingSubList);
             String param = "hospitalId=" + mcDept.itemTag + "&deptId=" + mcDept.itemName + "&scheduSets=" + scheduSets;
             String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/saveToMany?";
-            String data = HttpClass.httpPost(url, param, 10);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                MessageBoxUtils.Hint("保存成功!");
-            }
-            else
+                String data = HttpClass.httpPost(url, param, 10);
+                return data;
+
+            }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                JObject objT = JObject.Parse(r.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    MessageBoxUtils.Hint("保存成功!");
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            });
+
+            //String data = HttpClass.httpPost(url, param, 10);
+            //JObject objT = JObject.Parse(data);
+            //if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            //{
+            //    MessageBoxUtils.Hint("保存成功!");
+            //}
+            //else
+            //{
+            //    MessageBox.Show(objT["message"].ToString());
+            //}
         }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+
+                bgWorkder.Dispose();
+
+                if (workCompleted != null)
+                {
+                    workCompleted(arg.Result);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(500);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+
     }
 }

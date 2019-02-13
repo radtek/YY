@@ -17,9 +17,11 @@ namespace Xr.Common.Controls
         }
 
         public String text { get; set; }
+        public String ImagUploadUrl { get; set; }
 
         private void RichEditorForm_Load(object sender, EventArgs e)
         {
+            richEditor1.ImagUploadUrl = ImagUploadUrl;
             richEditor1.LoadText(text);
         }
 

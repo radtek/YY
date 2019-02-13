@@ -34,8 +34,6 @@ namespace Xr.RtManager.Pages.booking
         {
             InitializeComponent();
             
-           
-
         }
         private void UserForm_Load(object sender, EventArgs e)
         {
@@ -86,7 +84,7 @@ namespace Xr.RtManager.Pages.booking
                 QueryInfo();
             }
         }
-        QueryParam CurrentParam=new QueryParam();
+        AppointmentStatisticsQueryParam CurrentParam=new AppointmentStatisticsQueryParam();
         private bool VerifyInfo()
         { //deStart.Text,
             //deEnd.Text
@@ -597,7 +595,7 @@ namespace Xr.RtManager.Pages.booking
         /// //配置时间格式
         /// </summary>
         /// <param name="flag">true为日期查询 false为月份查询</param>
-        void setDateFomartDefult(bool flag)
+        private  void setDateFomartDefult(bool flag)
         {
             if (flag)
             {
@@ -655,7 +653,7 @@ namespace Xr.RtManager.Pages.booking
     /// <summary>
     /// 查询参数实体
     /// </summary>
-    public class QueryParam
+    public class AppointmentStatisticsQueryParam
     { 
            /*String param = "hospitalId={0}&deptId={1}&reportType={2}&startDate={3}&endDate={4}";
                 param = String.Format(

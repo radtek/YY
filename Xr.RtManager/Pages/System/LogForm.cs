@@ -28,35 +28,45 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        Xr.Common.Controls.OpaqueCommand cmd;
         private JObject obj { get; set; }
 
         private void LogForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(243, 243, 243);
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(0f);
             String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                List<OfficeEntity> officeList = objT["result"].ToObject<List<OfficeEntity>>();
-                treeCompany.Properties.DataSource = officeList; //绑定数据           
-                treeCompany.Properties.TreeList.KeyFieldName = "id";//设置ID  
-                treeCompany.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
-                treeCompany.Properties.DisplayMember = "name";  //要在树里展示的
-                treeCompany.Properties.ValueMember = "id";    //对应的value
+                String data = HttpClass.httpPost(url);
+                return data;
 
-                treeOffice.Properties.DataSource = officeList; //绑定数据           
-                treeOffice.Properties.TreeList.KeyFieldName = "id";//设置ID  
-                treeOffice.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
-                treeOffice.Properties.DisplayMember = "name";  //要在树里展示的
-                treeOffice.Properties.ValueMember = "id";    //对应的value
-
-                SearchData(true, 1, pageControl1.PageSize);
-            }
-            else
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    List<OfficeEntity> officeList = objT["result"].ToObject<List<OfficeEntity>>();
+                    treeCompany.Properties.DataSource = officeList; //绑定数据           
+                    treeCompany.Properties.TreeList.KeyFieldName = "id";//设置ID  
+                    treeCompany.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
+                    treeCompany.Properties.DisplayMember = "name";  //要在树里展示的
+                    treeCompany.Properties.ValueMember = "id";    //对应的value
+
+                    treeOffice.Properties.DataSource = officeList; //绑定数据           
+                    treeOffice.Properties.TreeList.KeyFieldName = "id";//设置ID  
+                    treeOffice.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
+                    treeOffice.Properties.DisplayMember = "name";  //要在树里展示的
+                    treeOffice.Properties.ValueMember = "id";    //对应的value
+
+                    SearchData(true, 1, pageControl1.PageSize);
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            });
         }
 
         public void SearchData(bool flag, int pageNo, int pageSize)
@@ -69,75 +79,34 @@ namespace Xr.RtManager
                 + "&&beginDate=" + deStart.EditValue + "&&endDate=" + deEnd.EditValue
                 + "&&pageNo=" + pageNo + "&&pageSize=" + pageSize;
             String url = AppContext.AppConfig.serverUrl + "sys/sysLog/findAll" + param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                gcDict.DataSource = objT["result"]["list"].ToObject<List<LogEntity>>();
-                pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                int.Parse(objT["result"]["pageSize"].ToString()),
-                int.Parse(objT["result"]["pageNo"].ToString()));
-            }
-            else
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    gcDict.DataSource = objT["result"]["list"].ToObject<List<LogEntity>>();
+                    pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
+                    int.Parse(objT["result"]["pageSize"].ToString()),
+                    int.Parse(objT["result"]["pageNo"].ToString()));
+                    cmd.HideOpaqueLayer();
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            });
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
+            cmd.ShowOpaqueLayer();
             SearchData(false, 1, pageControl1.PageSize);
-        }
-
-        private void skinButton2_Click(object sender, EventArgs e)
-        {
-            var edit = new DictEdit();
-            if (edit.ShowDialog() == DialogResult.OK)
-            {
-                MessageBoxUtils.Hint("保存成功!");
-                SearchData(true, 1, pageControl1.PageSize);
-            }
-        }
-
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            var selectedRow = gridView1.GetFocusedRow() as DictEntity;
-            if (selectedRow == null)
-                return;
-             MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-             DialogResult dr = MessageBox.Show("确定要删除吗?", "删除字典", messButton);
-
-             if (dr == DialogResult.OK)
-             {
-                 String param = "?id=" + selectedRow.id;
-                 String url = AppContext.AppConfig.serverUrl + "sys/sysDict/delete" + param;
-                 String data = HttpClass.httpPost(url);
-                 JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    MessageBoxUtils.Hint("删除成功!");
-                    SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
-                }
-                else
-                {
-                    MessageBox.Show(objT["message"].ToString());
-                }
-             }
-        }
-
-        private void btnUp_Click(object sender, EventArgs e)
-        {
-            var selectedRow = gridView1.GetFocusedRow() as DictEntity;
-            if (selectedRow == null)
-                return;
-            var edit = new DictEdit();
-            edit.dict = selectedRow;
-            edit.Text = "字典修改";
-            if (edit.ShowDialog() == DialogResult.OK)
-            {
-                MessageBoxUtils.Hint("修改成功!");
-                SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-            }
         }
 
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -154,14 +123,70 @@ namespace Xr.RtManager
             }
             int i = gridView1.GetFocusedDataSourceRowIndex();
             //IntPtr activeForm = GetActiveWindow(); // 先得到当前的活动窗体 
-            MessageBoxUtils.HintTextEdit(text, 174, 208 + ((i + 1) * 29), gcDict.Width);
+            MainForm mainForm = (MainForm)this.Parent.Parent.Parent.Parent.Parent;
+            MessageBoxUtils.HintTextEdit(text, mainForm.Left + 177, mainForm.Top+195 + ((i + 1) * 29), gcDict.Width);
             //SetActiveWindow(activeForm); // 在把焦点还给之前的活动窗体
             
         }
 
         private void pageControl1_Query(int CurrentPage, int pageSize)
         {
+            cmd.ShowOpaqueLayer();
             SearchData(false, CurrentPage, pageSize);
         }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="time">线程延迟多少</param>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+                try
+                {
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    LogClass.WriteLog(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(time);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+        
     }
 }

@@ -86,7 +86,7 @@ namespace Xr.RtManager
                 login.ShowDialog();
                 if (login.DialogResult == DialogResult.OK)
                 {
-                    Form form = new MainForm();
+                    MainForm form = new MainForm();
                     context.MainForm = form;
                     form.Show();
                 }

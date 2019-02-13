@@ -173,6 +173,12 @@
     <Compile Include="Pages\booking\TodayAppointmentForm.Designer.cs">
       <DependentUpon>TodayAppointmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\booking\BlackListAddFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\booking\BlackListAddFrm.Designer.cs">
+      <DependentUpon>BlackListAddFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\cms\ArticleManagementSettingForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -411,6 +417,9 @@
     <EmbeddedResource Include="Pages\booking\TodayAppointmentForm.resx">
       <DependentUpon>TodayAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\booking\BlackListAddFrm.resx">
+      <DependentUpon>BlackListAddFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\ArticleManagementSettingForm.resx">
       <DependentUpon>ArticleManagementSettingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -507,6 +516,7 @@
     <EmbeddedResource Include="Pages\triage\SignInForm.resx">
       <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -537,6 +547,7 @@
     <Content Include="ExDll\Newtonsoft.Json.dll" />
     <Content Include="Image\bg.png" />
     <None Include="Image\bg1.png" />
+    <Content Include="Image\bg2.png" />
     <Content Include="Image\loading.gif" />
     <Content Include="Image\图片1.png" />
     <None Include="Resources\bg.png" />

@@ -12,6 +12,7 @@ using System.IO;
 using System.Net;
 using Xr.Common;
 using Xr.Common.Controls;
+using System.Threading;
 
 namespace Xr.RtManager.Pages.cms
 {
@@ -22,81 +23,119 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
         }
 
+        Xr.Common.Controls.OpaqueCommand cmd;
         public DeptInfoEntity deptInfo { get; set; }
 
         private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(225, false);
             dcDeptInfo.DataType = typeof(DeptInfoEntity);
             //查询医院下拉框数据
             String url = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
-                lueHospital.Properties.DisplayMember = "name";
-                lueHospital.Properties.ValueMember = "id";
-            }
-            else
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
-            
-            //查询宣传显示下拉框数据
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
-            data = HttpClass.httpPost(url);
-            objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueIsShow.Properties.DisplayMember = "label";
-                lueIsShow.Properties.ValueMember = "value";
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
-            //查询状态下拉框数据
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
-            data = HttpClass.httpPost(url);
-            objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueIsUse.Properties.DisplayMember = "label";
-                lueIsUse.Properties.ValueMember = "value";
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
-            SearchData(1, pageControl1.PageSize);
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
+                    lueHospital.Properties.DisplayMember = "name";
+                    lueHospital.Properties.ValueMember = "id";
+
+                    //查询宣传显示下拉框数据
+                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
+                    this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                            lueIsShow.Properties.DisplayMember = "label";
+                            lueIsShow.Properties.ValueMember = "value";
+
+                            //查询状态下拉框数据
+                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
+                            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                            {
+                                data = HttpClass.httpPost(url);
+                                return data;
+
+                            }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                            {
+                                objT = JObject.Parse(data3.ToString());
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                    lueIsUse.Properties.DisplayMember = "label";
+                                    lueIsUse.Properties.ValueMember = "value";
+
+                                    SearchData(1, pageControl1.PageSize);
+                                }
+                                else
+                                {
+                                    cmd.HideOpaqueLayer();
+                                    MessageBox.Show(objT["message"].ToString());
+                                    return;
+                                }
+                            });
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBox.Show(objT["message"].ToString());
+                            return;
+                        }
+                    });
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBox.Show(objT["message"].ToString());
+                    return;
+                }
+            });  
         }
 
         public void SearchData(int pageNo, int pageSize)
         {
             String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=";
             String url = AppContext.AppConfig.serverUrl + "cms/dept/list?"+param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                gcDeptInfo.DataSource = objT["result"]["list"].ToObject<List<DeptInfoEntity>>();
-                pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                int.Parse(objT["result"]["pageSize"].ToString()),
-                int.Parse(objT["result"]["pageNo"].ToString()));
-            }
-            else
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                cmd.HideOpaqueLayer();
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    gcDeptInfo.DataSource = objT["result"]["list"].ToObject<List<DeptInfoEntity>>();
+                    pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
+                    int.Parse(objT["result"]["pageSize"].ToString()),
+                    int.Parse(objT["result"]["pageNo"].ToString()));
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            });
         }
 
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
+            cmd.ShowOpaqueLayer(225, true);
             SearchData(CurrentPage, PageSize);
         }
 
@@ -141,21 +180,30 @@ namespace Xr.RtManager.Pages.cms
                 model.FileContent = new FileStream(logoFilePath, FileMode.Open);
                 lstPara.Add(model);
 
-                String data = HttpClass.PostForm(url, lstPara);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                cmd.ShowOpaqueLayer(225, true);
+                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
-                    WebClient web = new WebClient();
-                    var bytes = web.DownloadData(objT["result"][0].ToString());
-                    this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
-                    logoServiceFilePath = objT["result"][0].ToString();
-                    MessageBoxUtils.Hint("上传图片成功");
-                }
-                else
+                    String data = HttpClass.PostForm(url, lstPara);
+                    return data;
+
+                }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    MessageBox.Show(objT["message"].ToString());
-                    return;
-                }
+                    cmd.HideOpaqueLayer();
+                    JObject objT = JObject.Parse(data.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        WebClient web = new WebClient();
+                        var bytes = web.DownloadData(objT["result"][0].ToString());
+                        this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        logoServiceFilePath = objT["result"][0].ToString();
+                        MessageBoxUtils.Hint("上传图片成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                        return;
+                    }
+                });
             }
             else
             {
@@ -201,21 +249,30 @@ namespace Xr.RtManager.Pages.cms
                 model.FileContent = new FileStream(pictureFilePath, FileMode.Open);
                 lstPara.Add(model);
 
-                String data = HttpClass.PostForm(url, lstPara);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                cmd.ShowOpaqueLayer(225, true);
+                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
-                    WebClient web = new WebClient();
-                    var bytes = web.DownloadData(objT["result"][0].ToString());
-                    this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
-                    pictureServiceFilePath = objT["result"][0].ToString();
-                    MessageBoxUtils.Hint("上传图片成功");
-                }
-                else
+                    String data = HttpClass.PostForm(url, lstPara);
+                    return data;
+
+                }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    MessageBox.Show(objT["message"].ToString());
-                    return;
-                }
+                    cmd.HideOpaqueLayer();
+                    JObject objT = JObject.Parse(data.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        WebClient web = new WebClient();
+                        var bytes = web.DownloadData(objT["result"][0].ToString());
+                        this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        pictureServiceFilePath = objT["result"][0].ToString();
+                        MessageBoxUtils.Hint("上传图片成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                        return;
+                    }
+                });
             }
             else
             {
@@ -256,36 +313,61 @@ namespace Xr.RtManager.Pages.cms
             if (selectedRow == null)
                 return;
             String url = AppContext.AppConfig.serverUrl + "cms/dept/findById?id=" + selectedRow.id;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+
+            cmd.ShowOpaqueLayer(225, true);
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                deptInfo = objT["result"].ToObject<DeptInfoEntity>();
-                deptInfo.hospitalId = deptInfo.hospital.id;
-                deptInfo.parentId = deptInfo.parent.id;
-                dcDeptInfo.SetValue(deptInfo);
-                //显示图片
-                logoServiceFilePath = deptInfo.logoUrl;
-                pictureServiceFilePath = deptInfo.pictureUrl;
-                WebClient web;
-                if (logoServiceFilePath != null && logoServiceFilePath.Length > 0)
-                {
-                    web = new WebClient();
-                    var bytes = web.DownloadData(logoServiceFilePath);
-                    this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
-                }
-                if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
-                {
-                    web = new WebClient();
-                    var bytes = web.DownloadData(pictureServiceFilePath);
-                    this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
-                }
-                groupBox1.Enabled = true;
-            }
-            else
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                cmd.HideOpaqueLayer();
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    deptInfo = objT["result"].ToObject<DeptInfoEntity>();
+                    deptInfo.hospitalId = deptInfo.hospital.id;
+                    if (deptInfo.parent != null)
+                        deptInfo.parentId = deptInfo.parent.id;
+                    dcDeptInfo.SetValue(deptInfo);
+                    //显示图片
+                    logoServiceFilePath = deptInfo.logoUrl;
+                    pictureServiceFilePath = deptInfo.pictureUrl;
+                    WebClient web;
+                    if (logoServiceFilePath != null && logoServiceFilePath.Length > 0)
+                    {
+                        try
+                        {
+                            web = new WebClient();
+                            var bytes = web.DownloadData(logoServiceFilePath);
+                            this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
+                    {
+                        try
+                        {
+                            web = new WebClient();
+                            var bytes = web.DownloadData(pictureServiceFilePath);
+                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    groupBox1.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            });
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -311,28 +393,38 @@ namespace Xr.RtManager.Pages.cms
             deptInfo.pictureUrl = pictureServiceFilePath;
             
             //请求接口
-            String param = "?" + PackReflectionEntity<DeptInfoEntity>.GetEntityToRequestParameters(deptInfo, true);
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/save" + param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            String param = PackReflectionEntity<DeptInfoEntity>.GetEntityToRequestParameters(deptInfo, true);
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/save?";
+
+            cmd.ShowOpaqueLayer(225, true);
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                MessageBoxUtils.Hint("保存成功！");
-                pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
-                groupBox1.Enabled = false;
-                //清除值
-                dcDeptInfo.ClearValue();
-                pbLogo.Image = null;
-                pbLogo.Refresh();
-                logoServiceFilePath = null;
-                pbPicture.Image = null;
-                pbPicture.Refresh();
-                pictureServiceFilePath = null;
-            }
-            else
+                String data = HttpClass.httpPost(url, param);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                cmd.HideOpaqueLayer();
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
+                    groupBox1.Enabled = false;
+                    //清除值
+                    dcDeptInfo.ClearValue();
+                    pbLogo.Image = null;
+                    pbLogo.Refresh();
+                    logoServiceFilePath = null;
+                    pbPicture.Image = null;
+                    pbPicture.Refresh();
+                    pictureServiceFilePath = null;
+                    MessageBoxUtils.Hint("保存成功！");
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            }); 
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -347,17 +439,26 @@ namespace Xr.RtManager.Pages.cms
             {
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "cms/dept/delete" + param;
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+
+                cmd.ShowOpaqueLayer(225, true);
+                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
-                    MessageBoxUtils.Hint("删除成功!");
-                    SearchData(pageControl1.CurrentPage, pageControl1.PageSize);
-                }
-                else
+                    String data = HttpClass.httpPost(url);
+                    return data;
+
+                }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    MessageBox.Show(objT["message"].ToString());
-                }
+                    JObject objT = JObject.Parse(r.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        SearchData(pageControl1.CurrentPage, pageControl1.PageSize);
+                        MessageBoxUtils.Hint("删除成功!");
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                    }
+                });
             }
         }
 
@@ -365,6 +466,7 @@ namespace Xr.RtManager.Pages.cms
         {
             var edit = new RichEditorForm();
             edit.text = deptInfo.synopsis;
+            edit.ImagUploadUrl = AppContext.AppConfig.serverUrl;
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 deptInfo.synopsis = edit.text;
@@ -400,5 +502,58 @@ namespace Xr.RtManager.Pages.cms
                 return;
             }
         }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+                try
+                {
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    LogClass.WriteLog(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(500);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+    
     }
 }

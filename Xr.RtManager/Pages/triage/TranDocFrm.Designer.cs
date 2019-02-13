@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
+            this.select = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dcOffice = new Xr.Common.Controls.DataController(this.components);
@@ -39,20 +41,43 @@
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.Gc_patients = new DevExpress.XtraGrid.GridControl();
             this.gv_patients = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.select = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueGrade.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gc_patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_patients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // select
+            // 
+            this.select.AppearanceCell.Options.UseTextOptions = true;
+            this.select.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.select.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.select.AppearanceHeader.Options.UseFont = true;
+            this.select.AppearanceHeader.Options.UseTextOptions = true;
+            this.select.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.select.Caption = "☑";
+            this.select.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.select.FieldName = "check";
+            this.select.Name = "select";
+            this.select.Visible = true;
+            this.select.VisibleIndex = 0;
+            this.select.Width = 44;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Caption = "Check";
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.repositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.repositoryItemCheckEdit1.ValueChecked = "1";
+            this.repositoryItemCheckEdit1.ValueUnchecked = "0";
             // 
             // label5
             // 
@@ -146,13 +171,13 @@
             // Gc_patients
             // 
             this.Gc_patients.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Gc_patients.Location = new System.Drawing.Point(12, 32);
+            this.Gc_patients.Location = new System.Drawing.Point(12, 35);
             this.Gc_patients.MainView = this.gv_patients;
             this.Gc_patients.Name = "Gc_patients";
             this.Gc_patients.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemPopupContainerEdit1});
-            this.Gc_patients.Size = new System.Drawing.Size(560, 417);
+            this.Gc_patients.Size = new System.Drawing.Size(560, 414);
             this.Gc_patients.TabIndex = 43;
             this.Gc_patients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_patients});
@@ -194,31 +219,6 @@
             this.gv_patients.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gv_patients.OptionsView.ShowGroupPanel = false;
             this.gv_patients.OptionsView.ShowIndicator = false;
-            // 
-            // select
-            // 
-            this.select.AppearanceCell.Options.UseTextOptions = true;
-            this.select.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.select.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.select.AppearanceHeader.Options.UseFont = true;
-            this.select.AppearanceHeader.Options.UseTextOptions = true;
-            this.select.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.select.Caption = "☑";
-            this.select.ColumnEdit = this.repositoryItemCheckEdit1;
-            this.select.FieldName = "check";
-            this.select.Name = "select";
-            this.select.Visible = true;
-            this.select.VisibleIndex = 0;
-            this.select.Width = 44;
-            // 
-            // repositoryItemCheckEdit1
-            // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Caption = "Check";
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            this.repositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            this.repositoryItemCheckEdit1.ValueChecked = "1";
-            this.repositoryItemCheckEdit1.ValueUnchecked = "0";
             // 
             // gridColumn1
             // 
@@ -295,15 +295,18 @@
             this.Controls.Add(this.lueGrade);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TranDocFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "机构添加";
             this.Load += new System.EventHandler(this.OfficeEdit_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueGrade.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gc_patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_patients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

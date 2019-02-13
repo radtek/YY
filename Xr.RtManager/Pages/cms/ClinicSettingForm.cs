@@ -9,20 +9,20 @@ using System.Windows.Forms;
 using Xr.Http;
 using Newtonsoft.Json.Linq;
 using Xr.Common;
+using Xr.RtManager.Module.cms;
 
 namespace Xr.RtManager.Pages.cms
 {
     public partial class ClinicSettingForm : UserControl
     {
+        Xr.Common.Controls.OpaqueCommand cmd;
         public ClinicSettingForm()
         {
             InitializeComponent();
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(225, false);
             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
-            //this.gv_Clinic.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
-            //gv_Clinic.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
-            //gv_Clinic.OptionsView.EnableAppearanceEvenRow = true;
-            //gv_Clinic.OptionsView.EnableAppearanceOddRow = true;
-            //ClinicSettingList(AppContext.Session.hospitalId,AppContext.Session.deptId);
+            cmd.HideOpaqueLayer();
             #region 注释
             //foreach (var item in AppContext.Session.deptList)
             //{
@@ -48,11 +48,17 @@ namespace Xr.RtManager.Pages.cms
                 item.name = dept.name;
                 item.value = dept.id;
                 item.tag = dept.hospitalId;
+                item.parentId = dept.parentId;
                 itemList.Add(item);
             }
             this.menuControl1.setDataSource(itemList);
+            treeWKe.Properties.DataSource = AppContext.Session.deptList;
+            treeWKe.Properties.TreeList.KeyFieldName = "id";
+            treeWKe.Properties.TreeList.ParentFieldName = "parentId";
+            treeWKe.Properties.DisplayMember = "name";
+            treeWKe.Properties.ValueMember = "id";
             #endregion 
-        }
+        } 
         #region 测试
         public List<ClinicInfoEntity> Date = new List<ClinicInfoEntity>();
         #endregion 
@@ -136,54 +142,12 @@ namespace Xr.RtManager.Pages.cms
         #endregion
         #region 编号或者编码查询诊室信息详情
         /// <summary>
-        /// 编号或者编码查询诊室信息详情
+        /// 查询诊室信息详情
         /// </summary>
-        /// <param name="code">编号或者编码</param>
-        public void SelectInforList(string code)
+        /// <param name="code"></param>
+        public void SelectInforList()
         {
-            try
-            {
-                String url = "";
-                if (this.radioButton1.Checked)
-                {
-                    url = AppContext.AppConfig.serverUrl + "cms/clinic/findById?id=" + code;//编号
-                }
-                else if (this.radioButton2.Checked)
-                {
-                    url = AppContext.AppConfig.serverUrl + "cms/clinic/findByCode?id=" + code;//编码
-                }
-                else
-                {
-                    SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
-                    return;
-                }
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    if (objT["result"].ToString()=="")
-                    {
-                        this.gc_Clinic.DataSource = null;
-                        return;
-                    }
-                    clinicInfo = new List<ClinicInfoEntity>();
-                    string a = objT["result"].ToString();
-                    ClinicInfoEntity two = Newtonsoft.Json.JsonConvert.DeserializeObject<ClinicInfoEntity>(a);
-                    String name = objT["result"]["dept"]["name"].ToString();
-                    two.deptname = name;
-                    clinicInfo.Add(two);
-                    this.gc_Clinic.DataSource = clinicInfo;
-                    SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
-                }
-                else
-                {
-                    MessageBox.Show(objT["message"].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
+            SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
         }
         #endregion 
         #region 获取指定医院科室下诊室列表
@@ -264,6 +228,7 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow = this.gv_Clinic.GetFocusedRow() as ClinicInfoEntity;
                 if (selectedRow == null)
                     return;
+                selectedRow.deptId =string.Join(",", from n in AppContext.Session.deptList where n.name == selectedRow.deptname select n.id);
                 dcClinc.SetValue(selectedRow);
                 groupBox3.Enabled = true;
                 //var edit = new ClinicSettingEdit();
@@ -325,7 +290,7 @@ namespace Xr.RtManager.Pages.cms
         private void butSelect_Click(object sender, EventArgs e)
         {
             this.groupBox3.Enabled = false;
-            SelectInforList(this.teCode.Text.Trim());
+            SelectInforList();
         }
         #endregion
         #region 科室列表点击事件 
@@ -393,36 +358,6 @@ namespace Xr.RtManager.Pages.cms
             }
         }
         #endregion 
-        #region 单选按钮
-        bool rdbcheck = false;
-        private void radioButton1_Click(object sender, EventArgs e)
-        {
-            if (rdbcheck)
-            {
-                radioButton1.Checked = false;
-                rdbcheck = false;
-            }
-            else
-            {
-                radioButton1.Checked = true;
-                rdbcheck = true;
-            }
-        }
-        bool rdbchecks = false;
-        private void radioButton2_Click(object sender, EventArgs e)
-        {
-            if (rdbchecks)
-            {
-                radioButton2.Checked = false;
-                rdbchecks = false;
-            }
-            else
-            {
-                radioButton2.Checked = true;
-                rdbchecks = true;
-            }
-        }
-        #endregion 
         #endregion
         #region 窗体Load事件
         public ClinicInfoEntity clinicInfoEntity { get; set; }
@@ -447,18 +382,17 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="e"></param>
         private void groupBox1_Paint(object sender, PaintEventArgs e)
         {
-            GroupBox gBox = (GroupBox)sender;
-            //e.Graphics.Clear(gBox.BackColor);
-           //e.Graphics.DrawString(gBox.Text, gBox.Font, Brushes.Gray, 10, 1);
-            var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
-            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
-            e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
-            e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
-            e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
-            e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+           // GroupBox gBox = (GroupBox)sender;
+           // //e.Graphics.Clear(gBox.BackColor);
+           ////e.Graphics.DrawString(gBox.Text, gBox.Font, Brushes.Gray, 10, 1);
+           // var vSize = e.Graphics.MeasureString(gBox.Text, gBox.Font);
+           // e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 8, vSize.Height / 2);
+           // e.Graphics.DrawLine(Pens.Gray, vSize.Width + 8, vSize.Height / 2, gBox.Width - 2, vSize.Height / 2);
+           // e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
+           // e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
+           // e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
         }
         #endregion 
         #endregion
-
     }
 }

@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.teCode = new DevExpress.XtraEditors.TextEdit();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.butSelect = new Xr.Common.Controls.ButtonControl();
@@ -45,6 +41,9 @@
             this.teID = new DevExpress.XtraEditors.TextEdit();
             this.teType = new DevExpress.XtraEditors.TextEdit();
             this.radioGroup2 = new DevExpress.XtraEditors.RadioGroup();
+            this.treeWKe = new DevExpress.XtraEditors.TreeListLookUpEdit();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuControl1 = new Xr.Common.Controls.MenuControl();
             this.gc_Clinic = new DevExpress.XtraGrid.GridControl();
@@ -63,6 +62,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.butClose = new Xr.Common.Controls.ButtonControl();
             this.butContronl = new Xr.Common.Controls.ButtonControl();
@@ -73,12 +73,13 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeWKe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Clinic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Clinic)).BeginInit();
@@ -105,10 +106,6 @@
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel1.Controls.Add(this.radioButton2);
-            this.borderPanel1.Controls.Add(this.radioButton1);
-            this.borderPanel1.Controls.Add(this.teCode);
-            this.borderPanel1.Controls.Add(this.label4);
             this.borderPanel1.Controls.Add(this.btnDel);
             this.borderPanel1.Controls.Add(this.btnSave);
             this.borderPanel1.Controls.Add(this.butSelect);
@@ -126,56 +123,12 @@
             this.borderPanel1.Size = new System.Drawing.Size(890, 50);
             this.borderPanel1.TabIndex = 1;
             // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton2.Location = new System.Drawing.Point(131, 13);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(50, 21);
-            this.radioButton2.TabIndex = 106;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "编码";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton1.Location = new System.Drawing.Point(77, 13);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(50, 21);
-            this.radioButton1.TabIndex = 105;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "编号";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
-            // 
-            // teCode
-            // 
-            this.teCode.Location = new System.Drawing.Point(190, 10);
-            this.teCode.Name = "teCode";
-            this.teCode.Properties.AutoHeight = false;
-            this.teCode.Size = new System.Drawing.Size(134, 28);
-            this.teCode.TabIndex = 104;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(2, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 20);
-            this.label4.TabIndex = 103;
-            this.label4.Text = "查询类型：";
-            // 
             // btnDel
             // 
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(590, 9);
+            this.btnDel.Location = new System.Drawing.Point(272, 10);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -188,10 +141,10 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(504, 9);
+            this.btnSave.Location = new System.Drawing.Point(186, 10);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
-            this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnSave.TabIndex = 75;
             this.btnSave.Text = "修改";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -201,7 +154,7 @@
             this.butSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butSelect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butSelect.HoverBackColor = System.Drawing.Color.Empty;
-            this.butSelect.Location = new System.Drawing.Point(334, 9);
+            this.butSelect.Location = new System.Drawing.Point(16, 10);
             this.butSelect.Name = "butSelect";
             this.butSelect.Size = new System.Drawing.Size(75, 30);
             this.butSelect.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -214,7 +167,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnAdd.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnAdd.Location = new System.Drawing.Point(419, 9);
+            this.btnAdd.Location = new System.Drawing.Point(101, 10);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -235,7 +188,7 @@
             // teName
             // 
             this.dcClinc.SetDataMember(this.teName, "name");
-            this.teName.Location = new System.Drawing.Point(84, 30);
+            this.teName.Location = new System.Drawing.Point(84, 71);
             this.teName.Name = "teName";
             this.teName.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teName.Properties.Appearance.Options.UseFont = true;
@@ -246,7 +199,7 @@
             // teID
             // 
             this.dcClinc.SetDataMember(this.teID, "code");
-            this.teID.Location = new System.Drawing.Point(84, 73);
+            this.teID.Location = new System.Drawing.Point(84, 114);
             this.teID.Name = "teID";
             this.teID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teID.Properties.Appearance.Options.UseFont = true;
@@ -280,6 +233,45 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "禁用")});
             this.radioGroup2.Size = new System.Drawing.Size(300, 30);
             this.radioGroup2.TabIndex = 123;
+            // 
+            // treeWKe
+            // 
+            this.dcClinc.SetDataMember(this.treeWKe, "deptId");
+            this.treeWKe.EditValue = "";
+            this.treeWKe.Location = new System.Drawing.Point(84, 29);
+            this.treeWKe.Name = "treeWKe";
+            this.treeWKe.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeWKe.Properties.Appearance.Options.UseFont = true;
+            this.treeWKe.Properties.AutoHeight = false;
+            this.treeWKe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.treeWKe.Properties.NullText = "";
+            this.treeWKe.Properties.TreeList = this.treeList1;
+            this.treeWKe.Size = new System.Drawing.Size(300, 29);
+            this.treeWKe.TabIndex = 126;
+            // 
+            // treeList1
+            // 
+            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn1});
+            this.treeList1.Location = new System.Drawing.Point(247, -27);
+            this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsBehavior.EnableFiltering = true;
+            this.treeList1.OptionsView.ShowIndentAsRowStyle = true;
+            this.treeList1.Size = new System.Drawing.Size(566, 200);
+            this.treeList1.TabIndex = 0;
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListColumn1.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListColumn1.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn1.Caption = "科室列表";
+            this.treeListColumn1.FieldName = "name";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 0;
             // 
             // groupBox1
             // 
@@ -489,6 +481,7 @@
             // groupBox3
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox3, 2);
+            this.groupBox3.Controls.Add(this.treeWKe);
             this.groupBox3.Controls.Add(this.radioGroup2);
             this.groupBox3.Controls.Add(this.teType);
             this.groupBox3.Controls.Add(this.label6);
@@ -496,6 +489,7 @@
             this.groupBox3.Controls.Add(this.teID);
             this.groupBox3.Controls.Add(this.teName);
             this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.butClose);
             this.groupBox3.Controls.Add(this.butContronl);
@@ -535,17 +529,27 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(28, 77);
+            this.label3.Location = new System.Drawing.Point(28, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 20);
             this.label3.TabIndex = 121;
             this.label3.Text = "诊室号：";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(14, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 20);
+            this.label5.TabIndex = 120;
+            this.label5.Text = "所属科室：";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(14, 34);
+            this.label2.Location = new System.Drawing.Point(14, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 20);
             this.label2.TabIndex = 120;
@@ -569,9 +573,9 @@
             this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
-            this.butContronl.Location = new System.Drawing.Point(460, 109);
+            this.butContronl.Location = new System.Drawing.Point(460, 114);
             this.butContronl.Name = "butContronl";
-            this.butContronl.Size = new System.Drawing.Size(75, 30);
+            this.butContronl.Size = new System.Drawing.Size(75, 28);
             this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.butContronl.TabIndex = 116;
             this.butContronl.Text = "保存";
@@ -644,13 +648,13 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
-            this.borderPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeWKe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_Clinic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Clinic)).EndInit();
@@ -673,11 +677,7 @@
         private Xr.Common.Controls.ButtonControl btnDel;
         private Xr.Common.Controls.ButtonControl btnSave;
         private Xr.Common.Controls.ButtonControl btnAdd;
-        private System.Windows.Forms.Label label4;
-        private DevExpress.XtraEditors.TextEdit teCode;
         private Xr.Common.Controls.ButtonControl butSelect;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
         private Xr.Common.Controls.DataController dcClinc;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraGrid.GridControl gc_Clinic;
@@ -709,5 +709,10 @@
         private Xr.Common.Controls.PageControl pageControl1;
         private Xr.Common.Controls.MenuControl menuControl1;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label5;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeWKe;
+        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+       //private Xr.Common.Controls.GroupBorderPanel groupBox4;
     }
 }

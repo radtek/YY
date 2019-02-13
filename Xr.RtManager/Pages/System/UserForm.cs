@@ -28,11 +28,11 @@ namespace Xr.RtManager
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(243, 243, 243);
+            //this.BackColor = Color.FromArgb(243, 243, 243);
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             // 弹出加载提示框
             //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
-            cmd.ShowOpaqueLayer(225, true);
+            cmd.ShowOpaqueLayer(225, false);
             // 开始异步
             BackgroundWorkerUtil.start_run(bw_DoWork, bw_RunWorkerCompleted, null, false);
 
@@ -42,7 +42,7 @@ namespace Xr.RtManager
         {
             try
             {
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(2000);
                 String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
                 e.Result = HttpClass.httpPost(url);
             }
@@ -158,6 +158,8 @@ namespace Xr.RtManager
             var edit = new UserEdit();
             if (edit.ShowDialog() == DialogResult.OK)
             {
+                Thread.Sleep(300);
+                cmd.ShowOpaqueLayer(255, true);
                 SearchData(1, pageControl1.PageSize);
                 MessageBoxUtils.Hint("保存成功!");
             }
@@ -173,8 +175,10 @@ namespace Xr.RtManager
             edit.Text = "用户修改";
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("修改用户成功!");
+                Thread.Sleep(300);
+                cmd.ShowOpaqueLayer(255, true);
                 SearchData(1, pageControl1.PageSize);
+                MessageBoxUtils.Hint("修改用户成功!");
             }
         }
 
@@ -193,8 +197,8 @@ namespace Xr.RtManager
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("删除用户成功!");
                     SearchData(1, pageControl1.PageSize);
+                    MessageBoxUtils.Hint("删除用户成功!");
                 }
                 else
                 {
@@ -245,6 +249,7 @@ namespace Xr.RtManager
 
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
+            cmd.ShowOpaqueLayer(225, true);
             SearchData(CurrentPage, PageSize);
         }
     }

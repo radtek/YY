@@ -25,7 +25,9 @@ namespace Xr.RtManager
         [Required]
         [ObjectPoint("hospital.id")]
         public String hospitalId { get { return AppContext.Session.hospitalId; } }
+        [Required]
         public String type { get; set; }
+        [Required]
         public String content { get; set; }
     }
 }

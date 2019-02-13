@@ -10,11 +10,16 @@ namespace Xr.Common.Controls
     {
         Control Control;
         private bool _IsWaitingBoxCreated = false;
+        private float _alpha = 0f;
+        private String _text = "请稍候...";
         public OpaqueCommand(Control control)
         {
             Control = control;
         }
-
+        /// <summary>
+        /// 是否显示透明背景
+        /// </summary>
+        bool IsShowtransparencyBG;
         /// <summary>
         /// 显示的等待框
         /// </summary>
@@ -25,11 +30,50 @@ namespace Xr.Common.Controls
         /// <param name="control">控件</param>
         /// <param name="alpha">透明度</param>
         /// <param name="isShowLoadingImage">是否显示图标</param>
-        public void ShowOpaqueLayer(int alpha, bool isShowLoadingImage)
+        public void ShowOpaqueLayer(int alpha, bool isShowtransparencyBG)
         {
+            IsShowtransparencyBG = isShowtransparencyBG;
+            _alpha = 0.56f;
             CreateWaitingBox();
-
         }
+
+        /// <summary>
+        /// 显示遮罩层
+        /// </summary>
+        /// <param name="control">控件</param>
+        public void ShowOpaqueLayer()
+        {
+            _alpha = 0.56f;
+            CreateWaitingBox();
+        }
+
+        /// <summary>
+        /// 显示遮罩层
+        /// </summary>
+        /// <param name="control">控件</param>
+        /// <param name="alpha">透明度</param>
+        public void ShowOpaqueLayer(float alpha)
+        {
+
+            _alpha = alpha;
+            CreateWaitingBox();
+        }
+
+        /// <summary>
+        /// 显示遮罩层
+        /// </summary>
+        /// <param name="control">控件</param>
+        /// <param name="alpha">透明度</param>
+        /// <param name="text">显示内容</param>
+        public void ShowOpaqueLayer(float alpha, String text)
+        {
+
+            _alpha = alpha;
+            if(text!=null)
+                _text = text;
+            CreateWaitingBox();
+        }
+
         /// <summary>
         /// Creates the waiting box.
         /// </summary>
@@ -59,7 +103,7 @@ namespace Xr.Common.Controls
                     _Loading.AppearanceCaption.Options.UseFont = true;
                     _Loading.AppearanceDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
                     _Loading.AppearanceDescription.Options.UseFont = true;
-                    _Loading.Caption = "请稍候...";
+                    _Loading.Caption = _text;
                     _Loading.Description = "";
                     //_Loading.Dock = System.Windows.Forms.DockStyle.Fill;
                     _Loading.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -91,9 +135,21 @@ namespace Xr.Common.Controls
             waitingBox.Width = rect.Width;
             waitingBox.Height = rect.Height;
             waitingBox.Location = new Point(rect.X, rect.Y);
-            waitingBox.BackgroundImage = this.CreateBacgroundImage();
-            //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
-            waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
+            if (IsShowtransparencyBG)
+            {
+                
+                waitingBox.BackgroundImage = this.CreateBacgroundImage();
+                //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
+                waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            if (_alpha != 0f)
+            {
+                waitingBox.BackgroundImage = this.CreateBacgroundImage();
+                //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
+                waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+
+
             waitingBox.Visible = true;
             waitingBox.BringToFront();
             waitingBox.Focus();
@@ -122,7 +178,7 @@ namespace Xr.Common.Controls
 
                 using (Graphics g = Graphics.FromImage(img))
                 {
-                    GDIHelper.DrawImage(g, new Rectangle(0, 0, w, h), TempImg, 0.56F);
+                    GDIHelper.DrawImage(g, new Rectangle(0, 0, w, h), TempImg, _alpha);
                 }
 
                 return img;
@@ -143,6 +199,7 @@ namespace Xr.Common.Controls
         {
             if (this.waitingBox==null)
             {
+                Control.Enabled = true;
                 return;
             }
             else

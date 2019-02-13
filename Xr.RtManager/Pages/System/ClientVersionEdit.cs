@@ -12,11 +12,14 @@ using Xr.Http;
 using System.IO;
 using System.Net;
 using Xr.Common;
+using System.Threading;
 
 namespace Xr.RtManager
 {
     public partial class ClientVersionEdit : Form
     {
+        Xr.Common.Controls.OpaqueCommand cmd;
+
         public ClientVersionEdit()
         {
             InitializeComponent();
@@ -29,39 +32,57 @@ namespace Xr.RtManager
 
         private void ClientVersionEdit_Load(object sender, EventArgs e)
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
+            cmd.ShowOpaqueLayer(225, false);
+
             String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=client_version_type";
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                lueType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueType.Properties.DisplayMember = "label";
-                lueType.Properties.ValueMember = "value";
-                if (clientVersion == null) lueType.ItemIndex = 0;
-            }
-            else
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
-            dcClientVersion.DataType = typeof(ClientVersionEntity);
-            if (clientVersion != null)
-            {
-                data = HttpClass.httpPost(AppContext.AppConfig.serverUrl + "sys/clientVersion/get?id=" + clientVersion.id);
-                objT = JObject.Parse(data);
+                JObject objT = JObject.Parse(r.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    clientVersion = objT["result"].ToObject<ClientVersionEntity>();
-                    serviceFilePath = clientVersion.updateFilePath;
-                    String[] strArr = clientVersion.updateFilePath.Split(new char[] { '/' });
-                    dcClientVersion.SetValue(clientVersion);
-                    teFileName.Text = strArr[strArr.Length - 1];
+                    lueType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                    lueType.Properties.DisplayMember = "label";
+                    lueType.Properties.ValueMember = "value";
+                    lueType.ItemIndex = 0;
                 }
                 else
                 {
                     MessageBox.Show(objT["message"].ToString());
                     return;
                 }
+            });
+            
+            dcClientVersion.DataType = typeof(ClientVersionEntity);
+            if (clientVersion != null)
+            {
+                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                {
+                    String data = HttpClass.httpPost(AppContext.AppConfig.serverUrl + "sys/clientVersion/get?id=" + clientVersion.id);
+                    return data;
+
+                }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                {
+                    JObject objT = JObject.Parse(r.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        clientVersion = objT["result"].ToObject<ClientVersionEntity>();
+                        serviceFilePath = clientVersion.updateFilePath;
+                        String[] strArr = clientVersion.updateFilePath.Split(new char[] { '/' });
+                        dcClientVersion.SetValue(clientVersion);
+                        teFileName.Text = strArr[strArr.Length - 1];
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                        return;
+                    }
+                });
             }
             else
             {
@@ -84,16 +105,23 @@ namespace Xr.RtManager
             clientVersion.updateFilePath = serviceFilePath;
             String param = "?" + PackReflectionEntity<ClientVersionEntity>.GetEntityToRequestParameters(clientVersion);
             String url = AppContext.AppConfig.serverUrl + "sys/clientVersion/save" + param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                DialogResult = DialogResult.OK;
-            }
-            else
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-            }
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show(objT["message"].ToString());
+                }
+            });
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -136,23 +164,75 @@ namespace Xr.RtManager
                 model.FileContent = new FileStream(filePath, FileMode.Open);
                 lstPara.Add(model);
 
-                String data = HttpClass.PostForm(url, lstPara);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
-                    serviceFilePath = objT["result"][0].ToString();
-                    MessageBoxUtils.Hint("上传文件成功");
-                }
-                else
+                    String data = HttpClass.PostForm(url, lstPara);
+                    return data;
+
+                }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    MessageBox.Show(objT["message"].ToString());
-                    return;
-                }
+                    JObject objT = JObject.Parse(data.ToString());
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        serviceFilePath = objT["result"][0].ToString();
+                        MessageBoxUtils.Hint("上传文件成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show(objT["message"].ToString());
+                        return;
+                    }
+                });
             }
             else
             {
-                MessageBox.Show("请选折要上传的文件");
+                MessageBox.Show("请选择要上传的文件");
             }
         }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+                cmd.ShowOpaqueLayer(225, true);
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+                cmd.HideOpaqueLayer();
+
+                bgWorkder.Dispose();
+
+                if (workCompleted != null)
+                {
+                    workCompleted(arg.Result);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(500);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+
     }
 }

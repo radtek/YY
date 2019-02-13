@@ -34,105 +34,14 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.panScheduling = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel60 = new System.Windows.Forms.Panel();
-            this.textEdit47 = new DevExpress.XtraEditors.TextEdit();
-            this.panel68 = new System.Windows.Forms.Panel();
-            this.textEdit54 = new DevExpress.XtraEditors.TextEdit();
-            this.panel76 = new System.Windows.Forms.Panel();
-            this.textEdit57 = new DevExpress.XtraEditors.TextEdit();
-            this.panel80 = new System.Windows.Forms.Panel();
-            this.textEdit58 = new DevExpress.XtraEditors.TextEdit();
-            this.panel81 = new System.Windows.Forms.Panel();
-            this.textEdit59 = new DevExpress.XtraEditors.TextEdit();
-            this.panel82 = new System.Windows.Forms.Panel();
-            this.textEdit60 = new DevExpress.XtraEditors.TextEdit();
-            this.panel83 = new System.Windows.Forms.Panel();
-            this.textEdit61 = new DevExpress.XtraEditors.TextEdit();
-            this.panel84 = new System.Windows.Forms.Panel();
-            this.textEdit62 = new DevExpress.XtraEditors.TextEdit();
-            this.panel85 = new System.Windows.Forms.Panel();
-            this.textEdit63 = new DevExpress.XtraEditors.TextEdit();
-            this.panel86 = new System.Windows.Forms.Panel();
-            this.textEdit64 = new DevExpress.XtraEditors.TextEdit();
-            this.panel87 = new System.Windows.Forms.Panel();
-            this.textEdit65 = new DevExpress.XtraEditors.TextEdit();
-            this.panel88 = new System.Windows.Forms.Panel();
-            this.textEdit66 = new DevExpress.XtraEditors.TextEdit();
-            this.panel89 = new System.Windows.Forms.Panel();
-            this.textEdit67 = new DevExpress.XtraEditors.TextEdit();
-            this.panel90 = new System.Windows.Forms.Panel();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.panel91 = new System.Windows.Forms.Panel();
-            this.textEdit68 = new DevExpress.XtraEditors.TextEdit();
-            this.panel92 = new System.Windows.Forms.Panel();
-            this.textEdit69 = new DevExpress.XtraEditors.TextEdit();
-            this.panel93 = new System.Windows.Forms.Panel();
-            this.textEdit70 = new DevExpress.XtraEditors.TextEdit();
-            this.panel94 = new System.Windows.Forms.Panel();
-            this.textEdit71 = new DevExpress.XtraEditors.TextEdit();
-            this.panel95 = new System.Windows.Forms.Panel();
-            this.textEdit72 = new DevExpress.XtraEditors.TextEdit();
-            this.panel96 = new System.Windows.Forms.Panel();
-            this.textEdit73 = new DevExpress.XtraEditors.TextEdit();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.panel97 = new System.Windows.Forms.Panel();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel57 = new System.Windows.Forms.Panel();
-            this.textEdit37 = new DevExpress.XtraEditors.TextEdit();
-            this.panel58 = new System.Windows.Forms.Panel();
-            this.textEdit38 = new DevExpress.XtraEditors.TextEdit();
-            this.panel59 = new System.Windows.Forms.Panel();
-            this.textEdit39 = new DevExpress.XtraEditors.TextEdit();
-            this.panel61 = new System.Windows.Forms.Panel();
-            this.textEdit41 = new DevExpress.XtraEditors.TextEdit();
-            this.panel62 = new System.Windows.Forms.Panel();
-            this.textEdit42 = new DevExpress.XtraEditors.TextEdit();
-            this.panel63 = new System.Windows.Forms.Panel();
-            this.textEdit40 = new DevExpress.XtraEditors.TextEdit();
-            this.panel64 = new System.Windows.Forms.Panel();
-            this.textEdit43 = new DevExpress.XtraEditors.TextEdit();
-            this.panel65 = new System.Windows.Forms.Panel();
-            this.textEdit44 = new DevExpress.XtraEditors.TextEdit();
-            this.panel66 = new System.Windows.Forms.Panel();
-            this.textEdit45 = new DevExpress.XtraEditors.TextEdit();
-            this.panel67 = new System.Windows.Forms.Panel();
-            this.textEdit46 = new DevExpress.XtraEditors.TextEdit();
-            this.panel69 = new System.Windows.Forms.Panel();
-            this.textEdit48 = new DevExpress.XtraEditors.TextEdit();
-            this.panel70 = new System.Windows.Forms.Panel();
-            this.textEdit49 = new DevExpress.XtraEditors.TextEdit();
-            this.panel71 = new System.Windows.Forms.Panel();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.panel72 = new System.Windows.Forms.Panel();
-            this.textEdit50 = new DevExpress.XtraEditors.TextEdit();
-            this.panel73 = new System.Windows.Forms.Panel();
-            this.textEdit51 = new DevExpress.XtraEditors.TextEdit();
-            this.panel74 = new System.Windows.Forms.Panel();
-            this.textEdit52 = new DevExpress.XtraEditors.TextEdit();
-            this.panel75 = new System.Windows.Forms.Panel();
-            this.textEdit53 = new DevExpress.XtraEditors.TextEdit();
-            this.panel77 = new System.Windows.Forms.Panel();
-            this.textEdit55 = new DevExpress.XtraEditors.TextEdit();
-            this.panel78 = new System.Windows.Forms.Panel();
-            this.textEdit56 = new DevExpress.XtraEditors.TextEdit();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.panel79 = new System.Windows.Forms.Panel();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
             this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -205,10 +114,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
             this.cbMorning = new System.Windows.Forms.CheckBox();
-            this.panel27 = new System.Windows.Forms.Panel();
-            this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
             this.panel7 = new System.Windows.Forms.Panel();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -333,87 +242,7 @@
             this.panel15.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panScheduling.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.panel60.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit47.Properties)).BeginInit();
-            this.panel68.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit54.Properties)).BeginInit();
-            this.panel76.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit57.Properties)).BeginInit();
-            this.panel80.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit58.Properties)).BeginInit();
-            this.panel81.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit59.Properties)).BeginInit();
-            this.panel82.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit60.Properties)).BeginInit();
-            this.panel83.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit61.Properties)).BeginInit();
-            this.panel84.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit62.Properties)).BeginInit();
-            this.panel85.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit63.Properties)).BeginInit();
-            this.panel86.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit64.Properties)).BeginInit();
-            this.panel87.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit65.Properties)).BeginInit();
-            this.panel88.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit66.Properties)).BeginInit();
-            this.panel89.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit67.Properties)).BeginInit();
-            this.panel90.SuspendLayout();
-            this.panel91.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit68.Properties)).BeginInit();
-            this.panel92.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit69.Properties)).BeginInit();
-            this.panel93.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit70.Properties)).BeginInit();
-            this.panel94.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit71.Properties)).BeginInit();
-            this.panel95.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit72.Properties)).BeginInit();
-            this.panel96.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit73.Properties)).BeginInit();
-            this.panel97.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.panel57.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit37.Properties)).BeginInit();
-            this.panel58.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit38.Properties)).BeginInit();
-            this.panel59.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit39.Properties)).BeginInit();
-            this.panel61.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit41.Properties)).BeginInit();
-            this.panel62.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit42.Properties)).BeginInit();
-            this.panel63.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit40.Properties)).BeginInit();
-            this.panel64.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit43.Properties)).BeginInit();
-            this.panel65.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit44.Properties)).BeginInit();
-            this.panel66.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit45.Properties)).BeginInit();
-            this.panel67.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit46.Properties)).BeginInit();
-            this.panel69.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit48.Properties)).BeginInit();
-            this.panel70.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit49.Properties)).BeginInit();
-            this.panel71.SuspendLayout();
-            this.panel72.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit50.Properties)).BeginInit();
-            this.panel73.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit51.Properties)).BeginInit();
-            this.panel74.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit52.Properties)).BeginInit();
-            this.panel75.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit53.Properties)).BeginInit();
-            this.panel77.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit55.Properties)).BeginInit();
-            this.panel78.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit56.Properties)).BeginInit();
-            this.panel79.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.panelEx1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -474,9 +303,9 @@
             this.panel33.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teMStart.Properties)).BeginInit();
             this.panel29.SuspendLayout();
-            this.panel27.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            this.panel14.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -505,7 +334,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 460F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 410F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel15, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
@@ -525,7 +354,7 @@
             this.panel15.Location = new System.Drawing.Point(3, 3);
             this.panel15.Name = "panel15";
             this.panel15.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel15.Size = new System.Drawing.Size(454, 549);
+            this.panel15.Size = new System.Drawing.Size(404, 549);
             this.panel15.TabIndex = 68;
             // 
             // groupBox4
@@ -536,7 +365,7 @@
             this.groupBox4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox4.Location = new System.Drawing.Point(10, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(444, 549);
+            this.groupBox4.Size = new System.Drawing.Size(394, 549);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "默认出诊时间";
@@ -544,1221 +373,106 @@
             // panScheduling
             // 
             this.panScheduling.AutoScroll = true;
-            this.panScheduling.Controls.Add(this.groupBox5);
+            this.panScheduling.Controls.Add(this.tabControl1);
             this.panScheduling.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panScheduling.Location = new System.Drawing.Point(3, 181);
+            this.panScheduling.Location = new System.Drawing.Point(3, 221);
             this.panScheduling.Name = "panScheduling";
-            this.panScheduling.Size = new System.Drawing.Size(438, 365);
+            this.panScheduling.Size = new System.Drawing.Size(388, 325);
             this.panScheduling.TabIndex = 3;
             // 
-            // groupBox5
-            // 
-            this.groupBox5.AutoSize = true;
-            this.groupBox5.Controls.Add(this.tableLayoutPanel8);
-            this.groupBox5.Controls.Add(this.tableLayoutPanel5);
-            this.groupBox5.Location = new System.Drawing.Point(0, 0);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(416, 308);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "周一";
-            this.groupBox5.Visible = false;
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 7;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Controls.Add(this.panel60, 6, 3);
-            this.tableLayoutPanel8.Controls.Add(this.panel68, 5, 3);
-            this.tableLayoutPanel8.Controls.Add(this.panel76, 4, 3);
-            this.tableLayoutPanel8.Controls.Add(this.panel80, 3, 3);
-            this.tableLayoutPanel8.Controls.Add(this.panel81, 2, 3);
-            this.tableLayoutPanel8.Controls.Add(this.panel82, 1, 3);
-            this.tableLayoutPanel8.Controls.Add(this.panel83, 0, 3);
-            this.tableLayoutPanel8.Controls.Add(this.panel84, 6, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel85, 5, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel86, 4, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel87, 3, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel88, 2, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel89, 1, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel90, 0, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel91, 6, 1);
-            this.tableLayoutPanel8.Controls.Add(this.panel92, 5, 1);
-            this.tableLayoutPanel8.Controls.Add(this.panel93, 4, 1);
-            this.tableLayoutPanel8.Controls.Add(this.panel94, 3, 1);
-            this.tableLayoutPanel8.Controls.Add(this.panel95, 2, 1);
-            this.tableLayoutPanel8.Controls.Add(this.panel96, 1, 1);
-            this.tableLayoutPanel8.Controls.Add(this.label35, 6, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label39, 5, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label40, 4, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label41, 3, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label42, 2, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label43, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label44, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.panel97, 0, 1);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 157);
-            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 4;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(342, 130);
-            this.tableLayoutPanel8.TabIndex = 6;
-            // 
-            // panel60
-            // 
-            this.panel60.Controls.Add(this.textEdit47);
-            this.panel60.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel60.Location = new System.Drawing.Point(3, 133);
-            this.panel60.Name = "panel60";
-            this.panel60.Size = new System.Drawing.Size(56, 14);
-            this.panel60.TabIndex = 32;
-            // 
-            // textEdit47
-            // 
-            this.textEdit47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit47.EditValue = "30";
-            this.textEdit47.Location = new System.Drawing.Point(0, 0);
-            this.textEdit47.Name = "textEdit47";
-            this.textEdit47.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit47.Properties.Appearance.Options.UseFont = true;
-            this.textEdit47.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit47.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit47.Properties.AutoHeight = false;
-            this.textEdit47.Size = new System.Drawing.Size(56, 14);
-            this.textEdit47.TabIndex = 1;
-            // 
-            // panel68
-            // 
-            this.panel68.Controls.Add(this.textEdit54);
-            this.panel68.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel68.Location = new System.Drawing.Point(300, 103);
-            this.panel68.Name = "panel68";
-            this.panel68.Size = new System.Drawing.Size(39, 24);
-            this.panel68.TabIndex = 31;
-            // 
-            // textEdit54
-            // 
-            this.textEdit54.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit54.EditValue = "30";
-            this.textEdit54.Location = new System.Drawing.Point(0, 0);
-            this.textEdit54.Name = "textEdit54";
-            this.textEdit54.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit54.Properties.Appearance.Options.UseFont = true;
-            this.textEdit54.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit54.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit54.Properties.AutoHeight = false;
-            this.textEdit54.Size = new System.Drawing.Size(39, 24);
-            this.textEdit54.TabIndex = 1;
-            // 
-            // panel76
-            // 
-            this.panel76.Controls.Add(this.textEdit57);
-            this.panel76.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel76.Location = new System.Drawing.Point(255, 103);
-            this.panel76.Name = "panel76";
-            this.panel76.Size = new System.Drawing.Size(39, 24);
-            this.panel76.TabIndex = 30;
-            // 
-            // textEdit57
-            // 
-            this.textEdit57.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit57.EditValue = "30";
-            this.textEdit57.Location = new System.Drawing.Point(0, 0);
-            this.textEdit57.Name = "textEdit57";
-            this.textEdit57.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit57.Properties.Appearance.Options.UseFont = true;
-            this.textEdit57.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit57.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit57.Properties.AutoHeight = false;
-            this.textEdit57.Size = new System.Drawing.Size(39, 24);
-            this.textEdit57.TabIndex = 1;
-            // 
-            // panel80
-            // 
-            this.panel80.Controls.Add(this.textEdit58);
-            this.panel80.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel80.Location = new System.Drawing.Point(210, 103);
-            this.panel80.Name = "panel80";
-            this.panel80.Size = new System.Drawing.Size(39, 24);
-            this.panel80.TabIndex = 29;
-            // 
-            // textEdit58
-            // 
-            this.textEdit58.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit58.EditValue = "30";
-            this.textEdit58.Location = new System.Drawing.Point(0, 0);
-            this.textEdit58.Name = "textEdit58";
-            this.textEdit58.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit58.Properties.Appearance.Options.UseFont = true;
-            this.textEdit58.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit58.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit58.Properties.AutoHeight = false;
-            this.textEdit58.Size = new System.Drawing.Size(39, 24);
-            this.textEdit58.TabIndex = 1;
-            // 
-            // panel81
-            // 
-            this.panel81.Controls.Add(this.textEdit59);
-            this.panel81.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel81.Location = new System.Drawing.Point(165, 103);
-            this.panel81.Name = "panel81";
-            this.panel81.Size = new System.Drawing.Size(39, 24);
-            this.panel81.TabIndex = 27;
-            // 
-            // textEdit59
-            // 
-            this.textEdit59.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit59.EditValue = "30";
-            this.textEdit59.Location = new System.Drawing.Point(0, 0);
-            this.textEdit59.Name = "textEdit59";
-            this.textEdit59.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit59.Properties.Appearance.Options.UseFont = true;
-            this.textEdit59.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit59.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit59.Properties.AutoHeight = false;
-            this.textEdit59.Size = new System.Drawing.Size(39, 24);
-            this.textEdit59.TabIndex = 1;
-            // 
-            // panel82
-            // 
-            this.panel82.Controls.Add(this.textEdit60);
-            this.panel82.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel82.Location = new System.Drawing.Point(115, 103);
-            this.panel82.Name = "panel82";
-            this.panel82.Size = new System.Drawing.Size(44, 24);
-            this.panel82.TabIndex = 26;
-            // 
-            // textEdit60
-            // 
-            this.textEdit60.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit60.EditValue = "12:00";
-            this.textEdit60.Location = new System.Drawing.Point(0, 0);
-            this.textEdit60.Name = "textEdit60";
-            this.textEdit60.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit60.Properties.Appearance.Options.UseFont = true;
-            this.textEdit60.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit60.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit60.Properties.AutoHeight = false;
-            this.textEdit60.Size = new System.Drawing.Size(44, 24);
-            this.textEdit60.TabIndex = 1;
-            // 
-            // panel83
-            // 
-            this.panel83.Controls.Add(this.textEdit61);
-            this.panel83.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel83.Location = new System.Drawing.Point(65, 103);
-            this.panel83.Name = "panel83";
-            this.panel83.Size = new System.Drawing.Size(44, 24);
-            this.panel83.TabIndex = 25;
-            // 
-            // textEdit61
-            // 
-            this.textEdit61.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit61.EditValue = "12:00";
-            this.textEdit61.Location = new System.Drawing.Point(0, 0);
-            this.textEdit61.Name = "textEdit61";
-            this.textEdit61.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit61.Properties.Appearance.Options.UseFont = true;
-            this.textEdit61.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit61.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit61.Properties.AutoHeight = false;
-            this.textEdit61.Size = new System.Drawing.Size(44, 24);
-            this.textEdit61.TabIndex = 2;
-            // 
-            // panel84
-            // 
-            this.panel84.Controls.Add(this.textEdit62);
-            this.panel84.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel84.Location = new System.Drawing.Point(300, 73);
-            this.panel84.Name = "panel84";
-            this.panel84.Size = new System.Drawing.Size(39, 24);
-            this.panel84.TabIndex = 24;
-            // 
-            // textEdit62
-            // 
-            this.textEdit62.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit62.EditValue = "30";
-            this.textEdit62.Location = new System.Drawing.Point(0, 0);
-            this.textEdit62.Name = "textEdit62";
-            this.textEdit62.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit62.Properties.Appearance.Options.UseFont = true;
-            this.textEdit62.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit62.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit62.Properties.AutoHeight = false;
-            this.textEdit62.Size = new System.Drawing.Size(39, 24);
-            this.textEdit62.TabIndex = 1;
-            // 
-            // panel85
-            // 
-            this.panel85.Controls.Add(this.textEdit63);
-            this.panel85.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel85.Location = new System.Drawing.Point(255, 73);
-            this.panel85.Name = "panel85";
-            this.panel85.Size = new System.Drawing.Size(39, 24);
-            this.panel85.TabIndex = 23;
-            // 
-            // textEdit63
-            // 
-            this.textEdit63.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit63.EditValue = "30";
-            this.textEdit63.Location = new System.Drawing.Point(0, 0);
-            this.textEdit63.Name = "textEdit63";
-            this.textEdit63.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit63.Properties.Appearance.Options.UseFont = true;
-            this.textEdit63.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit63.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit63.Properties.AutoHeight = false;
-            this.textEdit63.Size = new System.Drawing.Size(39, 24);
-            this.textEdit63.TabIndex = 1;
-            // 
-            // panel86
-            // 
-            this.panel86.Controls.Add(this.textEdit64);
-            this.panel86.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel86.Location = new System.Drawing.Point(210, 73);
-            this.panel86.Name = "panel86";
-            this.panel86.Size = new System.Drawing.Size(39, 24);
-            this.panel86.TabIndex = 22;
-            // 
-            // textEdit64
-            // 
-            this.textEdit64.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit64.EditValue = "30";
-            this.textEdit64.Location = new System.Drawing.Point(0, 0);
-            this.textEdit64.Name = "textEdit64";
-            this.textEdit64.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit64.Properties.Appearance.Options.UseFont = true;
-            this.textEdit64.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit64.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit64.Properties.AutoHeight = false;
-            this.textEdit64.Size = new System.Drawing.Size(39, 24);
-            this.textEdit64.TabIndex = 1;
-            // 
-            // panel87
-            // 
-            this.panel87.Controls.Add(this.textEdit65);
-            this.panel87.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel87.Location = new System.Drawing.Point(165, 73);
-            this.panel87.Name = "panel87";
-            this.panel87.Size = new System.Drawing.Size(39, 24);
-            this.panel87.TabIndex = 21;
-            // 
-            // textEdit65
-            // 
-            this.textEdit65.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit65.EditValue = "30";
-            this.textEdit65.Location = new System.Drawing.Point(0, 0);
-            this.textEdit65.Name = "textEdit65";
-            this.textEdit65.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit65.Properties.Appearance.Options.UseFont = true;
-            this.textEdit65.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit65.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit65.Properties.AutoHeight = false;
-            this.textEdit65.Size = new System.Drawing.Size(39, 24);
-            this.textEdit65.TabIndex = 1;
-            // 
-            // panel88
-            // 
-            this.panel88.Controls.Add(this.textEdit66);
-            this.panel88.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel88.Location = new System.Drawing.Point(115, 73);
-            this.panel88.Name = "panel88";
-            this.panel88.Size = new System.Drawing.Size(44, 24);
-            this.panel88.TabIndex = 19;
-            // 
-            // textEdit66
-            // 
-            this.textEdit66.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit66.EditValue = "12:00";
-            this.textEdit66.Location = new System.Drawing.Point(0, 0);
-            this.textEdit66.Name = "textEdit66";
-            this.textEdit66.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit66.Properties.Appearance.Options.UseFont = true;
-            this.textEdit66.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit66.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit66.Properties.AutoHeight = false;
-            this.textEdit66.Size = new System.Drawing.Size(44, 24);
-            this.textEdit66.TabIndex = 1;
-            // 
-            // panel89
-            // 
-            this.panel89.Controls.Add(this.textEdit67);
-            this.panel89.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel89.Location = new System.Drawing.Point(65, 73);
-            this.panel89.Name = "panel89";
-            this.panel89.Size = new System.Drawing.Size(44, 24);
-            this.panel89.TabIndex = 18;
-            // 
-            // textEdit67
-            // 
-            this.textEdit67.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit67.EditValue = "12:00";
-            this.textEdit67.Location = new System.Drawing.Point(0, 0);
-            this.textEdit67.Name = "textEdit67";
-            this.textEdit67.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit67.Properties.Appearance.Options.UseFont = true;
-            this.textEdit67.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit67.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit67.Properties.AutoHeight = false;
-            this.textEdit67.Size = new System.Drawing.Size(44, 24);
-            this.textEdit67.TabIndex = 1;
-            // 
-            // panel90
-            // 
-            this.panel90.Controls.Add(this.checkBox5);
-            this.panel90.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel90.Location = new System.Drawing.Point(3, 73);
-            this.panel90.Name = "panel90";
-            this.tableLayoutPanel8.SetRowSpan(this.panel90, 2);
-            this.panel90.Size = new System.Drawing.Size(56, 54);
-            this.panel90.TabIndex = 17;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox5.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.checkBox5.Location = new System.Drawing.Point(0, 0);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(0);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(56, 54);
-            this.checkBox5.TabIndex = 1;
-            this.checkBox5.Text = "自动排班";
-            this.checkBox5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // panel91
-            // 
-            this.panel91.Controls.Add(this.textEdit68);
-            this.panel91.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel91.Location = new System.Drawing.Point(300, 43);
-            this.panel91.Name = "panel91";
-            this.panel91.Size = new System.Drawing.Size(39, 24);
-            this.panel91.TabIndex = 16;
-            // 
-            // textEdit68
-            // 
-            this.textEdit68.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit68.EditValue = "30";
-            this.textEdit68.Location = new System.Drawing.Point(0, 0);
-            this.textEdit68.Name = "textEdit68";
-            this.textEdit68.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit68.Properties.Appearance.Options.UseFont = true;
-            this.textEdit68.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit68.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit68.Properties.AutoHeight = false;
-            this.textEdit68.Size = new System.Drawing.Size(39, 24);
-            this.textEdit68.TabIndex = 1;
-            // 
-            // panel92
-            // 
-            this.panel92.Controls.Add(this.textEdit69);
-            this.panel92.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel92.Location = new System.Drawing.Point(255, 43);
-            this.panel92.Name = "panel92";
-            this.panel92.Size = new System.Drawing.Size(39, 24);
-            this.panel92.TabIndex = 15;
-            // 
-            // textEdit69
-            // 
-            this.textEdit69.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit69.EditValue = "30";
-            this.textEdit69.Location = new System.Drawing.Point(0, 0);
-            this.textEdit69.Name = "textEdit69";
-            this.textEdit69.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit69.Properties.Appearance.Options.UseFont = true;
-            this.textEdit69.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit69.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit69.Properties.AutoHeight = false;
-            this.textEdit69.Size = new System.Drawing.Size(39, 24);
-            this.textEdit69.TabIndex = 1;
-            // 
-            // panel93
-            // 
-            this.panel93.Controls.Add(this.textEdit70);
-            this.panel93.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel93.Location = new System.Drawing.Point(210, 43);
-            this.panel93.Name = "panel93";
-            this.panel93.Size = new System.Drawing.Size(39, 24);
-            this.panel93.TabIndex = 14;
-            // 
-            // textEdit70
-            // 
-            this.textEdit70.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit70.EditValue = "30";
-            this.textEdit70.Location = new System.Drawing.Point(0, 0);
-            this.textEdit70.Name = "textEdit70";
-            this.textEdit70.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit70.Properties.Appearance.Options.UseFont = true;
-            this.textEdit70.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit70.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit70.Properties.AutoHeight = false;
-            this.textEdit70.Size = new System.Drawing.Size(39, 24);
-            this.textEdit70.TabIndex = 1;
-            // 
-            // panel94
-            // 
-            this.panel94.Controls.Add(this.textEdit71);
-            this.panel94.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel94.Location = new System.Drawing.Point(165, 43);
-            this.panel94.Name = "panel94";
-            this.panel94.Size = new System.Drawing.Size(39, 24);
-            this.panel94.TabIndex = 13;
-            // 
-            // textEdit71
-            // 
-            this.textEdit71.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit71.EditValue = "30";
-            this.textEdit71.Location = new System.Drawing.Point(0, 0);
-            this.textEdit71.Name = "textEdit71";
-            this.textEdit71.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit71.Properties.Appearance.Options.UseFont = true;
-            this.textEdit71.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit71.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit71.Properties.AutoHeight = false;
-            this.textEdit71.Size = new System.Drawing.Size(39, 24);
-            this.textEdit71.TabIndex = 1;
-            // 
-            // panel95
-            // 
-            this.panel95.Controls.Add(this.textEdit72);
-            this.panel95.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel95.Location = new System.Drawing.Point(115, 43);
-            this.panel95.Name = "panel95";
-            this.panel95.Size = new System.Drawing.Size(44, 24);
-            this.panel95.TabIndex = 11;
-            // 
-            // textEdit72
-            // 
-            this.textEdit72.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit72.EditValue = "12:00";
-            this.textEdit72.Location = new System.Drawing.Point(0, 0);
-            this.textEdit72.Name = "textEdit72";
-            this.textEdit72.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit72.Properties.Appearance.Options.UseFont = true;
-            this.textEdit72.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit72.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit72.Properties.AutoHeight = false;
-            this.textEdit72.Size = new System.Drawing.Size(44, 24);
-            this.textEdit72.TabIndex = 1;
-            // 
-            // panel96
-            // 
-            this.panel96.Controls.Add(this.textEdit73);
-            this.panel96.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel96.Location = new System.Drawing.Point(65, 43);
-            this.panel96.Name = "panel96";
-            this.panel96.Size = new System.Drawing.Size(44, 24);
-            this.panel96.TabIndex = 10;
-            // 
-            // textEdit73
-            // 
-            this.textEdit73.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit73.EditValue = "8:00";
-            this.textEdit73.Location = new System.Drawing.Point(0, 0);
-            this.textEdit73.Name = "textEdit73";
-            this.textEdit73.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit73.Properties.Appearance.Options.UseFont = true;
-            this.textEdit73.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit73.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit73.Properties.AutoHeight = false;
-            this.textEdit73.Size = new System.Drawing.Size(44, 24);
-            this.textEdit73.TabIndex = 0;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label35.Location = new System.Drawing.Point(300, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(39, 40);
-            this.label35.TabIndex = 7;
-            this.label35.Text = "应急";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label39.Location = new System.Drawing.Point(255, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(39, 40);
-            this.label39.TabIndex = 6;
-            this.label39.Text = "诊间";
-            this.label39.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label40.Location = new System.Drawing.Point(210, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(39, 40);
-            this.label40.TabIndex = 5;
-            this.label40.Text = "公开";
-            this.label40.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label41.Location = new System.Drawing.Point(165, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(39, 40);
-            this.label41.TabIndex = 4;
-            this.label41.Text = "现场";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label42.Location = new System.Drawing.Point(115, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(44, 40);
-            this.label42.TabIndex = 2;
-            this.label42.Text = "结束";
-            this.label42.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label43.Location = new System.Drawing.Point(3, 0);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(56, 40);
-            this.label43.TabIndex = 1;
-            this.label43.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label44.Location = new System.Drawing.Point(65, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(44, 40);
-            this.label44.TabIndex = 0;
-            this.label44.Text = "开始";
-            this.label44.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // panel97
-            // 
-            this.panel97.Controls.Add(this.checkBox8);
-            this.panel97.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel97.Location = new System.Drawing.Point(3, 43);
-            this.panel97.Name = "panel97";
-            this.panel97.Size = new System.Drawing.Size(56, 24);
-            this.panel97.TabIndex = 9;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox8.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.checkBox8.Location = new System.Drawing.Point(0, 0);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(0);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(56, 24);
-            this.checkBox8.TabIndex = 0;
-            this.checkBox8.Text = "上午";
-            this.checkBox8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 7;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel5.Controls.Add(this.panel57, 5, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel58, 4, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel59, 3, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel61, 2, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel62, 1, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel63, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel64, 6, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel65, 5, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel66, 4, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel67, 3, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel69, 2, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel70, 1, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel71, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel72, 6, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel73, 5, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel74, 4, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel75, 3, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel77, 2, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel78, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.label31, 6, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label32, 5, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label33, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label34, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label36, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label37, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label38, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.panel79, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(1, 12);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(342, 120);
-            this.tableLayoutPanel5.TabIndex = 5;
-            // 
-            // panel57
-            // 
-            this.panel57.Controls.Add(this.textEdit37);
-            this.panel57.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel57.Location = new System.Drawing.Point(300, 93);
-            this.panel57.Name = "panel57";
-            this.panel57.Size = new System.Drawing.Size(39, 24);
-            this.panel57.TabIndex = 31;
-            // 
-            // textEdit37
-            // 
-            this.textEdit37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit37.EditValue = "30";
-            this.textEdit37.Location = new System.Drawing.Point(0, 0);
-            this.textEdit37.Name = "textEdit37";
-            this.textEdit37.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit37.Properties.Appearance.Options.UseFont = true;
-            this.textEdit37.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit37.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit37.Properties.AutoHeight = false;
-            this.textEdit37.Size = new System.Drawing.Size(39, 24);
-            this.textEdit37.TabIndex = 1;
-            // 
-            // panel58
-            // 
-            this.panel58.Controls.Add(this.textEdit38);
-            this.panel58.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel58.Location = new System.Drawing.Point(255, 93);
-            this.panel58.Name = "panel58";
-            this.panel58.Size = new System.Drawing.Size(39, 24);
-            this.panel58.TabIndex = 30;
-            // 
-            // textEdit38
-            // 
-            this.textEdit38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit38.EditValue = "30";
-            this.textEdit38.Location = new System.Drawing.Point(0, 0);
-            this.textEdit38.Name = "textEdit38";
-            this.textEdit38.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit38.Properties.Appearance.Options.UseFont = true;
-            this.textEdit38.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit38.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit38.Properties.AutoHeight = false;
-            this.textEdit38.Size = new System.Drawing.Size(39, 24);
-            this.textEdit38.TabIndex = 1;
-            // 
-            // panel59
-            // 
-            this.panel59.Controls.Add(this.textEdit39);
-            this.panel59.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel59.Location = new System.Drawing.Point(210, 93);
-            this.panel59.Name = "panel59";
-            this.panel59.Size = new System.Drawing.Size(39, 24);
-            this.panel59.TabIndex = 29;
-            // 
-            // textEdit39
-            // 
-            this.textEdit39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit39.EditValue = "30";
-            this.textEdit39.Location = new System.Drawing.Point(0, 0);
-            this.textEdit39.Name = "textEdit39";
-            this.textEdit39.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit39.Properties.Appearance.Options.UseFont = true;
-            this.textEdit39.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit39.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit39.Properties.AutoHeight = false;
-            this.textEdit39.Size = new System.Drawing.Size(39, 24);
-            this.textEdit39.TabIndex = 1;
-            // 
-            // panel61
-            // 
-            this.panel61.Controls.Add(this.textEdit41);
-            this.panel61.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel61.Location = new System.Drawing.Point(165, 93);
-            this.panel61.Name = "panel61";
-            this.panel61.Size = new System.Drawing.Size(39, 24);
-            this.panel61.TabIndex = 27;
-            // 
-            // textEdit41
-            // 
-            this.textEdit41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit41.EditValue = "30";
-            this.textEdit41.Location = new System.Drawing.Point(0, 0);
-            this.textEdit41.Name = "textEdit41";
-            this.textEdit41.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit41.Properties.Appearance.Options.UseFont = true;
-            this.textEdit41.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit41.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit41.Properties.AutoHeight = false;
-            this.textEdit41.Size = new System.Drawing.Size(39, 24);
-            this.textEdit41.TabIndex = 1;
-            // 
-            // panel62
-            // 
-            this.panel62.Controls.Add(this.textEdit42);
-            this.panel62.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel62.Location = new System.Drawing.Point(115, 93);
-            this.panel62.Name = "panel62";
-            this.panel62.Size = new System.Drawing.Size(44, 24);
-            this.panel62.TabIndex = 26;
-            // 
-            // textEdit42
-            // 
-            this.textEdit42.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit42.EditValue = "12:00";
-            this.textEdit42.Location = new System.Drawing.Point(0, 0);
-            this.textEdit42.Name = "textEdit42";
-            this.textEdit42.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit42.Properties.Appearance.Options.UseFont = true;
-            this.textEdit42.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit42.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit42.Properties.AutoHeight = false;
-            this.textEdit42.Size = new System.Drawing.Size(44, 24);
-            this.textEdit42.TabIndex = 1;
-            // 
-            // panel63
-            // 
-            this.panel63.Controls.Add(this.textEdit40);
-            this.panel63.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel63.Location = new System.Drawing.Point(65, 93);
-            this.panel63.Name = "panel63";
-            this.panel63.Size = new System.Drawing.Size(44, 24);
-            this.panel63.TabIndex = 25;
-            // 
-            // textEdit40
-            // 
-            this.textEdit40.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit40.EditValue = "12:00";
-            this.textEdit40.Location = new System.Drawing.Point(0, 0);
-            this.textEdit40.Name = "textEdit40";
-            this.textEdit40.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit40.Properties.Appearance.Options.UseFont = true;
-            this.textEdit40.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit40.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit40.Properties.AutoHeight = false;
-            this.textEdit40.Size = new System.Drawing.Size(44, 24);
-            this.textEdit40.TabIndex = 2;
-            // 
-            // panel64
-            // 
-            this.panel64.Controls.Add(this.textEdit43);
-            this.panel64.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel64.Location = new System.Drawing.Point(300, 63);
-            this.panel64.Name = "panel64";
-            this.panel64.Size = new System.Drawing.Size(39, 24);
-            this.panel64.TabIndex = 24;
-            // 
-            // textEdit43
-            // 
-            this.textEdit43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit43.EditValue = "30";
-            this.textEdit43.Location = new System.Drawing.Point(0, 0);
-            this.textEdit43.Name = "textEdit43";
-            this.textEdit43.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit43.Properties.Appearance.Options.UseFont = true;
-            this.textEdit43.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit43.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit43.Properties.AutoHeight = false;
-            this.textEdit43.Size = new System.Drawing.Size(39, 24);
-            this.textEdit43.TabIndex = 1;
-            // 
-            // panel65
-            // 
-            this.panel65.Controls.Add(this.textEdit44);
-            this.panel65.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel65.Location = new System.Drawing.Point(255, 63);
-            this.panel65.Name = "panel65";
-            this.panel65.Size = new System.Drawing.Size(39, 24);
-            this.panel65.TabIndex = 23;
-            // 
-            // textEdit44
-            // 
-            this.textEdit44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit44.EditValue = "30";
-            this.textEdit44.Location = new System.Drawing.Point(0, 0);
-            this.textEdit44.Name = "textEdit44";
-            this.textEdit44.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit44.Properties.Appearance.Options.UseFont = true;
-            this.textEdit44.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit44.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit44.Properties.AutoHeight = false;
-            this.textEdit44.Size = new System.Drawing.Size(39, 24);
-            this.textEdit44.TabIndex = 1;
-            // 
-            // panel66
-            // 
-            this.panel66.Controls.Add(this.textEdit45);
-            this.panel66.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel66.Location = new System.Drawing.Point(210, 63);
-            this.panel66.Name = "panel66";
-            this.panel66.Size = new System.Drawing.Size(39, 24);
-            this.panel66.TabIndex = 22;
-            // 
-            // textEdit45
-            // 
-            this.textEdit45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit45.EditValue = "30";
-            this.textEdit45.Location = new System.Drawing.Point(0, 0);
-            this.textEdit45.Name = "textEdit45";
-            this.textEdit45.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit45.Properties.Appearance.Options.UseFont = true;
-            this.textEdit45.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit45.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit45.Properties.AutoHeight = false;
-            this.textEdit45.Size = new System.Drawing.Size(39, 24);
-            this.textEdit45.TabIndex = 1;
-            // 
-            // panel67
-            // 
-            this.panel67.Controls.Add(this.textEdit46);
-            this.panel67.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel67.Location = new System.Drawing.Point(165, 63);
-            this.panel67.Name = "panel67";
-            this.panel67.Size = new System.Drawing.Size(39, 24);
-            this.panel67.TabIndex = 21;
-            // 
-            // textEdit46
-            // 
-            this.textEdit46.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit46.EditValue = "30";
-            this.textEdit46.Location = new System.Drawing.Point(0, 0);
-            this.textEdit46.Name = "textEdit46";
-            this.textEdit46.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit46.Properties.Appearance.Options.UseFont = true;
-            this.textEdit46.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit46.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit46.Properties.AutoHeight = false;
-            this.textEdit46.Size = new System.Drawing.Size(39, 24);
-            this.textEdit46.TabIndex = 1;
-            // 
-            // panel69
-            // 
-            this.panel69.Controls.Add(this.textEdit48);
-            this.panel69.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel69.Location = new System.Drawing.Point(115, 63);
-            this.panel69.Name = "panel69";
-            this.panel69.Size = new System.Drawing.Size(44, 24);
-            this.panel69.TabIndex = 19;
-            // 
-            // textEdit48
-            // 
-            this.textEdit48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit48.EditValue = "12:00";
-            this.textEdit48.Location = new System.Drawing.Point(0, 0);
-            this.textEdit48.Name = "textEdit48";
-            this.textEdit48.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit48.Properties.Appearance.Options.UseFont = true;
-            this.textEdit48.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit48.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit48.Properties.AutoHeight = false;
-            this.textEdit48.Size = new System.Drawing.Size(44, 24);
-            this.textEdit48.TabIndex = 1;
-            // 
-            // panel70
-            // 
-            this.panel70.Controls.Add(this.textEdit49);
-            this.panel70.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel70.Location = new System.Drawing.Point(65, 63);
-            this.panel70.Name = "panel70";
-            this.panel70.Size = new System.Drawing.Size(44, 24);
-            this.panel70.TabIndex = 18;
-            // 
-            // textEdit49
-            // 
-            this.textEdit49.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit49.EditValue = "12:00";
-            this.textEdit49.Location = new System.Drawing.Point(0, 0);
-            this.textEdit49.Name = "textEdit49";
-            this.textEdit49.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit49.Properties.Appearance.Options.UseFont = true;
-            this.textEdit49.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit49.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit49.Properties.AutoHeight = false;
-            this.textEdit49.Size = new System.Drawing.Size(44, 24);
-            this.textEdit49.TabIndex = 1;
-            // 
-            // panel71
-            // 
-            this.panel71.Controls.Add(this.checkBox6);
-            this.panel71.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel71.Location = new System.Drawing.Point(3, 63);
-            this.panel71.Name = "panel71";
-            this.tableLayoutPanel5.SetRowSpan(this.panel71, 2);
-            this.panel71.Size = new System.Drawing.Size(56, 54);
-            this.panel71.TabIndex = 17;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox6.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.checkBox6.Location = new System.Drawing.Point(0, 0);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(0);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(56, 54);
-            this.checkBox6.TabIndex = 1;
-            this.checkBox6.Text = "自动排班";
-            this.checkBox6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox6.UseVisualStyleBackColor = false;
-            // 
-            // panel72
-            // 
-            this.panel72.Controls.Add(this.textEdit50);
-            this.panel72.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel72.Location = new System.Drawing.Point(300, 33);
-            this.panel72.Name = "panel72";
-            this.panel72.Size = new System.Drawing.Size(39, 24);
-            this.panel72.TabIndex = 16;
-            // 
-            // textEdit50
-            // 
-            this.textEdit50.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit50.EditValue = "30";
-            this.textEdit50.Location = new System.Drawing.Point(0, 0);
-            this.textEdit50.Name = "textEdit50";
-            this.textEdit50.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit50.Properties.Appearance.Options.UseFont = true;
-            this.textEdit50.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit50.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit50.Properties.AutoHeight = false;
-            this.textEdit50.Size = new System.Drawing.Size(39, 24);
-            this.textEdit50.TabIndex = 1;
-            // 
-            // panel73
-            // 
-            this.panel73.Controls.Add(this.textEdit51);
-            this.panel73.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel73.Location = new System.Drawing.Point(255, 33);
-            this.panel73.Name = "panel73";
-            this.panel73.Size = new System.Drawing.Size(39, 24);
-            this.panel73.TabIndex = 15;
-            // 
-            // textEdit51
-            // 
-            this.textEdit51.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit51.EditValue = "30";
-            this.textEdit51.Location = new System.Drawing.Point(0, 0);
-            this.textEdit51.Name = "textEdit51";
-            this.textEdit51.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit51.Properties.Appearance.Options.UseFont = true;
-            this.textEdit51.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit51.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit51.Properties.AutoHeight = false;
-            this.textEdit51.Size = new System.Drawing.Size(39, 24);
-            this.textEdit51.TabIndex = 1;
-            // 
-            // panel74
-            // 
-            this.panel74.Controls.Add(this.textEdit52);
-            this.panel74.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel74.Location = new System.Drawing.Point(210, 33);
-            this.panel74.Name = "panel74";
-            this.panel74.Size = new System.Drawing.Size(39, 24);
-            this.panel74.TabIndex = 14;
-            // 
-            // textEdit52
-            // 
-            this.textEdit52.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit52.EditValue = "30";
-            this.textEdit52.Location = new System.Drawing.Point(0, 0);
-            this.textEdit52.Name = "textEdit52";
-            this.textEdit52.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit52.Properties.Appearance.Options.UseFont = true;
-            this.textEdit52.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit52.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit52.Properties.AutoHeight = false;
-            this.textEdit52.Size = new System.Drawing.Size(39, 24);
-            this.textEdit52.TabIndex = 1;
-            // 
-            // panel75
-            // 
-            this.panel75.Controls.Add(this.textEdit53);
-            this.panel75.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel75.Location = new System.Drawing.Point(165, 33);
-            this.panel75.Name = "panel75";
-            this.panel75.Size = new System.Drawing.Size(39, 24);
-            this.panel75.TabIndex = 13;
-            // 
-            // textEdit53
-            // 
-            this.textEdit53.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit53.EditValue = "30";
-            this.textEdit53.Location = new System.Drawing.Point(0, 0);
-            this.textEdit53.Name = "textEdit53";
-            this.textEdit53.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit53.Properties.Appearance.Options.UseFont = true;
-            this.textEdit53.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit53.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit53.Properties.AutoHeight = false;
-            this.textEdit53.Size = new System.Drawing.Size(39, 24);
-            this.textEdit53.TabIndex = 1;
-            // 
-            // panel77
-            // 
-            this.panel77.Controls.Add(this.textEdit55);
-            this.panel77.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel77.Location = new System.Drawing.Point(115, 33);
-            this.panel77.Name = "panel77";
-            this.panel77.Size = new System.Drawing.Size(44, 24);
-            this.panel77.TabIndex = 11;
-            // 
-            // textEdit55
-            // 
-            this.textEdit55.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit55.EditValue = "12:00";
-            this.textEdit55.Location = new System.Drawing.Point(0, 0);
-            this.textEdit55.Name = "textEdit55";
-            this.textEdit55.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit55.Properties.Appearance.Options.UseFont = true;
-            this.textEdit55.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit55.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit55.Properties.AutoHeight = false;
-            this.textEdit55.Size = new System.Drawing.Size(44, 24);
-            this.textEdit55.TabIndex = 1;
-            // 
-            // panel78
-            // 
-            this.panel78.Controls.Add(this.textEdit56);
-            this.panel78.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel78.Location = new System.Drawing.Point(65, 33);
-            this.panel78.Name = "panel78";
-            this.panel78.Size = new System.Drawing.Size(44, 24);
-            this.panel78.TabIndex = 10;
-            // 
-            // textEdit56
-            // 
-            this.textEdit56.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit56.EditValue = "8:00";
-            this.textEdit56.Location = new System.Drawing.Point(0, 0);
-            this.textEdit56.Name = "textEdit56";
-            this.textEdit56.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.textEdit56.Properties.Appearance.Options.UseFont = true;
-            this.textEdit56.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit56.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit56.Properties.AutoHeight = false;
-            this.textEdit56.Size = new System.Drawing.Size(44, 24);
-            this.textEdit56.TabIndex = 0;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label31.Location = new System.Drawing.Point(300, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(39, 30);
-            this.label31.TabIndex = 7;
-            this.label31.Text = "应急";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label32.Location = new System.Drawing.Point(255, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(39, 30);
-            this.label32.TabIndex = 6;
-            this.label32.Text = "诊间";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label33.Location = new System.Drawing.Point(210, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(39, 30);
-            this.label33.TabIndex = 5;
-            this.label33.Text = "公开";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label34.Location = new System.Drawing.Point(165, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(39, 30);
-            this.label34.TabIndex = 4;
-            this.label34.Text = "现场";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label36.Location = new System.Drawing.Point(115, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(44, 30);
-            this.label36.TabIndex = 2;
-            this.label36.Text = "结束";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label37.Location = new System.Drawing.Point(3, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(56, 30);
-            this.label37.TabIndex = 1;
-            this.label37.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label38.Location = new System.Drawing.Point(65, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(44, 30);
-            this.label38.TabIndex = 0;
-            this.label38.Text = "开始";
-            this.label38.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // panel79
-            // 
-            this.panel79.Controls.Add(this.checkBox7);
-            this.panel79.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel79.Location = new System.Drawing.Point(3, 33);
-            this.panel79.Name = "panel79";
-            this.panel79.Size = new System.Drawing.Size(56, 24);
-            this.panel79.TabIndex = 9;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox7.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.checkBox7.Location = new System.Drawing.Point(0, 0);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(0);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(56, 24);
-            this.checkBox7.TabIndex = 0;
-            this.checkBox7.Text = "上午";
-            this.checkBox7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox7.UseVisualStyleBackColor = true;
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(9, 3);
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(388, 325);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.AutoScroll = true;
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(380, 293);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "周一";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.AutoScroll = true;
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(380, 293);
+            this.tabPage2.TabIndex = 6;
+            this.tabPage2.Text = "周二";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.AutoScroll = true;
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(380, 293);
+            this.tabPage3.TabIndex = 5;
+            this.tabPage3.Text = "周三";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.AutoScroll = true;
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(380, 293);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "周四";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.AutoScroll = true;
+            this.tabPage5.Location = new System.Drawing.Point(4, 28);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(380, 293);
+            this.tabPage5.TabIndex = 3;
+            this.tabPage5.Text = "周五";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.AutoScroll = true;
+            this.tabPage6.Location = new System.Drawing.Point(4, 28);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(380, 293);
+            this.tabPage6.TabIndex = 2;
+            this.tabPage6.Text = "周六";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.AutoScroll = true;
+            this.tabPage7.Location = new System.Drawing.Point(4, 28);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(380, 293);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "周日";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // panelEx1
             // 
@@ -1773,12 +487,12 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(3, 21);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(438, 160);
+            this.panelEx1.Size = new System.Drawing.Size(388, 200);
             this.panelEx1.TabIndex = 2;
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 9;
+            this.tableLayoutPanel4.ColumnCount = 8;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
@@ -1787,7 +501,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.panel13, 7, 4);
             this.tableLayoutPanel4.Controls.Add(this.panel12, 6, 4);
             this.tableLayoutPanel4.Controls.Add(this.panel11, 5, 4);
@@ -1827,18 +541,19 @@
             this.tableLayoutPanel4.Controls.Add(this.label14, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label8, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel29, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.panel27, 8, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel7, 1, 4);
+            this.tableLayoutPanel4.Controls.Add(this.panel14, 0, 5);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 5;
+            this.tableLayoutPanel4.RowCount = 6;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(430, 160);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(387, 200);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // panel13
@@ -2668,30 +1383,6 @@
             this.cbMorning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbMorning.UseVisualStyleBackColor = true;
             // 
-            // panel27
-            // 
-            this.panel27.Controls.Add(this.buttonControl2);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel27.Location = new System.Drawing.Point(390, 3);
-            this.panel27.Name = "panel27";
-            this.tableLayoutPanel4.SetRowSpan(this.panel27, 5);
-            this.panel27.Size = new System.Drawing.Size(37, 154);
-            this.panel27.TabIndex = 33;
-            // 
-            // buttonControl2
-            // 
-            this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.buttonControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(0, 0);
-            this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(37, 154);
-            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
-            this.buttonControl2.TabIndex = 0;
-            this.buttonControl2.Text = "更新";
-            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
-            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.textEdit1);
@@ -2716,16 +1407,40 @@
             this.textEdit1.Size = new System.Drawing.Size(44, 24);
             this.textEdit1.TabIndex = 2;
             // 
+            // panel14
+            // 
+            this.tableLayoutPanel4.SetColumnSpan(this.panel14, 8);
+            this.panel14.Controls.Add(this.buttonControl1);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel14.Location = new System.Drawing.Point(3, 163);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(381, 34);
+            this.panel14.TabIndex = 42;
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl1.Location = new System.Drawing.Point(0, 0);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(381, 34);
+            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl1.TabIndex = 1;
+            this.buttonControl1.Text = "更新";
+            this.buttonControl1.Click += new System.EventHandler(this.buttonControl2_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.borderPanel2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(463, 3);
+            this.panel2.Location = new System.Drawing.Point(413, 3);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.panel2.Size = new System.Drawing.Size(879, 549);
+            this.panel2.Size = new System.Drawing.Size(929, 549);
             this.panel2.TabIndex = 69;
             // 
             // groupBox2
@@ -2737,7 +1452,7 @@
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(869, 319);
+            this.groupBox2.Size = new System.Drawing.Size(919, 319);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "科室医生列表";
@@ -2751,15 +1466,16 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(128, 21);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(738, 295);
+            this.panel5.Size = new System.Drawing.Size(788, 295);
             this.panel5.TabIndex = 2;
             // 
             // gcDoctor
             // 
+            this.gcDoctor.Dock = System.Windows.Forms.DockStyle.Left;
             this.gcDoctor.Location = new System.Drawing.Point(0, 0);
             this.gcDoctor.MainView = this.bandedGridView1;
             this.gcDoctor.Name = "gcDoctor";
-            this.gcDoctor.Size = new System.Drawing.Size(1480, 291);
+            this.gcDoctor.Size = new System.Drawing.Size(1480, 278);
             this.gcDoctor.TabIndex = 51;
             this.gcDoctor.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridView1});
@@ -3579,7 +2295,7 @@
             this.borderPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel2.Location = new System.Drawing.Point(0, 319);
             this.borderPanel2.Name = "borderPanel2";
-            this.borderPanel2.Size = new System.Drawing.Size(869, 50);
+            this.borderPanel2.Size = new System.Drawing.Size(919, 50);
             this.borderPanel2.TabIndex = 2;
             // 
             // btnClear
@@ -3627,7 +2343,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(0, 369);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(869, 180);
+            this.groupBox1.Size = new System.Drawing.Size(919, 180);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "已选医生";
@@ -4011,100 +2727,12 @@
             this.Name = "VisitingTimeSettingsForm";
             this.Size = new System.Drawing.Size(1345, 615);
             this.Load += new System.EventHandler(this.DeptSettingsForm_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.VisitingTimeSettingsForm_Paint);
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.panScheduling.ResumeLayout(false);
-            this.panScheduling.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel8.PerformLayout();
-            this.panel60.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit47.Properties)).EndInit();
-            this.panel68.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit54.Properties)).EndInit();
-            this.panel76.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit57.Properties)).EndInit();
-            this.panel80.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit58.Properties)).EndInit();
-            this.panel81.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit59.Properties)).EndInit();
-            this.panel82.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit60.Properties)).EndInit();
-            this.panel83.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit61.Properties)).EndInit();
-            this.panel84.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit62.Properties)).EndInit();
-            this.panel85.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit63.Properties)).EndInit();
-            this.panel86.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit64.Properties)).EndInit();
-            this.panel87.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit65.Properties)).EndInit();
-            this.panel88.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit66.Properties)).EndInit();
-            this.panel89.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit67.Properties)).EndInit();
-            this.panel90.ResumeLayout(false);
-            this.panel90.PerformLayout();
-            this.panel91.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit68.Properties)).EndInit();
-            this.panel92.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit69.Properties)).EndInit();
-            this.panel93.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit70.Properties)).EndInit();
-            this.panel94.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit71.Properties)).EndInit();
-            this.panel95.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit72.Properties)).EndInit();
-            this.panel96.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit73.Properties)).EndInit();
-            this.panel97.ResumeLayout(false);
-            this.panel97.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
-            this.panel57.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit37.Properties)).EndInit();
-            this.panel58.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit38.Properties)).EndInit();
-            this.panel59.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit39.Properties)).EndInit();
-            this.panel61.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit41.Properties)).EndInit();
-            this.panel62.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit42.Properties)).EndInit();
-            this.panel63.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit40.Properties)).EndInit();
-            this.panel64.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit43.Properties)).EndInit();
-            this.panel65.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit44.Properties)).EndInit();
-            this.panel66.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit45.Properties)).EndInit();
-            this.panel67.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit46.Properties)).EndInit();
-            this.panel69.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit48.Properties)).EndInit();
-            this.panel70.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit49.Properties)).EndInit();
-            this.panel71.ResumeLayout(false);
-            this.panel71.PerformLayout();
-            this.panel72.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit50.Properties)).EndInit();
-            this.panel73.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit51.Properties)).EndInit();
-            this.panel74.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit52.Properties)).EndInit();
-            this.panel75.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit53.Properties)).EndInit();
-            this.panel77.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit55.Properties)).EndInit();
-            this.panel78.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit56.Properties)).EndInit();
-            this.panel79.ResumeLayout(false);
-            this.panel79.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -4170,9 +2798,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.teMStart.Properties)).EndInit();
             this.panel29.ResumeLayout(false);
             this.panel29.PerformLayout();
-            this.panel27.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            this.panel14.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -4204,105 +2832,6 @@
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Panel panScheduling;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Panel panel60;
-        private DevExpress.XtraEditors.TextEdit textEdit47;
-        private System.Windows.Forms.Panel panel68;
-        private DevExpress.XtraEditors.TextEdit textEdit54;
-        private System.Windows.Forms.Panel panel76;
-        private DevExpress.XtraEditors.TextEdit textEdit57;
-        private System.Windows.Forms.Panel panel80;
-        private DevExpress.XtraEditors.TextEdit textEdit58;
-        private System.Windows.Forms.Panel panel81;
-        private DevExpress.XtraEditors.TextEdit textEdit59;
-        private System.Windows.Forms.Panel panel82;
-        private DevExpress.XtraEditors.TextEdit textEdit60;
-        private System.Windows.Forms.Panel panel83;
-        private DevExpress.XtraEditors.TextEdit textEdit61;
-        private System.Windows.Forms.Panel panel84;
-        private DevExpress.XtraEditors.TextEdit textEdit62;
-        private System.Windows.Forms.Panel panel85;
-        private DevExpress.XtraEditors.TextEdit textEdit63;
-        private System.Windows.Forms.Panel panel86;
-        private DevExpress.XtraEditors.TextEdit textEdit64;
-        private System.Windows.Forms.Panel panel87;
-        private DevExpress.XtraEditors.TextEdit textEdit65;
-        private System.Windows.Forms.Panel panel88;
-        private DevExpress.XtraEditors.TextEdit textEdit66;
-        private System.Windows.Forms.Panel panel89;
-        private DevExpress.XtraEditors.TextEdit textEdit67;
-        private System.Windows.Forms.Panel panel90;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.Panel panel91;
-        private DevExpress.XtraEditors.TextEdit textEdit68;
-        private System.Windows.Forms.Panel panel92;
-        private DevExpress.XtraEditors.TextEdit textEdit69;
-        private System.Windows.Forms.Panel panel93;
-        private DevExpress.XtraEditors.TextEdit textEdit70;
-        private System.Windows.Forms.Panel panel94;
-        private DevExpress.XtraEditors.TextEdit textEdit71;
-        private System.Windows.Forms.Panel panel95;
-        private DevExpress.XtraEditors.TextEdit textEdit72;
-        private System.Windows.Forms.Panel panel96;
-        private DevExpress.XtraEditors.TextEdit textEdit73;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Panel panel97;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Panel panel57;
-        private DevExpress.XtraEditors.TextEdit textEdit37;
-        private System.Windows.Forms.Panel panel58;
-        private DevExpress.XtraEditors.TextEdit textEdit38;
-        private System.Windows.Forms.Panel panel59;
-        private DevExpress.XtraEditors.TextEdit textEdit39;
-        private System.Windows.Forms.Panel panel61;
-        private DevExpress.XtraEditors.TextEdit textEdit41;
-        private System.Windows.Forms.Panel panel62;
-        private DevExpress.XtraEditors.TextEdit textEdit42;
-        private System.Windows.Forms.Panel panel63;
-        private DevExpress.XtraEditors.TextEdit textEdit40;
-        private System.Windows.Forms.Panel panel64;
-        private DevExpress.XtraEditors.TextEdit textEdit43;
-        private System.Windows.Forms.Panel panel65;
-        private DevExpress.XtraEditors.TextEdit textEdit44;
-        private System.Windows.Forms.Panel panel66;
-        private DevExpress.XtraEditors.TextEdit textEdit45;
-        private System.Windows.Forms.Panel panel67;
-        private DevExpress.XtraEditors.TextEdit textEdit46;
-        private System.Windows.Forms.Panel panel69;
-        private DevExpress.XtraEditors.TextEdit textEdit48;
-        private System.Windows.Forms.Panel panel70;
-        private DevExpress.XtraEditors.TextEdit textEdit49;
-        private System.Windows.Forms.Panel panel71;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.Panel panel72;
-        private DevExpress.XtraEditors.TextEdit textEdit50;
-        private System.Windows.Forms.Panel panel73;
-        private DevExpress.XtraEditors.TextEdit textEdit51;
-        private System.Windows.Forms.Panel panel74;
-        private DevExpress.XtraEditors.TextEdit textEdit52;
-        private System.Windows.Forms.Panel panel75;
-        private DevExpress.XtraEditors.TextEdit textEdit53;
-        private System.Windows.Forms.Panel panel77;
-        private DevExpress.XtraEditors.TextEdit textEdit55;
-        private System.Windows.Forms.Panel panel78;
-        private DevExpress.XtraEditors.TextEdit textEdit56;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Panel panel79;
-        private System.Windows.Forms.CheckBox checkBox7;
         private Xr.Common.Controls.PanelEx panelEx1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel55;
@@ -4361,8 +2890,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.CheckBox cbMorning;
-        private System.Windows.Forms.Panel panel27;
-        private Xr.Common.Controls.ButtonControl buttonControl2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox2;
         private Xr.Common.Controls.MenuControl menuControl2;
@@ -4493,5 +3020,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn27;
         private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn28;
         private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn29;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Panel panel14;
+        private Xr.Common.Controls.ButtonControl buttonControl1;
     }
 }
