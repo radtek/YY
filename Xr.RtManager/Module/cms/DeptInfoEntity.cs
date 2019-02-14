@@ -137,5 +137,19 @@ namespace Xr.RtManager
         /// </summary>
         [IgnoreParam]
         public String updateDate { get; set; }
+
+        /// <summary>
+        /// 上级(父级)科室id(提供给科室列表使用)
+        /// </summary>
+        [IgnoreParam]
+        public String superiorId { 
+            get 
+            { 
+                if(parent!=null){
+                    return parent.id; 
+                }
+                return null;
+            } 
+        }
     }
 }

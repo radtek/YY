@@ -58,7 +58,7 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }
@@ -87,10 +87,8 @@ namespace Xr.RtManager
             var selectedRow = gridView1.GetFocusedRow() as ClientVersionEntity;
             if (selectedRow == null)
                 return;
-             MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-             DialogResult dr = MessageBox.Show("确定要删除吗?", "删除版本", messButton);
-
-             if (dr == DialogResult.OK)
+             if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, 
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
              {
                 cmd.ShowOpaqueLayer(225, true);
                 String param = "?id=" + selectedRow.id;
@@ -110,7 +108,7 @@ namespace Xr.RtManager
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
                 });
              }
@@ -126,10 +124,17 @@ namespace Xr.RtManager
             edit.Text = "版本修改";
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                Thread.Sleep(300);
-                cmd.ShowOpaqueLayer(255, true);
-                SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
                 MessageBoxUtils.Hint("修改成功!");
+                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                {
+                    Thread.Sleep(2700);
+                    return null;
+
+                }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                {
+                    cmd.ShowOpaqueLayer(255, true);
+                    SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                });
             }
         }
 

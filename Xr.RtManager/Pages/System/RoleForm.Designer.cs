@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcRole = new DevExpress.XtraGrid.GridControl();
@@ -41,6 +41,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.btnQuery = new Xr.Common.Controls.ButtonControl();
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl3 = new Xr.Common.Controls.ButtonControl();
@@ -105,6 +106,7 @@
             this.gvRole.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gvRole.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gvRole.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gvRole.ColumnPanelRowHeight = 30;
             this.gvRole.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
@@ -122,6 +124,7 @@
             this.gvRole.OptionsView.EnableAppearanceOddRow = true;
             this.gvRole.OptionsView.RowAutoHeight = true;
             this.gvRole.OptionsView.ShowGroupPanel = false;
+            this.gvRole.RowHeight = 30;
             // 
             // gridColumn1
             // 
@@ -134,6 +137,7 @@
             this.gridColumn2.Caption = "角色名称";
             this.gridColumn2.FieldName = "name";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
             // 
@@ -142,6 +146,7 @@
             this.gridColumn3.Caption = "归属机构";
             this.gridColumn3.FieldName = "officeName";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             // 
@@ -150,6 +155,7 @@
             this.gridColumn4.Caption = "数据范围";
             this.gridColumn4.FieldName = "dataScopeName";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 2;
             // 
@@ -164,12 +170,12 @@
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            serializableAppearanceObject1.ForeColor = System.Drawing.Color.SteelBlue;
-            serializableAppearanceObject1.Options.UseFont = true;
-            serializableAppearanceObject1.Options.UseForeColor = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            serializableAppearanceObject2.ForeColor = System.Drawing.Color.SteelBlue;
+            serializableAppearanceObject2.Options.UseFont = true;
+            serializableAppearanceObject2.Options.UseForeColor = true;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "分配", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "分配", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
@@ -188,6 +194,7 @@
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.btnQuery);
             this.borderPanel1.Controls.Add(this.buttonControl1);
             this.borderPanel1.Controls.Add(this.buttonControl2);
             this.borderPanel1.Controls.Add(this.buttonControl3);
@@ -204,12 +211,25 @@
             this.borderPanel1.Size = new System.Drawing.Size(877, 50);
             this.borderPanel1.TabIndex = 2;
             // 
+            // btnQuery
+            // 
+            this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnQuery.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnQuery.Location = new System.Drawing.Point(30, 10);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(75, 30);
+            this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.btnQuery.TabIndex = 74;
+            this.btnQuery.Text = "查询";
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
             // buttonControl1
             // 
             this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(210, 10);
+            this.buttonControl1.Location = new System.Drawing.Point(300, 10);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 30);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -222,10 +242,10 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(120, 10);
+            this.buttonControl2.Location = new System.Drawing.Point(210, 10);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl2.TabIndex = 4;
             this.buttonControl2.Text = "修改";
             this.buttonControl2.Click += new System.EventHandler(this.btnUp_Click);
@@ -235,10 +255,10 @@
             this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl3.Location = new System.Drawing.Point(30, 10);
+            this.buttonControl3.Location = new System.Drawing.Point(120, 10);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl3.TabIndex = 3;
             this.buttonControl3.Text = "新增";
             this.buttonControl3.Click += new System.EventHandler(this.btnAdd_Click);
@@ -281,6 +301,7 @@
         private Xr.Common.Controls.ButtonControl buttonControl1;
         private Xr.Common.Controls.ButtonControl buttonControl2;
         private Xr.Common.Controls.ButtonControl buttonControl3;
+        private Xr.Common.Controls.ButtonControl btnQuery;
 
     }
 }

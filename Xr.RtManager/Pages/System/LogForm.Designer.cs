@@ -46,13 +46,14 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.tbURL = new DevExpress.XtraEditors.TextEdit();
+            this.tbUserName = new DevExpress.XtraEditors.TextEdit();
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.deEnd = new DevExpress.XtraEditors.DateEdit();
             this.label6 = new System.Windows.Forms.Label();
             this.deStart = new DevExpress.XtraEditors.DateEdit();
             this.label5 = new System.Windows.Forms.Label();
-            this.tbUserName = new System.Windows.Forms.TextBox();
             this.treeOffice = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -62,7 +63,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbURL = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -72,6 +72,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbURL.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).BeginInit();
@@ -136,6 +138,7 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.ColumnPanelRowHeight = 30;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn7,
             this.gridColumn1,
@@ -157,6 +160,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 30;
             // 
             // gridColumn7
             // 
@@ -174,6 +178,7 @@
             this.gridColumn1.FieldName = "companyName";
             this.gridColumn1.MinWidth = 25;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -187,6 +192,7 @@
             this.gridColumn2.FieldName = "officeName";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
@@ -200,6 +206,7 @@
             this.gridColumn3.FieldName = "createByName";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
@@ -213,6 +220,7 @@
             this.gridColumn4.FieldName = "requestUri";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             // 
@@ -226,6 +234,7 @@
             this.gridColumn5.FieldName = "method";
             this.gridColumn5.MinWidth = 25;
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             // 
@@ -234,6 +243,7 @@
             this.gridColumn6.Caption = "操作者IP";
             this.gridColumn6.FieldName = "remoteAddr";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
             // 
@@ -242,6 +252,7 @@
             this.gridColumn8.Caption = "创建时间";
             this.gridColumn8.FieldName = "createDate";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 6;
             // 
@@ -295,19 +306,19 @@
             this.borderPanel1.Appearance.Options.UseBackColor = true;
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.tbURL);
+            this.borderPanel1.Controls.Add(this.tbUserName);
             this.borderPanel1.Controls.Add(this.buttonControl1);
             this.borderPanel1.Controls.Add(this.checkEdit1);
             this.borderPanel1.Controls.Add(this.deEnd);
             this.borderPanel1.Controls.Add(this.label6);
             this.borderPanel1.Controls.Add(this.deStart);
             this.borderPanel1.Controls.Add(this.label5);
-            this.borderPanel1.Controls.Add(this.tbUserName);
             this.borderPanel1.Controls.Add(this.treeOffice);
             this.borderPanel1.Controls.Add(this.treeCompany);
             this.borderPanel1.Controls.Add(this.label2);
             this.borderPanel1.Controls.Add(this.label4);
             this.borderPanel1.Controls.Add(this.label3);
-            this.borderPanel1.Controls.Add(this.tbURL);
             this.borderPanel1.Controls.Add(this.label1);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -321,6 +332,22 @@
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Size = new System.Drawing.Size(1319, 92);
             this.borderPanel1.TabIndex = 0;
+            // 
+            // tbURL
+            // 
+            this.tbURL.Location = new System.Drawing.Point(614, 54);
+            this.tbURL.Name = "tbURL";
+            this.tbURL.Properties.AutoHeight = false;
+            this.tbURL.Size = new System.Drawing.Size(146, 27);
+            this.tbURL.TabIndex = 102;
+            // 
+            // tbUserName
+            // 
+            this.tbUserName.Location = new System.Drawing.Point(614, 12);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Properties.AutoHeight = false;
+            this.tbUserName.Size = new System.Drawing.Size(146, 27);
+            this.tbUserName.TabIndex = 101;
             // 
             // buttonControl1
             // 
@@ -390,14 +417,6 @@
             this.label5.Size = new System.Drawing.Size(79, 19);
             this.label5.TabIndex = 95;
             this.label5.Text = "开始时间：";
-            // 
-            // tbUserName
-            // 
-            this.tbUserName.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbUserName.Location = new System.Drawing.Point(614, 12);
-            this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(146, 27);
-            this.tbUserName.TabIndex = 94;
             // 
             // treeOffice
             // 
@@ -505,14 +524,6 @@
             this.label3.TabIndex = 89;
             this.label3.Text = "URL：";
             // 
-            // tbURL
-            // 
-            this.tbURL.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbURL.Location = new System.Drawing.Point(614, 54);
-            this.tbURL.Name = "tbURL";
-            this.tbURL.Size = new System.Drawing.Size(146, 27);
-            this.tbURL.TabIndex = 88;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -541,6 +552,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbURL.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).EndInit();
@@ -579,7 +592,6 @@
         private System.Windows.Forms.Label label6;
         private DevExpress.XtraEditors.DateEdit deStart;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbUserName;
         private DevExpress.XtraEditors.TreeListLookUpEdit treeOffice;
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
@@ -589,8 +601,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbURL;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.TextEdit tbURL;
+        private DevExpress.XtraEditors.TextEdit tbUserName;
 
     }
 }

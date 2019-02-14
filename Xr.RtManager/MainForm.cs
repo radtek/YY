@@ -36,7 +36,7 @@ namespace Xr.RtManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             cmd = new Xr.Common.Controls.OpaqueCommand(this);
-            cmd.ShowOpaqueLayer(225, false);
+            cmd.ShowOpaqueLayer(0f);
             labBottomLeft.Text = AppContext.Session.deptName+" | "+AppContext.Session.name;
             this.timer1.Start();
 
@@ -68,8 +68,10 @@ namespace Xr.RtManager
 
             }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
+                //显示欢迎页
+                WelcomeForm form = new WelcomeForm();
+                AaddUserControl(form, "Welcome", "欢迎页");
                 cmd.HideOpaqueLayer();
-                
             });
             //AppContext.Session.waitControl = xtraTabControl1;
         }
@@ -95,7 +97,9 @@ namespace Xr.RtManager
             //当前选项头
             PanelEx panel22 = new PanelEx();
             panel22.BorderColor = borderColor;
+            panel22.BorderStyleTop = ButtonBorderStyle.None;
             panel22.BorderStyleLeft = ButtonBorderStyle.None;
+            panel22.BorderStyleRight = ButtonBorderStyle.None;
             panel22.Margin = new Padding(0, 0, 0, 0);
             panel22.Padding = new Padding(0,6,0,0);
             panel22.Height = MenuItemHeight;
@@ -144,6 +148,7 @@ namespace Xr.RtManager
                     panel25.BorderStyleTop = ButtonBorderStyle.None;
                     panel25.BorderStyleBottom = ButtonBorderStyle.None;
                     panel25.BorderStyleLeft = ButtonBorderStyle.None;
+                    panel25.BorderStyleRight = ButtonBorderStyle.None;
                     panel25.BackColor = Color.Transparent;
                     panel25.Height = MenuItemHeight;
                     panel25.Dock = DockStyle.Top;

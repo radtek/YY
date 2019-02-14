@@ -27,15 +27,15 @@ namespace Xr.Common
         private static readonly Pen[] BorderPens = new Pen[] {
             //new Pen(Color.FromArgb(226, 228, 230)),
             new Pen(Color.FromArgb(193, 198, 201)),            
-            //new Pen(Color.FromArgb(42, 131, 113))
-            new Pen(Color.FromArgb(193, 198, 201))
+            new Pen(Color.FromArgb(42, 131, 113))
+            //new Pen(Color.FromArgb(193, 198, 201))
         };
 
         private static readonly Brush cornerBrush1 = new SolidBrush(BorderPens[BorderPens.Length - 2].Color);    //边框圆角颜色1
         private static readonly Brush cornerBrush2 = new SolidBrush(BorderPens[BorderPens.Length - 1].Color);    //边框圆角颜色2
         private static readonly Brush CloseButtonHoverBrush = new SolidBrush(Color.FromArgb(231, 0, 0));         //关闭按钮悬停颜色
-        //private static readonly Brush TitleBrush = new SolidBrush(Color.FromArgb(42, 131, 113));                 //标题栏颜色 
-        private static readonly Brush TitleBrush = new SolidBrush(Color.FromArgb(159, 186, 214));                 //标题栏颜色 
+        private static readonly Brush TitleBrush = new SolidBrush(Color.FromArgb(42, 131, 113));                 //标题栏颜色 
+        //private static readonly Brush TitleBrush = new SolidBrush(Color.FromArgb(159, 186, 214));                 //标题栏颜色 
         private static readonly Font TitleFont = new Font("微软雅黑", 13, FontStyle.Bold, GraphicsUnit.Pixel);   //标题栏字体
 
         private Rectangle closeButtonRect = Rectangle.Empty;  //关闭按钮所在的区域

@@ -38,7 +38,7 @@ namespace Xr.Common.Controls
             this.webBrowserBody = new System.Windows.Forms.WebBrowser();
             this.toolStripToolBar = new System.Windows.Forms.ToolStrip();
             this.toolStripComboBoxName = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripComboBoxSize = new RichEditor.ToolStripComboBoxEx();
+            this.toolStripComboBoxSize = new Xr.Common.Controls.RichEditor.ToolStripComboBoxEx();
             this.toolStripButtonBold = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonItalic = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUnderline = new System.Windows.Forms.ToolStripButton();
@@ -67,10 +67,10 @@ namespace Xr.Common.Controls
             this.webBrowserBody.AllowWebBrowserDrop = false;
             this.webBrowserBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowserBody.IsWebBrowserContextMenuEnabled = false;
-            this.webBrowserBody.Location = new System.Drawing.Point(3, 28);
+            this.webBrowserBody.Location = new System.Drawing.Point(0, 25);
             this.webBrowserBody.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserBody.Name = "webBrowserBody";
-            this.webBrowserBody.Size = new System.Drawing.Size(558, 115);
+            this.webBrowserBody.Size = new System.Drawing.Size(564, 121);
             this.webBrowserBody.TabIndex = 0;
             this.webBrowserBody.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserBody_DocumentCompleted);
             this.webBrowserBody.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowserBody_PreviewKeyDown);
@@ -103,9 +103,9 @@ namespace Xr.Common.Controls
             this.toolStripButtonSourceCode,
             this.toolStripSplitButtonPreview});
             this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripToolBar.Location = new System.Drawing.Point(3, 3);
+            this.toolStripToolBar.Location = new System.Drawing.Point(0, 0);
             this.toolStripToolBar.Name = "toolStripToolBar";
-            this.toolStripToolBar.Size = new System.Drawing.Size(558, 25);
+            this.toolStripToolBar.Size = new System.Drawing.Size(564, 25);
             this.toolStripToolBar.TabIndex = 1;
             this.toolStripToolBar.Text = "Tool Bar";
             // 
@@ -308,13 +308,12 @@ namespace Xr.Common.Controls
             this.toolStripSplitButtonPreview.Text = "Ð§¹ûÔ¤ÀÀ";
             this.toolStripSplitButtonPreview.Click += new System.EventHandler(this.toolStripSplitButtonPreview_Click);
             // 
-            // TXHtmlEditor
+            // RichEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.webBrowserBody);
             this.Controls.Add(this.toolStripToolBar);
-            this.Name = "TXHtmlEditor";
-            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Name = "RichEditor";
             this.Size = new System.Drawing.Size(564, 146);
             this.toolStripToolBar.ResumeLayout(false);
             this.toolStripToolBar.PerformLayout();

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcHospitalInfo = new DevExpress.XtraGrid.GridControl();
@@ -44,7 +44,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -95,6 +95,7 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcHospitalInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -175,6 +176,7 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.ColumnPanelRowHeight = 30;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn8,
             this.gridColumn1,
@@ -186,6 +188,7 @@
             this.gridColumn7});
             this.gridView1.GridControl = this.gcHospitalInfo;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsCustomization.AllowFilter = false;
             this.gridView1.OptionsCustomization.AllowSort = false;
@@ -195,6 +198,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 30;
             // 
             // gridColumn8
             // 
@@ -307,16 +311,24 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.groupBox1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
+            this.groupBox1.CornerRadius.All = 5;
+            this.groupBox1.CornerRadius.BottomLeft = 5;
+            this.groupBox1.CornerRadius.BottomRight = 5;
+            this.groupBox1.CornerRadius.TopLeft = 5;
+            this.groupBox1.CornerRadius.TopRight = 5;
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Enabled = false;
-            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.FillColor1 = System.Drawing.Color.Transparent;
+            this.groupBox1.FillColor2 = System.Drawing.Color.Transparent;
+            this.groupBox1.GroupText = "信息编辑区";
             this.groupBox1.Location = new System.Drawing.Point(10, 254);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
             this.groupBox1.Size = new System.Drawing.Size(900, 190);
             this.groupBox1.TabIndex = 45;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "信息编辑区";
             // 
             // tableLayoutPanel2
             // 
@@ -328,11 +340,11 @@
             this.tableLayoutPanel2.Controls.Add(this.panel5, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel18, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 21);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 20);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(894, 166);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(900, 170);
             this.tableLayoutPanel2.TabIndex = 80;
             // 
             // tableLayoutPanel1
@@ -375,7 +387,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 160);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(834, 164);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -387,14 +399,14 @@
             this.tableLayoutPanel5.Controls.Add(this.buttonControl3, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.panel11, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(310, 35);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(311, 35);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel1.SetRowSpan(this.tableLayoutPanel5, 2);
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(101, 58);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(102, 58);
             this.tableLayoutPanel5.TabIndex = 27;
             // 
             // buttonControl2
@@ -403,7 +415,7 @@
             this.buttonControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(53, 32);
+            this.buttonControl2.Location = new System.Drawing.Point(54, 32);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(45, 23);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -417,7 +429,7 @@
             this.buttonControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl3.Location = new System.Drawing.Point(53, 3);
+            this.buttonControl3.Location = new System.Drawing.Point(54, 3);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(45, 23);
             this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -433,7 +445,7 @@
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.tableLayoutPanel5.SetRowSpan(this.panel11, 2);
-            this.panel11.Size = new System.Drawing.Size(44, 52);
+            this.panel11.Size = new System.Drawing.Size(45, 52);
             this.panel11.TabIndex = 93;
             // 
             // pbPicture
@@ -443,7 +455,7 @@
             this.pbPicture.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbPicture.Location = new System.Drawing.Point(8, 0);
             this.pbPicture.Name = "pbPicture";
-            this.pbPicture.Size = new System.Drawing.Size(36, 52);
+            this.pbPicture.Size = new System.Drawing.Size(37, 52);
             this.pbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPicture.TabIndex = 92;
             this.pbPicture.TabStop = false;
@@ -452,7 +464,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(210, 32);
+            this.label6.Location = new System.Drawing.Point(211, 32);
             this.label6.Name = "label6";
             this.tableLayoutPanel1.SetRowSpan(this.label6, 2);
             this.label6.Size = new System.Drawing.Size(94, 64);
@@ -467,7 +479,7 @@
             this.label9.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label9.Location = new System.Drawing.Point(3, 128);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(94, 32);
+            this.label9.Size = new System.Drawing.Size(94, 36);
             this.label9.TabIndex = 20;
             this.label9.Text = "简介:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -480,7 +492,7 @@
             this.panel15.Location = new System.Drawing.Point(103, 99);
             this.panel15.Name = "panel15";
             this.panel15.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.panel15.Size = new System.Drawing.Size(722, 26);
+            this.panel15.Size = new System.Drawing.Size(728, 26);
             this.panel15.TabIndex = 19;
             // 
             // textEdit6
@@ -492,7 +504,7 @@
             this.textEdit6.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit6.Properties.Appearance.Options.UseFont = true;
             this.textEdit6.Properties.AutoHeight = false;
-            this.textEdit6.Size = new System.Drawing.Size(719, 26);
+            this.textEdit6.Size = new System.Drawing.Size(725, 26);
             this.textEdit6.TabIndex = 0;
             // 
             // label8
@@ -512,7 +524,7 @@
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(624, 32);
+            this.label7.Location = new System.Drawing.Point(627, 32);
             this.label7.Name = "label7";
             this.tableLayoutPanel1.SetRowSpan(this.label7, 2);
             this.label7.Size = new System.Drawing.Size(94, 64);
@@ -524,10 +536,10 @@
             // 
             this.panel8.Controls.Add(this.lueHospitalType);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(724, 3);
+            this.panel8.Location = new System.Drawing.Point(727, 3);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new System.Windows.Forms.Padding(11, 0, 1, 0);
-            this.panel8.Size = new System.Drawing.Size(101, 26);
+            this.panel8.Size = new System.Drawing.Size(104, 26);
             this.panel8.TabIndex = 7;
             // 
             // lueHospitalType
@@ -549,15 +561,15 @@
             this.lueHospitalType.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueHospitalType.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueHospitalType.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.Options.UseFont = true;
             this.lueHospitalType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.lueHospitalType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "类型")});
             this.lueHospitalType.Properties.NullText = "";
-            this.lueHospitalType.Size = new System.Drawing.Size(89, 26);
+            this.lueHospitalType.Size = new System.Drawing.Size(92, 26);
             this.lueHospitalType.TabIndex = 96;
             // 
             // label4
@@ -565,7 +577,7 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(624, 0);
+            this.label4.Location = new System.Drawing.Point(627, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 32);
             this.label4.TabIndex = 6;
@@ -576,9 +588,9 @@
             // 
             this.panel7.Controls.Add(this.textEdit3);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(517, 3);
+            this.panel7.Location = new System.Drawing.Point(519, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(101, 26);
+            this.panel7.Size = new System.Drawing.Size(102, 26);
             this.panel7.TabIndex = 5;
             // 
             // textEdit3
@@ -590,7 +602,7 @@
             this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit3.Properties.Appearance.Options.UseFont = true;
             this.textEdit3.Properties.AutoHeight = false;
-            this.textEdit3.Size = new System.Drawing.Size(101, 26);
+            this.textEdit3.Size = new System.Drawing.Size(102, 26);
             this.textEdit3.TabIndex = 0;
             // 
             // label3
@@ -598,7 +610,7 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(417, 0);
+            this.label3.Location = new System.Drawing.Point(419, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 32);
             this.label3.TabIndex = 4;
@@ -609,10 +621,10 @@
             // 
             this.panel6.Controls.Add(this.textEdit2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(310, 3);
+            this.panel6.Location = new System.Drawing.Point(311, 3);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.panel6.Size = new System.Drawing.Size(101, 26);
+            this.panel6.Size = new System.Drawing.Size(102, 26);
             this.panel6.TabIndex = 3;
             // 
             // textEdit2
@@ -624,7 +636,7 @@
             this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit2.Properties.Appearance.Options.UseFont = true;
             this.textEdit2.Properties.AutoHeight = false;
-            this.textEdit2.Size = new System.Drawing.Size(98, 26);
+            this.textEdit2.Size = new System.Drawing.Size(99, 26);
             this.textEdit2.TabIndex = 0;
             // 
             // label2
@@ -632,7 +644,7 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(210, 0);
+            this.label2.Location = new System.Drawing.Point(211, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 32);
             this.label2.TabIndex = 2;
@@ -658,7 +670,7 @@
             this.panel9.Location = new System.Drawing.Point(103, 3);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.panel9.Size = new System.Drawing.Size(101, 26);
+            this.panel9.Size = new System.Drawing.Size(102, 26);
             this.panel9.TabIndex = 1;
             // 
             // textEdit1
@@ -670,7 +682,7 @@
             this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit1.Properties.Appearance.Options.UseFont = true;
             this.textEdit1.Properties.AutoHeight = false;
-            this.textEdit1.Size = new System.Drawing.Size(98, 26);
+            this.textEdit1.Size = new System.Drawing.Size(99, 26);
             this.textEdit1.TabIndex = 0;
             // 
             // panel17
@@ -681,7 +693,7 @@
             this.panel17.Location = new System.Drawing.Point(103, 131);
             this.panel17.Name = "panel17";
             this.panel17.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.panel17.Size = new System.Drawing.Size(722, 26);
+            this.panel17.Size = new System.Drawing.Size(728, 30);
             this.panel17.TabIndex = 21;
             // 
             // btnEdit
@@ -701,10 +713,10 @@
             // 
             this.panel20.Controls.Add(this.tableLayoutPanel4);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel20.Location = new System.Drawing.Point(724, 35);
+            this.panel20.Location = new System.Drawing.Point(727, 35);
             this.panel20.Name = "panel20";
             this.tableLayoutPanel1.SetRowSpan(this.panel20, 2);
-            this.panel20.Size = new System.Drawing.Size(101, 58);
+            this.panel20.Size = new System.Drawing.Size(104, 58);
             this.panel20.TabIndex = 23;
             // 
             // tableLayoutPanel4
@@ -719,7 +731,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(101, 58);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(104, 58);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // panel21
@@ -728,7 +740,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel21.Location = new System.Drawing.Point(3, 16);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(95, 26);
+            this.panel21.Size = new System.Drawing.Size(98, 26);
             this.panel21.TabIndex = 0;
             // 
             // lueIsUse
@@ -750,15 +762,15 @@
             this.lueIsUse.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIsUse.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueIsUse.Properties.AutoHeight = false;
-            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject2.Options.UseFont = true;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.Options.UseFont = true;
             this.lueIsUse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.lueIsUse.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
             this.lueIsUse.Properties.NullText = "";
-            this.lueIsUse.Size = new System.Drawing.Size(95, 26);
+            this.lueIsUse.Size = new System.Drawing.Size(98, 26);
             this.lueIsUse.TabIndex = 96;
             // 
             // label5
@@ -789,7 +801,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(101, 58);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(102, 58);
             this.tableLayoutPanel3.TabIndex = 25;
             // 
             // btnUpload
@@ -798,7 +810,7 @@
             this.btnUpload.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnUpload.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnUpload.Location = new System.Drawing.Point(53, 32);
+            this.btnUpload.Location = new System.Drawing.Point(54, 32);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(45, 23);
             this.btnUpload.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -812,7 +824,7 @@
             this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(53, 3);
+            this.buttonControl1.Location = new System.Drawing.Point(54, 3);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(45, 23);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -828,7 +840,7 @@
             this.panel10.Name = "panel10";
             this.panel10.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.tableLayoutPanel3.SetRowSpan(this.panel10, 2);
-            this.panel10.Size = new System.Drawing.Size(44, 52);
+            this.panel10.Size = new System.Drawing.Size(45, 52);
             this.panel10.TabIndex = 93;
             // 
             // pbLogo
@@ -838,7 +850,7 @@
             this.pbLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbLogo.Location = new System.Drawing.Point(8, 0);
             this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(36, 52);
+            this.pbLogo.Size = new System.Drawing.Size(37, 52);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbLogo.TabIndex = 91;
             this.pbLogo.TabStop = false;
@@ -848,15 +860,15 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(4, 160);
+            this.panel5.Size = new System.Drawing.Size(4, 164);
             this.panel5.TabIndex = 0;
             // 
             // panel18
             // 
             this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel18.Location = new System.Drawing.Point(847, 3);
+            this.panel18.Location = new System.Drawing.Point(853, 3);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(44, 160);
+            this.panel18.Size = new System.Drawing.Size(44, 164);
             this.panel18.TabIndex = 2;
             // 
             // panel1
@@ -954,6 +966,7 @@
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcHospitalInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -996,7 +1009,7 @@
         private Xr.Common.Controls.ButtonControl btnSave;
         private Xr.Common.Controls.ButtonControl btnAdd;
         private Xr.Common.Controls.DataController dcHospitalInfo;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private Xr.Common.Controls.GroupBorderPanel groupBox1;
         private Xr.Common.Controls.PageControl pageControl1;
         private DevExpress.XtraGrid.GridControl gcHospitalInfo;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;

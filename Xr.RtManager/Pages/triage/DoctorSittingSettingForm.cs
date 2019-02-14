@@ -16,9 +16,12 @@ namespace Xr.RtManager.Pages.triage
 {
     public partial class DoctorSittingSettingForm : UserControl
     {
+        Xr.Common.Controls.OpaqueCommand cmd;
         public DoctorSittingSettingForm()
         {
             InitializeComponent();
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(225, false);
             #region
             GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
             Doc = 0;
@@ -27,8 +30,8 @@ namespace Xr.RtManager.Pages.triage
             GetClinicList(AppContext.Session.hospitalId,AppContext.Session.deptId);
             this.beginDate.Text = DateTime.Now.ToString("yyy-MM-dd");
             this.endDate.Text = DateTime.Now.ToString("yyy-MM-dd");
-            //DoctorSittingSelect(1, pageControl1.PageSize, "2019-02-01", "2019-02-01");
             #endregion 
+            cmd.HideOpaqueLayer();
         }
         #region 医生坐诊分页查询
         /// <summary>
@@ -52,7 +55,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
@@ -83,7 +86,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
                 listoffice.Add(new TreeList { id = "", parentId = "", name = "全部科室" });
@@ -100,7 +103,7 @@ namespace Xr.RtManager.Pages.triage
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("获取科室错误信息："+ex.Message);
             }
         }
         #endregion 
@@ -146,13 +149,13 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("获取科室下面的医生错误信息："+ex.Message);
             }
         }
        
@@ -226,21 +229,6 @@ namespace Xr.RtManager.Pages.triage
         }
         #endregion 
         #region  获取诊室列表
-        #region 
-        public class Test
-        {
-            public String Department { get; set; }
-            public String Doctor { get; set; }
-            public String morning { get; set; }
-            public String mornings { get; set; }
-            public String afternoon { get; set; }
-            public String afternoons { get; set; }
-            public String DarkNight { get; set; }
-            public String DarkNights { get; set; }
-            public String AllDay { get; set; }
-            public String AllDays { get; set; }
-        }
-        #endregion 
         List<ClinicInfoEntity> clinicInfo;
         public void GetClinicList(string hospitalId, string deptId)
         {
@@ -266,7 +254,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
@@ -286,50 +274,9 @@ namespace Xr.RtManager.Pages.triage
             string deptId = treeListLookUpEdit2.EditValue.ToString();//科室ID
             if (!CheckInfo(AppContext.Session.hospitalId, doctorId, deptId, id, workDate, period))
             {
-                ((DevExpress.XtraEditors.LookUpEdit)sender).Text = "";
+                ((DevExpress.XtraEditors.LookUpEdit)sender).Text = "选择诊室";
             }
         }
-        #region 
-        //private void repositoryItemComboBox1_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    var i = ((DevExpress.XtraEditors.ComboBoxEdit)sender).SelectedItem;
-        //    string id = string.Join(",", from p in clinicInfo where p.name == i select p.id);
-        //    if (dateEdit3.Text.Trim() == "")
-        //    {
-        //        MessageBox.Show("请选择坐诊日期");
-        //        return;
-        //    }
-        //    #region
-        //    string period = "";
-        //    //switch (this.gv_VitalSignsInfo.FocusedColumn.Caption.ToString())//0 上午，1下午，2晚上，3全天
-        //    //{
-        //    //    case "上午":
-        //    //        period = "0";
-        //    //        break;
-        //    //    case "下午":
-        //    //        period = "1";
-        //    //        break;
-        //    //    case "晚上":
-        //    //        period = "2";
-        //    //        break;
-        //    //    case "全天":
-        //    //        period = "3";
-        //    //        break;
-        //    //}
-        //    if (treeListLookUpEdit2.Text.Trim() == "")
-        //    {
-        //        MessageBox.Show("请选择坐诊科室");
-        //        return;
-        //    }
-        //    #endregion
-        //    string doctorId = lookUpEdit1.EditValue.ToString();
-        //    string deptId = string.Join(",", from s in listoffice where s.name == treeListLookUpEdit2.Text.Trim() select s.id);
-        //    if (!CheckInfo(AppContext.Session.hospitalId, doctorId, deptId, id, dateEdit3.Text.Trim(), period))
-        //    {
-        //        ((DevExpress.XtraEditors.ComboBoxEdit)sender).Text = "";
-        //    }
-        //}
-        #endregion 
         #endregion
         #region 医生坐诊保存设置
         /// <summary>
@@ -341,113 +288,34 @@ namespace Xr.RtManager.Pages.triage
         {
             string deptId = treeListLookUpEdit2.EditValue.ToString();//科室ID
             string doctorId = lookUpEdit1.EditValue.ToString();//医生ID
-            /*
-             * [{"workDate":"2019-02-01", "values":[{"period":"0", "clinicId":"1"}, {"period":"1", "clinicId":"1"}, {"period":"2", "clinicId":"1"}]},{"workDate":"2019-02-02", "values":[{"period":"0", "clinicId":"1"}, {"period":"1", "clinicId":"1"}]},{"workDate":"2019-02-03", "values":[{"period":"0", "clinicId":"1"}]}]
-             */
-            SaveDoctorSetting(AppContext.Session.hospitalId, deptId, doctorId,"");
-            #region 
-            //string deptId = string.Join(",", from s in listoffice where s.name == treeListLookUpEdit2.Text.Trim() select s.id);
-            //string doctorId = string.Join(",", from sw in doctorInfoEntity where sw.name == lookUpEdit1.Text.Trim() select sw.id);
-            //string begiontime = this.dateEdit3.Text.Trim();
-            //string endtime = this.dateEdit4.Text.Trim();
-            //List<info> info = new List<info>();
-            //List<info> infos = new List<info>();
-            //List<OveradeJson> stra = new List<OveradeJson>();
-            //string LookTime = "";
-            //string clinicIds = "";
-            //for (int i = 2; i < gv_VitalSignsInfo.Columns.Count; i++)
-            //{
-            //    #region 时段
-            //    switch (i)//0 上午，1下午，2晚上，3全天
-            //    {
-            //        case 2:
-            //            LookTime = "0";
-            //            clinicIds = gv_VitalSignsInfo.GetRowCellValue(0, "morning").ToString();
-            //            break;
-            //        case 3:
-            //            LookTime = "1";
-            //            clinicIds = gv_VitalSignsInfo.GetRowCellValue(0, "afternoon").ToString();
-            //            break;
-            //        case 4:
-            //            LookTime = "2";
-            //            clinicIds = gv_VitalSignsInfo.GetRowCellValue(0, "DarkNight").ToString();
-            //            break;
-            //        case 5:
-            //            LookTime = "3";
-            //            clinicIds = gv_VitalSignsInfo.GetRowCellValue(0, "AllDay").ToString();
-            //            break;
-            //        case 6:
-            //            LookTime = "0";
-            //            clinicIds = gv_VitalSignsInfo.GetRowCellValue(0, "mornings").ToString();
-            //            break;
-            //        case 7:
-            //            LookTime = "1";
-            //            clinicIds = gv_VitalSignsInfo.GetRowCellValue(0, "afternoons").ToString();
-            //            break;
-            //        case 8:
-            //            LookTime = "2";
-            //            clinicIds = gv_VitalSignsInfo.GetRowCellValue(0, "DarkNights").ToString();
-            //            break;
-            //    }
-            //    #endregion 
-            //    #region
-            //    //var str = ((DevExpress.XtraEditors.ComboBoxEdit)sender).SelectedItem;
-            //    //string id = string.Join(",", from p in clinicInfo where p.name == str select p.id);
-            //    //string period = "";
-            //    //switch (this.gv_VitalSignsInfo.FocusedColumn.Caption.ToString())//0 上午，1下午，2晚上，3全天
-            //    //{
-            //    //    case "上午":
-            //    //        period = "0";
-            //    //        break;
-            //    //    case "下午":
-            //    //        period = "1";
-            //    //        break;
-            //    //    case "晚上":
-            //    //        period = "2";
-            //    //        break;
-            //    //    case "全天":
-            //    //        period = "3";
-            //    //        break;
-            //    //}
-            //    #endregion 
-            //    string a =string.Join(",", from g in clinicInfo where g.name == clinicIds select g.id);
-            //    //if (i >= 5)
-            //    //{
-            //    //    info.Add(new info() { period = LookTime, clinicId = a });
-            //    //}
-            //    //else
-            //    //{
-            //    //    infos.Add(new info() { period = LookTime, clinicId = a });
-            //    //}
-            //    //if (i == 5)
-            //    //{
-            //    //    stra.Add(new OveradeJson() { workDate = begiontime, values = info });
-            //    //}
-            //    //else if(i==8)
-            //    //{
-            //    //    stra.Add(new OveradeJson() { workDate = endtime, values = infos });
-            //    //}
-          //  }
-            //var str = ToJSON(stra);
-            //SaveDoctorSetting(AppContext.Session.hospitalId, deptId, doctorId,str);
-            #region
-            //Dictionary<string, string> dic = new Dictionary<string, string>();
-            //dic.Add("0", "0");
-            //dic.Add("1", "1");
-
-            //JObject[] jo = (from p in dic select new JObject { new JProperty("period", p.Key), new JProperty("clinicId", p.Value) }).ToArray<JObject>();
-            //string json = Newtonsoft.Json.JsonConvert.SerializeObject(jo);
-            // var str = new
-            // {
-            //     workDate = "1",
-            //     values = new {
-            //         period="1",
-            //         clinicId="1",
-            //     }
-            // };
-            //var a= SerializeObject(str);
-            #endregion
+            List<objJson> custcode = new List<objJson>();
+            List<OveradeJson> json = new List<OveradeJson>();
+            #region 获取列表的数据
+            for (int i = 0; i < this.gridView1.RowCount; i++)
+            {
+                objJson list = new objJson();
+                list.workDate = this.gridView1.GetRowCellValue(i, "workDate").ToString();
+                list.period = this.gridView1.GetRowCellValue(i, "period").ToString();
+                list.clinicId = this.gridView1.GetRowCellValue(i, "clinicId").ToString();
+                custcode.Add(list);
+            }
             #endregion 
+            #region 把列表的数据加入到List<T>中
+            foreach (var item in custcode)
+            {
+                OveradeJson oj = new OveradeJson();
+                info j = new info();
+                List<info> info = new List<info>();
+                j.clinicId = item.clinicId;
+                j.period = item.period;
+                info.Add(j);
+                oj.workDate = item.workDate;
+                oj.values = info;
+                json.Add(oj);
+            }
+            #endregion 
+            var asfvsf = Newtonsoft.Json.JsonConvert.SerializeObject(json);
+            SaveDoctorSetting(AppContext.Session.hospitalId, deptId, doctorId, asfvsf);
         }
         #region 保存医生坐诊
         /// <summary>
@@ -461,44 +329,29 @@ namespace Xr.RtManager.Pages.triage
         {
             try
             {
-                String url = AppContext.AppConfig.serverUrl + "sch/doctorSitting/saveSitting?hospitalId=" + hospitalId + "&deptId=" + deptId + "&doctorId=" + doctorId + "&sittingArray=" + sittingArray;
-                String data = HttpClass.httpPost(url);
+                String url = AppContext.AppConfig.serverUrl + "sch/doctorSitting/saveSitting?";
+                String param = "hospitalId=" + hospitalId + "&deptId=" + deptId + "&doctorId=" + doctorId + "&sittingArray=" + sittingArray;
+                String data = HttpClass.httpPost(url, param);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint(objT["message"].ToString());
                     DoctorSittingSelect(1, pageControl1.PageSize, DateTime.Now.ToString("yyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd"));
-                    //List<Test> li = new List<Test>();
-                    //li.Add(new Test { Department = "", Doctor = "", morning = "", mornings = "", DarkNight = "", DarkNights = "", afternoon = "", afternoons = "", AllDay = "" });
-                    // this.gc_VitalSignsInfo.DataSource = li;
+                    this.gcScheduled.DataSource = null;
+                    dateEdit4.Text = "";
+                    dateEdit3.Text = "";
+                    lookUpEdit1.Text = "";
+                    treeListLookUpEdit2.Text = "";
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
                 LogClass.WriteLog("保存医生坐诊设置错误信息：" + ex.Message);
             }
-        }
-        #endregion 
-        #region 将对象序列化成JSON格式字符串
-        /// <summary>
-        /// 将对象序列化成JSON格式字符串
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public string ToJSON(object obj)
-        {
-            //JsonSerializerSettings microsoftDateFormatSettings = new JsonSerializerSettings
-            //{
-            //    DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
-            //};
-            //return Newtonsoft.Json.JsonConvert.SerializeObject(obj,microsoftDateFormatSettings);
-            Newtonsoft.Json.Converters.IsoDateTimeConverter timeFormat = new Newtonsoft.Json.Converters.IsoDateTimeConverter();
-            timeFormat.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-            return Newtonsoft.Json.JsonConvert.SerializeObject(obj, timeFormat);
         }
         #endregion 
         #endregion
@@ -527,7 +380,7 @@ namespace Xr.RtManager.Pages.triage
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         Check = false;
                     }
                 }
@@ -551,12 +404,11 @@ namespace Xr.RtManager.Pages.triage
             {
                 if (CompanyDate(dateEdit3.Text.Trim(), DateTime.Now.ToString("yyy-MM-dd")))
                 {
-                    //gridBand3.Caption = "日期" + "(" + dateEdit3.Text.Trim() + ")";
                 }
                 else
                 {
-                    MessageBox.Show("选择的开始日期不能小于当前日期");
-                    dateEdit3.Text = "";//DateTime.Now.ToString("yyy-MM-dd");
+                    MessageBoxUtils.Show("选择的开始日期不能小于当前日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    dateEdit3.Text = "";
                 }
             }
         }
@@ -569,13 +421,9 @@ namespace Xr.RtManager.Pages.triage
         /// <param name="msg">返回信息</param>
         public bool CompanyDate(string dateStr1, string dateStr2)
         {
-            //将日期字符串转换为日期对象
             DateTime t1 = Convert.ToDateTime(dateStr1);
             DateTime t2 = Convert.ToDateTime(dateStr2);
-            //通过DateTIme.Compare()进行比较（）
             int compNum = DateTime.Compare(t1, t2);
-
-            //t1> t2
             if (compNum < 0)
             {
                 return false;
@@ -598,18 +446,18 @@ namespace Xr.RtManager.Pages.triage
             {
                 if (CompanyDate(dateEdit4.Text.Trim(), DateTime.Now.ToString("yyy-MM-dd")))
                 {
-                   // gridBand4.Caption = "日期" + "(" + dateEdit4.Text.Trim() + ")";
-                    DateTime d1 = Convert.ToDateTime(dateEdit3.Text.Trim());
-                    DateTime d2 = Convert.ToDateTime(dateEdit4.Text.Trim());
-                    DateTime d3 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d1.Year, d1.Month, d1.Day));
-                    DateTime d4 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d2.Year, d2.Month, d2.Day));
-                    int days = (d4 - d3).Days;//相隔的天数
-                    GetDoctorSittingClinic();
+                    //gridBand4.Caption = "日期" + "(" + dateEdit4.Text.Trim() + ")";
+                    //DateTime d1 = Convert.ToDateTime(dateEdit3.Text.Trim());
+                    //DateTime d2 = Convert.ToDateTime(dateEdit4.Text.Trim());
+                    //DateTime d3 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d1.Year, d1.Month, d1.Day));
+                    //DateTime d4 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d2.Year, d2.Month, d2.Day));
+                    //int days = (d4 - d3).Days;//相隔的天数
+                   // GetDoctorSittingClinic();
                 }
                 else
                 {
-                    MessageBox.Show("选择的结束日期不能小于当前日期");
-                    dateEdit4.Text = "";// DateTime.Now.ToString("yyy-MM-dd");
+                    MessageBoxUtils.Show("选择的结束日期不能小于当前日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    dateEdit4.Text = "";
                 }
             }
         }
@@ -637,7 +485,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     this.gcScheduled.DataSource = null;
                 }
             }
@@ -721,6 +569,12 @@ namespace Xr.RtManager.Pages.triage
         private void buttonControl3_Click(object sender, EventArgs e)
         {
             GetDoctorSittingClinic();
+        }
+        #endregion 
+        #region 分页跳转
+        private void pageControl1_Query(int CurrentPage, int PageSize)
+        {
+            DoctorSittingSelect(CurrentPage, PageSize, beginDate.Text.Trim(), endDate.Text.Trim());
         }
         #endregion 
     }

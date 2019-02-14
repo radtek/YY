@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            Xr.RtManager.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle2 = new Xr.RtManager.TTextBoxBorderRenderStyle();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            Xr.RtManager.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle1 = new Xr.RtManager.TTextBoxBorderRenderStyle();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelEx2 = new Xr.Common.Controls.PanelEx(this.components);
             this.gc_Article = new DevExpress.XtraGrid.GridControl();
@@ -129,13 +129,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.panelEx2);
             this.groupBox1.Controls.Add(this.panelEx1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 3);
+            this.groupBox1.Location = new System.Drawing.Point(11, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(293, 511);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 10);
+            this.groupBox1.Size = new System.Drawing.Size(282, 511);
             this.groupBox1.TabIndex = 53;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文章栏目";
@@ -151,10 +153,10 @@
             this.panelEx2.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.None;
             this.panelEx2.Controls.Add(this.gc_Article);
             this.panelEx2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx2.Location = new System.Drawing.Point(3, 71);
+            this.panelEx2.Location = new System.Drawing.Point(5, 73);
             this.panelEx2.Name = "panelEx2";
             this.panelEx2.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
-            this.panelEx2.Size = new System.Drawing.Size(287, 437);
+            this.panelEx2.Size = new System.Drawing.Size(272, 428);
             this.panelEx2.TabIndex = 1;
             // 
             // gc_Article
@@ -168,7 +170,7 @@
             this.gc_Article.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1,
             this.repositoryItemComboBox1});
-            this.gc_Article.Size = new System.Drawing.Size(266, 419);
+            this.gc_Article.Size = new System.Drawing.Size(251, 410);
             this.gc_Article.TabIndex = 50;
             this.gc_Article.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Article});
@@ -206,7 +208,7 @@
             this.gv_Article.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_Article.OptionsView.RowAutoHeight = true;
             this.gv_Article.OptionsView.ShowGroupPanel = false;
-            this.gv_Article.RowHeight = 25;
+            this.gv_Article.RowHeight = 30;
             this.gv_Article.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gv_Article_CustomColumnDisplayText);
             // 
             // gridColumn5
@@ -275,9 +277,9 @@
             this.panelEx1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.None;
             this.panelEx1.Controls.Add(this.borderPanel1);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx1.Location = new System.Drawing.Point(3, 21);
+            this.panelEx1.Location = new System.Drawing.Point(5, 23);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(287, 50);
+            this.panelEx1.Size = new System.Drawing.Size(272, 50);
             this.panelEx1.TabIndex = 0;
             // 
             // borderPanel1
@@ -300,7 +302,7 @@
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Padding = new System.Windows.Forms.Padding(10);
             this.borderPanel1.ScrollBarSmallChange = 4;
-            this.borderPanel1.Size = new System.Drawing.Size(266, 47);
+            this.borderPanel1.Size = new System.Drawing.Size(251, 47);
             this.borderPanel1.TabIndex = 51;
             // 
             // btnDel
@@ -344,14 +346,17 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.panelEx4);
             this.groupBox2.Controls.Add(this.panelEx3);
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(293, 3);
+            this.groupBox2.Location = new System.Drawing.Point(299, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(721, 511);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 10);
+            this.groupBox2.Size = new System.Drawing.Size(706, 511);
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "文章";
@@ -370,9 +375,9 @@
             this.panelEx4.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.None;
             this.panelEx4.Controls.Add(this.pageControl1);
             this.panelEx4.Controls.Add(this.gc_Atrlices);
-            this.panelEx4.Location = new System.Drawing.Point(3, 109);
+            this.panelEx4.Location = new System.Drawing.Point(5, 111);
             this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(715, 174);
+            this.panelEx4.Size = new System.Drawing.Size(696, 165);
             this.panelEx4.TabIndex = 56;
             // 
             // pageControl1
@@ -381,13 +386,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Font = new System.Drawing.Font("微软雅黑", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageControl1.Location = new System.Drawing.Point(8, 139);
+            this.pageControl1.Location = new System.Drawing.Point(8, 130);
             this.pageControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(700, 35);
+            this.pageControl1.Size = new System.Drawing.Size(681, 35);
             this.pageControl1.TabIndex = 51;
+            this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
             // gc_Atrlices
             // 
@@ -399,7 +405,7 @@
             this.gc_Atrlices.Name = "gc_Atrlices";
             this.gc_Atrlices.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox2});
-            this.gc_Atrlices.Size = new System.Drawing.Size(700, 125);
+            this.gc_Atrlices.Size = new System.Drawing.Size(681, 116);
             this.gc_Atrlices.TabIndex = 50;
             this.gc_Atrlices.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Atrlices});
@@ -439,7 +445,7 @@
             this.gv_Atrlices.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_Atrlices.OptionsView.RowAutoHeight = true;
             this.gv_Atrlices.OptionsView.ShowGroupPanel = false;
-            this.gv_Atrlices.RowHeight = 25;
+            this.gv_Atrlices.RowHeight = 30;
             this.gv_Atrlices.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gv_Atrlices_CustomColumnDisplayText);
             // 
             // gridColumn1
@@ -529,9 +535,9 @@
             this.panelEx3.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.None;
             this.panelEx3.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.None;
             this.panelEx3.Controls.Add(this.borderPanel2);
-            this.panelEx3.Location = new System.Drawing.Point(11, 24);
+            this.panelEx3.Location = new System.Drawing.Point(13, 26);
             this.panelEx3.Name = "panelEx3";
-            this.panelEx3.Size = new System.Drawing.Size(700, 85);
+            this.panelEx3.Size = new System.Drawing.Size(681, 85);
             this.panelEx3.TabIndex = 55;
             // 
             // borderPanel2
@@ -560,7 +566,7 @@
             this.borderPanel2.Location = new System.Drawing.Point(0, 0);
             this.borderPanel2.Name = "borderPanel2";
             this.borderPanel2.ScrollBarSmallChange = 4;
-            this.borderPanel2.Size = new System.Drawing.Size(700, 85);
+            this.borderPanel2.Size = new System.Drawing.Size(681, 85);
             this.borderPanel2.TabIndex = 52;
             // 
             // buttonControl4
@@ -645,10 +651,10 @@
             this.lueType.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueType.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueType.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject6.Options.UseFont = true;
             this.lueType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
             this.lueType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "分类")});
@@ -694,10 +700,10 @@
             this.luDoctords.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luDoctords.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.luDoctords.Properties.AutoHeight = false;
-            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject2.Options.UseFont = true;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.Options.UseFont = true;
             this.luDoctords.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.luDoctords.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "医生姓名")});
@@ -720,9 +726,9 @@
             // 
             // txtTitle
             // 
-            tTextBoxBorderRenderStyle1.LineColor = System.Drawing.Color.LightGray;
-            tTextBoxBorderRenderStyle1.LineWidth = 1F;
-            this.txtTitle.BorderRenderStyle = tTextBoxBorderRenderStyle1;
+            tTextBoxBorderRenderStyle2.LineColor = System.Drawing.Color.LightGray;
+            tTextBoxBorderRenderStyle2.LineWidth = 1F;
+            this.txtTitle.BorderRenderStyle = tTextBoxBorderRenderStyle2;
             this.txtTitle.Location = new System.Drawing.Point(416, 10);
             this.txtTitle.Multiline = true;
             this.txtTitle.Name = "txtTitle";
@@ -772,9 +778,9 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Enabled = false;
             this.groupBox3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox3.Location = new System.Drawing.Point(11, 291);
+            this.groupBox3.Location = new System.Drawing.Point(13, 284);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(700, 207);
+            this.groupBox3.Size = new System.Drawing.Size(681, 207);
             this.groupBox3.TabIndex = 54;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "编辑文章信息";
@@ -881,10 +887,10 @@
             this.lookUpEdit2.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEdit2.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lookUpEdit2.Properties.AutoHeight = false;
-            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject3.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lookUpEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "医生姓名")});
@@ -912,10 +918,10 @@
             this.luDoctor.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luDoctor.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.luDoctor.Properties.AutoHeight = false;
-            serializableAppearanceObject4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject4.Options.UseFont = true;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.Options.UseFont = true;
             this.luDoctor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.luDoctor.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "医生姓名")});
@@ -943,10 +949,10 @@
             this.lookUpEdit1.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEdit1.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lookUpEdit1.Properties.AutoHeight = false;
-            serializableAppearanceObject5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject5.Options.UseFont = true;
+            serializableAppearanceObject4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject4.Options.UseFont = true;
             this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "分类")});

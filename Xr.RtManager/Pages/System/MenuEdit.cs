@@ -10,6 +10,7 @@ using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Xr.Http;
 using System.Threading;
+using Xr.Common;
 
 namespace Xr.RtManager
 {
@@ -72,7 +73,7 @@ namespace Xr.RtManager
                                 else
                                 {
                                     cmd.HideOpaqueLayer();
-                                    MessageBox.Show(objT["message"].ToString());
+                                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                                 }
                             });
                         }
@@ -92,7 +93,7 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }
@@ -124,7 +125,7 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }
@@ -171,7 +172,7 @@ namespace Xr.RtManager
                 {
                     cmd.HideOpaqueLayer();
                     LogClass.WriteLog(ex.Message);
-                    MessageBox.Show(ex.Message);
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             };
 

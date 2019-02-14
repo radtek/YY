@@ -241,6 +241,7 @@
             this.cbAllAay.TabIndex = 3;
             this.cbAllAay.Text = "全天";
             this.cbAllAay.UseVisualStyleBackColor = true;
+            this.cbAllAay.CheckStateChanged += new System.EventHandler(this.cbAllAay_CheckStateChanged);
             // 
             // cbNight
             // 
@@ -252,6 +253,7 @@
             this.cbNight.TabIndex = 2;
             this.cbNight.Text = "晚上";
             this.cbNight.UseVisualStyleBackColor = true;
+            this.cbNight.CheckStateChanged += new System.EventHandler(this.cbNight_CheckStateChanged);
             // 
             // cbAfternoon
             // 
@@ -263,6 +265,7 @@
             this.cbAfternoon.TabIndex = 1;
             this.cbAfternoon.Text = "下午";
             this.cbAfternoon.UseVisualStyleBackColor = true;
+            this.cbAfternoon.CheckStateChanged += new System.EventHandler(this.cbAfternoon_CheckStateChanged);
             // 
             // cbMorning
             // 
@@ -274,6 +277,7 @@
             this.cbMorning.TabIndex = 0;
             this.cbMorning.Text = "上午";
             this.cbMorning.UseVisualStyleBackColor = true;
+            this.cbMorning.CheckStateChanged += new System.EventHandler(this.cbMorning_CheckStateChanged);
             // 
             // label5
             // 
@@ -376,6 +380,7 @@
             this.dateEdit1.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dateEdit1.Size = new System.Drawing.Size(244, 26);
             this.dateEdit1.TabIndex = 0;
+            this.dateEdit1.EditValueChanged += new System.EventHandler(this.dateEdit1_EditValueChanged);
             // 
             // label7
             // 
@@ -586,6 +591,7 @@
             this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnQuery.TabIndex = 77;
             this.btnQuery.Text = "查询";
+            this.btnQuery.Visible = false;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // btnSave

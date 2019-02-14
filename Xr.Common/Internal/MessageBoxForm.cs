@@ -20,7 +20,7 @@ namespace Xr.Common.Internal
         private const int ButtonMargin = 8;       //按钮与容器控件的边距
         private const int ButtonSpace = 8;        //按钮之间的边距
         private const int MaxHeight = 600;        //对话框最大高度
-        private const int MinHeight = 100;        //对话框最小高度
+        private const int MinHeight = 150;        //对话框最小高度
         private const int MaxWidth = 800;         //对话框最大宽度
         private const int MinWidth = 450;         //对话框最小宽度
 
@@ -100,24 +100,24 @@ namespace Xr.Common.Internal
                     break;
             }
 
-            //标记默认按钮
-            switch (this.DefaultButton)
-            {
-                case MessageBoxDefaultButton.Button1:
-                    if (buttons.Count > 0) buttons[0].Style = ButtonStyle.Green;
-                    break;
+            //标记默认按钮(默认按钮修改样式暂不需要)
+            //switch (this.DefaultButton)
+            //{
+            //    case MessageBoxDefaultButton.Button1:
+            //        if (buttons.Count > 0) buttons[0].Style = ButtonStyle.Green;
+            //        break;
 
-                case MessageBoxDefaultButton.Button2:
-                    if (buttons.Count > 1) buttons[1].Style = ButtonStyle.Green;
-                    break;
+            //    case MessageBoxDefaultButton.Button2:
+            //        if (buttons.Count > 1) buttons[1].Style = ButtonStyle.Green;
+            //        break;
 
-                case MessageBoxDefaultButton.Button3:
-                    if (buttons.Count > 2) buttons[2].Style = ButtonStyle.Green;
-                    break;
+            //    case MessageBoxDefaultButton.Button3:
+            //        if (buttons.Count > 2) buttons[2].Style = ButtonStyle.Green;
+            //        break;
 
-                default:
-                    break;
-            }
+            //    default:
+            //        break;
+            //}
         }
 
         /// <summary>
@@ -133,7 +133,14 @@ namespace Xr.Common.Internal
             button.Text = GetButtonText(index, defaultText);
             button.DialogResult = dialogResult;
             button.Click += Button_Click;
-
+            if (dialogResult == DialogResult.OK || dialogResult == DialogResult.Yes)
+            {
+                button.Style = ButtonStyle.OK;
+            }
+            else if (dialogResult == DialogResult.No || dialogResult == DialogResult.Cancel)
+            {
+                button.Style = ButtonStyle.Return;
+            }
             pcButtons.Controls.Add(button);
             buttons.Add(button);
 
@@ -253,6 +260,7 @@ namespace Xr.Common.Internal
             else
             {
                 this.Width = Math.Max(lcMessage.Left + lcMessage.Width + MessageMargin, MinWidth);
+                this.Height = MinHeight;
             }
 
             //计算按钮区域占据的宽度

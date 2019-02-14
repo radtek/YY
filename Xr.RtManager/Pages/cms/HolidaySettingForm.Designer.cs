@@ -83,10 +83,10 @@
             this.panel4.Controls.Add(this.pageControl1);
             this.panel4.Controls.Add(this.gc_Holiday);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 70);
+            this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(10);
-            this.panel4.Size = new System.Drawing.Size(920, 444);
+            this.panel4.Size = new System.Drawing.Size(920, 454);
             this.panel4.TabIndex = 65;
             // 
             // groupBox1
@@ -109,9 +109,9 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 258);
+            this.groupBox1.Location = new System.Drawing.Point(10, 268);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(890, 176);
+            this.groupBox1.Size = new System.Drawing.Size(900, 176);
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息编辑区";
@@ -295,22 +295,23 @@
             this.pageControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pageControl1.CurrentPage = 1;
-            this.pageControl1.Location = new System.Drawing.Point(15, 213);
+            this.pageControl1.Location = new System.Drawing.Point(10, 223);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(890, 39);
+            this.pageControl1.Size = new System.Drawing.Size(900, 39);
             this.pageControl1.TabIndex = 50;
+            this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
             // gc_Holiday
             // 
             this.gc_Holiday.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gc_Holiday.Location = new System.Drawing.Point(15, 10);
+            this.gc_Holiday.Location = new System.Drawing.Point(10, 10);
             this.gc_Holiday.MainView = this.gv_Holiday;
             this.gc_Holiday.Name = "gc_Holiday";
-            this.gc_Holiday.Size = new System.Drawing.Size(890, 203);
+            this.gc_Holiday.Size = new System.Drawing.Size(900, 213);
             this.gc_Holiday.TabIndex = 49;
             this.gc_Holiday.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Holiday});
@@ -351,7 +352,7 @@
             this.gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_Holiday.OptionsView.RowAutoHeight = true;
             this.gv_Holiday.OptionsView.ShowGroupPanel = false;
-            this.gv_Holiday.RowHeight = 25;
+            this.gv_Holiday.RowHeight = 30;
             // 
             // gridColumn5
             // 
@@ -427,8 +428,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(920, 70);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(920, 60);
             this.panel1.TabIndex = 64;
             // 
             // borderPanel1
@@ -446,9 +447,9 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(15, 20);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(890, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(900, 50);
             this.borderPanel1.TabIndex = 1;
             // 
             // btnDel
@@ -456,9 +457,9 @@
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(201, 10);
+            this.btnDel.Location = new System.Drawing.Point(210, 10);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(75, 28);
+            this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
             this.btnDel.TabIndex = 76;
             this.btnDel.Text = "删除";
@@ -469,9 +470,9 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(115, 10);
+            this.btnSave.Location = new System.Drawing.Point(120, 10);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 28);
+            this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnSave.TabIndex = 75;
             this.btnSave.Text = "修改";
@@ -484,7 +485,7 @@
             this.btnAdd.HoverBackColor = System.Drawing.Color.Empty;
             this.btnAdd.Location = new System.Drawing.Point(30, 10);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 28);
+            this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnAdd.TabIndex = 74;
             this.btnAdd.Text = "新增";

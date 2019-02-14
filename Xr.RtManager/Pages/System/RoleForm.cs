@@ -50,9 +50,15 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
+        }
+
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+            cmd.ShowOpaqueLayer();
+            SearchData();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -102,10 +108,9 @@ namespace Xr.RtManager
             var selectedRow = gvRole.GetFocusedRow() as RoleEntity;
             if (selectedRow == null)
                 return;
-            MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-            DialogResult dr = MessageBox.Show("确定要删除吗?", "删除角色", messButton);
 
-            if (dr == DialogResult.OK)
+            if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
             {
                 cmd.ShowOpaqueLayer();
                 String url = AppContext.AppConfig.serverUrl + "sys/sysRole/delete?id=" + selectedRow.id;
@@ -126,7 +131,7 @@ namespace Xr.RtManager
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
                 });
             }
@@ -169,7 +174,7 @@ namespace Xr.RtManager
                 {
                     cmd.HideOpaqueLayer();
                     LogClass.WriteLog(ex.Message);
-                    MessageBox.Show(ex.Message);
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             };
 
@@ -184,6 +189,8 @@ namespace Xr.RtManager
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
+
+
         
     }
 }

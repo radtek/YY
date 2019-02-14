@@ -55,7 +55,7 @@ namespace Xr.RtManager.Pages.booking
             String url = String.Empty;
             url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
             JObject objT = new JObject();
-            objT = JObject.Parse(HttpClass.loginPost(url));
+            objT = JObject.Parse(HttpClass.httpPost(url));
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
                 //List<Dic> list = objT["result"].ToObject<List<Dic>>();

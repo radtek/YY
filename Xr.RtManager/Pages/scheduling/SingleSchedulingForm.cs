@@ -13,6 +13,8 @@ using System.Net;
 using Xr.Common;
 using Xr.Common.Controls;
 using DevExpress.XtraEditors;
+using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Xr.RtManager.Pages.scheduling
 {
@@ -23,6 +25,7 @@ namespace Xr.RtManager.Pages.scheduling
             InitializeComponent();
         }
 
+        Xr.Common.Controls.OpaqueCommand cmd;
         /// <summary>
         /// 出诊信息模板
         /// </summary>
@@ -32,6 +35,7 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void SingleSchedulingForm_Load(object sender, EventArgs e)
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             //设置科室列表
             List<Item> itemList = new List<Item>();
             foreach (DeptEntity dept in AppContext.Session.deptList)
@@ -44,61 +48,93 @@ namespace Xr.RtManager.Pages.scheduling
                 itemList.Add(item);
             }
             mcDept.setDataSource(itemList);
-
             //查询状态下拉框数据
+            cmd.ShowOpaqueLayer(0f);
             String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                lueIsUse.Properties.DisplayMember = "label";
-                lueIsUse.Properties.ValueMember = "value";
-            }
-            else
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                    lueIsUse.Properties.DisplayMember = "label";
+                    lueIsUse.Properties.ValueMember = "value";
+                    cmd.HideOpaqueLayer();
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
         }
 
         private void menuControl2_MenuItemClick(object sender, EventArgs e)
         {
-            Label label = (Label)sender;
+            Label label = null;
+            if (typeof(Label).IsInstanceOfType(sender))
+            {
+                label = (Label)sender;
+            }
+            else
+            {
+                PanelEx panelEx = (PanelEx)sender;
+                label = (Label)panelEx.Controls[0];
+            }
             String hospitalId = label.Tag.ToString();
             String deptId = label.Name;
             String deptName = label.Text;
 
             String param = "pageNo=1&pageSize=10000&hospital.id=" + hospitalId + "&dept.id=" + deptId;
             String url = AppContext.AppConfig.serverUrl + "cms/doctor/list?" + param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            cmd.ShowOpaqueLayer();
+            this.DoWorkAsync(300, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                List<DoctorInfoEntity> doctorList = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
-                //设置医生列表
-                List<Item> itemList = new List<Item>();
-                foreach (DoctorInfoEntity doctor in doctorList)
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    Item item = new Item();
-                    item.name = doctor.name;
-                    item.value = doctor.id;
-                    item.tag = doctor.code;
-                    itemList.Add(item);
+                    List<DoctorInfoEntity> doctorList = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
+                    //设置医生列表
+                    List<Item> itemList = new List<Item>();
+                    foreach (DoctorInfoEntity doctor in doctorList)
+                    {
+                        Item item = new Item();
+                        item.name = doctor.name;
+                        item.value = doctor.id;
+                        item.tag = doctor.code;
+                        itemList.Add(item);
+                    }
+                    mcDoctor.setDataSource(itemList);
+                    cmd.HideOpaqueLayer();
                 }
-                mcDoctor.setDataSource(itemList);
-                    
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
         }
 
         private String workDate;
 
         private void btnQuery_Click(object sender, EventArgs e)
+        {
+            setScheduling();
+        }
+
+        private void setScheduling()
         {
             //清除排班数据
             panel9.Controls.Clear();
@@ -121,7 +157,8 @@ namespace Xr.RtManager.Pages.scheduling
             if (afternoon == CheckState.Checked) periodList.Add("1");
             if (night == CheckState.Checked) periodList.Add("2");
             if (allDay == CheckState.Checked) periodList.Add("3");
-            if(periodList.Count==0){
+            if (periodList.Count == 0)
+            {
                 dataController1.ShowError(cbAllAay, "至少选一个");
                 return;
             }
@@ -129,57 +166,99 @@ namespace Xr.RtManager.Pages.scheduling
             String url = null;
             String data = null;
             JObject objT = null;
-            for (int i = 0; i < periodList.Count; i++)
+            cmd.ShowOpaqueLayer();
+            this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
-                    + "&hospitalId=" + mcDept.itemTag + "&workDate=" + workDate
-                    + "&period=" + periodList[i];
-                url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/isExist?" + param;
-                data = HttpClass.httpPost(url);
-                objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                for (int i = 0; i < periodList.Count; i++)
                 {
-                    if (string.Compare(objT["result"].ToString(), "true", true) != 0){
-                        String sd = "";
-                        if (periodList[i] == "0") sd = "上午";
-                        else if (periodList[i] == "1") sd = "下午";
-                        else if (periodList[i] == "2") sd = "晚午";
-                        else if (periodList[i] == "3") sd = "全天";
-                        labMsg.Text = "该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
-                        return;
+                    param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
+                        + "&hospitalId=" + mcDept.itemTag + "&workDate=" + workDate
+                        + "&period=" + periodList[i];
+                    url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/isExist?" + param;
+                    data = HttpClass.httpPost(url);
+                    objT = JObject.Parse(data);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        if (string.Compare(objT["result"].ToString(), "true", true) != 0)
+                        {
+                            String sd = "";
+                            if (periodList[i] == "0") sd = "上午";
+                            else if (periodList[i] == "1") sd = "下午";
+                            else if (periodList[i] == "2") sd = "晚午";
+                            else if (periodList[i] == "3") sd = "全天";
+                            //labMsg.Text = "该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
+                            return "1|该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
+                        }
+                    }
+                    else
+                    {
+                        return "2|" + objT["message"].ToString();
                     }
                 }
-                else
-                {
-                    MessageBox.Show(objT["message"].ToString());
-                    return;
-                }
-            }
-            for (int i = periodList.Count-1; i >= 0 ; i--)
-            {
-                param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
-                    + "&workDate=" + workDate + "&period=" + periodList[i];
-                url = AppContext.AppConfig.serverUrl + "cms/doctorVisitingTime/findByPropertys?"+param;
-                data = HttpClass.httpPost(url);
-                objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    List<WorkingDayEntity> workingDayList = objT["result"].ToObject<List<WorkingDayEntity>>();
-                    setWorkingDay(workingDayList, periodList[i]);
-                }
-                else
-                {
-                    MessageBox.Show(objT["message"].ToString());
-                    return;
-                }
-            }
+                return "0|0";
 
-            for (int i = 0; i < panel9.Controls.Count; i++)
+            }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                Panel panel = (Panel)panel9.Controls[i];
-                GroupBox gb = (GroupBox)panel.Controls[0];
-                if (gb.Height < panel.Height) gb.Height = panel.Height;
-            }
+                string[] sArray = Regex.Split(data2.ToString(), "|", RegexOptions.IgnoreCase);
+                if (sArray[0] == "1")
+                {
+                    labMsg.Text = sArray[1];
+                    cmd.HideOpaqueLayer();
+                    return;
+                }
+                else if (sArray[0] == "2")
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(sArray[1], MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+                List<List<WorkingDayEntity>> sList = new List<List<WorkingDayEntity>>();
+                this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                {
+                    //for (int i = periodList.Count - 1; i >= 0; i--)
+                    for (int i = 0; i < periodList.Count; i++)
+                    {
+                        param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
+                            + "&workDate=" + workDate + "&period=" + periodList[i];
+                        url = AppContext.AppConfig.serverUrl + "cms/doctorVisitingTime/findByPropertys?" + param;
+                        data = HttpClass.httpPost(url);
+                        objT = JObject.Parse(data);
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            List<WorkingDayEntity> workingDayList = objT["result"].ToObject<List<WorkingDayEntity>>();
+                            sList.Add(workingDayList);
+                            //setWorkingDay(workingDayList, periodList[i]);
+                        }
+                        else
+                        {
+                            //MessageBox.Show(objT["message"].ToString());
+                            return "2|" + objT["message"].ToString();
+                        }
+                    }
+                    return "0|0";
+
+                }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                {
+                    string[] sArray2 = Regex.Split(data3.ToString(), "|", RegexOptions.IgnoreCase);
+                    if (sArray2[0] == "2")
+                    {
+                        cmd.HideOpaqueLayer();
+                        MessageBoxUtils.Show(sArray[1], MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        return;
+                    }
+                    for (int i = sList.Count()-1; i >= 0; i--)
+                    {
+                        setWorkingDay(sList[i], periodList[i]);
+                    }
+                    for (int i = 0; i < panel9.Controls.Count; i++)
+                    {
+                        Panel panel = (Panel)panel9.Controls[i];
+                        GroupBox gb = (GroupBox)panel.Controls[0];
+                        if (gb.Height < panel.Height) gb.Height = panel.Height;
+                    }
+                    cmd.HideOpaqueLayer();
+                });
+            });
         }
 
         /// <summary>
@@ -198,6 +277,7 @@ namespace Xr.RtManager.Pages.scheduling
             groupBox.AutoSize = true;
             groupBox.Font = new Font("微软雅黑", 10);
 
+            Label labelTips = new Label(); //没有默认出诊时间的提示内容
             //当前TableLayoutPanel的数量
             List<WorkingDayEntity> wdwpList = getWorkingDayData(workingDayList, period);
             //多少行数据
@@ -205,6 +285,7 @@ namespace Xr.RtManager.Pages.scheduling
             //period=0:上午 period=1:下午 period=2:晚上 period=3:全天
             TableLayoutPanel tlpMorning = new TableLayoutPanel();
             if (rowNum == 0) tlpMorning.Enabled = false;
+            else labelTips.Visible = false;
             int row = 0;//行数(包括标题)
             String timeInterval = ""; //
             if (rowNum > 3) row = rowNum + 1;
@@ -433,7 +514,13 @@ namespace Xr.RtManager.Pages.scheduling
                     }
                 }
             }
-            tlpMorning.Location = new System.Drawing.Point(0, 0);
+            
+            labelTips.Location = new System.Drawing.Point(10, 10);
+            labelTips.Text = "没有设置默认出诊时间的，请到医生设置里面设置";
+            labelTips.ForeColor = Color.Red;
+            labelTips.AutoSize = true;
+            groupBox.Controls.Add(labelTips);
+            tlpMorning.Location = new System.Drawing.Point(5, 20);
             groupBox.Controls.Add(tlpMorning);
             panelPb.Controls.Add(groupBox);
             panel9.Controls.Add(panelPb);
@@ -530,6 +617,7 @@ namespace Xr.RtManager.Pages.scheduling
                     }
                 }
             }
+            cmd.ShowOpaqueLayer();
             String scheduSets = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
 
             String param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
@@ -537,17 +625,122 @@ namespace Xr.RtManager.Pages.scheduling
                 + "&status=" + lueIsUse.EditValue + "&remarks=" + teRemarks.Text
                 + "&scheduSets=" + scheduSets;
             String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/saveToOne?";
-            String data = HttpClass.httpPost(url, param);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                MessageBoxUtils.Hint("保存成功!");
-            }
-            else
+                String data = HttpClass.httpPost(url, param);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                MessageBox.Show(objT["message"].ToString());
-                return;
+                JObject objT = JObject.Parse(data.ToString());
+                cmd.HideOpaqueLayer();
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    MessageBoxUtils.Hint("保存成功!");
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
+        }
+
+        private void cbMorning_CheckStateChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.CheckState == CheckState.Checked)
+            {
+                setScheduling();
             }
         }
+
+        private void cbAfternoon_CheckStateChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.CheckState == CheckState.Checked)
+            {
+                setScheduling();
+            }
+        }
+
+        private void cbNight_CheckStateChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.CheckState == CheckState.Checked)
+            {
+                setScheduling();
+            }
+        }
+
+        private void cbAllAay_CheckStateChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.CheckState == CheckState.Checked)
+            {
+                setScheduling();
+            }
+        }
+
+        private void dateEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            setScheduling();
+        }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="time">线程延迟多少</param>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+                try
+                {
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    LogClass.WriteLog(ex.Message);
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(time);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+
+
     }
 }

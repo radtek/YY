@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Xr.RtManager.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle1 = new Xr.RtManager.TTextBoxBorderRenderStyle();
             Xr.RtManager.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle2 = new Xr.RtManager.TTextBoxBorderRenderStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnLogin = new CCWin.SkinControl.SkinButton();
-            this.btnQuit = new CCWin.SkinControl.SkinButton();
-            this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnLogin = new Xr.Common.Controls.ButtonControl();
+            this.btnQuit = new Xr.Common.Controls.ButtonControl();
+            this.btnUp = new Xr.Common.Controls.ButtonControl();
             this.tbPassword = new Xr.RtManager.MyTextBox();
             this.tbLoginName = new Xr.RtManager.MyTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -63,78 +62,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "密  码：";
             // 
-            // btnLogin
-            // 
-            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogin.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.btnLogin.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.btnLogin.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btnLogin.DownBack = null;
-            this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnLogin.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnLogin.IsDrawBorder = false;
-            this.btnLogin.IsDrawGlass = false;
-            this.btnLogin.IsEnabledDraw = false;
-            this.btnLogin.Location = new System.Drawing.Point(71, 209);
-            this.btnLogin.MouseBack = null;
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.NormlBack = null;
-            this.btnLogin.Radius = 4;
-            this.btnLogin.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.btnLogin.Size = new System.Drawing.Size(85, 40);
-            this.btnLogin.TabIndex = 161;
-            this.btnLogin.Text = "登录";
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.BackColor = System.Drawing.Color.Transparent;
-            this.btnQuit.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.btnQuit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.btnQuit.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btnQuit.DownBack = null;
-            this.btnQuit.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQuit.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnQuit.IsDrawBorder = false;
-            this.btnQuit.IsDrawGlass = false;
-            this.btnQuit.IsEnabledDraw = false;
-            this.btnQuit.Location = new System.Drawing.Point(162, 210);
-            this.btnQuit.MouseBack = null;
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.NormlBack = null;
-            this.btnQuit.Radius = 4;
-            this.btnQuit.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.btnQuit.Size = new System.Drawing.Size(85, 40);
-            this.btnQuit.TabIndex = 162;
-            this.btnQuit.Text = "退出";
-            this.btnQuit.UseVisualStyleBackColor = false;
-            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
-            // 
-            // skinButton2
-            // 
-            this.skinButton2.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.skinButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
-            this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton2.DownBack = null;
-            this.skinButton2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinButton2.ForeColor = System.Drawing.SystemColors.Window;
-            this.skinButton2.IsDrawBorder = false;
-            this.skinButton2.IsDrawGlass = false;
-            this.skinButton2.IsEnabledDraw = false;
-            this.skinButton2.Location = new System.Drawing.Point(253, 210);
-            this.skinButton2.MouseBack = null;
-            this.skinButton2.Name = "skinButton2";
-            this.skinButton2.NormlBack = null;
-            this.skinButton2.Radius = 4;
-            this.skinButton2.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinButton2.Size = new System.Drawing.Size(85, 40);
-            this.skinButton2.TabIndex = 163;
-            this.skinButton2.Text = "修改密码";
-            this.skinButton2.UseVisualStyleBackColor = false;
-            this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -145,6 +72,45 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnLogin.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnLogin.Location = new System.Drawing.Point(74, 215);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(75, 30);
+            this.btnLogin.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.btnLogin.TabIndex = 164;
+            this.btnLogin.Text = "登录";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnQuit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnQuit.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnQuit.Location = new System.Drawing.Point(175, 215);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(75, 30);
+            this.btnQuit.Style = Xr.Common.Controls.ButtonStyle.Del;
+            this.btnQuit.TabIndex = 165;
+            this.btnQuit.Text = "退出";
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnUp.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnUp.Location = new System.Drawing.Point(276, 215);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(75, 30);
+            this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.btnUp.TabIndex = 166;
+            this.btnUp.Text = "修改密码";
+            this.btnUp.Click += new System.EventHandler(this.skinButton2_Click);
             // 
             // tbPassword
             // 
@@ -181,7 +147,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 261);
-            this.Controls.Add(this.skinButton2);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbPassword);
@@ -194,7 +160,6 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "登录";
             this.Load += new System.EventHandler(this.LoginFrom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -209,8 +174,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private MyTextBox tbLoginName;
         private MyTextBox tbPassword;
-        private CCWin.SkinControl.SkinButton btnLogin;
-        private CCWin.SkinControl.SkinButton btnQuit;
-        private CCWin.SkinControl.SkinButton skinButton2;
+        private Xr.Common.Controls.ButtonControl btnLogin;
+        private Xr.Common.Controls.ButtonControl btnQuit;
+        private Xr.Common.Controls.ButtonControl btnUp;
     }
 }

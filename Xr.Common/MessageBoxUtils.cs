@@ -102,12 +102,12 @@ namespace Xr.Common
 
 
         /// <summary>
-        /// 显示弱消息提示框，2秒后自动消失
+        /// 显示弱消息提示框，3秒后自动消失
         /// </summary>
         /// <param name="text">需要显示在提示框中的文字</param>
         public static void Hint(string text)
         {
-            Hint(text, HintMessageBoxIcon.Success, 5, false, false);
+            Hint(text, HintMessageBoxIcon.Success, 3, false, false);
         }
 
         /// <summary>
@@ -178,7 +178,8 @@ namespace Xr.Common
         /// <param name="durationSeconds">提示框显示的秒数，超过这个秒数后，提示框自动消失</param>
         /// <param name="keepAliveOnOuterClick">点击消息框外侧区域时，是否自动关闭消息框</param>
         /// <param name="autoSize">根据消息自适应大小</param>
-        public static void HintTextEdit(string text, int durationSeconds, bool keepAliveOnOuterClick, bool autoSize, int xWidth, int yHeight, int formWdith)
+        public static void HintTextEdit(string text, int durationSeconds, bool keepAliveOnOuterClick,
+            bool autoSize, int xWidth, int yHeight, int formWdith)
         {
             var frmMessageBox = new HintTextEditForm(autoSize, formWdith);
             frmMessageBox.Message = text;

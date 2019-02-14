@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcUser = new DevExpress.XtraGrid.GridControl();
@@ -107,6 +107,7 @@
             this.gvUser.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gvUser.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gvUser.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gvUser.ColumnPanelRowHeight = 30;
             this.gvUser.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
@@ -127,6 +128,7 @@
             this.gvUser.OptionsView.EnableAppearanceOddRow = true;
             this.gvUser.OptionsView.RowAutoHeight = true;
             this.gvUser.OptionsView.ShowGroupPanel = false;
+            this.gvUser.RowHeight = 30;
             // 
             // gridColumn1
             // 
@@ -139,6 +141,7 @@
             this.gridColumn2.Caption = "归属公司";
             this.gridColumn2.FieldName = "companyName";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
             // 
@@ -147,6 +150,7 @@
             this.gridColumn3.Caption = "归属部门";
             this.gridColumn3.FieldName = "officeName";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             // 
@@ -155,6 +159,7 @@
             this.gridColumn4.Caption = "登录名";
             this.gridColumn4.FieldName = "loginName";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 2;
             // 
@@ -163,6 +168,7 @@
             this.gridColumn8.Caption = "姓名";
             this.gridColumn8.FieldName = "name";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 3;
             // 
@@ -171,6 +177,7 @@
             this.gridColumn7.Caption = "电话";
             this.gridColumn7.FieldName = "phone";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 4;
             // 
@@ -179,6 +186,7 @@
             this.gridColumn6.Caption = "手机";
             this.gridColumn6.FieldName = "mobile";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
             // 
@@ -193,12 +201,12 @@
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            serializableAppearanceObject1.ForeColor = System.Drawing.Color.SteelBlue;
-            serializableAppearanceObject1.Options.UseFont = true;
-            serializableAppearanceObject1.Options.UseForeColor = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            serializableAppearanceObject2.ForeColor = System.Drawing.Color.SteelBlue;
+            serializableAppearanceObject2.Options.UseFont = true;
+            serializableAppearanceObject2.Options.UseForeColor = true;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "移除", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "移除", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
@@ -240,7 +248,7 @@
             this.buttonControl3.Location = new System.Drawing.Point(30, 10);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl3.TabIndex = 3;
             this.buttonControl3.Text = "分配角色";
             this.buttonControl3.Click += new System.EventHandler(this.btnAdd_Click);

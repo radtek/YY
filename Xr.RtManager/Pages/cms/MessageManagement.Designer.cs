@@ -77,22 +77,23 @@
             this.tableLayoutPanel1.SetColumnSpan(this.pageControl1, 2);
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pageControl1.Location = new System.Drawing.Point(2, 407);
+            this.pageControl1.Location = new System.Drawing.Point(2, 409);
             this.pageControl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 3);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(892, 31);
+            this.pageControl1.Size = new System.Drawing.Size(896, 31);
             this.pageControl1.TabIndex = 50;
+            this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.tableLayoutPanel1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 62);
+            this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(10, 1, 14, 10);
-            this.panel4.Size = new System.Drawing.Size(920, 452);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10, 1, 10, 10);
+            this.panel4.Size = new System.Drawing.Size(920, 454);
             this.panel4.TabIndex = 67;
             // 
             // tableLayoutPanel1
@@ -109,7 +110,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(896, 441);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(900, 443);
             this.tableLayoutPanel1.TabIndex = 53;
             // 
             // groupBox1
@@ -126,9 +127,9 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(495, 3);
+            this.groupBox1.Location = new System.Drawing.Point(498, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(398, 401);
+            this.groupBox1.Size = new System.Drawing.Size(399, 403);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息编辑区";
@@ -157,7 +158,7 @@
             this.myTextBox1.Location = new System.Drawing.Point(15, 242);
             this.myTextBox1.Multiline = true;
             this.myTextBox1.Name = "myTextBox1";
-            this.myTextBox1.Size = new System.Drawing.Size(377, 126);
+            this.myTextBox1.Size = new System.Drawing.Size(378, 126);
             this.myTextBox1.TabIndex = 123;
             this.myTextBox1.Text = "模本内容，内容中需替换的内容部分使用【1】替代，第一项内容使用1,第二项内容使用2，以此类推。\r\n如：李某某 在 2018年12月28日 10点24分预约了外科/" +
     "张主任/2018年12月29日9点30分就诊，请提前20分诊到场签到就诊。\r\n则：【1】在【2】预约了【3】【4】【5】就诊，请提前【6】分诊到场签到就诊。";
@@ -191,7 +192,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "类型")});
             this.lueType.Properties.NullText = "";
-            this.lueType.Size = new System.Drawing.Size(377, 29);
+            this.lueType.Size = new System.Drawing.Size(378, 29);
             this.lueType.TabIndex = 122;
             // 
             // meUpdateDesc
@@ -203,7 +204,7 @@
             this.meUpdateDesc.Name = "meUpdateDesc";
             this.meUpdateDesc.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meUpdateDesc.Properties.Appearance.Options.UseFont = true;
-            this.meUpdateDesc.Size = new System.Drawing.Size(377, 77);
+            this.meUpdateDesc.Size = new System.Drawing.Size(378, 77);
             this.meUpdateDesc.TabIndex = 119;
             this.meUpdateDesc.UseOptimizedRendering = true;
             // 
@@ -269,7 +270,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(3, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(486, 401);
+            this.panelControl1.Size = new System.Drawing.Size(489, 403);
             this.panelControl1.TabIndex = 53;
             // 
             // gc_Message
@@ -280,7 +281,7 @@
             this.gc_Message.Location = new System.Drawing.Point(0, 9);
             this.gc_Message.MainView = this.gv_Message;
             this.gc_Message.Name = "gc_Message";
-            this.gc_Message.Size = new System.Drawing.Size(486, 392);
+            this.gc_Message.Size = new System.Drawing.Size(489, 394);
             this.gc_Message.TabIndex = 49;
             this.gc_Message.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Message});
@@ -320,7 +321,7 @@
             this.gv_Message.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_Message.OptionsView.RowAutoHeight = true;
             this.gv_Message.OptionsView.ShowGroupPanel = false;
-            this.gv_Message.RowHeight = 25;
+            this.gv_Message.RowHeight = 30;
             this.gv_Message.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gv_Message_CustomColumnDisplayText);
             // 
             // gridColumn5
@@ -377,8 +378,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(14, 10, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(920, 62);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(920, 60);
             this.panel1.TabIndex = 66;
             // 
             // borderPanel1
@@ -396,9 +397,9 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(14, 10);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(891, 52);
+            this.borderPanel1.Size = new System.Drawing.Size(900, 50);
             this.borderPanel1.TabIndex = 1;
             // 
             // btnDel
@@ -406,7 +407,7 @@
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(121, 10);
+            this.btnDel.Location = new System.Drawing.Point(120, 10);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -419,7 +420,7 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(211, 10);
+            this.btnSave.Location = new System.Drawing.Point(210, 10);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Query;

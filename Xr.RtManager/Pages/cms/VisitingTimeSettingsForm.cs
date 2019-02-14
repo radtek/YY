@@ -85,7 +85,7 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
             });
@@ -219,6 +219,7 @@ namespace Xr.RtManager.Pages.cms
                 if (morning != CheckState.Checked && afternoon != CheckState.Checked
                     && night != CheckState.Checked && allDay != CheckState.Checked)
                 {
+                    cmd.HideOpaqueLayer();
                     return;
                 }
                 //获取默认排班数据
@@ -996,7 +997,16 @@ namespace Xr.RtManager.Pages.cms
                 MessageBoxUtils.Hint("请先保存当前科室设置或者清空已选医生再切换科室!", HintMessageBoxIcon.Error);
                 return;
             }
-            Label label = (Label)sender;
+            Label label = null;
+            if (typeof(Label).IsInstanceOfType(sender))
+            {
+                label = (Label)sender;
+            }
+            else
+            {
+                PanelEx panelEx = (PanelEx)sender;
+                label = (Label)panelEx.Controls[0];
+            }
             hospitalId = label.Tag.ToString();
             deptId = label.Name;
             deptName = label.Text;
@@ -1011,6 +1021,12 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="pageSize"></param>
         public void SearchData(int pageNo, int pageSize)
         {
+            if (tabControl1.Controls[0].Controls.Count == 0)
+            {
+                cmd.HideOpaqueLayer();
+                MessageBoxUtils.Hint("请先在左边更新默认出诊时间", HintMessageBoxIcon.Error);
+                return;
+            }
             String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.id=" + hospitalId + "&dept.id=" + deptId;
             String url = AppContext.AppConfig.serverUrl + "cms/doctor/list?"+param;
             this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
@@ -1084,8 +1100,7 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    cmd.HideOpaqueLayer();
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }
@@ -1571,7 +1586,7 @@ namespace Xr.RtManager.Pages.cms
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
                 });
             }
@@ -1579,7 +1594,7 @@ namespace Xr.RtManager.Pages.cms
             {
                 cmd.HideOpaqueLayer();
                 LogClass.WriteLog(ex.Message);
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -1620,7 +1635,7 @@ namespace Xr.RtManager.Pages.cms
                 {
                     cmd.HideOpaqueLayer();
                     LogClass.WriteLog(ex.Message);
-                    MessageBox.Show(ex.Message);
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             };
 
@@ -1635,5 +1650,6 @@ namespace Xr.RtManager.Pages.cms
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
+        
     }
 }

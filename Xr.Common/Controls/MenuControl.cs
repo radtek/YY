@@ -156,35 +156,28 @@ namespace Xr.Common.Controls
                     panelEx1.BorderStyleLeft = ButtonBorderStyle.None;
                     panelEx1.BorderStyleRight = ButtonBorderStyle.None; 
                     panelEx1.BorderStyleTop = ButtonBorderStyle.None; 
-                }
-                //String name = ""; //重新组织的字符串
-                //float currentLineWidth = 0f; //当前行文字宽度
-                //float rowWidht = this.Width - 20; //行宽度，不能取label的，不知道什么原因，取label比实际的小
-                //int row = 0; //多加的行数
-                //int textHeight = 0; //字的高度
-                //labMeasure.Text = item.name;
-                //for (int i = 0; i < item.name.Length; i++)
-                //{
-                //    labMeasure.Text = item.name.Substring(i, 1);
-                //    textHeight = (int)labMeasure.Height;
-                //    currentLineWidth += labMeasure.Width-9; //label左右内边距加起来为9
-                //    if (currentLineWidth+9 < rowWidht || currentLineWidth+9 == rowWidht)//比较要加上边距
-                //    {
-                //        name += item.name.Substring(i, 1);
-                //    }
-                //    else
-                //    {
-                //        name += "\r\n" + item.name.Substring(i, 1);
-                //        currentLineWidth = 0f;
-                //        row += 1; 
-                //    }
-                //}
-                //label.Text = name;
-                //itemPanel.Height = MenuItemHeight + textHeight * row;                
+                }              
             }
         }
         #endregion 
         
+        /// <summary>
+        /// 设置当前选中项
+        /// </summary>
+        /// <param name="value"></param>
+        public void EditValue(String value)
+        {
+            foreach (PanelEx panel in panelEx1.Controls)
+            {
+                Label label = (Label)panel.Controls[0];
+                if (label.Name == value)
+                {
+                    MenuClicked(label, null);
+                    return;
+                }
+            }
+        }
+
         /// <summary>
         /// 菜单点击事件（panel）
         /// </summary>
@@ -206,12 +199,11 @@ namespace Xr.Common.Controls
             //修改选择的二级菜单背景色
             selectionPanel.BackColor = Color.FromArgb(24, 166, 137);
             selectionLabel.ForeColor = Color.White;
-            if (MenuItemClick != null)
-                MenuItemClick(sender, new EventArgs());
-
             itemName = selectionLabel.Name;
             itemText = selectionLabel.Text;
             itemTag = selectionLabel.Tag.ToString();
+            if (MenuItemClick != null)
+                MenuItemClick(sender, new EventArgs());
         }
         
         /// <summary>
@@ -235,12 +227,11 @@ namespace Xr.Common.Controls
             //修改选择的二级菜单背景色
             selectionPanel.BackColor = Color.FromArgb(24, 166, 137);
             selectionLabel.ForeColor = Color.White;
-            if (MenuItemClick != null)
-                MenuItemClick(sender, new EventArgs());
-
             itemName = selectionLabel.Name;
             itemText = selectionLabel.Text;
             itemTag = selectionLabel.Tag.ToString();
+            if (MenuItemClick != null)
+                MenuItemClick(sender, new EventArgs());
         }
 
         Color MouseOriginally = Color.Transparent;//菜单原色

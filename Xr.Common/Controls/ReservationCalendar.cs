@@ -67,12 +67,21 @@ namespace Xr.Common.Controls
                     //ButtonControl b = new ButtonControl();
                     ButtonControl b = grid_clanderPanel.GetControlFromPosition(c, r) as ButtonControl;
                     b.Text = dtList[i].Day.ToString();// +"\r\n" + "666";
-                    b.Tag = dtList[i].Day;
+                    //b.Tag = dtList[i].Day;
                     b.Font = new Font("黑体", 13f);
                     b.Dock = DockStyle.Fill;
                     b.Margin = new System.Windows.Forms.Padding(0);
                     b.Padding = new System.Windows.Forms.Padding(0);
-                    b.Style = ButtonStyle.Query;
+                    if (c == 0 || c == 6) 
+                    {
+                        b.Style = ButtonStyle.Calendar_weekend;
+                        b.Tag = "weekend";
+                    }
+                    else
+                    {
+                        b.Style = ButtonStyle.Calendar_day;
+                        b.Tag = "weekday";
+                    }
                     //b.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MouseDown);
                     /*Grid.SetRow(b, r);
                     Grid.SetColumn(b, c);
@@ -95,7 +104,7 @@ namespace Xr.Common.Controls
                     }
                     if (dtList[i].Year == System.DateTime.Now.Year && dtList[i].Month == System.DateTime.Now.Month && dtList[i].Day == System.DateTime.Now.Day)
                     {
-                        b.Style = ButtonStyle.Today;
+                        b.Style = ButtonStyle.Calendar_today;
                     }
                     //b.Click += new RoutedEventHandler(OK);
                     i++;
@@ -128,13 +137,20 @@ namespace Xr.Common.Controls
             if (e.Button != MouseButtons.Middle)//屏蔽鼠标中键
             {
                 ButtonControl bc = sender as ButtonControl;
-                selectedDate = new DateTime(currentYearMonth.Year, currentYearMonth.Month, (int)bc.Tag);
-                if (preBtn != null && preBtn.Style != ButtonStyle.Today)
+                selectedDate = new DateTime(currentYearMonth.Year, currentYearMonth.Month, Int32.Parse(bc.Text));
+                if (preBtn != null && preBtn.Style != ButtonStyle.Calendar_today)
                 {
-                    preBtn.Style = ButtonStyle.Query;
+                    if (preBtn.Tag.ToString() == "weekday")
+                    {
+                        preBtn.Style = ButtonStyle.Calendar_day;
+                    }
+                    else
+                    {
+                        preBtn.Style = ButtonStyle.Calendar_weekend;
+                    }
                 }
                 preBtn = bc;
-                if (bc.Style != ButtonStyle.Today)
+                if (bc.Style != ButtonStyle.Calendar_today)
                     bc.Style = ButtonStyle.Save;
 
                 if (e.Button == MouseButtons.Right)

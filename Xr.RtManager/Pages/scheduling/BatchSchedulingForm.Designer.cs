@@ -171,7 +171,7 @@
             // panelEx3
             // 
             this.panelEx3.AutoScroll = true;
-            this.panelEx3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
+            this.panelEx3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.panelEx3.BorderSize = 1;
             this.panelEx3.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.panelEx3.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
@@ -181,15 +181,17 @@
             this.panelEx3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx3.Location = new System.Drawing.Point(0, 0);
             this.panelEx3.Name = "panelEx3";
+            this.panelEx3.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.panelEx3.Size = new System.Drawing.Size(907, 423);
             this.panelEx3.TabIndex = 5;
             // 
             // gcDoctor
             // 
+            this.gcDoctor.Dock = System.Windows.Forms.DockStyle.Left;
             this.gcDoctor.Location = new System.Drawing.Point(0, 0);
             this.gcDoctor.MainView = this.bandedGridView1;
             this.gcDoctor.Name = "gcDoctor";
-            this.gcDoctor.Size = new System.Drawing.Size(1480, 393);
+            this.gcDoctor.Size = new System.Drawing.Size(1480, 405);
             this.gcDoctor.TabIndex = 52;
             this.gcDoctor.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridView1});
@@ -214,6 +216,7 @@
             this.bandedGridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.bandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridView1.BandPanelRowHeight = 30;
             this.bandedGridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.姓名,
             this.monday,

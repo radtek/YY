@@ -63,7 +63,7 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }
@@ -91,10 +91,9 @@ namespace Xr.RtManager
             var selectedRow = gridView1.GetFocusedRow() as DictEntity;
             if (selectedRow == null)
                 return;
-             MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-             DialogResult dr = MessageBox.Show("确定要删除吗?", "删除字典", messButton);
-             
-             if (dr == DialogResult.OK)
+
+             if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
              {
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "sys/sysDict/delete" + param;
@@ -116,7 +115,7 @@ namespace Xr.RtManager
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
                 });
              }

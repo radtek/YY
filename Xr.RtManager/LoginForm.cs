@@ -26,14 +26,14 @@ namespace Xr.RtManager
         private void LoginFrom_Load(object sender, EventArgs e)
         {
             //标题居中
-            Graphics g = this.CreateGraphics();
-            Double startingPoint = (this.Width / 2) - (g.MeasureString(this.Text.Trim(), this.Font).Width / 2);
-            Double ws = g.MeasureString("*", this.Font).Width;
-            String tmp = " ";
-            Double tw = 0;
-            while ((tw + ws) < startingPoint) { tmp += "*"; tw += ws; }
-            tmp += "*";
-            this.Text = tmp.Replace("*", "  ") + this.Text.Trim();
+            //Graphics g = this.CreateGraphics();
+            //Double startingPoint = (this.Width / 2) - (g.MeasureString(this.Text.Trim(), this.Font).Width / 2);
+            //Double ws = g.MeasureString("*", this.Font).Width;
+            //String tmp = " ";
+            //Double tw = 0;
+            //while ((tw + ws) < startingPoint) { tmp += "*"; tw += ws; }
+            //tmp += "*";
+            //this.Text = tmp.Replace("*", "  ") + this.Text.Trim();
         }
 
 

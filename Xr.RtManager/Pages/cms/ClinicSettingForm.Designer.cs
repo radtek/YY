@@ -98,8 +98,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 0);
-            this.panel1.Size = new System.Drawing.Size(920, 70);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(920, 60);
             this.panel1.TabIndex = 65;
             // 
             // borderPanel1
@@ -118,9 +118,9 @@
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(15, 20);
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(890, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(900, 50);
             this.borderPanel1.TabIndex = 1;
             // 
             // btnDel
@@ -128,7 +128,7 @@
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(272, 10);
+            this.btnDel.Location = new System.Drawing.Point(300, 10);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -141,7 +141,7 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(186, 10);
+            this.btnSave.Location = new System.Drawing.Point(210, 10);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -154,7 +154,7 @@
             this.butSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butSelect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butSelect.HoverBackColor = System.Drawing.Color.Empty;
-            this.butSelect.Location = new System.Drawing.Point(16, 10);
+            this.butSelect.Location = new System.Drawing.Point(30, 10);
             this.butSelect.Name = "butSelect";
             this.butSelect.Size = new System.Drawing.Size(75, 30);
             this.butSelect.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -167,7 +167,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnAdd.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnAdd.Location = new System.Drawing.Point(101, 10);
+            this.btnAdd.Location = new System.Drawing.Point(120, 10);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -280,7 +280,7 @@
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(13, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 276);
+            this.groupBox1.Size = new System.Drawing.Size(168, 282);
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "科室列表";
@@ -296,7 +296,7 @@
             this.menuControl1.Location = new System.Drawing.Point(3, 21);
             this.menuControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.menuControl1.Name = "menuControl1";
-            this.menuControl1.Size = new System.Drawing.Size(162, 252);
+            this.menuControl1.Size = new System.Drawing.Size(162, 258);
             this.menuControl1.TabIndex = 0;
             this.menuControl1.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuControl1_MenuItemClick);
             // 
@@ -308,7 +308,7 @@
             this.gc_Clinic.Name = "gc_Clinic";
             this.gc_Clinic.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
-            this.gc_Clinic.Size = new System.Drawing.Size(714, 212);
+            this.gc_Clinic.Size = new System.Drawing.Size(714, 218);
             this.gc_Clinic.TabIndex = 51;
             this.gc_Clinic.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Clinic,
@@ -353,7 +353,7 @@
             this.gv_Clinic.OptionsView.EnableAppearanceOddRow = true;
             this.gv_Clinic.OptionsView.RowAutoHeight = true;
             this.gv_Clinic.OptionsView.ShowGroupPanel = false;
-            this.gv_Clinic.RowHeight = 25;
+            this.gv_Clinic.RowHeight = 30;
             this.gv_Clinic.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gv_Clinic_CustomColumnDisplayText);
             // 
             // gridColumn8
@@ -497,9 +497,9 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Enabled = false;
             this.groupBox3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox3.Location = new System.Drawing.Point(13, 285);
+            this.groupBox3.Location = new System.Drawing.Point(13, 291);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(894, 146);
+            this.groupBox3.Size = new System.Drawing.Size(894, 150);
             this.groupBox3.TabIndex = 68;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "信息编辑区";
@@ -590,13 +590,13 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelControl1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 70);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 60);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(920, 444);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(920, 454);
             this.tableLayoutPanel1.TabIndex = 69;
             // 
             // panelControl1
@@ -606,7 +606,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(187, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(720, 276);
+            this.panelControl1.Size = new System.Drawing.Size(720, 282);
             this.panelControl1.TabIndex = 69;
             // 
             // groupBox4
@@ -617,7 +617,7 @@
             this.groupBox4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(720, 276);
+            this.groupBox4.Size = new System.Drawing.Size(720, 282);
             this.groupBox4.TabIndex = 67;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "诊断列表";
@@ -628,13 +628,14 @@
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pageControl1.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageControl1.Location = new System.Drawing.Point(3, 233);
+            this.pageControl1.Location = new System.Drawing.Point(3, 239);
             this.pageControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
             this.pageControl1.Size = new System.Drawing.Size(714, 40);
             this.pageControl1.TabIndex = 52;
+            this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
             // ClinicSettingForm
             // 

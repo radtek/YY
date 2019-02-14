@@ -52,7 +52,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
@@ -75,18 +75,15 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    //this.gc_Message.DataSource = objT["result"]["list"].ToObject<List<dynamic>>();
-                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                    //int.Parse(objT["result"]["pageSize"].ToString()),
-                    //int.Parse(objT["result"]["pageNo"].ToString()));
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("查询消息模板详情错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -104,19 +101,15 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    //this.gc_Message.DataSource = objT["result"]["list"].ToObject<List<dynamic>>();
-                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                    //int.Parse(objT["result"]["pageSize"].ToString()),
-                    //int.Parse(objT["result"]["pageNo"].ToString()));
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("获取指定医院下消息模板列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -132,16 +125,10 @@ namespace Xr.RtManager.Pages.cms
             {
                 groupBox1.Enabled = true;
                 dcMessage.ClearValue();
-                //var edit = new MessageSettingEdit();
-                //if (edit.ShowDialog() == DialogResult.OK)
-                //{
-                //    MessageBoxUtils.Hint("保存成功!");
-                //    MessageContentTemplateList(AppContext.Session.hospitalId);
-                //    //  SearchData(true, 1, pageControl1.PageSize);
-                //}
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("消息模板列表新增错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -162,8 +149,9 @@ namespace Xr.RtManager.Pages.cms
                 groupBox1.Enabled = true;
                 dcMessage.SetValue(selectedRow);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogClass.WriteLog("消息模板列表修改错误信息：" + ex.Message);
             }
         }
         /// <summary>
@@ -180,18 +168,10 @@ namespace Xr.RtManager.Pages.cms
                     return;
                 groupBox1.Enabled = true;
                 dcMessage.SetValue(selectedRow);
-                //var edit = new MessageSettingEdit();
-                //edit.messageInfoEntity = selectedRow;
-                //edit.Text = "节假日修改";
-                //if (edit.ShowDialog() == DialogResult.OK)
-                //{
-                //    MessageBoxUtils.Hint("修改成功!");
-                //    MessageContentTemplateList(AppContext.Session.hospitalId);
-                //    // SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-                //}
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("消息模板列表修改错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -209,7 +189,7 @@ namespace Xr.RtManager.Pages.cms
                 if (selectedRow == null)
                     return;
                 MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBox.Show("确定要删除吗?", "删除消息内容模板", messButton);
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
                 if (dr == DialogResult.OK)
                 {
@@ -224,13 +204,14 @@ namespace Xr.RtManager.Pages.cms
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
 
                 }
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("消息模板列表删除错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -263,11 +244,12 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("消息模板列表保存错误信息：" + ex.Message);
             }
         }
 #endregion 
@@ -291,12 +273,13 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("获取消息内容模板类型错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -324,8 +307,6 @@ namespace Xr.RtManager.Pages.cms
         {
             if (e.Column.FieldName=="type")
             {
-                //var value = from a in listentity where a.value == e.Value.ToString() select a.label;
-               // string ids = string.Join(",", value);
                 e.DisplayText = string.Join(",", from a in listentity where a.value == e.Value.ToString() select a.label);
             }
         }
@@ -340,6 +321,12 @@ namespace Xr.RtManager.Pages.cms
             //e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
             //e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
             //e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+        }
+        #endregion 
+        #region 分页跳转事件
+        private void pageControl1_Query(int CurrentPage, int PageSize)
+        {
+            MessageContentTemplateList(CurrentPage, PageSize);
         }
         #endregion 
     }

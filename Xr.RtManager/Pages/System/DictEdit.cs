@@ -10,6 +10,7 @@ using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Xr.Http;
 using System.Threading;
+using Xr.Common;
 
 namespace Xr.RtManager
 {
@@ -62,7 +63,7 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }

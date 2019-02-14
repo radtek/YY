@@ -13,6 +13,7 @@ using RestSharp;
 using System.Net;
 using Xr.RtScreen.VoiceCall;
 using Newtonsoft.Json.Linq;
+using Xr.RtScreen.Models;
 
 namespace Xr.RtScreen.pages
 {
@@ -27,16 +28,17 @@ namespace Xr.RtScreen.pages
                    ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             _context = SynchronizationContext.Current;
-            DynamicLayout(this.tableLayoutPanel1, 7, 6);
+          //DynamicLayout(this.tableLayoutPanel1,6,6);
+            DoctorSittingConsultations();
             #region
             //try
             //{
-            this.tableLayoutPanel1.ColumnStyles[0].Width = 30;
-            this.tableLayoutPanel1.ColumnStyles[1].Width = 40;
-            this.tableLayoutPanel1.ColumnStyles[2].Width = 40;
-            this.tableLayoutPanel1.ColumnStyles[3].Width = 80;
-            this.tableLayoutPanel1.ColumnStyles[4].Width = 40;
-            this.tableLayoutPanel1.ColumnStyles[5].Width = 40;
+            //this.tableLayoutPanel1.ColumnStyles[0].Width = 30;
+            //this.tableLayoutPanel1.ColumnStyles[1].Width = 40;
+            //this.tableLayoutPanel1.ColumnStyles[2].Width = 40;
+            //this.tableLayoutPanel1.ColumnStyles[3].Width = 80;
+            //this.tableLayoutPanel1.ColumnStyles[4].Width = 40;
+            //this.tableLayoutPanel1.ColumnStyles[5].Width = 40;
 
             //}
             //catch (Exception)
@@ -49,12 +51,16 @@ namespace Xr.RtScreen.pages
             speakVoiceform.Show(this);
         }
         #region 医生坐诊诊间列表（定时自动查询）
+        List<ScreenClass> clinicInfo;
+        int a = 0;
         public void DoctorSittingConsultations()
         {
             try
             {
+                clinicInfo = new List<ScreenClass>();
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-               // prament.Add("deptId", "");//科室主键
+                prament.Add("hospital.id", HelperClass.hospitalId);
+                prament.Add("dept.id", HelperClass.deptId);
                 Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findPublicScreenData", prament, Method.POST, result =>
                 {
                     LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
@@ -66,7 +72,19 @@ namespace Xr.RtScreen.pages
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    _context.Send((s) => MessageBox.Show("获取陈宫"), null);
+                                    clinicInfo = objT["result"].ToObject<List<ScreenClass>>();
+                                    if (clinicInfo.Count != a)
+                                    {
+                                        _context.Send((s) => DynamicLayout(this.tableLayoutPanel1, clinicInfo.Count + 1, 6), null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[0].Width = 30, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[1].Width = 40, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[2].Width = 40, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[3].Width = 80, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[4].Width = 40, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[5].Width = 40, null);
+                                    }
+                                    a = clinicInfo.Count;
+                                    _context.Send((s) => Assignment(), null);
                                 }
                                 else
                                 {
@@ -82,7 +100,85 @@ namespace Xr.RtScreen.pages
             {
             }
         }
+        #region 给控件赋值
+        /// <summary>
+        /// 给控件赋值
+        /// </summary>
+        public void Assignment()
+        {
+            try
+            {
+                foreach (Control c in this.tableLayoutPanel1.Controls)
+                {
+                    if (c is Label)
+                    {
+                        for (int g = 0; g < clinicInfo.Count; g++)
+                        {
+                            if (c.Name != "label00" && c.Name != "label01" && c.Name != "label02" && c.Name != "label03" && c.Name != "label04" && c.Name != "label05" && c.Name != "label06")
+                            {
+                                if (c.Name == "label" + (g + 1) + 0)//诊室
+                                {
+                                    c.Text = clinicInfo[g].name;
+                                    g = g + 1;
+                                    break;
+                                }
+                                if (c.Name == "label" + (g + 1) + 1)//在诊患者
+                                {
+                                    c.Text = "张三";//clinicInfo[g].visitPatient;
+                                    g = g + 1;
+                                    break;
+                                }
+                                if (c.Name == "label" + (g + 1) + 2)//下一位患者
+                                {
+                                    c.Text = "张三";//clinicInfo[g].visitPatient;
+                                    g = g + 1;
+                                    break;
+                                }
+                                if (c.Name == "label" + (g + 1) + 4)//预约
+                                {
+                                    c.Text = "10";//clinicInfo[g].visitPatient;
+                                    g = g + 1;
+                                    break;
+                                }
+                                if (c.Name == "label" + (g + 1) + 5)//签到
+                                {
+                                    c.Text = "15";//clinicInfo[g].visitPatient;
+                                    g = g + 1;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    //if (c is ScrollingText)
+                    //{
+                    //    for (int g = 0; g < clinicInfo.Count; g++)
+                    //    {
+                    //        if (c.Name != "st11")
+                    //        {
+                               
+                    //        }
+                    //    }
+                    //}
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        #endregion 
         #endregion
+        #region 解决绘制控件时的闪烁问题
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // Turn on WS_EX_COMPOSITED 
+                return cp;
+            }
+        }
+        #endregion 
         #region 科室候诊说明
         public void DepartmentWaitingList()
         {
@@ -200,7 +296,6 @@ namespace Xr.RtScreen.pages
                         label.BackColor = Color.Transparent;
                         label.ForeColor = Color.Yellow;
                         label.Name = "label" + i + j;
-
                         ScrollingText st = new ScrollingText();
                         st.Dock = DockStyle.Fill;
                         st.ScrollText = "";
@@ -245,13 +340,30 @@ namespace Xr.RtScreen.pages
                             layoutPanel.SetRow(label, i);
                             layoutPanel.SetColumn(label, j);
                         }
+                        //foreach (Control c in this.tableLayoutPanel1.Controls)
+                        //{
+                        //    if (c is ScrollingText)
+                        //    {
+                        //        for (int g = 0; g < clinicInfo.Count; g++)
+                        //        {
+                        //            if (c.Name == "st" + (g + 1) + 3)//等候患者
+                        //            {
+                        //                if (c.Name != "label00" && c.Name != "label01" && c.Name != "label02" && c.Name != "label03" && c.Name != "label04" && c.Name != "label05" && c.Name != "label06")
+                        //                {
+                        //                    c. = "张三，李四，王五，赵六，前期";//clinicInfo[g].visitPatient;
+                        //                    g = g + 1;
+                        //                    break;
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //}
                     }
                 }
+               // Application.DoEvents();
             }
             catch (Exception)
             {
-
-                throw;
             }
         }
         #endregion

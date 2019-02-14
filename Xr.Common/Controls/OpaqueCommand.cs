@@ -21,9 +21,18 @@ namespace Xr.Common.Controls
         /// </summary>
         bool IsShowtransparencyBG;
         /// <summary>
+        /// 是否显示取消按钮
+        /// </summary>
+        public bool IsShowCancelBtn=false;
+        Xr.Common.Controls.ButtonControl buttonControl;
+        /// <summary>
         /// 显示的等待框
         /// </summary>
-        private System.Windows.Forms.Panel waitingBox;
+        public System.Windows.Forms.Panel waitingBox;
+
+        public ProgressPanel _Loading; 
+
+        PanelEx pe;
         /// <summary>
         /// 显示遮罩层
         /// </summary>
@@ -77,7 +86,6 @@ namespace Xr.Common.Controls
         /// <summary>
         /// Creates the waiting box.
         /// </summary>
-        /// User:Ryan  CreateTime:2012-8-5 16:22.
         private void CreateWaitingBox()
         {
             if (!this._IsWaitingBoxCreated)
@@ -91,7 +99,7 @@ namespace Xr.Common.Controls
                 if (!Control.Contains(waitingBox))
                 {
                     
-                    ProgressPanel _Loading = new ProgressPanel();
+                     _Loading = new ProgressPanel();
                     //_Loading.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
                     _Loading.Appearance.BackColor = System.Drawing.Color.FromArgb(60, Color.WhiteSmoke);
                     _Loading.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,6 +111,7 @@ namespace Xr.Common.Controls
                     _Loading.AppearanceCaption.Options.UseFont = true;
                     _Loading.AppearanceDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
                     _Loading.AppearanceDescription.Options.UseFont = true;
+                    _Loading.Size = new System.Drawing.Size(223, 53);
                     _Loading.Caption = _text;
                     _Loading.Description = "";
                     //_Loading.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -111,25 +120,66 @@ namespace Xr.Common.Controls
                     _Loading.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
                     //_Loading.Size = new System.Drawing.Size(223, 53);
                     //_Loading.Location = new Point((Control.Width - _Loading.Width) / 2,  (Control.Height - _Loading.Height) / 2);//居中
-                    _Loading.Dock = DockStyle.Fill;
+                    _Loading.Dock = DockStyle.Top;
                     _Loading.LookAndFeel.SkinName = "Visual Studio 2013 Light";
                     _Loading.LookAndFeel.UseDefaultLookAndFeel = false;
 
                     _Loading.TabIndex = 0;
                     _Loading.Text = "progressPanel1";
 
-                    PanelEx pe = new PanelEx();
-                    pe.Size = new System.Drawing.Size(223, 53);
+                     pe = new PanelEx();
+                    pe.Size = new System.Drawing.Size(223, 75);
                     pe.Location = new Point((Control.Width - _Loading.Width) / 2, (Control.Height - _Loading.Height) / 2);//居中
                     pe.BorderColor = Color.LightGray;
                     pe.Controls.Add(_Loading);
                     waitingBox.Controls.Add(pe);
                     Control.Controls.Add(waitingBox);
+                    if (IsShowCancelBtn)
+                    {
+                        //取消按钮
+                        buttonControl = new Xr.Common.Controls.ButtonControl();
+
+                        buttonControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+                        buttonControl.Dock = DockStyle.None;
+                        buttonControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+                        buttonControl.HoverBackColor = System.Drawing.Color.Empty;
+                        buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
+                        buttonControl.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+                        buttonControl.Size = new System.Drawing.Size(50, 20);
+                        buttonControl.Style = Xr.Common.Controls.ButtonStyle.Return;
+                        buttonControl.TabIndex = 90;
+                        buttonControl.TabStop = false;
+                        buttonControl.Text = "取消";
+                        buttonControl.Click += new System.EventHandler(this.button_Click);
+                        pe.Controls.Add(buttonControl);
+                    }
+                    else
+                    {
+                        pe.Size = new System.Drawing.Size(223, 52); 
+                    }
                     
                 }
+                
                 waitingBox.Show();
                 this._IsWaitingBoxCreated = true;
                 #endregion
+            }
+            _Loading.Caption = _text;
+            if (IsShowCancelBtn)
+            {
+                if (buttonControl != null)
+                {
+                    buttonControl.Visible = true;
+                    pe.Size = new System.Drawing.Size(223, 75);
+                }
+            }
+            else
+            {
+                if (buttonControl != null)
+                {
+                    buttonControl.Visible = false;
+                    pe.Size = new System.Drawing.Size(223, 52);
+                }
             }
             Rectangle rect = Control.DisplayRectangle;
             waitingBox.Width = rect.Width;
@@ -158,7 +208,6 @@ namespace Xr.Common.Controls
         /// 创建临时背景图片
         /// </summary>
         /// <returns>Return a data(or instance) of Bitmap.</returns>
-        /// User:Ryan  CreateTime:2012-8-5 16:21.
         private Bitmap CreateBacgroundImage()
         {
             Rectangle rect = Control.ClientRectangle;
@@ -208,6 +257,9 @@ namespace Xr.Common.Controls
                 waitingBox.Visible = false;
             }
         }
-
+       private void button_Click(object sender, EventArgs e)
+       {
+           HideOpaqueLayer();
+       }
     }
 }

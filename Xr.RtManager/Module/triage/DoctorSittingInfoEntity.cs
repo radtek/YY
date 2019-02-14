@@ -49,10 +49,12 @@ namespace Xr.RtManager.Module.triage
        //诊室ID
        public String clinicId { get; set; }
    }
-
-   /*
-           [{"workDate":"2019-02-01", "values":[{"period":"0", "clinicId":"1"}, {"period":"1", "clinicId":"1"}, {"period":"2", "clinicId":"1"}]},{"workDate":"2019-02-02", "values":[{"period":"0", "clinicId":"1"}, {"period":"1", "clinicId":"1"}]},{"workDate":"2019-02-03", "values":[{"period":"0", "clinicId":"1"}]}]
-           */
+   public class objJson
+   {
+       public String workDate { get; set; }
+       public String period { get; set; }
+       public String clinicId { get; set; }
+   }
    public class OveradeJson
    {
        public String workDate { get; set; }

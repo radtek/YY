@@ -43,13 +43,13 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
-            this.tbTitle = new System.Windows.Forms.TextBox();
+            this.tbVersion = new DevExpress.XtraEditors.TextEdit();
+            this.tbTitle = new DevExpress.XtraEditors.TextEdit();
             this.buttonControl4 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl3 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbVersion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -58,6 +58,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVersion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTitle.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -115,6 +117,7 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.ColumnPanelRowHeight = 30;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn7,
             this.gridColumn1,
@@ -124,6 +127,7 @@
             this.gridColumn5});
             this.gridView1.GridControl = this.gcDict;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsCustomization.AllowFilter = false;
             this.gridView1.OptionsCustomization.AllowSort = false;
@@ -133,6 +137,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 30;
             // 
             // gridColumn7
             // 
@@ -235,13 +240,13 @@
             this.borderPanel1.Appearance.Options.UseBackColor = true;
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.tbVersion);
             this.borderPanel1.Controls.Add(this.tbTitle);
             this.borderPanel1.Controls.Add(this.buttonControl4);
             this.borderPanel1.Controls.Add(this.buttonControl3);
             this.borderPanel1.Controls.Add(this.buttonControl2);
             this.borderPanel1.Controls.Add(this.buttonControl1);
             this.borderPanel1.Controls.Add(this.label3);
-            this.borderPanel1.Controls.Add(this.tbVersion);
             this.borderPanel1.Controls.Add(this.label1);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -256,13 +261,21 @@
             this.borderPanel1.Size = new System.Drawing.Size(1017, 50);
             this.borderPanel1.TabIndex = 0;
             // 
+            // tbVersion
+            // 
+            this.tbVersion.Location = new System.Drawing.Point(352, 12);
+            this.tbVersion.Name = "tbVersion";
+            this.tbVersion.Properties.AutoHeight = false;
+            this.tbVersion.Size = new System.Drawing.Size(146, 27);
+            this.tbVersion.TabIndex = 92;
+            // 
             // tbTitle
             // 
-            this.tbTitle.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbTitle.Location = new System.Drawing.Point(116, 12);
             this.tbTitle.Name = "tbTitle";
+            this.tbTitle.Properties.AutoHeight = false;
             this.tbTitle.Size = new System.Drawing.Size(146, 27);
-            this.tbTitle.TabIndex = 90;
+            this.tbTitle.TabIndex = 91;
             // 
             // buttonControl4
             // 
@@ -285,7 +298,7 @@
             this.buttonControl3.Location = new System.Drawing.Point(700, 10);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl3.TabIndex = 88;
             this.buttonControl3.Text = "修改";
             this.buttonControl3.Click += new System.EventHandler(this.btnUp_Click);
@@ -298,7 +311,7 @@
             this.buttonControl2.Location = new System.Drawing.Point(610, 10);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl2.TabIndex = 87;
             this.buttonControl2.Text = "新增";
             this.buttonControl2.Click += new System.EventHandler(this.skinButton2_Click);
@@ -325,14 +338,6 @@
             this.label3.Size = new System.Drawing.Size(65, 19);
             this.label3.TabIndex = 84;
             this.label3.Text = "版本号：";
-            // 
-            // tbVersion
-            // 
-            this.tbVersion.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbVersion.Location = new System.Drawing.Point(352, 12);
-            this.tbVersion.Name = "tbVersion";
-            this.tbVersion.Size = new System.Drawing.Size(146, 27);
-            this.tbVersion.TabIndex = 83;
             // 
             // label1
             // 
@@ -361,6 +366,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVersion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTitle.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -385,9 +392,9 @@
         private Xr.Common.Controls.ButtonControl buttonControl2;
         private Xr.Common.Controls.ButtonControl buttonControl1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbVersion;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbTitle;
+        private DevExpress.XtraEditors.TextEdit tbVersion;
+        private DevExpress.XtraEditors.TextEdit tbTitle;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

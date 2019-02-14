@@ -22,14 +22,12 @@ namespace Xr.RtManager.Pages.cms
             cmd.ShowOpaqueLayer(225, false);
             HolidaySettingList(1,pageControl1.PageSize);
             cmd.HideOpaqueLayer();
-            //this.gv_Holiday.Appearance.EvenRow.BackColor = Color.FromArgb(150, 237, 243, 254);
-            //gv_Holiday.Appearance.OddRow.BackColor = Color.FromArgb(150, 199, 237, 204);
-            //gv_Holiday.OptionsView.EnableAppearanceEvenRow = true;
-            //gv_Holiday.OptionsView.EnableAppearanceOddRow = true;
+            #region 
             //string StartYear = (DateTime.Now.Year-2).ToString();//获取当前年份
             //string SeparatedYear = (DateTime.Now.Year -(Convert.ToInt32(StartYear)-5)).ToString();
             //cmbYear.DataSource = Enumerable.Range(Convert.ToInt32(StartYear), Convert.ToInt32(SeparatedYear)).ToList();
             //cmbYear.SelectedIndex = cmbYear.Items.IndexOf(DateTime.Now.Year);
+            #endregion 
         }
         public List<HolidayInfoEntity> Data = new List<HolidayInfoEntity>();
         #region 节假日列表
@@ -54,7 +52,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
@@ -73,18 +71,15 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    //this.gc_Holiday.DataSource = objT["result"]["list"].ToObject<List<HolidayInfoEntity>>();
-                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                    //int.Parse(objT["result"]["pageSize"].ToString()),
-                    //int.Parse(objT["result"]["pageNo"].ToString()));
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("查询节假日详情错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -102,19 +97,15 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    //this.gc_Holiday.DataSource = objT["result"]["list"].ToObject<List<HolidayInfoEntity>>();
-                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                    //int.Parse(objT["result"]["pageSize"].ToString()),
-                    //int.Parse(objT["result"]["pageNo"].ToString()));
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("查询指定医院下节假日列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -134,19 +125,15 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    //this.gc_Holiday.DataSource = objT["result"]["list"].ToObject<List<HolidayInfoEntity>>();
-                    //pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
-                    //int.Parse(objT["result"]["pageSize"].ToString()),
-                    //int.Parse(objT["result"]["pageNo"].ToString()));
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
-
+                LogClass.WriteLog("查询时间段内属于节假日的日期错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -163,9 +150,9 @@ namespace Xr.RtManager.Pages.cms
                 groupBox1.Enabled = true;
                 dcHodily.ClearValue();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                LogClass.WriteLog("节假日新增错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -184,19 +171,10 @@ namespace Xr.RtManager.Pages.cms
                     return;
                 dcHodily.SetValue(selectedRow);
                 groupBox1.Enabled = true ;
-                //var edit = new HolidaySettingEdit();
-                //edit.holidayInfoEntity = selectedRow;
-                //edit.Text = "节假日修改";
-                //if (edit.ShowDialog() == DialogResult.OK)
-                //{
-                //    MessageBoxUtils.Hint("修改成功!");
-                //    HolidaySettingList(AppContext.Session.hospitalId);
-                // //   SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-                //}
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                LogClass.WriteLog("节假日修改错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -214,8 +192,7 @@ namespace Xr.RtManager.Pages.cms
                 if (selectedRow == null)
                     return;
                 MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBox.Show("确定要删除吗?", "删除节假日", messButton);
-
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.OK)
                 {
                     String param = "?id=" + selectedRow.id;
@@ -229,14 +206,13 @@ namespace Xr.RtManager.Pages.cms
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
-                 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                LogClass.WriteLog("节假日修改错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -287,11 +263,12 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
+                LogClass.WriteLog("节假日保存错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -327,6 +304,12 @@ namespace Xr.RtManager.Pages.cms
             //e.Graphics.DrawLine(Pens.Gray, 1, vSize.Height / 2, 1, gBox.Height - 2);
             //e.Graphics.DrawLine(Pens.Gray, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2);
             //e.Graphics.DrawLine(Pens.Gray, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2);
+        }
+        #endregion 
+        #region 分页跳转事件
+        private void pageControl1_Query(int CurrentPage, int PageSize)
+        {
+            HolidaySettingList(CurrentPage,PageSize);
         }
         #endregion 
     }

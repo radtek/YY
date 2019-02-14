@@ -76,7 +76,14 @@ namespace Xr.Common.Controls
             this.ResumeLayout(false);
 
         }
-
+        private bool _EnableCheck=true;
+        [Description("能否选择")]
+        [DefaultValue(true)]
+        public bool EnableCheck
+        {
+            get { return _EnableCheck; }
+            set { _EnableCheck = value; }
+        }
         private bool isCheck ;
         [DefaultValue(false)]
         [Description("是否选中")]
@@ -87,25 +94,32 @@ namespace Xr.Common.Controls
             {
                 if (this.Enabled)
                 {
-                    if (value != isCheck)
+                    if (!this.EnableCheck) 
                     {
-                        ChangeBackColor();
+                        isCheck = false;
                     }
-                    if (value == true)
+                    else
                     {
-                        if (this.Parent != null)
+                        if (value != isCheck)
                         {
-                            foreach (Control c in this.Parent.Controls)
-                            {
-                                if (c is BorderPanelButton && c != this)
-                                {
-                                    (c as BorderPanelButton).IsCheck = false;
-                                }
-                            }
-
+                            ChangeBackColor();
                         }
+                        if (value == true)
+                        {
+                            if (this.Parent != null)
+                            {
+                                foreach (Control c in this.Parent.Controls)
+                                {
+                                    if (c is BorderPanelButton && c != this)
+                                    {
+                                        (c as BorderPanelButton).IsCheck = false;
+                                    }
+                                }
+
+                            }
+                        }
+                        isCheck = value;
                     }
-                    isCheck = value;
                 }
                 else
                 {

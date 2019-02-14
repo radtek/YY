@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcUser = new DevExpress.XtraGrid.GridControl();
@@ -50,6 +50,8 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.tbName = new DevExpress.XtraEditors.TextEdit();
+            this.tbLoginName = new DevExpress.XtraEditors.TextEdit();
             this.btnQuery = new Xr.Common.Controls.ButtonControl();
             this.treeOffice = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
@@ -61,8 +63,6 @@
             this.btnUp = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbLoginName = new System.Windows.Forms.TextBox();
-            this.tbName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -76,6 +76,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbLoginName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeOffice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeCompany.Properties)).BeginInit();
@@ -135,6 +137,7 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.ColumnPanelRowHeight = 30;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.select,
             this.gridColumn1,
@@ -159,6 +162,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 30;
             // 
             // select
             // 
@@ -187,6 +191,7 @@
             this.gridColumn1.FieldName = "id";
             this.gridColumn1.MinWidth = 25;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -200,6 +205,7 @@
             this.gridColumn2.FieldName = "companyName";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
@@ -213,6 +219,7 @@
             this.gridColumn3.FieldName = "officeName";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
@@ -226,6 +233,7 @@
             this.gridColumn4.FieldName = "loginName";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             // 
@@ -239,6 +247,7 @@
             this.gridColumn5.FieldName = "name";
             this.gridColumn5.MinWidth = 25;
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             // 
@@ -252,6 +261,7 @@
             this.gridColumn6.FieldName = "phone";
             this.gridColumn6.MinWidth = 25;
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
             // 
@@ -265,6 +275,7 @@
             this.gridColumn7.FieldName = "mobile";
             this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn8
             // 
@@ -276,6 +287,7 @@
             this.gridColumn8.FieldName = "roleNames";
             this.gridColumn8.MinWidth = 25;
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 6;
             // 
@@ -284,6 +296,7 @@
             this.gridColumn9.Caption = "是否锁定";
             this.gridColumn9.FieldName = "lockedName";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 7;
             // 
@@ -292,18 +305,19 @@
             this.gridColumn11.Caption = "操作";
             this.gridColumn11.ColumnEdit = this.repositoryItemButtonEdit1;
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 8;
             // 
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.ForeColor = System.Drawing.Color.SteelBlue;
-            serializableAppearanceObject1.Options.UseFont = true;
-            serializableAppearanceObject1.Options.UseForeColor = true;
+            serializableAppearanceObject4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject4.ForeColor = System.Drawing.Color.SteelBlue;
+            serializableAppearanceObject4.Options.UseFont = true;
+            serializableAppearanceObject4.Options.UseForeColor = true;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "解锁", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "解锁", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -339,6 +353,8 @@
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.tbName);
+            this.borderPanel1.Controls.Add(this.tbLoginName);
             this.borderPanel1.Controls.Add(this.btnQuery);
             this.borderPanel1.Controls.Add(this.treeOffice);
             this.borderPanel1.Controls.Add(this.btnDel);
@@ -346,8 +362,6 @@
             this.borderPanel1.Controls.Add(this.btnUp);
             this.borderPanel1.Controls.Add(this.btnAdd);
             this.borderPanel1.Controls.Add(this.label1);
-            this.borderPanel1.Controls.Add(this.tbLoginName);
-            this.borderPanel1.Controls.Add(this.tbName);
             this.borderPanel1.Controls.Add(this.label2);
             this.borderPanel1.Controls.Add(this.label4);
             this.borderPanel1.Controls.Add(this.label3);
@@ -363,6 +377,22 @@
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Size = new System.Drawing.Size(1421, 90);
             this.borderPanel1.TabIndex = 1;
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(384, 52);
+            this.tbName.Name = "tbName";
+            this.tbName.Properties.AutoHeight = false;
+            this.tbName.Size = new System.Drawing.Size(147, 27);
+            this.tbName.TabIndex = 93;
+            // 
+            // tbLoginName
+            // 
+            this.tbLoginName.Location = new System.Drawing.Point(116, 52);
+            this.tbLoginName.Name = "tbLoginName";
+            this.tbLoginName.Properties.AutoHeight = false;
+            this.tbLoginName.Size = new System.Drawing.Size(147, 27);
+            this.tbLoginName.TabIndex = 92;
             // 
             // btnQuery
             // 
@@ -474,7 +504,7 @@
             this.btnUp.Location = new System.Drawing.Point(583, 50);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 30);
-            this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnUp.TabIndex = 1;
             this.btnUp.Text = "修改";
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
@@ -487,7 +517,7 @@
             this.btnAdd.Location = new System.Drawing.Point(673, 10);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 30);
-            this.btnAdd.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.btnAdd.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.skinButton2_Click);
@@ -501,22 +531,6 @@
             this.label1.Size = new System.Drawing.Size(79, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "归属公司：";
-            // 
-            // tbLoginName
-            // 
-            this.tbLoginName.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbLoginName.Location = new System.Drawing.Point(116, 52);
-            this.tbLoginName.Name = "tbLoginName";
-            this.tbLoginName.Size = new System.Drawing.Size(146, 27);
-            this.tbLoginName.TabIndex = 62;
-            // 
-            // tbName
-            // 
-            this.tbName.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbName.Location = new System.Drawing.Point(384, 52);
-            this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(146, 27);
-            this.tbName.TabIndex = 67;
             // 
             // label2
             // 
@@ -567,6 +581,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbLoginName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeOffice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeCompany.Properties)).EndInit();
@@ -580,12 +596,10 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox tbLoginName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbName;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private DevExpress.XtraEditors.TreeListLookUpEdit treeCompany;
         private DevExpress.XtraTreeList.TreeList treeListLookUpEdit1TreeList;
@@ -615,6 +629,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private Xr.Common.Controls.PageControl pageControl1;
+        private DevExpress.XtraEditors.TextEdit tbName;
+        private DevExpress.XtraEditors.TextEdit tbLoginName;
 
     }
 }

@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using Xr.Http;
 using Newtonsoft.Json.Linq;
 using Xr.Common;
+using System.Threading;
+using System.ComponentModel;
 
 namespace Xr.RtManager.Pages.scheduling
 {
@@ -15,48 +17,59 @@ namespace Xr.RtManager.Pages.scheduling
         public ScheduledListForm()
         {
             InitializeComponent();
-            cmd = new Xr.Common.Controls.OpaqueCommand(this);
-            //cmd.ShowOpaqueLayer(225, true);
-            //cmd.HideOpaqueLayer();
         }
 
         private void ScheduledListForm_Load(object sender, EventArgs e)
         {
-            gridView1.OptionsView.AllowCellMerge = true;
-            //这里不能直接用，不然下面添加全部科室会导致session里面的科室列表也添加了全部科室
-            List<DeptEntity> deptList = new List<DeptEntity>();
-            foreach(DeptEntity deptEntity in AppContext.Session.deptList){
-                deptList.Add(deptEntity);
-            }
-            DeptEntity dept = new DeptEntity();
-            dept.id = "";
-            dept.name = "全部科室";
-            deptList.Insert(0, dept);
-            lueDept.Properties.DataSource = deptList;
-            lueDept.Properties.DisplayMember = "name";
-            lueDept.Properties.ValueMember = "id";
-            lueDept.ItemIndex = 0;
+            deBegin.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
+            deEnd.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(0f);
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                return null;
 
-            //设置表格中状态下拉框的数据
-            List<DictEntity> dictList = new List<DictEntity>();
-            DictEntity dict = new DictEntity();
-            dict.value = "0";
-            dict.label = "正常";
-            dictList.Add(dict);
-            dict = new DictEntity();
-            dict.value = "1";
-            dict.label = "停诊";
-            dictList.Add(dict);
-            repositoryItemLookUpEdit1.Properties.DataSource = dictList;
-            repositoryItemLookUpEdit1.Properties.DisplayMember = "label";
-            repositoryItemLookUpEdit1.Properties.ValueMember = "value";
-            repositoryItemLookUpEdit1.ShowHeader = false;
-            repositoryItemLookUpEdit1.ShowFooter = false;
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                gridView1.OptionsView.AllowCellMerge = true;
+                //这里不能直接用，不然下面添加全部科室会导致session里面的科室列表也添加了全部科室
+                List<DeptEntity> deptList = new List<DeptEntity>();
+                foreach (DeptEntity deptEntity in AppContext.Session.deptList)
+                {
+                    deptList.Add(deptEntity);
+                }
+                DeptEntity dept = new DeptEntity();
+                dept.id = "";
+                dept.name = "全部科室";
+                deptList.Insert(0, dept);
+                treeDept.Properties.DataSource = deptList;
+                treeDept.Properties.TreeList.KeyFieldName = "id";
+                treeDept.Properties.TreeList.ParentFieldName = "parentId";
+                treeDept.Properties.DisplayMember = "name";
+                treeDept.Properties.ValueMember = "id";
+
+                //设置表格中状态下拉框的数据
+                List<DictEntity> dictList = new List<DictEntity>();
+                DictEntity dict = new DictEntity();
+                dict.value = "0";
+                dict.label = "正常";
+                dictList.Add(dict);
+                dict = new DictEntity();
+                dict.value = "1";
+                dict.label = "停诊";
+                dictList.Add(dict);
+                repositoryItemLookUpEdit1.Properties.DataSource = dictList;
+                repositoryItemLookUpEdit1.Properties.DisplayMember = "label";
+                repositoryItemLookUpEdit1.Properties.ValueMember = "value";
+                repositoryItemLookUpEdit1.ShowHeader = false;
+                repositoryItemLookUpEdit1.ShowFooter = false;
+                SearchData();
+            });
         }
 
-        private void lueDept_EditValueChanged(object sender, EventArgs e)
+        private void treeDept_EditValueChanged(object sender, EventArgs e)
         {
-            String param = "pageNo=1&pageSize=10000&hospital.id=" + AppContext.Session.hospitalId + "&dept.id=" + lueDept.EditValue;
+            String param = "pageNo=1&pageSize=10000&hospital.id=" + AppContext.Session.hospitalId + "&dept.id=" + treeDept.EditValue;
             String url = AppContext.AppConfig.serverUrl + "cms/doctor/list?" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
@@ -74,43 +87,51 @@ namespace Xr.RtManager.Pages.scheduling
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 return;
             }
         }
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
+            cmd.ShowOpaqueLayer();
             SearchData();
         }
 
         private void SearchData()
         {
             String param = "beginDate=" + deBegin.Text + "&endDate=" + deEnd.Text
-    + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + lueDept.EditValue
+    + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + treeDept.EditValue
     + "&doctorId=" + lueDoctor.EditValue;
-            cmd.ShowOpaqueLayer(225, true);
             String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findByPropertys?" + param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                List<ScheduledEntity> scheduledList = objT["result"].ToObject<List<ScheduledEntity>>();
-                List<ScheduledEntity> dataSource = new List<ScheduledEntity>();
-                for (int i = 0; i < scheduledList.Count; i++)
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    ScheduledEntity scheduled = scheduledList[i];
-                    scheduled.num = (i + 1).ToString();
-                    dataSource.Add(scheduled);
+                    List<ScheduledEntity> scheduledList = objT["result"].ToObject<List<ScheduledEntity>>();
+                    List<ScheduledEntity> dataSource = new List<ScheduledEntity>();
+                    for (int i = 0; i < scheduledList.Count; i++)
+                    {
+                        ScheduledEntity scheduled = scheduledList[i];
+                        scheduled.num = (i + 1).ToString();
+                        dataSource.Add(scheduled);
+                    }
+                    gcScheduled.DataSource = dataSource;
+                    cmd.HideOpaqueLayer();
                 }
-                cmd.HideOpaqueLayer();
-                gcScheduled.DataSource = dataSource;
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-                return;
-            }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
         }
 
         private void gridView1_CellMerge(object sender, DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs e)
@@ -147,14 +168,15 @@ namespace Xr.RtManager.Pages.scheduling
         private void btnSave_Click(object sender, EventArgs e)
         {
             var edit = new RemarksEdit();
-            edit.deptId = lueDept.EditValue.ToString();
+            edit.deptId = treeDept.EditValue.ToString();
             edit.doctorId = lueDoctor.EditValue.ToString();
             edit.beginDate = deBegin.Text;
             edit.endDate = deEnd.Text;
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("修改成功!");
+                Thread.Sleep(300);
                 SearchData();
+                MessageBoxUtils.Hint("修改成功!");
             }
         }
 
@@ -169,10 +191,8 @@ namespace Xr.RtManager.Pages.scheduling
                 return;
             }
 
-            MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-            DialogResult dr = MessageBox.Show("确定要修改状态吗?", "修改状态", messButton);
-
-            if (dr == DialogResult.OK)
+            if (MessageBoxUtils.Show("确定要修改状态吗?", MessageBoxButtons.OKCancel,
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
             {
                 var selectedRow = gridView1.GetFocusedRow() as ScheduledEntity;
                 String period = "";
@@ -196,8 +216,8 @@ namespace Xr.RtManager.Pages.scheduling
                 }
                 else
                 {
-                    this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue); 
-                    MessageBox.Show(objT["message"].ToString());
+                    this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             else
@@ -205,5 +225,59 @@ namespace Xr.RtManager.Pages.scheduling
                 this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue); 
             }
         }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="time">线程延迟多少</param>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+                try
+                {
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    LogClass.WriteLog(ex.Message);
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(time);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+        
     }
 }

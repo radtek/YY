@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.dcUser = new Xr.Common.Controls.DataController(this.components);
+            this.dcUser = new Xr.Common.Controls.DataController();
             this.treeCompany = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeListLookUpEdit1TreeList = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -65,6 +64,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnCancel = new Xr.Common.Controls.ButtonControl();
+            this.panelEx1 = new Xr.Common.Controls.PanelEx();
             this.richEditor1 = new Xr.Common.Controls.RichEditor();
             ((System.ComponentModel.ISupportInitialize)(this.treeCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).BeginInit();
@@ -81,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelEx1.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeCompany
@@ -505,16 +506,31 @@
             this.btnCancel.Text = "关闭";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // panelEx1
+            // 
+            this.panelEx1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(196)))), ((int)(((byte)(203)))));
+            this.panelEx1.BorderSize = 1;
+            this.panelEx1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.panelEx1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.panelEx1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.panelEx1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.panelEx1.Controls.Add(this.richEditor1);
+            this.panelEx1.Location = new System.Drawing.Point(127, 390);
+            this.panelEx1.Name = "panelEx1";
+            this.panelEx1.Padding = new System.Windows.Forms.Padding(1);
+            this.panelEx1.Size = new System.Drawing.Size(593, 146);
+            this.panelEx1.TabIndex = 101;
+            // 
             // richEditor1
             // 
             this.richEditor1.BorderColor = System.Drawing.Color.Black;
+            this.richEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richEditor1.HeightLightBolorColor = System.Drawing.Color.Black;
             this.richEditor1.ImagUploadUrl = null;
-            this.richEditor1.Location = new System.Drawing.Point(122, 390);
+            this.richEditor1.Location = new System.Drawing.Point(1, 1);
             this.richEditor1.Name = "richEditor1";
-            this.richEditor1.Padding = new System.Windows.Forms.Padding(3);
-            this.richEditor1.Size = new System.Drawing.Size(601, 146);
-            this.richEditor1.TabIndex = 100;
+            this.richEditor1.Size = new System.Drawing.Size(591, 144);
+            this.richEditor1.TabIndex = 101;
             // 
             // UserEdit
             // 
@@ -522,7 +538,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(781, 608);
-            this.Controls.Add(this.richEditor1);
+            this.Controls.Add(this.panelEx1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.radioGroup2);
@@ -575,6 +591,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelEx1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -618,6 +635,7 @@
         private System.Windows.Forms.Label label14;
         private Xr.Common.Controls.ButtonControl btnSave;
         private Xr.Common.Controls.ButtonControl btnCancel;
+        private Xr.Common.Controls.PanelEx panelEx1;
         private Xr.Common.Controls.RichEditor richEditor1;
     }
 }

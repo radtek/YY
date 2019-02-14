@@ -79,12 +79,12 @@ namespace Xr.RtManager.Pages.cms
                                     lueIsUse.Properties.DisplayMember = "label";
                                     lueIsUse.Properties.ValueMember = "value";
 
-                                    SearchData(1, pageControl1.PageSize);
+                                    SearchData(1, 10000);
                                 }
                                 else
                                 {
                                     cmd.HideOpaqueLayer();
-                                    MessageBox.Show(objT["message"].ToString());
+                                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                                     return;
                                 }
                             });
@@ -92,7 +92,7 @@ namespace Xr.RtManager.Pages.cms
                         else
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBox.Show(objT["message"].ToString());
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                             return;
                         }
                     });
@@ -100,7 +100,7 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
             });  
@@ -121,14 +121,17 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    gcDeptInfo.DataSource = objT["result"]["list"].ToObject<List<DeptInfoEntity>>();
+                    treeList1.DataSource = objT["result"]["list"].ToObject<List<DeptInfoEntity>>();
+                    treeList1.KeyFieldName = "id";//设置ID  
+                    treeList1.ParentFieldName = "superiorId";//设置PreID   
+                    treeList1.ExpandAll();
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }
@@ -161,7 +164,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                LogClass.WriteLog(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -200,14 +204,14 @@ namespace Xr.RtManager.Pages.cms
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         return;
                     }
                 });
             }
             else
             {
-                MessageBox.Show("请选择要上传的文件");
+                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -230,7 +234,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                LogClass.WriteLog(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -269,14 +274,14 @@ namespace Xr.RtManager.Pages.cms
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         return;
                     }
                 });
             }
             else
             {
-                MessageBox.Show("请选择要上传的文件");
+                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
         #endregion
@@ -309,10 +314,10 @@ namespace Xr.RtManager.Pages.cms
             pictureServiceFilePath = null;
 
             deptInfo = new DeptInfoEntity();
-            var selectedRow = gridView1.GetFocusedRow() as DeptInfoEntity;
-            if (selectedRow == null)
+            String id = Convert.ToString(treeList1.FocusedNode.GetValue("id"));
+            if (id == null)
                 return;
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findById?id=" + selectedRow.id;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findById?id=" + id;
 
             cmd.ShowOpaqueLayer(225, true);
             this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
@@ -358,14 +363,14 @@ namespace Xr.RtManager.Pages.cms
                         }
                         catch (Exception ex)
                         {
-
+                            LogClass.WriteLog(ex.Message);
                         }
                     }
                     groupBox1.Enabled = true;
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             });
         }
@@ -422,22 +427,21 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }); 
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            var selectedRow = gridView1.GetFocusedRow() as DeptInfoEntity;
-            if (selectedRow == null)
+            String id = Convert.ToString(treeList1.FocusedNode.GetValue("id"));
+            if (id == null)
                 return;
-            MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-            DialogResult dr = MessageBox.Show("确定要删除吗?", "删除科室信息", messButton);
 
-            if (dr == DialogResult.OK)
+            if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
             {
-                String param = "?id=" + selectedRow.id;
+                String param = "?id=" + id;
                 String url = AppContext.AppConfig.serverUrl + "cms/dept/delete" + param;
 
                 cmd.ShowOpaqueLayer(225, true);
@@ -456,7 +460,7 @@ namespace Xr.RtManager.Pages.cms
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
                 });
             }
@@ -477,7 +481,7 @@ namespace Xr.RtManager.Pages.cms
         {
             if (lueHospital.EditValue == null || lueHospital.EditValue.ToString().Length == 0)
             {
-                lueParentDept.Properties.DataSource = null;
+                treeParentId.Properties.DataSource = null;
                 return;
             }
             HospitalInfoEntity hospitalInfo = lueHospital.GetSelectedDataRow() as HospitalInfoEntity;
@@ -492,13 +496,16 @@ namespace Xr.RtManager.Pages.cms
                 dept.id = "0";
                 dept.name = "无";
                 deptLsit.Insert(0, dept);
-                lueParentDept.Properties.DataSource = deptLsit;
-                lueParentDept.Properties.DisplayMember = "name";
-                lueParentDept.Properties.ValueMember = "id";
+                
+                treeParentId.Properties.DataSource = deptLsit;
+                treeParentId.Properties.TreeList.KeyFieldName = "id";
+                treeParentId.Properties.TreeList.ParentFieldName = "parentId";
+                treeParentId.Properties.DisplayMember = "name";
+                treeParentId.Properties.ValueMember = "id";
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 return;
             }
         }
@@ -539,7 +546,7 @@ namespace Xr.RtManager.Pages.cms
                 {
                     cmd.HideOpaqueLayer();
                     LogClass.WriteLog(ex.Message);
-                    MessageBox.Show(ex.Message);
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             };
 

@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -52,6 +51,10 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.treeDept = new DevExpress.XtraEditors.TreeListLookUpEdit();
+            this.treeList2 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.deEnd = new DevExpress.XtraEditors.DateEdit();
             this.deBegin = new DevExpress.XtraEditors.DateEdit();
             this.btnQuery = new Xr.Common.Controls.ButtonControl();
@@ -59,7 +62,6 @@
             this.lueDoctor = new DevExpress.XtraEditors.LookUpEdit();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lueDept = new DevExpress.XtraEditors.LookUpEdit();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.dataController1 = new Xr.Common.Controls.DataController(this.components);
             this.panel3.SuspendLayout();
@@ -71,12 +73,13 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDept.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deBegin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDoctor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueDept.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -139,6 +142,7 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.ColumnPanelRowHeight = 30;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn8,
             this.gridColumn1,
@@ -162,6 +166,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 30;
             this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
             // 
             // gridColumn8
@@ -332,6 +337,7 @@
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.treeDept);
             this.borderPanel1.Controls.Add(this.deEnd);
             this.borderPanel1.Controls.Add(this.deBegin);
             this.borderPanel1.Controls.Add(this.btnQuery);
@@ -339,7 +345,6 @@
             this.borderPanel1.Controls.Add(this.lueDoctor);
             this.borderPanel1.Controls.Add(this.label2);
             this.borderPanel1.Controls.Add(this.label1);
-            this.borderPanel1.Controls.Add(this.lueDept);
             this.borderPanel1.Controls.Add(this.btnSave);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -353,6 +358,55 @@
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Size = new System.Drawing.Size(1081, 50);
             this.borderPanel1.TabIndex = 1;
+            // 
+            // treeDept
+            // 
+            this.treeDept.EditValue = "";
+            this.treeDept.Location = new System.Drawing.Point(67, 11);
+            this.treeDept.Name = "treeDept";
+            this.treeDept.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeDept.Properties.Appearance.Options.UseFont = true;
+            this.treeDept.Properties.AutoHeight = false;
+            this.treeDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.treeDept.Properties.NullText = "";
+            this.treeDept.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
+            this.treeDept.Properties.TreeList = this.treeList2;
+            this.treeDept.Size = new System.Drawing.Size(100, 26);
+            this.treeDept.TabIndex = 111;
+            this.treeDept.EditValueChanged += new System.EventHandler(this.treeDept_EditValueChanged);
+            // 
+            // treeList2
+            // 
+            this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn9,
+            this.treeListColumn10});
+            this.treeList2.Location = new System.Drawing.Point(-92, -75);
+            this.treeList2.Name = "treeList2";
+            this.treeList2.OptionsBehavior.EnableFiltering = true;
+            this.treeList2.OptionsView.AllowHtmlDrawHeaders = true;
+            this.treeList2.OptionsView.ShowIndentAsRowStyle = true;
+            this.treeList2.RowHeight = 30;
+            this.treeList2.Size = new System.Drawing.Size(400, 200);
+            this.treeList2.TabIndex = 0;
+            // 
+            // treeListColumn9
+            // 
+            this.treeListColumn9.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn9.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn9.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn9.Caption = "科室";
+            this.treeListColumn9.FieldName = "name";
+            this.treeListColumn9.Name = "treeListColumn9";
+            this.treeListColumn9.Visible = true;
+            this.treeListColumn9.VisibleIndex = 0;
+            // 
+            // treeListColumn10
+            // 
+            this.treeListColumn10.Caption = "id";
+            this.treeListColumn10.FieldName = "id";
+            this.treeListColumn10.Name = "treeListColumn10";
             // 
             // deEnd
             // 
@@ -461,35 +515,6 @@
             this.label1.TabIndex = 101;
             this.label1.Text = "科室:";
             // 
-            // lueDept
-            // 
-            this.lueDept.Location = new System.Drawing.Point(67, 11);
-            this.lueDept.Name = "lueDept";
-            this.lueDept.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.Appearance.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceDisabled.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceDropDownHeader.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceFocused.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.lueDept.Properties.AutoHeight = false;
-            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject3.Options.UseFont = true;
-            this.lueDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
-            this.lueDept.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "科室")});
-            this.lueDept.Properties.NullText = "";
-            this.lueDept.Size = new System.Drawing.Size(100, 26);
-            this.lueDept.TabIndex = 100;
-            this.lueDept.EditValueChanged += new System.EventHandler(this.lueDept_EditValueChanged);
-            // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
@@ -521,12 +546,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDept.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deBegin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDoctor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueDept.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -559,10 +585,13 @@
         private DevExpress.XtraEditors.LookUpEdit lueDoctor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.LookUpEdit lueDept;
         private Xr.Common.Controls.ButtonControl btnQuery;
         private DevExpress.XtraEditors.DateEdit deEnd;
         private DevExpress.XtraEditors.DateEdit deBegin;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeDept;
+        private DevExpress.XtraTreeList.TreeList treeList2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
     }
 }

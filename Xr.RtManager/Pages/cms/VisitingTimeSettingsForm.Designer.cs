@@ -32,7 +32,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new Xr.Common.Controls.GroupBorderPanel();
             this.panScheduling = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -119,7 +119,7 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.gcDoctor = new DevExpress.XtraGrid.GridControl();
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
@@ -193,11 +193,14 @@
             this.gridColumn31 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.menuControl2 = new Xr.Common.Controls.MenuControl();
+            this.panel17 = new System.Windows.Forms.Panel();
             this.borderPanel2 = new Xr.Common.Controls.BorderPanel();
+            this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnClear = new Xr.Common.Controls.ButtonControl();
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new Xr.Common.Controls.GroupBorderPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.bandedGridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -234,12 +237,12 @@
             this.bandedGridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
-            this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.dcDoctorInfo = new Xr.Common.Controls.DataController(this.components);
             this.dcDefaultVisit = new Xr.Common.Controls.DataController(this.components);
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox4)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.panScheduling.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -307,18 +310,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.panel14.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDoctor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).BeginInit();
             this.borderPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
-            this.borderPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -359,25 +363,32 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox4.Controls.Add(this.panScheduling);
             this.groupBox4.Controls.Add(this.panelEx1);
+            this.groupBox4.CornerRadius.All = 5;
+            this.groupBox4.CornerRadius.BottomLeft = 5;
+            this.groupBox4.CornerRadius.BottomRight = 5;
+            this.groupBox4.CornerRadius.TopLeft = 5;
+            this.groupBox4.CornerRadius.TopRight = 5;
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox4.FillColor1 = System.Drawing.Color.Transparent;
+            this.groupBox4.FillColor2 = System.Drawing.Color.Transparent;
+            this.groupBox4.GroupText = "默认出诊时间";
             this.groupBox4.Location = new System.Drawing.Point(10, 0);
             this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 20, 2, 2);
             this.groupBox4.Size = new System.Drawing.Size(394, 549);
             this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "默认出诊时间";
             // 
             // panScheduling
             // 
             this.panScheduling.AutoScroll = true;
             this.panScheduling.Controls.Add(this.tabControl1);
             this.panScheduling.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panScheduling.Location = new System.Drawing.Point(3, 221);
+            this.panScheduling.Location = new System.Drawing.Point(2, 220);
             this.panScheduling.Name = "panScheduling";
-            this.panScheduling.Size = new System.Drawing.Size(388, 325);
+            this.panScheduling.Size = new System.Drawing.Size(390, 327);
             this.panScheduling.TabIndex = 3;
             // 
             // tabControl1
@@ -394,16 +405,16 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(9, 3);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(388, 325);
+            this.tabControl1.Size = new System.Drawing.Size(390, 327);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(380, 293);
+            this.tabPage1.Size = new System.Drawing.Size(382, 301);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "周一";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -411,10 +422,10 @@
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(380, 293);
+            this.tabPage2.Size = new System.Drawing.Size(382, 301);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "周二";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -422,10 +433,10 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(380, 293);
+            this.tabPage3.Size = new System.Drawing.Size(382, 301);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "周三";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -433,10 +444,10 @@
             // tabPage4
             // 
             this.tabPage4.AutoScroll = true;
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(380, 293);
+            this.tabPage4.Size = new System.Drawing.Size(382, 301);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "周四";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -444,10 +455,10 @@
             // tabPage5
             // 
             this.tabPage5.AutoScroll = true;
-            this.tabPage5.Location = new System.Drawing.Point(4, 28);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(380, 293);
+            this.tabPage5.Size = new System.Drawing.Size(382, 301);
             this.tabPage5.TabIndex = 3;
             this.tabPage5.Text = "周五";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -455,10 +466,10 @@
             // tabPage6
             // 
             this.tabPage6.AutoScroll = true;
-            this.tabPage6.Location = new System.Drawing.Point(4, 28);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(380, 293);
+            this.tabPage6.Size = new System.Drawing.Size(382, 301);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "周六";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -466,10 +477,10 @@
             // tabPage7
             // 
             this.tabPage7.AutoScroll = true;
-            this.tabPage7.Location = new System.Drawing.Point(4, 28);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(380, 293);
+            this.tabPage7.Size = new System.Drawing.Size(382, 301);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "周日";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -485,9 +496,9 @@
             this.panelEx1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.panelEx1.Controls.Add(this.tableLayoutPanel4);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx1.Location = new System.Drawing.Point(3, 21);
+            this.panelEx1.Location = new System.Drawing.Point(2, 20);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(388, 200);
+            this.panelEx1.Size = new System.Drawing.Size(390, 200);
             this.panelEx1.TabIndex = 2;
             // 
             // tableLayoutPanel4
@@ -1434,7 +1445,9 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox2);
+            this.panel2.Controls.Add(this.panel17);
             this.panel2.Controls.Add(this.borderPanel2);
+            this.panel2.Controls.Add(this.panel16);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(413, 3);
@@ -1445,17 +1458,24 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox2.Controls.Add(this.panel5);
             this.groupBox2.Controls.Add(this.panel4);
             this.groupBox2.Controls.Add(this.menuControl2);
+            this.groupBox2.CornerRadius.All = 5;
+            this.groupBox2.CornerRadius.BottomLeft = 5;
+            this.groupBox2.CornerRadius.BottomRight = 5;
+            this.groupBox2.CornerRadius.TopLeft = 5;
+            this.groupBox2.CornerRadius.TopRight = 5;
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox2.FillColor1 = System.Drawing.Color.Transparent;
+            this.groupBox2.FillColor2 = System.Drawing.Color.Transparent;
+            this.groupBox2.GroupText = "科室医生列表";
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(919, 319);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "科室医生列表";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 20, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(919, 199);
+            this.groupBox2.TabIndex = 8;
             // 
             // panel5
             // 
@@ -1464,9 +1484,9 @@
             this.panel5.BackColor = System.Drawing.Color.Transparent;
             this.panel5.Controls.Add(this.gcDoctor);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(128, 21);
+            this.panel5.Location = new System.Drawing.Point(147, 20);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(788, 295);
+            this.panel5.Size = new System.Drawing.Size(770, 177);
             this.panel5.TabIndex = 2;
             // 
             // gcDoctor
@@ -1475,7 +1495,7 @@
             this.gcDoctor.Location = new System.Drawing.Point(0, 0);
             this.gcDoctor.MainView = this.bandedGridView1;
             this.gcDoctor.Name = "gcDoctor";
-            this.gcDoctor.Size = new System.Drawing.Size(1480, 278);
+            this.gcDoctor.Size = new System.Drawing.Size(1480, 160);
             this.gcDoctor.TabIndex = 51;
             this.gcDoctor.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridView1});
@@ -1500,6 +1520,7 @@
             this.bandedGridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.bandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridView1.BandPanelRowHeight = 30;
             this.bandedGridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.姓名,
             this.gridBand2,
@@ -1509,6 +1530,7 @@
             this.gridBand14,
             this.gridBand17,
             this.gridBand20});
+            this.bandedGridView1.ColumnPanelRowHeight = 30;
             this.bandedGridView1.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.gridColumn30,
             this.gridColumn40,
@@ -2265,9 +2287,9 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(123, 21);
+            this.panel4.Location = new System.Drawing.Point(142, 20);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(5, 295);
+            this.panel4.Size = new System.Drawing.Size(5, 177);
             this.panel4.TabIndex = 1;
             // 
             // menuControl2
@@ -2276,27 +2298,49 @@
             this.menuControl2.itemName = null;
             this.menuControl2.itemTag = null;
             this.menuControl2.itemText = null;
-            this.menuControl2.Location = new System.Drawing.Point(3, 21);
+            this.menuControl2.Location = new System.Drawing.Point(2, 20);
             this.menuControl2.Margin = new System.Windows.Forms.Padding(1, 5, 4, 5);
             this.menuControl2.Name = "menuControl2";
-            this.menuControl2.Size = new System.Drawing.Size(120, 295);
+            this.menuControl2.Size = new System.Drawing.Size(140, 177);
             this.menuControl2.TabIndex = 0;
             this.menuControl2.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuControl2_MenuItemClick);
+            // 
+            // panel17
+            // 
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel17.Location = new System.Drawing.Point(0, 199);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(919, 10);
+            this.panel17.TabIndex = 7;
             // 
             // borderPanel2
             // 
             this.borderPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
             this.borderPanel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel2.Controls.Add(this.btnSave);
             this.borderPanel2.Controls.Add(this.btnClear);
             this.borderPanel2.Controls.Add(this.btnDel);
             this.borderPanel2.Controls.Add(this.btnAdd);
             this.borderPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.borderPanel2.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel2.Location = new System.Drawing.Point(0, 319);
+            this.borderPanel2.Location = new System.Drawing.Point(0, 209);
             this.borderPanel2.Name = "borderPanel2";
             this.borderPanel2.Size = new System.Drawing.Size(919, 50);
-            this.borderPanel2.TabIndex = 2;
+            this.borderPanel2.TabIndex = 6;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnSave.Location = new System.Drawing.Point(301, 10);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 30);
+            this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.btnSave.TabIndex = 78;
+            this.btnSave.Text = "保存";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClear
             // 
@@ -2337,23 +2381,39 @@
             this.btnAdd.Text = "添加↓";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // panel16
+            // 
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel16.Location = new System.Drawing.Point(0, 259);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(919, 10);
+            this.panel16.TabIndex = 4;
+            // 
             // groupBox1
             // 
+            this.groupBox1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox1.Controls.Add(this.gridControl1);
+            this.groupBox1.CornerRadius.All = 5;
+            this.groupBox1.CornerRadius.BottomLeft = 5;
+            this.groupBox1.CornerRadius.BottomRight = 5;
+            this.groupBox1.CornerRadius.TopLeft = 5;
+            this.groupBox1.CornerRadius.TopRight = 5;
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 369);
+            this.groupBox1.FillColor1 = System.Drawing.Color.Transparent;
+            this.groupBox1.FillColor2 = System.Drawing.Color.Transparent;
+            this.groupBox1.GroupText = "已选医生";
+            this.groupBox1.Location = new System.Drawing.Point(0, 269);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(919, 180);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 20, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(919, 280);
             this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "已选医生";
             // 
             // gridControl1
             // 
             this.gridControl1.Location = new System.Drawing.Point(3, 18);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(300, 159);
+            this.gridControl1.Size = new System.Drawing.Size(300, 259);
             this.gridControl1.TabIndex = 52;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -2687,12 +2747,12 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
             this.panel1.Size = new System.Drawing.Size(1345, 60);
             this.panel1.TabIndex = 8;
+            this.panel1.Visible = false;
             // 
             // borderPanel1
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel1.Controls.Add(this.btnSave);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
             this.borderPanel1.CornerRadius.BottomRight = 4;
@@ -2706,19 +2766,6 @@
             this.borderPanel1.Size = new System.Drawing.Size(1325, 50);
             this.borderPanel1.TabIndex = 1;
             // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(30, 10);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 30);
-            this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
-            this.btnSave.TabIndex = 75;
-            this.btnSave.Text = "保存";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // VisitingTimeSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2730,6 +2777,7 @@
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox4)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.panScheduling.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -2802,6 +2850,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.panel14.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -2809,12 +2858,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).EndInit();
             this.borderPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
-            this.borderPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2825,12 +2874,11 @@
         private System.Windows.Forms.Panel panel1;
         private Xr.Common.Controls.DataController dcDoctorInfo;
         private Xr.Common.Controls.BorderPanel borderPanel1;
-        private Xr.Common.Controls.ButtonControl btnSave;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Xr.Common.Controls.MenuControl menuControl1;
         private Xr.Common.Controls.DataController dcDefaultVisit;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private Xr.Common.Controls.GroupBorderPanel groupBox4;
         private System.Windows.Forms.Panel panScheduling;
         private Xr.Common.Controls.PanelEx panelEx1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -2891,81 +2939,7 @@
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.CheckBox cbMorning;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private Xr.Common.Controls.MenuControl menuControl2;
-        private Xr.Common.Controls.BorderPanel borderPanel2;
-        private Xr.Common.Controls.ButtonControl btnDel;
-        private Xr.Common.Controls.ButtonControl btnAdd;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private DevExpress.XtraGrid.GridControl gcDoctor;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridView1;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn1;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn2;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn3;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn6;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn7;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn10;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn11;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn14;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn15;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn18;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn19;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn22;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn23;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn26;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn27;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn4;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn5;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn8;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn9;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn12;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn13;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn16;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn17;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn20;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn21;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn24;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn25;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn28;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn29;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 姓名;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 晚上;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand23;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand6;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand21;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand22;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand24;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand9;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand10;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand25;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand26;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand11;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand13;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand14;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand15;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand16;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand29;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand30;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand17;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand18;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand19;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand31;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand32;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand20;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand33;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand34;
+        private Xr.Common.Controls.GroupBorderPanel groupBox1;
         private System.Windows.Forms.Panel panel13;
         private DevExpress.XtraEditors.TextEdit textEdit7;
         private System.Windows.Forms.Panel panel12;
@@ -2982,10 +2956,6 @@
         private System.Windows.Forms.CheckBox cbAllDay;
         private System.Windows.Forms.Panel panel7;
         private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn30;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn31;
-        private Xr.Common.Controls.ButtonControl btnClear;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn40;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn30;
@@ -3030,5 +3000,86 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Panel panel14;
         private Xr.Common.Controls.ButtonControl buttonControl1;
+        private Xr.Common.Controls.GroupBorderPanel groupBox2;
+        private System.Windows.Forms.Panel panel5;
+        private DevExpress.XtraGrid.GridControl gcDoctor;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridView1;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 姓名;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn1;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn2;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn3;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 晚上;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn4;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand23;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn5;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand6;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand21;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn6;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn7;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand22;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn8;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand24;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn9;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand9;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn10;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand10;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn11;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand25;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn12;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand26;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn13;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand11;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn14;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand13;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn15;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn16;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn17;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand14;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand15;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn18;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand16;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn19;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand29;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn20;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand30;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn21;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand17;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand18;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn22;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand19;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn23;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand31;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn24;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand32;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn25;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand20;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn26;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn27;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand33;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn28;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand34;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn29;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn30;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn40;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn31;
+        private System.Windows.Forms.Panel panel4;
+        private Xr.Common.Controls.MenuControl menuControl2;
+        private System.Windows.Forms.Panel panel17;
+        private Xr.Common.Controls.BorderPanel borderPanel2;
+        private Xr.Common.Controls.ButtonControl btnSave;
+        private Xr.Common.Controls.ButtonControl btnClear;
+        private Xr.Common.Controls.ButtonControl btnDel;
+        private Xr.Common.Controls.ButtonControl btnAdd;
+        private System.Windows.Forms.Panel panel16;
     }
 }

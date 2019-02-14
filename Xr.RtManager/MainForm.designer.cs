@@ -118,9 +118,10 @@
             this.panelEnhanced1.Controls.Add(this.panel5);
             this.panelEnhanced1.Controls.Add(this.panel1);
             this.panelEnhanced1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEnhanced1.Location = new System.Drawing.Point(3, 0);
+            this.panelEnhanced1.Location = new System.Drawing.Point(0, 0);
             this.panelEnhanced1.Name = "panelEnhanced1";
-            this.panelEnhanced1.Size = new System.Drawing.Size(1061, 729);
+            this.panelEnhanced1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.panelEnhanced1.Size = new System.Drawing.Size(1064, 729);
             this.panelEnhanced1.TabIndex = 0;
             this.panelEnhanced1.SizeChanged += new System.EventHandler(this.panelEnhanced1_SizeChanged);
             // 
@@ -136,10 +137,10 @@
             this.xtraTabControl1.AppearancePage.HeaderActive.Options.UseForeColor = true;
             this.xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(156, 0);
+            this.xtraTabControl1.Location = new System.Drawing.Point(168, 3);
             this.xtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(905, 705);
+            this.xtraTabControl1.Size = new System.Drawing.Size(896, 702);
             this.xtraTabControl1.TabIndex = 20;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.xtraTabControl_MouseDown);
@@ -148,9 +149,9 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(151, 0);
+            this.panel4.Location = new System.Drawing.Point(163, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(5, 705);
+            this.panel4.Size = new System.Drawing.Size(5, 702);
             this.panel4.TabIndex = 19;
             // 
             // panel5
@@ -159,9 +160,9 @@
             this.panel5.Controls.Add(this.panMenuBar);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(151, 705);
+            this.panel5.Size = new System.Drawing.Size(160, 702);
             this.panel5.TabIndex = 17;
             // 
             // panMenuBar
@@ -178,7 +179,7 @@
             this.panMenuBar.Location = new System.Drawing.Point(0, 0);
             this.panMenuBar.Name = "panMenuBar";
             this.panMenuBar.Padding = new System.Windows.Forms.Padding(1);
-            this.panMenuBar.Size = new System.Drawing.Size(151, 701);
+            this.panMenuBar.Size = new System.Drawing.Size(160, 698);
             this.panMenuBar.TabIndex = 5;
             // 
             // panelEx1
@@ -194,7 +195,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(1, 1);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(149, 164);
+            this.panelEx1.Size = new System.Drawing.Size(158, 164);
             this.panelEx1.TabIndex = 0;
             this.panelEx1.Visible = false;
             // 
@@ -223,7 +224,7 @@
             this.panelEx2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx2.Location = new System.Drawing.Point(0, 0);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(149, 30);
+            this.panelEx2.Size = new System.Drawing.Size(158, 30);
             this.panelEx2.TabIndex = 0;
             // 
             // label3
@@ -239,9 +240,9 @@
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 701);
+            this.panel6.Location = new System.Drawing.Point(0, 698);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(151, 4);
+            this.panel6.Size = new System.Drawing.Size(160, 4);
             this.panel6.TabIndex = 4;
             // 
             // panel1
@@ -249,7 +250,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 705);
+            this.panel1.Location = new System.Drawing.Point(3, 705);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1061, 24);
             this.panel1.TabIndex = 4;
@@ -339,7 +340,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "主界面";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

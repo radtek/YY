@@ -120,6 +120,7 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridView1.ColumnPanelRowHeight = 30;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn7,
             this.gridColumn1,
@@ -139,12 +140,14 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 30;
             // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Id";
             this.gridColumn7.FieldName = "id";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn1
             // 
@@ -156,6 +159,7 @@
             this.gridColumn1.FieldName = "value";
             this.gridColumn1.MinWidth = 25;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 143;
@@ -170,6 +174,7 @@
             this.gridColumn2.FieldName = "label";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 143;
@@ -184,6 +189,7 @@
             this.gridColumn3.FieldName = "type";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             this.gridColumn3.Width = 143;
@@ -198,6 +204,7 @@
             this.gridColumn4.FieldName = "description";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             this.gridColumn4.Width = 143;
@@ -212,6 +219,7 @@
             this.gridColumn5.FieldName = "sort";
             this.gridColumn5.MinWidth = 25;
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             this.gridColumn5.Width = 143;
@@ -314,7 +322,7 @@
             this.buttonControl3.Location = new System.Drawing.Point(670, 10);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl3.TabIndex = 88;
             this.buttonControl3.Text = "修改";
             this.buttonControl3.Click += new System.EventHandler(this.btnUp_Click);
@@ -327,7 +335,7 @@
             this.buttonControl2.Location = new System.Drawing.Point(580, 10);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl2.TabIndex = 87;
             this.buttonControl2.Text = "新增";
             this.buttonControl2.Click += new System.EventHandler(this.skinButton2_Click);
