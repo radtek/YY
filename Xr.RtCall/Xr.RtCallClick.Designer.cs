@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.GreenFrmPanel = new System.Windows.Forms.Panel();
             this.labBoxInfor = new DevExpress.XtraEditors.LabelControl();
@@ -57,7 +56,7 @@
             this.GreenFrmPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.GreenFrmPanel.Location = new System.Drawing.Point(0, 0);
             this.GreenFrmPanel.Name = "GreenFrmPanel";
-            this.GreenFrmPanel.Size = new System.Drawing.Size(615, 30);
+            this.GreenFrmPanel.Size = new System.Drawing.Size(619, 30);
             this.GreenFrmPanel.TabIndex = 9;
             this.GreenFrmPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseDown);
             this.GreenFrmPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseMove);
@@ -83,7 +82,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(585, 2);
+            this.button3.Location = new System.Drawing.Point(589, 2);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(29, 26);
@@ -102,7 +101,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 30);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(615, 500);
+            this.panelControl1.Size = new System.Drawing.Size(619, 530);
             this.panelControl1.TabIndex = 10;
             // 
             // panel_MainFrm
@@ -111,7 +110,7 @@
             this.panel_MainFrm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_MainFrm.Location = new System.Drawing.Point(0, 48);
             this.panel_MainFrm.Name = "panel_MainFrm";
-            this.panel_MainFrm.Size = new System.Drawing.Size(615, 452);
+            this.panel_MainFrm.Size = new System.Drawing.Size(619, 482);
             this.panel_MainFrm.TabIndex = 3;
             // 
             // panelControl3
@@ -127,7 +126,7 @@
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(615, 48);
+            this.panelControl3.Size = new System.Drawing.Size(619, 48);
             this.panelControl3.TabIndex = 2;
             this.panelControl3.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl3_Paint);
             // 
@@ -227,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 530);
+            this.ClientSize = new System.Drawing.Size(619, 560);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.GreenFrmPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

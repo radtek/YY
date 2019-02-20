@@ -31,8 +31,7 @@ namespace Xr.Http
                 System.Net.ServicePointManager.DefaultConnectionLimit = 20;
 
                 // 打印 请求地址及参数
-                LogClass.WriteLog("请求数据：" + url);
-
+                Xr.Log4net.LogHelper.Info("请求数据：" + url);
                 request = (HttpWebRequest)WebRequest.Create(url);
                 request.Accept = "*/*";
                 request.Method = "POST";
@@ -40,7 +39,7 @@ namespace Xr.Http
                 request.CookieContainer = CookieEntity.cookie;
                 request.KeepAlive = false;          // 保持短链接
                 request.Timeout = 1 * 60 * 1000;    // 1分钟，以防网络超时
-                
+
                 response = (HttpWebResponse)request.GetResponse();
                 string cookieheader = request.CookieContainer.GetCookieHeader(new Uri(url));
                 CookieEntity.cookie.SetCookies(new Uri(url), cookieheader);
@@ -50,12 +49,15 @@ namespace Xr.Http
                 result = reader.ReadToEnd().Trim();
 
                 // 打印响应结果
-                LogClass.WriteLog("响应结果：" + result);
+                Xr.Log4net.LogHelper.Info("响应结果：" + result);
             }
             catch (Exception e)
             {
                 result = "{'state': false, 'message':'" + e.Message + "'}";
-                LogClass.WriteExceptionLog(e);
+                if (e.Message.Equals("远程服务器返回错误: (400) 错误的请求。"))
+                {
+                    throw new Exception(e.Message);
+                }
             }
             finally
             {
@@ -86,8 +88,7 @@ namespace Xr.Http
                 System.Net.ServicePointManager.DefaultConnectionLimit = 20;
 
                 // 打印 请求地址及参数
-                LogClass.WriteLog("请求数据：" + url);
-
+                Xr.Log4net.LogHelper.Info("请求数据：" + url);
                 request = (HttpWebRequest)WebRequest.Create(url);
                 request.Accept = "*/*";
                 request.Method = "POST";
@@ -103,7 +104,7 @@ namespace Xr.Http
                 reader = new StreamReader(stream, Encoding.UTF8);
                 result = reader.ReadToEnd().Trim();
                 // 打印响应结果
-                LogClass.WriteLog("响应结果：" + result);
+                Xr.Log4net.LogHelper.Info("响应结果：" + result);
                 //if (result.Equals("远程服务器返回错误: (404) 未找到。"))
                 //{
                 //    throw new Exception(result);
@@ -112,7 +113,10 @@ namespace Xr.Http
             catch (Exception e)
             {
                 result = "{'state': false, 'message':'" + e.Message + "'}";
-                LogClass.WriteExceptionLog(e);
+                if (e.Message.Equals("远程服务器返回错误: (400) 错误的请求。"))
+                {
+                    throw new Exception(e.Message);
+                }
             }
             finally
             {
@@ -143,8 +147,7 @@ namespace Xr.Http
                 System.Net.ServicePointManager.DefaultConnectionLimit = 20;
 
                 // 打印 请求地址及参数
-                LogClass.WriteLog("请求数据：" + url + postDataStr);
-
+                Xr.Log4net.LogHelper.Info("请求数据：" + url + postDataStr);
                 request = (HttpWebRequest)WebRequest.Create(url);
                 byte[] requestBytes = System.Text.Encoding.ASCII.GetBytes(postDataStr);
                 //request.Accept = "*/*";
@@ -168,7 +171,7 @@ namespace Xr.Http
                 reader = new StreamReader(stream, Encoding.UTF8);
                 result = reader.ReadToEnd().Trim();
                 // 打印响应结果
-                LogClass.WriteLog("响应结果：" + result);
+                Xr.Log4net.LogHelper.Info("响应结果：" + result);
                 //if (result.Equals("远程服务器返回错误: (404) 未找到。"))
                 //{
                 //    throw new Exception(result);
@@ -177,7 +180,10 @@ namespace Xr.Http
             catch (Exception e)
             {
                 result = "{'state': false, 'message':'" + e.Message + "'}";
-                LogClass.WriteExceptionLog(e);
+                if (e.Message.Equals("远程服务器返回错误: (400) 错误的请求。"))
+                {
+                    throw new Exception(e.Message);
+                }
             }
             finally
             {
@@ -209,8 +215,7 @@ namespace Xr.Http
                 System.Net.ServicePointManager.DefaultConnectionLimit = 20;
 
                 // 打印 请求地址及参数
-                LogClass.WriteLog("请求数据：" + url + postDataStr);
-
+                Xr.Log4net.LogHelper.Info("请求数据：" + url + postDataStr);
                 request = (HttpWebRequest)WebRequest.Create(url);
                 byte[] requestBytes = System.Text.Encoding.ASCII.GetBytes(postDataStr);
                 //request.Accept = "*/*";
@@ -234,7 +239,7 @@ namespace Xr.Http
                 reader = new StreamReader(stream, Encoding.UTF8);
                 result = reader.ReadToEnd().Trim();
                 // 打印响应结果
-                LogClass.WriteLog("响应结果：" + result);
+                Xr.Log4net.LogHelper.Info("响应结果：" + result);
                 //if (result.Equals("远程服务器返回错误: (404) 未找到。"))
                 //{
                 //    throw new Exception(result);
@@ -243,7 +248,10 @@ namespace Xr.Http
             catch (Exception e)
             {
                 result = "{'state': false, 'message':'" + e.Message + "'}";
-                LogClass.WriteExceptionLog(e);
+                if (e.Message.Equals("远程服务器返回错误: (400) 错误的请求。"))
+                {
+                    throw new Exception(e.Message);
+                }
             }
             finally
             {
@@ -276,8 +284,7 @@ namespace Xr.Http
                 System.Net.ServicePointManager.DefaultConnectionLimit = 20;
 
                 // 打印 请求地址及参数
-                LogClass.WriteLog("请求数据：" + url);
-
+                Xr.Log4net.LogHelper.Info("请求数据：" + url);
                 request = WebRequest.Create(url) as HttpWebRequest;
 
                 #region 初始化请求对象
@@ -392,12 +399,15 @@ namespace Xr.Http
                 result = reader.ReadToEnd().Trim();
 
                 // 打印响应结果
-                LogClass.WriteLog("响应结果：" + result);
+                Xr.Log4net.LogHelper.Info("响应结果：" + result);
             }
             catch (Exception e)
             {
                 result = e.Message;
-                LogClass.WriteExceptionLog(e);
+                if (e.Message.Equals("远程服务器返回错误: (400) 错误的请求。"))
+                {
+                    throw new Exception(e.Message);
+                }
             }
             finally
             {

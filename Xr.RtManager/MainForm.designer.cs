@@ -74,7 +74,8 @@
             // 
             // tmHeartbeat
             // 
-            this.tmHeartbeat.Interval = 30000;
+            this.tmHeartbeat.Interval = 43200000;
+            this.tmHeartbeat.Tick += new System.EventHandler(this.tmHeartbeat_Tick);
             // 
             // navBarGroup1
             // 
@@ -294,7 +295,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(418, 24);
             this.label2.TabIndex = 1;
-            this.label2.Text = "技术支持：广州湘润信息科技有限公司 ";
+            this.label2.Text = "技术支撑：广州湘润信息科技有限公司 ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labBottomLeft
@@ -341,7 +342,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "主界面";
+            this.Text = "博爱预约分诊系统";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelEnhanced1.ResumeLayout(false);

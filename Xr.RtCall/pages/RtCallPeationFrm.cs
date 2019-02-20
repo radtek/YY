@@ -13,6 +13,7 @@ using System.Threading;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Xr.RtCall.Model;
+using Xr.Common;
 
 namespace Xr.RtCall.pages
 {
@@ -45,39 +46,37 @@ namespace Xr.RtCall.pages
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("hospitalId", HelperClass.hospitalId);//医院主键
                 prament.Add("deptId", HelperClass.deptId);//科室主键
-                prament.Add("doctorId", "1");//医生主键
-                prament.Add("workDate", "2019-01-10");//坐诊日期 DateTime.Now.ToString("yyy-MM-dd")当前日期
+                prament.Add("doctorId", HelperClass.doctorId);//医生主键
+                prament.Add("workDate", "2019-01-10");//坐诊日期 DateTime.Now.ToString("yyyy-MM-dd")当前日期
                 prament.Add("period", "2");//坐诊时段
-                //if (checkEdit1.Checked)
-                //{
-                //    prament.Add("status", "0");//候诊中
-                //}
-                //else
-                //{
+                if (checkEdit1.Checked)
+                {
+                    prament.Add("status", "0");//候诊中
+                }
+                else
+                {
                     prament.Add("status", "1");//完成
-               // }
+                }
                RestSharpHelper.ReturnResult<List<string>>("api/sch/registerTriage/findPatientListByDoctor", prament, Method.POST,
                  result =>
                 {
-                    if (result.Data != null)
-                    {
-                        LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
-                    }
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.Completed:
                             if (result.StatusCode == HttpStatusCode.OK)
                             {
+                                Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
                                     List<Patient> a = objT["result"].ToObject<List<Patient>>();
+                                    a.Add(new Patient { cradNo = "02102337", cradType = "0", patientName = "1", queueNum = "1", visitTime = "1", triageTime = "1", registerWay = "1", regTime = "1", regVisitTime = "1", status = "1" });
                                     _context.Send((s) => this.gc_Pateion.DataSource = a,null);
                                     _context.Send((s) => label1.Text=a.Count+"人", null);
                                 }
                                 else
                                 {
-                                    MessageBox.Show(objT["message"].ToString());
+                                    _context.Send((s) => MessageBoxUtils.Hint(objT["message"].ToString()), null);
                                 }
                             }
                             break;
@@ -86,7 +85,7 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取患者列表错误信息：" + ex.Message);
+               Log4net.LogHelper.Error("获取患者列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -110,7 +109,7 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("复诊预约错误信息："+ex.Message);
+               Log4net.LogHelper.Error("复诊预约错误信息："+ex.Message);
             }
         }
         /// <summary>
@@ -128,7 +127,7 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("患者延后错误信息："+ex.Message);
+                Log4net.LogHelper.Error("患者延后错误信息：" + ex.Message);
             }
         }
         #endregion 

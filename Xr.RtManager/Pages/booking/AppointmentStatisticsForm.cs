@@ -37,17 +37,35 @@ namespace Xr.RtManager.Pages.booking
         }
         private void UserForm_Load(object sender, EventArgs e)
         {
-            //this.BackColor = Color.FromArgb(243, 243, 243);
             //Infor();
             cmd = new Xr.Common.Controls.OpaqueCommand(this);
             gridBand3.Caption = gridBand15.Caption = gridBand32.Caption = gridBand13.Caption = "开放总额\r\n(预约+现场)";
 
-            //科室下拉框数据
-            lueDept.Properties.DataSource = AppContext.Session.deptList;
-            lueDept.Properties.DisplayMember = "name";
-            lueDept.Properties.ValueMember = "id";
+            //查询科室下拉框数据
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String data = HttpClass.httpPost(url);
+            JObject objT = JObject.Parse(data);
+            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            {
+                List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                /*DeptEntity dept = new DeptEntity();
+                dept.id = "0";
+                dept.name = "无";
+                deptList.Insert(0, dept);
+                 */
+                treeDeptId.Properties.DataSource = deptList;
+                treeDeptId.Properties.TreeList.KeyFieldName = "id";
+                treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
+                treeDeptId.Properties.DisplayMember = "name";
+                treeDeptId.Properties.ValueMember = "id";
+            }
+            else
+            {
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             //默认选中第一个
-            lueDept.EditValue = AppContext.Session.deptList[0].id;
+            treeDeptId.EditValue = AppContext.Session.deptList[0].id;
             //配置时间格式
             setDateFomartDefult(true);
 
@@ -118,7 +136,7 @@ namespace Xr.RtManager.Pages.booking
                }
 
                CurrentParam.hospitalId = AppContext.Session.hospitalId;
-               CurrentParam.deptId = lueDept.EditValue.ToString();
+               CurrentParam.deptId = treeDeptId.EditValue.ToString();
                CurrentParam.reportType = QueryDateType;
                CurrentParam.startDate = deStart.Text;
                CurrentParam.endDate = deEnd.Text;
@@ -161,20 +179,20 @@ namespace Xr.RtManager.Pages.booking
                         return;
                     }
                  url = AppContext.AppConfig.serverUrl + "sch/report/bespeakWayReprot?" + param;
-                Results.Add( HttpClass.loginPost(url));
+                 Results.Add(HttpClass.httpPost(url));
                 //Results.Add(@"{""code"":200,""message"":""操作成功"",""result"":[{""bespeakCount"":2,""registerWay"":""分诊台""},{""bespeakCount"":1,""registerWay"":""诊间""},{""bespeakCount"":0,""registerWay"":""自助机""},{""bespeakCount"":0,""registerWay"":""公众号""},{""bespeakCount"":0,""registerWay"":""卫计局平台""},{""bespeakCount"":0,""registerWay"":""官网""},{""bespeakCount"":3,""registerWay"":""预约总数""}],""state"":true}");
                     
                 #endregion
                 #region 日期预约总数统计（折线图）
                 //日期预约总数统计（折线图）
                 url = AppContext.AppConfig.serverUrl + "sch/report/dateBespeakReprot?" + param;
-                Results.Add( HttpClass.loginPost(url));
+                Results.Add(HttpClass.httpPost(url));
                 // Results.Add(@"{""code"":200,""message"":""操作成功"",""result"":[{""registerTime"": ""2019-01"",""bespeakCount"": 300},{""registerTime"": ""2019-02"",""bespeakCount"": 500},{""registerTime"": ""2019-03"",""bespeakCount"": 600},{""registerTime"": ""2019-04"",""bespeakCount"": 700},{""registerTime"": ""2019-05"",""bespeakCount"": 800}],""state"":true}");
                 #endregion
                 #region 科室开放数量预约总数概率统计
                 //科室开放数量预约总数概率统计
                  url = AppContext.AppConfig.serverUrl + "sch/report/deptOpenBespeakChanceReprot?" + param;
-                Results.Add( HttpClass.loginPost(url));
+                 Results.Add(HttpClass.httpPost(url));
                 //Results.Add(@"{""code"":200,""message"":""操作成功"",""result"":[{""deptName"":""急诊科"",""breakNum"":""0"",""breakRate"":""0%"",""openNum"":96,""visitNum"":""0"",""visitRate"":""0%"",""bespeakRate"":""3.13%"",""bespeakNum"":3},{""deptName"":""内科"",""breakNum"":""0"",""breakRate"":""0%"",""openNum"":96,""visitNum"":""0"",""visitRate"":""0%"",""bespeakRate"":""3.13%"",""bespeakNum"":3}],""state"":true}");
                 #endregion
                 }
@@ -188,7 +206,7 @@ namespace Xr.RtManager.Pages.booking
                     }
                     //详细信息
                     url = AppContext.AppConfig.serverUrl + "sch/report/deptOpenBespeakReprot?" + param;
-                    Results.Add(HttpClass.loginPost(url));
+                    Results.Add(HttpClass.httpPost(url));
                     //Results.Add(@"{""code"":200,""message"":""操作成功"",""result"":[{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2}],""state"":true}");
                     #endregion
                 }
@@ -202,7 +220,7 @@ namespace Xr.RtManager.Pages.booking
                     #region 慢病统计
                     //慢病统计
                     url = AppContext.AppConfig.serverUrl + "sch/report/deptOpenBespeakReprotForNCD?" + param;
-                    Results.Add(HttpClass.loginPost(url));
+                    Results.Add(HttpClass.httpPost(url));
                     //Results.Add(@"{""code"":200,""message"":""操作成功"",""result"":[{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2}],""state"":true}");
                     #endregion
                 }
@@ -371,7 +389,7 @@ namespace Xr.RtManager.Pages.booking
                     CurrentParam.startDate,
                     CurrentParam.endDate);
                 String url = AppContext.AppConfig.serverUrl + "sch/report/doctorBespeakReprot?" + param;
-                e.Result = HttpClass.loginPost(url);
+                e.Result = HttpClass.httpPost(url);
                 //e.Result = @"{""code"":200,""message"":""操作成功"",""result"":[{""czNum"":1,""yyNum"":3,""openNum"":84,""doctorId"":1,""fzNum"":2,""doctorName"":""张医生""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":""0"",""doctorId"":10,""fzNum"":""0"",""doctorName"":""1232""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":12,""doctorId"":15,""fzNum"":""0"",""doctorName"":""杰大哥""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":""0"",""doctorId"":13,""fzNum"":""0"",""doctorName"":""21321""}],""state"":true}";
             }
             catch (Exception ex)
@@ -448,7 +466,7 @@ namespace Xr.RtManager.Pages.booking
                     CurrentParam.startDate,
                     CurrentParam.endDate);
                 String url = AppContext.AppConfig.serverUrl + "sch/report/doctorBespeakReprotForNCD?" + param;
-                e.Result = HttpClass.loginPost(url);
+                e.Result = HttpClass.httpPost(url);
                 //e.Result = @"{""code"":200,""message"":""操作成功"",""result"":[{""czNum"":1,""yyNum"":3,""openNum"":84,""doctorId"":1,""fzNum"":2,""doctorName"":""张医生""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":""0"",""doctorId"":10,""fzNum"":""0"",""doctorName"":""1232""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":12,""doctorId"":15,""fzNum"":""0"",""doctorName"":""杰大哥""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":""0"",""doctorId"":13,""fzNum"":""0"",""doctorName"":""21321""}],""state"":true}";
             }
             catch (Exception ex)
@@ -542,6 +560,13 @@ namespace Xr.RtManager.Pages.booking
 
 
         bool firstfootcell = true;
+        private void gv_deptInfo_CustomDrawFooter(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
+        {
+            Rectangle r = e.Bounds;
+            Brush brush = e.Cache.GetGradientBrush(e.Bounds, Color.Transparent, Color.Transparent, System.Drawing.Drawing2D.LinearGradientMode.Vertical);
+            e.Graphics.FillRectangle(brush, r);
+            e.Handled = true;
+        }
         /// <summary>
         /// 自定义表格尾部数据统计
         /// </summary>
@@ -553,8 +578,12 @@ namespace Xr.RtManager.Pages.booking
             //Brush brush = e.Cache.GetGradientBrush(e.Bounds, Color.Transparent, Color.Transparent, System.Drawing.Drawing2D.LinearGradientMode.Vertical);
             Rectangle r = e.Bounds;
             r.Inflate(1, -1);
+            //r.Inflate(0, -1);
             Pen p = new Pen(Color.Gray);
-            e.Graphics.DrawRectangle(p, r.X - 1, r.Y, r.Width, r.Height);
+            Brush brush = e.Cache.GetGradientBrush(e.Bounds, Color.WhiteSmoke, Color.WhiteSmoke, System.Drawing.Drawing2D.LinearGradientMode.Vertical);
+            e.Graphics.FillRectangle(brush, r);
+            e.Graphics.DrawRectangle(p, r.X-1 , r.Y, r.Width, r.Height);
+            //e.Graphics.DrawRectangle(p, r.X - 1, r.Y, r.Width+1, r.Height);
             //ControlPaint.DrawBorder(e.Graphics, r, Color.Gray, ButtonBorderStyle.Solid);
             //r.Inflate(-1, -1);
             //e.Graphics.FillRectangle(brush, r);
@@ -562,7 +591,7 @@ namespace Xr.RtManager.Pages.booking
             e.Appearance.DrawString(e.Cache, e.Info.DisplayText, r);
             if (firstfootcell)
             {
-                e.Graphics.DrawRectangle(p, r.X, r.Y, r.Width, r.Height);
+                //e.Graphics.DrawRectangle(p, r.X-1, r.Y, r.Width, r.Height);
                 e.Appearance.DrawString(e.Cache, "总计", r);
 
                 firstfootcell = false;
@@ -638,9 +667,54 @@ namespace Xr.RtManager.Pages.booking
         /// <param name="e"></param>
         private void buttonControl2_Click(object sender, EventArgs e)
         {
-            WebBrowser webBrowser1 = new WebBrowser();
-            webBrowser1.Url = new Uri(@"http://192.168.11.42:8080/yyfz/api/sch/report/exportExcelReport");
+            if (VerifyInfo())
+            {
+                WebBrowser webBrowser1 = new WebBrowser();
+                webBrowser1.FileDownload += new EventHandler(webBrowser1_FileDownload);
+                String param = @"type={0}&hospitalId={1}&deptId={2}&reportType={3}&startDate={4}&endDate={5}";
+
+                if (TabpageName == "汇总信息")
+                {
+                    param = String.Format(
+                       param, "3",
+                       CurrentParam.hospitalId,
+                       CurrentParam.deptId,
+                       CurrentParam.reportType,
+                       CurrentParam.startDate,
+                       CurrentParam.endDate);
+                }
+                else if (TabpageName == "详细信息")
+                {
+                    param = String.Format(
+                       param, "1",
+                       CurrentParam.hospitalId,
+                       CurrentParam.deptId,
+                       CurrentParam.reportType,
+                       CurrentParam.startDate,
+                       CurrentParam.endDate);
+                }
+                else
+                {
+                    param = String.Format(
+                       param, "2",
+                       CurrentParam.hospitalId,
+                       CurrentParam.deptId,
+                       CurrentParam.reportType,
+                       CurrentParam.startDate,
+                       CurrentParam.endDate);
+                }
+                String url = AppContext.AppConfig.serverUrl + "sch/report/exportExcel?" + param;
+                cmd.ShowOpaqueLayer(225, true);
+                webBrowser1.Url = new Uri(url);
+                
+            }
+ 
         }
+        private void webBrowser1_FileDownload(object sender, EventArgs e)
+        {
+            cmd.HideOpaqueLayer();
+        }
+
 
 
 

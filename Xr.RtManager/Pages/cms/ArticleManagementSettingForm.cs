@@ -28,6 +28,7 @@ namespace Xr.RtManager.Pages.cms
         }
         #region 类型设置
         List<FirstOne> firs;
+        List<FirstOne> Two;
         public void First()
         {
             try
@@ -41,13 +42,31 @@ namespace Xr.RtManager.Pages.cms
                 this.lueType.Properties.DataSource = firs;
                 lueType.Properties.DisplayMember = "name";
                 lueType.Properties.ValueMember = "id";
-                this.lookUpEdit1.Properties.DataSource = firs;
+                listoffice = new List<TreeList>();
+                listoffice.Add(new TreeList { id = "", parentId = "", name = "全部" });
+                treeKeshi.Properties.DataSource = listoffice;
+                treeKeshi.Properties.TreeList.KeyFieldName = "id";
+                treeKeshi.Properties.TreeList.ParentFieldName = "parentId";
+                treeKeshi.Properties.DisplayMember = "name";
+                treeKeshi.Properties.ValueMember = "id";
+                treeKeshi.EditValue = "";
+                Two = new List<FirstOne>();
+                Two.Add(new FirstOne { id = "1", name = "医院" });
+                Two.Add(new FirstOne { id = "2", name = "科室" });
+                Two.Add(new FirstOne { id = "3", name = "医生" });
+                this.lookUpEdit1.Properties.DataSource = Two;
                 lookUpEdit1.Properties.DisplayMember = "name";
                 lookUpEdit1.Properties.ValueMember = "id";
+                if (AppContext.AppConfig.deptCode != "")
+                {
+                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+                    lueType.EditValue = "2";
+                    treeKeshi.EditValue = string.Join(",", from a in listoffice where a.code == AppContext.AppConfig.deptCode select a.id);
+                }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("文章类型设置错误信息："+ex.Message);
+                Log4net.LogHelper.Error("文章类型设置错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -95,7 +114,7 @@ namespace Xr.RtManager.Pages.cms
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ArticleInfoEntity two = Newtonsoft.Json.JsonConvert.DeserializeObject<ArticleInfoEntity>(Woqu["result"].ToString());
                 list.Add(two);
@@ -141,13 +160,15 @@ namespace Xr.RtManager.Pages.cms
                         return;
                     }
                 }
-                list.Insert(0, new ArticleInfoEntity { createById = "", createByName = "", createDate = "", hospitalId = "", id = "", isUse = "", name = "", updateById = "", updateByName = "", updateDate = "" });
+                list.Insert(0, new ArticleInfoEntity { createById = "", createByName = "", createDate = "", hospitalId = "", id = "", isUse = "0", name = "", updateById = "", updateByName = "", updateDate = "" });
+                gv_Article.FocusedColumn = this.gridColumn3;
+                this.gv_Article.ShowEditor();
                 this.gc_Article.DataSource = list;
                 gc_Article.RefreshDataSource();
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("新增文章错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("新增文章错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -162,8 +183,11 @@ namespace Xr.RtManager.Pages.cms
             try
             {
                 var selectedRow = gv_Article.GetFocusedRow() as ArticleInfoEntity;
-                if (selectedRow == null)
+                if (selectedRow.name == "" || selectedRow.isUse == "")
+                {
+                    MessageBoxUtils.Show("请填写栏目名称和选择状态", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
+                }
                 String param = "";
                 if (selectedRow.isUse == "启用")
                 {
@@ -188,7 +212,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("保存文章错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("保存文章错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -223,7 +248,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("删除文章错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("删除文章错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -265,11 +291,19 @@ namespace Xr.RtManager.Pages.cms
         {
             switch (lookUpEdit1.Text.Trim())
             {
+                case "医院":
+                    treeWKe.Properties.DataSource = null;
+                    luDoctor.Properties.DataSource = null;
+                    break;
                 case "科室":
                     GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+                    luDoctor.Properties.DataSource = null;
+                    luDoctor.Properties.DisplayMember = "name";
+                    luDoctor.Properties.ValueMember = "id";
                     break;
                 case "医生":
                     Doc = 2;
+                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
                     SelectDoctor(AppContext.Session.deptId);
                     break;
             }
@@ -292,7 +326,7 @@ namespace Xr.RtManager.Pages.cms
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
-                listoffice.Add(new TreeList { id = "", parentId = "", name = "全部" });
+              //listoffice.Insert(0,new TreeList { id = "", parentId = "", name = "全部" });
                 treeKeshi.Properties.DataSource = listoffice;
                 treeKeshi.Properties.TreeList.KeyFieldName = "id";
                 treeKeshi.Properties.TreeList.ParentFieldName = "parentId";
@@ -306,7 +340,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("文章中获取科室下拉框错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("文章中获取科室下拉框错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -320,13 +354,14 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
+                cmd.ShowOpaqueLayer(225, true);
                 groupBox3.Enabled = false;
                 SelectInfoPage(1, pageControl1.PageSize, "");
                 dcArticle.ClearValue();
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("文章查询错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("文章查询错误信息：" + ex.Message);
             }
         }
         #region 查询文章
@@ -345,14 +380,14 @@ namespace Xr.RtManager.Pages.cms
                     case "科室":
                         if (treeKeshi.Text.Trim() == "" || treeKeshi.Text.Trim() == "全部")
                         {
-                            MessageBox.Show("当类型为科室时,科室不能为空");
+                            MessageBoxUtils.Show("当类型为科室时,科室不能为空", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                             return;
                         }
                         break;
                     case "医生":
                         if (luDoctords.Text.Trim() == "" || luDoctords.Text.Trim() == "全部")
                         {
-                            MessageBox.Show("当类型为医生时,医生不能为空");
+                            MessageBoxUtils.Show("当类型为医生时,医生不能为空", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                             return;
                         }
                         break;
@@ -399,16 +434,19 @@ namespace Xr.RtManager.Pages.cms
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
+                    cmd.HideOpaqueLayer();
                 }
                 else
                 {
+                    cmd.HideOpaqueLayer();
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                  //  MessageBox.Show(objT["message"].ToString());
                 }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("查询列表错误信息：" + ex.Message);
+                cmd.HideOpaqueLayer();
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("查询列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -434,17 +472,17 @@ namespace Xr.RtManager.Pages.cms
                 #region
                 switch (clinicInfoEntity.type)
                 {
-                    case "2":
+                    case "2"://科室
                         if (clinicInfoEntity.deptId == "" || clinicInfoEntity.deptId == null)
                         {
                             MessageBoxUtils.Show("请选择科室", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                             return;
                         }
                         break;
-                    case "3":
-                        if (clinicInfoEntity.doctorId == "" || clinicInfoEntity.doctorId == null)
+                    case "3"://医生
+                        if (clinicInfoEntity.doctorId == "" || clinicInfoEntity.doctorId == null || clinicInfoEntity.deptId == "" || clinicInfoEntity.deptId == null)
                         {
-                            MessageBoxUtils.Show("请选择医生", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show("请选择科室和医生", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                             return;
                         }
                         break;
@@ -468,7 +506,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("保存文章错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("保存文章错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -573,13 +612,36 @@ namespace Xr.RtManager.Pages.cms
         int Doc = 0;
         private void treeKeshi_EditValueChanged(object sender, EventArgs e)
         {
-            Doc = 1;
-            SelectDoctor(treeKeshi.EditValue.ToString());
+            try
+            {
+                Doc = 1;
+                SelectDoctor(treeKeshi.EditValue.ToString());
+            }
+            catch
+            {
+            }
         }
         private void treeWKe_EditValueChanged(object sender, EventArgs e)
         {
-            Doc = 2;
-            SelectDoctor(treeWKe.EditValue.ToString());
+            try
+            {
+                if (lookUpEdit1.EditValue != "2" && treeWKe.EditValue!=null)
+                {
+                    Doc = 2;
+                    SelectDoctor(treeWKe.EditValue.ToString());
+                }
+                else
+                {
+                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+                    luDoctor.Properties.DataSource = null;
+                    luDoctor.Properties.DisplayMember = "name";
+                    luDoctor.Properties.ValueMember = "id";
+                }
+            }
+            catch
+            {
+
+            }
         }
         /// <summary>
         /// 获取当前科室医生
@@ -620,7 +682,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("文章中获取当前科室医生错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("文章中获取当前科室医生错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -647,6 +709,7 @@ namespace Xr.RtManager.Pages.cms
             }
             var edit = new RichEditorForm();
             edit.text = clinicInfoEntity.content;
+            edit.ImagUploadUrl = AppContext.AppConfig.serverUrl;
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 clinicInfoEntity.content = edit.text;
@@ -667,10 +730,18 @@ namespace Xr.RtManager.Pages.cms
                 DianJi = true;
                 groupBox3.Enabled = true;
                 dcArticle.ClearValue();
+                int selectedHandle;
+                selectedHandle = this.gv_Article.GetSelectedRows()[0];
+                string id=this.gv_Article.GetRowCellValue(selectedHandle, "id").ToString();
+                clinicInfoEntity = new Article();
+                clinicInfoEntity.categoryId = id;
+                dcArticle.SetValue(clinicInfoEntity);
+                radioGroup2.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("新增文章错误信息：" + ex.Message);
+                radioGroup2.SelectedIndex = 0;
+                Log4net.LogHelper.Error("新增文章错误信息：" + ex.Message);
             }
         }
         /// <summary>
@@ -706,7 +777,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("删除文章错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("删除文章错误信息：" + ex.Message);
             }
         }
         #endregion

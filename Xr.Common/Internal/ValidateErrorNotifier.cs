@@ -29,6 +29,7 @@ namespace Xr.Common.Internal
         {
             var args = this.ToolTipController.CreateShowArgs();
             args.ToolTip = message;
+            this.toolTipController.AutoPopDelay = 3000; //设置显示时间
 
             //右边显示位置不够时，移到上方显示            
             var parent = control.Parent ?? control;
@@ -61,6 +62,7 @@ namespace Xr.Common.Internal
                 var args = this.ToolTipController.CreateShowArgs();
                 args.ToolTip = message;
                 args.ToolTipLocation = ToolTipLocation.TopLeft;
+                this.toolTipController.AutoPopDelay = 3000; //设置显示时间
 
                 this.ToolTipController.HideHint();
                 //this.ToolTipController.ShowHint(args, gridView.ActiveEditor);

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Xr.Common.Controls
@@ -27,13 +28,17 @@ namespace Xr.Common.Controls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            text = richEditor1.InnerHtml;
+            text = HtmlTransform2Str(richEditor1.InnerHtml);
             DialogResult = DialogResult.OK;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+        private String HtmlTransform2Str(String Html)
+        {
+            return HttpUtility.UrlEncode(Html, Encoding.UTF8); // url编码
         }
     }
 }

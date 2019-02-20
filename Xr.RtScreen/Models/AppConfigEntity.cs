@@ -26,6 +26,11 @@ namespace Xr.RtScreen.Models
         public String deptCode { get; set; }
 
         /// <summary>
+        /// 诊室编码
+        /// </summary>
+        public String clinicCode { get; set; }
+
+        /// <summary>
         /// 启动对应的屏幕窗口1（公共大屏）2（科室小屏）3（医生小屏）
         /// </summary>
         public String StartupScreen { get; set; }
@@ -33,5 +38,7 @@ namespace Xr.RtScreen.Models
         /// 是否启动Socket
         /// </summary>
         public String StartUpSocket { get; set; }
+
+        public String RefreshTime { get; set; }
     }
 }

@@ -173,8 +173,7 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

@@ -12,6 +12,11 @@ namespace Xr.RtManager
     public class DoctorVSEntity
     {
         /// <summary>
+        /// 多选按钮值
+        /// </summary>
+        public bool check { get; set; }
+
+        /// <summary>
         /// 科室id
         /// </summary>
         public String deptId{ get; set; }

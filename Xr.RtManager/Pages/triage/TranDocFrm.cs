@@ -14,80 +14,49 @@ namespace Xr.RtManager.Pages.triage
 {
     public partial class TranDocFrm : Form
     {
-        public TranDocFrm()
+        String Dept = String.Empty;
+        public TranDocFrm(String deptID)
         {
             InitializeComponent();
+            Dept = deptID;
         }
-
-        public OfficeEntity office { get; set; }
 
         private void OfficeEdit_Load(object sender, EventArgs e)
         {
-            dcOffice.DataType = typeof(OfficeEntity);
+            //获取获取科室可挂号医生信息
+            Dictionary<string, string> prament = new Dictionary<string, string>();
+            String param = "";
+            prament.Add("hospital.code", AppContext.Session.hospitalId);
+            prament.Add("dept.id", Dept);
 
-            //获取下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/getDropDownData";
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
+            String url = String.Empty;
+            if (prament.Count != 0)
+            {
+                param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+            }
+            url = AppContext.AppConfig.serverUrl + "cms/doctor/list?" + param;
+            JObject objT = new JObject();
+            objT = JObject.Parse(HttpClass.httpPost(url));
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
-
-                lueType.Properties.DataSource = objT["result"]["typeDictList"].ToObject<List<OfficeEntity>>();
-                lueType.Properties.DisplayMember = "name";
-                lueType.Properties.ValueMember = "code";
-
-                lueGrade.Properties.DataSource = objT["result"]["gradeDictList"].ToObject<List<OfficeEntity>>();
-                lueGrade.Properties.DisplayMember = "name";
-                lueGrade.Properties.ValueMember = "code";
-
-                if (office != null)
-                {
-                    if (office.id != null)
-                    {
-                        url = AppContext.AppConfig.serverUrl + "sys/sysOffice/getOffice?officeId=" + office.id;
-                        data = HttpClass.httpPost(url);
-                        objT = JObject.Parse(data);
-                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                        {
-                            office = objT["result"].ToObject<OfficeEntity>();
-                        }
-                        else
-                        {
-                            MessageBox.Show(objT["message"].ToString());
-                        }
-                    }
-                    dcOffice.SetValue(office);
-                }
-                else
-                {
-                    office = new OfficeEntity();
-                }
+                //List<Dic> list = objT["result"].ToObject<List<Dic>>();
+                List<DoctorInfoEntity> list = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
+                lueStopDoctor.Properties.DataSource = list;
+                lueStopDoctor.Properties.DisplayMember = "name";
+                lueStopDoctor.Properties.ValueMember = "code";
+                lueStopDoctor.ItemIndex = 0;
             }
             else
             {
                 MessageBox.Show(objT["message"].ToString());
-            }
+                return;
+            } 
+    
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dcOffice.Validate())
-            {
-                return;
-            }
-            dcOffice.GetValue(office);
-            String param = "?" + PackReflectionEntity<OfficeEntity>.GetEntityToRequestParameters(office, true);
-            String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/save" + param;
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                MessageBox.Show(objT["message"].ToString());
-            }
+
         }
         private void gv_patients_MouseDown(object sender, MouseEventArgs e)
         {

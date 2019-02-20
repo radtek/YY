@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Windows.Forms;
 using Xr.Http;
+using Xr.RtScreen.Models;
 
 namespace Xr.RtScreen.VoiceCall
 {
@@ -50,21 +51,22 @@ namespace Xr.RtScreen.VoiceCall
         private static List<CallPrint> GetData()
         {
             List<CallPrint> cpList = new List<CallPrint>();
-            string serverUrl = ConfigurationManager.AppSettings["YuYing"];
-            string unitSn = ConfigurationManager.AppSettings["unitSn"];
+            string Url = AppContext.AppConfig.serverUrl + "api/sch/screen/findCallList";
             Dictionary<string, string> pa = new Dictionary<string, string>();
-            pa.Add("unitSn", unitSn);
-            string result = HttpHelper.CallRemote(serverUrl, pa, HttpMethod.Post);
+            pa.Add("hospitalId", HelperClass.hospitalId);
+            pa.Add("deptId", HelperClass.deptId);
+            pa.Add("clinicId", HelperClass.clincId);
+            string result = HttpHelper.CallRemote(Url, pa, HttpMethod.Post);
             try
             {
                 var objT = Newtonsoft.Json.Linq.JObject.Parse(result);
-                if (objT["common_return"].ToString().ToLower() != "true")
+                if (objT["state"].ToString().ToLower() != "true")
                 {
                     return new List<CallPrint>();
                 }
                 else
                 {
-                    JArray jars = JArray.Parse(objT["return_info"].ToString());
+                    JArray jars = JArray.Parse(objT["result"].ToString());
                     foreach (var jar in jars)//遍历数组
                     {
                         string bespeakClass = jar.Value<string>("showNumber") == null ? "" : jar.Value<string>("showNumber").Trim();

@@ -57,7 +57,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取节假日列表错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("获取节假日列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -79,7 +80,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("查询节假日详情错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("查询节假日详情错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -105,7 +107,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("查询指定医院下节假日列表错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("查询指定医院下节假日列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -133,7 +136,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("查询时间段内属于节假日的日期错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("查询时间段内属于节假日的日期错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -149,10 +153,15 @@ namespace Xr.RtManager.Pages.cms
             {
                 groupBox1.Enabled = true;
                 dcHodily.ClearValue();
+                holidayInfoEntity = new HolidayInfoEntity();
+                holidayInfoEntity.isUse = "0";
+                dcHodily.SetValue(holidayInfoEntity);
+               // radioGroup2.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("节假日新增错误信息：" + ex.Message);
+               //radioGroup2.SelectedIndex = 0;
+                Log4net.LogHelper.Error("节假日新增错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -174,7 +183,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("节假日修改错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("节假日修改错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -212,7 +221,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("节假日修改错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("节假日修改错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -268,7 +278,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("节假日保存错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("节假日保存错误信息：" + ex.Message);
             }
         }
         #endregion 

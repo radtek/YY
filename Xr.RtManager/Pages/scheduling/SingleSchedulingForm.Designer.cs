@@ -652,7 +652,6 @@
         private Xr.Common.Controls.BorderPanel borderPanel1;
         private Xr.Common.Controls.ButtonControl btnQuery;
         private Xr.Common.Controls.ButtonControl btnSave;
-        private Xr.Common.Controls.MenuControl menuControl1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel2;
         private Xr.Common.Controls.MenuControl mcDept;

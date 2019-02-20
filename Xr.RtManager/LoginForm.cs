@@ -49,6 +49,11 @@ namespace Xr.RtManager
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
             // 开始异步
             BackgroundWorkerUtil.start_run(bw_DoWork, bw_RunWorkerCompleted, null, false);
+           /* Xr.Common.Controls.OpaqueCommand cmd= new Xr.Common.Controls.OpaqueCommand(this);
+            cmd.IsShowCancelBtn = true;
+            cmd.ShowOpaqueLayer(225, true);
+            cmd.IsShowCancelBtn = false;
+            */
         }
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -78,6 +83,7 @@ namespace Xr.RtManager
                     AppContext.Session.menuList = objT["result"]["menuList"].ToObject<List<MenuEntity>>();
                     AppContext.Session.UserId = objT["result"]["id"].ToString();
                     AppContext.Session.userType = objT["result"]["userType"].ToString();
+                    AppContext.Session.loginDate = objT["result"]["loginDate"].ToString();
                     String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
                     String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
                     data = HttpClass.httpPost(url);
@@ -118,6 +124,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBox.Show(ex.Message);
             }
             finally

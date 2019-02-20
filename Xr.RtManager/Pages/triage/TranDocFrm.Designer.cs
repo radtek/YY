@@ -28,16 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.select = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dcOffice = new Xr.Common.Controls.DataController(this.components);
-            this.lueGrade = new DevExpress.XtraEditors.LookUpEdit();
-            this.lueType = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueIntoDoctor = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueStopDoctor = new DevExpress.XtraEditors.LookUpEdit();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.Gc_patients = new DevExpress.XtraGrid.GridControl();
             this.gv_patients = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -47,8 +45,8 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueGrade.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueIntoDoctor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueStopDoctor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gc_patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).BeginInit();
@@ -81,79 +79,77 @@
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.Location = new System.Drawing.Point(12, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 20);
+            this.label5.Size = new System.Drawing.Size(79, 30);
             this.label5.TabIndex = 40;
             this.label5.Text = "停诊医生：";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.Location = new System.Drawing.Point(253, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 20);
+            this.label7.Size = new System.Drawing.Size(79, 30);
             this.label7.TabIndex = 42;
             this.label7.Text = "转入医生：";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lueGrade
+            // lueIntoDoctor
             // 
-            this.dcOffice.SetDataMember(this.lueGrade, "grade");
-            this.lueGrade.Location = new System.Drawing.Point(338, 9);
-            this.lueGrade.Name = "lueGrade";
-            this.lueGrade.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueGrade.Properties.Appearance.Options.UseFont = true;
-            this.lueGrade.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lueGrade.Properties.AppearanceDisabled.Options.UseFont = true;
-            this.lueGrade.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lueGrade.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.lueGrade.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lueGrade.Properties.AppearanceDropDownHeader.Options.UseFont = true;
-            this.lueGrade.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lueGrade.Properties.AppearanceFocused.Options.UseFont = true;
-            this.lueGrade.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueGrade.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.lueGrade.Properties.AutoHeight = false;
-            this.lueGrade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueIntoDoctor.Location = new System.Drawing.Point(338, 9);
+            this.lueIntoDoctor.Name = "lueIntoDoctor";
+            this.lueIntoDoctor.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueIntoDoctor.Properties.Appearance.Options.UseFont = true;
+            this.lueIntoDoctor.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lueIntoDoctor.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.lueIntoDoctor.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lueIntoDoctor.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lueIntoDoctor.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lueIntoDoctor.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.lueIntoDoctor.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lueIntoDoctor.Properties.AppearanceFocused.Options.UseFont = true;
+            this.lueIntoDoctor.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueIntoDoctor.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.lueIntoDoctor.Properties.AutoHeight = false;
+            this.lueIntoDoctor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueGrade.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueIntoDoctor.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "级别")});
-            this.lueGrade.Properties.NullText = "";
-            this.lueGrade.Size = new System.Drawing.Size(150, 20);
-            this.lueGrade.TabIndex = 6;
+            this.lueIntoDoctor.Properties.NullText = "";
+            this.lueIntoDoctor.Size = new System.Drawing.Size(150, 30);
+            this.lueIntoDoctor.TabIndex = 6;
             // 
-            // lueType
+            // lueStopDoctor
             // 
-            this.dcOffice.SetDataMember(this.lueType, "type");
-            this.lueType.Location = new System.Drawing.Point(97, 9);
-            this.lueType.Name = "lueType";
-            this.lueType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueType.Properties.Appearance.Options.UseFont = true;
-            this.lueType.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueType.Properties.AppearanceDisabled.Options.UseFont = true;
-            this.lueType.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueType.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.lueType.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueType.Properties.AppearanceDropDownHeader.Options.UseFont = true;
-            this.lueType.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueType.Properties.AppearanceFocused.Options.UseFont = true;
-            this.lueType.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueType.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.lueType.Properties.AutoHeight = false;
+            this.lueStopDoctor.Location = new System.Drawing.Point(97, 9);
+            this.lueStopDoctor.Name = "lueStopDoctor";
+            this.lueStopDoctor.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueStopDoctor.Properties.Appearance.Options.UseFont = true;
+            this.lueStopDoctor.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueStopDoctor.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.lueStopDoctor.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueStopDoctor.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lueStopDoctor.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueStopDoctor.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.lueStopDoctor.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueStopDoctor.Properties.AppearanceFocused.Options.UseFont = true;
+            this.lueStopDoctor.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueStopDoctor.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.lueStopDoctor.Properties.AutoHeight = false;
             serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             serializableAppearanceObject1.Options.UseFont = true;
-            this.lueType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueStopDoctor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.lueType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueStopDoctor.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "类型")});
-            this.lueType.Properties.NullText = "";
-            this.lueType.Size = new System.Drawing.Size(150, 20);
-            this.lueType.TabIndex = 5;
+            this.lueStopDoctor.Properties.NullText = "";
+            this.lueStopDoctor.Size = new System.Drawing.Size(150, 30);
+            this.lueStopDoctor.TabIndex = 5;
             // 
             // btnSave
             // 
@@ -162,7 +158,7 @@
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
             this.btnSave.Location = new System.Drawing.Point(502, 9);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(70, 20);
+            this.btnSave.Size = new System.Drawing.Size(70, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "确认转入";
@@ -171,23 +167,25 @@
             // Gc_patients
             // 
             this.Gc_patients.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Gc_patients.Location = new System.Drawing.Point(12, 35);
+            this.Gc_patients.Location = new System.Drawing.Point(12, 45);
             this.Gc_patients.MainView = this.gv_patients;
             this.Gc_patients.Name = "Gc_patients";
             this.Gc_patients.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemPopupContainerEdit1});
-            this.Gc_patients.Size = new System.Drawing.Size(560, 414);
+            this.Gc_patients.Size = new System.Drawing.Size(560, 404);
             this.Gc_patients.TabIndex = 43;
             this.Gc_patients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_patients});
             // 
             // gv_patients
             // 
-            this.gv_patients.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_patients.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_patients.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_patients.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.gv_patients.Appearance.OddRow.Options.UseBackColor = true;
+            this.gv_patients.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.gv_patients.Appearance.Row.Options.UseFont = true;
             this.gv_patients.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.select,
             this.gridColumn1,
@@ -219,6 +217,7 @@
             this.gv_patients.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gv_patients.OptionsView.ShowGroupPanel = false;
             this.gv_patients.OptionsView.ShowIndicator = false;
+            this.gv_patients.RowHeight = 30;
             // 
             // gridColumn1
             // 
@@ -291,8 +290,8 @@
             this.ClientSize = new System.Drawing.Size(584, 461);
             this.Controls.Add(this.Gc_patients);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.lueType);
-            this.Controls.Add(this.lueGrade);
+            this.Controls.Add(this.lueStopDoctor);
+            this.Controls.Add(this.lueIntoDoctor);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -300,16 +299,15 @@
             this.MinimizeBox = false;
             this.Name = "TranDocFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "机构添加";
+            this.Text = "患者转诊";
             this.Load += new System.EventHandler(this.OfficeEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueGrade.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueIntoDoctor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueStopDoctor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gc_patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -317,9 +315,8 @@
 
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
-        private Xr.Common.Controls.DataController dcOffice;
-        private DevExpress.XtraEditors.LookUpEdit lueGrade;
-        private DevExpress.XtraEditors.LookUpEdit lueType;
+        private DevExpress.XtraEditors.LookUpEdit lueIntoDoctor;
+        private DevExpress.XtraEditors.LookUpEdit lueStopDoctor;
         private Xr.Common.Controls.ButtonControl btnSave;
         private DevExpress.XtraGrid.GridControl Gc_patients;
         private DevExpress.XtraGrid.Views.Grid.GridView gv_patients;

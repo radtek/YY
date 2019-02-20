@@ -88,6 +88,7 @@
             this.Controls.Add(this.pcButtons);
             this.KeyPreview = true;
             this.Name = "MessageBoxForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MessageBoxForm";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageBoxForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pcButtons)).EndInit();

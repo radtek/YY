@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
@@ -215,7 +215,7 @@
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
             this.treeList1.RowHeight = 30;
-            this.treeList1.Size = new System.Drawing.Size(900, 109);
+            this.treeList1.Size = new System.Drawing.Size(900, 105);
             this.treeList1.TabIndex = 50;
             // 
             // treeListColumn8
@@ -298,12 +298,12 @@
             // 
             // repositoryItemButtonEdit1
             // 
-            serializableAppearanceObject5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject5.ForeColor = System.Drawing.Color.SteelBlue;
-            serializableAppearanceObject5.Options.UseFont = true;
-            serializableAppearanceObject5.Options.UseForeColor = true;
+            serializableAppearanceObject4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject4.ForeColor = System.Drawing.Color.SteelBlue;
+            serializableAppearanceObject4.Options.UseFont = true;
+            serializableAppearanceObject4.Options.UseForeColor = true;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "添加下级菜单", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "添加下级菜单", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -311,7 +311,7 @@
             // 
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageControl1.Location = new System.Drawing.Point(10, 119);
+            this.pageControl1.Location = new System.Drawing.Point(10, 115);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
@@ -335,10 +335,11 @@
             this.groupBox1.FillColor1 = System.Drawing.Color.Transparent;
             this.groupBox1.FillColor2 = System.Drawing.Color.Transparent;
             this.groupBox1.GroupText = "信息编辑区";
-            this.groupBox1.Location = new System.Drawing.Point(10, 158);
+            this.groupBox1.GroupTextFont = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.Location = new System.Drawing.Point(10, 154);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
-            this.groupBox1.Size = new System.Drawing.Size(900, 286);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(0, 20, 0, 4);
+            this.groupBox1.Size = new System.Drawing.Size(900, 290);
             this.groupBox1.TabIndex = 45;
             // 
             // tableLayoutPanel2
@@ -469,10 +470,10 @@
             this.lueIsShow.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIsShow.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueIsShow.Properties.AutoHeight = false;
-            serializableAppearanceObject6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject6.Options.UseFont = true;
+            serializableAppearanceObject7.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject7.Options.UseFont = true;
             this.lueIsShow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
             this.lueIsShow.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -585,6 +586,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label12.Location = new System.Drawing.Point(419, 32);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(94, 32);
@@ -617,6 +619,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label11.Location = new System.Drawing.Point(211, 32);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(94, 32);
@@ -719,6 +722,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label6.Location = new System.Drawing.Point(211, 160);
             this.label6.Name = "label6";
             this.tableLayoutPanel1.SetRowSpan(this.label6, 2);
@@ -918,10 +922,10 @@
             this.lueHospital.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueHospital.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueHospital.Properties.AutoHeight = false;
-            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject2.Options.UseFont = true;
+            serializableAppearanceObject6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject6.Options.UseFont = true;
             this.lueHospital.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
             this.lueHospital.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "医院"),
@@ -984,10 +988,10 @@
             this.lueIsUse.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIsUse.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueIsUse.Properties.AutoHeight = false;
-            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject3.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lueIsUse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lueIsUse.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -999,6 +1003,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label5.Location = new System.Drawing.Point(3, 160);
             this.label5.Name = "label5";
             this.tableLayoutPanel1.SetRowSpan(this.label5, 2);
@@ -1081,6 +1086,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label10.Location = new System.Drawing.Point(3, 32);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(94, 32);
@@ -1092,6 +1098,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label13.Location = new System.Drawing.Point(3, 64);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(94, 32);
@@ -1117,6 +1124,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label14.Location = new System.Drawing.Point(3, 96);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(94, 32);
@@ -1128,6 +1136,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label8.Location = new System.Drawing.Point(3, 224);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(94, 36);
@@ -1161,6 +1170,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label15.Location = new System.Drawing.Point(419, 160);
             this.label15.Name = "label15";
             this.tableLayoutPanel1.SetRowSpan(this.label15, 2);

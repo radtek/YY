@@ -127,7 +127,7 @@ namespace Xr.Common.Controls
             {
                 PanelEx itemPanel = new PanelEx();
                 itemPanel.Controls.Clear();
-                itemPanel.BorderColor = borderColor;
+                itemPanel.BorderColor = this.borderColor;
                 itemPanel.BorderStyleTop = ButtonBorderStyle.None;
                 itemPanel.BorderStyleBottom = ButtonBorderStyle.None;
                 itemPanel.BorderStyleLeft = ButtonBorderStyle.None;
@@ -201,7 +201,10 @@ namespace Xr.Common.Controls
             selectionLabel.ForeColor = Color.White;
             itemName = selectionLabel.Name;
             itemText = selectionLabel.Text;
-            itemTag = selectionLabel.Tag.ToString();
+            if (selectionLabel.Tag != null)
+            {
+                itemTag = selectionLabel.Tag.ToString();
+            }
             if (MenuItemClick != null)
                 MenuItemClick(sender, new EventArgs());
         }
@@ -229,7 +232,10 @@ namespace Xr.Common.Controls
             selectionLabel.ForeColor = Color.White;
             itemName = selectionLabel.Name;
             itemText = selectionLabel.Text;
-            itemTag = selectionLabel.Tag.ToString();
+            if (selectionLabel.Tag != null)
+            {
+                itemTag = selectionLabel.Tag.ToString();
+            }
             if (MenuItemClick != null)
                 MenuItemClick(sender, new EventArgs());
         }

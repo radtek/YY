@@ -1169,7 +1169,7 @@
             this.btnTswk.Size = new System.Drawing.Size(75, 30);
             this.btnTswk.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnTswk.TabIndex = 78;
-            this.btnTswk.Text = "本周";
+            this.btnTswk.Text = "上一周";
             this.btnTswk.Click += new System.EventHandler(this.btnTswk_Click);
             // 
             // panel1
@@ -1249,7 +1249,6 @@
         private System.Windows.Forms.Panel panel1;
         private Xr.Common.Controls.BorderPanel borderPanel1;
         private Xr.Common.Controls.ButtonControl btnSave;
-        private Xr.Common.Controls.MenuControl menuControl1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel5;

@@ -31,19 +31,19 @@ namespace Xr.RtManager.Pages.booking
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            cmd = new OpaqueCommand(this);
-            this.BackColor = Color.FromArgb(243, 243, 243);
-            QueryInfo();
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
+            QueryInfo(1,10);
 
         }
-
-        private void QueryInfo()
+        int currPageNo = 1;
+        int pageSize = 10;
+        private void QueryInfo(int pageNo, int pageSize)
         {
+            currPageNo = pageNo;
+            this.pageSize = pageSize;
             // 弹出加载提示框
             //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
-            
             cmd.ShowOpaqueLayer(225, true);
-
             // 开始异步
             BackgroundWorkerUtil.start_run(bw_DoWork, bw_RunWorkerCompleted, null, false);
             if (!cb_AutoRefresh.Checked)
@@ -59,19 +59,15 @@ namespace Xr.RtManager.Pages.booking
             {
                 List<String> Results = new List<String>();//lueDept.EditValue
                 //String param = "hospitalId=12&deptId=2&reportType=month&startDate=2019-01&endDate=2019-01";
-                String param = "pageSize=10000";
-                /*param = String.Format(
-                    param, CurrentParam.hospitalId,
-                    CurrentParam.deptId,
-                    CurrentParam.reportType,
-                    CurrentParam.startDate,
-                    CurrentParam.endDate);
-                 */
+                String param = @"isUse=1&pageNo={0}&pageSize={1}";
+                param = String.Format(
+                    param, currPageNo,
+                    pageSize);
                 String url = String.Empty;
 
                 //获取黑名单
                 url = AppContext.AppConfig.serverUrl + "sch/blackList/list?" + param;
-                Results.Add(HttpClass.loginPost(url));
+                Results.Add(HttpClass.httpPost(url));
                 //Results.Add(@"{""code"":200,""message"":""操作成功"",""result"":[{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2},{""deptName"":""急诊科"",""yyNum"":2,""openNum"":96,""yyFzNum"":1,""xcCzNum"":0,""yyCzNum"":1,""xcFzNum"":1,""xcNum"":1,""deptId"":2}],""state"":true}");
 
 
@@ -95,8 +91,19 @@ namespace Xr.RtManager.Pages.booking
                     objT = JObject.Parse(datas[0]);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        List<BlackListEntity> list = objT["result"]["list"].ToObject<List<BlackListEntity>>();
+                        List<BlackListEntity> list = objT["result"]["list"].ToObject<List<BlackListEntity>>();//0-启用
+                        /*for (int i = list.Count - 1; i >= 0; i--)
+                        {
+                            if (list[i].isUse != "0")
+                            {
+                                list.Remove(list[i]);
+                            }
+                        }
+                         */
                         this.gc_BlackList.DataSource = list;
+                        pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
+                        int.Parse(objT["result"]["pageSize"].ToString()),
+                        int.Parse(objT["result"]["pageNo"].ToString()));
                     }
                     else
                     {
@@ -137,11 +144,11 @@ namespace Xr.RtManager.Pages.booking
             try
             {
                 //String param = "hospitalId=12&deptId=2&reportType=day&startDate=2019-01-01&endDate=2019-01-20";
-                String param = "hospitalId={0}";
+                String param = "blackListId={0}";
                 param = String.Format(
                     param, CurrentrowItem.id);
                 String url = AppContext.AppConfig.serverUrl + "sch/blacklistDetail/list?" + param;
-                e.Result = HttpClass.loginPost(url);
+                e.Result = HttpClass.httpPost(url);
                 //e.Result = @"{""code"":200,""message"":""操作成功"",""result"":[{""czNum"":1,""yyNum"":3,""openNum"":84,""doctorId"":1,""fzNum"":2,""doctorName"":""张医生""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":""0"",""doctorId"":10,""fzNum"":""0"",""doctorName"":""1232""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":12,""doctorId"":15,""fzNum"":""0"",""doctorName"":""杰大哥""},{""czNum"":""0"",""yyNum"":""0"",""openNum"":""0"",""doctorId"":13,""fzNum"":""0"",""doctorName"":""21321""}],""state"":true}";
             }
             catch (Exception ex)
@@ -159,16 +166,17 @@ namespace Xr.RtManager.Pages.booking
                 {
                     List<BlackListPatientEntity> list = objT["result"]["list"].ToObject<List<BlackListPatientEntity>>();
                     this.gc_PatientList.DataSource = list;
-
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Hint(objT["message"].ToString());
+                    //MessageBox.Show(objT["message"].ToString());
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
+                throw new Exception(ex.InnerException.Message);
             }
             finally
             {
@@ -274,9 +282,9 @@ namespace Xr.RtManager.Pages.booking
                             param = String.Format(
                                 param, item.id);
                             String url = AppContext.AppConfig.serverUrl + "sch/blackList/unlock?" + param;
-                            string res = HttpClass.loginPost(url);
+                            string res = HttpClass.httpPost(url);
                         }
-                        QueryInfo();
+                        QueryInfo(1, pageControl1.PageSize);
                     }
                 }
                 else
@@ -300,7 +308,7 @@ namespace Xr.RtManager.Pages.booking
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            QueryInfo();
+            QueryInfo(1, pageControl1.PageSize);
         }
 
         private void buttonControl3_Click(object sender, EventArgs e)
@@ -309,8 +317,24 @@ namespace Xr.RtManager.Pages.booking
             if (Frm.ShowDialog() == DialogResult.OK)
             {
                 MessageBoxUtils.Hint("保存成功!");
-                QueryInfo();
+                QueryInfo(1, pageControl1.PageSize);
             }
+        }
+
+        private void buttonControl3_Click_1(object sender, EventArgs e)
+        {
+            QueryInfo(1, pageControl1.PageSize);
+        }
+
+        private void BlackListAdminForm_SizeChanged(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
+
+        private void pageControl1_Query(int CurrentPage, int PageSize)
+        {
+            cmd.ShowOpaqueLayer(225, true);
+            QueryInfo(CurrentPage, PageSize);
         }
 
 

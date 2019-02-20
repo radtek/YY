@@ -10,14 +10,41 @@ namespace Xr.RtCall.Model
     /// </summary>
     public class Patient 
     {
+        /// <summary>
+        /// 患者姓名
+        /// </summary>
         public string patientName { get; set; }
+        /// <summary>
+        /// 签到时间
+        /// </summary>
         public string triageTime { get; set; }
+        /// <summary>
+        /// 就诊时间
+        /// </summary>
         public string visitTime { get; set; }
+        /// <summary>
+        /// 队列号
+        /// </summary>
         public string queueNum { get; set; }
+        /// <summary>
+        /// 状态
+        /// </summary>
         public string status { get; set; }
+        /// <summary>
+        /// 预约就诊时段，beginTime-endTime
+        /// </summary>
         public string regVisitTime { get; set; }
+        /// <summary>
+        /// 预约途径
+        /// </summary>
         public string registerWay { get; set; }
+        /// <summary>
+        /// 卡类型
+        /// </summary>
         public string cradType { get; set; }
+        /// <summary>
+        /// 卡号
+        /// </summary>
         public string cradNo { get; set; }
         public string regTime { get; set; }
     }

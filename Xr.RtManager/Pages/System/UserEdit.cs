@@ -15,6 +15,7 @@ using Xr.Common;
 using System.Text.RegularExpressions;
 using Xr.Http;
 using System.Threading;
+using System.Web;
 
 namespace Xr.RtManager
 {
@@ -30,8 +31,6 @@ namespace Xr.RtManager
         private String oldLoginName;
         String filePath = "";
         String serviceFilePath = "";
-
-        CheckBox chkbLast;
 
         private void UserEdit_Load(object sender, EventArgs e)
         {
@@ -139,7 +138,7 @@ namespace Xr.RtManager
                                 }
                                 catch (Exception ex)
                                 {
-                                    LogClass.WriteLog(ex.Message);
+                                    Xr.Log4net.LogHelper.Error(ex.Message);
                                 }
                             }
                             //WebClient web = new WebClient();
@@ -220,7 +219,8 @@ namespace Xr.RtManager
             }
 
             dcUser.GetValue(user);
-            user.remarks = richEditor1.InnerHtml;
+            //编辑框的内容要进行转码，不然后台获取的数据会异常缺失数据
+            user.remarks = HttpUtility.UrlEncode(richEditor1.InnerHtml, Encoding.UTF8);
             user.imgPath = serviceFilePath;
             //多选框单独进行验证
             string roleIds = string.Empty;
@@ -285,7 +285,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(ex.Message);
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
@@ -358,13 +358,19 @@ namespace Xr.RtManager
 
             bgWorkder.RunWorkerCompleted += (s, arg) =>
             {
-
-
-                bgWorkder.Dispose();
-
-                if (workCompleted != null)
+                try
                 {
-                    workCompleted(arg.Result);
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

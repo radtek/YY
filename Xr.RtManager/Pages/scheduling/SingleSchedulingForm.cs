@@ -31,40 +31,65 @@ namespace Xr.RtManager.Pages.scheduling
         /// </summary>
         public DefaultVisitEntity defaultVisitTemplate { get; set; }
 
-        private int tipHeight = 0; //排班控件高度
-
         private void SingleSchedulingForm_Load(object sender, EventArgs e)
         {
+            dateEdit1.Properties.MinValue = DateTime.Now;
+            dateEdit1.Properties.MaxValue = DateTime.Now.AddDays(90);
+
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
-            //设置科室列表
-            List<Item> itemList = new List<Item>();
-            foreach (DeptEntity dept in AppContext.Session.deptList)
-            {
-                Item item = new Item();
-                item.name = dept.name;
-                item.value = dept.id;
-                item.tag = dept.hospitalId;
-                item.parentId = dept.parentId;
-                itemList.Add(item);
-            }
-            mcDept.setDataSource(itemList);
-            //查询状态下拉框数据
             cmd.ShowOpaqueLayer(0f);
-            String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
-            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            //设置科室列表
+            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+            this.DoWorkAsync(250, (o) => 
             {
                 String data = HttpClass.httpPost(url);
                 return data;
 
-            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            }, null, (data) => 
             {
                 JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                    lueIsUse.Properties.DisplayMember = "label";
-                    lueIsUse.Properties.ValueMember = "value";
-                    cmd.HideOpaqueLayer();
+                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                    List<Item> itemList = new List<Item>();
+                    foreach (DeptEntity dept in deptList)
+                    {
+                        Item item = new Item();
+                        item.name = dept.name;
+                        item.value = dept.id;
+                        item.tag = dept.hospitalId;
+                        item.parentId = dept.parentId;
+                        itemList.Add(item);
+                    }
+                    mcDept.setDataSource(itemList);
+
+                    //查询状态下拉框数据
+                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
+                    this.DoWorkAsync(250, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            List<DictEntity> dictList = objT["result"].ToObject<List<DictEntity>>();
+                            lueIsUse.Properties.DataSource = dictList;
+                            lueIsUse.Properties.DisplayMember = "label";
+                            lueIsUse.Properties.ValueMember = "value";
+                            lueIsUse.EditValue = dictList[0].value;
+                            cmd.HideOpaqueLayer();
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            return;
+                        }
+                    });
                 }
                 else
                 {
@@ -94,7 +119,7 @@ namespace Xr.RtManager.Pages.scheduling
             String param = "pageNo=1&pageSize=10000&hospital.id=" + hospitalId + "&dept.id=" + deptId;
             String url = AppContext.AppConfig.serverUrl + "cms/doctor/list?" + param;
             cmd.ShowOpaqueLayer();
-            this.DoWorkAsync(300, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -199,7 +224,7 @@ namespace Xr.RtManager.Pages.scheduling
 
             }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                string[] sArray = Regex.Split(data2.ToString(), "|", RegexOptions.IgnoreCase);
+                string[] sArray = data2.ToString().Split('|');
                 if (sArray[0] == "1")
                 {
                     labMsg.Text = sArray[1];
@@ -208,9 +233,14 @@ namespace Xr.RtManager.Pages.scheduling
                 }
                 else if (sArray[0] == "2")
                 {
+                    labMsg.Text = "";
                     cmd.HideOpaqueLayer();
                     MessageBoxUtils.Show(sArray[1], MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
+                }
+                else
+                {
+                    labMsg.Text = "";
                 }
                 List<List<WorkingDayEntity>> sList = new List<List<WorkingDayEntity>>();
                 this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
@@ -239,7 +269,7 @@ namespace Xr.RtManager.Pages.scheduling
 
                 }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    string[] sArray2 = Regex.Split(data3.ToString(), "|", RegexOptions.IgnoreCase);
+                    string[] sArray2 = data3.ToString().Split('|');
                     if (sArray2[0] == "2")
                     {
                         cmd.HideOpaqueLayer();
@@ -402,7 +432,7 @@ namespace Xr.RtManager.Pages.scheduling
                 {
                     start = wdwpList[r - 1].beginTime;
                     end = wdwpList[r - 1].endTime;
-                    scene = wdwpList[r - 1].numSource;
+                    scene = wdwpList[r - 1].numSite;
                     open = wdwpList[r - 1].numOpen;
                     room = wdwpList[r - 1].numClinic;
                     emergency = wdwpList[r - 1].numYj;
@@ -568,7 +598,7 @@ namespace Xr.RtManager.Pages.scheduling
             {
                 Panel panel = (Panel)panel9.Controls[i];
                 GroupBox groupBoy = (GroupBox)panel.Controls[0];
-                TableLayoutPanel tlp = (TableLayoutPanel)groupBoy.Controls[0];
+                TableLayoutPanel tlp = (TableLayoutPanel)groupBoy.Controls[1];
                 if (tlp.Enabled)
                 {
                     CheckBox cbIsUse = (CheckBox)tlp.GetControlFromPosition(0, 1);
@@ -636,6 +666,10 @@ namespace Xr.RtManager.Pages.scheduling
                 cmd.HideOpaqueLayer();
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
+                    cbMorning.CheckState = CheckState.Unchecked;
+                    cbAfternoon.CheckState = CheckState.Unchecked;
+                    cbNight.CheckState = CheckState.Unchecked;
+                    cbAllAay.CheckState = CheckState.Unchecked;
                     MessageBoxUtils.Hint("保存成功!");
                 }
                 else
@@ -648,38 +682,42 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void cbMorning_CheckStateChanged(object sender, EventArgs e)
         {
-            CheckBox cb = (CheckBox)sender;
-            if (cb.CheckState == CheckState.Checked)
-            {
-                setScheduling();
-            }
+            setScheduling();
+            //CheckBox cb = (CheckBox)sender;
+            //if (cb.CheckState == CheckState.Checked)
+            //{
+            //    setScheduling();
+            //}
         }
 
         private void cbAfternoon_CheckStateChanged(object sender, EventArgs e)
         {
-            CheckBox cb = (CheckBox)sender;
-            if (cb.CheckState == CheckState.Checked)
-            {
-                setScheduling();
-            }
+            setScheduling();
+            //CheckBox cb = (CheckBox)sender;
+            //if (cb.CheckState == CheckState.Checked)
+            //{
+            //    setScheduling();
+            //}
         }
 
         private void cbNight_CheckStateChanged(object sender, EventArgs e)
         {
-            CheckBox cb = (CheckBox)sender;
-            if (cb.CheckState == CheckState.Checked)
-            {
-                setScheduling();
-            }
+            setScheduling();
+            //CheckBox cb = (CheckBox)sender;
+            //if (cb.CheckState == CheckState.Checked)
+            //{
+            //    setScheduling();
+            //}
         }
 
         private void cbAllAay_CheckStateChanged(object sender, EventArgs e)
         {
+            setScheduling();
             CheckBox cb = (CheckBox)sender;
-            if (cb.CheckState == CheckState.Checked)
-            {
-                setScheduling();
-            }
+            //if (cb.CheckState == CheckState.Checked)
+            //{
+            //    setScheduling();
+            //}
         }
 
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
@@ -723,8 +761,7 @@ namespace Xr.RtManager.Pages.scheduling
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 
@@ -739,8 +776,5 @@ namespace Xr.RtManager.Pages.scheduling
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
-
-
-
     }
 }

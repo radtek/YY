@@ -83,7 +83,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(ex.Message);
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
@@ -135,8 +135,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex )
             {
-                LogClass.WriteLog(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                throw new Exception(ex.InnerException.Message);
             }
             finally
             {

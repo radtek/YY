@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using Xr;
+using Xr.Common;
 
 namespace Xr.RtManager
 {
@@ -44,7 +45,7 @@ namespace Xr.RtManager
                 var aProcessName = Process.GetCurrentProcess().ProcessName;
                 if ((Process.GetProcessesByName(aProcessName)).GetUpperBound(0) > 0)
                 {
-                    MessageBox.Show(@"系统已经在运行中，如果要重新启动，请从进程中关闭...", @"系统警告", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBoxUtils.Show(@"系统已经在运行中，如果要重新启动，请从进程中关闭...", @"系统警告", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
                 else
                 {
@@ -67,9 +68,9 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("Main:" + ex);
-                MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。");
-
+                Xr.Log4net.LogHelper.Error("Main:" + ex);
+                //MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。");
+                MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 //DigiForm digiForm = new DigiForm();
                 //digiForm.UpdateAppSettings(DigiForm.RUNFORMFULLNAME, DigiForm.LOGINFORMFULLNAME);
             }
@@ -102,10 +103,33 @@ namespace Xr.RtManager
             var ex = e.Exception;
             if (ex != null)
             {
-                LogClass.WriteLog("Application_ThreadException:" + ex);
+                Xr.Log4net.LogHelper.Error("Application_ThreadException:" + ex);
             }
-
-            MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));
+            if (ex.Message.Equals("远程服务器返回错误: (400) 错误的请求。") || ex.Message.Equals("会话失效，请重启程序"))
+            {
+                if (MessageBoxUtils.Show("系统出现异常："+ex.Message+"\r\n请重新登录系统", MessageBoxButtons.OKCancel, new[] { "重新登录", "退出系统" }) == DialogResult.OK)
+                {
+                    //Application.Restart();
+                    Application.ExitThread();
+                    Restart();
+                }
+                else
+                {
+                    //Application.Exit();
+                    Application.ExitThread();
+                }
+                //if (MessageBoxUtils.Show(, MessageBoxButtons.OKCancel,
+                // MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                //{
+                //    Application.ExitThread();
+                //    Restart();
+                //}
+            }
+            else
+            {
+                MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            //MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -113,12 +137,38 @@ namespace Xr.RtManager
             var ex = e.ExceptionObject as Exception;
             if (ex != null)
             {
-                LogClass.WriteLog("CurrentDomain_UnhandledException:" + ex);
+                Xr.Log4net.LogHelper.Error("CurrentDomain_UnhandledException:" + ex);
             }
-
-            MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));
+            MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            //MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));
         }
 
+        /// <summary>
+        /// 重启程序
+        /// </summary>
+        private static void Restart()
+        {
+ 
+            Thread thtmp = new Thread(new ParameterizedThreadStart(run));
+ 
+            object appName = Application.ExecutablePath;
+ 
+            Thread.Sleep(2000);
+ 
+            thtmp.Start(appName);
+ 
+        }
+
+        private static void run(Object obj)
+        {
+ 
+        Process ps = new Process();
+ 
+            ps.StartInfo.FileName = obj.ToString();
+ 
+            ps.Start();
+ 
+        }
         ///// <summary>
         ///// 应用程序的主入口点。
         ///// </summary>

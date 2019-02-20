@@ -12,6 +12,7 @@ using RestSharp;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using Xr.RtScreen.Models;
 
 namespace Xr.RtScreen.pages
 {
@@ -21,13 +22,15 @@ namespace Xr.RtScreen.pages
         public RtSmallScreenFrm()
         {
             InitializeComponent();
-            _context = new SynchronizationContext();
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true); // 双缓冲
             this.UpdateStyles();
-            SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
-            speakVoiceform.Show(this);
+            _context = new SynchronizationContext();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            GetSmallScreenInfo();
+            //SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
+            //speakVoiceform.Show(this);
         }
         #region 画线条
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
@@ -80,19 +83,26 @@ namespace Xr.RtScreen.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("","");
+                prament.Add("hospitalId", HelperClass.hospitalId);
+                prament.Add("deptId", HelperClass.deptId);
+                prament.Add("clinicId", HelperClass.clincId);
                 Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findRoomScreenDataOne", prament, Method.POST, result =>
                 {
-                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.Completed:
                             if (result.StatusCode == HttpStatusCode.OK)
                             {
+                                Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    _context.Send((s) => MessageBox.Show("获取陈宫"), null);
+                                    SmallScreenClass smallscreen = Newtonsoft.Json.JsonConvert.DeserializeObject<SmallScreenClass>(objT["result"].ToString());
+                                    _context.Send((s) => label7.Text = smallscreen.clinicName + smallscreen.doctorName, null);
+                                    _context.Send((s) => label2.Text = smallscreen.visitPatient, null);
+                                    _context.Send((s) => label8.Text = smallscreen.nextPatient, null);
+                                    _context.Send((s) => scrollingText2.ScrollText = smallscreen.waitPatient, null);
+                                    _context.Send((s) => label5.Text = smallscreen.signInNum, null);
                                 }
                                 else
                                 {
@@ -110,5 +120,23 @@ namespace Xr.RtScreen.pages
             }
         }
         #endregion
+        #region 时间指针
+        public void time()
+        {
+            if (!timer1.Enabled)
+            {
+                timer1.Interval = Convert.ToInt32(AppContext.AppConfig.RefreshTime);
+                timer1.Start();
+            }
+            else
+            {
+                timer1.Stop();
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+        #endregion  
     }
 }

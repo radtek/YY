@@ -34,9 +34,10 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new Xr.Common.Controls.GroupBorderPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.myTextBox1 = new Xr.RtManager.MyTextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.lueType = new DevExpress.XtraEditors.LookUpEdit();
             this.meUpdateDesc = new DevExpress.XtraEditors.MemoEdit();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,7 +60,9 @@
             this.dcMessage = new Xr.Common.Controls.DataController(this.components);
             this.panel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -82,7 +85,7 @@
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 20;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(896, 31);
+            this.pageControl1.Size = new System.Drawing.Size(902, 31);
             this.pageControl1.TabIndex = 50;
             this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
@@ -92,7 +95,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(10, 1, 10, 10);
+            this.panel4.Padding = new System.Windows.Forms.Padding(7, 1, 7, 10);
             this.panel4.Size = new System.Drawing.Size(920, 454);
             this.panel4.TabIndex = 67;
             // 
@@ -105,18 +108,20 @@
             this.tableLayoutPanel1.Controls.Add(this.pageControl1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panelControl1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(900, 443);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(906, 443);
             this.tableLayoutPanel1.TabIndex = 53;
             // 
             // groupBox1
             // 
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.groupBox1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.myTextBox1);
             this.groupBox1.Controls.Add(this.lueType);
             this.groupBox1.Controls.Add(this.meUpdateDesc);
             this.groupBox1.Controls.Add(this.label6);
@@ -124,16 +129,53 @@
             this.groupBox1.Controls.Add(this.butClose);
             this.groupBox1.Controls.Add(this.butContronl);
             this.groupBox1.Controls.Add(this.textEdit1);
+            this.groupBox1.CornerRadius.All = 5;
+            this.groupBox1.CornerRadius.BottomLeft = 5;
+            this.groupBox1.CornerRadius.BottomRight = 5;
+            this.groupBox1.CornerRadius.TopLeft = 5;
+            this.groupBox1.CornerRadius.TopRight = 5;
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Enabled = false;
-            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(498, 3);
+            this.groupBox1.FillColor1 = System.Drawing.Color.Transparent;
+            this.groupBox1.FillColor2 = System.Drawing.Color.Transparent;
+            this.groupBox1.GroupText = "信息编辑区";
+            this.groupBox1.Location = new System.Drawing.Point(501, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(399, 403);
-            this.groupBox1.TabIndex = 52;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "信息编辑区";
-            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 20, 3, 3);
+            this.groupBox1.Size = new System.Drawing.Size(402, 403);
+            this.groupBox1.TabIndex = 67;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.myTextBox1);
+            this.panel2.Enabled = false;
+            this.panel2.Location = new System.Drawing.Point(15, 229);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.panel2.Size = new System.Drawing.Size(381, 143);
+            this.panel2.TabIndex = 125;
+            // 
+            // myTextBox1
+            // 
+            this.myTextBox1.BackColor = System.Drawing.Color.White;
+            tTextBoxBorderRenderStyle1.LineColor = System.Drawing.Color.LightGray;
+            tTextBoxBorderRenderStyle1.LineWidth = 1F;
+            this.myTextBox1.BorderRenderStyle = tTextBoxBorderRenderStyle1;
+            this.myTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.myTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myTextBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.myTextBox1.Location = new System.Drawing.Point(20, 0);
+            this.myTextBox1.Multiline = true;
+            this.myTextBox1.Name = "myTextBox1";
+            this.myTextBox1.Size = new System.Drawing.Size(339, 141);
+            this.myTextBox1.TabIndex = 123;
+            this.myTextBox1.Text = "模本内容，内容中需替换的内容部分使用【1】替代，第一项内容使用1,第二项内容使用2，以此类推。\r\n如：李某某 在 2018年12月28日 10点24分预约了外科/" +
+    "张主任/2018年12月29日9点30分就诊，请提前20分诊到场签到就诊。\r\n则：【1】在【2】预约了【3】【4】【5】就诊，请提前【6】分诊到场签到就诊。";
+            this.myTextBox1.TextMargin = new System.Windows.Forms.Padding(1);
             // 
             // textBox1
             // 
@@ -141,28 +183,9 @@
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(15, 374);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(26, 25);
+            this.textBox1.Size = new System.Drawing.Size(26, 21);
             this.textBox1.TabIndex = 124;
             this.textBox1.Visible = false;
-            // 
-            // myTextBox1
-            // 
-            this.myTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            tTextBoxBorderRenderStyle1.LineColor = System.Drawing.Color.LightGray;
-            tTextBoxBorderRenderStyle1.LineWidth = 1F;
-            this.myTextBox1.BorderRenderStyle = tTextBoxBorderRenderStyle1;
-            this.myTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.myTextBox1.Enabled = false;
-            this.myTextBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.myTextBox1.Location = new System.Drawing.Point(15, 242);
-            this.myTextBox1.Multiline = true;
-            this.myTextBox1.Name = "myTextBox1";
-            this.myTextBox1.Size = new System.Drawing.Size(378, 126);
-            this.myTextBox1.TabIndex = 123;
-            this.myTextBox1.Text = "模本内容，内容中需替换的内容部分使用【1】替代，第一项内容使用1,第二项内容使用2，以此类推。\r\n如：李某某 在 2018年12月28日 10点24分预约了外科/" +
-    "张主任/2018年12月29日9点30分就诊，请提前20分诊到场签到就诊。\r\n则：【1】在【2】预约了【3】【4】【5】就诊，请提前【6】分诊到场签到就诊。";
-            this.myTextBox1.TextMargin = new System.Windows.Forms.Padding(1);
             // 
             // lueType
             // 
@@ -192,7 +215,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "类型")});
             this.lueType.Properties.NullText = "";
-            this.lueType.Size = new System.Drawing.Size(378, 29);
+            this.lueType.Size = new System.Drawing.Size(381, 29);
             this.lueType.TabIndex = 122;
             // 
             // meUpdateDesc
@@ -200,11 +223,11 @@
             this.meUpdateDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dcMessage.SetDataMember(this.meUpdateDesc, "content");
-            this.meUpdateDesc.Location = new System.Drawing.Point(15, 119);
+            this.meUpdateDesc.Location = new System.Drawing.Point(15, 108);
             this.meUpdateDesc.Name = "meUpdateDesc";
             this.meUpdateDesc.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meUpdateDesc.Properties.Appearance.Options.UseFont = true;
-            this.meUpdateDesc.Size = new System.Drawing.Size(378, 77);
+            this.meUpdateDesc.Size = new System.Drawing.Size(381, 77);
             this.meUpdateDesc.TabIndex = 119;
             this.meUpdateDesc.UseOptimizedRendering = true;
             // 
@@ -212,7 +235,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(11, 96);
+            this.label6.Location = new System.Drawing.Point(11, 85);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 20);
             this.label6.TabIndex = 121;
@@ -243,12 +266,14 @@
             // 
             // butContronl
             // 
+            this.butContronl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
-            this.butContronl.Location = new System.Drawing.Point(15, 204);
+            this.butContronl.Location = new System.Drawing.Point(15, 191);
             this.butContronl.Name = "butContronl";
-            this.butContronl.Size = new System.Drawing.Size(75, 30);
+            this.butContronl.Size = new System.Drawing.Size(381, 30);
             this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.butContronl.TabIndex = 116;
             this.butContronl.Text = "保存";
@@ -270,7 +295,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(3, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(489, 403);
+            this.panelControl1.Size = new System.Drawing.Size(492, 403);
             this.panelControl1.TabIndex = 53;
             // 
             // gc_Message
@@ -281,7 +306,7 @@
             this.gc_Message.Location = new System.Drawing.Point(0, 9);
             this.gc_Message.MainView = this.gv_Message;
             this.gc_Message.Name = "gc_Message";
-            this.gc_Message.Size = new System.Drawing.Size(489, 394);
+            this.gc_Message.Size = new System.Drawing.Size(492, 394);
             this.gc_Message.TabIndex = 49;
             this.gc_Message.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Message});
@@ -453,8 +478,11 @@
             this.Load += new System.EventHandler(this.MessageManagement_Load);
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meUpdateDesc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
@@ -484,7 +512,7 @@
         private Xr.Common.Controls.ButtonControl btnDel;
         private Xr.Common.Controls.ButtonControl btnSave;
         private Xr.Common.Controls.ButtonControl btnAdd;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private Xr.Common.Controls.GroupBorderPanel groupBox1;
         private Xr.Common.Controls.ButtonControl butClose;
         private Xr.Common.Controls.ButtonControl butContronl;
         private DevExpress.XtraEditors.TextEdit textEdit1;
@@ -497,5 +525,6 @@
         private DevExpress.XtraEditors.LookUpEdit lueType;
         private MyTextBox myTextBox1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

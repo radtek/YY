@@ -121,12 +121,14 @@ namespace Xr.RtManager
             {
                 text += "\r\n" + "异常信息" + selectedRow.exception;
             }
-            int i = gridView1.GetFocusedDataSourceRowIndex();
-            //IntPtr activeForm = GetActiveWindow(); // 先得到当前的活动窗体 
-            MainForm mainForm = (MainForm)this.Parent.Parent.Parent.Parent.Parent;
-            MessageBoxUtils.HintTextEdit(text, mainForm.Left + 177, mainForm.Top+195 + ((i + 1) * 29), gcDict.Width);
+            //int i = gridView1.GetFocusedDataSourceRowIndex();
+            ////IntPtr activeForm = GetActiveWindow(); // 先得到当前的活动窗体 
+            //MainForm mainForm = (MainForm)this.Parent.Parent.Parent.Parent.Parent;
+            //MessageBoxUtils.HintTextEdit(text, mainForm.Left + 177, mainForm.Top+195 + ((i + 1) * 29), gcDict.Width);
             //SetActiveWindow(activeForm); // 在把焦点还给之前的活动窗体
-            
+            var edit = new LogMsgForm();
+            edit.text = text;
+            edit.ShowDialog();
         }
 
         private void pageControl1_Query(int CurrentPage, int pageSize)
@@ -171,8 +173,7 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

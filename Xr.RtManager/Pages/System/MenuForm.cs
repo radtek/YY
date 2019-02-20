@@ -44,12 +44,40 @@ namespace Xr.RtManager
                 JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    treeList1.DataSource = objT["result"].ToObject<List<MenuEntity>>();
-                    treeList1.KeyFieldName = "id";//设置ID  
-                    treeList1.ParentFieldName = "parentId";//设置PreID   
-                    //treeList1.OptionsBehavior.Editable = false;   //treelist不可编辑   不可编辑会导致点击事件失效
-                    treeList1.ExpandAll();
-                    cmd.HideOpaqueLayer();
+                    List<MenuEntity> menuList = objT["result"].ToObject<List<MenuEntity>>();
+                    //查显示隐藏字典
+                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
+                    this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        String data2 = HttpClass.httpPost(url);
+                        return data2;
+
+                    }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        objT = JObject.Parse(data3.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            List<DictEntity> dictList = objT["result"].ToObject<List<DictEntity>>();
+                            foreach (MenuEntity menu in menuList)
+                            {
+                                foreach (DictEntity dict in dictList)
+                                {
+                                    if (menu.isShow.Equals(dict.value))
+                                        menu.isShow = dict.label;
+                                }
+                            }
+                            treeList1.DataSource = menuList;
+                            treeList1.KeyFieldName = "id";//设置ID  
+                            treeList1.ParentFieldName = "parentId";//设置PreID   
+                            treeList1.ExpandAll();
+                            cmd.HideOpaqueLayer();
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        }
+                    });
                 }
                 else
                 {
@@ -180,8 +208,7 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

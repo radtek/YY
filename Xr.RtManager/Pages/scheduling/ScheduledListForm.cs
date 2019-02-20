@@ -25,45 +25,58 @@ namespace Xr.RtManager.Pages.scheduling
             deEnd.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
+            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
             this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                return null;
+                String data = HttpClass.httpPost(url);
+                return data;
 
             }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                gridView1.OptionsView.AllowCellMerge = true;
-                //这里不能直接用，不然下面添加全部科室会导致session里面的科室列表也添加了全部科室
-                List<DeptEntity> deptList = new List<DeptEntity>();
-                foreach (DeptEntity deptEntity in AppContext.Session.deptList)
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    deptList.Add(deptEntity);
-                }
-                DeptEntity dept = new DeptEntity();
-                dept.id = "";
-                dept.name = "全部科室";
-                deptList.Insert(0, dept);
-                treeDept.Properties.DataSource = deptList;
-                treeDept.Properties.TreeList.KeyFieldName = "id";
-                treeDept.Properties.TreeList.ParentFieldName = "parentId";
-                treeDept.Properties.DisplayMember = "name";
-                treeDept.Properties.ValueMember = "id";
+                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                    if (AppContext.AppConfig.deptCode.Trim().Length == 0)
+                    {
+                        DeptEntity dept = new DeptEntity();
+                        dept.id = " ";
+                        dept.parentId = "";
+                        dept.name = "全部科室";
+                        deptList.Insert(0, dept);
+                    }
+                    treeDept.Properties.DataSource = deptList;
+                    treeDept.Properties.TreeList.KeyFieldName = "id";
+                    treeDept.Properties.TreeList.ParentFieldName = "parentId";
+                    treeDept.Properties.DisplayMember = "name";
+                    treeDept.Properties.ValueMember = "id";
+                    treeDept.EditValue = deptList[0].id;
 
-                //设置表格中状态下拉框的数据
-                List<DictEntity> dictList = new List<DictEntity>();
-                DictEntity dict = new DictEntity();
-                dict.value = "0";
-                dict.label = "正常";
-                dictList.Add(dict);
-                dict = new DictEntity();
-                dict.value = "1";
-                dict.label = "停诊";
-                dictList.Add(dict);
-                repositoryItemLookUpEdit1.Properties.DataSource = dictList;
-                repositoryItemLookUpEdit1.Properties.DisplayMember = "label";
-                repositoryItemLookUpEdit1.Properties.ValueMember = "value";
-                repositoryItemLookUpEdit1.ShowHeader = false;
-                repositoryItemLookUpEdit1.ShowFooter = false;
-                SearchData();
+                    gridView1.OptionsView.AllowCellMerge = true;
+                    //设置表格中状态下拉框的数据
+                    List<DictEntity> dictList = new List<DictEntity>();
+                    DictEntity dict = new DictEntity();
+                    dict.value = "0";
+                    dict.label = "正常";
+                    dictList.Add(dict);
+                    dict = new DictEntity();
+                    dict.value = "1";
+                    dict.label = "停诊";
+                    dictList.Add(dict);
+                    repositoryItemLookUpEdit1.Properties.DataSource = dictList;
+                    repositoryItemLookUpEdit1.Properties.DisplayMember = "label";
+                    repositoryItemLookUpEdit1.Properties.ValueMember = "value";
+                    repositoryItemLookUpEdit1.ShowHeader = false;
+                    repositoryItemLookUpEdit1.ShowFooter = false;
+                    SearchData();
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
             });
         }
 
@@ -196,13 +209,13 @@ namespace Xr.RtManager.Pages.scheduling
             {
                 var selectedRow = gridView1.GetFocusedRow() as ScheduledEntity;
                 String period = "";
-                if(selectedRow.am.Equals("√"))
+                if (selectedRow.am.Equals("√"))
                     period = "0";
-                else if(selectedRow.pm.Equals("√"))
+                else if (selectedRow.pm.Equals("√"))
                     period = "1";
-                else if(selectedRow.night.Equals("√"))
+                else if (selectedRow.night.Equals("√"))
                     period = "2";
-                else if(selectedRow.allday.Equals("√"))
+                else if (selectedRow.allday.Equals("√"))
                     period = "3";
                 String param = "deptId=" + selectedRow.deptId + "&doctorId=" + selectedRow.doctorId
                     + "&period=" + period + "&workDate=" + selectedRow.workDate
@@ -262,8 +275,7 @@ namespace Xr.RtManager.Pages.scheduling
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

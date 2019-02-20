@@ -15,6 +15,10 @@ namespace Xr.RtCall.Model
         /// </summary>
         public static String triageId { get; set; }
         /// <summary>
+        /// 当前医生登录工号
+        /// </summary>
+        public static String Code { set; get; }
+        /// <summary>
         /// 医院主键
         /// </summary>
         public static String hospitalId
@@ -42,6 +46,10 @@ namespace Xr.RtCall.Model
         /// 科室列表集合
         /// </summary>
         public static List<HelperClassDoctor> list { get; set; }
+        /// <summary>
+        /// 医生列表集合
+        /// </summary>
+        public static List<HelperClassDoctorID> doctorlist { get; set; }
     }
     /// <summary>
     /// 科室列表
@@ -53,5 +61,14 @@ namespace Xr.RtCall.Model
         public String name { get; set; }
         public String hospitalId { get; set; }
         public String code { get; set; }
+    }
+    /// <summary>
+    /// 医生列表
+    /// </summary>
+    public class HelperClassDoctorID
+    {
+        public String code { get; set; }
+        public String id { get; set; }
+        public String name { get; set; }
     }
 }

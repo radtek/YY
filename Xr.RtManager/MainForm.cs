@@ -31,13 +31,12 @@ namespace Xr.RtManager
         }
         Xr.Common.Controls.OpaqueCommand cmd;
         private Color borderColor = Color.FromArgb(157, 160, 170);
-        private string dialogText = "正在加载中，请稍候...";
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             cmd = new Xr.Common.Controls.OpaqueCommand(this);
             cmd.ShowOpaqueLayer(0f);
-            labBottomLeft.Text = AppContext.Session.deptName+" | "+AppContext.Session.name;
+            labBottomLeft.Text = AppContext.Session.deptName + " | " + AppContext.Session.name + " | " + System.DateTime.Now.ToString();
             this.timer1.Start();
 
             tmHeartbeat.Enabled = true;
@@ -61,7 +60,7 @@ namespace Xr.RtManager
                 AddContextMenu(menu.id, menu.name, menu.href, panMenuBar);
             }
 
-            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(500,(o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 Thread.Sleep(1000);
                 return null;
@@ -465,7 +464,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
         /// <summary>  
@@ -494,7 +493,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
         /// <summary>
@@ -595,9 +594,9 @@ namespace Xr.RtManager
         #region 标签右键关闭操作
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("你确定退出系统吗！", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if (result == DialogResult.OK)
-            {
+            if (MessageBoxUtils.Show("你确定退出系统吗?", MessageBoxButtons.OKCancel,
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+             {
                 String url = AppContext.AppConfig.serverUrl + "logout";
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
@@ -706,12 +705,48 @@ namespace Xr.RtManager
         #endregion
 
         /// <summary>
+        /// 检查会话 12个小时一次(43200000秒)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tmHeartbeat_Tick(object sender, EventArgs e)
+        {
+            tmHeartbeat.Enabled = false;
+            String url = AppContext.AppConfig.serverUrl + "sys/sysUser/getCurrentDate";
+            this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    tmHeartbeat.Enabled = true;
+                }
+                else
+                {
+                    if (MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OKCancel, new[] { "重新登录", "退出系统" }) == DialogResult.OK)
+                    {
+                        Application.Restart();
+                    }
+                    else
+                    {
+                        Close();
+                    }
+                }
+            });
+        }
+
+        /// <summary>
         /// 多线程异步后台处理某些耗时的数据，不会卡死界面
         /// </summary>
+        /// <param name="time">线程延迟多少</param>
         /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
         /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
         /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
-        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
         {
             var bgWorkder = new BackgroundWorker();
 
@@ -740,8 +775,7 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBox.Show(ex.Message);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 
@@ -751,11 +785,10 @@ namespace Xr.RtManager
                 var result = workFunc(arg.Argument);
                 arg.Result = result;
                 bgWorkder.ReportProgress(100);
-                Thread.Sleep(500);
+                Thread.Sleep(time);
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
-    
     }
 }

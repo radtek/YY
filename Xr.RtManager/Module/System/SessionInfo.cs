@@ -61,6 +61,11 @@ namespace Xr.RtManager
         public String userType { get; set; }
 
         /// <summary>
+        /// 登录时间
+        /// </summary>
+        public String loginDate { get; set; }
+
+        /// <summary>
         /// 存储验证码cookie
         /// </summary>
         public CookieContainer cookie { get; set; }

@@ -28,7 +28,7 @@ namespace Xr.RtScreen.Models
             {
                 Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
             }
-            LogClass.WriteLog("请求地址：" + AppContext.AppConfig.serverUrl + Url + Params);
+            Log4net.LogHelper.Info("请求地址：" + AppContext.AppConfig.serverUrl + Url + Params);
             client.ExecuteAsync<T>(new RestRequest(Params, methoh), callback);
         }
     }

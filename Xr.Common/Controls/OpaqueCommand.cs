@@ -29,6 +29,10 @@ namespace Xr.Common.Controls
         /// 显示的等待框
         /// </summary>
         public System.Windows.Forms.Panel waitingBox;
+        /// <summary>
+        /// 遮罩显示区域
+        /// </summary>
+        public Rectangle rectDisplay;
 
         public ProgressPanel _Loading; 
 
@@ -98,8 +102,8 @@ namespace Xr.Common.Controls
 
                 if (!Control.Contains(waitingBox))
                 {
-                    
-                     _Loading = new ProgressPanel();
+
+                    _Loading = new ProgressPanel();
                     //_Loading.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
                     _Loading.Appearance.BackColor = System.Drawing.Color.FromArgb(60, Color.WhiteSmoke);
                     _Loading.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -127,37 +131,30 @@ namespace Xr.Common.Controls
                     _Loading.TabIndex = 0;
                     _Loading.Text = "progressPanel1";
 
-                     pe = new PanelEx();
+                    pe = new PanelEx();
                     pe.Size = new System.Drawing.Size(223, 75);
                     pe.Location = new Point((Control.Width - _Loading.Width) / 2, (Control.Height - _Loading.Height) / 2);//居中
                     pe.BorderColor = Color.LightGray;
                     pe.Controls.Add(_Loading);
                     waitingBox.Controls.Add(pe);
                     Control.Controls.Add(waitingBox);
-                    if (IsShowCancelBtn)
-                    {
-                        //取消按钮
-                        buttonControl = new Xr.Common.Controls.ButtonControl();
+                    //取消按钮
+                    buttonControl = new Xr.Common.Controls.ButtonControl();
 
-                        buttonControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-                        buttonControl.Dock = DockStyle.None;
-                        buttonControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-                        buttonControl.HoverBackColor = System.Drawing.Color.Empty;
-                        buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
-                        buttonControl.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-                        buttonControl.Size = new System.Drawing.Size(50, 20);
-                        buttonControl.Style = Xr.Common.Controls.ButtonStyle.Return;
-                        buttonControl.TabIndex = 90;
-                        buttonControl.TabStop = false;
-                        buttonControl.Text = "取消";
-                        buttonControl.Click += new System.EventHandler(this.button_Click);
-                        pe.Controls.Add(buttonControl);
-                    }
-                    else
-                    {
-                        pe.Size = new System.Drawing.Size(223, 52); 
-                    }
-                    
+                    buttonControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+                    buttonControl.Dock = DockStyle.None;
+                    buttonControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+                    buttonControl.HoverBackColor = System.Drawing.Color.Empty;
+                    buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
+                    buttonControl.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+                    buttonControl.Size = new System.Drawing.Size(50, 20);
+                    buttonControl.Style = Xr.Common.Controls.ButtonStyle.Return;
+                    buttonControl.TabIndex = 90;
+                    buttonControl.TabStop = false;
+                    buttonControl.Text = "取消";
+                    buttonControl.Click += new System.EventHandler(this.button_Click);
+                    pe.Controls.Add(buttonControl);
+
                 }
                 
                 waitingBox.Show();
@@ -182,9 +179,21 @@ namespace Xr.Common.Controls
                 }
             }
             Rectangle rect = Control.DisplayRectangle;
+            if (rectDisplay == new Rectangle())
+            {
+                rect = Control.DisplayRectangle;
+            }
+
+            else
+            {
+                rect = rectDisplay;
+                pe.Location = new Point((rect.Width - _Loading.Width) / 2, (rect.Height - _Loading.Height) / 2);//居中
+                buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
+            }
             waitingBox.Width = rect.Width;
             waitingBox.Height = rect.Height;
             waitingBox.Location = new Point(rect.X, rect.Y);
+
             if (IsShowtransparencyBG)
             {
                 

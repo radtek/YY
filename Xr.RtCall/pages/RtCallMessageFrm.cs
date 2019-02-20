@@ -49,12 +49,12 @@ namespace Xr.RtCall.pages
                 RestSharpHelper.ReturnResult<List<string>>(Url, prament, Method.POST,
                  result =>
                  {
-                     LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                      switch (result.ResponseStatus)
                      {
                          case ResponseStatus.Completed:
                              if (result.StatusCode == System.Net.HttpStatusCode.OK)
                              {
+                                 Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
                                  JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                  if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                  {
@@ -78,7 +78,7 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取完成下一位/过号下一位错误信息：" + ex.Message);
+               Log4net.LogHelper.Error("获取完成下一位/过号下一位错误信息：" + ex.Message);
             }
         }
         #endregion

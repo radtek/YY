@@ -46,6 +46,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
+            this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBorderPanel6 = new Xr.Common.Controls.GroupBorderPanel();
             this.gc_PatientList = new DevExpress.XtraGrid.GridControl();
@@ -64,6 +65,7 @@
             this.cb_AutoRefresh = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
+            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl3 = new Xr.Common.Controls.ButtonControl();
             this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
             this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
@@ -103,10 +105,11 @@
             this.select.Caption = "☑";
             this.select.ColumnEdit = this.repositoryItemCheckEdit1;
             this.select.FieldName = "check";
+            this.select.MaxWidth = 20;
             this.select.Name = "select";
             this.select.Visible = true;
             this.select.VisibleIndex = 0;
-            this.select.Width = 57;
+            this.select.Width = 20;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -141,6 +144,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.gc_BlackList);
+            this.panel5.Controls.Add(this.pageControl1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(10, 10);
             this.panel5.Name = "panel5";
@@ -157,21 +161,24 @@
             this.gc_BlackList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemPopupContainerEdit1});
-            this.gc_BlackList.Size = new System.Drawing.Size(1029, 375);
+            this.gc_BlackList.Size = new System.Drawing.Size(1029, 336);
             this.gc_BlackList.TabIndex = 44;
             this.gc_BlackList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_BlackList});
             // 
             // gv_BlackList
             // 
-            this.gv_BlackList.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_BlackList.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_BlackList.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_BlackList.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gv_BlackList.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_BlackList.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.gv_BlackList.Appearance.OddRow.Options.UseBackColor = true;
+            this.gv_BlackList.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.gv_BlackList.Appearance.Row.Options.UseFont = true;
             this.gv_BlackList.Appearance.Row.Options.UseTextOptions = true;
             this.gv_BlackList.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gv_BlackList.ColumnPanelRowHeight = 10;
             this.gv_BlackList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.select,
             this.gridColumn9,
@@ -186,7 +193,7 @@
             styleFormatCondition1.ApplyToRow = true;
             styleFormatCondition1.Column = this.select;
             styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition1.Value1 = "1";
+            styleFormatCondition1.Value1 = "100";
             this.gv_BlackList.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
             styleFormatCondition1});
             this.gv_BlackList.GridControl = this.gc_BlackList;
@@ -199,13 +206,12 @@
             this.gv_BlackList.OptionsFilter.AllowFilterEditor = false;
             this.gv_BlackList.OptionsMenu.EnableColumnMenu = false;
             this.gv_BlackList.OptionsMenu.ShowAutoFilterRowItem = false;
-            this.gv_BlackList.OptionsSelection.EnableAppearanceFocusedRow = false;
-            this.gv_BlackList.OptionsSelection.InvertSelection = true;
             this.gv_BlackList.OptionsSelection.MultiSelect = true;
             this.gv_BlackList.OptionsView.EnableAppearanceOddRow = true;
             this.gv_BlackList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gv_BlackList.OptionsView.ShowGroupPanel = false;
             this.gv_BlackList.OptionsView.ShowIndicator = false;
+            this.gv_BlackList.RowHeight = 30;
             this.gv_BlackList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gv_deptInfo_RowCellClick);
             this.gv_BlackList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gv_BlackList_MouseDown);
             // 
@@ -298,6 +304,18 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemPopupContainerEdit1.Name = "repositoryItemPopupContainerEdit1";
             // 
+            // pageControl1
+            // 
+            this.pageControl1.CurrentPage = 1;
+            this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pageControl1.Location = new System.Drawing.Point(0, 336);
+            this.pageControl1.Name = "pageControl1";
+            this.pageControl1.PageSize = 10;
+            this.pageControl1.Record = 0;
+            this.pageControl1.Size = new System.Drawing.Size(1029, 39);
+            this.pageControl1.TabIndex = 45;
+            this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBorderPanel6);
@@ -347,12 +365,14 @@
             // 
             // gv_PatientList
             // 
-            this.gv_PatientList.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_PatientList.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_PatientList.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_PatientList.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gv_PatientList.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_PatientList.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.gv_PatientList.Appearance.OddRow.Options.UseBackColor = true;
+            this.gv_PatientList.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.gv_PatientList.Appearance.Row.Options.UseFont = true;
             this.gv_PatientList.Appearance.Row.Options.UseTextOptions = true;
             this.gv_PatientList.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_PatientList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -387,6 +407,7 @@
             this.gv_PatientList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gv_PatientList.OptionsView.ShowGroupPanel = false;
             this.gv_PatientList.OptionsView.ShowIndicator = false;
+            this.gv_PatientList.RowHeight = 30;
             // 
             // gridColumn3
             // 
@@ -529,6 +550,7 @@
             this.cb_AutoRefresh.TabIndex = 180;
             this.cb_AutoRefresh.Text = "自动刷新";
             this.cb_AutoRefresh.UseVisualStyleBackColor = true;
+            this.cb_AutoRefresh.Visible = false;
             this.cb_AutoRefresh.CheckedChanged += new System.EventHandler(this.cb_AutoRefresh_CheckedChanged);
             // 
             // tableLayoutPanel2
@@ -538,6 +560,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel2.Controls.Add(this.buttonControl2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.buttonControl1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonControl3, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(20, 10);
@@ -554,14 +577,29 @@
             this.buttonControl2.Dock = System.Windows.Forms.DockStyle.Left;
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(85, 0);
+            this.buttonControl2.Location = new System.Drawing.Point(165, 0);
             this.buttonControl2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(70, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Del;
-            this.buttonControl2.TabIndex = 91;
+            this.buttonControl2.TabIndex = 93;
             this.buttonControl2.Text = "解冻";
             this.buttonControl2.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl1.Location = new System.Drawing.Point(85, 0);
+            this.buttonControl1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(70, 30);
+            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.buttonControl1.TabIndex = 92;
+            this.buttonControl1.Text = "新增";
+            this.buttonControl1.Click += new System.EventHandler(this.buttonControl3_Click);
             // 
             // buttonControl3
             // 
@@ -573,10 +611,10 @@
             this.buttonControl3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(70, 30);
-            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl3.TabIndex = 89;
-            this.buttonControl3.Text = "新增";
-            this.buttonControl3.Click += new System.EventHandler(this.buttonControl3_Click);
+            this.buttonControl3.Text = "查询";
+            this.buttonControl3.Click += new System.EventHandler(this.buttonControl3_Click_1);
             // 
             // panelEx12
             // 
@@ -688,6 +726,7 @@
             this.Name = "BlackListAdminForm";
             this.Size = new System.Drawing.Size(1049, 718);
             this.Load += new System.EventHandler(this.UserForm_Load);
+            this.SizeChanged += new System.EventHandler(this.BlackListAdminForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -752,8 +791,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit2;
-        private Xr.Common.Controls.ButtonControl buttonControl2;
         private System.Windows.Forms.Timer timer1;
+        private Xr.Common.Controls.ButtonControl buttonControl2;
+        private Xr.Common.Controls.ButtonControl buttonControl1;
+        private Xr.Common.Controls.PageControl pageControl1;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

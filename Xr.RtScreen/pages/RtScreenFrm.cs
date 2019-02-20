@@ -30,23 +30,7 @@ namespace Xr.RtScreen.pages
             _context = SynchronizationContext.Current;
           //DynamicLayout(this.tableLayoutPanel1,6,6);
             DoctorSittingConsultations();
-            #region
-            //try
-            //{
-            //this.tableLayoutPanel1.ColumnStyles[0].Width = 30;
-            //this.tableLayoutPanel1.ColumnStyles[1].Width = 40;
-            //this.tableLayoutPanel1.ColumnStyles[2].Width = 40;
-            //this.tableLayoutPanel1.ColumnStyles[3].Width = 80;
-            //this.tableLayoutPanel1.ColumnStyles[4].Width = 40;
-            //this.tableLayoutPanel1.ColumnStyles[5].Width = 40;
-
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
-            #endregion
+            DepartmentWaiting();
             SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
             speakVoiceform.Show(this);
         }
@@ -63,12 +47,12 @@ namespace Xr.RtScreen.pages
                 prament.Add("dept.id", HelperClass.deptId);
                 Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findPublicScreenData", prament, Method.POST, result =>
                 {
-                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.Completed:
                             if (result.StatusCode == HttpStatusCode.OK)
                             {
+                                Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
@@ -88,9 +72,8 @@ namespace Xr.RtScreen.pages
                                 }
                                 else
                                 {
-                                    MessageBox.Show(objT["message"].ToString());
+                                   _context.Send((s) => Xr.Common.MessageBoxUtils.Hint(objT["message"].ToString()),null);
                                 }
-
                             }
                             break;
                     }
@@ -98,6 +81,7 @@ namespace Xr.RtScreen.pages
             }
             catch (Exception ex)
             {
+                Log4net.LogHelper.Error("科室大屏查询错误信息："+ex.Message);
             }
         }
         #region 给控件赋值
@@ -124,50 +108,119 @@ namespace Xr.RtScreen.pages
                                 }
                                 if (c.Name == "label" + (g + 1) + 1)//在诊患者
                                 {
-                                    c.Text = "张三";//clinicInfo[g].visitPatient;
+                                    c.Text = clinicInfo[g].visitPatient;
                                     g = g + 1;
                                     break;
                                 }
                                 if (c.Name == "label" + (g + 1) + 2)//下一位患者
                                 {
-                                    c.Text = "张三";//clinicInfo[g].visitPatient;
+                                    c.Text = clinicInfo[g].nextPatient;
                                     g = g + 1;
                                     break;
                                 }
                                 if (c.Name == "label" + (g + 1) + 4)//预约
                                 {
-                                    c.Text = "10";//clinicInfo[g].visitPatient;
+                                    c.Text = clinicInfo[g].signInNum;
                                     g = g + 1;
                                     break;
                                 }
                                 if (c.Name == "label" + (g + 1) + 5)//签到
                                 {
-                                    c.Text = "15";//clinicInfo[g].visitPatient;
+                                    c.Text = clinicInfo[g].bespeakNum;
                                     g = g + 1;
                                     break;
                                 }
                             }
                         }
                     }
-                    //if (c is ScrollingText)
-                    //{
-                    //    for (int g = 0; g < clinicInfo.Count; g++)
-                    //    {
-                    //        if (c.Name != "st11")
-                    //        {
-                               
-                    //        }
-                    //    }
-                    //}
+                    if (c is ScrollingText)
+                    {
+                        for (int g = 0; g < clinicInfo.Count; g++)
+                        {
+                            if (c.Name == "st" + (g + 1) + 3)
+                            {
+                                SetProperty(c, clinicInfo[g].waitPatient);
+                                //通过反射给控件的属性赋值
+                                g = g + 1;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Log4net.LogHelper.Error("给控件赋值时的错误信息：" + ex.Message);
+            }
+        }
+        #region 指定对象指定属性名的属性赋值
+        /// <summary>
+        /// 指定对象指定属性名的属性赋值
+        /// </summary>
+        /// <param name="control">所属控件</param>
+        /// <param name="Value">设置的值</param>
+        public void SetProperty(Control control,object Value)
+        {
+            try
+            {
+                Type type = control.GetType();
+                System.Reflection.PropertyInfo proinfo = type.GetProperty("ScrollText");
+                if (proinfo != null)
+                {
+                    proinfo.SetValue(control, Value, null);
+                }
+                else
+                {
+                    proinfo.SetValue(control, Value, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("给滚动控件赋值时错误信息"+ex.Message);
             }
         }
         #endregion 
+
         #endregion
+        #endregion
+        #region  科室候诊说明
+        /// <summary>
+        ///  科室候诊说明
+        /// </summary>
+        public void DepartmentWaiting()
+        {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("deptId", HelperClass.deptId);
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findWaitingDesc", prament, Method.POST, result =>
+                {
+                    switch (result.ResponseStatus)
+                    {
+                        case ResponseStatus.Completed:
+                            if (result.StatusCode == HttpStatusCode.OK)
+                            {
+                                Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
+                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    //_context.Send((s) => Assignment(), null);scrollingTexts1
+                                }
+                                else
+                                {
+                                   _context.Send((s) => Xr.Common.MessageBoxUtils.Hint(objT["message"].ToString()),null);
+                                }
+                            }
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("大屏获取科室候诊说明错误信息："+ex.Message);
+            }
+        }
+        #endregion 
         #region 解决绘制控件时的闪烁问题
         protected override CreateParams CreateParams
         {
@@ -305,6 +358,9 @@ namespace Xr.RtScreen.pages
                         // st.BackColor = Color.Black;
                         st.ForeColor = Color.Yellow;
                         st.Name = "st" + i + j;
+                        st.TextScrollSpeed = 10;
+                        st.TextScrollDistance = 2;
+                        //st.ScrollText = "st" + i + j;
                         #region
                         switch (label.Name)
                         {
@@ -324,7 +380,7 @@ namespace Xr.RtScreen.pages
                                 label.Text = "已预约总数";
                                 break;
                             case "label05":
-                                label.Text = "已签到总数";
+                                label.Text = "候诊人数";
                                 break;
                         }
                         #endregion
@@ -340,30 +396,12 @@ namespace Xr.RtScreen.pages
                             layoutPanel.SetRow(label, i);
                             layoutPanel.SetColumn(label, j);
                         }
-                        //foreach (Control c in this.tableLayoutPanel1.Controls)
-                        //{
-                        //    if (c is ScrollingText)
-                        //    {
-                        //        for (int g = 0; g < clinicInfo.Count; g++)
-                        //        {
-                        //            if (c.Name == "st" + (g + 1) + 3)//等候患者
-                        //            {
-                        //                if (c.Name != "label00" && c.Name != "label01" && c.Name != "label02" && c.Name != "label03" && c.Name != "label04" && c.Name != "label05" && c.Name != "label06")
-                        //                {
-                        //                    c. = "张三，李四，王五，赵六，前期";//clinicInfo[g].visitPatient;
-                        //                    g = g + 1;
-                        //                    break;
-                        //                }
-                        //            }
-                        //        }
-                        //    }
-                        //}
                     }
                 }
-               // Application.DoEvents();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log4net.LogHelper.Error("绘制控件时出现错误："+ex.Message);
             }
         }
         #endregion
@@ -560,7 +598,7 @@ namespace Xr.RtScreen.pages
                 throw;
             }
         }
-
+      
         //private void gridControl1_Paint(object sender, PaintEventArgs e)
         //{
         //      ControlPaint.DrawBorder(e.Graphics,
@@ -578,6 +616,24 @@ namespace Xr.RtScreen.pages
         //             1,
         //             ButtonBorderStyle.Solid);
         //}
+        #endregion
+        #region 时间指针
+        public void time()
+        {
+            if (!timer1.Enabled)
+            {
+                timer1.Interval =Convert.ToInt32(AppContext.AppConfig.RefreshTime);
+                timer1.Start();
+            }
+            else
+            {
+                timer1.Stop();
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 }

@@ -29,60 +29,81 @@ namespace Xr.RtManager.Pages.scheduling
         private void BatchSchedulingForm_Load(object sender, EventArgs e)
         {
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
-            //设置科室列表
-            List<Item> itemList = new List<Item>();
-            foreach (DeptEntity dept in AppContext.Session.deptList)
-            {
-                Item item = new Item();
-                item.name = dept.name;
-                item.value = dept.id;
-                item.tag = dept.hospitalId;
-                item.parentId = dept.parentId;
-                itemList.Add(item);
-            }
-            mcDept.setDataSource(itemList);
-
-            //查询日期下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findWeeks";
             cmd.ShowOpaqueLayer(0f);
-            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            //设置科室列表
+            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+            this.DoWorkAsync(250, (o) => 
             {
                 String data = HttpClass.httpPost(url);
                 return data;
 
-            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            }, null, (data) => 
             {
                 JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    List<DictEntity> dictList = new List<DictEntity>();
-                    for (int i = 0; i < objT["result"].Count(); i++)
+                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                    List<Item> itemList = new List<Item>();
+                    foreach (DeptEntity dept in deptList)
                     {
-                        DictEntity dict = new DictEntity();
-                        dict.value = i + "";
-                        dict.label = objT["result"][i].ToString();
-                        dictList.Add(dict);
+                        Item item = new Item();
+                        item.name = dept.name;
+                        item.value = dept.id;
+                        item.tag = dept.hospitalId;
+                        item.parentId = dept.parentId;
+                        itemList.Add(item);
                     }
-                    lueDate.Properties.DataSource = dictList;
-                    lueDate.Properties.DisplayMember = "label";
-                    lueDate.Properties.ValueMember = "value";
-                    lueDate.EditValue = "0";
+                    mcDept.setDataSource(itemList);
 
-                    DateTime dt = DateTime.Parse(lueDate.Text + " 00:00:00");
-                    monday.Caption = dt.ToString("u").Substring(5, 5) + "(一)";
-                    dt = dt.AddDays(1);
-                    tuesday.Caption = dt.ToString("u").Substring(5, 5) + "(二)";
-                    dt = dt.AddDays(1);
-                    wednesday.Caption = dt.ToString("u").Substring(5, 5) + "(三)";
-                    dt = dt.AddDays(1);
-                    thursday.Caption = dt.ToString("u").Substring(5, 5) + "(四)";
-                    dt = dt.AddDays(1);
-                    friday.Caption = dt.ToString("u").Substring(5, 5) + "(五)";
-                    dt = dt.AddDays(1);
-                    saturday.Caption = dt.ToString("u").Substring(5, 5) + "(六)";
-                    dt = dt.AddDays(1);
-                    sunday.Caption = dt.ToString("u").Substring(5, 5) + "(日)";
-                    cmd.HideOpaqueLayer();
+                    //查询日期下拉框数据
+                    url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findWeeks";
+                    this.DoWorkAsync(250, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            List<DictEntity> dictList = new List<DictEntity>();
+                            for (int i = 0; i < objT["result"].Count(); i++)
+                            {
+                                DictEntity dict = new DictEntity();
+                                dict.value = i + "";
+                                dict.label = objT["result"][i].ToString();
+                                dictList.Add(dict);
+                            }
+                            lueDate.Properties.DataSource = dictList;
+                            lueDate.Properties.DisplayMember = "label";
+                            lueDate.Properties.ValueMember = "value";
+                            lueDate.EditValue = "0";
+
+                            DateTime dt = DateTime.Parse(lueDate.Text + " 00:00:00");
+                            monday.Caption = dt.ToString("u").Substring(5, 5) + "(一)";
+                            dt = dt.AddDays(1);
+                            tuesday.Caption = dt.ToString("u").Substring(5, 5) + "(二)";
+                            dt = dt.AddDays(1);
+                            wednesday.Caption = dt.ToString("u").Substring(5, 5) + "(三)";
+                            dt = dt.AddDays(1);
+                            thursday.Caption = dt.ToString("u").Substring(5, 5) + "(四)";
+                            dt = dt.AddDays(1);
+                            friday.Caption = dt.ToString("u").Substring(5, 5) + "(五)";
+                            dt = dt.AddDays(1);
+                            saturday.Caption = dt.ToString("u").Substring(5, 5) + "(六)";
+                            dt = dt.AddDays(1);
+                            sunday.Caption = dt.ToString("u").Substring(5, 5) + "(日)";
+                            cmd.HideOpaqueLayer();
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            return;
+                        }
+                    });
                 }
                 else
                 {
@@ -95,12 +116,24 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void btnTswk_Click(object sender, EventArgs e)
         {
-            lueDate.EditValue = "0";
+            int i = int.Parse(lueDate.EditValue.ToString());
+            List<DictEntity> dictList = lueDate.Properties.DataSource as List<DictEntity>;
+            if (i > 0 && i <= dictList.Count()-1)
+            {
+                i--;
+                lueDate.EditValue = i.ToString();
+            }
         }
 
         private void btnNxvWk_Click(object sender, EventArgs e)
         {
-            lueDate.EditValue = "1";
+            int i = int.Parse(lueDate.EditValue.ToString());
+            List<DictEntity> dictList = lueDate.Properties.DataSource as List<DictEntity>;
+            if (i >= 0 && i < dictList.Count() - 1)
+            {
+                i++;
+                lueDate.EditValue = i.ToString();
+            }
         }
 
         private void lueDate_EditValueChanged(object sender, EventArgs e)
@@ -745,8 +778,7 @@ namespace Xr.RtManager.Pages.scheduling
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

@@ -62,7 +62,11 @@
       <Name>Xr</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="RestSharp\RestSharp.dll" />
   </ItemGroup>

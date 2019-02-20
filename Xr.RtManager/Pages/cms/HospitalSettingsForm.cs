@@ -153,7 +153,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(ex.Message);
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
@@ -222,7 +222,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(ex.Message);
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
@@ -327,15 +327,30 @@ namespace Xr.RtManager.Pages.cms
                     WebClient web;
                     if (logoServiceFilePath != null && logoServiceFilePath.Length > 0)
                     {
-                        web = new WebClient();
-                        var bytes = web.DownloadData(logoServiceFilePath);
-                        this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        try
+                        {
+                            web = new WebClient();
+                            var bytes = web.DownloadData(logoServiceFilePath);
+                            this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        }
+                        catch (Exception ex)
+                        {
+                            Xr.Log4net.LogHelper.Error(ex.Message);
+                        }
+                        
                     }
                     if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
                     {
-                        web = new WebClient();
-                        var bytes = web.DownloadData(pictureServiceFilePath);
-                        this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        try
+                        {
+                            web = new WebClient();
+                            var bytes = web.DownloadData(pictureServiceFilePath);
+                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                        }
+                        catch (Exception ex)
+                        {
+                            Xr.Log4net.LogHelper.Error(ex.Message);
+                        }
                     }
                     groupBox1.Enabled = true;
                 }
@@ -479,8 +494,7 @@ namespace Xr.RtManager.Pages.cms
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

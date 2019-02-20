@@ -123,6 +123,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.gcDoctor = new DevExpress.XtraGrid.GridControl();
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.gridBand35 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.check = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.姓名 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -203,6 +206,8 @@
             this.groupBox1 = new Xr.Common.Controls.GroupBorderPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.checkEdit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.bandedGridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -315,12 +320,14 @@
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDoctor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).BeginInit();
             this.borderPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.SuspendLayout();
@@ -363,6 +370,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBox4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox4.Controls.Add(this.panScheduling);
             this.groupBox4.Controls.Add(this.panelEx1);
@@ -377,7 +385,7 @@
             this.groupBox4.GroupText = "默认出诊时间";
             this.groupBox4.Location = new System.Drawing.Point(10, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 20, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.groupBox4.Size = new System.Drawing.Size(394, 549);
             this.groupBox4.TabIndex = 0;
             // 
@@ -386,9 +394,9 @@
             this.panScheduling.AutoScroll = true;
             this.panScheduling.Controls.Add(this.tabControl1);
             this.panScheduling.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panScheduling.Location = new System.Drawing.Point(2, 220);
+            this.panScheduling.Location = new System.Drawing.Point(3, 220);
             this.panScheduling.Name = "panScheduling";
-            this.panScheduling.Size = new System.Drawing.Size(390, 327);
+            this.panScheduling.Size = new System.Drawing.Size(388, 326);
             this.panScheduling.TabIndex = 3;
             // 
             // tabControl1
@@ -401,20 +409,21 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(9, 3);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(390, 327);
+            this.tabControl1.Size = new System.Drawing.Size(388, 326);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(382, 301);
+            this.tabPage1.Size = new System.Drawing.Size(380, 294);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "周一";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -422,10 +431,10 @@
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(382, 301);
+            this.tabPage2.Size = new System.Drawing.Size(380, 294);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "周二";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -433,10 +442,10 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(382, 301);
+            this.tabPage3.Size = new System.Drawing.Size(380, 294);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "周三";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -444,10 +453,10 @@
             // tabPage4
             // 
             this.tabPage4.AutoScroll = true;
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(382, 301);
+            this.tabPage4.Size = new System.Drawing.Size(380, 294);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "周四";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -455,10 +464,10 @@
             // tabPage5
             // 
             this.tabPage5.AutoScroll = true;
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(382, 301);
+            this.tabPage5.Size = new System.Drawing.Size(380, 294);
             this.tabPage5.TabIndex = 3;
             this.tabPage5.Text = "周五";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -466,10 +475,10 @@
             // tabPage6
             // 
             this.tabPage6.AutoScroll = true;
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 28);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(382, 301);
+            this.tabPage6.Size = new System.Drawing.Size(380, 294);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "周六";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -477,10 +486,10 @@
             // tabPage7
             // 
             this.tabPage7.AutoScroll = true;
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Location = new System.Drawing.Point(4, 28);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(382, 301);
+            this.tabPage7.Size = new System.Drawing.Size(380, 294);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "周日";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -496,9 +505,9 @@
             this.panelEx1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.panelEx1.Controls.Add(this.tableLayoutPanel4);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx1.Location = new System.Drawing.Point(2, 20);
+            this.panelEx1.Location = new System.Drawing.Point(3, 20);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(390, 200);
+            this.panelEx1.Size = new System.Drawing.Size(388, 200);
             this.panelEx1.TabIndex = 2;
             // 
             // tableLayoutPanel4
@@ -1458,6 +1467,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBox2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox2.Controls.Add(this.panel5);
             this.groupBox2.Controls.Add(this.panel4);
@@ -1473,7 +1483,7 @@
             this.groupBox2.GroupText = "科室医生列表";
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 20, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.groupBox2.Size = new System.Drawing.Size(919, 199);
             this.groupBox2.TabIndex = 8;
             // 
@@ -1484,9 +1494,9 @@
             this.panel5.BackColor = System.Drawing.Color.Transparent;
             this.panel5.Controls.Add(this.gcDoctor);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(147, 20);
+            this.panel5.Location = new System.Drawing.Point(148, 20);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(770, 177);
+            this.panel5.Size = new System.Drawing.Size(768, 176);
             this.panel5.TabIndex = 2;
             // 
             // gcDoctor
@@ -1495,7 +1505,9 @@
             this.gcDoctor.Location = new System.Drawing.Point(0, 0);
             this.gcDoctor.MainView = this.bandedGridView1;
             this.gcDoctor.Name = "gcDoctor";
-            this.gcDoctor.Size = new System.Drawing.Size(1480, 160);
+            this.gcDoctor.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
+            this.gcDoctor.Size = new System.Drawing.Size(1480, 159);
             this.gcDoctor.TabIndex = 51;
             this.gcDoctor.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridView1});
@@ -1522,6 +1534,7 @@
             this.bandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.bandedGridView1.BandPanelRowHeight = 30;
             this.bandedGridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.gridBand35,
             this.姓名,
             this.gridBand2,
             this.gridBand6,
@@ -1532,6 +1545,7 @@
             this.gridBand20});
             this.bandedGridView1.ColumnPanelRowHeight = 30;
             this.bandedGridView1.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            this.check,
             this.gridColumn30,
             this.gridColumn40,
             this.gridColumn31,
@@ -1566,11 +1580,10 @@
             this.gridColumn29});
             this.bandedGridView1.GridControl = this.gcDoctor;
             this.bandedGridView1.Name = "bandedGridView1";
-            this.bandedGridView1.OptionsBehavior.Editable = false;
-            this.bandedGridView1.OptionsBehavior.ReadOnly = true;
             this.bandedGridView1.OptionsCustomization.AllowFilter = false;
             this.bandedGridView1.OptionsCustomization.AllowSort = false;
             this.bandedGridView1.OptionsMenu.EnableColumnMenu = false;
+            this.bandedGridView1.OptionsSelection.MultiSelect = true;
             this.bandedGridView1.OptionsView.AllowHtmlDrawHeaders = true;
             this.bandedGridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.bandedGridView1.OptionsView.EnableAppearanceOddRow = true;
@@ -1580,6 +1593,28 @@
             this.bandedGridView1.RowHeight = 30;
             this.bandedGridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.bandedGridView1_RowCellClick);
             // 
+            // gridBand35
+            // 
+            this.gridBand35.Columns.Add(this.check);
+            this.gridBand35.Name = "gridBand35";
+            this.gridBand35.VisibleIndex = 0;
+            this.gridBand35.Width = 50;
+            // 
+            // check
+            // 
+            this.check.Caption = "复选框";
+            this.check.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.check.FieldName = "check";
+            this.check.Name = "check";
+            this.check.Visible = true;
+            this.check.Width = 50;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Caption = "Check";
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
             // 姓名
             // 
             this.姓名.AppearanceHeader.Options.UseTextOptions = true;
@@ -1588,7 +1623,7 @@
             this.姓名.Caption = "姓名";
             this.姓名.Columns.Add(this.gridColumn1);
             this.姓名.Name = "姓名";
-            this.姓名.VisibleIndex = 0;
+            this.姓名.VisibleIndex = 1;
             this.姓名.Width = 80;
             // 
             // gridColumn1
@@ -1601,6 +1636,8 @@
             this.gridColumn1.FieldName = "doctorName";
             this.gridColumn1.MinWidth = 25;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.Width = 80;
             // 
@@ -1616,7 +1653,7 @@
             this.晚上,
             this.gridBand23});
             this.gridBand2.Name = "gridBand2";
-            this.gridBand2.VisibleIndex = 1;
+            this.gridBand2.VisibleIndex = 2;
             this.gridBand2.Width = 200;
             // 
             // gridBand4
@@ -1640,6 +1677,8 @@
             this.gridColumn2.FieldName = "mondayMorning";
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.Width = 50;
             // 
@@ -1664,6 +1703,8 @@
             this.gridColumn3.FieldName = "mondayAfternoon";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.Width = 50;
             // 
@@ -1683,6 +1724,8 @@
             this.gridColumn4.Caption = "周一晚上";
             this.gridColumn4.FieldName = "mondayNight";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
             this.gridColumn4.Width = 50;
             // 
@@ -1702,6 +1745,8 @@
             this.gridColumn5.Caption = "周一全天";
             this.gridColumn5.FieldName = "mondayAllAay";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
             this.gridColumn5.Width = 50;
             // 
@@ -1717,7 +1762,7 @@
             this.gridBand22,
             this.gridBand24});
             this.gridBand6.Name = "gridBand6";
-            this.gridBand6.VisibleIndex = 2;
+            this.gridBand6.VisibleIndex = 3;
             this.gridBand6.Width = 200;
             // 
             // gridBand21
@@ -1741,6 +1786,8 @@
             this.gridColumn6.FieldName = "tuesdayMorning";
             this.gridColumn6.MinWidth = 25;
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
             this.gridColumn6.Width = 50;
             // 
@@ -1760,6 +1807,8 @@
             this.gridColumn7.Caption = "周二下午";
             this.gridColumn7.FieldName = "tuesdayAfternoon";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.OptionsColumn.ReadOnly = true;
             this.gridColumn7.Visible = true;
             this.gridColumn7.Width = 50;
             // 
@@ -1779,6 +1828,8 @@
             this.gridColumn8.Caption = "周二晚上";
             this.gridColumn8.FieldName = "tuesdayNight";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.OptionsColumn.ReadOnly = true;
             this.gridColumn8.Visible = true;
             this.gridColumn8.Width = 50;
             // 
@@ -1798,6 +1849,8 @@
             this.gridColumn9.Caption = "周二全天";
             this.gridColumn9.FieldName = "tuesdayAllAay";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.OptionsColumn.ReadOnly = true;
             this.gridColumn9.Visible = true;
             this.gridColumn9.Width = 50;
             // 
@@ -1813,7 +1866,7 @@
             this.gridBand25,
             this.gridBand26});
             this.gridBand9.Name = "gridBand9";
-            this.gridBand9.VisibleIndex = 3;
+            this.gridBand9.VisibleIndex = 4;
             this.gridBand9.Width = 200;
             // 
             // gridBand8
@@ -1837,6 +1890,8 @@
             this.gridColumn10.FieldName = "wednesdayMorning";
             this.gridColumn10.MinWidth = 25;
             this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.OptionsColumn.ReadOnly = true;
             this.gridColumn10.Visible = true;
             this.gridColumn10.Width = 50;
             // 
@@ -1861,6 +1916,8 @@
             this.gridColumn11.FieldName = "wednesdayAfternoon";
             this.gridColumn11.MinWidth = 25;
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.OptionsColumn.ReadOnly = true;
             this.gridColumn11.Visible = true;
             this.gridColumn11.Width = 50;
             // 
@@ -1880,6 +1937,8 @@
             this.gridColumn12.Caption = "周三晚上";
             this.gridColumn12.FieldName = "wednesdayNight";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.OptionsColumn.ReadOnly = true;
             this.gridColumn12.Visible = true;
             this.gridColumn12.Width = 50;
             // 
@@ -1899,6 +1958,8 @@
             this.gridColumn13.Caption = "周三全天";
             this.gridColumn13.FieldName = "wednesdayAllAay";
             this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
+            this.gridColumn13.OptionsColumn.ReadOnly = true;
             this.gridColumn13.Visible = true;
             this.gridColumn13.Width = 50;
             // 
@@ -1914,7 +1975,7 @@
             this.gridBand27,
             this.gridBand28});
             this.gridBand11.Name = "gridBand11";
-            this.gridBand11.VisibleIndex = 4;
+            this.gridBand11.VisibleIndex = 5;
             this.gridBand11.Width = 200;
             // 
             // gridBand12
@@ -1933,6 +1994,8 @@
             this.gridColumn14.Caption = "周四上午";
             this.gridColumn14.FieldName = "thursdayMorning";
             this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            this.gridColumn14.OptionsColumn.ReadOnly = true;
             this.gridColumn14.Visible = true;
             this.gridColumn14.Width = 50;
             // 
@@ -1952,6 +2015,8 @@
             this.gridColumn15.Caption = "周四下午";
             this.gridColumn15.FieldName = "thursdayAfternoon";
             this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.OptionsColumn.AllowEdit = false;
+            this.gridColumn15.OptionsColumn.ReadOnly = true;
             this.gridColumn15.Visible = true;
             this.gridColumn15.Width = 50;
             // 
@@ -1971,6 +2036,8 @@
             this.gridColumn16.Caption = "周四晚上";
             this.gridColumn16.FieldName = "thursdayNight";
             this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.OptionsColumn.AllowEdit = false;
+            this.gridColumn16.OptionsColumn.ReadOnly = true;
             this.gridColumn16.Visible = true;
             this.gridColumn16.Width = 50;
             // 
@@ -1990,6 +2057,8 @@
             this.gridColumn17.Caption = "周四全天";
             this.gridColumn17.FieldName = "thursdayAllAay";
             this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.OptionsColumn.AllowEdit = false;
+            this.gridColumn17.OptionsColumn.ReadOnly = true;
             this.gridColumn17.Visible = true;
             this.gridColumn17.Width = 50;
             // 
@@ -2005,7 +2074,7 @@
             this.gridBand29,
             this.gridBand30});
             this.gridBand14.Name = "gridBand14";
-            this.gridBand14.VisibleIndex = 5;
+            this.gridBand14.VisibleIndex = 6;
             this.gridBand14.Width = 200;
             // 
             // gridBand15
@@ -2024,6 +2093,8 @@
             this.gridColumn18.Caption = "周五上午";
             this.gridColumn18.FieldName = "fridayMorning";
             this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.OptionsColumn.AllowEdit = false;
+            this.gridColumn18.OptionsColumn.ReadOnly = true;
             this.gridColumn18.Visible = true;
             this.gridColumn18.Width = 50;
             // 
@@ -2043,6 +2114,8 @@
             this.gridColumn19.Caption = "周五下午";
             this.gridColumn19.FieldName = "fridayAfternoon";
             this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.OptionsColumn.AllowEdit = false;
+            this.gridColumn19.OptionsColumn.ReadOnly = true;
             this.gridColumn19.Visible = true;
             this.gridColumn19.Width = 50;
             // 
@@ -2062,6 +2135,8 @@
             this.gridColumn20.Caption = "周五晚上";
             this.gridColumn20.FieldName = "fridayNight";
             this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.OptionsColumn.AllowEdit = false;
+            this.gridColumn20.OptionsColumn.ReadOnly = true;
             this.gridColumn20.Visible = true;
             this.gridColumn20.Width = 50;
             // 
@@ -2081,6 +2156,8 @@
             this.gridColumn21.Caption = "周五全天";
             this.gridColumn21.FieldName = "fridayAllAay";
             this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.OptionsColumn.AllowEdit = false;
+            this.gridColumn21.OptionsColumn.ReadOnly = true;
             this.gridColumn21.Visible = true;
             this.gridColumn21.Width = 50;
             // 
@@ -2096,7 +2173,7 @@
             this.gridBand31,
             this.gridBand32});
             this.gridBand17.Name = "gridBand17";
-            this.gridBand17.VisibleIndex = 6;
+            this.gridBand17.VisibleIndex = 7;
             this.gridBand17.Width = 200;
             // 
             // gridBand18
@@ -2115,6 +2192,8 @@
             this.gridColumn22.Caption = "周六上午";
             this.gridColumn22.FieldName = "saturdayMorning";
             this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.OptionsColumn.AllowEdit = false;
+            this.gridColumn22.OptionsColumn.ReadOnly = true;
             this.gridColumn22.Visible = true;
             this.gridColumn22.Width = 50;
             // 
@@ -2134,6 +2213,8 @@
             this.gridColumn23.Caption = "周六下午";
             this.gridColumn23.FieldName = "saturdayAfternoon";
             this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.OptionsColumn.AllowEdit = false;
+            this.gridColumn23.OptionsColumn.ReadOnly = true;
             this.gridColumn23.Visible = true;
             this.gridColumn23.Width = 50;
             // 
@@ -2153,6 +2234,8 @@
             this.gridColumn24.Caption = "周六晚上";
             this.gridColumn24.FieldName = "saturdayNight";
             this.gridColumn24.Name = "gridColumn24";
+            this.gridColumn24.OptionsColumn.AllowEdit = false;
+            this.gridColumn24.OptionsColumn.ReadOnly = true;
             this.gridColumn24.Visible = true;
             this.gridColumn24.Width = 50;
             // 
@@ -2172,6 +2255,8 @@
             this.gridColumn25.Caption = "周六全天";
             this.gridColumn25.FieldName = "saturdayAllAay";
             this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.OptionsColumn.AllowEdit = false;
+            this.gridColumn25.OptionsColumn.ReadOnly = true;
             this.gridColumn25.Visible = true;
             this.gridColumn25.Width = 50;
             // 
@@ -2187,7 +2272,7 @@
             this.gridBand33,
             this.gridBand34});
             this.gridBand20.Name = "gridBand20";
-            this.gridBand20.VisibleIndex = 7;
+            this.gridBand20.VisibleIndex = 8;
             this.gridBand20.Width = 200;
             // 
             // gridBand1
@@ -2206,6 +2291,8 @@
             this.gridColumn26.Caption = "周日上午";
             this.gridColumn26.FieldName = "sundayMorning";
             this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.OptionsColumn.AllowEdit = false;
+            this.gridColumn26.OptionsColumn.ReadOnly = true;
             this.gridColumn26.Visible = true;
             this.gridColumn26.Width = 50;
             // 
@@ -2225,6 +2312,8 @@
             this.gridColumn27.Caption = "周日下午";
             this.gridColumn27.FieldName = "sundayAfternoon";
             this.gridColumn27.Name = "gridColumn27";
+            this.gridColumn27.OptionsColumn.AllowEdit = false;
+            this.gridColumn27.OptionsColumn.ReadOnly = true;
             this.gridColumn27.Visible = true;
             this.gridColumn27.Width = 50;
             // 
@@ -2244,6 +2333,8 @@
             this.gridColumn28.Caption = "周日晚上";
             this.gridColumn28.FieldName = "sundayNight";
             this.gridColumn28.Name = "gridColumn28";
+            this.gridColumn28.OptionsColumn.AllowEdit = false;
+            this.gridColumn28.OptionsColumn.ReadOnly = true;
             this.gridColumn28.Visible = true;
             this.gridColumn28.Width = 50;
             // 
@@ -2260,6 +2351,8 @@
             this.gridColumn29.Caption = "周日全天";
             this.gridColumn29.FieldName = "sundayAllAay";
             this.gridColumn29.Name = "gridColumn29";
+            this.gridColumn29.OptionsColumn.AllowEdit = false;
+            this.gridColumn29.OptionsColumn.ReadOnly = true;
             this.gridColumn29.Visible = true;
             this.gridColumn29.Width = 50;
             // 
@@ -2287,9 +2380,9 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(142, 20);
+            this.panel4.Location = new System.Drawing.Point(143, 20);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(5, 177);
+            this.panel4.Size = new System.Drawing.Size(5, 176);
             this.panel4.TabIndex = 1;
             // 
             // menuControl2
@@ -2298,10 +2391,10 @@
             this.menuControl2.itemName = null;
             this.menuControl2.itemTag = null;
             this.menuControl2.itemText = null;
-            this.menuControl2.Location = new System.Drawing.Point(2, 20);
+            this.menuControl2.Location = new System.Drawing.Point(3, 20);
             this.menuControl2.Margin = new System.Windows.Forms.Padding(1, 5, 4, 5);
             this.menuControl2.Name = "menuControl2";
-            this.menuControl2.Size = new System.Drawing.Size(140, 177);
+            this.menuControl2.Size = new System.Drawing.Size(140, 176);
             this.menuControl2.TabIndex = 0;
             this.menuControl2.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuControl2_MenuItemClick);
             // 
@@ -2315,12 +2408,17 @@
             // 
             // borderPanel2
             // 
-            this.borderPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
+            this.borderPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanel2.Controls.Add(this.btnSave);
             this.borderPanel2.Controls.Add(this.btnClear);
             this.borderPanel2.Controls.Add(this.btnDel);
             this.borderPanel2.Controls.Add(this.btnAdd);
+            this.borderPanel2.CornerRadius.All = 5;
+            this.borderPanel2.CornerRadius.BottomLeft = 5;
+            this.borderPanel2.CornerRadius.BottomRight = 5;
+            this.borderPanel2.CornerRadius.TopLeft = 5;
+            this.borderPanel2.CornerRadius.TopRight = 5;
             this.borderPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.borderPanel2.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
@@ -2391,6 +2489,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBox1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox1.Controls.Add(this.gridControl1);
             this.groupBox1.CornerRadius.All = 5;
@@ -2404,7 +2503,7 @@
             this.groupBox1.GroupText = "已选医生";
             this.groupBox1.Location = new System.Drawing.Point(0, 269);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 20, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.groupBox1.Size = new System.Drawing.Size(919, 280);
             this.groupBox1.TabIndex = 0;
             // 
@@ -2413,6 +2512,8 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 18);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit2});
             this.gridControl1.Size = new System.Drawing.Size(300, 259);
             this.gridControl1.TabIndex = 52;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2437,6 +2538,7 @@
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.checkEdit,
             this.bandedGridColumn30,
             this.bandedGridColumn31,
             this.bandedGridColumn32,
@@ -2471,17 +2573,31 @@
             this.bandedGridColumn29});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsCustomization.AllowFilter = false;
             this.gridView1.OptionsCustomization.AllowSort = false;
             this.gridView1.OptionsMenu.EnableColumnMenu = false;
+            this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.AllowHtmlDrawHeaders = true;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             this.gridView1.RowHeight = 30;
+            // 
+            // checkEdit
+            // 
+            this.checkEdit.Caption = " ";
+            this.checkEdit.ColumnEdit = this.repositoryItemCheckEdit2;
+            this.checkEdit.FieldName = "check";
+            this.checkEdit.Name = "checkEdit";
+            this.checkEdit.Visible = true;
+            this.checkEdit.VisibleIndex = 0;
+            // 
+            // repositoryItemCheckEdit2
+            // 
+            this.repositoryItemCheckEdit2.AutoHeight = false;
+            this.repositoryItemCheckEdit2.Caption = "Check";
+            this.repositoryItemCheckEdit2.Name = "repositoryItemCheckEdit2";
             // 
             // bandedGridColumn30
             // 
@@ -2494,8 +2610,10 @@
             this.bandedGridColumn31.Caption = "科室";
             this.bandedGridColumn31.FieldName = "deptName";
             this.bandedGridColumn31.Name = "bandedGridColumn31";
+            this.bandedGridColumn31.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn31.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn31.Visible = true;
-            this.bandedGridColumn31.VisibleIndex = 0;
+            this.bandedGridColumn31.VisibleIndex = 1;
             // 
             // bandedGridColumn32
             // 
@@ -2513,8 +2631,10 @@
             this.bandedGridColumn1.FieldName = "doctorName";
             this.bandedGridColumn1.MinWidth = 25;
             this.bandedGridColumn1.Name = "bandedGridColumn1";
+            this.bandedGridColumn1.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn1.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn1.Visible = true;
-            this.bandedGridColumn1.VisibleIndex = 1;
+            this.bandedGridColumn1.VisibleIndex = 2;
             this.bandedGridColumn1.Width = 80;
             // 
             // bandedGridColumn2
@@ -2856,12 +2976,14 @@
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcDoctor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).EndInit();
             this.borderPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.ResumeLayout(false);
@@ -2875,7 +2997,6 @@
         private Xr.Common.Controls.DataController dcDoctorInfo;
         private Xr.Common.Controls.BorderPanel borderPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Xr.Common.Controls.MenuControl menuControl1;
         private Xr.Common.Controls.DataController dcDefaultVisit;
         private System.Windows.Forms.Panel panel15;
         private Xr.Common.Controls.GroupBorderPanel groupBox4;
@@ -3004,70 +3125,34 @@
         private System.Windows.Forms.Panel panel5;
         private DevExpress.XtraGrid.GridControl gcDoctor;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridView1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 姓名;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn2;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn3;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 晚上;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn4;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand23;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn5;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand6;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand21;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn6;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn7;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand22;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn8;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand24;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn9;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand9;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn10;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand10;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn11;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand25;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn12;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand26;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn13;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand11;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn14;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand13;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn15;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn16;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn17;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand14;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand15;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn18;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand16;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn19;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand29;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn20;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand30;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn21;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand17;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand18;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn22;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand19;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn23;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand31;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn24;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand32;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn25;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand20;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn26;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn27;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand33;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn28;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand34;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn29;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn30;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn40;
@@ -3081,5 +3166,46 @@
         private Xr.Common.Controls.ButtonControl btnDel;
         private Xr.Common.Controls.ButtonControl btnAdd;
         private System.Windows.Forms.Panel panel16;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn check;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand35;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 姓名;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand 晚上;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand23;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand6;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand21;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand22;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand24;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand9;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand10;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand25;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand26;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand11;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand13;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand14;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand15;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand16;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand29;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand30;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand17;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand18;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand19;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand31;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand32;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand20;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand33;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand34;
+        private DevExpress.XtraGrid.Columns.GridColumn checkEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
     }
 }

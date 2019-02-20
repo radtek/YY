@@ -42,7 +42,7 @@ namespace Xr.Http
                     sRemoteInfo = System.Text.Encoding.UTF8.GetString(byRemoteInfo);
                     result = sRemoteInfo;
                 }
-                catch (Exception ex)
+                catch
                 {
                     //LogPrint("HTTP Get请求错误信息：" + ex.Message);
                 }
@@ -67,7 +67,7 @@ namespace Xr.Http
                     sRemoteInfo = System.Text.Encoding.UTF8.GetString(byRemoteInfo);
                     result = sRemoteInfo;
                 }
-                catch (Exception ex)
+                catch
                 {
                     //ErrorInfor = ex.Message;
                     //LogPrint("HTTP Post请求错误信息：" + ex.Message);

@@ -36,7 +36,6 @@
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition4 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition5 = new DevExpress.XtraGrid.StyleFormatCondition();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.select = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn20 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -178,7 +177,10 @@
             this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
             this.rBtn_day = new Xr.Common.Controls.BorderPanelButton();
             this.rBtn_month = new Xr.Common.Controls.BorderPanelButton();
-            this.lueDept = new DevExpress.XtraEditors.LookUpEdit();
+            this.treeDeptId = new DevExpress.XtraEditors.TreeListLookUpEdit();
+            this.treeList2 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
             this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
@@ -234,7 +236,8 @@
             this.borderPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_day)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_month)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueDept.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -311,20 +314,20 @@
             this.panel5.Controls.Add(this.xtraScrollableControl1);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 59);
+            this.panel5.Location = new System.Drawing.Point(0, 78);
             this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.panel5.Size = new System.Drawing.Size(1023, 347);
+            this.panel5.Padding = new System.Windows.Forms.Padding(10);
+            this.panel5.Size = new System.Drawing.Size(1023, 328);
             this.panel5.TabIndex = 1;
             // 
             // xtraScrollableControl1
             // 
             this.xtraScrollableControl1.Controls.Add(this.chartControl1);
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 41);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(10, 41);
             this.xtraScrollableControl1.Margin = new System.Windows.Forms.Padding(0);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1023, 306);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1003, 277);
             this.xtraScrollableControl1.TabIndex = 0;
             // 
             // chartControl1
@@ -333,10 +336,11 @@
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Legend.Visible = false;
             this.chartControl1.Location = new System.Drawing.Point(0, 0);
+            this.chartControl1.Margin = new System.Windows.Forms.Padding(10);
             this.chartControl1.Name = "chartControl1";
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
             this.chartControl1.SeriesTemplate.View = lineSeriesView1;
-            this.chartControl1.Size = new System.Drawing.Size(1023, 306);
+            this.chartControl1.Size = new System.Drawing.Size(1003, 277);
             this.chartControl1.TabIndex = 167;
             chartTitle1.Text = "数据统计";
             chartTitle1.Visible = false;
@@ -347,9 +351,9 @@
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 18F);
-            this.label4.Location = new System.Drawing.Point(0, 10);
+            this.label4.Location = new System.Drawing.Point(10, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1023, 31);
+            this.label4.Size = new System.Drawing.Size(1003, 31);
             this.label4.TabIndex = 0;
             this.label4.Text = "预约总数趋势图";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -360,6 +364,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 406);
             this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.panel6.Size = new System.Drawing.Size(1023, 200);
             this.panel6.TabIndex = 2;
             // 
@@ -367,26 +372,29 @@
             // 
             this.gc_statistics.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gc_statistics.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.gc_statistics.Location = new System.Drawing.Point(0, 0);
+            this.gc_statistics.Location = new System.Drawing.Point(10, 0);
             this.gc_statistics.MainView = this.gv_statistics;
             this.gc_statistics.Name = "gc_statistics";
             this.gc_statistics.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemPopupContainerEdit1});
-            this.gc_statistics.Size = new System.Drawing.Size(1023, 200);
+            this.gc_statistics.Size = new System.Drawing.Size(1003, 190);
             this.gc_statistics.TabIndex = 44;
             this.gc_statistics.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_statistics});
             // 
             // gv_statistics
             // 
-            this.gv_statistics.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_statistics.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_statistics.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_statistics.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gv_statistics.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gv_statistics.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.gv_statistics.Appearance.Row.Options.UseFont = true;
             this.gv_statistics.Appearance.Row.Options.UseTextOptions = true;
             this.gv_statistics.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gv_statistics.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gv_statistics.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.gv_statistics.ColumnPanelRowHeight = 30;
             this.gv_statistics.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn14,
             this.gridColumn15,
@@ -421,6 +429,7 @@
             this.gv_statistics.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gv_statistics.OptionsView.ShowGroupPanel = false;
             this.gv_statistics.OptionsView.ShowIndicator = false;
+            this.gv_statistics.RowHeight = 30;
             this.gv_statistics.CustomDrawColumnHeader += new DevExpress.XtraGrid.Views.Grid.ColumnHeaderCustomDrawEventHandler(this.OnCustomDrawColumnHeader);
             // 
             // gridColumn14
@@ -554,7 +563,8 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1023, 59);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Size = new System.Drawing.Size(1023, 78);
             this.panel2.TabIndex = 0;
             // 
             // tPanel_registerWay
@@ -582,26 +592,25 @@
             this.tPanel_registerWay.Controls.Add(this.label7, 0, 0);
             this.tPanel_registerWay.Controls.Add(this.label6, 2, 0);
             this.tPanel_registerWay.Controls.Add(this.label5, 3, 0);
-            this.tPanel_registerWay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tPanel_registerWay.Location = new System.Drawing.Point(0, 0);
+            this.tPanel_registerWay.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tPanel_registerWay.Location = new System.Drawing.Point(10, 10);
             this.tPanel_registerWay.Margin = new System.Windows.Forms.Padding(0);
             this.tPanel_registerWay.Name = "tPanel_registerWay";
             this.tPanel_registerWay.Padding = new System.Windows.Forms.Padding(1);
             this.tPanel_registerWay.RowCount = 2;
-            this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tPanel_registerWay.Size = new System.Drawing.Size(1023, 59);
+            this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tPanel_registerWay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tPanel_registerWay.Size = new System.Drawing.Size(1003, 65);
             this.tPanel_registerWay.TabIndex = 0;
             // 
             // label18
             // 
             this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label18.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label18.Location = new System.Drawing.Point(5, 33);
+            this.label18.Location = new System.Drawing.Point(5, 36);
             this.label18.Margin = new System.Windows.Forms.Padding(3);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(138, 21);
+            this.label18.Size = new System.Drawing.Size(135, 24);
             this.label18.TabIndex = 14;
             this.label18.Text = "0";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -610,10 +619,10 @@
             // 
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label17.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label17.Location = new System.Drawing.Point(440, 33);
+            this.label17.Location = new System.Drawing.Point(431, 36);
             this.label17.Margin = new System.Windows.Forms.Padding(3);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(138, 21);
+            this.label17.Size = new System.Drawing.Size(135, 24);
             this.label17.TabIndex = 13;
             this.label17.Text = "0";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -622,10 +631,10 @@
             // 
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label16.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label16.Location = new System.Drawing.Point(730, 33);
+            this.label16.Location = new System.Drawing.Point(715, 36);
             this.label16.Margin = new System.Windows.Forms.Padding(3);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(138, 21);
+            this.label16.Size = new System.Drawing.Size(135, 24);
             this.label16.TabIndex = 12;
             this.label16.Text = "0";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -634,10 +643,10 @@
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label15.Location = new System.Drawing.Point(295, 33);
+            this.label15.Location = new System.Drawing.Point(289, 36);
             this.label15.Margin = new System.Windows.Forms.Padding(3);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(138, 21);
+            this.label15.Size = new System.Drawing.Size(135, 24);
             this.label15.TabIndex = 11;
             this.label15.Text = "0";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -646,10 +655,10 @@
             // 
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label14.Location = new System.Drawing.Point(150, 33);
+            this.label14.Location = new System.Drawing.Point(147, 36);
             this.label14.Margin = new System.Windows.Forms.Padding(3);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(138, 21);
+            this.label14.Size = new System.Drawing.Size(135, 24);
             this.label14.TabIndex = 10;
             this.label14.Text = "0";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -658,10 +667,10 @@
             // 
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label13.Location = new System.Drawing.Point(875, 33);
+            this.label13.Location = new System.Drawing.Point(857, 36);
             this.label13.Margin = new System.Windows.Forms.Padding(3);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(143, 21);
+            this.label13.Size = new System.Drawing.Size(141, 24);
             this.label13.TabIndex = 9;
             this.label13.Text = "0";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -671,10 +680,10 @@
             this.label12.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label12.Location = new System.Drawing.Point(147, 2);
+            this.label12.Location = new System.Drawing.Point(144, 2);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(144, 27);
+            this.label12.Size = new System.Drawing.Size(141, 30);
             this.label12.TabIndex = 8;
             this.label12.Text = "诊间";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -684,10 +693,10 @@
             this.label11.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label11.Location = new System.Drawing.Point(582, 2);
+            this.label11.Location = new System.Drawing.Point(570, 2);
             this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(144, 27);
+            this.label11.Size = new System.Drawing.Size(141, 30);
             this.label11.TabIndex = 7;
             this.label11.Text = "卫计局平台";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -696,10 +705,10 @@
             // 
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label10.Location = new System.Drawing.Point(585, 33);
+            this.label10.Location = new System.Drawing.Point(573, 36);
             this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(138, 21);
+            this.label10.Size = new System.Drawing.Size(135, 24);
             this.label10.TabIndex = 6;
             this.label10.Text = "0";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -709,10 +718,10 @@
             this.label9.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label9.Location = new System.Drawing.Point(727, 2);
+            this.label9.Location = new System.Drawing.Point(712, 2);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(144, 27);
+            this.label9.Size = new System.Drawing.Size(141, 30);
             this.label9.TabIndex = 5;
             this.label9.Text = "官网";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -722,10 +731,10 @@
             this.label8.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label8.Location = new System.Drawing.Point(872, 2);
+            this.label8.Location = new System.Drawing.Point(854, 2);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(149, 27);
+            this.label8.Size = new System.Drawing.Size(147, 30);
             this.label8.TabIndex = 4;
             this.label8.Text = "预约总数";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -738,7 +747,7 @@
             this.label7.Location = new System.Drawing.Point(2, 2);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(144, 27);
+            this.label7.Size = new System.Drawing.Size(141, 30);
             this.label7.TabIndex = 3;
             this.label7.Text = "分诊台";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -748,10 +757,10 @@
             this.label6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label6.Location = new System.Drawing.Point(292, 2);
+            this.label6.Location = new System.Drawing.Point(286, 2);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(144, 27);
+            this.label6.Size = new System.Drawing.Size(141, 30);
             this.label6.TabIndex = 2;
             this.label6.Text = "自助机";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -761,10 +770,10 @@
             this.label5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label5.Location = new System.Drawing.Point(437, 2);
+            this.label5.Location = new System.Drawing.Point(428, 2);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 27);
+            this.label5.Size = new System.Drawing.Size(141, 30);
             this.label5.TabIndex = 1;
             this.label5.Text = "公众号";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -872,6 +881,7 @@
             this.gv_docInfo.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gv_docInfo.OptionsView.ShowGroupPanel = false;
             this.gv_docInfo.OptionsView.ShowIndicator = false;
+            this.gv_docInfo.RowHeight = 30;
             this.gv_docInfo.CustomDrawBandHeader += new DevExpress.XtraGrid.Views.BandedGrid.BandHeaderCustomDrawEventHandler(this.bandedGridView1_CustomDrawBandHeader);
             this.gv_docInfo.CustomDrawFooterCell += new DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventHandler(this.gridView1_CustomDrawFooterCell);
             // 
@@ -1114,6 +1124,8 @@
             this.gv_deptInfo.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_deptInfo.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.gv_deptInfo.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gv_deptInfo.Appearance.FooterPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.gv_deptInfo.Appearance.FooterPanel.Options.UseFont = true;
             this.gv_deptInfo.Appearance.FooterPanel.Options.UseTextOptions = true;
             this.gv_deptInfo.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_deptInfo.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
@@ -1176,9 +1188,11 @@
             this.gv_deptInfo.OptionsView.ShowFooter = true;
             this.gv_deptInfo.OptionsView.ShowGroupPanel = false;
             this.gv_deptInfo.OptionsView.ShowIndicator = false;
+            this.gv_deptInfo.RowHeight = 30;
             this.gv_deptInfo.CustomDrawBandHeader += new DevExpress.XtraGrid.Views.BandedGrid.BandHeaderCustomDrawEventHandler(this.bandedGridView1_CustomDrawBandHeader);
             this.gv_deptInfo.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gv_deptInfo_RowCellClick);
             this.gv_deptInfo.CustomDrawFooterCell += new DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventHandler(this.gridView1_CustomDrawFooterCell);
+            this.gv_deptInfo.CustomDrawFooter += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gv_deptInfo_CustomDrawFooter);
             // 
             // gridBand29
             // 
@@ -1491,6 +1505,7 @@
             this.gv_docInfoNCD.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gv_docInfoNCD.OptionsView.ShowGroupPanel = false;
             this.gv_docInfoNCD.OptionsView.ShowIndicator = false;
+            this.gv_docInfoNCD.RowHeight = 30;
             this.gv_docInfoNCD.CustomDrawBandHeader += new DevExpress.XtraGrid.Views.BandedGrid.BandHeaderCustomDrawEventHandler(this.bandedGridView1_CustomDrawBandHeader);
             this.gv_docInfoNCD.CustomDrawFooterCell += new DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventHandler(this.gridView1_CustomDrawFooterCell);
             // 
@@ -1732,6 +1747,8 @@
             this.gv_deptInfoNCD.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_deptInfoNCD.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.gv_deptInfoNCD.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gv_deptInfoNCD.Appearance.FooterPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.gv_deptInfoNCD.Appearance.FooterPanel.Options.UseFont = true;
             this.gv_deptInfoNCD.Appearance.FooterPanel.Options.UseTextOptions = true;
             this.gv_deptInfoNCD.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_deptInfoNCD.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
@@ -1794,9 +1811,11 @@
             this.gv_deptInfoNCD.OptionsView.ShowFooter = true;
             this.gv_deptInfoNCD.OptionsView.ShowGroupPanel = false;
             this.gv_deptInfoNCD.OptionsView.ShowIndicator = false;
+            this.gv_deptInfoNCD.RowHeight = 30;
             this.gv_deptInfoNCD.CustomDrawBandHeader += new DevExpress.XtraGrid.Views.BandedGrid.BandHeaderCustomDrawEventHandler(this.bandedGridView1_CustomDrawBandHeader);
             this.gv_deptInfoNCD.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gv_deptNCDInfo_RowCellClick);
             this.gv_deptInfoNCD.CustomDrawFooterCell += new DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventHandler(this.gridView1_CustomDrawFooterCell);
+            this.gv_deptInfoNCD.CustomDrawFooter += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gv_deptInfo_CustomDrawFooter);
             // 
             // gridBand31
             // 
@@ -2028,7 +2047,7 @@
             this.borderPanel1.Controls.Add(this.deStart);
             this.borderPanel1.Controls.Add(this.label3);
             this.borderPanel1.Controls.Add(this.borderPanel5);
-            this.borderPanel1.Controls.Add(this.lueDept);
+            this.borderPanel1.Controls.Add(this.treeDeptId);
             this.borderPanel1.Controls.Add(this.label1);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -2172,6 +2191,7 @@
             this.rBtn_day.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.rBtn_day.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.rBtn_day.BtnText = "日";
+            this.rBtn_day.CenterText = true;
             this.rBtn_day.CornerRadius.BottomLeft = 8;
             this.rBtn_day.CornerRadius.TopLeft = 8;
             this.rBtn_day.Dock = System.Windows.Forms.DockStyle.Right;
@@ -2194,6 +2214,7 @@
             this.rBtn_month.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.rBtn_month.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.rBtn_month.BtnText = "月";
+            this.rBtn_month.CenterText = true;
             this.rBtn_month.CornerRadius.BottomRight = 8;
             this.rBtn_month.CornerRadius.TopRight = 8;
             this.rBtn_month.Dock = System.Windows.Forms.DockStyle.Right;
@@ -2207,34 +2228,55 @@
             this.rBtn_month.TabIndex = 173;
             this.rBtn_month.Click += new System.EventHandler(this.rBtn_Click);
             // 
-            // lueDept
+            // treeDeptId
             // 
-            this.lueDept.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lueDept.Location = new System.Drawing.Point(50, 10);
-            this.lueDept.Name = "lueDept";
-            this.lueDept.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.lueDept.Properties.Appearance.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceDisabled.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceDropDownHeader.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceFocused.Options.UseFont = true;
-            this.lueDept.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueDept.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.lueDept.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
-            this.lueDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.lueDept.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "科室")});
-            this.lueDept.Properties.NullText = "";
-            this.lueDept.Size = new System.Drawing.Size(124, 30);
-            this.lueDept.TabIndex = 182;
+            this.treeDeptId.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeDeptId.EditValue = "";
+            this.treeDeptId.Location = new System.Drawing.Point(50, 10);
+            this.treeDeptId.Name = "treeDeptId";
+            this.treeDeptId.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeDeptId.Properties.Appearance.Options.UseFont = true;
+            this.treeDeptId.Properties.AutoHeight = false;
+            this.treeDeptId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.treeDeptId.Properties.NullText = "";
+            this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
+            this.treeDeptId.Properties.TreeList = this.treeList2;
+            this.treeDeptId.Size = new System.Drawing.Size(124, 30);
+            this.treeDeptId.TabIndex = 191;
+            // 
+            // treeList2
+            // 
+            this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn9,
+            this.treeListColumn10});
+            this.treeList2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeList2.Location = new System.Drawing.Point(314, -75);
+            this.treeList2.Name = "treeList2";
+            this.treeList2.OptionsBehavior.EnableFiltering = true;
+            this.treeList2.OptionsView.AllowHtmlDrawHeaders = true;
+            this.treeList2.OptionsView.ShowIndentAsRowStyle = true;
+            this.treeList2.RowHeight = 30;
+            this.treeList2.Size = new System.Drawing.Size(400, 150);
+            this.treeList2.TabIndex = 0;
+            // 
+            // treeListColumn9
+            // 
+            this.treeListColumn9.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn9.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn9.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn9.Caption = "科室";
+            this.treeListColumn9.FieldName = "name";
+            this.treeListColumn9.Name = "treeListColumn9";
+            this.treeListColumn9.Visible = true;
+            this.treeListColumn9.VisibleIndex = 0;
+            // 
+            // treeListColumn10
+            // 
+            this.treeListColumn10.Caption = "id";
+            this.treeListColumn10.FieldName = "id";
+            this.treeListColumn10.Name = "treeListColumn10";
             // 
             // label1
             // 
@@ -2435,7 +2477,8 @@
             this.borderPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_day)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_month)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueDept.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -2473,7 +2516,6 @@
         private Xr.Common.Controls.BorderPanel borderPanel5;
         private Xr.Common.Controls.BorderPanelButton rBtn_day;
         private Xr.Common.Controls.BorderPanelButton rBtn_month;
-        private DevExpress.XtraEditors.LookUpEdit lueDept;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
@@ -2491,7 +2533,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
@@ -2598,6 +2639,11 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand40;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn28;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn29;
+        private System.Windows.Forms.Label label17;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
+        private DevExpress.XtraTreeList.TreeList treeList2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

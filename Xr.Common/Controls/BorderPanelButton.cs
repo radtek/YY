@@ -40,6 +40,14 @@ namespace Xr.Common.Controls
              get { return _BtnFont; }
              set { _BtnFont = value; }
          }
+        private bool _CenterText = true;
+        [DefaultValue(typeof(Font), "微软雅黑,12px")]
+        [Description("按钮文字居中")]
+        public bool CenterText
+        {
+            get { return _CenterText; }
+            set { _CenterText = value; }
+        }
 
         private Color _BackColor=Color.White;
         [Description("按钮背景颜色")]
@@ -206,7 +214,14 @@ namespace Xr.Common.Controls
             {
                 br = Brushes.Black; 
             }
-            e.Graphics.DrawString(this._Text, _BtnFont, br, (this.Width - (int)textSize.Width) / 2, (this.Height - (int)textSize.Height) / 2);
+            if (_CenterText)
+            {
+                e.Graphics.DrawString(this._Text, _BtnFont, br, (this.Width - (int)textSize.Width) / 2, (this.Height - (int)textSize.Height) / 2);
+            }
+            else
+            { 
+                e.Graphics.DrawString(this._Text, _BtnFont, br, 0,0);
+            }
         }
 
     }

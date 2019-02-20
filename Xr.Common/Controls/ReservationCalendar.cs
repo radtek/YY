@@ -33,7 +33,7 @@ namespace Xr.Common.Controls
         /// <summary>
         /// 选中月份事件
         /// </summary>
-        public event ChangeMonthDelegate ChangeMonth;
+        //public event ChangeMonthDelegate ChangeMonth;
 
         //事件处理函数形式，用delegate定义
         public delegate void SelectDateTestDelegate(DateTime SelectedDate);
@@ -52,7 +52,18 @@ namespace Xr.Common.Controls
             get { return selectedDate; }
             set { selectedDate = value; }
         }
-        public Dictionary<int,DateTime> ValidDateList=new Dictionary<int,DateTime>();
+        private List<Dictionary<int,DateTime>> ValidDateLists=new List<Dictionary<int,DateTime>>();
+        private int monthIndex = 0;
+        public void ChangeValidDate(List<Dictionary<int, DateTime>> validDateLists)
+        {
+            currentYearMonth = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, 1);
+            lab_YM.Text = String.Format("{0}年{1}月", currentYearMonth.Year, currentYearMonth.Month);
+            ValidDateLists.Clear();
+            ValidDateLists = validDateLists;
+            monthIndex = 0;
+            SetGridClanderValue();
+        }
+        private Dictionary<int, DateTime> CurrentValidDateList = new Dictionary<int, DateTime>();
         public  void SetGridClanderValue()
         {
             //grid_clanderPanel.Controls.Clear();
@@ -93,13 +104,20 @@ namespace Xr.Common.Controls
                     }
                     else//当月
                     {
-                        if (!ValidDateList.ContainsKey(dtList[i].Day))
+                        if (ValidDateLists.Count != 0 && ValidDateLists.Count > monthIndex)
                         {
-                            b.Enabled = false;
+                            if (!ValidDateLists[monthIndex].ContainsKey(dtList[i].Day))
+                            {
+                                b.Enabled = false;
+                            }
+                            else
+                            {
+                                b.Enabled = true;
+                            }
                         }
                         else
                         {
-                            b.Enabled = true;
+                            b.Enabled = false;
                         }
                     }
                     if (dtList[i].Year == System.DateTime.Now.Year && dtList[i].Month == System.DateTime.Now.Month && dtList[i].Day == System.DateTime.Now.Day)
@@ -172,7 +190,8 @@ namespace Xr.Common.Controls
             if (currentYearMonth > NowYearMonth)
             {
                 currentYearMonth = currentYearMonth.AddMonths(-1);
-                ChangeMonth(currentYearMonth);
+                monthIndex--;
+                //ChangeMonth(currentYearMonth);
                 SetGridClanderValue();
                 lab_YM.Text = String.Format("{0}年{1}月", currentYearMonth.Year, currentYearMonth.Month);
                 if (currentYearMonth == NowYearMonth)
@@ -189,7 +208,8 @@ namespace Xr.Common.Controls
             if (currentYearMonth < NowYearMonth.AddMonths(3))
             {
                 currentYearMonth = currentYearMonth.AddMonths(1);
-                ChangeMonth(currentYearMonth);
+                monthIndex++;
+                //ChangeMonth(currentYearMonth);
                 SetGridClanderValue();
                 lab_YM.Text = String.Format("{0}年{1}月", currentYearMonth.Year, currentYearMonth.Month);
                 if (currentYearMonth == NowYearMonth.AddMonths(3))

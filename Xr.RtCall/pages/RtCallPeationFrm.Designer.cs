@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -38,7 +37,7 @@
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gc_Pateion = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.复诊预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gv_Pateion = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -68,7 +67,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(615, 394);
+            this.panelControl1.Size = new System.Drawing.Size(619, 468);
             this.panelControl1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -83,7 +82,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.91371F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.0863F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(615, 394);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(619, 468);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // panelControl2
@@ -96,7 +95,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(3, 3);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(609, 37);
+            this.panelControl2.Size = new System.Drawing.Size(613, 45);
             this.panelControl2.TabIndex = 7;
             // 
             // label1
@@ -162,9 +161,9 @@
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl3.Controls.Add(this.gc_Pateion);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(3, 46);
+            this.panelControl3.Location = new System.Drawing.Point(3, 54);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(609, 345);
+            this.panelControl3.Size = new System.Drawing.Size(613, 411);
             this.panelControl3.TabIndex = 8;
             // 
             // gc_Pateion
@@ -174,7 +173,7 @@
             this.gc_Pateion.Location = new System.Drawing.Point(0, 0);
             this.gc_Pateion.MainView = this.gv_Pateion;
             this.gc_Pateion.Name = "gc_Pateion";
-            this.gc_Pateion.Size = new System.Drawing.Size(609, 345);
+            this.gc_Pateion.Size = new System.Drawing.Size(613, 411);
             this.gc_Pateion.TabIndex = 4;
             this.gc_Pateion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Pateion});
@@ -323,7 +322,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelControl1);
             this.Name = "RtCallPeationFrm";
-            this.Size = new System.Drawing.Size(615, 394);
+            this.Size = new System.Drawing.Size(619, 468);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -48,7 +48,7 @@ namespace Xr.RtManager
             String param = "?" + PackReflectionEntity<DictEntity>.GetEntityToRequestParameters(dict);
             String url = AppContext.AppConfig.serverUrl + "sys/sysDict/save" + param;
             cmd.ShowOpaqueLayer();
-            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -76,10 +76,11 @@ namespace Xr.RtManager
         /// <summary>
         /// 多线程异步后台处理某些耗时的数据，不会卡死界面
         /// </summary>
+        /// <param name="time">线程延迟多少</param>
         /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
         /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
         /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
-        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
         {
             var bgWorkder = new BackgroundWorker();
 
@@ -96,12 +97,19 @@ namespace Xr.RtManager
             bgWorkder.RunWorkerCompleted += (s, arg) =>
             {
 
-
-                bgWorkder.Dispose();
-
-                if (workCompleted != null)
+                try
                 {
-                    workCompleted(arg.Result);
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 
@@ -111,11 +119,10 @@ namespace Xr.RtManager
                 var result = workFunc(arg.Argument);
                 arg.Result = result;
                 bgWorkder.ReportProgress(100);
-                Thread.Sleep(500);
+                Thread.Sleep(time);
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
-
     }
 }

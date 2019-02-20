@@ -51,36 +51,57 @@ namespace Xr.RtManager.Pages.cms
             dcDefaultVisit.ClearValue();
             //panScheduling.Controls.Clear();
 
-            //设置科室列表
-            List<Item> itemList = new List<Item>();
-            foreach (DeptEntity dept in AppContext.Session.deptList)
-            {
-                Item item = new Item();
-                item.name = dept.name;
-                item.value = dept.id;
-                item.tag = dept.hospitalId;
-                item.parentId = dept.parentId;
-                itemList.Add(item);
-            }
-            menuControl2.setDataSource(itemList);
-
-            //获取默认出诊时间字典配置
-            String url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
             cmd.ShowOpaqueLayer(0f);
-            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            //设置科室列表
+            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+            this.DoWorkAsync( 100, (o) => 
             {
                 String data = HttpClass.httpPost(url);
                 return data;
 
-            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            }, null, (data) => 
             {
                 JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
-                    setDefaultVisit();
-                    buttonControl2_Click(null, null);
-                    cmd.HideOpaqueLayer();
+                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                    List<Item> itemList = new List<Item>();
+                    foreach (DeptEntity dept in deptList)
+                    {
+                        Item item = new Item();
+                        item.name = dept.name;
+                        item.value = dept.id;
+                        item.tag = dept.hospitalId;
+                        item.parentId = dept.parentId;
+                        itemList.Add(item);
+                    }
+                    menuControl2.setDataSource(itemList);
+
+                    //获取默认出诊时间字典配置
+                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
+                    this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
+                            setDefaultVisit();
+                            buttonControl2_Click(null, null);
+                            cmd.HideOpaqueLayer();
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            return;
+                        }
+                    });
                 }
                 else
                 {
@@ -1044,6 +1065,7 @@ namespace Xr.RtManager.Pages.cms
                     for (int i = 0; i < doctorList.Count(); i++)
                     {
                         DoctorVSEntity doctor = new DoctorVSEntity();
+                        doctor.check = true;
                         doctor.deptId = deptId;
                         doctor.deptName = deptName;
                         doctor.doctorId = doctorList[i].id;
@@ -1131,19 +1153,27 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var selectedRow = bandedGridView1.GetFocusedRow() as DoctorVSEntity;
-            if (selectedRow == null)
-                return;
+            //var selectedRow = bandedGridView1.GetFocusedRow() as DoctorVSEntity;
+            //if (selectedRow == null)
+            //    return;
+            List<DoctorVSEntity> doctorList = bandedGridView1.DataSource as List<DoctorVSEntity>;
             selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
             if (selectDoctorList == null) selectDoctorList = new List<DoctorVSEntity>();
-            for (int i = 0; i < selectDoctorList.Count; i++)
+            foreach (DoctorVSEntity selectedRow in doctorList)
             {
-                if (selectDoctorList[i].doctorId.Equals(selectedRow.doctorId))
+                if (selectedRow.check)
                 {
-                    return;
+                    for (int i = 0; i < selectDoctorList.Count; i++)
+                    {
+                        if (selectDoctorList[i].doctorId.Equals(selectedRow.doctorId))
+                        {
+                            return;
+                        }
+                    }
+                    selectedRow.check = false;
+                    selectDoctorList.Add(selectedRow);
                 }
             }
-            selectDoctorList.Add(selectedRow);
             gridControl1.DataSource = selectDoctorList;
             gridControl1.RefreshDataSource();
         }
@@ -1154,20 +1184,52 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="e"></param>
         private void btnDel_Click(object sender, EventArgs e)
         {
-            var selectedRow = gridView1.GetFocusedRow() as DoctorVSEntity;
-            if (selectedRow == null)
-                return;
-            selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
-            foreach (DoctorVSEntity doctor in selectDoctorList)
+            //没有多选框的逻辑
+            //var selectedRow = gridView1.GetFocusedRow() as DoctorVSEntity;
+            //if (selectedRow == null)
+            //    return;
+            //selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
+            //foreach (DoctorVSEntity doctor in selectDoctorList)
+            //{
+            //    if (doctor.doctorId.Equals(selectedRow.doctorId))
+            //    {
+            //        selectDoctorList.Remove(doctor);
+            //        gridControl1.DataSource = selectDoctorList;
+            //        gridControl1.RefreshDataSource();
+            //        return;
+            //    }
+            //}
+
+            //有多选框的逻辑
+            //List<DoctorVSEntity> doctorList = gridControl1.DataSource as List<DoctorVSEntity>;
+            
+            //foreach (DoctorVSEntity selectedRow in doctorList)
+            //{
+            //    if (selectedRow.check)
+            //    {
+            //        foreach (DoctorVSEntity doctor in selectDoctorList)
+            //        {
+            //            if (doctor.doctorId.Equals(selectedRow.doctorId))
+            //            {
+            //                selectDoctorList.Remove(doctor);
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
+            //gridControl1.DataSource = selectDoctorList;
+            //gridControl1.RefreshDataSource();
+            int count = selectDoctorList.Count;
+            int n=0;
+            for (int i = 0; i < count; i++)
             {
-                if (doctor.doctorId.Equals(selectedRow.doctorId))
+                if (selectDoctorList[i - n].check)
                 {
-                    selectDoctorList.Remove(doctor);
-                    gridControl1.DataSource = selectDoctorList;
-                    gridControl1.RefreshDataSource();
-                    return;
+                    selectDoctorList.Remove(selectDoctorList[i - n]);
+                    n++;
                 }
             }
+            gridControl1.RefreshDataSource();
         }
         /// <summary>
         /// 清空
@@ -1182,420 +1244,415 @@ namespace Xr.RtManager.Pages.cms
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            cmd.ShowOpaqueLayer();
-            try
+            
+            if (selectDoctorList == null || selectDoctorList.Count == 0)
             {
-                if (selectDoctorList == null || selectDoctorList.Count == 0)
-                    return;
-                List<WorkingDayEntity> workingDayList = new List<WorkingDayEntity>();
-                #region 获取排班数据
-                int days = tabControl1.Controls.Count; //排班天数
-                if (days == 0) return;
-                foreach (DoctorVSEntity doctor in selectDoctorList)
-                {
-                    for (int i = 0; i < days; i++){
-                        String week = "";
-                        if (i == 0)
-                            week = "一";
-                        else if (i == 1)
-                            week = "二";
-                        else if (i == 2)
-                            week = "三";
-                        else if (i == 3)
-                            week = "四";
-                        else if (i == 4)
-                            week = "五";
-                        else if (i == 5)
-                            week = "六";
-                        else if (i == 6)
-                            week = "日";
-                       TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
-                       for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
-                       {
-                           TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
-                           CheckBox cbAuto = (CheckBox)tlp.GetControlFromPosition(0, 2);
-                           for (int r = 1; r < tlp.RowCount; r++)//行
-                           {
-                               WorkingDayEntity wordingDay = new WorkingDayEntity();
-                               wordingDay.deptId = doctor.deptId;
-                               wordingDay.doctorId = doctor.doctorId;
-                               wordingDay.week = week; //周几
-                               wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上 3:晚上
-                               if (i == 0 && period == 0)
-                               {
-                                   if (doctor.mondayMorning != null)
-                                   {
-                                       if (doctor.mondayMorning.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 0 && period == 1)
-                               {
-                                   if (doctor.mondayAfternoon != null)
-                                   {
-                                       if (doctor.mondayAfternoon.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 0 && period == 2)
-                               {
-                                   if (doctor.mondayNight!=null)
-                                   {
-                                       if (doctor.mondayNight.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 0 && period == 3)
-                               {
-                                   if (doctor.saturdayAllAay != null)
-                                   {
-                                       if (doctor.saturdayAllAay.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 1 && period == 0)
-                               {
-                                   if (doctor.tuesdayMorning != null)
-                                   {
-                                       if (doctor.tuesdayMorning.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 1 && period == 1)
-                               {
-                                   if (doctor.tuesdayAfternoon != null)
-                                   {
-                                       if (doctor.tuesdayAfternoon.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 1 && period == 2)
-                               {
-                                   if (doctor.tuesdayNight != null)
-                                   {
-                                       if (doctor.tuesdayNight.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 1 && period == 3)
-                               {
-                                   if (doctor.tuesdayAllAay != null)
-                                   {
-                                       if (doctor.tuesdayAllAay.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 2 && period == 0)
-                               {
-                                   if (doctor.wednesdayMorning != null)
-                                   {
-                                       if (doctor.wednesdayMorning.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 2 && period == 1)
-                               {
-                                   if (doctor.wednesdayAfternoon != null)
-                                   {
-                                       if (doctor.wednesdayAfternoon.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 2 && period == 2)
-                               {
-                                   if (doctor.wednesdayNight != null)
-                                   {
-                                       if (doctor.wednesdayNight.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 2 && period == 3)
-                               {
-                                   if (doctor.wednesdayAllAay != null)
-                                   {
-                                       if (doctor.wednesdayAllAay.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 3 && period == 0)
-                               {
-                                   if (doctor.thursdayMorning != null)
-                                   {
-                                       if (doctor.thursdayMorning.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 3 && period == 1)
-                               {
-                                   if (doctor.thursdayAfternoon!=null)
-                                   {
-                                       if (doctor.thursdayAfternoon.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 3 && period == 2)
-                               {
-                                   if (doctor.sundayNight != null)
-                                   {
-                                       if (doctor.sundayNight.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 3 && period == 3)
-                               {
-                                   if (doctor.thursdayAllAay != null)
-                                   {
-                                       if (doctor.thursdayAllAay.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 4 && period == 0)
-                               {
-                                   if (doctor.fridayMorning != null)
-                                   {
-                                       if (doctor.fridayMorning.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 4 && period == 1)
-                               {
-                                   if (doctor.fridayAfternoon != null)
-                                   {
-                                       if (doctor.fridayAfternoon.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 4 && period == 2)
-                               {
-                                   if (doctor.fridayNight != null)
-                                   {
-                                       if (doctor.fridayNight.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 4 && period == 3)
-                               {
-                                   if (doctor.fridayAllAay != null)
-                                   {
-                                       if (doctor.fridayAllAay.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 5 && period == 0)
-                               {
-                                   if (doctor.saturdayMorning != null)
-                                   {
-                                       if (doctor.saturdayMorning.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 5 && period == 1)
-                               {
-                                   if (doctor.saturdayAfternoon != null)
-                                   {
-                                       if (doctor.saturdayAfternoon.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 5 && period == 2)
-                               {
-                                   if (doctor.saturdayNight != null)
-                                   {
-                                       if (doctor.saturdayNight.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 5 && period == 3)
-                               {
-                                   if (doctor.saturdayAllAay != null)
-                                   {
-                                       if (doctor.saturdayAllAay.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 6 && period == 0)
-                               {
-                                   if (doctor.sundayMorning != null)
-                                   {
-                                       if (doctor.sundayMorning.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 6 && period == 1)
-                               {
-                                   if (doctor.sundayAfternoon != null)
-                                   {
-                                       if (doctor.sundayAfternoon.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 6 && period == 2)
-                               {
-                                   if (doctor.sundayNight != null)
-                                   {
-                                       if (doctor.sundayNight.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               }
-                               if (i == 6 && period == 3)
-                               {
-                                   if (doctor.sundayAllAay != null)
-                                   {
-                                       if (doctor.sundayAllAay.Equals("√"))
-                                           wordingDay.isUse = "0";
-                                       else
-                                           wordingDay.isUse = "1";
-                                   }
-                                   else continue;
-                               } 
-                               if (cbAuto.CheckState == CheckState.Checked)
-                                   wordingDay.autoSchedule = "0";
-                               else
-                                   wordingDay.autoSchedule = "1";
+                return;
+            }
+                    
+            List<WorkingDayEntity> workingDayList = new List<WorkingDayEntity>();
+            #region 获取排班数据
+            int days = tabControl1.Controls.Count; //排班天数
+            if (days == 0) return;
+            foreach (DoctorVSEntity doctor in selectDoctorList)
+            {
+                for (int i = 0; i < days; i++){
+                    String week = "";
+                    if (i == 0)
+                        week = "一";
+                    else if (i == 1)
+                        week = "二";
+                    else if (i == 2)
+                        week = "三";
+                    else if (i == 3)
+                        week = "四";
+                    else if (i == 4)
+                        week = "五";
+                    else if (i == 5)
+                        week = "六";
+                    else if (i == 6)
+                        week = "日";
+                    TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
+                    for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
+                    {
+                        TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
+                        CheckBox cbAuto = (CheckBox)tlp.GetControlFromPosition(0, 2);
+                        for (int r = 1; r < tlp.RowCount; r++)//行
+                        {
+                            WorkingDayEntity wordingDay = new WorkingDayEntity();
+                            wordingDay.deptId = doctor.deptId;
+                            wordingDay.doctorId = doctor.doctorId;
+                            wordingDay.week = week; //周几
+                            wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上 3:晚上
+                            if (i == 0 && period == 0)
+                            {
+                                if (doctor.mondayMorning != null)
+                                {
+                                    if (doctor.mondayMorning.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 0 && period == 1)
+                            {
+                                if (doctor.mondayAfternoon != null)
+                                {
+                                    if (doctor.mondayAfternoon.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 0 && period == 2)
+                            {
+                                if (doctor.mondayNight!=null)
+                                {
+                                    if (doctor.mondayNight.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 0 && period == 3)
+                            {
+                                if (doctor.saturdayAllAay != null)
+                                {
+                                    if (doctor.saturdayAllAay.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 1 && period == 0)
+                            {
+                                if (doctor.tuesdayMorning != null)
+                                {
+                                    if (doctor.tuesdayMorning.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 1 && period == 1)
+                            {
+                                if (doctor.tuesdayAfternoon != null)
+                                {
+                                    if (doctor.tuesdayAfternoon.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 1 && period == 2)
+                            {
+                                if (doctor.tuesdayNight != null)
+                                {
+                                    if (doctor.tuesdayNight.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 1 && period == 3)
+                            {
+                                if (doctor.tuesdayAllAay != null)
+                                {
+                                    if (doctor.tuesdayAllAay.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 2 && period == 0)
+                            {
+                                if (doctor.wednesdayMorning != null)
+                                {
+                                    if (doctor.wednesdayMorning.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 2 && period == 1)
+                            {
+                                if (doctor.wednesdayAfternoon != null)
+                                {
+                                    if (doctor.wednesdayAfternoon.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 2 && period == 2)
+                            {
+                                if (doctor.wednesdayNight != null)
+                                {
+                                    if (doctor.wednesdayNight.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 2 && period == 3)
+                            {
+                                if (doctor.wednesdayAllAay != null)
+                                {
+                                    if (doctor.wednesdayAllAay.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 3 && period == 0)
+                            {
+                                if (doctor.thursdayMorning != null)
+                                {
+                                    if (doctor.thursdayMorning.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 3 && period == 1)
+                            {
+                                if (doctor.thursdayAfternoon!=null)
+                                {
+                                    if (doctor.thursdayAfternoon.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 3 && period == 2)
+                            {
+                                if (doctor.sundayNight != null)
+                                {
+                                    if (doctor.sundayNight.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 3 && period == 3)
+                            {
+                                if (doctor.thursdayAllAay != null)
+                                {
+                                    if (doctor.thursdayAllAay.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 4 && period == 0)
+                            {
+                                if (doctor.fridayMorning != null)
+                                {
+                                    if (doctor.fridayMorning.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 4 && period == 1)
+                            {
+                                if (doctor.fridayAfternoon != null)
+                                {
+                                    if (doctor.fridayAfternoon.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 4 && period == 2)
+                            {
+                                if (doctor.fridayNight != null)
+                                {
+                                    if (doctor.fridayNight.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 4 && period == 3)
+                            {
+                                if (doctor.fridayAllAay != null)
+                                {
+                                    if (doctor.fridayAllAay.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 5 && period == 0)
+                            {
+                                if (doctor.saturdayMorning != null)
+                                {
+                                    if (doctor.saturdayMorning.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 5 && period == 1)
+                            {
+                                if (doctor.saturdayAfternoon != null)
+                                {
+                                    if (doctor.saturdayAfternoon.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 5 && period == 2)
+                            {
+                                if (doctor.saturdayNight != null)
+                                {
+                                    if (doctor.saturdayNight.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 5 && period == 3)
+                            {
+                                if (doctor.saturdayAllAay != null)
+                                {
+                                    if (doctor.saturdayAllAay.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 6 && period == 0)
+                            {
+                                if (doctor.sundayMorning != null)
+                                {
+                                    if (doctor.sundayMorning.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 6 && period == 1)
+                            {
+                                if (doctor.sundayAfternoon != null)
+                                {
+                                    if (doctor.sundayAfternoon.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 6 && period == 2)
+                            {
+                                if (doctor.sundayNight != null)
+                                {
+                                    if (doctor.sundayNight.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            }
+                            if (i == 6 && period == 3)
+                            {
+                                if (doctor.sundayAllAay != null)
+                                {
+                                    if (doctor.sundayAllAay.Equals("√"))
+                                        wordingDay.isUse = "0";
+                                    else
+                                        wordingDay.isUse = "1";
+                                }
+                                else continue;
+                            } 
+                            if (cbAuto.CheckState == CheckState.Checked)
+                                wordingDay.autoSchedule = "0";
+                            else
+                                wordingDay.autoSchedule = "1";
 
-                               for (int c = 1; c < tlp.ColumnCount; c++)//列
-                               {
-                                   TextEdit te = (TextEdit)tlp.GetControlFromPosition(c, r);
-                                   if (c == 1)
-                                       wordingDay.beginTime = te.Text;
-                                   else if (c == 2)
-                                       wordingDay.endTime = te.Text;
-                                   else if (c == 3)
-                                       wordingDay.numSource = te.Text;
-                                   else if (c == 4)
-                                       wordingDay.numOpen = te.Text;
-                                   else if (c == 5)
-                                       wordingDay.numClinic = te.Text;
-                                   else if (c == 6)
-                                       wordingDay.numYj = te.Text;
-                               }
-                               workingDayList.Add(wordingDay);
-                           }
-                       }
+                            for (int c = 1; c < tlp.ColumnCount; c++)//列
+                            {
+                                TextEdit te = (TextEdit)tlp.GetControlFromPosition(c, r);
+                                if (c == 1)
+                                    wordingDay.beginTime = te.Text;
+                                else if (c == 2)
+                                    wordingDay.endTime = te.Text;
+                                else if (c == 3)
+                                    wordingDay.numSite = te.Text;
+                                else if (c == 4)
+                                    wordingDay.numOpen = te.Text;
+                                else if (c == 5)
+                                    wordingDay.numClinic = te.Text;
+                                else if (c == 6)
+                                    wordingDay.numYj = te.Text;
+                            }
+                            workingDayList.Add(wordingDay);
+                        }
                     }
                 }
-                #endregion
-                String workStr = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
-
-                String docotrIds = "";
-                foreach (DoctorVSEntity doctor in selectDoctorList)
-                {
-                    docotrIds += doctor.doctorId + ",";
-                }
-                docotrIds = docotrIds.Substring(0, docotrIds.Length - 1);
-                String param = "doctorIds=" + docotrIds + "&doctorVisitSets=" + workStr + "&deptId=" + deptId;
-                //请求接口
-                String url = AppContext.AppConfig.serverUrl + "cms/doctorVisitingTime/save?";
-                this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
-                {
-                    String data = HttpClass.httpPost(url, param);
-                    return data;
-
-                }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
-                {
-                    JObject objT = JObject.Parse(data.ToString());
-                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                    {
-                        //清除已选医生
-                        selectDoctorList.Clear();
-                        gridControl1.DataSource = selectDoctorList;
-                        cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("保存成功！");
-                    }
-                    else
-                    {
-                        cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    }
-                });
             }
-            catch (Exception ex)
+            #endregion
+            String workStr = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
+
+            String docotrIds = "";
+            foreach (DoctorVSEntity doctor in selectDoctorList)
             {
-                cmd.HideOpaqueLayer();
-                LogClass.WriteLog(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                docotrIds += doctor.doctorId + ",";
             }
+            docotrIds = docotrIds.Substring(0, docotrIds.Length - 1);
+            String param = "doctorIds=" + docotrIds + "&doctorVisitSets=" + workStr + "&deptId=" + deptId;
+            //请求接口
+            String url = AppContext.AppConfig.serverUrl + "cms/doctorVisitingTime/save?";
+            cmd.ShowOpaqueLayer();    
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                String data = HttpClass.httpPost(url, param);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    //清除已选医生
+                    selectDoctorList.Clear();
+                    gridControl1.DataSource = selectDoctorList;
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Hint("保存成功！");
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            });
         }
 
         /// <summary>
@@ -1634,8 +1691,7 @@ namespace Xr.RtManager.Pages.cms
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

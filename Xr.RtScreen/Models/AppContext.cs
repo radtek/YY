@@ -27,6 +27,8 @@ namespace Xr.RtScreen.Models
             AppConfig.deptCode = ConfigurationManager.AppSettings["deptCode"].ToString();
             AppConfig.StartupScreen = ConfigurationManager.AppSettings["StartupScreen"].ToString();
             AppConfig.StartUpSocket = ConfigurationManager.AppSettings["StartUpSocket"].ToString();
+            AppConfig.clinicCode = ConfigurationManager.AppSettings["clinicCode"].ToString();
+            AppConfig.RefreshTime = ConfigurationManager.AppSettings["RefreshTime"].ToString();
         }
     }
 }

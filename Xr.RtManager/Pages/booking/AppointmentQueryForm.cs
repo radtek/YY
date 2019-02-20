@@ -29,32 +29,55 @@ namespace Xr.RtManager.Pages.booking
         }
         private void UserForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(243, 243, 243);
             //下拉框数据
             getLuesInfo();
             //配置时间格式
             setDateFomartDefult();
-
+            性别.Caption = "状\r\n态";
+            状态.Caption = "状\r\n态";
+            就诊类别.Caption = "就诊\r\n类别";
+            术后复诊.Caption = "术后\r\n复诊";
+            出院复诊.Caption = "出院\r\n复诊";
+            外院转诊.Caption = "外院\r\n转诊";
+            登记时间.Caption = "登记\r\n时间";
         }
         /// <summary>
         /// 下拉框数据
         /// </summary>
         void getLuesInfo()
         {
-            //科室下拉框数据
-            lueDept.Properties.DataSource = AppContext.Session.deptList;
-            lueDept.Properties.DisplayMember = "name";
-            lueDept.Properties.ValueMember = "id";
+            //查询科室下拉框数据
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String data = HttpClass.httpPost(url);
+            JObject objT = JObject.Parse(data);
+            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            {
+                List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                /*DeptEntity dept = new DeptEntity();
+                dept.id = "0";
+                dept.name = "无";
+                deptList.Insert(0, dept);
+                 */
+                treeDeptId.Properties.DataSource = deptList;
+                treeDeptId.Properties.TreeList.KeyFieldName = "id";
+                treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
+                treeDeptId.Properties.DisplayMember = "name";
+                treeDeptId.Properties.ValueMember = "id";
+            }
+            else
+            {
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             //默认选中第一个
-            lueDept.EditValue = AppContext.Session.deptList[0].id;
+            treeDeptId.EditValue = AppContext.Session.deptList[0].id;
 
             //预约状态下拉框数据
             String param = "type={0}";
             param = String.Format(param, "register_status_type");
 
-            String url = String.Empty;
             url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
-            JObject objT = new JObject();
+             objT = new JObject();
             objT = JObject.Parse(HttpClass.httpPost(url));
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
@@ -77,7 +100,7 @@ namespace Xr.RtManager.Pages.booking
             param = String.Format(param, "register_way_type");
 
             url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
-            objT = JObject.Parse(HttpClass.loginPost(url));
+            objT = JObject.Parse(HttpClass.httpPost(url));
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
                 List<Dic> list = new List<Dic>();
@@ -128,7 +151,7 @@ namespace Xr.RtManager.Pages.booking
                 return false;
             }
 
-            CurrentParam.deptId = lueDept.EditValue.ToString();
+            CurrentParam.deptId = treeDeptId.EditValue.ToString();
             CurrentParam.patientName = txt_nameQuery.Text;
             CurrentParam.registerWay = lueRegisterWay.EditValue.ToString();
             CurrentParam.status = lueState.EditValue.ToString();
@@ -182,7 +205,7 @@ namespace Xr.RtManager.Pages.booking
                     param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
                 }
                 url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/list?" + param;
-                Results.Add(HttpClass.loginPost(url));
+                Results.Add(HttpClass.httpPost(url));
 
 
                 e.Result = Results;

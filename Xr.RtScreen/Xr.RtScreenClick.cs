@@ -13,6 +13,8 @@ using System.Configuration;
 using Xr.RtScreen.Models;
 using Newtonsoft.Json.Linq;
 using Xr.Http;
+using RestSharp;
+using System.Net;
 
 namespace Xr.RtScreen
 {
@@ -60,10 +62,18 @@ namespace Xr.RtScreen
                 {
                     HelperClass.list = objT["result"].ToObject<List<HelperClassDoctor>>();
                 }
+                //查询诊室数据
+                String urls = AppContext.AppConfig.serverUrl + "/api/cms/clinic/list?hospital.id=" + HelperClass.hospitalId + "&dept.id=" + HelperClass.deptId;
+                String datas = HttpClass.httpPost(urls);
+                JObject objTs = JObject.Parse(datas);
+                if (string.Compare(objTs["state"].ToString(), "true", true) == 0)
+                {
+                    HelperClass.ClincList = objTs["result"]["list"].ToObject<List<HelperClinc>>();
+                }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("叫号获取科室和医院主键错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("叫号获取科室和医院主键错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -96,7 +106,7 @@ namespace Xr.RtScreen
                 switch (keyData)
                 {
                     case Keys.Escape:
-                        if (MessageBox.Show("真的要退出程序吗？", "退出程序", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        if (Xr.Common.MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
                         {
                             this.Close();
                         }
@@ -106,5 +116,45 @@ namespace Xr.RtScreen
             return false;
         }
         #endregion
+        #region 获取诊室
+        public void GetClinc()
+        {
+            try
+            {
+                //查询科室数据
+                String url = AppContext.AppConfig.serverUrl + "/api/cms/clinic/list?hospital.id=" + HelperClass.hospitalId + "&dept.id=" + HelperClass.deptId;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    HelperClass.ClincList = objT["result"]["list"].ToObject<List<HelperClinc>>();
+                }
+                //Dictionary<string, string> prament = new Dictionary<string, string>();
+                //prament.Add("hospital.id", HelperClass.hospitalId);
+                //prament.Add("dept.id", HelperClass.deptId);
+                //Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/cms/clinic/list", prament, RestSharp.Method.POST, result =>
+                //{
+                //    switch (result.ResponseStatus)
+                //    {
+                //        case ResponseStatus.Completed:
+                //            if (result.StatusCode == HttpStatusCode.OK)
+                //            {
+                //                Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
+                //                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                //                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                //                {
+                //                    HelperClass.ClincList = objT["result"]["list"].ToObject<List<HelperClinc>>();
+                //                }
+                //            }
+                //            break;
+                //    }
+                //});
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("大屏获取诊室信息错误：");
+            }
+        }
+        #endregion 
     }
 }

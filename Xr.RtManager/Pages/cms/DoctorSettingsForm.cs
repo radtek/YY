@@ -45,116 +45,139 @@ namespace Xr.RtManager.Pages.cms
             dcDefaultVisit.DataType = typeof(DefaultVisitEntity);
             //清除默认出诊时间模板数据
             dcDefaultVisit.ClearValue();
-
-            List<Item> itemList = new List<Item>();
-            foreach (DeptEntity dept in AppContext.Session.deptList)
-            {
-                Item item = new Item();
-                item.name = dept.name;
-                item.value = dept.id;
-                item.tag = dept.hospitalId;
-                item.parentId = dept.parentId;
-                itemList.Add(item);
-            }
-            menuControl2.setDataSource(itemList);
+            menuControl2.borderColor = Color.FromArgb(214, 214, 214);
             cmd.ShowOpaqueLayer(0f);
-            //查询医院下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
+
+            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
             this.DoWorkAsync( 100, (o) => 
             {
                 String data = HttpClass.httpPost(url);
                 return data;
 
-            }, null, (data) => 
+            }, null, (r) => 
             {
-                JObject objT = JObject.Parse(data.ToString());
+                JObject objT = JObject.Parse(r.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
-                    lueHospital.Properties.DisplayMember = "name";
-                    lueHospital.Properties.ValueMember = "id";
-
-                    //查询状态下拉框数据
-                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
-                    this.DoWorkAsync( 100, (o) => 
+                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                    List<Item> itemList = new List<Item>();
+                    foreach (DeptEntity dept in deptList)
                     {
-                        data = HttpClass.httpPost(url);
+                        Item item = new Item();
+                        item.name = dept.name;
+                        item.value = dept.id;
+                        item.tag = dept.hospitalId;
+                        item.parentId = dept.parentId;
+                        itemList.Add(item);
+                    }
+                    menuControl2.setDataSource(itemList);
+
+                    //查询医院下拉框数据
+                    url = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
+                    this.DoWorkAsync(100, (o) =>
+                    {
+                        String data = HttpClass.httpPost(url);
                         return data;
 
-                    }, null, (data2) => 
+                    }, null, (data) =>
                     {
-                        objT = JObject.Parse(data2.ToString());
+                        objT = JObject.Parse(data.ToString());
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
-                            lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                            lueIsUse.Properties.DisplayMember = "label";
-                            lueIsUse.Properties.ValueMember = "value";
+                            lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
+                            lueHospital.Properties.DisplayMember = "name";
+                            lueHospital.Properties.ValueMember = "id";
 
-                            //查询挂号类型下拉框数据
-                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=register_type";
-                            this.DoWorkAsync(100, (o) => 
+                            //查询状态下拉框数据
+                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
+                            this.DoWorkAsync(100, (o) =>
                             {
                                 data = HttpClass.httpPost(url);
                                 return data;
 
-                            }, null, (data3) => 
+                            }, null, (data2) =>
                             {
-                                objT = JObject.Parse(data3.ToString());
+                                objT = JObject.Parse(data2.ToString());
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    lueRegisterType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                                    lueRegisterType.Properties.DisplayMember = "label";
-                                    lueRegisterType.Properties.ValueMember = "value";
+                                    lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                    lueIsUse.Properties.DisplayMember = "label";
+                                    lueIsUse.Properties.ValueMember = "value";
 
-                                    //查询性别下拉框数据
-                                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=sex";
+                                    //查询挂号类型下拉框数据
+                                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=register_type";
                                     this.DoWorkAsync(100, (o) =>
                                     {
                                         data = HttpClass.httpPost(url);
                                         return data;
 
-                                    }, null, (data4) =>
+                                    }, null, (data3) =>
                                     {
-                                        objT = JObject.Parse(data4.ToString());
+                                        objT = JObject.Parse(data3.ToString());
                                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                         {
-                                            lueSex.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                                            lueSex.Properties.DisplayMember = "label";
-                                            lueSex.Properties.ValueMember = "value";
+                                            lueRegisterType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                            lueRegisterType.Properties.DisplayMember = "label";
+                                            lueRegisterType.Properties.ValueMember = "value";
 
-                                            //查询是否显示下拉框数据
-                                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
+                                            //查询性别下拉框数据
+                                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=sex";
                                             this.DoWorkAsync(100, (o) =>
                                             {
                                                 data = HttpClass.httpPost(url);
                                                 return data;
 
-                                            }, null, (data5) =>
+                                            }, null, (data4) =>
                                             {
-                                                objT = JObject.Parse(data5.ToString());
+                                                objT = JObject.Parse(data4.ToString());
                                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                                 {
-                                                    lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                                                    lueIsShow.Properties.DisplayMember = "label";
-                                                    lueIsShow.Properties.ValueMember = "value";
+                                                    lueSex.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                                    lueSex.Properties.DisplayMember = "label";
+                                                    lueSex.Properties.ValueMember = "value";
 
-                                                    //获取默认出诊时间字典配置
-                                                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
+                                                    //查询是否显示下拉框数据
+                                                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
                                                     this.DoWorkAsync(100, (o) =>
                                                     {
                                                         data = HttpClass.httpPost(url);
                                                         return data;
 
-                                                    }, null, (data6) =>
+                                                    }, null, (data5) =>
                                                     {
-                                                        cmd.HideOpaqueLayer();
-                                                        objT = JObject.Parse(data6.ToString());
+                                                        objT = JObject.Parse(data5.ToString());
                                                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                                         {
-                                                            defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
+                                                            lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                                                            lueIsShow.Properties.DisplayMember = "label";
+                                                            lueIsShow.Properties.ValueMember = "value";
+
+                                                            //获取默认出诊时间字典配置
+                                                            url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
+                                                            this.DoWorkAsync(100, (o) =>
+                                                            {
+                                                                data = HttpClass.httpPost(url);
+                                                                return data;
+
+                                                            }, null, (data6) =>
+                                                            {
+                                                                cmd.HideOpaqueLayer();
+                                                                objT = JObject.Parse(data6.ToString());
+                                                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                                                {
+                                                                    defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
+                                                                }
+                                                                else
+                                                                {
+                                                                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                                                                    return;
+                                                                }
+                                                            });
                                                         }
                                                         else
                                                         {
+                                                            cmd.HideOpaqueLayer();
                                                             MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                                                             return;
                                                         }
@@ -183,6 +206,7 @@ namespace Xr.RtManager.Pages.cms
                                     return;
                                 }
                             });
+
                         }
                         else
                         {
@@ -191,7 +215,6 @@ namespace Xr.RtManager.Pages.cms
                             return;
                         }
                     });
-
                 }
                 else
                 {
@@ -200,6 +223,9 @@ namespace Xr.RtManager.Pages.cms
                     return;
                 }
             });
+
+            
+
         }
 
         public void SearchData(int pageNo, int pageSize)
@@ -278,7 +304,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(ex.Message);
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
@@ -391,6 +417,7 @@ namespace Xr.RtManager.Pages.cms
             tableLayoutPanel4.Enabled = true;
             groupBox1.Enabled = true;
             doctorInfo = new DoctorInfoEntity();
+            cbIgnoreHoliday.CheckState = CheckState.Checked;
         }
 
 
@@ -446,7 +473,7 @@ namespace Xr.RtManager.Pages.cms
                         }
                         catch (Exception ex)
                         {
-
+                            Xr.Log4net.LogHelper.Error(ex.Message);
                         }
                     }
                     groupBox1.Enabled = true;
@@ -491,140 +518,131 @@ namespace Xr.RtManager.Pages.cms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            cmd.ShowOpaqueLayer();
-            try
+            //检验并取值
+            if (!dcDoctorInfo.Validate())
             {
-                //检验并取值
-                if (!dcDoctorInfo.Validate())
+                return;
+            }
+            dcDoctorInfo.GetValue(doctorInfo);
+
+            if (cbIgnoreHoliday.CheckState == CheckState.Checked)
+                doctorInfo.ignoreHoliday = "1";
+            else
+                doctorInfo.ignoreHoliday = "0";
+
+            if (cbIgnoreYear.CheckState == CheckState.Checked)
+                doctorInfo.ignoreYear = "1";
+            else doctorInfo.ignoreYear = "0";
+
+            if (pictureServiceFilePath == null || pictureServiceFilePath.Length == 0)
+            {
+                dcDoctorInfo.ShowError(pbPicture, "请先上传文件");
+                return;
+            }
+            doctorInfo.pictureUrl = pictureServiceFilePath;
+
+            List<WorkingDayEntity> workingDayList = new List<WorkingDayEntity>();
+            //获取排班信息
+            int days = tabControl1.Controls.Count; //排班天数
+            if (days > 0)
+            {
+                for (int i = 0; i < days; i++)
                 {
-                    return;
-                }
-                dcDoctorInfo.GetValue(doctorInfo);
-
-                if (cbIgnoreHoliday.CheckState == CheckState.Checked)
-                    doctorInfo.ignoreHoliday = "1";
-                else
-                    doctorInfo.ignoreHoliday = "0";
-
-                if (cbIgnoreYear.CheckState == CheckState.Checked)
-                    doctorInfo.ignoreYear = "1";
-                else doctorInfo.ignoreYear = "0";
-
-                if (pictureServiceFilePath == null || pictureServiceFilePath.Length == 0)
-                {
-                    dcDoctorInfo.ShowError(pbPicture, "请先上传文件");
-                    return;
-                }
-                doctorInfo.pictureUrl = pictureServiceFilePath;
-
-                List<WorkingDayEntity> workingDayList = new List<WorkingDayEntity>();
-                //获取排班信息
-                int days = tabControl1.Controls.Count; //排班天数
-                if (days > 0)
-                {
-                    for (int i = 0; i < days; i++)
+                    String week = "";
+                    if (i == 0)
+                        week = "一";
+                    else if(i == 1)
+                        week = "二";
+                    else if (i == 2)
+                        week = "三";
+                    else if (i == 3)
+                        week = "四";
+                    else if (i == 4)
+                        week = "五";
+                    else if (i == 5)
+                        week = "六";
+                    else if (i == 6)
+                        week = "日";
+                    TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
+                    for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
                     {
-                        String week = "";
-                        if (i == 0)
-                            week = "一";
-                        else if(i == 1)
-                            week = "二";
-                        else if (i == 2)
-                            week = "三";
-                        else if (i == 3)
-                            week = "四";
-                        else if (i == 4)
-                            week = "五";
-                        else if (i == 5)
-                            week = "六";
-                        else if (i == 6)
-                            week = "日";
-                        TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
-                        for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
+                        TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
+                        if (tlp.Enabled)
                         {
-                            TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
-                            if (tlp.Enabled)
+                            CheckBox cbIsUse = (CheckBox)tlp.GetControlFromPosition(0, 1);
+                            CheckBox cbAuto = (CheckBox)tlp.GetControlFromPosition(0, 2);
+                            for (int r = 1; r < tlp.RowCount; r++)//行
                             {
-                                CheckBox cbIsUse = (CheckBox)tlp.GetControlFromPosition(0, 1);
-                                CheckBox cbAuto = (CheckBox)tlp.GetControlFromPosition(0, 2);
-                                for (int r = 1; r < tlp.RowCount; r++)//行
-                                {
-                                    WorkingDayEntity wordingDay = new WorkingDayEntity();
-                                    wordingDay.week = week; //周几
-                                    wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上 3：全天
-                                    if (cbIsUse.CheckState == CheckState.Checked)
-                                        wordingDay.isUse = "0";
-                                    else
-                                        wordingDay.isUse = "1";
-                                    if (cbAuto.CheckState == CheckState.Checked)
-                                        wordingDay.autoSchedule = "0";
-                                    else
-                                        wordingDay.autoSchedule = "1";
+                                WorkingDayEntity wordingDay = new WorkingDayEntity();
+                                wordingDay.week = week; //周几
+                                wordingDay.period = period.ToString(); //0：上午，1：下午，2：晚上 3：全天
+                                if (cbIsUse.CheckState == CheckState.Checked)
+                                    wordingDay.isUse = "0";
+                                else
+                                    wordingDay.isUse = "1";
+                                if (cbAuto.CheckState == CheckState.Checked)
+                                    wordingDay.autoSchedule = "0";
+                                else
+                                    wordingDay.autoSchedule = "1";
 
-                                    for (int c = 1; c < tlp.ColumnCount; c++)//列
-                                    {
-                                        TextEdit te = (TextEdit)tlp.GetControlFromPosition(c, r);
-                                        if (c == 1)
-                                            wordingDay.beginTime = te.Text;
-                                        else if (c == 2)
-                                            wordingDay.endTime = te.Text;
-                                        else if (c == 3)
-                                            wordingDay.numSource = te.Text;
-                                        else if (c == 4)
-                                            wordingDay.numOpen = te.Text;
-                                        else if (c == 5)
-                                            wordingDay.numClinic = te.Text;
-                                        else if (c == 6)
-                                            wordingDay.numYj = te.Text;
-                                    }
-                                    workingDayList.Add(wordingDay);
+                                for (int c = 1; c < tlp.ColumnCount; c++)//列
+                                {
+                                    TextEdit te = (TextEdit)tlp.GetControlFromPosition(c, r);
+                                    if (c == 1)
+                                        wordingDay.beginTime = te.Text;
+                                    else if (c == 2)
+                                        wordingDay.endTime = te.Text;
+                                    else if (c == 3)
+                                        wordingDay.numSite = te.Text;
+                                    else if (c == 4)
+                                        wordingDay.numOpen = te.Text;
+                                    else if (c == 5)
+                                        wordingDay.numClinic = te.Text;
+                                    else if (c == 6)
+                                        wordingDay.numYj = te.Text;
                                 }
+                                workingDayList.Add(wordingDay);
                             }
                         }
                     }
                 }
-                String workStr = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
-
-                String param =  PackReflectionEntity<DoctorInfoEntity>.GetEntityToRequestParameters(doctorInfo, true);
-                param += "&workStr=" + workStr;
-                //请求接口
-                String url = AppContext.AppConfig.serverUrl + "cms/doctor/save?";
-                this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
-                {
-                    String data = HttpClass.httpPost(url, param);
-                    return data;
-
-                }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
-                {
-                    JObject objT = JObject.Parse(data.ToString());
-                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                    {
-                        groupBox1.Enabled = false;
-                        //清除医生数据
-                        dcDoctorInfo.ClearValue();
-                        pbPicture.Image = null;
-                        pbPicture.Refresh();
-                        pictureServiceFilePath = null;
-                        //清除排班数据
-                        dcDefaultVisit.ClearValue();
-                        tableLayoutPanel4.Enabled = false;
-                        pbDispose();
-                        pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
-                        MessageBoxUtils.Hint("保存成功！");
-                    }
-                    else
-                    {
-                        cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    }
-                });
             }
-            catch (Exception ex)
+            String workStr = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
+
+            String param =  PackReflectionEntity<DoctorInfoEntity>.GetEntityToRequestParameters(doctorInfo, true);
+            param += "&workStr=" + workStr;
+            //请求接口
+            String url = AppContext.AppConfig.serverUrl + "cms/doctor/save?";
+            cmd.ShowOpaqueLayer();
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                cmd.HideOpaqueLayer();
-                LogClass.WriteLog(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
+                String data = HttpClass.httpPost(url, param);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    groupBox1.Enabled = false;
+                    //清除医生数据
+                    dcDoctorInfo.ClearValue();
+                    pbPicture.Image = null;
+                    pbPicture.Refresh();
+                    pictureServiceFilePath = null;
+                    //清除排班数据
+                    dcDefaultVisit.ClearValue();
+                    tableLayoutPanel4.Enabled = false;
+                    pbDispose();
+                    pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
+                    MessageBoxUtils.Hint("保存成功！");
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            });
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -681,7 +699,7 @@ namespace Xr.RtManager.Pages.cms
             }
             HospitalInfoEntity hospitalInfo = lueHospital.GetSelectedDataRow() as HospitalInfoEntity;
             //查询科室下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code + "&code=" + AppContext.AppConfig.deptCode;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -1479,7 +1497,7 @@ namespace Xr.RtManager.Pages.cms
                         {
                             start = wdwpList[r - 1].beginTime;
                             end = wdwpList[r - 1].endTime;
-                            scene = wdwpList[r - 1].numSource;
+                            scene = wdwpList[r - 1].numSite;
                             open = wdwpList[r - 1].numOpen;
                             room = wdwpList[r - 1].numClinic;
                             emergency = wdwpList[r - 1].numYj;
@@ -1659,8 +1677,7 @@ namespace Xr.RtManager.Pages.cms
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

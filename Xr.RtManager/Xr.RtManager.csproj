@@ -14,7 +14,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -66,6 +66,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +76,9 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="zxing">
+      <HintPath>ExDll\zxing.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
@@ -100,12 +104,6 @@
     <Compile Include="Dialog\WaitingForm.designer.cs">
       <DependentUpon>WaitingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,12 +115,6 @@
     </Compile>
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainFormTwo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainFormTwo.designer.cs">
-      <DependentUpon>MainFormTwo.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\cms\Article.cs" />
     <Compile Include="Module\cms\ArticleInfoEntity.cs" />
@@ -148,7 +140,9 @@
     <Compile Include="Module\System\MenuEntity.cs" />
     <Compile Include="Module\System\UserEntity.cs" />
     <Compile Include="Module\System\SessionInfo.cs" />
+    <Compile Include="Module\triage\AnsynEntity.cs" />
     <Compile Include="Module\triage\DoctorSittingInfoEntity.cs" />
+    <Compile Include="Module\triage\SocialCard.cs" />
     <Compile Include="Pages\booking\AppointmentQueryForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -269,6 +263,12 @@
     <Compile Include="Pages\System\LogForm.Designer.cs">
       <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\System\LogMsgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\System\LogMsgForm.Designer.cs">
+      <DependentUpon>LogMsgForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\System\MenuForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -353,6 +353,12 @@
     <Compile Include="Pages\triage\DoctorSittingSettingForm.Designer.cs">
       <DependentUpon>DoctorSittingSettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\triage\SignInForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\triage\SignInForm.Designer.cs">
+      <DependentUpon>SignInForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\triage\SpotBookingForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -371,21 +377,30 @@
     <Compile Include="Pages\triage\WaitingTreatmentForm.Designer.cs">
       <DependentUpon>WaitingTreatmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\triage\SignInForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\triage\SignInForm.Designer.cs">
-      <DependentUpon>SignInForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ChartToolSocre.cs" />
+    <Compile Include="Utils\HardwareInitialClass.cs" />
     <Compile Include="Utils\IgnoreParam.cs" />
+    <Compile Include="Utils\JLIdCardInfoClass.cs" />
+    <Compile Include="Utils\JLIDCardInfoUtil.cs" />
     <Compile Include="Utils\ObjectPoint.cs" />
     <Compile Include="Utils\BackgroundWorkerUtil.cs" />
     <Compile Include="Utils\DictUtils.cs" />
     <Compile Include="Utils\ModelHandler.cs" />
     <Compile Include="Utils\PackReflectionEntity.cs" />
+    <Compile Include="Utils\Print\Order.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\Print\PrintNote.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\Print\PrintOrder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\Print\PrintRow.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Utils\Utils.cs" />
     <EmbeddedResource Include="Control\RoomPanelButton.resx">
       <DependentUpon>RoomPanelButton.cs</DependentUpon>
@@ -399,17 +414,11 @@
     <EmbeddedResource Include="Dialog\WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainFormTwo.resx">
-      <DependentUpon>MainFormTwo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\booking\AppointmentQueryForm.resx">
       <DependentUpon>AppointmentQueryForm.cs</DependentUpon>
@@ -471,6 +480,9 @@
     <EmbeddedResource Include="Pages\System\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\System\LogMsgForm.resx">
+      <DependentUpon>LogMsgForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\System\MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -513,6 +525,9 @@
     <EmbeddedResource Include="Pages\triage\DoctorSittingSettingForm.resx">
       <DependentUpon>DoctorSittingSettingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\triage\SignInForm.resx">
+      <DependentUpon>SignInForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\triage\SpotBookingForm.resx">
       <DependentUpon>SpotBookingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -521,9 +536,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\triage\WaitingTreatmentForm.resx">
       <DependentUpon>WaitingTreatmentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\triage\SignInForm.resx">
-      <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -536,6 +548,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="license.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="POS.INI">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -545,6 +563,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="sand.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Sdtapi.lib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -552,12 +576,40 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BACRW.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="des.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dewlt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ExDll\CSkin.dll" />
     <Content Include="ExDll\Newtonsoft.Json.dll" />
     <Content Include="Image\bg.png" />
+    <Content Include="JpgDll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LibSand.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SavePhoto.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sdtapi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sdtapi.h">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WltRS.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Image\bg1.png" />
     <Content Include="Image\bg2.png" />
     <Content Include="Image\loading.gif" />
+    <Content Include="Image\welcom.jpg" />
     <Content Include="Image\图片1.png" />
     <None Include="Resources\bg.png" />
   </ItemGroup>

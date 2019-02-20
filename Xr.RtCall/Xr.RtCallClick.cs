@@ -35,10 +35,11 @@ namespace Xr.RtCall
                   ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             #endregion 
-            GetDoctorAndClinc();
-            this.Size = new Size(615,78);
+            HelperClass.Code = "00068";
+            this.Size = new Size(619,78);
             pCurrentWin = this;
             _context = SynchronizationContext.Current;
+            GetDoctorAndClinc();//获取科室
         }
         #region 帮助事件
         #region 键盘按Esc关闭窗体
@@ -70,7 +71,7 @@ namespace Xr.RtCall
                 switch (keyData)
                 {
                     case Keys.Escape:
-                        if (MessageBox.Show("真的要退出程序吗？", "退出程序", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        if (  MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
                         {
                             this.Close();
                         }
@@ -88,7 +89,7 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("真的要退出程序吗？", "退出程序", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
             {
                 this.Close();
             }
@@ -122,7 +123,7 @@ namespace Xr.RtCall
             {
                 this.panel_MainFrm.Visible = true;
                 panel_MainFrm.Controls.Clear();
-                this.Size = new Size(615, 500);
+                this.Size = new Size(619, 530);
                 skinbutBig.Text = "收缩";
                 RtCallPeationFrm rtcpf = new RtCallPeationFrm();
                 rtcpf.Dock = DockStyle.Fill;
@@ -130,7 +131,7 @@ namespace Xr.RtCall
             }
             else
             {
-                this.Size = new Size(615, 78);
+                this.Size = new Size(619, 78);
                 skinbutBig.Text = "展开";
             }
 
@@ -164,32 +165,44 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void skinButNext_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> prament = new Dictionary<string, string>();
-            prament.Add("hospitalId", HelperClass.hospitalId);
-            prament.Add("deptId", HelperClass.deptId);
-            prament.Add("doctorId", "1");
-            prament.Add("triageId", "7");
-            RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/callNextPerson", prament, Method.POST, result =>
+            try
             {
-                if (result.ResponseStatus == ResponseStatus.Completed)
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("hospitalId", HelperClass.hospitalId);
+                prament.Add("deptId", HelperClass.deptId);
+                prament.Add("doctorId", "1");
+                prament.Add("triageId", "7");
+                RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/callNextPerson", prament, Method.POST, result =>
                 {
-                    if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (result.ResponseStatus == ResponseStatus.Completed)
                     {
-                        JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
-                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        if (result.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            _context.Send((s) => HelperClass.triageId = objT["triageId"].ToString(), null);
-                            _context.Send((s) => label1.Text = objT["smallCellShow"].ToString(), null);
-                            _context.Send((s) => CallNextPatient(), null);
-                        }
-                        else
-                        {
-                           _context.Send((s) =>  MessageBox.Show(objT["message"].ToString()),null);
+                            Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
+                            JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                            {
+                                _context.Send((s) => HelperClass.triageId = objT["triageId"].ToString(), null);
+                                _context.Send((s) => label1.Text = objT["smallCellShow"].ToString(), null);
+                                _context.Send((s) => CallNextPatient(), null);
+                            }
+                            else
+                            {
+                                _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1), null);
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("呼叫下一位错误信息："+ex.Message);
+            }
         }
+        /// <summary>
+        /// 弹出窗口
+        /// </summary>
         public void CallNextPatient()
         {
             RtCallMessageFrm rcf = new RtCallMessageFrm();
@@ -201,6 +214,43 @@ namespace Xr.RtCall
             //int x = SystemInformation.PrimaryMonitorSize.Width - this.Width;
             //f.Location = new Point(x, 0);
             f.Show();
+        }
+        #endregion 
+        #region  完成就诊
+        /// <summary>
+        /// 完成就诊
+        /// </summary>
+        /// <param name="triageId">患者记录主键</param>
+        public void CompletionOfTreatment(string triageId)
+        {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("triageId", triageId);
+                RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/completeTriage", prament, Method.POST, result =>
+                {
+                    if (result.ResponseStatus == ResponseStatus.Completed)
+                    {
+                        if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
+                            JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                            {
+                                //_context.Send((s) => CallNextPatient(), null);
+                            }
+                            else
+                            {
+                                _context.Send((s) => Xr.Common.MessageBoxUtils.Hint(objT["message"].ToString()), null);
+                            }
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("完成就诊错误信息：" + ex.Message);
+            }
         }
         #endregion 
         #region 窗体Load事件
@@ -312,7 +362,7 @@ namespace Xr.RtCall
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("id", "1");//医生坐诊记录主键
+                prament.Add("id", HelperClass.doctorId);//医生坐诊记录主键
                 int isStop = 0;
                 if (skinbutLook.Text == "临时停诊")
                 {
@@ -327,12 +377,12 @@ namespace Xr.RtCall
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>("api/sch/clinicCall/openStop", prament, Method.POST,
                result =>
                {
-                   LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                    switch (result.ResponseStatus)
                    {
                        case ResponseStatus.Completed:
                            if (result.StatusCode == System.Net.HttpStatusCode.OK)
                            {
+                               Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                {
@@ -353,7 +403,7 @@ namespace Xr.RtCall
                                }
                                else
                                {
-                                   MessageBox.Show(objT["message"].ToString());
+                                  _context.Send((s) => MessageBoxUtils.Hint(objT["message"].ToString()),null);
                                }
                            }
                            break;
@@ -362,12 +412,14 @@ namespace Xr.RtCall
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("设置临时停诊和开诊错误信息："+ex.Message);
+                Log4net.LogHelper.Error("设置临时停诊和开诊错误信息："+ex.Message);
             }
         }
         #endregion 
         #region 获取医院和科室主键
-        HelperClass hc = new HelperClass();
+        /// <summary>
+        /// 获取科室主键
+        /// </summary>
         public void GetDoctorAndClinc()
         {
             try
@@ -379,18 +431,54 @@ namespace Xr.RtCall
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     HelperClass.list = objT["result"].ToObject<List<HelperClassDoctor>>();
-                    //hc.deptId = string.Join(",", from w in hc.list where w.code == AppContext.AppConfig.deptCode select w.id);
-                    //hc.hospitalId = string.Join(",", from ws in hc.list where ws.code == AppContext.AppConfig.hospitalCode select ws.hospitalId);
                 }
-                //else
-                //{
-                //    MessageBox.Show(objT["message"].ToString());
-                //    return;
-                //}
+                // 查询医生下拉框数据
+                String urls = AppContext.AppConfig.serverUrl + "/api/cms/doctor/findAll?hospital.id=" + HelperClass.hospitalId + "&dept.id=" + HelperClass.deptId;
+                String datas = HttpClass.httpPost(urls);
+                JObject objTs = JObject.Parse(datas);
+                if (string.Compare(objTs["state"].ToString(), "true", true) == 0)
+                {
+                    HelperClass.doctorlist = objTs["result"].ToObject<List<HelperClassDoctorID>>();
+                    HelperClass.doctorId = string.Join(",", from d in HelperClass.doctorlist where d.code == HelperClass.Code select d.id);
+                }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("叫号获取科室和医院主键错误信息："+ex.Message);
+               Log4net.LogHelper.Error("叫号获取科室主键错误信息："+ex.Message);
+            }
+        }
+        /// <summary>
+        /// 获取当前科室医生
+        /// </summary>
+        /// <param name="dept"></param>
+        //public void SelectDoctor()
+        //{
+        //    try
+        //    {
+        //        // 查询医生下拉框数据
+        //        String url = AppContext.AppConfig.serverUrl + "/api/cms/doctor/findAll?hospital.id=" + HelperClass.hospitalId + "&dept.id=" + HelperClass.deptId;
+        //        String data = HttpClass.httpPost(url);
+        //        JObject objT = JObject.Parse(data);
+        //        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+        //        {
+        //            HelperClass.doctorlist = objT["result"].ToObject<List<HelperClassDoctorID>>();
+        //            HelperClass.doctorId = string.Join(",", from d in HelperClass.doctorlist where d.code == HelperClass.Code select d.id);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log4net.LogHelper.Error("叫号获取当前科室医生错误信息：" + ex.Message);
+        //    }
+        //}
+        #endregion 
+        #region 解决绘制控件时的闪烁问题
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // Turn on WS_EX_COMPOSITED 
+                return cp;
             }
         }
         #endregion 

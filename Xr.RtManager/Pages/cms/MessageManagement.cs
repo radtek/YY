@@ -57,7 +57,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取消息内容模版列表错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("获取消息内容模版列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -83,7 +84,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("查询消息模板详情错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("查询消息模板详情错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -109,7 +111,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取指定医院下消息模板列表错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("获取指定医院下消息模板列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -128,7 +131,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("消息模板列表新增错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("消息模板列表新增错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -151,7 +154,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("消息模板列表修改错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("消息模板列表修改错误信息：" + ex.Message);
             }
         }
         /// <summary>
@@ -211,7 +214,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("消息模板列表删除错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("消息模板列表删除错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -249,7 +253,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("消息模板列表保存错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("消息模板列表保存错误信息：" + ex.Message);
             }
         }
 #endregion 
@@ -279,7 +284,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取消息内容模板类型错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("获取消息内容模板类型错误信息：" + ex.Message);
             }
         }
         #endregion 

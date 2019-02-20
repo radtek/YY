@@ -16,6 +16,7 @@ namespace Xr.RtManager.Pages.cms
     public partial class ClinicSettingForm : UserControl
     {
         Xr.Common.Controls.OpaqueCommand cmd;
+        
         public ClinicSettingForm()
         {
             InitializeComponent();
@@ -24,25 +25,64 @@ namespace Xr.RtManager.Pages.cms
             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
             cmd.HideOpaqueLayer();
             #region 科室列表
-            List<Xr.Common.Controls.Item> itemList = new List<Xr.Common.Controls.Item>();
-            foreach (DeptEntity dept in AppContext.Session.deptList)
-            {
-                Xr.Common.Controls.Item item = new Xr.Common.Controls.Item();
-                item.name = dept.name;
-                item.value = dept.id;
-                item.tag = dept.hospitalId;
-                item.parentId = dept.parentId;
-                itemList.Add(item);
-            }
-            this.menuControl1.setDataSource(itemList);
-            menuControl1.EditValue(AppContext.Session.deptId);
-            treeWKe.Properties.DataSource = AppContext.Session.deptList;
-            treeWKe.Properties.TreeList.KeyFieldName = "id";
-            treeWKe.Properties.TreeList.ParentFieldName = "parentId";
-            treeWKe.Properties.DisplayMember = "name";
-            treeWKe.Properties.ValueMember = "id";
+            GetKeShiList();
+            //List<Xr.Common.Controls.Item> itemList = new List<Xr.Common.Controls.Item>();
+            //foreach (DeptEntity dept in AppContext.Session.deptList)
+            //{
+            //    Xr.Common.Controls.Item item = new Xr.Common.Controls.Item();
+            //    item.name = dept.name;
+            //    item.value = dept.id;
+            //    item.tag = dept.hospitalId;
+            //    item.parentId = dept.parentId;
+            //    itemList.Add(item);
+            //}
+            //this.menuControl1.setDataSource(itemList);
+            //menuControl1.EditValue(AppContext.Session.deptId);
+            //treeWKe.Properties.DataSource = AppContext.Session.deptList;
+            //treeWKe.Properties.TreeList.KeyFieldName = "id";
+            //treeWKe.Properties.TreeList.ParentFieldName = "parentId";
+            //treeWKe.Properties.DisplayMember = "name";
+            //treeWKe.Properties.ValueMember = "id";
             #endregion 
-        } 
+        }
+        #region 查询科室列表
+        public void GetKeShiList()
+        {
+            try
+            {
+                String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+                String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+                  String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                  List<DeptEntity> list=objT["result"].ToObject<List<DeptEntity>>();
+                  List<Xr.Common.Controls.Item> itemList = new List<Xr.Common.Controls.Item>();
+                  foreach (DeptEntity dept in list)
+                  {
+                      Xr.Common.Controls.Item item = new Xr.Common.Controls.Item();
+                      item.name = dept.name;
+                      item.value = dept.id;
+                      item.tag = dept.hospitalId;
+                      item.parentId = dept.parentId;
+                      itemList.Add(item);
+                  }
+                  this.menuControl1.setDataSource(itemList);
+                  menuControl1.EditValue(AppContext.Session.deptId);
+                  treeWKe.Properties.DataSource = itemList;
+                  treeWKe.Properties.TreeList.KeyFieldName = "value";
+                  treeWKe.Properties.TreeList.ParentFieldName = "parentId";
+                  treeWKe.Properties.DisplayMember = "name";
+                  treeWKe.Properties.ValueMember = "value";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("诊室设置下查询科室列表信息错误："+ex.Message);
+            }
+        }
+        #endregion 
         #region 测试
         public List<ClinicInfoEntity> Date = new List<ClinicInfoEntity>();
         #endregion 
@@ -74,15 +114,19 @@ namespace Xr.RtManager.Pages.cms
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
+                    cmd.HideOpaqueLayer();
                 }
                 else
                 {
+                    cmd.HideOpaqueLayer();
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("查询科室列表错误信息：" + ex.Message);
+                cmd.HideOpaqueLayer();
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("查询科室列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -91,9 +135,9 @@ namespace Xr.RtManager.Pages.cms
         /// 查询诊室信息详情
         /// </summary>
         /// <param name="code"></param>
-        public void SelectInforList()
+        public void SelectInforList(string deptId)
         {
-            SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
+            SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, deptId);
         }
         #endregion 
         #region 获取指定医院科室下诊室列表
@@ -132,7 +176,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取指定医院科室下诊室列表错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("获取指定医院科室下诊室列表错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -148,10 +192,21 @@ namespace Xr.RtManager.Pages.cms
             {
                 groupBox3.Enabled = true;
                 dcClinc.ClearValue();
+               // radioGroup2.SelectedIndex = 0;
+                var selectedRow =new ClinicInfoEntity();
+                selectedRow.deptId = deptId;
+                selectedRow.isUse="0";
+                dcClinc.SetValue(selectedRow);
+
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("诊室新增错误信息：" + ex.Message);
+                //radioGroup2.SelectedIndex = 0;
+                var selectedRow = new ClinicInfoEntity();
+                selectedRow.deptId = deptId;
+                selectedRow.isUse = "0";
+                dcClinc.SetValue(selectedRow);
+                Log4net.LogHelper.Error("诊室新增错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -174,7 +229,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("诊室修改错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("诊室修改错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -214,23 +269,36 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("诊室删除错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("诊室删除错误信息：" + ex.Message);
             }
         }
         #endregion
         #region 编号或者编码查询诊室信息或者查询所有信息
         private void butSelect_Click(object sender, EventArgs e)
         {
+            cmd.ShowOpaqueLayer(255, true);
             this.groupBox3.Enabled = false;
-            SelectInforList();
+            SelectInforList(deptId);
         }
         #endregion
         #region 科室列表点击事件 
+        string deptId = "";
         private void menuControl1_MenuItemClick(object sender, EventArgs e)
         {
-            Label label = (Label)sender;
+            cmd.ShowOpaqueLayer(255, true);
+            Label label = null;
+            if (typeof(Label).IsInstanceOfType(sender))
+            {
+                label = (Label)sender;
+            }
+            else
+            {
+                Xr.Common.Controls.PanelEx panelEx = (Xr.Common.Controls.PanelEx)sender;
+                label = (Label)panelEx.Controls[0];
+            }
             string hospitalId = label.Tag.ToString();
-            string deptId = label.Name;
+            deptId = label.Name;
             SearchData(1, pageControl1.PageSize, hospitalId, deptId);
         }
         #endregion 
@@ -267,7 +335,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("诊室保存错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("诊室保存错误信息：" + ex.Message);
             }
         }
         #endregion 

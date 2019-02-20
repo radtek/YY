@@ -108,7 +108,7 @@ namespace Xr.RtManager.Pages.cms
 
         public void SearchData(int pageNo, int pageSize)
         {
-            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=";
+            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String url = AppContext.AppConfig.serverUrl + "cms/dept/list?"+param;
             this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
@@ -164,7 +164,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(ex.Message);
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
@@ -234,7 +234,7 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(ex.Message);
+                Xr.Log4net.LogHelper.Error(ex.Message);
                 MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
@@ -336,6 +336,8 @@ namespace Xr.RtManager.Pages.cms
                     if (deptInfo.parent != null)
                         deptInfo.parentId = deptInfo.parent.id;
                     dcDeptInfo.SetValue(deptInfo);
+                    if (deptInfo.parent == null) //没有父级元素的时候，默认选中"无"选项
+                        treeParentId.EditValue = "0";
                     //显示图片
                     logoServiceFilePath = deptInfo.logoUrl;
                     pictureServiceFilePath = deptInfo.pictureUrl;
@@ -350,7 +352,7 @@ namespace Xr.RtManager.Pages.cms
                         }
                         catch (Exception ex)
                         {
-
+                            Xr.Log4net.LogHelper.Error(ex.Message);
                         }
                     }
                     if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
@@ -363,7 +365,7 @@ namespace Xr.RtManager.Pages.cms
                         }
                         catch (Exception ex)
                         {
-                            LogClass.WriteLog(ex.Message);
+                            Xr.Log4net.LogHelper.Error(ex.Message);
                         }
                     }
                     groupBox1.Enabled = true;
@@ -486,7 +488,7 @@ namespace Xr.RtManager.Pages.cms
             }
             HospitalInfoEntity hospitalInfo = lueHospital.GetSelectedDataRow() as HospitalInfoEntity;
             //查询上级科室下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code + "&code=" + AppContext.AppConfig.deptCode;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -545,8 +547,7 @@ namespace Xr.RtManager.Pages.cms
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    LogClass.WriteLog(ex.Message);
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    throw new Exception(ex.InnerException.Message);
                 }
             };
 

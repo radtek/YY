@@ -20,36 +20,32 @@ namespace Xr.RtScreen.RtUserContronl
     ]
     public class ScrollingText : System.Windows.Forms.Control
     {
-        private Timer timer;							// Timer for text animation.
-        private string text = "Text";					// Scrolling text
-        private float staticTextPos = 0;				// The running x pos of the text
-        private float yPos = 0;							// The running y pos of the text
-        private ScrollDirection scrollDirection = ScrollDirection.RightToLeft;				// The direction the text will scroll
-        private ScrollDirection currentDirection = ScrollDirection.LeftToRight;				// Used for text bouncing 
-        private VerticleTextPosition verticleTextPosition = VerticleTextPosition.Center;	// Where will the text be vertically placed
-        private int scrollPixelDistance = 2;			// How far the text scrolls per timer event
-        private bool showBorder = true;					// Show a border or not
-        private bool stopScrollOnMouseOver = false;		// Flag to stop the scroll if the user mouses over the text
-        private bool scrollOn = true;					// Internal flag to stop / start the scrolling of the text
-        private Brush foregroundBrush = null;			// Allow the user to set a custom Brush to the text Font
-        private Brush backgroundBrush = null;			// Allow the user to set a custom Brush to the background
-        private Color borderColor = Color.Black;		// Allow the user to set the color of the control border
-        private RectangleF lastKnownRect;				// The last known position of the text
+        private Timer timer;
+        public  string text = "Text";
+        private float staticTextPos = 0;
+        private float yPos = 0;
+        private ScrollDirection scrollDirection = ScrollDirection.RightToLeft;
+        private ScrollDirection currentDirection = ScrollDirection.LeftToRight;
+        private VerticleTextPosition verticleTextPosition = VerticleTextPosition.Center;
+        private int scrollPixelDistance = 2;
+        private bool showBorder = true;
+        private bool stopScrollOnMouseOver = false;
+        private bool scrollOn = true;
+        private Brush foregroundBrush = null;
+        private Brush backgroundBrush = null;
+        private Color borderColor = Color.Black;
+        private RectangleF lastKnownRect;
 
         public ScrollingText()
         {
-            // Setup default properties for ScrollingText control
             InitializeComponent();
-
-            //This turns off internal double buffering of all custom GDI+ drawing
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.UpdateStyles();
-            //setup the timer object
             timer = new Timer();
-            timer.Interval = 10;	//default timer interval
+            timer.Interval = 10;	
             timer.Enabled = true;
             timer.Tick += new EventHandler(Tick);
         }
@@ -61,15 +57,10 @@ namespace Xr.RtScreen.RtUserContronl
         {
             if (disposing)
             {
-                //Make sure our brushes are cleaned up
                 if (foregroundBrush != null)
                     foregroundBrush.Dispose();
-
-                //Make sure our brushes are cleaned up
                 if (backgroundBrush != null)
                     backgroundBrush.Dispose();
-
-                //Make sure our timer is cleaned up
                 if (timer != null)
                     timer.Dispose();
             }
@@ -97,11 +88,7 @@ namespace Xr.RtScreen.RtUserContronl
             //lastKnownRect.X -= 10;
             //lastKnownRect.Width += 20;			
             lastKnownRect.Inflate(10, 5);
-
-            //create region based on updated rectangle
-            Region updateRegion = new Region(lastKnownRect);
-
-            //repaint the control			
+            Region updateRegion = new Region(lastKnownRect);	
             Invalidate(updateRegion);
             Update();
         }
@@ -302,7 +289,6 @@ namespace Xr.RtScreen.RtUserContronl
                 return text;
             }
         }
-
         [
         Browsable(true),
         CategoryAttribute("Scrolling Text"),

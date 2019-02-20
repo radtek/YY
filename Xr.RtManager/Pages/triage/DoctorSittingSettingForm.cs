@@ -52,15 +52,19 @@ namespace Xr.RtManager.Pages.triage
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
+                    cmd.HideOpaqueLayer();
                 }
                 else
                 {
+                    cmd.HideOpaqueLayer();
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("医生坐诊分页查询列表错误信息：" + ex.Message);
+                cmd.HideOpaqueLayer();
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("医生坐诊分页查询列表错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -89,7 +93,7 @@ namespace Xr.RtManager.Pages.triage
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
-                listoffice.Add(new TreeList { id = "", parentId = "", name = "全部科室" });
+                listoffice.Add(new TreeList { id = "", parentId = "", name = "请选择" });
                 treeListLookUpEdit1.Properties.DataSource = listoffice;
                 treeListLookUpEdit1.Properties.TreeList.KeyFieldName = "id";
                 treeListLookUpEdit1.Properties.TreeList.ParentFieldName = "parentId";
@@ -100,10 +104,12 @@ namespace Xr.RtManager.Pages.triage
                 treeListLookUpEdit2.Properties.TreeList.ParentFieldName = "parentId";
                 treeListLookUpEdit2.Properties.DisplayMember = "name";
                 treeListLookUpEdit2.Properties.ValueMember = "id";
+                treeListLookUpEdit2.EditValue = AppContext.Session.deptId;
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取科室错误信息："+ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("获取科室错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -124,7 +130,7 @@ namespace Xr.RtManager.Pages.triage
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     doctorInfoEntity = objT["result"].ToObject<List<HospitalInfoEntity>>();
-                    doctorInfoEntity.Insert(0, new HospitalInfoEntity { id = "", name = "选择" });
+                    doctorInfoEntity.Insert(0, new HospitalInfoEntity { id = "", name = "请选择" });
                     switch (Doc)
                     {
                         case 0:
@@ -155,7 +161,8 @@ namespace Xr.RtManager.Pages.triage
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取科室下面的医生错误信息："+ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+               Log4net.LogHelper.Error("获取科室下面的医生错误信息："+ex.Message);
             }
         }
        
@@ -170,11 +177,11 @@ namespace Xr.RtManager.Pages.triage
         {
             Doc = 2;
             SelectDoctor(treeListLookUpEdit2.EditValue.ToString());
-          //  this.gridView1.SetRowCellValue(0, gridView1.Columns["deptName"], treeListLookUpEdit2.Text.Trim());
+           //this.gridView1.SetRowCellValue(0, gridView1.Columns["deptName"], treeListLookUpEdit2.Text.Trim());
         }
         private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
-           // this.gridView1.SetRowCellValue(0, gridView1.Columns["doctorName"], lookUpEdit1.Text.Trim());
+           //this.gridView1.SetRowCellValue(0, gridView1.Columns["doctorName"], lookUpEdit1.Text.Trim());
         }
         #endregion
         #region 设置显示格式
@@ -225,6 +232,7 @@ namespace Xr.RtManager.Pages.triage
         /// <param name="e"></param>
         private void buttonControl1_Click(object sender, EventArgs e)
         {
+            cmd.ShowOpaqueLayer(225, true);
             DoctorSittingSelect(1, pageControl1.PageSize, this.beginDate.Text.Trim(), this.endDate.Text.Trim());
         }
         #endregion 
@@ -259,7 +267,8 @@ namespace Xr.RtManager.Pages.triage
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取诊室列表错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("获取诊室列表错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -340,8 +349,8 @@ namespace Xr.RtManager.Pages.triage
                     this.gcScheduled.DataSource = null;
                     dateEdit4.Text = "";
                     dateEdit3.Text = "";
-                    lookUpEdit1.Text = "";
-                    treeListLookUpEdit2.Text = "";
+                    lookUpEdit1.EditValue = "";
+                    treeListLookUpEdit2.EditValue = "";
                 }
                 else
                 {
@@ -350,7 +359,8 @@ namespace Xr.RtManager.Pages.triage
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("保存医生坐诊设置错误信息：" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("保存医生坐诊设置错误信息：" + ex.Message);
             }
         }
         #endregion 
@@ -387,7 +397,8 @@ namespace Xr.RtManager.Pages.triage
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("检查当前科室+日期+诊室是否已经存在错误信息:" + ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Log4net.LogHelper.Error("检查当前科室+日期+诊室是否已经存在错误信息:" + ex.Message);
             }
             return Check;
         }
@@ -482,16 +493,20 @@ namespace Xr.RtManager.Pages.triage
                         dataSource.Add(scheduled);
                     }
                     gcScheduled.DataSource = dataSource;
+                    cmd.HideOpaqueLayer();
                 }
                 else
                 {
+                    cmd.HideOpaqueLayer();
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     this.gcScheduled.DataSource = null;
                 }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog(" 获取指定医院、科室、医生、日期范围内医生每个日期的排班时段及坐诊诊室错误信息："+ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                cmd.HideOpaqueLayer();
+                Log4net.LogHelper.Error(" 获取指定医院、科室、医生、日期范围内医生每个日期的排班时段及坐诊诊室错误信息：" + ex.Message);
             }
         }
         #endregion
@@ -568,6 +583,7 @@ namespace Xr.RtManager.Pages.triage
         /// <param name="e"></param>
         private void buttonControl3_Click(object sender, EventArgs e)
         {
+            cmd.ShowOpaqueLayer(225, true);
             GetDoctorSittingClinic();
         }
         #endregion 

@@ -116,6 +116,7 @@
     <Compile Include="Models\AppContext.cs" />
     <Compile Include="Models\HelperClass.cs" />
     <Compile Include="Models\RestSharpHelper.cs" />
+    <Compile Include="Models\ScreenClass.cs" />
     <Compile Include="pages\RtDoctorSmallScreenFrm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -231,6 +232,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\man.png" />
     <Content Include="RtScreenSocket\HPSocket4C-SSL_U.dll" />
     <Content Include="RtScreenSocket\HPSocket4C_U.dll" />
     <Content Include="RtScreenSocket\HPSocketCS.dll" />

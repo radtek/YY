@@ -23,6 +23,7 @@ namespace Xr.AutoUpdate
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label2.Text = "当前版本：" + ConfigurationManager.AppSettings["version"].ToString();
             //用子线程工作
             new System.Threading.Thread(new System.Threading.ThreadStart(StartUpdate)).Start();
         }
@@ -35,11 +36,11 @@ namespace Xr.AutoUpdate
             downloader.Start();
         }
         //同步更新UI
-        void downloader_onDownLoadProgress(long total, long current, String msg)
+        void downloader_onDownLoadProgress(long total, long current, String msg, String version)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Downloader.dDownloadProgress(downloader_onDownLoadProgress), new object[] { total, current, msg });
+                this.Invoke(new Downloader.dDownloadProgress(downloader_onDownLoadProgress), new object[] { total, current, msg, version });
             }
             else
             {
@@ -50,6 +51,10 @@ namespace Xr.AutoUpdate
                 {
                     this.Close();
                 }
+                if (version != null)
+                {
+                    label3.Text = "最新版本：" + version;
+                }
             }
         }
 
@@ -59,14 +64,14 @@ namespace Xr.AutoUpdate
         public class Downloader
         {
             //委托
-            public delegate void dDownloadProgress(long total, long current, String msg);
+            public delegate void dDownloadProgress(long total, long current, String msg, String version);
             //事件
             public event dDownloadProgress onDownLoadProgress;
             //开始模拟工作
             public void Start()
             {
                 int speedOfProgress = 0; //进度
-                onDownLoadProgress(100, speedOfProgress, "开始检查版本更新");
+                onDownLoadProgress(100, speedOfProgress, "", null);
 
                 //获取和设置当前目录（即该进程从中启动的目录）的完全限定路径
                 string localPath = System.Environment.CurrentDirectory;
@@ -80,21 +85,22 @@ namespace Xr.AutoUpdate
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     List<ClientVersionEntity> cvList = objT["result"].ToObject<List<ClientVersionEntity>>();
-                    onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件");
                     //下载解压
                     if (cvList.Count > 0)
                     {
+                        string zxVersion = cvList[cvList.Count() - 1].version;
+                        onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件", zxVersion);
                         int documentProgress = 90 / cvList.Count; //每个文件所拥有的进度
                         for (int i = 0; i < cvList.Count; i++)
                         {
                             String[] strArr = cvList[i].updateFilePath.Split(new char[] { '/' });
                             String fileName = strArr[strArr.Length - 1];
                             //下载
-                            onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件，正在下载第1个文件:" + fileName);
+                            onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件，正在下载第1个文件:" + fileName, null);
                             downfile(cvList[i].updateFilePath, fileName, localPath);
                             speedOfProgress += documentProgress / 2;
                             //解压
-                            onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件，第1个文件:" + fileName + "下载成功，正在解压");
+                            onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件，第1个文件:" + fileName + "下载成功，正在解压", null);
                             ZipHelper.UnpackFileRarOrZip(localPath + "/" + fileName, localPath);
                             speedOfProgress += documentProgress / 2;
                         }
@@ -124,11 +130,13 @@ namespace Xr.AutoUpdate
                     {
                         MessageBox.Show(x.ToString());
                     }
-                    onDownLoadProgress(100, 100, "检查更新完成");
+                    onDownLoadProgress(100, 100, "检查更新完成", null);
+                    System.Environment.Exit(0);
                 }
                 else
                 {
-                    onDownLoadProgress(100, 100, objT["message"].ToString());
+                    onDownLoadProgress(100, 100, objT["message"].ToString(), null);
+                    System.Environment.Exit(0);
                 }
             }
 
@@ -158,10 +166,10 @@ namespace Xr.AutoUpdate
                     fs.Close();
                     ss.Close();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-
-                    throw;
+                    Log4net.LogHelper.Error(e.Message);
+                    MessageBox.Show(e.Message);
                 }
             }
         }
@@ -185,7 +193,7 @@ namespace Xr.AutoUpdate
                 System.Net.ServicePointManager.DefaultConnectionLimit = 20;
 
                 // 打印 请求地址及参数
-                WriteLog("请求数据：" + url);
+                Log4net.LogHelper.Info("请求数据：" + url);
 
                 request = (HttpWebRequest)WebRequest.Create(url);
                 request.Accept = "*/*";
@@ -203,12 +211,12 @@ namespace Xr.AutoUpdate
                 result = reader.ReadToEnd().Trim();
 
                 // 打印响应结果
-                WriteLog("响应结果：" + result);
+                Log4net.LogHelper.Info("响应结果：" + result);
             }
             catch (Exception e)
             {
                 result = e.Message;
-                WriteExceptionLog(e);
+                Log4net.LogHelper.Error(e.Message);
             }
             finally
             {
@@ -218,77 +226,6 @@ namespace Xr.AutoUpdate
                 if (request != null) request.Abort();
             }
             return result;
-        }
-
-        public static string path = Environment.CurrentDirectory + "\\sysLog";
-        /// <summary>
-        /// 日志
-        /// </summary>
-        /// <param name="logMsg"></param>
-        public static void WriteLog(string logMsg)
-        {
-            string fileName = "\\sys" + DateTime.Now.ToString("yyyy-MM-dd") + ".log";
-            try
-            {
-                if (!Directory.Exists(path))
-                {
-                    //不存在则创建           
-                    Directory.CreateDirectory(path);
-                }
-                string logFileName = path + fileName;//生成日志文件全名称  
-                if (!File.Exists(logFileName))
-                {
-                    //不存在则创建
-                    File.Create(logFileName).Close();
-                }
-                /*文件超过10MB则重命名,同时创建新的文件*/
-                FileInfo finfo = new FileInfo(logFileName);
-                if (finfo.Length > 1024 * 1024 * 10)
-                {
-                    string newFileName = path + "\\sys" + DateTime.Now.ToString("yyyy-MM-dd HHmmss") + ".log";
-                    File.Move(logFileName, newFileName);
-                    File.Create(logFileName).Close();//创建文件  
-                }
-
-                StreamWriter writer = File.AppendText(logFileName);//文件中添加文件流  
-                writer.WriteLine("");
-                writer.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " " + logMsg);
-                writer.Flush();
-                writer.Close();
-            }
-            catch (Exception e)
-            {
-                string path = Path.Combine("./sysLog");
-                if (!Directory.Exists(path))
-                {
-                    //不存在则创建           
-                    Directory.CreateDirectory(path);
-                }
-                string logFileName = path + fileName;//生成日志文件全名称 
-                if (!File.Exists(logFileName))
-                {
-                    //不存在则创建
-                    File.Create(logFileName).Close();
-                }
-                StreamWriter writer = File.AppendText(logFileName);
-                writer.WriteLine("");
-                writer.WriteLine(DateTime.Now.ToString("日志记录错误HH:mm:ss") + " " + e.Message + " " + logMsg);
-                writer.Flush();
-                writer.Close();
-            }
-        }
-        /// <summary>
-        /// 异常日志
-        /// </summary>
-        /// <param name="ex"></param>
-        public static void WriteExceptionLog(Exception ex)
-        {
-            StringBuilder exMsg = new StringBuilder();
-            exMsg.Append("程序异常信息：")
-                 .Append("\r\n   " + ex.StackTrace.Trim().Replace("位置", "\r\n   在 触发文件："))
-                 .Append("\r\n   在 触发方法：" + ex.TargetSite)
-                 .Append("\r\n   在 异常信息：" + ex.Message);
-            WriteLog(exMsg.ToString());
         }
     }
 }

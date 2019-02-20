@@ -14,6 +14,9 @@ namespace Xr.RtManager
         public WelcomeForm()
         {
             InitializeComponent();
+            Bitmap bm = new Bitmap(Properties.Resources.welcom); //fbImage图片路径
+            this.BackgroundImage = bm;//设置背景图片
+            this.BackgroundImageLayout = ImageLayout.Stretch;//设置背景图片自动适应
         }
     }
 }
