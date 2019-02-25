@@ -64,9 +64,9 @@ namespace Xr.RtManager.Pages.scheduling
                     dict.value = "1";
                     dict.label = "停诊";
                     dictList.Add(dict);
-                    repositoryItemLookUpEdit1.Properties.DataSource = dictList;
-                    repositoryItemLookUpEdit1.Properties.DisplayMember = "label";
-                    repositoryItemLookUpEdit1.Properties.ValueMember = "value";
+                    repositoryItemLookUpEdit1.DataSource = dictList;
+                    repositoryItemLookUpEdit1.DisplayMember = "label";
+                    repositoryItemLookUpEdit1.ValueMember = "value";
                     repositoryItemLookUpEdit1.ShowHeader = false;
                     repositoryItemLookUpEdit1.ShowFooter = false;
                     SearchData();
@@ -133,6 +133,14 @@ namespace Xr.RtManager.Pages.scheduling
                     {
                         ScheduledEntity scheduled = scheduledList[i];
                         scheduled.num = (i + 1).ToString();
+                        if (scheduled.period.Equals("0"))
+                            scheduled.am = "√";
+                        else if (scheduled.period.Equals("1"))
+                            scheduled.pm = "√";
+                        else if (scheduled.period.Equals("2"))
+                            scheduled.night = "√";
+                        else if (scheduled.period.Equals("3"))
+                            scheduled.allday = "√";
                         dataSource.Add(scheduled);
                     }
                     gcScheduled.DataSource = dataSource;

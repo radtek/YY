@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dcUser = new Xr.Common.Controls.DataController();
+            this.components = new System.ComponentModel.Container();
+            this.dcUser = new Xr.Common.Controls.DataController(this.components);
             this.treeCompany = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeListLookUpEdit1TreeList = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -64,8 +65,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnCancel = new Xr.Common.Controls.ButtonControl();
-            this.panelEx1 = new Xr.Common.Controls.PanelEx();
+            this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
             this.richEditor1 = new Xr.Common.Controls.RichEditor();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.treeCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teLoginName.Properties)).BeginInit();
@@ -431,6 +433,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 89;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnUpload
             // 
@@ -532,12 +535,21 @@
             this.richEditor1.Size = new System.Drawing.Size(591, 144);
             this.richEditor1.TabIndex = 101;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(121, 163);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(7, 14);
+            this.labelControl1.TabIndex = 102;
+            this.labelControl1.Text = "*";
+            // 
             // UserEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(781, 608);
+            this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.panelEx1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
@@ -637,5 +649,6 @@
         private Xr.Common.Controls.ButtonControl btnCancel;
         private Xr.Common.Controls.PanelEx panelEx1;
         private Xr.Common.Controls.RichEditor richEditor1;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

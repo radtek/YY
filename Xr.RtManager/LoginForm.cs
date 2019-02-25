@@ -13,6 +13,8 @@ using Newtonsoft.Json.Linq;
 using Xr.RtManager.Utils;
 using System.Drawing.Drawing2D;
 using Xr.Http;
+using System.Threading;
+using Xr.Common;
 
 namespace Xr.RtManager
 {
@@ -21,122 +23,104 @@ namespace Xr.RtManager
         public LoginForm()
         {
             InitializeComponent();
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
         }
 
-        private void LoginFrom_Load(object sender, EventArgs e)
-        {
-            //标题居中
-            //Graphics g = this.CreateGraphics();
-            //Double startingPoint = (this.Width / 2) - (g.MeasureString(this.Text.Trim(), this.Font).Width / 2);
-            //Double ws = g.MeasureString("*", this.Font).Width;
-            //String tmp = " ";
-            //Double tw = 0;
-            //while ((tw + ws) < startingPoint) { tmp += "*"; tw += ws; }
-            //tmp += "*";
-            //this.Text = tmp.Replace("*", "  ") + this.Text.Trim();
-        }
+        Xr.Common.Controls.OpaqueCommand cmd;
 
-
-
-        private void btnLogin_Click_1(object sender, EventArgs e)
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             if (tbLoginName.Text.Trim().Length == 0 && tbPassword.Text.Trim().Length == 0)
             {
                 return;
             }
+            cmd.ShowOpaqueLayer(1f);
+            String param = "username=" + tbLoginName.Text + "&password=" + tbPassword.Text;
+            String url = AppContext.AppConfig.serverUrl + "login?" + param;
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                String data = HttpClass.loginPost(url);
+                return data;
 
-            // 弹出加载提示框
-            DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
-            // 开始异步
-            BackgroundWorkerUtil.start_run(bw_DoWork, bw_RunWorkerCompleted, null, false);
-           /* Xr.Common.Controls.OpaqueCommand cmd= new Xr.Common.Controls.OpaqueCommand(this);
-            cmd.IsShowCancelBtn = true;
-            cmd.ShowOpaqueLayer(225, true);
-            cmd.IsShowCancelBtn = false;
-            */
-        }
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
-        {
-            try
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
             {
-                String param = "username=" + tbLoginName.Text + "&password=" + tbPassword.Text;
-                String url = AppContext.AppConfig.serverUrl + "login?" + param;
-                e.Result = HttpClass.loginPost(url);
-            }
-            catch (Exception ex)
-            {
-                e.Result = ex.Message;
-            }
-        }
-        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            try
-            {
-                String data = e.Result as String;
-                JObject objT = JObject.Parse(data);
+                JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    AppContext.Session.userName = tbLoginName.Text;
-                    AppContext.Session.password = tbPassword.Text;
-                    AppContext.Session.name = objT["result"]["name"].ToString();
-                    AppContext.Session.officeId = objT["result"]["officeId"].ToString();
-                    AppContext.Session.menuList = objT["result"]["menuList"].ToObject<List<MenuEntity>>();
-                    AppContext.Session.UserId = objT["result"]["id"].ToString();
-                    AppContext.Session.userType = objT["result"]["userType"].ToString();
-                    AppContext.Session.loginDate = objT["result"]["loginDate"].ToString();
-                    String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
-                    String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-                    data = HttpClass.httpPost(url);
-                    objT = JObject.Parse(data);
-                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    //将数据存到session
+                    AppContext.Session.userName = tbLoginName.Text; //登录名
+                    AppContext.Session.password = tbPassword.Text;  //密码
+                    AppContext.Session.name = objT["result"]["name"].ToString(); //用户姓名
+                    AppContext.Session.officeId = objT["result"]["officeId"].ToString(); //机构id
+                    AppContext.Session.menuList = objT["result"]["menuList"].ToObject<List<MenuEntity>>(); //菜单列表
+                    AppContext.Session.UserId = objT["result"]["id"].ToString(); //用户id
+                    AppContext.Session.userType = objT["result"]["userType"].ToString(); 
+                    AppContext.Session.loginDate = objT["result"]["loginDate"].ToString(); //登录时间，目前没作用
+                    //获取所有科室
+                    param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+                    url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
-                        AppContext.Session.deptList = objT["result"].ToObject<List<DeptEntity>>();
-                        if (AppContext.AppConfig.deptCode == null || AppContext.AppConfig.deptCode.Trim().Length == 0)
+                        data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
-                            if(AppContext.Session.deptList.Count>0){
-                                AppContext.Session.hospitalId = AppContext.Session.deptList[0].hospitalId;
-                                AppContext.Session.deptId = "";
-                                AppContext.Session.deptName = "全院";
-                            }
-                        }else{
-                            foreach (DeptEntity dept in AppContext.Session.deptList)
+                            AppContext.Session.deptList = objT["result"].ToObject<List<DeptEntity>>();
+                            //配置文件中的科室编码为""，默认为全院
+                            if (AppContext.AppConfig.deptCode == null || AppContext.AppConfig.deptCode.Trim().Length == 0)
                             {
-                                if (AppContext.AppConfig.deptCode.Equals(dept.code))
+                                if (AppContext.Session.deptList.Count > 0)
                                 {
-                                    AppContext.Session.hospitalId = dept.hospitalId;
-                                    AppContext.Session.deptId = dept.id;
-                                    AppContext.Session.deptName = dept.name;
-                                    break;
+                                    AppContext.Session.hospitalId = AppContext.Session.deptList[0].hospitalId;
+                                    AppContext.Session.deptId = "";
+                                    AppContext.Session.deptName = "全院";
                                 }
                             }
+                            else
+                            {
+                                foreach (DeptEntity dept in AppContext.Session.deptList)
+                                {
+                                    if (AppContext.AppConfig.deptCode.Equals(dept.code))
+                                    {
+                                        AppContext.Session.hospitalId = dept.hospitalId;
+                                        AppContext.Session.deptId = dept.id;
+                                        AppContext.Session.deptName = dept.name;
+                                        break;
+                                    }
+                                }
+                            }
+                            cmd.HideOpaqueLayer();
+                            this.DialogResult = DialogResult.OK;
                         }
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        MessageBox.Show(objT["message"].ToString());
-                    }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        }
+                    });
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
-            }
-            catch (Exception ex)
-            {
-                Xr.Log4net.LogHelper.Error(ex.Message);
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                // 关闭加载提示框
-                DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
-            }
+            });
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
+            //这是最彻底的退出方式，不管什么线程都被强制退出，把程序结束的很干净。 
+            System.Environment.Exit(0); 
         }
 
         private void skinButton2_Click(object sender, EventArgs e)
@@ -165,5 +149,59 @@ namespace Xr.RtManager
             //}
 
         }
+
+        /// <summary>
+        /// 多线程异步后台处理某些耗时的数据，不会卡死界面
+        /// </summary>
+        /// <param name="time">线程延迟多少</param>
+        /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
+        /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
+        /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        {
+            var bgWorkder = new BackgroundWorker();
+
+
+            //Form loadingForm = null;
+            //System.Windows.Forms.Control loadingPan = null;
+            bgWorkder.WorkerReportsProgress = true;
+            bgWorkder.ProgressChanged += (s, arg) =>
+            {
+                if (arg.ProgressPercentage > 1) return;
+
+            };
+
+            bgWorkder.RunWorkerCompleted += (s, arg) =>
+            {
+
+                try
+                {
+                    bgWorkder.Dispose();
+
+                    if (workCompleted != null)
+                    {
+                        workCompleted(arg.Result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cmd.HideOpaqueLayer();
+                    throw new Exception(ex.InnerException.Message);
+                }
+            };
+
+            bgWorkder.DoWork += (s, arg) =>
+            {
+                bgWorkder.ReportProgress(1);
+                var result = workFunc(arg.Argument);
+                arg.Result = result;
+                bgWorkder.ReportProgress(100);
+                Thread.Sleep(time);
+            };
+
+            bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+        
     }
 }

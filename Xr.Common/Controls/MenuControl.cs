@@ -120,6 +120,11 @@ namespace Xr.Common.Controls
             //    //排序菜单
             //    menuList = menuList.OrderBy(x => x.sort).ToList();
             //}
+            if (menuList==null)
+            {
+                panelEx1.Controls.Clear();
+                return;
+            }
             Graphics graphics = CreateGraphics();
             panelEx1.Controls.Clear();//先清空一遍 防止重复添加
             //循环添加菜单

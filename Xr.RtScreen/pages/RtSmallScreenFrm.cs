@@ -29,9 +29,20 @@ namespace Xr.RtScreen.pages
             _context = new SynchronizationContext();
             Control.CheckForIllegalCrossThreadCalls = false;
             GetSmallScreenInfo();
-            //SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
-            //speakVoiceform.Show(this);
+            DepartmentWaiting();
+            SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
+            speakVoiceform.setFormTextValue += new Xr.RtScreen.VoiceCall.SpeakVoicemainFrom.setTextValue(form2_setFormTextValue);
+            speakVoiceform.Show(this);
+            time();
         }
+        #region 消息实时传递
+        //第五步：实现事件
+        void form2_setFormTextValue(string textValue)
+        {
+            //具体实现。
+            scrollingText1.ScrollText = textValue;
+        }
+        #endregion 
         #region 画线条
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
@@ -86,7 +97,7 @@ namespace Xr.RtScreen.pages
                 prament.Add("hospitalId", HelperClass.hospitalId);
                 prament.Add("deptId", HelperClass.deptId);
                 prament.Add("clinicId", HelperClass.clincId);
-                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findRoomScreenDataOne", prament, Method.POST, result =>
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findRoomScreenDataOne, prament, Method.POST, result =>
                 {
                     switch (result.ResponseStatus)
                     {
@@ -120,6 +131,44 @@ namespace Xr.RtScreen.pages
             }
         }
         #endregion
+        #region  科室候诊说明
+        /// <summary>
+        ///  科室候诊说明
+        /// </summary>
+        public void DepartmentWaiting()
+        {
+            try
+            {
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("deptId", HelperClass.deptId);
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findWaitingDesc, prament, Method.POST, result =>
+                {
+                    switch (result.ResponseStatus)
+                    {
+                        case ResponseStatus.Completed:
+                            if (result.StatusCode == HttpStatusCode.OK)
+                            {
+                                Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
+                                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
+                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                                {
+                                    _context.Send((s) => scrollingTexts1.ScrollText = objT["result"]["waitingDesc"].ToString(), null);
+                                }
+                                else
+                                {
+                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Hint(objT["message"].ToString()), null);
+                                }
+                            }
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("大屏获取科室候诊说明错误信息：" + ex.Message);
+            }
+        }
+        #endregion 
         #region 时间指针
         public void time()
         {
@@ -135,7 +184,7 @@ namespace Xr.RtScreen.pages
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            GetSmallScreenInfo();
         }
         #endregion  
     }

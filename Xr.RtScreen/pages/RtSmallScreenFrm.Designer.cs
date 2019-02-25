@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +41,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.scrollingTexts1 = new Xr.RtScreen.RtUserContronl.ScrollingTexts();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -118,7 +117,7 @@
             this.scrollingText1.Margin = new System.Windows.Forms.Padding(1);
             this.scrollingText1.Name = "scrollingText1";
             this.scrollingText1.ScrollDirection = Xr.RtScreen.RtUserContronl.ScrollDirection.RightToLeft;
-            this.scrollingText1.ScrollText = "请【预约01号李某某】到【01室】就诊";
+            this.scrollingText1.ScrollText = "";
             this.scrollingText1.ShowBorder = true;
             this.scrollingText1.Size = new System.Drawing.Size(696, 39);
             this.scrollingText1.StopScrollOnMouseOver = false;

@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel2 = new Xr.Common.Controls.GroupBorderPanel();
             this.reservationCalendar1 = new Xr.Common.Controls.ReservationCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBorderPanel4 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.butOk = new Xr.Common.Controls.ButtonControl();
-            this.butReturn = new Xr.Common.Controls.ButtonControl();
+            this.Discharged = new DevExpress.XtraEditors.RadioGroup();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.lueIsUse = new DevExpress.XtraEditors.LookUpEdit();
@@ -51,19 +52,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBorderPanel5 = new Xr.Common.Controls.GroupBorderPanel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.menuList = new Xr.Common.Controls.MenuControl();
-            this.dcTimeNum = new Xr.Common.Controls.DataController();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.Discharged = new DevExpress.XtraEditors.RadioGroup();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.butOk = new Xr.Common.Controls.ButtonControl();
+            this.butReturn = new Xr.Common.Controls.ButtonControl();
             this.VisitCategory = new DevExpress.XtraEditors.RadioGroup();
             this.Postoperative = new DevExpress.XtraEditors.RadioGroup();
             this.AddressCategory = new DevExpress.XtraEditors.RadioGroup();
             this.Foreign = new DevExpress.XtraEditors.RadioGroup();
             this.Chronic = new DevExpress.XtraEditors.RadioGroup();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBorderPanel5 = new Xr.Common.Controls.GroupBorderPanel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.menuList = new Xr.Common.Controls.MenuControl();
+            this.dcTimeNum = new Xr.Common.Controls.DataController(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.menuDoctor = new Xr.Common.Controls.MenuControl();
+            this.groupBorderPanel1 = new Xr.Common.Controls.GroupBorderPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).BeginInit();
             this.groupBorderPanel2.SuspendLayout();
@@ -71,20 +76,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).BeginInit();
             this.groupBorderPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Discharged.Properties)).BeginInit();
             this.panel23.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueIsUse.Properties)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).BeginInit();
-            this.groupBorderPanel5.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Discharged.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddressCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Foreign.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Chronic.Properties)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).BeginInit();
+            this.groupBorderPanel5.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).BeginInit();
+            this.groupBorderPanel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel6
@@ -95,8 +104,8 @@
             this.tableLayoutPanel6.Controls.Add(this.groupBorderPanel2, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.panel1, 1, 1);
             this.tableLayoutPanel6.Controls.Add(this.panel2, 0, 1);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(106, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.Padding = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel6.RowCount = 2;
@@ -124,19 +133,20 @@
             this.groupBorderPanel2.Location = new System.Drawing.Point(5, 5);
             this.groupBorderPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBorderPanel2.Name = "groupBorderPanel2";
-            this.groupBorderPanel2.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
+            this.groupBorderPanel2.Padding = new System.Windows.Forms.Padding(3, 20, 3, 10);
             this.groupBorderPanel2.Size = new System.Drawing.Size(609, 218);
             this.groupBorderPanel2.TabIndex = 181;
             // 
             // reservationCalendar1
             // 
             this.reservationCalendar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reservationCalendar1.Location = new System.Drawing.Point(10, 20);
+            this.reservationCalendar1.Location = new System.Drawing.Point(3, 20);
             this.reservationCalendar1.Name = "reservationCalendar1";
             this.reservationCalendar1.SelectedDate = new System.DateTime(2019, 1, 16, 16, 37, 10, 14);
-            this.reservationCalendar1.Size = new System.Drawing.Size(589, 188);
+            this.reservationCalendar1.Size = new System.Drawing.Size(603, 188);
             this.reservationCalendar1.TabIndex = 0;
             this.reservationCalendar1.SelectDate += new Xr.Common.Controls.ReservationCalendar.SelectDateDelegate(this.reservationCalendar1_SelectDate);
+            this.reservationCalendar1.ChangeMonth += new Xr.Common.Controls.ReservationCalendar.ChangeMonthDelegate(this.reservationCalendar1_ChangeMonth);
             // 
             // panel1
             // 
@@ -166,13 +176,13 @@
             this.groupBorderPanel4.Location = new System.Drawing.Point(0, 0);
             this.groupBorderPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 10, 10);
             this.groupBorderPanel4.Name = "groupBorderPanel4";
-            this.groupBorderPanel4.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
+            this.groupBorderPanel4.Padding = new System.Windows.Forms.Padding(3, 20, 3, 10);
             this.groupBorderPanel4.Size = new System.Drawing.Size(411, 240);
             this.groupBorderPanel4.TabIndex = 182;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -200,7 +210,7 @@
             this.tableLayoutPanel1.Controls.Add(this.Foreign, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.Chronic, 3, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 20);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.87952F));
@@ -211,56 +221,58 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(391, 210);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(405, 210);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // panelControl1
+            // Discharged
             // 
-            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.tableLayoutPanel1.SetColumnSpan(this.panelControl1, 4);
-            this.panelControl1.Controls.Add(this.butOk);
-            this.panelControl1.Controls.Add(this.butReturn);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(3, 169);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(385, 38);
-            this.panelControl1.TabIndex = 189;
+            this.Discharged.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Discharged.EditValue = "1";
+            this.Discharged.Location = new System.Drawing.Point(73, 132);
+            this.Discharged.Name = "Discharged";
+            this.Discharged.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Discharged.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Discharged.Properties.Appearance.Options.UseBackColor = true;
+            this.Discharged.Properties.Appearance.Options.UseFont = true;
+            this.Discharged.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.Discharged.Properties.Columns = 2;
+            this.Discharged.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是")});
+            this.Discharged.Size = new System.Drawing.Size(126, 31);
+            this.Discharged.TabIndex = 182;
             // 
-            // butOk
+            // label12
             // 
-            this.butOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.butOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.butOk.HoverBackColor = System.Drawing.Color.Empty;
-            this.butOk.Location = new System.Drawing.Point(217, 5);
-            this.butOk.Margin = new System.Windows.Forms.Padding(0);
-            this.butOk.Name = "butOk";
-            this.butOk.Size = new System.Drawing.Size(75, 28);
-            this.butOk.Style = Xr.Common.Controls.ButtonStyle.Query;
-            this.butOk.TabIndex = 181;
-            this.butOk.Text = "确认预约";
-            this.butOk.Click += new System.EventHandler(this.skinButYes_Click);
+            this.label12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label12.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.Location = new System.Drawing.Point(207, 134);
+            this.label12.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 27);
+            this.label12.TabIndex = 192;
+            this.label12.Text = "慢  性 病";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // butReturn
+            // label17
             // 
-            this.butReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.butReturn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.butReturn.HoverBackColor = System.Drawing.Color.Empty;
-            this.butReturn.Location = new System.Drawing.Point(306, 5);
-            this.butReturn.Margin = new System.Windows.Forms.Padding(0);
-            this.butReturn.Name = "butReturn";
-            this.butReturn.Size = new System.Drawing.Size(75, 28);
-            this.butReturn.Style = Xr.Common.Controls.ButtonStyle.Return;
-            this.butReturn.TabIndex = 181;
-            this.butReturn.Text = "返回";
-            this.butReturn.Click += new System.EventHandler(this.butReturn_Click);
+            this.label17.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label17.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label17.Location = new System.Drawing.Point(5, 134);
+            this.label17.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 27);
+            this.label17.TabIndex = 190;
+            this.label17.Text = "出院复诊";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel23
             // 
             this.panel23.Controls.Add(this.label13);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel23.Location = new System.Drawing.Point(268, 3);
+            this.panel23.Location = new System.Drawing.Point(275, 3);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(120, 27);
+            this.panel23.Size = new System.Drawing.Size(127, 27);
             this.panel23.TabIndex = 188;
             // 
             // label13
@@ -272,16 +284,21 @@
             this.label13.Location = new System.Drawing.Point(0, 0);
             this.label13.Margin = new System.Windows.Forms.Padding(5);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(120, 27);
+            this.label13.Size = new System.Drawing.Size(127, 27);
             this.label13.TabIndex = 111;
             // 
             // lueIsUse
             // 
             this.lueIsUse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lueIsUse.Enabled = false;
             this.lueIsUse.Location = new System.Drawing.Point(73, 36);
             this.lueIsUse.Name = "lueIsUse";
+            this.lueIsUse.Properties.Appearance.BackColor = System.Drawing.Color.Gainsboro;
             this.lueIsUse.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.lueIsUse.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lueIsUse.Properties.Appearance.Options.UseBackColor = true;
             this.lueIsUse.Properties.Appearance.Options.UseFont = true;
+            this.lueIsUse.Properties.Appearance.Options.UseForeColor = true;
             this.lueIsUse.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIsUse.Properties.AppearanceDisabled.Options.UseFont = true;
             this.lueIsUse.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -293,15 +310,15 @@
             this.lueIsUse.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIsUse.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueIsUse.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lueIsUse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lueIsUse.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "卡类型")});
             this.lueIsUse.Properties.NullText = "";
-            this.lueIsUse.Size = new System.Drawing.Size(119, 26);
+            this.lueIsUse.Size = new System.Drawing.Size(126, 26);
             this.lueIsUse.TabIndex = 178;
             // 
             // label19
@@ -320,7 +337,7 @@
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Right;
             this.label15.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(200, 38);
+            this.label15.Location = new System.Drawing.Point(207, 38);
             this.label15.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(65, 22);
@@ -334,10 +351,10 @@
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(268, 36);
+            this.label14.Location = new System.Drawing.Point(275, 36);
             this.label14.Margin = new System.Windows.Forms.Padding(3);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 26);
+            this.label14.Size = new System.Drawing.Size(127, 26);
             this.label14.TabIndex = 94;
             // 
             // label8
@@ -349,14 +366,14 @@
             this.label8.Location = new System.Drawing.Point(73, 3);
             this.label8.Margin = new System.Windows.Forms.Padding(3);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(119, 27);
+            this.label8.Size = new System.Drawing.Size(126, 27);
             this.label8.TabIndex = 88;
             // 
             // label7
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Right;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(200, 5);
+            this.label7.Location = new System.Drawing.Point(207, 5);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 23);
@@ -404,7 +421,7 @@
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Right;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(200, 70);
+            this.label9.Location = new System.Drawing.Point(207, 70);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 22);
@@ -416,13 +433,143 @@
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Right;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(200, 102);
+            this.label6.Location = new System.Drawing.Point(207, 102);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 22);
             this.label6.TabIndex = 104;
             this.label6.Text = "外院转诊";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.tableLayoutPanel1.SetColumnSpan(this.panelControl1, 4);
+            this.panelControl1.Controls.Add(this.butOk);
+            this.panelControl1.Controls.Add(this.butReturn);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(3, 169);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(399, 38);
+            this.panelControl1.TabIndex = 189;
+            // 
+            // butOk
+            // 
+            this.butOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.butOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.butOk.HoverBackColor = System.Drawing.Color.Empty;
+            this.butOk.Location = new System.Drawing.Point(217, 5);
+            this.butOk.Margin = new System.Windows.Forms.Padding(0);
+            this.butOk.Name = "butOk";
+            this.butOk.Size = new System.Drawing.Size(75, 28);
+            this.butOk.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.butOk.TabIndex = 181;
+            this.butOk.Text = "确认预约";
+            this.butOk.Click += new System.EventHandler(this.skinButYes_Click);
+            // 
+            // butReturn
+            // 
+            this.butReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.butReturn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.butReturn.HoverBackColor = System.Drawing.Color.Empty;
+            this.butReturn.Location = new System.Drawing.Point(306, 5);
+            this.butReturn.Margin = new System.Windows.Forms.Padding(0);
+            this.butReturn.Name = "butReturn";
+            this.butReturn.Size = new System.Drawing.Size(75, 28);
+            this.butReturn.Style = Xr.Common.Controls.ButtonStyle.Return;
+            this.butReturn.TabIndex = 181;
+            this.butReturn.Text = "返回";
+            this.butReturn.Click += new System.EventHandler(this.butReturn_Click);
+            // 
+            // VisitCategory
+            // 
+            this.VisitCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VisitCategory.EditValue = "1";
+            this.VisitCategory.Location = new System.Drawing.Point(73, 68);
+            this.VisitCategory.Name = "VisitCategory";
+            this.VisitCategory.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.VisitCategory.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VisitCategory.Properties.Appearance.Options.UseBackColor = true;
+            this.VisitCategory.Properties.Appearance.Options.UseFont = true;
+            this.VisitCategory.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.VisitCategory.Properties.Columns = 2;
+            this.VisitCategory.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "初诊", false),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "复诊")});
+            this.VisitCategory.Size = new System.Drawing.Size(126, 26);
+            this.VisitCategory.TabIndex = 182;
+            // 
+            // Postoperative
+            // 
+            this.Postoperative.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Postoperative.EditValue = "1";
+            this.Postoperative.Location = new System.Drawing.Point(73, 100);
+            this.Postoperative.Name = "Postoperative";
+            this.Postoperative.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Postoperative.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Postoperative.Properties.Appearance.Options.UseBackColor = true;
+            this.Postoperative.Properties.Appearance.Options.UseFont = true;
+            this.Postoperative.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.Postoperative.Properties.Columns = 2;
+            this.Postoperative.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是")});
+            this.Postoperative.Size = new System.Drawing.Size(126, 26);
+            this.Postoperative.TabIndex = 182;
+            // 
+            // AddressCategory
+            // 
+            this.AddressCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddressCategory.EditValue = "0";
+            this.AddressCategory.Location = new System.Drawing.Point(275, 68);
+            this.AddressCategory.Name = "AddressCategory";
+            this.AddressCategory.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.AddressCategory.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddressCategory.Properties.Appearance.Options.UseBackColor = true;
+            this.AddressCategory.Properties.Appearance.Options.UseFont = true;
+            this.AddressCategory.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.AddressCategory.Properties.Columns = 2;
+            this.AddressCategory.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "市内"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "市外")});
+            this.AddressCategory.Size = new System.Drawing.Size(127, 26);
+            this.AddressCategory.TabIndex = 182;
+            // 
+            // Foreign
+            // 
+            this.Foreign.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Foreign.EditValue = "1";
+            this.Foreign.Location = new System.Drawing.Point(275, 100);
+            this.Foreign.Name = "Foreign";
+            this.Foreign.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Foreign.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Foreign.Properties.Appearance.Options.UseBackColor = true;
+            this.Foreign.Properties.Appearance.Options.UseFont = true;
+            this.Foreign.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.Foreign.Properties.Columns = 2;
+            this.Foreign.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是", false)});
+            this.Foreign.Size = new System.Drawing.Size(127, 26);
+            this.Foreign.TabIndex = 182;
+            // 
+            // Chronic
+            // 
+            this.Chronic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Chronic.EditValue = "1";
+            this.Chronic.Location = new System.Drawing.Point(275, 132);
+            this.Chronic.Name = "Chronic";
+            this.Chronic.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Chronic.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Chronic.Properties.Appearance.Options.UseBackColor = true;
+            this.Chronic.Properties.Appearance.Options.UseFont = true;
+            this.Chronic.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.Chronic.Properties.Columns = 2;
+            this.Chronic.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是")});
+            this.Chronic.Size = new System.Drawing.Size(127, 31);
+            this.Chronic.TabIndex = 182;
             // 
             // panel2
             // 
@@ -452,7 +599,7 @@
             this.groupBorderPanel5.Location = new System.Drawing.Point(0, 0);
             this.groupBorderPanel5.Margin = new System.Windows.Forms.Padding(0, 0, 10, 10);
             this.groupBorderPanel5.Name = "groupBorderPanel5";
-            this.groupBorderPanel5.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
+            this.groupBorderPanel5.Padding = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.groupBorderPanel5.Size = new System.Drawing.Size(194, 240);
             this.groupBorderPanel5.TabIndex = 183;
             // 
@@ -461,9 +608,9 @@
             this.panel5.AutoScroll = true;
             this.panel5.Controls.Add(this.menuList);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(10, 20);
+            this.panel5.Location = new System.Drawing.Point(3, 20);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(174, 210);
+            this.panel5.Size = new System.Drawing.Size(188, 217);
             this.panel5.TabIndex = 177;
             // 
             // menuList
@@ -474,150 +621,73 @@
             this.menuList.itemText = null;
             this.menuList.Location = new System.Drawing.Point(0, 0);
             this.menuList.Name = "menuList";
-            this.menuList.Size = new System.Drawing.Size(174, 210);
+            this.menuList.Size = new System.Drawing.Size(188, 217);
             this.menuList.TabIndex = 0;
             this.menuList.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuList_MenuItemClick);
             // 
-            // label17
+            // panel3
             // 
-            this.label17.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label17.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.Location = new System.Drawing.Point(5, 134);
-            this.label17.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 27);
-            this.label17.TabIndex = 190;
-            this.label17.Text = "出院复诊";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.panel3.Controls.Add(this.groupBorderPanel1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.panel3.Size = new System.Drawing.Size(108, 468);
+            this.panel3.TabIndex = 184;
             // 
-            // label12
+            // menuDoctor
             // 
-            this.label12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label12.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(200, 134);
-            this.label12.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 27);
-            this.label12.TabIndex = 192;
-            this.label12.Text = "慢  性 病";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.menuDoctor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuDoctor.itemName = null;
+            this.menuDoctor.itemTag = null;
+            this.menuDoctor.itemText = null;
+            this.menuDoctor.Location = new System.Drawing.Point(0, 0);
+            this.menuDoctor.Name = "menuDoctor";
+            this.menuDoctor.Size = new System.Drawing.Size(97, 436);
+            this.menuDoctor.TabIndex = 0;
+            this.menuDoctor.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuDoctor_MenuItemClick);
             // 
-            // Discharged
+            // groupBorderPanel1
             // 
-            this.Discharged.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Discharged.EditValue = "1";
-            this.Discharged.Location = new System.Drawing.Point(73, 132);
-            this.Discharged.Name = "Discharged";
-            this.Discharged.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.Discharged.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Discharged.Properties.Appearance.Options.UseBackColor = true;
-            this.Discharged.Properties.Appearance.Options.UseFont = true;
-            this.Discharged.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.Discharged.Properties.Columns = 2;
-            this.Discharged.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是")});
-            this.Discharged.Size = new System.Drawing.Size(119, 31);
-            this.Discharged.TabIndex = 182;
+            this.groupBorderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.groupBorderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.groupBorderPanel1.Controls.Add(this.panel4);
+            this.groupBorderPanel1.CornerRadius.All = 5;
+            this.groupBorderPanel1.CornerRadius.BottomLeft = 5;
+            this.groupBorderPanel1.CornerRadius.BottomRight = 5;
+            this.groupBorderPanel1.CornerRadius.TopLeft = 5;
+            this.groupBorderPanel1.CornerRadius.TopRight = 5;
+            this.groupBorderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBorderPanel1.FillColor1 = System.Drawing.Color.Transparent;
+            this.groupBorderPanel1.FillColor2 = System.Drawing.Color.Transparent;
+            this.groupBorderPanel1.GroupText = "排班医生";
+            this.groupBorderPanel1.GroupTextFont = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.groupBorderPanel1.Location = new System.Drawing.Point(5, 5);
+            this.groupBorderPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 10, 10);
+            this.groupBorderPanel1.Name = "groupBorderPanel1";
+            this.groupBorderPanel1.Padding = new System.Windows.Forms.Padding(3, 20, 3, 2);
+            this.groupBorderPanel1.Size = new System.Drawing.Size(103, 458);
+            this.groupBorderPanel1.TabIndex = 184;
             // 
-            // VisitCategory
+            // panel4
             // 
-            this.VisitCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.VisitCategory.EditValue = "1";
-            this.VisitCategory.Location = new System.Drawing.Point(73, 68);
-            this.VisitCategory.Name = "VisitCategory";
-            this.VisitCategory.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.VisitCategory.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VisitCategory.Properties.Appearance.Options.UseBackColor = true;
-            this.VisitCategory.Properties.Appearance.Options.UseFont = true;
-            this.VisitCategory.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.VisitCategory.Properties.Columns = 2;
-            this.VisitCategory.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "初诊", false),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "复诊")});
-            this.VisitCategory.Size = new System.Drawing.Size(119, 26);
-            this.VisitCategory.TabIndex = 182;
-            // 
-            // Postoperative
-            // 
-            this.Postoperative.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Postoperative.EditValue = "1";
-            this.Postoperative.Location = new System.Drawing.Point(73, 100);
-            this.Postoperative.Name = "Postoperative";
-            this.Postoperative.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.Postoperative.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Postoperative.Properties.Appearance.Options.UseBackColor = true;
-            this.Postoperative.Properties.Appearance.Options.UseFont = true;
-            this.Postoperative.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.Postoperative.Properties.Columns = 2;
-            this.Postoperative.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是")});
-            this.Postoperative.Size = new System.Drawing.Size(119, 26);
-            this.Postoperative.TabIndex = 182;
-            // 
-            // AddressCategory
-            // 
-            this.AddressCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddressCategory.EditValue = "0";
-            this.AddressCategory.Location = new System.Drawing.Point(268, 68);
-            this.AddressCategory.Name = "AddressCategory";
-            this.AddressCategory.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.AddressCategory.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddressCategory.Properties.Appearance.Options.UseBackColor = true;
-            this.AddressCategory.Properties.Appearance.Options.UseFont = true;
-            this.AddressCategory.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.AddressCategory.Properties.Columns = 2;
-            this.AddressCategory.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "市内"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "市外")});
-            this.AddressCategory.Size = new System.Drawing.Size(120, 26);
-            this.AddressCategory.TabIndex = 182;
-            // 
-            // Foreign
-            // 
-            this.Foreign.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Foreign.EditValue = "1";
-            this.Foreign.Location = new System.Drawing.Point(268, 100);
-            this.Foreign.Name = "Foreign";
-            this.Foreign.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.Foreign.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Foreign.Properties.Appearance.Options.UseBackColor = true;
-            this.Foreign.Properties.Appearance.Options.UseFont = true;
-            this.Foreign.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.Foreign.Properties.Columns = 2;
-            this.Foreign.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是", false)});
-            this.Foreign.Size = new System.Drawing.Size(120, 26);
-            this.Foreign.TabIndex = 182;
-            // 
-            // Chronic
-            // 
-            this.Chronic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Chronic.EditValue = "1";
-            this.Chronic.Location = new System.Drawing.Point(268, 132);
-            this.Chronic.Name = "Chronic";
-            this.Chronic.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.Chronic.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Chronic.Properties.Appearance.Options.UseBackColor = true;
-            this.Chronic.Properties.Appearance.Options.UseFont = true;
-            this.Chronic.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.Chronic.Properties.Columns = 2;
-            this.Chronic.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "否"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "是")});
-            this.Chronic.Size = new System.Drawing.Size(120, 31);
-            this.Chronic.TabIndex = 182;
+            this.panel4.AutoScroll = true;
+            this.panel4.Controls.Add(this.menuDoctor);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 20);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(97, 436);
+            this.panel4.TabIndex = 177;
             // 
             // RtIntersectionAppointmentFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Name = "RtIntersectionAppointmentFrm";
-            this.Size = new System.Drawing.Size(619, 468);
+            this.Size = new System.Drawing.Size(725, 468);
             this.tableLayoutPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).EndInit();
             this.groupBorderPanel2.ResumeLayout(false);
@@ -625,20 +695,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).EndInit();
             this.groupBorderPanel4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Discharged.Properties)).EndInit();
             this.panel23.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lueIsUse.Properties)).EndInit();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).EndInit();
-            this.groupBorderPanel5.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Discharged.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.VisitCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddressCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Foreign.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Chronic.Properties)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).EndInit();
+            this.groupBorderPanel5.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).EndInit();
+            this.groupBorderPanel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -680,6 +754,10 @@
         private DevExpress.XtraEditors.RadioGroup AddressCategory;
         private DevExpress.XtraEditors.RadioGroup Foreign;
         private DevExpress.XtraEditors.RadioGroup Chronic;
+        private System.Windows.Forms.Panel panel3;
+        private Common.Controls.MenuControl menuDoctor;
+        private Common.Controls.GroupBorderPanel groupBorderPanel1;
+        private System.Windows.Forms.Panel panel4;
 
 
     }

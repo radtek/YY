@@ -30,6 +30,7 @@ namespace Xr.RtCall.Model
             AppConfig.OutPutLocationY = ConfigurationManager.AppSettings["OutPutLocationY"].ToString();
             AppConfig.sleepOutPutTime = ConfigurationManager.AppSettings["sleepOutPutTime"].ToString();
             AppConfig.WhetherToAssign = ConfigurationManager.AppSettings["WhetherToAssign"].ToString();
+            AppConfig.ClincCode = ConfigurationManager.AppSettings["ClincCode"].ToString();
         }
     }
 }

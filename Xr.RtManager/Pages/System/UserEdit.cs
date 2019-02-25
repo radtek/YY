@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using Xr.Http;
 using System.Threading;
 using System.Web;
+using Xr.Common.Controls;
 
 namespace Xr.RtManager
 {
@@ -31,9 +32,12 @@ namespace Xr.RtManager
         private String oldLoginName;
         String filePath = "";
         String serviceFilePath = "";
+        String password;
 
         private void UserEdit_Load(object sender, EventArgs e)
         {
+            labelControl1.Font = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
+            labelControl1.ForeColor = Color.FromArgb(255, 0, 0);
             cmd = new Xr.Common.Controls.OpaqueCommand(this);
             cmd.ShowOpaqueLayer(0f);
             richEditor1.ImagUploadUrl = AppContext.AppConfig.serverUrl;
@@ -111,6 +115,9 @@ namespace Xr.RtManager
                         {
                             user = objT["result"].ToObject<UserEntity>();
                             dcUser.SetValue(user);
+                            //修改的时候密码显示为空
+                            password = user.password;
+                            tePassword.Text = "";
                             oldLoginName = user.loginName;
                             //设置多选框选择
                             String[] strArr = user.roleIds.Split(',');
@@ -165,7 +172,15 @@ namespace Xr.RtManager
             {
                 return;
             }
-            if (user.id == null || (user.id != null && !user.password.Equals(tePassword.Text)))
+            if (user.id == null)
+            {
+                if (tePassword.Text.Length == 0)
+                {
+                    dcUser.ShowError(tePassword, "密码不能为空");
+                    return;
+                }
+            }
+            if (user.id == null || (user.id != null && !user.password.Equals(tePassword.Text) && tePassword.Text.Length!=0))
             {
                 if (radioGroup1.EditValue.Equals("1"))
                 {
@@ -219,6 +234,10 @@ namespace Xr.RtManager
             }
 
             dcUser.GetValue(user);
+            if (user.id != null && tePassword.Text.Length == 0)
+            {
+                user.password = password;
+            }
             //编辑框的内容要进行转码，不然后台获取的数据会异常缺失数据
             user.remarks = HttpUtility.UrlEncode(richEditor1.InnerHtml, Encoding.UTF8);
             user.imgPath = serviceFilePath;
@@ -384,6 +403,12 @@ namespace Xr.RtManager
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            PictureViewer pv = new PictureViewer(pictureBox1.Image);
+            pv.Show();
         }
 
     }

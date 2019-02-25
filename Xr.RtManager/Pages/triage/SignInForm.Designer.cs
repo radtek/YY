@@ -86,7 +86,7 @@
             this.lab_state = new System.Windows.Forms.Label();
             this.lab_cardNo = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cb_urgent = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -1128,7 +1128,7 @@
             this.tableLayoutPanel4.SetColumnSpan(this.tableLayoutPanel6, 2);
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.checkBox1, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.cb_urgent, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(735, 0);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
@@ -1139,20 +1139,18 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(248, 40);
             this.tableLayoutPanel6.TabIndex = 101;
             // 
-            // checkBox1
+            // cb_urgent
             // 
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.checkBox1.ForeColor = System.Drawing.Color.Red;
-            this.checkBox1.Location = new System.Drawing.Point(35, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(66, 34);
-            this.checkBox1.TabIndex = 102;
-            this.checkBox1.Text = "急";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cb_urgent.Dock = System.Windows.Forms.DockStyle.Right;
+            this.cb_urgent.Enabled = false;
+            this.cb_urgent.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.cb_urgent.ForeColor = System.Drawing.Color.Red;
+            this.cb_urgent.Location = new System.Drawing.Point(35, 3);
+            this.cb_urgent.Name = "cb_urgent";
+            this.cb_urgent.Size = new System.Drawing.Size(66, 34);
+            this.cb_urgent.TabIndex = 102;
+            this.cb_urgent.Text = "急";
+            this.cb_urgent.UseVisualStyleBackColor = true;
             // 
             // label32
             // 
@@ -1784,7 +1782,7 @@
             this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn3.Caption = "卡号";
-            this.gridColumn3.FieldName = "cradNo";
+            this.gridColumn3.FieldName = "cardNo";
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -2687,7 +2685,7 @@
         private System.Windows.Forms.Label lab_state;
         private System.Windows.Forms.Label lab_cardNo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cb_urgent;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label36;

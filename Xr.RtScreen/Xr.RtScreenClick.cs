@@ -43,8 +43,11 @@ namespace Xr.RtScreen
                     break;
                 case "3":
                     RtDoctorSmallScreenFrm rdscf = new RtDoctorSmallScreenFrm();
-                    rdscf.Dock = DockStyle.Fill;
+                    this.panelControl1.Width = rdscf.Width;
+                    this.panelControl1.Height = rdscf.Height;
+                    //rdscf.Dock = DockStyle.Fill;
                     this.panelControl1.Controls.Add(rdscf);
+                    this.Size = new Size(this.panelControl1.Width,this.panelControl1.Height);
                     break;
             }
             #endregion 
@@ -54,21 +57,33 @@ namespace Xr.RtScreen
         {
             try
             {
-                //查询科室数据
-                String url = AppContext.AppConfig.serverUrl + "/api/cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + "";
+                //查询医院数据
+                String url = AppContext.AppConfig.serverUrl + InterfaceAddress.hostal + "?code=" + AppContext.AppConfig.hospitalCode;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    HelperClass.list = objT["result"].ToObject<List<HelperClassDoctor>>();
+                    List<HelperClassDoctor> list = new List<HelperClassDoctor>();
+                    HelperClassDoctor two = Newtonsoft.Json.JsonConvert.DeserializeObject<HelperClassDoctor>(objT["result"].ToString());
+                    list.Add(two);
+                    HelperClass.list = list;
                 }
-                //查询诊室数据
-                String urls = AppContext.AppConfig.serverUrl + "/api/cms/clinic/list?hospital.id=" + HelperClass.hospitalId + "&dept.id=" + HelperClass.deptId;
+                //查询科室数据
+                String urls = AppContext.AppConfig.serverUrl + InterfaceAddress.dept + "?hospital.code=" + AppContext.AppConfig.hospitalCode;
                 String datas = HttpClass.httpPost(urls);
                 JObject objTs = JObject.Parse(datas);
                 if (string.Compare(objTs["state"].ToString(), "true", true) == 0)
                 {
-                    HelperClass.ClincList = objTs["result"]["list"].ToObject<List<HelperClinc>>();
+                    HelperClass.DepartmentList = objTs["result"].ToObject<List<HelperClinc>>();
+                }
+                //查询诊室数据
+                String urlss = AppContext.AppConfig.serverUrl + InterfaceAddress.clin + "?code=" + AppContext.AppConfig.clinicCode;
+                String datass = HttpClass.httpPost(urlss);
+                JObject objTss = JObject.Parse(datass);
+                if (string.Compare(objTss["state"].ToString(), "true", true) == 0)
+                {
+                    //Clinc clinc = Newtonsoft.Json.JsonConvert.DeserializeObject<Clinc>(objT["result"].ToString());
+                    HelperClass.clincId = objTss["result"]["clinicId"].ToString();
                 }
             }
             catch (Exception ex)
@@ -116,45 +131,5 @@ namespace Xr.RtScreen
             return false;
         }
         #endregion
-        #region 获取诊室
-        public void GetClinc()
-        {
-            try
-            {
-                //查询科室数据
-                String url = AppContext.AppConfig.serverUrl + "/api/cms/clinic/list?hospital.id=" + HelperClass.hospitalId + "&dept.id=" + HelperClass.deptId;
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    HelperClass.ClincList = objT["result"]["list"].ToObject<List<HelperClinc>>();
-                }
-                //Dictionary<string, string> prament = new Dictionary<string, string>();
-                //prament.Add("hospital.id", HelperClass.hospitalId);
-                //prament.Add("dept.id", HelperClass.deptId);
-                //Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/cms/clinic/list", prament, RestSharp.Method.POST, result =>
-                //{
-                //    switch (result.ResponseStatus)
-                //    {
-                //        case ResponseStatus.Completed:
-                //            if (result.StatusCode == HttpStatusCode.OK)
-                //            {
-                //                Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
-                //                JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
-                //                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                //                {
-                //                    HelperClass.ClincList = objT["result"]["list"].ToObject<List<HelperClinc>>();
-                //                }
-                //            }
-                //            break;
-                //    }
-                //});
-            }
-            catch (Exception ex)
-            {
-                Log4net.LogHelper.Error("大屏获取诊室信息错误：");
-            }
-        }
-        #endregion 
     }
 }

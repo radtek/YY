@@ -200,7 +200,7 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow = gv_Holiday.GetFocusedRow() as HolidayInfoEntity;
                 if (selectedRow == null)
                     return;
-                MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
+                //MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
                 DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.OK)
                 {

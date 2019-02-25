@@ -36,8 +36,10 @@ namespace Xr.RtScreen.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("hospitalId", HelperClass.hospitalId);
+                prament.Add("deptId", HelperClass.deptId);
                 prament.Add("clinicId", HelperClass.clincId);
-                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findRoomScreenDataTwo", prament, Method.POST, result =>
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findRoomScreenDataTwo, prament, Method.POST, result =>
                 {
                     switch (result.ResponseStatus)
                     {
@@ -57,11 +59,11 @@ namespace Xr.RtScreen.pages
                                     _context.Send((s) => scrollingTexts1.ScrollText = smallscreen.doctorIntro, null);
                                     _context.Send((s) => scrollingText1.ScrollText = smallscreen.waitPatient, null);
                                     _context.Send((s) => label8.Text = smallscreen.nextPatient, null);
-                                  //  _context.Send((s) => this.pictureBox1.Image = Image.FromStream(System.Net.WebRequest.Create(smallscreen[0].doctorHeader).GetResponse().GetResponseStream()), null);
+                                    _context.Send((s) => GetImage(smallscreen.doctorHeader), null);
                                 }
                                 else
                                 {
-                                    MessageBox.Show(objT["message"].ToString());
+                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1), null);
                                 }
 
                             }
@@ -71,7 +73,18 @@ namespace Xr.RtScreen.pages
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("获取诊室小屏错误信息：" + ex.Message);
+               Log4net.LogHelper.Error("获取诊室小屏错误信息：" + ex.Message);
+            }
+        }
+        public void GetImage(dynamic value)
+        {
+            try
+            {
+                this.pictureBox1.Image = Image.FromStream(System.Net.WebRequest.Create(value).GetResponse().GetResponseStream());
+            }
+            catch
+            {
+                
             }
         }
         #endregion

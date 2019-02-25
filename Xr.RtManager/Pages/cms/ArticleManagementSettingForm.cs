@@ -227,7 +227,7 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
-                MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
+                //MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
                 DialogResult dr = MessageBoxUtils.Show("确定要删除吗?",MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.OK)
                 {
@@ -266,10 +266,16 @@ namespace Xr.RtManager.Pages.cms
             {
                 case "科室":
                     GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+                    luDoctords.EditValue = "";
                     break;
                 case "医生":
                     Doc = 1;
                     SelectDoctor(AppContext.Session.deptId);
+                    treeKeshi.EditValue = "";
+                    break;
+                case "医院":
+                    treeKeshi.Properties.DataSource = null;
+                    luDoctords.Properties.DataSource = null;
                     break;
                 case "全部":
                     listoffice = new List<TreeList>();
@@ -380,14 +386,18 @@ namespace Xr.RtManager.Pages.cms
                     case "科室":
                         if (treeKeshi.Text.Trim() == "" || treeKeshi.Text.Trim() == "全部")
                         {
+                            cmd.HideOpaqueLayer();
                             MessageBoxUtils.Show("当类型为科室时,科室不能为空", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            this.gc_Atrlices.DataSource = null;
                             return;
                         }
                         break;
                     case "医生":
                         if (luDoctords.Text.Trim() == "" || luDoctords.Text.Trim() == "全部")
                         {
+                            cmd.HideOpaqueLayer();
                             MessageBoxUtils.Show("当类型为医生时,医生不能为空", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            this.gc_Atrlices.DataSource = null;
                             return;
                         }
                         break;
@@ -402,7 +412,7 @@ namespace Xr.RtManager.Pages.cms
                     deptId = string.Join(",", from p in listoffice where p.name == treeKeshi.Text.Trim() select p.id);
                 }
                 string doctorId = "";
-                if (treeKeshi.Text.Trim() == "")
+                if (luDoctords.Text.Trim() == "")
                 {
                     doctorId = "";
                 }
@@ -496,7 +506,15 @@ namespace Xr.RtManager.Pages.cms
                 {
                     MessageBoxUtils.Hint("保存成功!");
                     groupBox3.Enabled = false;
-                    SelectInfoPage(1, pageControl1.PageSize, "");
+                    if (CickInfo.id != "")
+                    {
+                        SelectInfoPage(1, pageControl1.PageSize, CickInfo.id);
+                        gv_Article.FocusedColumn = this.gridColumn5;
+                    }
+                    else
+                    {
+                        SelectInfoPage(1, pageControl1.PageSize, "");
+                    }
                     dcArticle.ClearValue();
                 }
                 else
@@ -753,7 +771,7 @@ namespace Xr.RtManager.Pages.cms
         {
             try
             {
-                MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
+                //MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
                 DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.OK)
                 {
@@ -765,7 +783,15 @@ namespace Xr.RtManager.Pages.cms
                     {
                         MessageBoxUtils.Hint("删除成功!");
                         groupBox3.Enabled = false;
-                        SelectInfoPage(1, pageControl1.PageSize, "");
+                        if (CickInfo.id != "")
+                        {
+                            SelectInfoPage(1, pageControl1.PageSize, CickInfo.id);
+                            gv_Article.FocusedColumn = this.gridColumn5;
+                        }
+                        else
+                        {
+                            SelectInfoPage(1, pageControl1.PageSize, "");
+                        }
                         dcArticle.ClearValue();
                     }
                     else
@@ -790,7 +816,16 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="PageSize"></param>
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
-            SelectInfoPage(CurrentPage,PageSize, "");
+            if (CickInfo.id != "")
+            {
+                SelectInfoPage(CurrentPage, PageSize, CickInfo.id);
+                gv_Article.FocusedColumn = this.gridColumn5;
+            }
+            else
+            {
+                SelectInfoPage(CurrentPage, PageSize, "");
+            }
+            //SelectInfoPage(CurrentPage,PageSize, "");
         }
         #endregion 
     }

@@ -46,18 +46,9 @@ namespace Xr.RtCall.pages
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("hospitalId", HelperClass.hospitalId);//医院主键
                 prament.Add("deptId", HelperClass.deptId);//科室主键
-                prament.Add("doctorId", HelperClass.doctorId);//医生主键
-                prament.Add("workDate", "2019-01-10");//坐诊日期 DateTime.Now.ToString("yyyy-MM-dd")当前日期
-                prament.Add("period", "2");//坐诊时段
-                if (checkEdit1.Checked)
-                {
-                    prament.Add("status", "0");//候诊中
-                }
-                else
-                {
-                    prament.Add("status", "1");//完成
-                }
-               RestSharpHelper.ReturnResult<List<string>>("api/sch/registerTriage/findPatientListByDoctor", prament, Method.POST,
+                prament.Add("clinicId", HelperClass.clinicId);//HelperClass.clinicId
+                prament.Add("status", Postoperative.EditValue.ToString());
+                RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findPatientListByDoctor, prament, Method.POST,
                  result =>
                 {
                     switch (result.ResponseStatus)
@@ -70,7 +61,6 @@ namespace Xr.RtCall.pages
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
                                     List<Patient> a = objT["result"].ToObject<List<Patient>>();
-                                    a.Add(new Patient { cradNo = "02102337", cradType = "0", patientName = "1", queueNum = "1", visitTime = "1", triageTime = "1", registerWay = "1", regTime = "1", regVisitTime = "1", status = "1" });
                                     _context.Send((s) => this.gc_Pateion.DataSource = a,null);
                                     _context.Send((s) => label1.Text=a.Count+"人", null);
                                 }

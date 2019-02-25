@@ -20,10 +20,11 @@ namespace Xr.RtCall.pages
     public partial class RtCallMessageFrm : UserControl
     {
         public SynchronizationContext _context;
-        public RtCallMessageFrm()
+        public RtCallMessageFrm(string name)
         {
             InitializeComponent();
             _context = SynchronizationContext.Current;
+            label1.Text = "当前患者/"+name;
         }
         #region 完成下一位/过号下一位
         /// <summary>
@@ -40,11 +41,11 @@ namespace Xr.RtCall.pages
                 string Url = "";
                 if (type == "0")
                 {
-                    Url = "api/sch/clinicCall/inPlace";//呼号到诊接口
+                    Url = InterfaceAddress.inPlace;//呼号到诊接口
                 }
                 else
                 {
-                    Url = "api/sch/registerTriage/passNum";//过号重排接口
+                    Url = InterfaceAddress.passNum;//过号重排接口
                 }
                 RestSharpHelper.ReturnResult<List<string>>(Url, prament, Method.POST,
                  result =>
@@ -66,10 +67,11 @@ namespace Xr.RtCall.pages
                                          }
                                      }
                                      _context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
+                                     _context.Send((s) => CloseForm(), null);
                                  }
                                  else
                                  {
-                                     _context.Send((s) => MessageBox.Show(objT["message"].ToString()), null);
+                                     _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1), null);
                                  }
                              }
                              break;
@@ -80,6 +82,13 @@ namespace Xr.RtCall.pages
             {
                Log4net.LogHelper.Error("获取完成下一位/过号下一位错误信息：" + ex.Message);
             }
+        }
+        public void CloseForm()
+        {
+            Form f = this.Parent as HostingForm;
+            if (f != null)
+                f.Close();
+            this.Dispose();
         }
         #endregion
         #region 把ID传给医生工作站

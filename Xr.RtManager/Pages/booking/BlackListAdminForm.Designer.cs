@@ -102,7 +102,7 @@
             this.select.AppearanceHeader.Options.UseFont = true;
             this.select.AppearanceHeader.Options.UseTextOptions = true;
             this.select.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.select.Caption = "☑";
+            this.select.Caption = " ";
             this.select.ColumnEdit = this.repositoryItemCheckEdit1;
             this.select.FieldName = "check";
             this.select.MaxWidth = 20;

@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
+            this.Postoperative = new DevExpress.XtraEditors.RadioGroup();
             this.skinbutNew = new CCWin.SkinControl.SkinButton();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gc_Pateion = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复诊预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gv_Pateion = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -46,18 +48,22 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
+            this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).BeginInit();
+            this.borderPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Pateion)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Pateion)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -88,25 +94,67 @@
             // panelControl2
             // 
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl2.Controls.Add(this.tableLayoutPanel9);
             this.panelControl2.Controls.Add(this.label1);
-            this.panelControl2.Controls.Add(this.skinbutNew);
-            this.panelControl2.Controls.Add(this.checkEdit1);
-            this.panelControl2.Controls.Add(this.checkEdit2);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(3, 3);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(613, 45);
             this.panelControl2.TabIndex = 7;
             // 
-            // label1
+            // tableLayoutPanel9
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(543, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 21);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "3人";
+            this.tableLayoutPanel9.ColumnCount = 4;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel9.Controls.Add(this.borderPanel5, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(353, 45);
+            this.tableLayoutPanel9.TabIndex = 175;
+            // 
+            // borderPanel5
+            // 
+            this.borderPanel5.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.borderPanel5.Appearance.Options.UseBackColor = true;
+            this.borderPanel5.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel5.Controls.Add(this.Postoperative);
+            this.borderPanel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.borderPanel5.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel5.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel5.Location = new System.Drawing.Point(0, 0);
+            this.borderPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.borderPanel5.Name = "borderPanel5";
+            this.borderPanel5.Padding = new System.Windows.Forms.Padding(5);
+            this.borderPanel5.Size = new System.Drawing.Size(167, 45);
+            this.borderPanel5.TabIndex = 175;
+            // 
+            // Postoperative
+            // 
+            this.Postoperative.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Postoperative.EditValue = "1";
+            this.Postoperative.Location = new System.Drawing.Point(5, 5);
+            this.Postoperative.Margin = new System.Windows.Forms.Padding(1);
+            this.Postoperative.Name = "Postoperative";
+            this.Postoperative.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Postoperative.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Postoperative.Properties.Appearance.Options.UseBackColor = true;
+            this.Postoperative.Properties.Appearance.Options.UseFont = true;
+            this.Postoperative.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.Postoperative.Properties.Columns = 2;
+            this.Postoperative.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "候诊中"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("2", "已就诊")});
+            this.Postoperative.Size = new System.Drawing.Size(157, 35);
+            this.Postoperative.TabIndex = 183;
             // 
             // skinbutNew
             // 
@@ -120,7 +168,7 @@
             this.skinbutNew.IsDrawBorder = false;
             this.skinbutNew.IsDrawGlass = false;
             this.skinbutNew.IsEnabledDraw = false;
-            this.skinbutNew.Location = new System.Drawing.Point(185, 5);
+            this.skinbutNew.Location = new System.Drawing.Point(2, 4);
             this.skinbutNew.MouseBack = null;
             this.skinbutNew.Name = "skinbutNew";
             this.skinbutNew.NormlBack = null;
@@ -132,29 +180,18 @@
             this.skinbutNew.UseVisualStyleBackColor = false;
             this.skinbutNew.Click += new System.EventHandler(this.skinbutNew_Click);
             // 
-            // checkEdit1
+            // label1
             // 
-            this.checkEdit1.EditValue = true;
-            this.checkEdit1.Location = new System.Drawing.Point(15, 9);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkEdit1.Properties.Appearance.Options.UseFont = true;
-            this.checkEdit1.Properties.Caption = "候诊中";
-            this.checkEdit1.Properties.RadioGroupIndex = 1;
-            this.checkEdit1.Size = new System.Drawing.Size(75, 25);
-            this.checkEdit1.TabIndex = 5;
-            // 
-            // checkEdit2
-            // 
-            this.checkEdit2.Location = new System.Drawing.Point(96, 8);
-            this.checkEdit2.Name = "checkEdit2";
-            this.checkEdit2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkEdit2.Properties.Appearance.Options.UseFont = true;
-            this.checkEdit2.Properties.Caption = "完成";
-            this.checkEdit2.Properties.RadioGroupIndex = 1;
-            this.checkEdit2.Size = new System.Drawing.Size(53, 25);
-            this.checkEdit2.TabIndex = 6;
-            this.checkEdit2.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(558, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(10);
+            this.label1.Size = new System.Drawing.Size(55, 41);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "0人";
             // 
             // panelControl3
             // 
@@ -255,7 +292,7 @@
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn3.Caption = "状态";
-            this.gridColumn3.FieldName = "status";
+            this.gridColumn3.FieldName = "statusTxt";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
@@ -273,12 +310,12 @@
             this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.Caption = "卡号";
-            this.gridColumn4.FieldName = "cradNo";
+            this.gridColumn4.FieldName = "cardNo";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 126;
+            this.gridColumn4.Width = 148;
             // 
             // gridColumn5
             // 
@@ -291,12 +328,12 @@
             this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn5.Caption = "分诊时间";
-            this.gridColumn5.FieldName = "triageTime";
+            this.gridColumn5.FieldName = "workTime";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 172;
+            this.gridColumn5.Width = 174;
             // 
             // gridColumn6
             // 
@@ -309,12 +346,21 @@
             this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.Caption = "就诊时间";
-            this.gridColumn6.FieldName = "regTime";
+            this.gridColumn6.FieldName = "triageTime";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
-            this.gridColumn6.Width = 182;
+            this.gridColumn6.Width = 158;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.skinbutNew);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(183, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(104, 39);
+            this.panel1.TabIndex = 176;
             // 
             // RtCallPeationFrm
             // 
@@ -329,13 +375,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).EndInit();
+            this.borderPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_Pateion)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gv_Pateion)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -343,8 +392,6 @@
         #endregion
 
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit2;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraGrid.Views.Grid.GridView gv_Pateion;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
@@ -360,5 +407,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 复诊预约ToolStripMenuItem;
         private DevExpress.XtraGrid.GridControl gc_Pateion;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private Common.Controls.BorderPanel borderPanel5;
+        private DevExpress.XtraEditors.RadioGroup Postoperative;
+        private System.Windows.Forms.Panel panel1;
     }
 }

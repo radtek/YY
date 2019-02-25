@@ -716,6 +716,7 @@
             this.lueType.Properties.TreeList = this.treeList3;
             this.lueType.Size = new System.Drawing.Size(147, 27);
             this.lueType.TabIndex = 101;
+            this.lueType.EditValueChanged += new System.EventHandler(this.lueType_EditValueChanged);
             // 
             // treeList3
             // 

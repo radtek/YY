@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.GreenFrmPanel = new System.Windows.Forms.Panel();
             this.labBoxInfor = new DevExpress.XtraEditors.LabelControl();
@@ -36,7 +37,6 @@
             this.panel_MainFrm = new DevExpress.XtraEditors.PanelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.skinbutLook = new CCWin.SkinControl.SkinButton();
             this.skinbutBig = new CCWin.SkinControl.SkinButton();
             this.skinButNext = new CCWin.SkinControl.SkinButton();
@@ -56,7 +56,7 @@
             this.GreenFrmPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.GreenFrmPanel.Location = new System.Drawing.Point(0, 0);
             this.GreenFrmPanel.Name = "GreenFrmPanel";
-            this.GreenFrmPanel.Size = new System.Drawing.Size(619, 30);
+            this.GreenFrmPanel.Size = new System.Drawing.Size(727, 30);
             this.GreenFrmPanel.TabIndex = 9;
             this.GreenFrmPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseDown);
             this.GreenFrmPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseMove);
@@ -82,7 +82,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(589, 2);
+            this.button3.Location = new System.Drawing.Point(697, 2);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(29, 26);
@@ -101,7 +101,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 30);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(619, 530);
+            this.panelControl1.Size = new System.Drawing.Size(727, 530);
             this.panelControl1.TabIndex = 10;
             // 
             // panel_MainFrm
@@ -110,7 +110,7 @@
             this.panel_MainFrm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_MainFrm.Location = new System.Drawing.Point(0, 48);
             this.panel_MainFrm.Name = "panel_MainFrm";
-            this.panel_MainFrm.Size = new System.Drawing.Size(619, 482);
+            this.panel_MainFrm.Size = new System.Drawing.Size(727, 482);
             this.panel_MainFrm.TabIndex = 3;
             // 
             // panelControl3
@@ -119,14 +119,13 @@
             this.panelControl3.Appearance.Options.UseBackColor = true;
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl3.Controls.Add(this.label2);
-            this.panelControl3.Controls.Add(this.label1);
             this.panelControl3.Controls.Add(this.skinbutLook);
             this.panelControl3.Controls.Add(this.skinbutBig);
             this.panelControl3.Controls.Add(this.skinButNext);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(619, 48);
+            this.panelControl3.Size = new System.Drawing.Size(727, 48);
             this.panelControl3.TabIndex = 2;
             this.panelControl3.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl3_Paint);
             // 
@@ -134,21 +133,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(295, 9);
+            this.label2.Location = new System.Drawing.Point(130, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 27);
+            this.label2.Size = new System.Drawing.Size(227, 27);
             this.label2.TabIndex = 2;
-            this.label2.Text = "[请稍候...]";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(115, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 27);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "等待呼叫病人";
+            this.label2.Text = "等待呼叫病人 [请稍候...]";
             // 
             // skinbutLook
             // 
@@ -162,7 +151,7 @@
             this.skinbutLook.IsDrawBorder = false;
             this.skinbutLook.IsDrawGlass = false;
             this.skinbutLook.IsEnabledDraw = false;
-            this.skinbutLook.Location = new System.Drawing.Point(439, 8);
+            this.skinbutLook.Location = new System.Drawing.Point(549, 8);
             this.skinbutLook.MouseBack = null;
             this.skinbutLook.Name = "skinbutLook";
             this.skinbutLook.NormlBack = null;
@@ -186,7 +175,7 @@
             this.skinbutBig.IsDrawBorder = false;
             this.skinbutBig.IsDrawGlass = false;
             this.skinbutBig.IsEnabledDraw = false;
-            this.skinbutBig.Location = new System.Drawing.Point(528, 8);
+            this.skinbutBig.Location = new System.Drawing.Point(638, 8);
             this.skinbutBig.MouseBack = null;
             this.skinbutBig.Name = "skinbutBig";
             this.skinbutBig.NormlBack = null;
@@ -226,7 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 560);
+            this.ClientSize = new System.Drawing.Size(727, 560);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.GreenFrmPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -258,7 +247,6 @@
         private CCWin.SkinControl.SkinButton skinbutLook;
         public DevExpress.XtraEditors.PanelControl panel_MainFrm;
         public System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Label label1;
 
     }
 }

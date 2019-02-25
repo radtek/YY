@@ -19,13 +19,21 @@ namespace Xr.RtCall.Model
         /// </summary>
         public static String Code { set; get; }
         /// <summary>
+        /// 诊室ID
+        /// </summary>
+        public static String clinicId
+        {
+            get;
+            set;
+        }
+        /// <summary>
         /// 医院主键
         /// </summary>
         public static String hospitalId
         {
             get
             {
-                return string.Join(",", from w in list where w.code == AppContext.AppConfig.deptCode select w.hospitalId);
+                return string.Join(",", from w in list where w.code == AppContext.AppConfig.hospitalCode select w.id);
             }
         }
         /// <summary>
@@ -35,7 +43,7 @@ namespace Xr.RtCall.Model
         {
             get
             {
-                return string.Join(",", from d in list where d.code == AppContext.AppConfig.deptCode select d.id);
+                return string.Join(",", from d in Departmentlist where d.code == AppContext.AppConfig.deptCode select d.id);
             }
         }
         /// <summary>
@@ -43,32 +51,54 @@ namespace Xr.RtCall.Model
         /// </summary>
         public static String doctorId { get; set; }
         /// <summary>
-        /// 科室列表集合
+        /// 医院集合
         /// </summary>
         public static List<HelperClassDoctor> list { get; set; }
         /// <summary>
+        /// 科室列表集合
+        /// </summary>
+        public static List<HelperClassDoctorID> Departmentlist { get; set; }
+        /// <summary>
         /// 医生列表集合
         /// </summary>
-        public static List<HelperClassDoctorID> doctorlist { get; set; }
+        public static List<HelperClinc> doctorlist { get; set; }
+        /// <summary>
+        /// 诊室列表集合
+        /// </summary>
+        public static List<HelperClinc> clinclist { get; set; }
     }
     /// <summary>
-    /// 科室列表
+    /// 医院介绍
     /// </summary>
     public class HelperClassDoctor
     {
-        public String id { get; set; }
-        public String parentId { get; set; }
-        public String name { get; set; }
-        public String hospitalId { get; set; }
+        public String address { get; set; }
         public String code { get; set; }
+        public String hospitalType { get; set; }
+        public String id { get; set; }
+        public String isUse { get; set; }
+        public String logoUrl { get; set; }
+        public String name { get; set; }
+        public String pictureUrl { get; set; }
+        public String telPhoneNo { get; set; }
     }
     /// <summary>
-    /// 医生列表
+    /// 科室数据
     /// </summary>
     public class HelperClassDoctorID
     {
         public String code { get; set; }
         public String id { get; set; }
         public String name { get; set; }
+    }
+    public class HelperClinc
+    {
+        public String code { get; set; }
+        public String id { get; set; }
+        public String name { get; set; }
+    }
+    public class Clinc
+    {
+        public String clinicId { get; set; }
     }
 }

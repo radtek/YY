@@ -277,6 +277,8 @@ namespace Xr.RtManager.Pages.booking
                     {
                         List<ChartInfoEntity> chartList = objT["result"].ToObject<List<ChartInfoEntity>>();
                         chartControl1.CreateSeries("统计折线图", ViewType.Line, chartList, "registerTime", "bespeakCount");
+                        chartControl1.Series[0].LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                        chartControl1.Series[0].CrosshairLabelVisibility = DevExpress.Utils.DefaultBoolean.True;
 
                     }
                     #endregion
@@ -894,15 +896,27 @@ namespace Xr.RtManager.Pages.booking
         /// <summary>
         /// 预约人数
         /// </summary>
-        public String yyNum { get; set; }
+        public Int32 yyNum { get; set; }
         /// <summary>
-        /// 初诊人数
+        ///预约复诊人数
         /// </summary>
-        public Int32 czNum { get; set; }
+        public Int32 yyFzNum { get; set; }
         /// <summary>
-        ///复诊人数
+        /// 预约初诊人数
         /// </summary>
-        public String fzNum { get; set; }
+        public Int32 yyCzNum { get; set; }
+        /// <summary>
+        ///现场人数
+        /// </summary>
+        public Int32 xcNum { get; set; }
+        /// <summary>
+        /// 现场初诊人数
+        /// </summary>
+        public Int32 xcCzNum { get; set; }
+        /// <summary>
+        /// 现场复诊人数
+        /// </summary>
+        public Int32 xcFzNum { get; set; }
         /// <summary>
         /// 医生ID
         /// </summary>

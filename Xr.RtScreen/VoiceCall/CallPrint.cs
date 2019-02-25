@@ -16,47 +16,41 @@ namespace Xr.RtScreen.VoiceCall
             set { showNumber = value; }
         }
 
-        private string patientName;
+        //private string patientName;
 
-        public string PatientName
-        {
-            get { return patientName; }
-            set { patientName = value; }
-        }
+        //public string PatientName
+        //{
+        //    get { return patientName; }
+        //    set { patientName = value; }
+        //}
 
-        private string siteName;
+        //private string siteName;
 
-        public string SiteName
-        {
-            get { return siteName; }
-            set { siteName = value; }
-        }
+        //public string SiteName
+        //{
+        //    get { return siteName; }
+        //    set { siteName = value; }
+        //}
 
-        private string typeName;
+        //private string typeName;
 
-        public string TypeName
-        {
-            get { return TypeName; }
-            set { TypeName = value; }
-        }
-        public CallPrint(string _showNumber, string _patientName, string _siteName, string _typeName)
+        //public string TypeName
+        //{
+        //    get { return TypeName; }
+        //    set { TypeName = value; }
+        //}
+        public CallPrint(string _showNumber)
         {
             showNumber = _showNumber;
-            patientName = _patientName;
-            siteName = _siteName;
-            typeName = _typeName;
         }
         public string CallVoiceString()
         {
-            //string bofangname = GetChineseWord(patientName);
-            string yuyingname = SqlSafeString(patientName);
-            return String.Format("请{0}号、{1}、到、{2}、{3}", showNumber, GetChineseWord(yuyingname), ConvertToChinese(siteName), typeName);//请 Y001 黄佳丽 到 A001室 就诊
-
+            return String.Format("{0}", showNumber);//请 Y001 黄佳丽 到 A001室 就诊
         }
 
         public string LogString()
         {
-            return String.Format("{0}/{1}/{2}{3}", showNumber, GetChineseWord(patientName), siteName, typeName);
+            return String.Format("{0}", showNumber);
         }
     
         /// <summary>

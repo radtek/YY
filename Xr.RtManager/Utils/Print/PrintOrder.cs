@@ -47,7 +47,7 @@ namespace Xr.RtManager.Utils
             {
                 Draw(e.Graphics, printOrder);
             }
-            catch (Exception ex)
+            catch 
             {
 
             }
@@ -114,7 +114,7 @@ namespace Xr.RtManager.Utils
 
                     //printDocument.DocumentName = order.HeardInfo.OrderNum;
                 }
-                catch (Exception ex)
+                catch
                 {
 
                 }
@@ -132,7 +132,7 @@ namespace Xr.RtManager.Utils
                     printDocument.DefaultPageSettings.PaperSize = new PaperSize("Custom", 300, 350);
                     printDocument.Print();
                 }
-                catch (Exception ex)
+                catch 
                 {
                     // MessageBox.Show(ex.Message);
                 }

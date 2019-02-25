@@ -254,9 +254,9 @@ namespace Xr.RtManager.Pages.triage
                     dept.id = "";
                     dept.name = "选择诊室";
                     clinicInfo.Insert(0, dept);
-                    repositoryItemLookUpEdit3.Properties.DataSource = clinicInfo;
-                    repositoryItemLookUpEdit3.Properties.DisplayMember = "name";
-                    repositoryItemLookUpEdit3.Properties.ValueMember = "id";
+                    repositoryItemLookUpEdit3.DataSource = clinicInfo;
+                    repositoryItemLookUpEdit3.DisplayMember = "name";
+                    repositoryItemLookUpEdit3.ValueMember = "id";
                     repositoryItemLookUpEdit3.ShowHeader = false;
                     repositoryItemLookUpEdit3.ShowFooter = false;
                 }

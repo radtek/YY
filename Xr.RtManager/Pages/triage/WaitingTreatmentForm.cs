@@ -17,7 +17,7 @@ namespace Xr.RtManager.Pages.triage
 {
     public partial class WaitingTreatmentForm : UserControl
     {
-        Xr.Common.Controls.OpaqueCommand cmd;
+        //Xr.Common.Controls.OpaqueCommand cmd;
         public WaitingTreatmentForm()
         {
             InitializeComponent();

@@ -321,19 +321,19 @@ namespace Xr.RtManager.Pages.scheduling
             if (rowNum > 3) row = rowNum + 1;
             else row = 4;
             CheckState checkState = CheckState.Unchecked;
-            CheckState checkAuto = CheckState.Unchecked;
+            //CheckState checkAuto = CheckState.Unchecked;
             if (rowNum == 0)
                 checkState = CheckState.Unchecked;
             else if (wdwpList[0].isUse.Equals("0"))
                 checkState = CheckState.Checked;
             else
                 checkState = CheckState.Unchecked;
-            if (rowNum == 0)
-                checkAuto = CheckState.Unchecked;
-            else if (wdwpList[0].autoSchedule.Equals("0"))
-                checkAuto = CheckState.Checked;
-            else
-                checkAuto = CheckState.Unchecked;
+            //if (rowNum == 0)
+            //    checkAuto = CheckState.Unchecked;
+            //else if (wdwpList[0].autoSchedule.Equals("0"))
+            //    checkAuto = CheckState.Checked;
+            //else
+            //    checkAuto = CheckState.Unchecked;
             if (period.Equals("0"))
             {
                 timeInterval = "上午";

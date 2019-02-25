@@ -209,9 +209,9 @@ namespace Xr.RtManager.Pages.triage
         /// </summary>
         private String Period = "0";
         /// <summary>
-        /// 患者列表状态：0预约、1候诊中、2已就诊、null全部
+        /// 患者列表状态：0预约、1候诊中、2已就诊、3全部
         /// </summary>
-        private String PatientListStatus = "null";
+        private String PatientListStatus = "3";
         private void Asynchronous(AsyncEntity ars)
         {
             //异步操作
@@ -314,7 +314,7 @@ namespace Xr.RtManager.Pages.triage
                         result.obj = objT;
                         result.result = true;
                         //result.msg = "成功";
-                        result.msg = objT.ToString();
+                        result.msg = objT["message"].ToString();
                         e.Result = result;
                     }
                     else
@@ -382,7 +382,7 @@ namespace Xr.RtManager.Pages.triage
                         result.obj = objTs;
                         result.result = true;
                         //result.msg = "成功";
-                        result.msg = objT.ToString();
+                        result.msg = objT["message"].ToString();
                         e.Result = result;
                     }
                     else
@@ -532,7 +532,7 @@ namespace Xr.RtManager.Pages.triage
                 }
             }
                 #endregion
-            #region 签到（查询患者后若有未签到自动调用 或 预约医生停诊后签到其他医生调用）
+            #region 签到（查询患者后若有未签到自动调用 或 预约医生停诊后 签到其他医生调用）
             else if (workType == AsynchronousWorks.SingIn)
             {
                 //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
@@ -564,7 +564,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -595,6 +595,14 @@ namespace Xr.RtManager.Pages.triage
                 prament.Add("doctorId", Doctorid);
                 prament.Add("patientId", Patientid);
                 prament.Add("patientName", lab_name.Text);
+                if (cb_urgent.Checked)//是否加急：0是、1否
+                {
+                    prament.Add("urgent", "0");
+                }
+                else
+                {
+                    prament.Add("urgent", "1");
+                }
                 //prament.Add("pageSize", "10000");
 
                 Doctorid = String.Empty;//请求后置空
@@ -611,7 +619,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -651,7 +659,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -692,7 +700,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -733,7 +741,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -774,7 +782,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -815,7 +823,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -861,7 +869,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -1074,7 +1082,7 @@ namespace Xr.RtManager.Pages.triage
                             BookingStatus = objT1["result"]["status"].ToString();
                             RegisterId = objT1["result"]["registerId"].ToString();
                             TriageId = objT1["result"]["triageId"].ToString();
-
+                            cb_urgent.Enabled = false;
 
                             if (BookingStatus == "0") //未分诊，调用签到接口
                             {
@@ -1109,6 +1117,7 @@ namespace Xr.RtManager.Pages.triage
                             lueRegisterWay.Enabled = true;
                             lueCardType.Enabled = true;
                             BookingStatus = "RegisterNow";
+                            cb_urgent.Enabled = true;
                             MessageBoxUtils.Hint("请选择医生为该患者现场挂号");
                         }
 
@@ -1370,6 +1379,8 @@ namespace Xr.RtManager.Pages.triage
 
             btn_more.Enabled = false;
             btn_print.Enabled = false;
+            cb_urgent.Checked = false;
+            cb_urgent.Enabled = false;
         }
 
         private void rBtn_Click(object sender, EventArgs e)
@@ -1434,7 +1445,7 @@ namespace Xr.RtManager.Pages.triage
         {
             if (rBtn_allPatient.IsCheck)
             {
-                PatientListStatus = "null";
+                PatientListStatus = "3";
             }
             else if (rBtn_reservationPatient.IsCheck)
             {
@@ -1494,6 +1505,8 @@ namespace Xr.RtManager.Pages.triage
             }
             if (e.Button == MouseButtons.Right)//跳转候诊列表
             {
+                Doctorid = prams[1];
+                SelectDoctorid = prams[1];
                 foreach (var ctl in flowLayoutPanel2.Controls)
                 {
                     Control.RoomPanelButton btn1 = ctl as Control.RoomPanelButton;
@@ -1501,6 +1514,7 @@ namespace Xr.RtManager.Pages.triage
                     if (prams1[2] == prams[2])
                     {
                         btn1.IsCheck = true;
+                        break;
                     }
                 }
                 //更新候诊列表并跳转
@@ -1723,18 +1737,31 @@ namespace Xr.RtManager.Pages.triage
         /// 患者姓名
         /// </summary>
         public String patientName { get; set; }
+                /// <summary>
+        /// 患者性别
+        /// </summary>
+        public String sex { get; set; }
+        
         /// <summary>
         /// 卡类型
         /// </summary>
-        public String cradType { get; set; }
+        public String cardType { get; set; }
+        /// <summary>
+        /// 卡类型TxT
+        /// </summary>
+        public String cardTypeTxt { get; set; }
         /// <summary>
         /// 卡号
         /// </summary>
-        public String cradNo { get; set; }
+        public String cardNo { get; set; }
         /// <summary>
         /// 预约途径
         /// </summary>
         public String registerWay { get; set; }
+        /// <summary>
+        /// 预约途径TxT
+        /// </summary>
+        public String registerWayTxt { get; set; }
         /// <summary>
         /// 状态 
         /// </summary>
@@ -1751,16 +1778,5 @@ namespace Xr.RtManager.Pages.triage
         /// 就诊时间
         /// </summary>
         public String visit_time { get; set; }
-        /// <summary>
-        /// 预约途径TxT
-        /// </summary>
-        public String registerWayTxt { get; set; }
-
-        /// <summary>
-        /// 卡类型TxT
-        /// </summary>
-        public String cradTypeTxt { get; set; }
-
-
     }
 }

@@ -33,7 +33,7 @@ namespace Xr.RtManager.Pages.booking
             getLuesInfo();
             //配置时间格式
             setDateFomartDefult();
-            性别.Caption = "状\r\n态";
+            性别.Caption = "性\r\n别";
             状态.Caption = "状\r\n态";
             就诊类别.Caption = "就诊\r\n类别";
             术后复诊.Caption = "术后\r\n复诊";
@@ -391,6 +391,14 @@ namespace Xr.RtManager.Pages.booking
         /// 就诊类别 
         /// </summary>
         public String visitType { get; set; }
+        /// <summary>
+        /// 途径描述 
+        /// </summary>
+        public String registerWayTxt { get; set; }
+        /// <summary>
+        /// 就诊类别描述 
+        /// </summary>
+        public String visitTypeTxt { get; set; }
         /// <summary>
         /// 术后复诊
         /// </summary>

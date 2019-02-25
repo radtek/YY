@@ -37,7 +37,7 @@ namespace Xr.Common.Controls
         /// <summary>
         /// µ±Ç°¿Ø¼þ×´Ì¬
         /// </summary>
-        private EnumControlState _ControlState = EnumControlState.Default;
+        //private EnumControlState _ControlState = EnumControlState.Default;
 
         public Func<string, string> OnLocalImageUpdate;
 
@@ -214,7 +214,7 @@ namespace Xr.Common.Controls
 
         void webBrowserBody_LostFocus( object sender, EventArgs e )
         {
-            this._ControlState = EnumControlState.Default;
+            //this._ControlState = EnumControlState.Default;
             this.Invalidate();
         }
 
@@ -225,7 +225,7 @@ namespace Xr.Common.Controls
 
         void webBrowserBody_GotFocus( object sender, EventArgs e )
         {
-            this._ControlState = EnumControlState.HeightLight;
+            //this._ControlState = EnumControlState.HeightLight;
             this.Invalidate();
         }
 

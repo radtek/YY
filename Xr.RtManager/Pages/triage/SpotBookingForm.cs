@@ -24,7 +24,17 @@ namespace Xr.RtManager.Pages.triage
             InitializeComponent();
             //cmd = new Xr.Common.Controls.OpaqueCommand(this);
             //cmd.ShowOpaqueLayer(225, true);
-
+            //初始化T6 有线程延迟
+            /*openT6 = HardwareInitialClass.OpenDevice();
+            if (openT6 != 0)
+            {
+                LogClass.WriteLog("社保读卡器初始化失败:");
+            }
+            else
+            {
+                LogClass.WriteLog("社保读卡器初始化成功");
+            }
+             */
         }
         private void UserForm_Load(object sender, EventArgs e)
         {
@@ -50,7 +60,7 @@ namespace Xr.RtManager.Pages.triage
             {
                 //List<Dic> list = objT["result"].ToObject<List<Dic>>();
                 List<DictEntity> list = new List<DictEntity>();
-                list.Add(new DictEntity { label = "全部", value = "" });
+                list.Add(new DictEntity { label = "", value = " " });
                 list.AddRange(objT["result"].ToObject<List<DictEntity>>());
                 lueCardType.Properties.DataSource = list;
                 lueCardType.Properties.DisplayMember = "label";
@@ -63,7 +73,37 @@ namespace Xr.RtManager.Pages.triage
                 return;
             } 
         }
+        private void btn_zlk_Click(object sender, EventArgs e)
+        {
+            //ClearUIInfo();
+            //WorkType = AsynchronousWorks.ReadzlCard;
+            //cmd.IsShowCancelBtn = false;
+            //cmd.ShowOpaqueLayer();
+            CardType = "2";
+            CardID = "000675493100";
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+        }
+        private void btn_readSocialcard_Click(object sender, EventArgs e)
+        {
 
+            //WorkType = AsynchronousWorks.ReadSocialcard;
+            timer1.Start();
+            CardType = "3";
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadSocialcard });
+        }
+
+        private void btn_readIdcard_Click(object sender, EventArgs e)
+        {
+            //WorkType = AsynchronousWorks.ReadIdCard;
+            timer1.Start();
+            CardType = "6";
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadIdCard });
+        }
+
+        private void buttonControl1_Click(object sender, EventArgs e)
+        {
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.Reservation, Argument = new String[] { SelectSchemaid, Patientid } });
+        }
         private void reservationCalendar1_SelectDateTest(DateTime SelectedDate)
         {
             MessageBox.Show(SelectedDate.ToShortDateString() + "测试事件");
@@ -95,13 +135,17 @@ namespace Xr.RtManager.Pages.triage
         /// </summary>
         private string Patientid = String.Empty;
         /// <summary>
-        /// 午别，0 上午，1下午，2晚上，3全天
+        /// 卡类型，1患者ID，2诊疗卡，3社保卡，4健康卡，5健康虚拟卡，6身份证
+        /// </summary>
+        private String CardType = " ";
+        /// <summary>
+        /// 午别
         /// </summary>
         private String Period = "0";
         /// <summary>
         /// 患者列表状态：0预约、1候诊中、2已就诊、null全部
         /// </summary>
-        private String PatientListStatus = "null";
+        //private String PatientListStatus = "null";
         private void Asynchronous(AsyncEntity ars)
         {
             //异步操作
@@ -177,7 +221,7 @@ namespace Xr.RtManager.Pages.triage
                 //获取医生坐诊信息
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 //hospital.code=00000
-                prament.Add("hospital.code", AppContext.Session.hospitalId);
+                prament.Add("hospital.code", AppContext.AppConfig.hospitalCode);
                 //prament.Add("pageSize", "10000");
 
                 String url = String.Empty;
@@ -187,14 +231,14 @@ namespace Xr.RtManager.Pages.triage
                 }
                 url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
                 String jsonStr = HttpClass.httpPost(url);
-                jsonStr=@"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
+                //jsonStr=@"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
                 JObject objT = JObject.Parse(jsonStr);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -235,7 +279,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -271,14 +315,14 @@ namespace Xr.RtManager.Pages.triage
                 }
                 url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findByDeptAndDoctor?" + param;
                 String jsonStr = HttpClass.httpPost(url);
-                jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""workDate"":""2019-02-01""},{""workDate"":""2019-02-02""},{""workDate"":""2019-02-18""},{""workDate"":""2019-02-21""},{""workDate"":""2019-02-22""},{""workDate"":""2019-02-23""},{""workDate"":""2019-03-03""},{""workDate"":""2019-03-13""}],""state"":true}";
+                //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""workDate"":""2019-02-01""},{""workDate"":""2019-02-02""},{""workDate"":""2019-02-18""},{""workDate"":""2019-02-21""},{""workDate"":""2019-02-22""},{""workDate"":""2019-02-23""},{""workDate"":""2019-03-03""},{""workDate"":""2019-03-13""}],""state"":true}";
                 JObject objT = JObject.Parse(jsonStr);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -318,7 +362,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/findRegister?" + param;
                 String jsonStr = HttpClass.httpPost(url);
-                jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:00"",""cardNo"":"""",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 16:52:57"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""08:30"",""hospitalId"":12,""id"":4,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":1,""registerTime"":""2019-02-15 16:52:57"",""registerWay"":""2"",""scheduPlanId"":34,""sex"":""男"",""status"":""4"",""statusTxt"":""取消预约"",""tempPhone"":""17666476268"",""time"":""08:00 - 08:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-15 18:24:26"",""visitType"":""1"",""week"":""六"",""workDate"":""2019-02-16""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 16:57:24"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""09:00"",""hospitalId"":12,""id"":5,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":5,""registerTime"":""2019-02-15 16:57:24"",""registerWay"":""2"",""scheduPlanId"":123,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""08:30 - 09:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-15 19:09:01"",""visitType"":""1"",""week"":""日"",""workDate"":""2019-02-17""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""10:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 16:59:30"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""11:00"",""hospitalId"":12,""id"":6,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":21,""registerTime"":""2019-02-15 16:59:30"",""registerWay"":""2"",""scheduPlanId"":143,""sex"":""男"",""status"":""4"",""statusTxt"":""取消预约"",""tempPhone"":""17666476268"",""time"":""10:30 - 11:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 11:05:12"",""visitType"":""1"",""week"":""二"",""workDate"":""2019-02-19""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""15:00"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 17:30:22"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""15:30"",""hospitalId"":12,""id"":7,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""1"",""queueNum"":9,""registerTime"":""2019-02-15 17:30:22"",""registerWay"":""2"",""scheduPlanId"":28,""sex"":""男"",""status"":""0"",""statusTxt"":""待签到"",""tempPhone"":""17666476268"",""time"":""15:00 - 15:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-15 17:30:22"",""visitType"":""1"",""week"":""六"",""workDate"":""2019-02-16""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 17:35:44"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""09:00"",""hospitalId"":12,""id"":8,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":5,""registerTime"":""2019-02-15 17:35:44"",""registerWay"":""2"",""scheduPlanId"":91,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""08:30 - 09:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 11:05:19"",""visitType"":""1"",""week"":""一"",""workDate"":""2019-02-18""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""11:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:08:47"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""12:00"",""hospitalId"":12,""id"":9,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":29,""registerTime"":""2019-02-18 11:08:47"",""registerWay"":""2"",""scheduPlanId"":97,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""11:30 - 12:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 12:30:00"",""visitType"":""1"",""week"":""一"",""workDate"":""2019-02-18""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""17:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:09:04"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""18:00"",""hospitalId"":12,""id"":10,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""1"",""queueNum"":29,""registerTime"":""2019-02-18 11:09:04"",""registerWay"":""2"",""scheduPlanId"":105,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""17:30 - 18:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 18:30:00"",""visitType"":""1"",""week"":""一"",""workDate"":""2019-02-18""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:00"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:14:34"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""08:30"",""hospitalId"":12,""id"":11,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":1,""registerTime"":""2019-02-18 11:14:34"",""registerWay"":""2"",""scheduPlanId"":138,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""08:00 - 08:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-19 09:00:02"",""visitType"":""1"",""week"":""二"",""workDate"":""2019-02-19""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""15:00"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:15:30"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""15:30"",""hospitalId"":12,""id"":12,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""1"",""queueNum"":9,""registerTime"":""2019-02-18 11:15:30"",""registerWay"":""2"",""scheduPlanId"":132,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""15:00 - 15:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-19 16:00:00"",""visitType"":""1"",""week"":""二"",""workDate"":""2019-02-19""}],""state"":true}";
+                //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:00"",""cardNo"":"""",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 16:52:57"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""08:30"",""hospitalId"":12,""id"":4,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":1,""registerTime"":""2019-02-15 16:52:57"",""registerWay"":""2"",""scheduPlanId"":34,""sex"":""男"",""status"":""4"",""statusTxt"":""取消预约"",""tempPhone"":""17666476268"",""time"":""08:00 - 08:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-15 18:24:26"",""visitType"":""1"",""week"":""六"",""workDate"":""2019-02-16""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 16:57:24"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""09:00"",""hospitalId"":12,""id"":5,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":5,""registerTime"":""2019-02-15 16:57:24"",""registerWay"":""2"",""scheduPlanId"":123,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""08:30 - 09:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-15 19:09:01"",""visitType"":""1"",""week"":""日"",""workDate"":""2019-02-17""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""10:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 16:59:30"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""11:00"",""hospitalId"":12,""id"":6,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":21,""registerTime"":""2019-02-15 16:59:30"",""registerWay"":""2"",""scheduPlanId"":143,""sex"":""男"",""status"":""4"",""statusTxt"":""取消预约"",""tempPhone"":""17666476268"",""time"":""10:30 - 11:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 11:05:12"",""visitType"":""1"",""week"":""二"",""workDate"":""2019-02-19""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""15:00"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 17:30:22"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""15:30"",""hospitalId"":12,""id"":7,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""1"",""queueNum"":9,""registerTime"":""2019-02-15 17:30:22"",""registerWay"":""2"",""scheduPlanId"":28,""sex"":""男"",""status"":""0"",""statusTxt"":""待签到"",""tempPhone"":""17666476268"",""time"":""15:00 - 15:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-15 17:30:22"",""visitType"":""1"",""week"":""六"",""workDate"":""2019-02-16""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-15 17:35:44"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""09:00"",""hospitalId"":12,""id"":8,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":5,""registerTime"":""2019-02-15 17:35:44"",""registerWay"":""2"",""scheduPlanId"":91,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""08:30 - 09:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 11:05:19"",""visitType"":""1"",""week"":""一"",""workDate"":""2019-02-18""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""11:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:08:47"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""12:00"",""hospitalId"":12,""id"":9,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":29,""registerTime"":""2019-02-18 11:08:47"",""registerWay"":""2"",""scheduPlanId"":97,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""11:30 - 12:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 12:30:00"",""visitType"":""1"",""week"":""一"",""workDate"":""2019-02-18""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""17:30"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:09:04"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""18:00"",""hospitalId"":12,""id"":10,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""1"",""queueNum"":29,""registerTime"":""2019-02-18 11:09:04"",""registerWay"":""2"",""scheduPlanId"":105,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""17:30 - 18:00"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-18 18:30:00"",""visitType"":""1"",""week"":""一"",""workDate"":""2019-02-18""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""08:00"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:14:34"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""08:30"",""hospitalId"":12,""id"":11,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""0"",""queueNum"":1,""registerTime"":""2019-02-18 11:14:34"",""registerWay"":""2"",""scheduPlanId"":138,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""08:00 - 08:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-19 09:00:02"",""visitType"":""1"",""week"":""二"",""workDate"":""2019-02-19""},{""address"":""广西临桂县四塘乡自信村委会鸟塘里村23-1号"",""addressType"":""1"",""age"":""31"",""beginTime"":""15:00"",""cardNo"":""02096999"",""cardType"":""1 "",""createById"":1,""createByName"":""系统管理员"",""createDate"":""2019-02-18 11:15:30"",""deptId"":2,""deptName"":""急诊科1"",""doctorId"":1,""doctorName"":""张医生"",""endTime"":""15:30"",""hospitalId"":12,""id"":12,""idCard"":"""",""isCyfz"":""1"",""isMxb"":""1"",""isShfz"":""1"",""isUse"":""0"",""isYwzz"":""1"",""note"":"""",""patientId"":""000675493100"",""patientName"":""李鹏真"",""period"":""1"",""queueNum"":9,""registerTime"":""2019-02-18 11:15:30"",""registerWay"":""2"",""scheduPlanId"":132,""sex"":""男"",""status"":""7"",""statusTxt"":""爽约"",""tempPhone"":""17666476268"",""time"":""15:00 - 15:30"",""updateById"":1,""updateByName"":""系统管理员"",""updateDate"":""2019-02-19 16:00:00"",""visitType"":""1"",""week"":""二"",""workDate"":""2019-02-19""}],""state"":true}";
 
                 JObject objT = JObject.Parse(jsonStr);
                 List<JObject> objTs = new List<JObject>();
@@ -353,7 +397,7 @@ namespace Xr.RtManager.Pages.triage
                         result.obj = objTs;
                         result.result = true;
                         //result.msg = "成功";
-                        result.msg = objT.ToString();
+                        result.msg = objT["message"].ToString();
                         e.Result = result;
                     }
                     else
@@ -409,7 +453,7 @@ namespace Xr.RtManager.Pages.triage
                         result.obj = objT;
                         result.result = true;
                         //result.msg = "成功";
-                        result.msg = objT.ToString();
+                        result.msg = objT["message"].ToString();
                         e.Result = result;
                     }
                     else
@@ -574,8 +618,8 @@ namespace Xr.RtManager.Pages.triage
                 prament.Add("scheduPlanId", Pras[0]);//排班记录主键
                 prament.Add("patientId", Pras[1]);//患者主键
                 prament.Add("patientName", lab_patientName.Text.Trim());//患者姓名
-                prament.Add("cradType", lueCardType.EditValue.ToString());//卡类型
-                prament.Add("cradNo", lab_cardID.Text.Trim());//卡号
+                prament.Add("cardType", lueCardType.EditValue.ToString());//卡类型
+                prament.Add("cardNo", lab_cardID.Text.Trim());//卡号
                 prament.Add("tempPhone", lab_tel.Text.Trim());//手机号
                 prament.Add("note", lueNote.Text);//备注
                 if (rBtn_visitType0.Checked)//就诊类别：0.初诊 ，1.复诊
@@ -626,7 +670,7 @@ namespace Xr.RtManager.Pages.triage
                 {
                     prament.Add("isMxb", "0");
                 }
-                prament.Add("registerWay", "0");//预约途径：0分诊台、1诊间、2自助机、3公众号
+                //prament.Add("registerWay", "0");//预约途径：0分诊台、1诊间、2自助机、3公众号
                 String url = String.Empty;
                 if (prament.Count != 0)
                 {
@@ -635,12 +679,13 @@ namespace Xr.RtManager.Pages.triage
                 url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/confirmBooking?" + param;
                 String jsonStr = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(jsonStr);
+                //{"code":200,"message":"预约成功","result":"【王小二】在【2018-01-25】预约了【内科】【王主任】【14:52】就诊，请提前10分诊到场签到就诊。","state":true}
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -676,7 +721,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/findRegister?" + param;
                 String jsonStr = HttpClass.httpPost(url);
-                jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":"""",""regVisitTime"":""08:00 - 08:30"",""regTime"":""2019-02-15 16:52:57"",""status"":""待签到""},{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":""02096999"",""regVisitTime"":""15:00 - 15:30"",""regTime"":""2019-02-15 17:30:22"",""status"":""待签到""}],""state"":true}";
+                //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":"""",""regVisitTime"":""08:00 - 08:30"",""regTime"":""2019-02-15 16:52:57"",""status"":""待签到""},{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":""02096999"",""regVisitTime"":""15:00 - 15:30"",""regTime"":""2019-02-15 17:30:22"",""status"":""待签到""}],""state"":true}";
 
                 JObject objT = JObject.Parse(jsonStr);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -684,7 +729,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = objT;
                     result.result = true;
                     //result.msg = "成功";
-                    result.msg = objT.ToString();
+                    result.msg = objT["message"].ToString();
                     e.Result = result;
                 }
                 else
@@ -825,7 +870,6 @@ namespace Xr.RtManager.Pages.triage
                                 btn.Location = new System.Drawing.Point(0, 75);
                                 btn.Margin = new System.Windows.Forms.Padding(0);
                                 btn.Tag = item.id;
-                                btn.BackColor = Color.Transparent;
                                 btn.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
                                 btn.Size = new System.Drawing.Size(170, 25);
                                 btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deptButtonWaiting_MouseClick);
@@ -968,6 +1012,9 @@ namespace Xr.RtManager.Pages.triage
                          objT = objTs[1];
                          //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
                         List<TimeSpanEntity> list = objT["result"].ToObject<List<TimeSpanEntity>>();
+                        SelectSchemaid = String.Empty;
+                        lab_timespan.Text = String.Empty;
+                        //btn_reservation.Enabled = false;
                         if (list.Count > 0)
                         {
                             list.Reverse();
@@ -1002,7 +1049,7 @@ namespace Xr.RtManager.Pages.triage
                                 btn.BorderSides = Xr.Common.Controls.BorderSides.None;
                                 btn.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
                                 btn.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-                                btn.BtnText = item.beginTime + "-" + item.endTime + "\t<" + item.num + ">";
+                                btn.BtnText = item.beginTime + "-" + item.endTime + "    <" + item.num + ">";
                                 btn.CenterText = false;
                                 btn.Dock = System.Windows.Forms.DockStyle.Top;
                                 btn.FillColor1 = System.Drawing.Color.White;
@@ -1046,12 +1093,27 @@ namespace Xr.RtManager.Pages.triage
                         { 
                             rBtn_female.Checked = true; 
                         }
-                        lab_cardID.Text = objT["result"]["sfz"].ToString();
+                        lueCardType.EditValue=CardType;
+                        if (CardType == "2")//诊疗卡
+                        {
+                            lab_cardID.Text = objT["result"]["zlk"].ToString();
+                        }
+                        else if (CardType == "3")//社保卡
+                        {
+                            lab_cardID.Text = objT["result"]["sbk"].ToString();
+                        }
+                        else if (CardType == "6")//身份证
+                        {
+                            lab_cardID.Text = objT["result"]["sfz"].ToString();
+                        }
                         /*lab_zlk.Text = objT["result"]["zlk"].ToString();
                         lab_jkt.Text = objT["result"]["jkt"].ToString();
                         lab_sbk.Text = objT["result"]["sbk"].ToString();
                          */
-
+                        if (SelectSchemaid != String.Empty)
+                        {
+                            //btn_reservation.Enabled = true;
+                        }
                         //MessageBoxUtils.Hint("请选择医生为该患者现场挂号");
                     }
                     #endregion
@@ -1084,7 +1146,7 @@ namespace Xr.RtManager.Pages.triage
                             //workType = AsynchronousWorks.QueryID;
                             //CardID = lab_cardNo.Text;
                             NeedWaitingFrm = false;
-                            //Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { lab_cardNo.Text } });
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctorAvailableTimeSpan, Argument = new String[] { SelectDeptid, SelectDoctorid, lab_reservationDate.Text } });
 
                             //打印小票
                             /*PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["waitingNum"].ToString(), lab_zlk.Text = objT["result"]["currentTime"].ToString());
@@ -1285,6 +1347,10 @@ namespace Xr.RtManager.Pages.triage
                 String[] args = btn.Tag as String[];
                 SelectSchemaid = args[0];
                 lab_timespan.Text = args[1];
+                if (Patientid != String.Empty)
+                {
+                    //btn_reservation.Enabled = true;
+                }
             }
         }
         private void SpotBookingForm_Resize(object sender, EventArgs e)
@@ -1293,28 +1359,29 @@ namespace Xr.RtManager.Pages.triage
         }
         void ClearPatientUIInfo()
         {
-            /*
-            lab_name.Text = String.Empty;
-            //lab_name.Text = objT["result"]["age"].ToString();
-            lab_birthday.Text = String.Empty;
+            /*prament.Add("scheduPlanId", Pras[0]);//排班记录主键
+            prament.Add("patientId", Pras[1]);//患者主键
+            prament.Add("patientName", lab_patientName.Text.Trim());//患者姓名
+            prament.Add("cradType", lueCardType.EditValue.ToString());//卡类型
+            prament.Add("cradNo", lab_cardID.Text.Trim());//卡号
+            prament.Add("tempPhone", lab_tel.Text.Trim());//手机号
+             */
+            //btn_reservation.Enabled = false;
 
-            lueRegisterWay.ItemIndex = 0;
-            lueRegisterWay.Enabled = false;
+            lab_patientName.Text = String.Empty;
+            //lab_name.Text = objT["result"]["age"].ToString();
+            lab_cardID.Text = String.Empty;
+
             lueCardType.ItemIndex = 0;
             lueCardType.Enabled = false;
-            lab_cardNo.Text = String.Empty;
-            lab_state.Text = String.Empty;
+            lab_tel.Text = String.Empty;
 
-            BookingStatus = String.Empty;
-            RegisterId = String.Empty;
-            TriageId = String.Empty;
-            Doctorid = String.Empty;
             Patientid = String.Empty;
-             */
 
         }
         void ClearReservationUIInfo()
         {
+            //btn_reservation.Enabled = false;
             //SelectDeptid = String.Empty;
             SelectDoctorid = String.Empty;
             SelectSchemaid = String.Empty;
@@ -1555,6 +1622,18 @@ namespace Xr.RtManager.Pages.triage
             }
 
         }
+
+        private void reservationCalendar1_ChangeMonth(DateTime SelectedMonth)
+        {
+            //changeMonth 置空
+        }
+
+        private void buttonControl1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+
 
         /*
         #region 获取卡类型

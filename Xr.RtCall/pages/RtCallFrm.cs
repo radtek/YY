@@ -18,10 +18,10 @@ namespace Xr.RtCall.pages
             //this.panelControl2.Visible = false;
             //this.Size=new Size(615,40);
         }
-
+        string name = "";
         private void skinButNext_Click(object sender, EventArgs e)
         {
-            RtCallMessageFrm rcf = new RtCallMessageFrm();
+            RtCallMessageFrm rcf = new RtCallMessageFrm(name);
             Xr.RtCall.Form1 f = new Form1();
             f.panelControl1.Controls.Clear();
             f.Height = rcf.Height + 30;

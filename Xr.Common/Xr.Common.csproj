@@ -130,6 +130,12 @@
     <Compile Include="Controls\PanelEx.Designer.cs">
       <DependentUpon>PanelEx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PictureViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\PictureViewer.Designer.cs">
+      <DependentUpon>PictureViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RequiredMarker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     <EmbeddedResource Include="Controls\PageControl.resx">
       <DependentUpon>PageControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PictureViewer.resx">
+      <DependentUpon>PictureViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ReservationCalendar.resx">
       <DependentUpon>ReservationCalendar.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +327,10 @@
     <ProjectReference Include="..\Xr.Http\Xr.Http.csproj">
       <Project>{b694c623-4dab-40dc-9446-3d0bf4fb0249}</Project>
       <Name>Xr.Http</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xr\Xr.csproj">
+      <Project>{dda4e544-c964-4ef6-89e9-a997b595fbd5}</Project>
+      <Name>Xr</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

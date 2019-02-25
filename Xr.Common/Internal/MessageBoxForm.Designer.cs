@@ -30,8 +30,8 @@
         {
             this.pcButtons = new DevExpress.XtraEditors.PanelControl();
             this.pcContent = new DevExpress.XtraEditors.PanelControl();
-            this.pbIcon = new System.Windows.Forms.PictureBox();
             this.lcMessage = new DevExpress.XtraEditors.LabelControl();
+            this.pbIcon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pcButtons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcContent)).BeginInit();
             this.pcContent.SuspendLayout();
@@ -62,14 +62,6 @@
             this.pcContent.Size = new System.Drawing.Size(546, 166);
             this.pcContent.TabIndex = 5;
             // 
-            // pbIcon
-            // 
-            this.pbIcon.Location = new System.Drawing.Point(15, 15);
-            this.pbIcon.Name = "pbIcon";
-            this.pbIcon.Size = new System.Drawing.Size(46, 45);
-            this.pbIcon.TabIndex = 2;
-            this.pbIcon.TabStop = false;
-            // 
             // lcMessage
             // 
             this.lcMessage.Appearance.Font = new System.Drawing.Font("微软雅黑", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -78,6 +70,14 @@
             this.lcMessage.Size = new System.Drawing.Size(64, 19);
             this.lcMessage.TabIndex = 3;
             this.lcMessage.Text = "lcMessage";
+            // 
+            // pbIcon
+            // 
+            this.pbIcon.Location = new System.Drawing.Point(15, 15);
+            this.pbIcon.Name = "pbIcon";
+            this.pbIcon.Size = new System.Drawing.Size(46, 45);
+            this.pbIcon.TabIndex = 2;
+            this.pbIcon.TabStop = false;
             // 
             // MessageBoxForm
             // 

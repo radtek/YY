@@ -84,7 +84,7 @@
             this.btnLogin.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnLogin.TabIndex = 164;
             this.btnLogin.Text = "登录";
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnQuit
             // 
@@ -160,7 +160,6 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.LoginFrom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

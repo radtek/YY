@@ -51,7 +51,6 @@ namespace Xr.RtManager
         /// <summary>
         /// 密码
         /// </summary>
-        [Required]
         public String password { get; set; }
 
 
@@ -68,7 +67,7 @@ namespace Xr.RtManager
 
         /// 邮箱
         /// </summary>
-        [Required,Mailbox]
+        [Mailbox]
         public String email { get; set; }
 
         /// <summary>

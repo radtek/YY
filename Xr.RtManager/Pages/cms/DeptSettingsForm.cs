@@ -562,6 +562,18 @@ namespace Xr.RtManager.Pages.cms
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
+
+        private void pbLogo_Click(object sender, EventArgs e)
+        {
+            PictureViewer pv = new PictureViewer(pbLogo.Image);
+            pv.Show();
+        }
+
+        private void pbPicture_Click(object sender, EventArgs e)
+        {
+            PictureViewer pv = new PictureViewer(pbPicture.Image);
+            pv.Show();
+        }
     
     }
 }

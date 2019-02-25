@@ -17,6 +17,10 @@ namespace Xr.RtScreen.VoiceCall
 {
     public partial class SpeakVoicemainFrom : Form
     {
+        // 第一步：声明一个委托。（根据自己的需求）
+        public delegate void setTextValue(string textValue);
+        //第二步：声明一个委托类型的事件
+        public event setTextValue setFormTextValue;
         private SpeechVoiceSpeakFlags _spFlags;
         private SpVoice _voice;
         public SpeakVoicemainFrom()
@@ -40,7 +44,8 @@ namespace Xr.RtScreen.VoiceCall
             {
                 _voice.Speak(callpatient.CallVoiceString(), _spFlags);
                 _voice.Speak(callpatient.CallVoiceString(), _spFlags);//播放两次
-              //  LogPrints(callpatient.LogString());
+                setFormTextValue(callpatient.LogString());
+                LogPrint(callpatient.LogString());
                 succeedCount++;
             }
             lab_succeedCount.Text = "正常次数：" + succeedCount;
@@ -51,15 +56,17 @@ namespace Xr.RtScreen.VoiceCall
         private static List<CallPrint> GetData()
         {
             List<CallPrint> cpList = new List<CallPrint>();
-            string Url = AppContext.AppConfig.serverUrl + "api/sch/screen/findCallList";
+            string Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList;
             Dictionary<string, string> pa = new Dictionary<string, string>();
             pa.Add("hospitalId", HelperClass.hospitalId);
             pa.Add("deptId", HelperClass.deptId);
-            pa.Add("clinicId", HelperClass.clincId);
+            pa.Add("clinicId", "1");//HelperClass.clincId
             string result = HttpHelper.CallRemote(Url, pa, HttpMethod.Post);
+            Log4net.LogHelper.Info("呼号请求地址："+Url+ "?" + string.Join("&", pa.Select(x => x.Key + "=" + x.Value).ToArray()));
             try
             {
                 var objT = Newtonsoft.Json.Linq.JObject.Parse(result);
+                Log4net.LogHelper.Info("呼号请求返回结果：" + objT);
                 if (objT["state"].ToString().ToLower() != "true")
                 {
                     return new List<CallPrint>();
@@ -69,23 +76,22 @@ namespace Xr.RtScreen.VoiceCall
                     JArray jars = JArray.Parse(objT["result"].ToString());
                     foreach (var jar in jars)//遍历数组
                     {
-                        string bespeakClass = jar.Value<string>("showNumber") == null ? "" : jar.Value<string>("showNumber").Trim();
                         string eName = String.Empty;
-                        eName = jar.Value<string>("showNumber") == null ? "" : jar.Value<string>("showNumber").Trim();
-                        if (jar.Value<string>("showNumber") != null && jar.Value<string>("showNumber") != String.Empty)
+                        eName = jar.Value<string>("cellText") == null ? "" : jar.Value<string>("cellText").Trim();
+                        if (jar.Value<string>("cellText") != null && jar.Value<string>("cellText") != String.Empty)
                         {
                             eName = "" + eName;
                         }
-                        CallPrint cp2 = new CallPrint(jar.Value<string>("showNumber"), eName + jar.Value<string>("patientName"), jar.Value<string>("siteName"), jar.Value<string>("typeName"));
+                        CallPrint cp2 = new CallPrint(jar.Value<string>("cellText"));
                         cpList.Add(cp2);
                     }
                 }
             }
             catch (Exception rx)
             {
-               // Logs("错误信息：" + rx.Message);
+                Log4net.LogHelper.Error("查询呼号错误信息："+rx.Message);
+                failedCount++;
             }
-           // Logs("请求地址：" + serverUrl + "?unitSn=" + unitSn);
             return cpList;
         }
         #endregion
@@ -120,7 +126,6 @@ namespace Xr.RtScreen.VoiceCall
                 PlayVoice();
                 timer1.Start();
                 _voice.Resume();
-
             }
             else
             {
@@ -157,5 +162,26 @@ namespace Xr.RtScreen.VoiceCall
             PlayVoice();
         }
         #endregion
+        #region 
+        private delegate void LogPrintDelegate(string log);
+        public void LogPrint(string log)
+        {
+            if (txt_log.InvokeRequired)
+            {
+                //   this.txtreceive.BeginInvoke(new ShowDelegate(Show), strshow);//这个也可以
+                txt_log.Invoke(new LogPrintDelegate(LogPrint), log);
+                setFormTextValue(log);
+            }
+            else
+            {
+                setFormTextValue(log);
+                //txt_log.AppendText(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "==>" + log + "\n");
+                string newLine = String.Format("{0:yyyy-MM-dd HH:mm:ss}==>{1}\n{2}", DateTime.Now, log, Environment.NewLine);
+                // 将textBox1的内容插入到第一行
+                // 索引0是 richText1 第一行位置
+                txt_log.Text = txt_log.Text.Insert(0, newLine);
+            }
+        }
+#endregion
     }
 }

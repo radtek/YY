@@ -28,12 +28,22 @@ namespace Xr.RtScreen.pages
                    ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             _context = SynchronizationContext.Current;
-          //DynamicLayout(this.tableLayoutPanel1,6,6);
+            //DynamicLayout(this.tableLayoutPanel1,6,6);
             DoctorSittingConsultations();
             DepartmentWaiting();
             SpeakVoicemainFrom speakVoiceform = new SpeakVoicemainFrom();//语音播放窗体
+            speakVoiceform.setFormTextValue += new Xr.RtScreen.VoiceCall.SpeakVoicemainFrom.setTextValue(form2_setFormTextValue);
             speakVoiceform.Show(this);
+            time();
         }
+        #region 消息实时传递
+        //第五步：实现事件
+        void form2_setFormTextValue(string textValue)
+        {
+            //具体实现。
+           scrollingText1.ScrollText=textValue;
+        }
+        #endregion 
         #region 医生坐诊诊间列表（定时自动查询）
         List<ScreenClass> clinicInfo;
         int a = 0;
@@ -45,7 +55,7 @@ namespace Xr.RtScreen.pages
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("hospital.id", HelperClass.hospitalId);
                 prament.Add("dept.id", HelperClass.deptId);
-                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findPublicScreenData", prament, Method.POST, result =>
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findPublicScreenData, prament, Method.POST, result =>
                 {
                     switch (result.ResponseStatus)
                     {
@@ -193,7 +203,7 @@ namespace Xr.RtScreen.pages
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("deptId", HelperClass.deptId);
-                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("api/sch/screen/findWaitingDesc", prament, Method.POST, result =>
+                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findWaitingDesc, prament, Method.POST, result =>
                 {
                     switch (result.ResponseStatus)
                     {
@@ -204,7 +214,7 @@ namespace Xr.RtScreen.pages
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    //_context.Send((s) => Assignment(), null);scrollingTexts1
+                                    _context.Send((s) => scrollingTexts1.ScrollText = objT["result"]["waitingDesc"].ToString(), null);
                                 }
                                 else
                                 {
@@ -238,15 +248,15 @@ namespace Xr.RtScreen.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("deptId", "");//科室主键
+                prament.Add("deptId", HelperClass.deptId);//科室主键
                Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>("", prament, Method.POST, result =>
                 {
-                    LogClass.WriteLog("请求结果：" + string.Join(",", result.Data.ToArray()));
                     switch (result.ResponseStatus)
                     {
                         case ResponseStatus.Completed:
                             if (result.StatusCode == HttpStatusCode.OK)
                             {
+                               Log4net.LogHelper.Info("请求结果：" + string.Join(",", result.Data.ToArray()));
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
@@ -254,7 +264,7 @@ namespace Xr.RtScreen.pages
                                 }
                                 else
                                 {
-                                    MessageBox.Show(objT["message"].ToString());
+                                  _context.Send((s) =>  Xr.Common.MessageBoxUtils.Hint(objT["message"].ToString()),null);
                                 }
                                
                             }
@@ -264,55 +274,7 @@ namespace Xr.RtScreen.pages
             }
             catch (Exception ex)
             {
-            }
-        }
-        #endregion
-        #region 呼号信息（定时自动查询）
-        public void CallSignInformation()
-        {
-            try
-            {
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("deptId", "");//科室主键
-                string str = "";
-                var client = new RestSharpClient("/yyfz/api/call/findCalls");
-                var Params = "";
-                if (prament.Count != 0)
-                {
-                    Params = "?" + string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                client.ExecuteAsync<List<string>>(new RestRequest(Params, Method.POST), result =>
-                {
-                    switch (result.ResponseStatus)
-                    {
-                        case ResponseStatus.None:
-                            break;
-                        case ResponseStatus.Completed:
-                            if (result.StatusCode == HttpStatusCode.OK)
-                            {
-                                var data = result.Data;//返回数据
-                                str = string.Join(",", data.ToArray());
-                                _context.Send((s) =>
-                                    MessageBox.Show("获取陈宫")
-                                , null);
-                            }
-                            break;
-                        case ResponseStatus.Error:
-                            MessageBox.Show("请求错误");
-                            break;
-                        case ResponseStatus.TimedOut:
-                            MessageBox.Show("请求超时");
-                            break;
-                        case ResponseStatus.Aborted:
-                            MessageBox.Show("请求终止");
-                            break;
-                        default:
-                            break;
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
+                Log4net.LogHelper.Error("获取科室候诊说明错误信息："+ex.Message);
             }
         }
         #endregion
@@ -632,7 +594,27 @@ namespace Xr.RtScreen.pages
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            DoctorSittingConsultations();
+        }
+        string calltext = "";
+        public void Celltext()
+        {
+            try
+            {
+                if (calltext == HelperClass.cellText)
+                {
+                    this.scrollingText1.ScrollText = "";
+                }
+                else
+                {
+                    calltext = HelperClass.cellText;
+                    this.scrollingText1.ScrollText = HelperClass.cellText;
+                }
+            }
+            catch 
+            {
 
+            }
         }
         #endregion
     }

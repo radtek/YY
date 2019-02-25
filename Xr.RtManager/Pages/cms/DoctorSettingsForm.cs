@@ -1701,5 +1701,11 @@ namespace Xr.RtManager.Pages.cms
             else
                 tableLayoutPanel1.ColumnStyles[1].Width = 410;
         }
+
+        private void pbPicture_Click(object sender, EventArgs e)
+        {
+            PictureViewer pv = new PictureViewer(pbPicture.Image);
+            pv.Show();
+        }
     }
 }

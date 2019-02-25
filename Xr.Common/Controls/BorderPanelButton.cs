@@ -51,7 +51,7 @@ namespace Xr.Common.Controls
 
         private Color _BackColor=Color.White;
         [Description("按钮背景颜色")]
-        public Color BackColor
+        public override Color BackColor
         {
             get
             {

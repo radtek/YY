@@ -198,6 +198,10 @@ namespace Xr.RtManager
 
         private void buttonControl5_Click(object sender, EventArgs e)
         {
+            Xr.Common.Controls.PictureViewer pictureViewer = new Xr.Common.Controls.PictureViewer();
+            pictureViewer.Show();
+            //cmd.ShowOpaqueLayer();
+            //MessageBoxUtils.HintImage("");
             //String param = "?title=" + tbTitle.Text
             //    + "&&version=" + tbVersion.Text + "&&pageNo=1"
             //    + "&&pageSize=10";
@@ -212,40 +216,40 @@ namespace Xr.RtManager
             //    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             //}
 
-            String url = AppContext.AppConfig.serverUrl + "logout";
-            String data = HttpClass.httpPost(url);
-            JObject objT = JObject.Parse(data);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-                throw new Exception("测试");
-            }
-            else
-            {
-                MessageBox.Show("退出系统失败:" + objT["message"].ToString());
-                return;
-            }
+    //        String url = AppContext.AppConfig.serverUrl + "logout";
+    //        String data = HttpClass.httpPost(url);
+    //        JObject objT = JObject.Parse(data);
+    //        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+    //        {
+    //            throw new Exception("测试");
+    //        }
+    //        else
+    //        {
+    //            MessageBox.Show("退出系统失败:" + objT["message"].ToString());
+    //            return;
+    //        }
 
-            String param = "?title=" + tbTitle.Text
-    + "&&version=" + tbVersion.Text + "&&pageNo=1"
-    + "&&pageSize=10";
-             url = AppContext.AppConfig.serverUrl + "sys/clientVersion/list" + param;
-             try
-             {
-                 data = HttpClass.httpPost(url);
-             }
-             catch (Exception ex)
-             {
-                 throw new Exception(ex.Message);
-             }
+    //        String param = "?title=" + tbTitle.Text
+    //+ "&&version=" + tbVersion.Text + "&&pageNo=1"
+    //+ "&&pageSize=10";
+    //         url = AppContext.AppConfig.serverUrl + "sys/clientVersion/list" + param;
+    //         try
+    //         {
+    //             data = HttpClass.httpPost(url);
+    //         }
+    //         catch (Exception ex)
+    //         {
+    //             throw new Exception(ex.Message);
+    //         }
             
-             objT = JObject.Parse(data.ToString());
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            {
-            }
-            else
-            {
-                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
+    //         objT = JObject.Parse(data.ToString());
+    //        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+    //        {
+    //        }
+    //        else
+    //        {
+    //            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+    //        }
 
             //String param = "?title=" + tbTitle.Text
             //    + "&&version=" + tbVersion.Text + "&&pageNo=1"
@@ -270,6 +274,13 @@ namespace Xr.RtManager
             //        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             //    }
             //});
+        }
+
+        private void buttonControl6_Click(object sender, EventArgs e)
+        {
+            Xr.Common.Controls.PictureViewer pictureViewer = new Xr.Common.Controls.PictureViewer();
+            pictureViewer.imgPathStr = "http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-02-20/QQ图片20190220112758.jpg";
+            pictureViewer.Show();
         }
 
     }

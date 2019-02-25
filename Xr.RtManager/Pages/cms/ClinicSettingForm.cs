@@ -24,6 +24,7 @@ namespace Xr.RtManager.Pages.cms
             cmd.ShowOpaqueLayer(225, false);
             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
             cmd.HideOpaqueLayer();
+            deptId = "";
             #region 科室列表
             GetKeShiList();
             //List<Xr.Common.Controls.Item> itemList = new List<Xr.Common.Controls.Item>();
@@ -104,7 +105,7 @@ namespace Xr.RtManager.Pages.cms
                         return;
                     }
                     clinicInfo = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
-                    for (int i = 0; i < Convert.ToInt32(objT["result"]["count"]); i++)
+                    for (int i = 0; i < clinicInfo.Count; i++)//Convert.ToInt32(objT["result"]["count"])
                     {
                         String name = objT["result"]["list"][i]["dept"]["name"].ToString();
                         clinicInfo[i].deptname = name;
@@ -247,8 +248,7 @@ namespace Xr.RtManager.Pages.cms
                 if (selectedRow == null)
                     return;
                 MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBox.Show("确定要删除吗?", "删除诊室", messButton);
-
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.OK)
                 {
                     String param = "?id=" + selectedRow.id;
@@ -258,7 +258,15 @@ namespace Xr.RtManager.Pages.cms
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         Xr.Common.MessageBoxUtils.Hint("删除成功");
-                        SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
+                        if (deptId != "")
+                        {
+                            SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, deptId);
+                        }
+                        else
+                        {
+                            SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
+                        }
+                        //SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
                     }
                     else
                     {
@@ -277,9 +285,17 @@ namespace Xr.RtManager.Pages.cms
         #region 编号或者编码查询诊室信息或者查询所有信息
         private void butSelect_Click(object sender, EventArgs e)
         {
-            cmd.ShowOpaqueLayer(255, true);
-            this.groupBox3.Enabled = false;
-            SelectInforList(deptId);
+            try
+            {
+                cmd.ShowOpaqueLayer(255, true);
+                SelectInforList(deptId);
+                this.groupBox3.Enabled = false;
+                dcClinc.ClearValue();
+            }
+            catch
+            {
+                
+            }           
         }
         #endregion
         #region 科室列表点击事件 
@@ -298,6 +314,11 @@ namespace Xr.RtManager.Pages.cms
                 label = (Label)panelEx.Controls[0];
             }
             string hospitalId = label.Tag.ToString();
+            if (label.Name != deptId)
+            {
+                this.groupBox3.Enabled = false;
+                dcClinc.ClearValue();
+            }
             deptId = label.Name;
             SearchData(1, pageControl1.PageSize, hospitalId, deptId);
         }
@@ -324,7 +345,14 @@ namespace Xr.RtManager.Pages.cms
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     MessageBoxUtils.Hint("保存成功!");
-                    SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
+                    if (deptId != "")
+                    {
+                        SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, deptId);
+                    }
+                    else
+                    {
+                        SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
+                    }
                     groupBox3.Enabled = false;
                     dcClinc.ClearValue();
                 }
@@ -397,7 +425,15 @@ namespace Xr.RtManager.Pages.cms
         #region 分页跳转事件
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
-            SearchData(CurrentPage,PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
+            if (deptId != "")
+            {
+                SearchData(CurrentPage, PageSize, AppContext.Session.hospitalId, deptId);
+            }
+            else
+            {
+                SearchData(CurrentPage, PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
+            }
+          //  SearchData(CurrentPage,PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
         }
         #endregion 
         #endregion

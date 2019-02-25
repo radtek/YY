@@ -25,11 +25,11 @@ namespace Xr.RtManager
         }
 
         public UserEntity user { get; set; }
-        private String oldLoginName;
-        String filePath = "";
-        String serviceFilePath = "";
+        //private String oldLoginName;
+        //String filePath = "";
+        //String serviceFilePath = "";
 
-        CheckBox chkbLast;
+        //CheckBox chkbLast;
 
         private void UserEdit_Load(object sender, EventArgs e)
         {

@@ -56,7 +56,7 @@ namespace Xr.RtManager.Control
              get { return _BtnFont; }
              set { _BtnFont = value; }
          }
-        bool _EnableCheck;
+        //bool _EnableCheck;
         public String noonName= "上午";
         private NoonSpan noon;
         /// <summary>

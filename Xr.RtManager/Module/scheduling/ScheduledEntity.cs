@@ -74,5 +74,10 @@ namespace Xr.RtManager
         /// 备注
         /// </summary>
         public String remarks { get; set; }
+
+        /// <summary>
+        /// 0:上午 1：下午 2：晚上 3：全天
+        /// </summary>
+        public String period { get; set; }
     }
 }

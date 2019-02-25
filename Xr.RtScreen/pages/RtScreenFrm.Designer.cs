@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.scrollingText1 = new Xr.RtScreen.RtUserContronl.ScrollingText();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.scrollingTexts1 = new Xr.RtScreen.RtUserContronl.ScrollingTexts();
             this.timer1 = new System.Windows.Forms.Timer();
+            this.scrollingTexts1 = new Xr.RtScreen.RtUserContronl.ScrollingTexts();
+            this.scrollingText1 = new Xr.RtScreen.RtUserContronl.ScrollingText();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -55,32 +55,6 @@
             this.panelControl1.Size = new System.Drawing.Size(1024, 56);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
-            // 
-            // scrollingText1
-            // 
-            this.scrollingText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            this.scrollingText1.BorderColor = System.Drawing.Color.Black;
-            this.scrollingText1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.scrollingText1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scrollingText1.Enabled = false;
-            this.scrollingText1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.scrollingText1.ForeColor = System.Drawing.Color.Yellow;
-            this.scrollingText1.ForegroundBrush = null;
-            this.scrollingText1.Location = new System.Drawing.Point(0, 0);
-            this.scrollingText1.Margin = new System.Windows.Forms.Padding(1);
-            this.scrollingText1.Name = "scrollingText1";
-            this.scrollingText1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.scrollingText1.ScrollDirection = Xr.RtScreen.RtUserContronl.ScrollDirection.RightToLeft;
-            this.scrollingText1.ScrollText = "请【预约2号张无】到【01室】就诊";
-            this.scrollingText1.ShowBorder = false;
-            this.scrollingText1.Size = new System.Drawing.Size(1024, 56);
-            this.scrollingText1.StopScrollOnMouseOver = false;
-            this.scrollingText1.TabIndex = 0;
-            this.scrollingText1.Text = "scrollingText1";
-            this.scrollingText1.TextScrollDistance = 2;
-            this.scrollingText1.TextScrollSpeed = 10;
-            this.scrollingText1.VerticleTextPosition = Xr.RtScreen.RtUserContronl.VerticleTextPosition.Center;
-            this.scrollingText1.Paint += new System.Windows.Forms.PaintEventHandler(this.scrollingText1_Paint);
             // 
             // panelControl2
             // 
@@ -132,6 +106,10 @@
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // scrollingTexts1
             // 
             this.scrollingTexts1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -145,7 +123,7 @@
             this.scrollingTexts1.Location = new System.Drawing.Point(1, 4);
             this.scrollingTexts1.Margin = new System.Windows.Forms.Padding(1);
             this.scrollingTexts1.Name = "scrollingTexts1";
-            this.scrollingTexts1.ScrollText = "说明： 候诊队列规则：急1>过号1>复1>预1>现1";
+            this.scrollingTexts1.ScrollText = "";
             this.scrollingTexts1.ShowBorder = true;
             this.scrollingTexts1.Size = new System.Drawing.Size(1022, 63);
             this.scrollingTexts1.TabIndex = 0;
@@ -154,9 +132,31 @@
             this.scrollingTexts1.TextScrollSpeed = 10;
             this.scrollingTexts1.Paint += new System.Windows.Forms.PaintEventHandler(this.scrollingTexts1_Paint);
             // 
-            // timer1
+            // scrollingText1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.scrollingText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            this.scrollingText1.BorderColor = System.Drawing.Color.Black;
+            this.scrollingText1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.scrollingText1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scrollingText1.Enabled = false;
+            this.scrollingText1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.scrollingText1.ForeColor = System.Drawing.Color.Yellow;
+            this.scrollingText1.ForegroundBrush = null;
+            this.scrollingText1.Location = new System.Drawing.Point(0, 0);
+            this.scrollingText1.Margin = new System.Windows.Forms.Padding(1);
+            this.scrollingText1.Name = "scrollingText1";
+            this.scrollingText1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.scrollingText1.ScrollDirection = Xr.RtScreen.RtUserContronl.ScrollDirection.RightToLeft;
+            this.scrollingText1.ScrollText = "";
+            this.scrollingText1.ShowBorder = false;
+            this.scrollingText1.Size = new System.Drawing.Size(1024, 56);
+            this.scrollingText1.StopScrollOnMouseOver = false;
+            this.scrollingText1.TabIndex = 0;
+            this.scrollingText1.Text = "scrollingText1";
+            this.scrollingText1.TextScrollDistance = 2;
+            this.scrollingText1.TextScrollSpeed = 10;
+            this.scrollingText1.VerticleTextPosition = Xr.RtScreen.RtUserContronl.VerticleTextPosition.Center;
+            this.scrollingText1.Paint += new System.Windows.Forms.PaintEventHandler(this.scrollingText1_Paint);
             // 
             // RtScreenFrm
             // 
@@ -184,7 +184,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl3;
-        private RtUserContronl.ScrollingText scrollingText1;
         private RtUserContronl.ScrollingTexts scrollingTexts1;
         private System.Windows.Forms.Panel panel1;
         //private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -194,7 +193,8 @@
         //private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         //private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Timer timer1;//跑马列
+        private System.Windows.Forms.Timer timer1;
+        private RtUserContronl.ScrollingText scrollingText1;//跑马列
         //private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1;
         //private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         //private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;

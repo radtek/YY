@@ -461,7 +461,7 @@ namespace Xr.RtManager.Pages.scheduling
         {
             List<SchedulingSubEntity> schedulingSubList = new List<SchedulingSubEntity>();
             List<DoctorVSEntity> DVSList = gcDoctor.DataSource as List<DoctorVSEntity>;
-            if (DVSList.Count == 0) return;
+            if (DVSList == null || DVSList.Count == 0) return;
 
             #region 获取排班数据
             for (int i = 0; i < DVSList.Count; i++)

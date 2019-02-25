@@ -114,6 +114,7 @@
     <Compile Include="Model\AppContext.cs" />
     <Compile Include="Model\AvaDateEntity.cs" />
     <Compile Include="Model\HelperClass.cs" />
+    <Compile Include="Model\InterfaceAddress.cs" />
     <Compile Include="Model\PatientList.cs" />
     <Compile Include="Model\RestSharpHelper.cs" />
     <Compile Include="pages\HostingForm.cs">

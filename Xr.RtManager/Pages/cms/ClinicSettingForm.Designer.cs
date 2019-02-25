@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.btnDel = new Xr.Common.Controls.ButtonControl();
@@ -69,7 +70,7 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox4 = new Xr.Common.Controls.GroupBorderPanel();
             this.pageControl1 = new Xr.Common.Controls.PageControl();
-            this.dcClinc = new Xr.Common.Controls.DataController();
+            this.dcClinc = new Xr.Common.Controls.DataController(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
@@ -520,8 +521,7 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
@@ -692,7 +692,7 @@
             this.pageControl1.Location = new System.Drawing.Point(3, 239);
             this.pageControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pageControl1.Name = "pageControl1";
-            this.pageControl1.PageSize = 20;
+            this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
             this.pageControl1.Size = new System.Drawing.Size(719, 40);
             this.pageControl1.TabIndex = 52;

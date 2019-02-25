@@ -33,7 +33,7 @@ namespace Xr.Common.Controls
         /// <summary>
         /// 选中月份事件
         /// </summary>
-        //public event ChangeMonthDelegate ChangeMonth;
+        public event ChangeMonthDelegate ChangeMonth;
 
         //事件处理函数形式，用delegate定义
         public delegate void SelectDateTestDelegate(DateTime SelectedDate);
@@ -191,7 +191,7 @@ namespace Xr.Common.Controls
             {
                 currentYearMonth = currentYearMonth.AddMonths(-1);
                 monthIndex--;
-                //ChangeMonth(currentYearMonth);
+                ChangeMonth(currentYearMonth);
                 SetGridClanderValue();
                 lab_YM.Text = String.Format("{0}年{1}月", currentYearMonth.Year, currentYearMonth.Month);
                 if (currentYearMonth == NowYearMonth)
@@ -209,7 +209,7 @@ namespace Xr.Common.Controls
             {
                 currentYearMonth = currentYearMonth.AddMonths(1);
                 monthIndex++;
-                //ChangeMonth(currentYearMonth);
+                ChangeMonth(currentYearMonth);
                 SetGridClanderValue();
                 lab_YM.Text = String.Format("{0}年{1}月", currentYearMonth.Year, currentYearMonth.Month);
                 if (currentYearMonth == NowYearMonth.AddMonths(3))

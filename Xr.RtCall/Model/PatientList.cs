@@ -11,42 +11,57 @@ namespace Xr.RtCall.Model
     public class Patient 
     {
         /// <summary>
+        /// 患者记录主键
+        /// </summary>
+        public string triageId { get; set; }
+        /// <summary>
+        /// 排队号
+        /// </summary>
+        public string queueNum { get; set; }
+        /// <summary>
+        /// 患者ID
+        /// </summary>
+        public string patientId { get; set; }
+        /// <summary>
         /// 患者姓名
         /// </summary>
         public string patientName { get; set; }
         /// <summary>
-        /// 签到时间
+        /// 时段
+        /// </summary>
+        public string workTime { get; set; }
+        /// <summary>
+        /// 
         /// </summary>
         public string triageTime { get; set; }
         /// <summary>
-        /// 就诊时间
+        ///
         /// </summary>
-        public string visitTime { get; set; }
+        public string visitWinTime { get; set; }
         /// <summary>
-        /// 队列号
+        /// 性别
         /// </summary>
-        public string queueNum { get; set; }
+        public string sex { get; set; }
         /// <summary>
         /// 状态
         /// </summary>
-        public string status { get; set; }
-        /// <summary>
-        /// 预约就诊时段，beginTime-endTime
-        /// </summary>
-        public string regVisitTime { get; set; }
-        /// <summary>
-        /// 预约途径
-        /// </summary>
-        public string registerWay { get; set; }
+        public string statusTxt { get; set; }
         /// <summary>
         /// 卡类型
         /// </summary>
-        public string cradType { get; set; }
+        public string cardType { get; set; }
+        /// <summary>
+        /// 卡号类型
+        /// </summary>
+        public string cardTypeTxt { get; set; }
         /// <summary>
         /// 卡号
         /// </summary>
-        public string cradNo { get; set; }
-        public string regTime { get; set; }
+        public string cardNo { get; set; }
+        /// <summary>
+        /// 电话号码
+        /// </summary>
+        public string telPhone { get;set;}
     }
     public class PatientList
     {
@@ -76,5 +91,15 @@ namespace Xr.RtCall.Model
         public string beginTime { get; set; }
         public string endTime { get; set; }
         public string  num { get; set; }
+    }
+    public class CallNext
+    {
+        public static String triageId { get; set; }
+        public static String smallCellShow { get; set; }
+    }
+    public class DoctorScheduling
+    {
+        public String id { get; set; }
+        public String name { get; set; }
     }
 }

@@ -107,14 +107,16 @@ namespace Xr.RtManager.Pages.booking
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        //MessageBox.Show(objT["message"].ToString());
                         return;
                     }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                //MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -254,44 +256,45 @@ namespace Xr.RtManager.Pages.booking
         {
 
 
-                string value = "";
-                string strSelected = "";
-                List<BlackListEntity> itemList = new List<BlackListEntity>();
-                for (int i = 0; i < gv_BlackList.RowCount; i++)
-                {   //   获取选中行的check的值   
-                    string dr = gv_BlackList.GetRowCellValue(i, "check").ToString();
-                    if (dr != String.Empty)
+            //string value = "";
+            //string strSelected = "";
+            List<BlackListEntity> itemList = new List<BlackListEntity>();
+            for (int i = 0; i < gv_BlackList.RowCount; i++)
+            {   //   获取选中行的check的值   
+                string dr = gv_BlackList.GetRowCellValue(i, "check").ToString();
+                if (dr != String.Empty)
+                {
+                    if (dr == "1")
                     {
-                        if (dr == "1")
-                        {
-                            BlackListEntity rowItem = gv_BlackList.GetRow(i) as BlackListEntity;
-                            itemList.Add(rowItem);
-                            //bandedGvList.Columns["euDrugtype"].FilterInfo = new ColumnFilterInfo("[euDrugtype] LIKE '0'");
+                        BlackListEntity rowItem = gv_BlackList.GetRow(i) as BlackListEntity;
+                        itemList.Add(rowItem);
+                        //bandedGvList.Columns["euDrugtype"].FilterInfo = new ColumnFilterInfo("[euDrugtype] LIKE '0'");
 
-                        }
                     }
                 }
-                if (itemList.Count > 0)
+            }
+            if (itemList.Count > 0)
+            {
+                if (MessageBoxUtils.Show("确认解冻选中的黑名单吗?", MessageBoxButtons.OKCancel,
+             MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
                 {
-                    DialogResult result = MessageBox.Show("你解冻选中的黑名单吗？", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    if (result == DialogResult.OK)
+                    foreach (var item in itemList)
                     {
-                        foreach (var item in itemList)
-                        {
-                            String param = "id={0}";
-                            param = String.Format(
-                                param, item.id);
-                            String url = AppContext.AppConfig.serverUrl + "sch/blackList/unlock?" + param;
-                            string res = HttpClass.httpPost(url);
-                        }
-                        QueryInfo(1, pageControl1.PageSize);
+                        String param = "id={0}";
+                        param = String.Format(
+                            param, item.id);
+                        String url = AppContext.AppConfig.serverUrl + "sch/blackList/unlock?" + param;
+                        string res = HttpClass.httpPost(url);
                     }
+                    QueryInfo(1, pageControl1.PageSize);
                 }
-                else
-                {
-                    MessageBox.Show("请选择要解冻的数据行");
-                }
-            
+            }
+            else
+            {
+                //MessageBox.Show("请选择要解冻的数据行");
+                MessageBoxUtils.Show("请选择要解冻的数据行", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            }
+
         }
 
         private void cb_AutoRefresh_CheckedChanged(object sender, EventArgs e)

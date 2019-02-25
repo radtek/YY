@@ -299,6 +299,10 @@ namespace Xr.RtManager.Pages.cms
             pbPicture.Image = null;
             pbPicture.Refresh();
             pictureServiceFilePath = null;
+            logoFilePath = null;
+            pictureFilePath = null;
+            logoFilePath = null;
+            pictureFilePath = null;
 
             hospitalInfo = new HospitalInfoEntity();
             var selectedRow = gridView1.GetFocusedRow() as HospitalInfoEntity;
@@ -508,6 +512,42 @@ namespace Xr.RtManager.Pages.cms
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+        private void pbLogo_Click(object sender, EventArgs e)
+        {
+            PictureViewer pv = new PictureViewer(pbLogo.Image);
+            pv.Show();
+            //PictureViewer pv = new PictureViewer();
+            //if (logoServiceFilePath != null && logoServiceFilePath.Length != 0)
+            //{
+                
+            //    pv.imgPathStr = logoServiceFilePath;
+            //    pv.Show();
+            //}
+            //else if (logoFilePath != null && logoFilePath.Length != 0)
+            //{
+            //    pv.imgPathStr = logoFilePath;
+            //    pv.Show();
+            //}
+        }
+
+        private void pbPicture_Click(object sender, EventArgs e)
+        {
+            PictureViewer pv = new PictureViewer(pbPicture.Image);
+            pv.Show();
+            //PictureViewer pv = new PictureViewer();
+            //if (pictureServiceFilePath != null && pictureServiceFilePath.Length != 0)
+            //{
+
+            //    pv.imgPathStr = logoServiceFilePath;
+            //    pv.Show();
+            //}
+            //else if (pictureFilePath != null && pictureFilePath.Length != 0)
+            //{
+            //    pv.imgPathStr = logoFilePath;
+            //    pv.Show();
+            //}
         }
 
     }

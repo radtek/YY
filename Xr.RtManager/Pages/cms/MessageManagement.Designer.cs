@@ -147,13 +147,13 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.myTextBox1);
             this.panel2.Enabled = false;
-            this.panel2.Location = new System.Drawing.Point(15, 229);
+            this.panel2.Location = new System.Drawing.Point(15, 253);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.panel2.Size = new System.Drawing.Size(381, 143);
@@ -181,7 +181,7 @@
             // 
             this.dcMessage.SetDataMember(this.textBox1, "id");
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(15, 374);
+            this.textBox1.Location = new System.Drawing.Point(370, 23);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(26, 21);
             this.textBox1.TabIndex = 124;
@@ -220,14 +220,15 @@
             // 
             // meUpdateDesc
             // 
-            this.meUpdateDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.meUpdateDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dcMessage.SetDataMember(this.meUpdateDesc, "content");
             this.meUpdateDesc.Location = new System.Drawing.Point(15, 108);
             this.meUpdateDesc.Name = "meUpdateDesc";
             this.meUpdateDesc.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meUpdateDesc.Properties.Appearance.Options.UseFont = true;
-            this.meUpdateDesc.Size = new System.Drawing.Size(381, 77);
+            this.meUpdateDesc.Size = new System.Drawing.Size(381, 100);
             this.meUpdateDesc.TabIndex = 119;
             this.meUpdateDesc.UseOptimizedRendering = true;
             // 
@@ -266,12 +267,12 @@
             // 
             // butContronl
             // 
-            this.butContronl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.butContronl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
-            this.butContronl.Location = new System.Drawing.Point(15, 191);
+            this.butContronl.Location = new System.Drawing.Point(15, 215);
             this.butContronl.Name = "butContronl";
             this.butContronl.Size = new System.Drawing.Size(381, 30);
             this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;

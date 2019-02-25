@@ -115,6 +115,7 @@
     <Compile Include="Models\AppConfigEntity.cs" />
     <Compile Include="Models\AppContext.cs" />
     <Compile Include="Models\HelperClass.cs" />
+    <Compile Include="Models\InterfaceAddress.cs" />
     <Compile Include="Models\RestSharpHelper.cs" />
     <Compile Include="Models\ScreenClass.cs" />
     <Compile Include="pages\RtDoctorSmallScreenFrm.cs">

@@ -381,7 +381,7 @@ namespace Xr.RtManager
                 if (i == -1)
                 {
                     System.Type tab = System.Type.GetType("Xr.RtManager." + href);
-                    UserControl uc ;//= (UserControl)Activator.CreateInstance(tab);
+                    //UserControl uc ;//= (UserControl)Activator.CreateInstance(tab);
                     AaddUserControl(tab, id, name);
                 }
                 else

@@ -23,6 +23,10 @@ namespace Xr.RtCall.Model
         /// </summary>
         public String deptCode { get; set; }
         /// <summary>
+        /// 诊室编码
+        /// </summary>
+        public String ClincCode { get; set; }
+        /// <summary>
         /// 是否启动Socket
         /// </summary>
         public String StartUpSocket { get; set; }

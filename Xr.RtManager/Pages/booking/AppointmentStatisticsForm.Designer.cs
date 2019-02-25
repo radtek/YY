@@ -45,7 +45,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.gc_statistics = new DevExpress.XtraGrid.GridControl();
             this.gv_statistics = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -194,6 +193,7 @@
             this.排号后移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.排号作废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.现场预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -342,21 +342,13 @@
             this.chartControl1.SeriesTemplate.View = lineSeriesView1;
             this.chartControl1.Size = new System.Drawing.Size(1003, 277);
             this.chartControl1.TabIndex = 167;
-            chartTitle1.Text = "数据统计";
-            chartTitle1.Visible = false;
+            chartTitle1.Alignment = System.Drawing.StringAlignment.Near;
+            chartTitle1.Font = new System.Drawing.Font("微软雅黑", 18F);
+            chartTitle1.Indent = 1;
+            chartTitle1.Text = "预约总数趋势图";
+            chartTitle1.TextColor = System.Drawing.Color.Black;
             this.chartControl1.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
             chartTitle1});
-            // 
-            // label4
-            // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 18F);
-            this.label4.Location = new System.Drawing.Point(10, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1003, 31);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "预约总数趋势图";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // panel6
             // 
@@ -2426,6 +2418,18 @@
             this.现场预约ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.现场预约ToolStripMenuItem.Text = "现场预约";
             // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 18F);
+            this.label4.Location = new System.Drawing.Point(10, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(1003, 31);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "预约总数趋势图";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label4.Visible = false;
+            // 
             // AppointmentStatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2522,7 +2526,6 @@
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
         private DevExpress.XtraCharts.ChartControl chartControl1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tPanel_registerWay;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label12;
@@ -2644,6 +2647,7 @@
         private DevExpress.XtraTreeList.TreeList treeList2;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
+        private System.Windows.Forms.Label label4;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

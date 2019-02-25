@@ -89,7 +89,7 @@ namespace Xr.Common
                         return new SkinThemeDefault();
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return new SkinThemeDefault();
             }

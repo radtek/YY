@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox1 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,7 +61,7 @@
             this.btnDel = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
-            this.dcHodily = new Xr.Common.Controls.DataController();
+            this.dcHodily = new Xr.Common.Controls.DataController(this.components);
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -358,7 +359,7 @@
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Location = new System.Drawing.Point(10, 223);
             this.pageControl1.Name = "pageControl1";
-            this.pageControl1.PageSize = 20;
+            this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
             this.pageControl1.Size = new System.Drawing.Size(900, 39);
             this.pageControl1.TabIndex = 50;
