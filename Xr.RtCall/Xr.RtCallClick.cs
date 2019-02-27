@@ -35,10 +35,11 @@ namespace Xr.RtCall
                   ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             #endregion 
-            this.Size = new Size(727,78);
+            this.Size = new Size(727,48);
             pCurrentWin = this;
             _context = SynchronizationContext.Current;
             GetDoctorAndClinc();//获取科室
+            IsMax = false;
         }
         #region 帮助事件
         #region 键盘按Esc关闭窗体
@@ -111,6 +112,7 @@ namespace Xr.RtCall
         }
         #endregion
         #region 最大化
+        public static bool IsMax { get; set; }
         /// <summary>
         /// 最大化
         /// </summary>
@@ -121,6 +123,7 @@ namespace Xr.RtCall
             if (skinbutBig.Text == "展开")
             {
                 this.panel_MainFrm.Visible = true;
+                IsMax = true;
                 panel_MainFrm.Controls.Clear();
                 this.Size = new Size(727, 530);
                 skinbutBig.Text = "收缩";
@@ -130,7 +133,8 @@ namespace Xr.RtCall
             }
             else
             {
-                this.Size = new Size(727, 78);
+                this.Size = new Size(727, 48);
+                IsMax = false;
                 skinbutBig.Text = "展开";
             }
 
@@ -188,6 +192,7 @@ namespace Xr.RtCall
                             else
                             {
                                 _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1), null);
+                                _context.Send((s) => label2.Text = "等待呼叫病人 [请稍候...]", null);
                             }
                         }
                     }
@@ -199,7 +204,6 @@ namespace Xr.RtCall
                 Log4net.LogHelper.Error("呼叫下一位错误信息："+ex.Message);
             }
         }
-     
         /// <summary>
         /// 弹出窗口
         /// </summary>
@@ -207,13 +211,13 @@ namespace Xr.RtCall
         {
             RtCallMessageFrm rcf = new RtCallMessageFrm(name);
             HostingForm f = new HostingForm();
-            f.Height = rcf.Height + 30;
+            f.Height = rcf.Height;
             f.Width = rcf.Width;
-            f.panelControl1.Controls.Add(rcf);
+            f.Controls.Add(rcf);
             f.StartPosition = FormStartPosition.CenterScreen;
             //int x = SystemInformation.PrimaryMonitorSize.Width - this.Width;
             //f.Location = new Point(x, 0);
-            f.Show();
+            f.ShowDialog();
         }
         #endregion 
         #region 窗体Load事件

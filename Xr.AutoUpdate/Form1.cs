@@ -63,6 +63,7 @@ namespace Xr.AutoUpdate
         /// </summary>
         public class Downloader
         {
+            public String FileName { get; set; }
             //委托
             public delegate void dDownloadProgress(long total, long current, String msg, String version);
             //事件
@@ -70,73 +71,82 @@ namespace Xr.AutoUpdate
             //开始模拟工作
             public void Start()
             {
-                int speedOfProgress = 0; //进度
-                onDownLoadProgress(100, speedOfProgress, "", null);
-
-                //获取和设置当前目录（即该进程从中启动的目录）的完全限定路径
-                string localPath = System.Environment.CurrentDirectory;
-
-                string serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
-                string version = ConfigurationManager.AppSettings["version"].ToString();
-                string clientVersionType = ConfigurationManager.AppSettings["clientVersionType"].ToString();
-                String url = serverUrl + "sys/clientVersion/findUpdateVersion?type=" + clientVersionType + "&version=" + version;
-                String data = httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                try
                 {
-                    List<ClientVersionEntity> cvList = objT["result"].ToObject<List<ClientVersionEntity>>();
-                    //下载解压
-                    if (cvList.Count > 0)
+                    int speedOfProgress = 0; //进度
+                    onDownLoadProgress(100, speedOfProgress, "", null);
+
+                    //获取和设置当前目录（即该进程从中启动的目录）的完全限定路径
+                    string localPath = System.Environment.CurrentDirectory;
+
+                    string serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
+                    string version = ConfigurationManager.AppSettings["version"].ToString();
+                    string clientVersionType = ConfigurationManager.AppSettings["clientVersionType"].ToString();
+                    String url = serverUrl + "sys/clientVersion/findUpdateVersion?type=" + clientVersionType + "&version=" + version;
+                    String data = httpPost(url);
+                    JObject objT = JObject.Parse(data);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        string zxVersion = cvList[cvList.Count() - 1].version;
-                        onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件", zxVersion);
-                        int documentProgress = 90 / cvList.Count; //每个文件所拥有的进度
-                        for (int i = 0; i < cvList.Count; i++)
+                        List<ClientVersionEntity> cvList = objT["result"].ToObject<List<ClientVersionEntity>>();
+                        //下载解压
+                        if (cvList.Count > 0)
                         {
-                            String[] strArr = cvList[i].updateFilePath.Split(new char[] { '/' });
-                            String fileName = strArr[strArr.Length - 1];
-                            //下载
-                            onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件，正在下载第1个文件:" + fileName, null);
-                            downfile(cvList[i].updateFilePath, fileName, localPath);
-                            speedOfProgress += documentProgress / 2;
-                            //解压
-                            onDownLoadProgress(100, speedOfProgress, "开始下载，共需下载" + cvList.Count + "个文件，第1个文件:" + fileName + "下载成功，正在解压", null);
-                            ZipHelper.UnpackFileRarOrZip(localPath + "/" + fileName, localPath);
-                            speedOfProgress += documentProgress / 2;
+                            string zxVersion = cvList[cvList.Count() - 1].version;
+                            onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件", zxVersion);
+                            int documentProgress = 90 / cvList.Count; //每个文件所拥有的进度
+                            for (int i = 0; i < cvList.Count; i++)
+                            {
+                                String[] strArr = cvList[i].updateFilePath.Split(new char[] { '/' });
+                                String fileName = strArr[strArr.Length - 1];
+                                //下载
+                                onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件，正在下载第1个文件:" + fileName, null);
+                                downfile(cvList[i].updateFilePath, fileName, localPath);
+                                speedOfProgress += documentProgress / 2;
+                                //解压
+                                onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件，第1个文件:" + fileName + "下载成功，正在解压", null);
+                                ZipHelper.UnpackFileRarOrZip(localPath + "/" + fileName, localPath);
+                                speedOfProgress += documentProgress / 2;
+                                File.Delete(fileName);
+                            }
+                            //修改本地配置文件中的版本号
+                            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                            configuration.AppSettings.Settings["version"].Value = cvList[cvList.Count - 1].version;
+                            configuration.Save(ConfigurationSaveMode.Modified);
+                            ConfigurationManager.RefreshSection("appSettings");
                         }
-                        //修改本地配置文件中的版本号
-                        Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                        configuration.AppSettings.Settings["version"].Value = cvList[cvList.Count - 1].version;
-                        configuration.Save(ConfigurationSaveMode.Modified);
-                        ConfigurationManager.RefreshSection("appSettings");
+                        //启动程序
+                        System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
+                        //设置外部程序名  
+                        Info.FileName = ConfigurationManager.AppSettings["StartUpEXE"].ToString();
+                        //设置外部程序工作目录为   C:\  
+                        Info.WorkingDirectory = ConfigurationManager.AppSettings[@"StartUpEXE"].ToString();
+                        //最小化方式启动
+                        Info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                        //声明一个程序类  
+                        System.Diagnostics.Process Proc;
+                        try
+                        {
+                            Proc = System.Diagnostics.Process.Start(Info);
+                            System.Threading.Thread.Sleep(500);
+                            Console.WriteLine();
+                        }
+                        catch (System.ComponentModel.Win32Exception x)
+                        {
+                            MessageBox.Show(x.ToString());
+                        }
+                        onDownLoadProgress(100, 100, "检查更新完成", null);
+                        System.Environment.Exit(0);
                     }
-                    //启动程序
-                    System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
-                    //设置外部程序名  
-                    Info.FileName = ConfigurationManager.AppSettings["StartUpEXE"].ToString();
-                    //设置外部程序工作目录为   C:\  
-                    Info.WorkingDirectory = ConfigurationManager.AppSettings[@"StartUpEXE"].ToString();
-                    //最小化方式启动
-                    Info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-                    //声明一个程序类  
-                    System.Diagnostics.Process Proc;
-                    try
+                    else
                     {
-                        Proc = System.Diagnostics.Process.Start(Info);
-                        System.Threading.Thread.Sleep(500);
-                        Console.WriteLine();
+                        onDownLoadProgress(100, 100, objT["message"].ToString(), null);
+                        System.Environment.Exit(0);
                     }
-                    catch (System.ComponentModel.Win32Exception x)
-                    {
-                        MessageBox.Show(x.ToString());
-                    }
-                    onDownLoadProgress(100, 100, "检查更新完成", null);
-                    System.Environment.Exit(0);
                 }
-                else
+                catch (Exception e)
                 {
-                    onDownLoadProgress(100, 100, objT["message"].ToString(), null);
-                    System.Environment.Exit(0);
+                    Log4net.LogHelper.Error(e.Message);
+                    MessageBox.Show(e.Message);
                 }
             }
 

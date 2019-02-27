@@ -198,6 +198,11 @@ namespace Xr.RtManager
             bgWorkder.RunWorkerAsync(funcArg);
         }
 
+        private void OfficeForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
+
 
     }
 }

@@ -14,6 +14,7 @@ using Xr.Common;
 using Xr.Common.Controls;
 using DevExpress.XtraEditors;
 using System.Threading;
+using System.Web;
 
 namespace Xr.RtManager.Pages.cms
 {
@@ -21,6 +22,7 @@ namespace Xr.RtManager.Pages.cms
     {
         public DoctorSettingsForm()
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             InitializeComponent();
         }
 
@@ -38,7 +40,6 @@ namespace Xr.RtManager.Pages.cms
 
         private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
-            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             //把这行删了，再显示分页控件，就是分页了，不过宽度不够显示分页控件
             pageControl1.PageSize = 10000;//一页一万条，不显示分页；
             dcDoctorInfo.DataType = typeof(DoctorInfoEntity);
@@ -46,11 +47,11 @@ namespace Xr.RtManager.Pages.cms
             //清除默认出诊时间模板数据
             dcDefaultVisit.ClearValue();
             menuControl2.borderColor = Color.FromArgb(214, 214, 214);
-            cmd.ShowOpaqueLayer(0f);
-
+            //cmd.ShowOpaqueLayer(0f);
+            
             String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync( 100, (o) => 
+            this.DoWorkAsync( 0, (o) => 
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -72,160 +73,149 @@ namespace Xr.RtManager.Pages.cms
                         itemList.Add(item);
                     }
                     menuControl2.setDataSource(itemList);
-
-                    //查询医院下拉框数据
-                    url = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
-                    this.DoWorkAsync(100, (o) =>
-                    {
-                        String data = HttpClass.httpPost(url);
-                        return data;
-
-                    }, null, (data) =>
-                    {
-                        objT = JObject.Parse(data.ToString());
-                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                        {
-                            lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
-                            lueHospital.Properties.DisplayMember = "name";
-                            lueHospital.Properties.ValueMember = "id";
-
-                            //查询状态下拉框数据
-                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
-                            this.DoWorkAsync(100, (o) =>
-                            {
-                                data = HttpClass.httpPost(url);
-                                return data;
-
-                            }, null, (data2) =>
-                            {
-                                objT = JObject.Parse(data2.ToString());
-                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                                {
-                                    lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                                    lueIsUse.Properties.DisplayMember = "label";
-                                    lueIsUse.Properties.ValueMember = "value";
-
-                                    //查询挂号类型下拉框数据
-                                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=register_type";
-                                    this.DoWorkAsync(100, (o) =>
-                                    {
-                                        data = HttpClass.httpPost(url);
-                                        return data;
-
-                                    }, null, (data3) =>
-                                    {
-                                        objT = JObject.Parse(data3.ToString());
-                                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                                        {
-                                            lueRegisterType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                                            lueRegisterType.Properties.DisplayMember = "label";
-                                            lueRegisterType.Properties.ValueMember = "value";
-
-                                            //查询性别下拉框数据
-                                            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=sex";
-                                            this.DoWorkAsync(100, (o) =>
-                                            {
-                                                data = HttpClass.httpPost(url);
-                                                return data;
-
-                                            }, null, (data4) =>
-                                            {
-                                                objT = JObject.Parse(data4.ToString());
-                                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                                                {
-                                                    lueSex.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                                                    lueSex.Properties.DisplayMember = "label";
-                                                    lueSex.Properties.ValueMember = "value";
-
-                                                    //查询是否显示下拉框数据
-                                                    url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
-                                                    this.DoWorkAsync(100, (o) =>
-                                                    {
-                                                        data = HttpClass.httpPost(url);
-                                                        return data;
-
-                                                    }, null, (data5) =>
-                                                    {
-                                                        objT = JObject.Parse(data5.ToString());
-                                                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                                                        {
-                                                            lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
-                                                            lueIsShow.Properties.DisplayMember = "label";
-                                                            lueIsShow.Properties.ValueMember = "value";
-
-                                                            //获取默认出诊时间字典配置
-                                                            url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
-                                                            this.DoWorkAsync(100, (o) =>
-                                                            {
-                                                                data = HttpClass.httpPost(url);
-                                                                return data;
-
-                                                            }, null, (data6) =>
-                                                            {
-                                                                cmd.HideOpaqueLayer();
-                                                                objT = JObject.Parse(data6.ToString());
-                                                                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                                                                {
-                                                                    defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
-                                                                }
-                                                                else
-                                                                {
-                                                                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                                                                    return;
-                                                                }
-                                                            });
-                                                        }
-                                                        else
-                                                        {
-                                                            cmd.HideOpaqueLayer();
-                                                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                                                            return;
-                                                        }
-                                                    });
-                                                }
-                                                else
-                                                {
-                                                    cmd.HideOpaqueLayer();
-                                                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                                                    return;
-                                                }
-                                            });
-                                        }
-                                        else
-                                        {
-                                            cmd.HideOpaqueLayer();
-                                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                                            return;
-                                        }
-                                    });
-                                }
-                                else
-                                {
-                                    cmd.HideOpaqueLayer();
-                                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                                    return;
-                                }
-                            });
-
-                        }
-                        else
-                        {
-                            cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                            return;
-                        }
-                    });
                 }
                 else
                 {
-                    cmd.HideOpaqueLayer();
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
             });
 
-            
+            //查询医院下拉框数据
+            String url2 = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
+            this.DoWorkAsync(0, (o) =>
+            {
+                String data = HttpClass.httpPost(url2);
+                return data;
 
+            }, null, (data) =>
+            {
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueHospital.Properties.DataSource = objT["result"].ToObject<List<HospitalInfoEntity>>();
+                    lueHospital.Properties.DisplayMember = "name";
+                    lueHospital.Properties.ValueMember = "id";
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
+
+            //查询状态下拉框数据
+            String url3 = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
+            this.DoWorkAsync(0, (o) =>
+            {
+                String data = HttpClass.httpPost(url3);
+                return data;
+
+            }, null, (data2) =>
+            {
+                JObject objT = JObject.Parse(data2.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueIsUse.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                    lueIsUse.Properties.DisplayMember = "label";
+                    lueIsUse.Properties.ValueMember = "value";
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
+
+            //查询挂号类型下拉框数据
+            String url4 = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=register_type";
+            this.DoWorkAsync(0, (o) =>
+            {
+                String data = HttpClass.httpPost(url4);
+                return data;
+
+            }, null, (data3) =>
+            {
+                JObject objT = JObject.Parse(data3.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueRegisterType.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                    lueRegisterType.Properties.DisplayMember = "label";
+                    lueRegisterType.Properties.ValueMember = "value";
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
+
+            //查询性别下拉框数据
+            String url5 = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=sex";
+            this.DoWorkAsync(0, (o) =>
+            {
+                String data = HttpClass.httpPost(url5);
+                return data;
+
+            }, null, (data4) =>
+            {
+                JObject objT = JObject.Parse(data4.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueSex.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                    lueSex.Properties.DisplayMember = "label";
+                    lueSex.Properties.ValueMember = "value";
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
+
+            //查询是否显示下拉框数据
+            String url6 = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=show_hide";
+            this.DoWorkAsync(0, (o) =>
+            {
+                String  data = HttpClass.httpPost(url6);
+                return data;
+
+            }, null, (data5) =>
+            {
+                JObject objT = JObject.Parse(data5.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    lueIsShow.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                    lueIsShow.Properties.DisplayMember = "label";
+                    lueIsShow.Properties.ValueMember = "value";
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
+
+            //获取默认出诊时间字典配置
+            String url7 = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
+            this.DoWorkAsync(0, (o) =>
+            {
+                String data = HttpClass.httpPost(url7);
+                return data;
+
+            }, null, (data6) =>
+            {
+                JObject objT = JObject.Parse(data6.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            });
         }
 
         public void SearchData(int pageNo, int pageSize)
@@ -608,7 +598,8 @@ namespace Xr.RtManager.Pages.cms
                 }
             }
             String workStr = Newtonsoft.Json.JsonConvert.SerializeObject(workingDayList);
-
+            //文本编辑框的内容要转编码，不然后台获取的时候会不对
+            doctorInfo.synopsis = HttpUtility.UrlEncode(doctorInfo.synopsis, Encoding.UTF8);
             String param =  PackReflectionEntity<DoctorInfoEntity>.GetEntityToRequestParameters(doctorInfo, true);
             param += "&workStr=" + workStr;
             //请求接口
@@ -816,6 +807,7 @@ namespace Xr.RtManager.Pages.cms
                 if (morning != CheckState.Checked && afternoon != CheckState.Checked
                     && night != CheckState.Checked && allDay != CheckState.Checked)
                 {
+                    cmd.HideOpaqueLayer();
                     return;
                 }
                 //获取默认排班数据
@@ -835,6 +827,7 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.mStart.Trim().Length == 0 || defaultVisit.mEnd.Trim().Length == 0
                         || defaultVisit.mSubsection.Trim().Length == 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("上午的设置不能为空");
                         return;
                     }
@@ -842,11 +835,13 @@ namespace Xr.RtManager.Pages.cms
                     String[] endArr = defaultVisit.mEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("上午的开始时间设置有误");
                         return;
                     }
                     if (endArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("上午的结束时间设置有误");
                         return;
                     }
@@ -856,11 +851,13 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("上午结束时间不能小于或等于开始时间");
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.mSubsection))
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("上午分段时间大于总时间");
                         return;
                     }
@@ -873,6 +870,7 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.aStart.Trim().Length == 0 || defaultVisit.aEnd.Trim().Length == 0
                         || defaultVisit.aSubsection.Trim().Length == 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("下午的设置不能为空");
                         return;
                     }
@@ -880,11 +878,13 @@ namespace Xr.RtManager.Pages.cms
                     String[] endArr = defaultVisit.aEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("下午的开始时间设置有误");
                         return;
                     }
                     if (endArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("下午的结束时间设置有误");
                         return;
                     }
@@ -894,11 +894,13 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("下午结束时间不能小于或等于开始时间");
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.aSubsection))
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("下午分段时间大于总时间");
                         return;
                     }
@@ -911,6 +913,7 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.nStart.Trim().Length == 0 || defaultVisit.nEnd.Trim().Length == 0
                         || defaultVisit.nSubsection.Trim().Length == 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("晚上的设置不能为空");
                         return;
                     }
@@ -918,11 +921,13 @@ namespace Xr.RtManager.Pages.cms
                     String[] endArr = defaultVisit.nEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("晚上的开始时间设置有误");
                         return;
                     }
                     if (endArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("晚上的结束时间设置有误");
                         return;
                     }
@@ -938,11 +943,13 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("晚上结束时间不能小于或等于开始时间");
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.nSubsection))
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("晚上分段时间大于总时间");
                         return;
                     }
@@ -955,6 +962,7 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.allStart.Trim().Length == 0 || defaultVisit.allEnd.Trim().Length == 0
                         || defaultVisit.allSubsection.Trim().Length == 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("全天的设置不能为空");
                         return;
                     }
@@ -962,11 +970,13 @@ namespace Xr.RtManager.Pages.cms
                     String[] endArr = defaultVisit.allEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("全天的开始时间设置有误");
                         return;
                     }
                     if (endArr.Length != 2)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("全天的结束时间设置有误");
                         return;
                     }
@@ -980,11 +990,13 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间");
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.nSubsection))
                     {
+                        cmd.HideOpaqueLayer();
                         MessageBoxUtils.Hint("全天分段时间大于总时间");
                         return;
                     }
@@ -1676,7 +1688,6 @@ namespace Xr.RtManager.Pages.cms
                 }
                 catch (Exception ex)
                 {
-                    cmd.HideOpaqueLayer();
                     throw new Exception(ex.InnerException.Message);
                 }
             };
@@ -1700,6 +1711,7 @@ namespace Xr.RtManager.Pages.cms
                 tableLayoutPanel1.ColumnStyles[1].Width = tlpWidth;
             else
                 tableLayoutPanel1.ColumnStyles[1].Width = 410;
+            cmd.rectDisplay = this.DisplayRectangle;
         }
 
         private void pbPicture_Click(object sender, EventArgs e)

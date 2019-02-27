@@ -188,6 +188,11 @@ namespace Xr.RtManager
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
+
+        private void LogForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
         
     }
 }

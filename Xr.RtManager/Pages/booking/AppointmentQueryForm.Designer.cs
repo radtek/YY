@@ -28,28 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcAppointmentInfo = new DevExpress.XtraGrid.GridControl();
             this.gv_AppointmentInfo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.gridBand29 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand15 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.性别 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand30 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.gridBand16 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand17 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand18 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand19 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand20 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.状态 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand22 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.就诊类别 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.术后复诊 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn11 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.出院复诊 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn12 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.外院转诊 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.登记时间 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand28 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn13 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -104,29 +120,12 @@
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
-            this.gridBand29 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand15 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.性别 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand30 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand16 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand17 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand18 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand19 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand20 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.状态 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand22 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.就诊类别 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.术后复诊 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.出院复诊 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.外院转诊 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.登记时间 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand28 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.panelEx12 = new Xr.Common.Controls.PanelEx();
+            this.panelEx15 = new Xr.Common.Controls.PanelEx();
+            this.panelEx16 = new Xr.Common.Controls.PanelEx();
+            this.panelEx17 = new Xr.Common.Controls.PanelEx();
+            this.panelEx13 = new Xr.Common.Controls.PanelEx();
+            this.panelEx14 = new Xr.Common.Controls.PanelEx();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcAppointmentInfo)).BeginInit();
@@ -259,6 +258,15 @@
             this.gv_AppointmentInfo.RowHeight = 30;
             this.gv_AppointmentInfo.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gv_AppointmentInfo_RowCellClick);
             // 
+            // gridBand29
+            // 
+            this.gridBand29.Caption = "序号";
+            this.gridBand29.Columns.Add(this.gridColumn2);
+            this.gridBand29.Name = "gridBand29";
+            this.gridBand29.Visible = false;
+            this.gridBand29.VisibleIndex = -1;
+            this.gridBand29.Width = 35;
+            // 
             // gridColumn2
             // 
             this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
@@ -272,6 +280,14 @@
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.Width = 35;
+            // 
+            // gridBand15
+            // 
+            this.gridBand15.Caption = "姓名";
+            this.gridBand15.Columns.Add(this.gridColumn6);
+            this.gridBand15.Name = "gridBand15";
+            this.gridBand15.VisibleIndex = 0;
+            this.gridBand15.Width = 69;
             // 
             // gridColumn6
             // 
@@ -287,6 +303,14 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.Width = 69;
             // 
+            // 性别
+            // 
+            this.性别.Caption = "性别";
+            this.性别.Columns.Add(this.gridColumn5);
+            this.性别.Name = "性别";
+            this.性别.VisibleIndex = 1;
+            this.性别.Width = 35;
+            // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "性别";
@@ -295,6 +319,27 @@
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.Width = 35;
+            // 
+            // gridBand30
+            // 
+            this.gridBand30.Caption = "预约信息";
+            this.gridBand30.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.gridBand16,
+            this.gridBand17,
+            this.gridBand18,
+            this.gridBand19,
+            this.gridBand20});
+            this.gridBand30.Name = "gridBand30";
+            this.gridBand30.VisibleIndex = 2;
+            this.gridBand30.Width = 321;
+            // 
+            // gridBand16
+            // 
+            this.gridBand16.Caption = "日期";
+            this.gridBand16.Columns.Add(this.gridColumn4);
+            this.gridBand16.Name = "gridBand16";
+            this.gridBand16.VisibleIndex = 0;
+            this.gridBand16.Width = 100;
             // 
             // gridColumn4
             // 
@@ -310,6 +355,14 @@
             this.gridColumn4.Visible = true;
             this.gridColumn4.Width = 100;
             // 
+            // gridBand17
+            // 
+            this.gridBand17.Caption = "周";
+            this.gridBand17.Columns.Add(this.bandedGridColumn1);
+            this.gridBand17.Name = "gridBand17";
+            this.gridBand17.VisibleIndex = 1;
+            this.gridBand17.Width = 30;
+            // 
             // bandedGridColumn1
             // 
             this.bandedGridColumn1.Caption = "周";
@@ -318,6 +371,14 @@
             this.bandedGridColumn1.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn1.Visible = true;
             this.bandedGridColumn1.Width = 30;
+            // 
+            // gridBand18
+            // 
+            this.gridBand18.Caption = "时间";
+            this.gridBand18.Columns.Add(this.gridColumn9);
+            this.gridBand18.Name = "gridBand18";
+            this.gridBand18.VisibleIndex = 2;
+            this.gridBand18.Width = 61;
             // 
             // gridColumn9
             // 
@@ -328,6 +389,14 @@
             this.gridColumn9.Visible = true;
             this.gridColumn9.Width = 61;
             // 
+            // gridBand19
+            // 
+            this.gridBand19.Caption = "科室";
+            this.gridBand19.Columns.Add(this.bandedGridColumn2);
+            this.gridBand19.Name = "gridBand19";
+            this.gridBand19.VisibleIndex = 3;
+            this.gridBand19.Width = 50;
+            // 
             // bandedGridColumn2
             // 
             this.bandedGridColumn2.Caption = "科室";
@@ -337,6 +406,14 @@
             this.bandedGridColumn2.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn2.Visible = true;
             this.bandedGridColumn2.Width = 50;
+            // 
+            // gridBand20
+            // 
+            this.gridBand20.Caption = "医生";
+            this.gridBand20.Columns.Add(this.gridColumn3);
+            this.gridBand20.Name = "gridBand20";
+            this.gridBand20.VisibleIndex = 4;
+            this.gridBand20.Width = 80;
             // 
             // gridColumn3
             // 
@@ -352,6 +429,14 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.Width = 80;
             // 
+            // 状态
+            // 
+            this.状态.Caption = "状态";
+            this.状态.Columns.Add(this.gridColumn1);
+            this.状态.Name = "状态";
+            this.状态.VisibleIndex = 3;
+            this.状态.Width = 48;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
@@ -365,6 +450,14 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.Width = 48;
             // 
+            // gridBand22
+            // 
+            this.gridBand22.Caption = "途径";
+            this.gridBand22.Columns.Add(this.gridColumn7);
+            this.gridBand22.Name = "gridBand22";
+            this.gridBand22.VisibleIndex = 4;
+            this.gridBand22.Width = 79;
+            // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "途径";
@@ -373,6 +466,14 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.Width = 79;
+            // 
+            // 就诊类别
+            // 
+            this.就诊类别.Caption = "就诊类别";
+            this.就诊类别.Columns.Add(this.gridColumn10);
+            this.就诊类别.Name = "就诊类别";
+            this.就诊类别.VisibleIndex = 5;
+            this.就诊类别.Width = 45;
             // 
             // gridColumn10
             // 
@@ -383,6 +484,14 @@
             this.gridColumn10.Visible = true;
             this.gridColumn10.Width = 45;
             // 
+            // 术后复诊
+            // 
+            this.术后复诊.Caption = "术后复诊";
+            this.术后复诊.Columns.Add(this.gridColumn11);
+            this.术后复诊.Name = "术后复诊";
+            this.术后复诊.VisibleIndex = 6;
+            this.术后复诊.Width = 45;
+            // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "术后复诊";
@@ -391,6 +500,14 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.Width = 45;
+            // 
+            // 出院复诊
+            // 
+            this.出院复诊.Caption = "出院复诊";
+            this.出院复诊.Columns.Add(this.gridColumn12);
+            this.出院复诊.Name = "出院复诊";
+            this.出院复诊.VisibleIndex = 7;
+            this.出院复诊.Width = 45;
             // 
             // gridColumn12
             // 
@@ -401,6 +518,14 @@
             this.gridColumn12.Visible = true;
             this.gridColumn12.Width = 45;
             // 
+            // 外院转诊
+            // 
+            this.外院转诊.Caption = "外院转诊";
+            this.外院转诊.Columns.Add(this.bandedGridColumn3);
+            this.外院转诊.Name = "外院转诊";
+            this.外院转诊.VisibleIndex = 8;
+            this.外院转诊.Width = 45;
+            // 
             // bandedGridColumn3
             // 
             this.bandedGridColumn3.Caption = "外院转诊";
@@ -409,6 +534,14 @@
             this.bandedGridColumn3.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn3.Visible = true;
             this.bandedGridColumn3.Width = 45;
+            // 
+            // 登记时间
+            // 
+            this.登记时间.Caption = "登记时间";
+            this.登记时间.Columns.Add(this.bandedGridColumn4);
+            this.登记时间.Name = "登记时间";
+            this.登记时间.VisibleIndex = 9;
+            this.登记时间.Width = 100;
             // 
             // bandedGridColumn4
             // 
@@ -419,6 +552,14 @@
             this.bandedGridColumn4.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn4.Visible = true;
             this.bandedGridColumn4.Width = 100;
+            // 
+            // gridBand28
+            // 
+            this.gridBand28.Caption = "备注";
+            this.gridBand28.Columns.Add(this.gridColumn13);
+            this.gridBand28.Name = "gridBand28";
+            this.gridBand28.VisibleIndex = 10;
+            this.gridBand28.Width = 92;
             // 
             // gridColumn13
             // 
@@ -1040,7 +1181,7 @@
             this.lueRegisterWay.Dock = System.Windows.Forms.DockStyle.Left;
             this.lueRegisterWay.Location = new System.Drawing.Point(489, 0);
             this.lueRegisterWay.Name = "lueRegisterWay";
-            this.lueRegisterWay.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lueRegisterWay.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lueRegisterWay.Properties.Appearance.Options.UseFont = true;
             this.lueRegisterWay.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueRegisterWay.Properties.AppearanceDisabled.Options.UseFont = true;
@@ -1053,10 +1194,10 @@
             this.lueRegisterWay.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueRegisterWay.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueRegisterWay.Properties.AutoHeight = false;
-            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject3.Options.UseFont = true;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.Options.UseFont = true;
             this.lueRegisterWay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.lueRegisterWay.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -1080,7 +1221,7 @@
             this.lueState.Dock = System.Windows.Forms.DockStyle.Left;
             this.lueState.Location = new System.Drawing.Point(285, 0);
             this.lueState.Name = "lueState";
-            this.lueState.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lueState.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lueState.Properties.Appearance.Options.UseFont = true;
             this.lueState.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueState.Properties.AppearanceDisabled.Options.UseFont = true;
@@ -1093,10 +1234,10 @@
             this.lueState.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueState.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueState.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lueState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lueState.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -1271,148 +1412,6 @@
             this.panelEx14.Padding = new System.Windows.Forms.Padding(1, 8, 1, 8);
             this.panelEx14.Size = new System.Drawing.Size(250, 150);
             this.panelEx14.TabIndex = 0;
-            // 
-            // gridBand29
-            // 
-            this.gridBand29.Caption = "序号";
-            this.gridBand29.Columns.Add(this.gridColumn2);
-            this.gridBand29.Name = "gridBand29";
-            this.gridBand29.Visible = false;
-            this.gridBand29.VisibleIndex = -1;
-            this.gridBand29.Width = 35;
-            // 
-            // gridBand15
-            // 
-            this.gridBand15.Caption = "姓名";
-            this.gridBand15.Columns.Add(this.gridColumn6);
-            this.gridBand15.Name = "gridBand15";
-            this.gridBand15.VisibleIndex = 0;
-            this.gridBand15.Width = 69;
-            // 
-            // 性别
-            // 
-            this.性别.Caption = "性别";
-            this.性别.Columns.Add(this.gridColumn5);
-            this.性别.Name = "性别";
-            this.性别.VisibleIndex = 1;
-            this.性别.Width = 35;
-            // 
-            // gridBand30
-            // 
-            this.gridBand30.Caption = "预约信息";
-            this.gridBand30.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.gridBand16,
-            this.gridBand17,
-            this.gridBand18,
-            this.gridBand19,
-            this.gridBand20});
-            this.gridBand30.Name = "gridBand30";
-            this.gridBand30.VisibleIndex = 2;
-            this.gridBand30.Width = 321;
-            // 
-            // gridBand16
-            // 
-            this.gridBand16.Caption = "日期";
-            this.gridBand16.Columns.Add(this.gridColumn4);
-            this.gridBand16.Name = "gridBand16";
-            this.gridBand16.VisibleIndex = 0;
-            this.gridBand16.Width = 100;
-            // 
-            // gridBand17
-            // 
-            this.gridBand17.Caption = "周";
-            this.gridBand17.Columns.Add(this.bandedGridColumn1);
-            this.gridBand17.Name = "gridBand17";
-            this.gridBand17.VisibleIndex = 1;
-            this.gridBand17.Width = 30;
-            // 
-            // gridBand18
-            // 
-            this.gridBand18.Caption = "时间";
-            this.gridBand18.Columns.Add(this.gridColumn9);
-            this.gridBand18.Name = "gridBand18";
-            this.gridBand18.VisibleIndex = 2;
-            this.gridBand18.Width = 61;
-            // 
-            // gridBand19
-            // 
-            this.gridBand19.Caption = "科室";
-            this.gridBand19.Columns.Add(this.bandedGridColumn2);
-            this.gridBand19.Name = "gridBand19";
-            this.gridBand19.VisibleIndex = 3;
-            this.gridBand19.Width = 50;
-            // 
-            // gridBand20
-            // 
-            this.gridBand20.Caption = "医生";
-            this.gridBand20.Columns.Add(this.gridColumn3);
-            this.gridBand20.Name = "gridBand20";
-            this.gridBand20.VisibleIndex = 4;
-            this.gridBand20.Width = 80;
-            // 
-            // 状态
-            // 
-            this.状态.Caption = "状态";
-            this.状态.Columns.Add(this.gridColumn1);
-            this.状态.Name = "状态";
-            this.状态.VisibleIndex = 3;
-            this.状态.Width = 48;
-            // 
-            // gridBand22
-            // 
-            this.gridBand22.Caption = "途径";
-            this.gridBand22.Columns.Add(this.gridColumn7);
-            this.gridBand22.Name = "gridBand22";
-            this.gridBand22.VisibleIndex = 4;
-            this.gridBand22.Width = 79;
-            // 
-            // 就诊类别
-            // 
-            this.就诊类别.Caption = "就诊类别";
-            this.就诊类别.Columns.Add(this.gridColumn10);
-            this.就诊类别.Name = "就诊类别";
-            this.就诊类别.VisibleIndex = 5;
-            this.就诊类别.Width = 45;
-            // 
-            // 术后复诊
-            // 
-            this.术后复诊.Caption = "术后复诊";
-            this.术后复诊.Columns.Add(this.gridColumn11);
-            this.术后复诊.Name = "术后复诊";
-            this.术后复诊.VisibleIndex = 6;
-            this.术后复诊.Width = 45;
-            // 
-            // 出院复诊
-            // 
-            this.出院复诊.Caption = "出院复诊";
-            this.出院复诊.Columns.Add(this.gridColumn12);
-            this.出院复诊.Name = "出院复诊";
-            this.出院复诊.VisibleIndex = 7;
-            this.出院复诊.Width = 45;
-            // 
-            // 外院转诊
-            // 
-            this.外院转诊.Caption = "外院转诊";
-            this.外院转诊.Columns.Add(this.bandedGridColumn3);
-            this.外院转诊.Name = "外院转诊";
-            this.外院转诊.VisibleIndex = 8;
-            this.外院转诊.Width = 45;
-            // 
-            // 登记时间
-            // 
-            this.登记时间.Caption = "登记时间";
-            this.登记时间.Columns.Add(this.bandedGridColumn4);
-            this.登记时间.Name = "登记时间";
-            this.登记时间.VisibleIndex = 9;
-            this.登记时间.Width = 100;
-            // 
-            // gridBand28
-            // 
-            this.gridBand28.Caption = "备注";
-            this.gridBand28.Columns.Add(this.gridColumn13);
-            this.gridBand28.Name = "gridBand28";
-            this.gridBand28.VisibleIndex = 10;
-            this.gridBand28.Width = 92;
             // 
             // AppointmentQueryForm
             // 

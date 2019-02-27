@@ -125,29 +125,11 @@ namespace Xr.RtManager
 
         private void skinButton2_Click(object sender, EventArgs e)
         {
-            return;
-            //if (tbLoginName.Text.Trim().Length == 0)
-            //{
-            //    return;
-            //}
-            //String serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
-            //String jsonStr = HttpClass.HRequest(serverUrl + "sys/bedLogin/login?userName=" + tbLoginName.Text + "&&password=" + tbPassword.Text);
-            //JObject objT = JObject.Parse(jsonStr);
-            //if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-            //{
-            //    //ModifyPasswordForm form = new ModifyPasswordForm(tbLoginName.Text, tbPassword.Text);
-            //    //form.ShowDialog();
-            //    //if(form.DialogResult == DialogResult.OK)
-            //    //    MessageBoxUtils.Hint("修改密码成功");
-            //    //MainForm mian = new MainForm();
-            //    //mian.ModifyPassword(tbLoginName.Text, tbPassword.Text);
-            //    //mian.ShowDialog();
-            //}
-            //else
-            //{
-            //    MessageBox.Show(objT["message"].ToString());
-            //}
-
+            ModifyPasswordForm form = new ModifyPasswordForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                MessageBoxUtils.Hint("修改密码成功!");
+            }
         }
 
         /// <summary>
@@ -202,6 +184,25 @@ namespace Xr.RtManager
             bgWorkder.RunWorkerAsync(funcArg);
         }
 
-        
+        private void tbLoginName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//如果输入的是回车键  
+            {
+                this.btnLogin_Click(sender, e);//触发button事件  
+            }  
+        }
+
+        private void tbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//如果输入的是回车键  
+            {
+                this.btnLogin_Click(sender, e);//触发button事件  
+            }  
+        }
+
+        private void LoginForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
     }
 }

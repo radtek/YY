@@ -571,6 +571,7 @@
             this.Name = "UserForm";
             this.Size = new System.Drawing.Size(1441, 481);
             this.Load += new System.EventHandler(this.UserForm_Load);
+            this.Resize += new System.EventHandler(this.UserForm_Resize);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcUser)).EndInit();

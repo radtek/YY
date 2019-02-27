@@ -31,7 +31,7 @@ namespace Xr.RtCall.pages
         /// 呼号到诊/过号重排
         /// </summary>
         /// <param name="triageId">分诊记录主键，第一次可空</param>
-        /// <param name="type">类型：0呼号到诊、1过号重排</param>
+        /// <param name="type">类型：0(呼号到诊)、1(过号重排)</param>
         public void PatientOkAndNext(string triageId, string type)
         {
             try
@@ -63,11 +63,14 @@ namespace Xr.RtCall.pages
                                      {
                                          if (Convert.ToBoolean(AppContext.AppConfig.WhetherToAssign))
                                          {
-                                             _context.Send((s) => Assignment(""), null);//把患者ID传给医生工作站
+                                             string patientId=objT["result"][0]["patientId"].ToString();
+                                             _context.Send((s) => Assignment(patientId), null);//把患者ID传给医生工作站并让医生工作站回车查询
+                                        
                                          }
                                      }
-                                     _context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
+                                     //_context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
                                      _context.Send((s) => CloseForm(), null);
+                                     _context.Send((s) => ShuaXin(), null);
                                  }
                                  else
                                  {
@@ -83,11 +86,18 @@ namespace Xr.RtCall.pages
                Log4net.LogHelper.Error("获取完成下一位/过号下一位错误信息：" + ex.Message);
             }
         }
+        public void ShuaXin()
+        {
+            if (Form1.IsMax)
+            {
+                RtCallPeationFrm.RTCallfrm.PatientList();
+            }
+        }
         public void CloseForm()
         {
-            Form f = this.Parent as HostingForm;
-            if (f != null)
-                f.Close();
+            Form f1 = this.Parent as HostingForm;
+            if (f1 != null)
+                f1.Close();
             this.Dispose();
         }
         #endregion
@@ -105,6 +115,10 @@ namespace Xr.RtCall.pages
 
         [System.Runtime.InteropServices.DllImport("user32")]
         public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        /// <summary>
+        /// 把患者ID传给医生工作站(利用鼠标的复制和粘贴)
+        /// </summary>
+        /// <param name="id"></param>
         public void Assignment(string id)
         {
             string printid = id;

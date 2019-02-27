@@ -30,9 +30,7 @@
         {
             this.GreenFrmPanel = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.GreenFrmPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // GreenFrmPanel
@@ -70,27 +68,16 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // panelControl1
-            // 
-            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 30);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(284, 231);
-            this.panelControl1.TabIndex = 11;
-            // 
             // HostingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.GreenFrmPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HostingForm";
             this.Text = "HostingForm";
             this.GreenFrmPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -99,6 +86,5 @@
 
         public System.Windows.Forms.Panel GreenFrmPanel;
         private System.Windows.Forms.Button button3;
-        public DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }

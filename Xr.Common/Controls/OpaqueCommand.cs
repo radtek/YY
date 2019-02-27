@@ -1,6 +1,7 @@
 using DevExpress.XtraWaitForm;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Xr.Common.Utils;
 
@@ -12,6 +13,7 @@ namespace Xr.Common.Controls
         private bool _IsWaitingBoxCreated = false;
         private float _alpha = 0f;
         private String _text = "请稍候...";
+        public bool status = false;
         public OpaqueCommand(Control control)
         {
             Control = control;
@@ -40,11 +42,11 @@ namespace Xr.Common.Controls
         /// <summary>
         /// 显示遮罩层
         /// </summary>
-        /// <param name="control">控件</param>
         /// <param name="alpha">透明度</param>
         /// <param name="isShowLoadingImage">是否显示图标</param>
         public void ShowOpaqueLayer(int alpha, bool isShowtransparencyBG)
         {
+            
             IsShowtransparencyBG = isShowtransparencyBG;
             _alpha = 0.56f;
             CreateWaitingBox();
@@ -53,7 +55,6 @@ namespace Xr.Common.Controls
         /// <summary>
         /// 显示遮罩层
         /// </summary>
-        /// <param name="control">控件</param>
         public void ShowOpaqueLayer()
         {
             _alpha = 0.56f;
@@ -63,7 +64,6 @@ namespace Xr.Common.Controls
         /// <summary>
         /// 显示遮罩层
         /// </summary>
-        /// <param name="control">控件</param>
         /// <param name="alpha">透明度</param>
         public void ShowOpaqueLayer(float alpha)
         {
@@ -75,7 +75,6 @@ namespace Xr.Common.Controls
         /// <summary>
         /// 显示遮罩层
         /// </summary>
-        /// <param name="control">控件</param>
         /// <param name="alpha">透明度</param>
         /// <param name="text">显示内容</param>
         public void ShowOpaqueLayer(float alpha, String text)
@@ -212,6 +211,7 @@ namespace Xr.Common.Controls
             waitingBox.Visible = true;
             waitingBox.BringToFront();
             waitingBox.Focus();
+            status = true;
         }
         /// <summary>
         /// 创建临时背景图片
@@ -220,10 +220,13 @@ namespace Xr.Common.Controls
         private Bitmap CreateBacgroundImage()
         {
             Rectangle rect = Control.ClientRectangle;
-            int w = rect.Width;
-            int h = rect.Height;
+            //100%的时候，DPI是96；这条语句的作用时获取放大比例
+            int w = (int)(rect.Width * PrimaryScreen.ScaleX);
+            int h = (int)(rect.Height * PrimaryScreen.ScaleY);
 
-            Point p = Control.PointToScreen(new Point(0, 0));
+            Point p1 = Control.PointToScreen(new Point(0, 0));
+            Point p = new Point((int)(p1.X * PrimaryScreen.ScaleX), (int)(p1.Y * PrimaryScreen.ScaleY));
+
             Bitmap TempImg = new Bitmap(w, h);
             try
             {
@@ -265,10 +268,121 @@ namespace Xr.Common.Controls
                 //Control.Enabled = true;
                 waitingBox.Visible = false;
             }
+            status = false;
         }
        private void button_Click(object sender, EventArgs e)
        {
            HideOpaqueLayer();
        }
+    }
+    public class PrimaryScreen
+    {
+        #region Win32 API
+        [DllImport("user32.dll")]
+        static extern IntPtr GetDC(IntPtr ptr);
+        [DllImport("gdi32.dll")]
+        static extern int GetDeviceCaps(
+       IntPtr hdc, // handle to DC
+       int nIndex // index of capability
+       );
+        [DllImport("user32.dll", EntryPoint = "ReleaseDC")]
+        static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDc);
+        #endregion
+        #region DeviceCaps常量
+        const int HORZRES = 8;
+        const int VERTRES = 10;
+        const int LOGPIXELSX = 88;
+        const int LOGPIXELSY = 90;
+        const int DESKTOPVERTRES = 117;
+        const int DESKTOPHORZRES = 118;
+        #endregion
+
+        #region 属性
+        /// <summary>
+        /// 获取屏幕分辨率当前物理大小
+        /// </summary>
+        public static Size WorkingArea
+        {
+            get
+            {
+                IntPtr hdc = GetDC(IntPtr.Zero);
+                Size size = new Size();
+                size.Width = GetDeviceCaps(hdc, HORZRES);
+                size.Height = GetDeviceCaps(hdc, VERTRES);
+                ReleaseDC(IntPtr.Zero, hdc);
+                return size;
+            }
+        }
+        /// <summary>
+        /// 当前系统DPI_X 大小 一般为96
+        /// </summary>
+        public static int DpiX
+        {
+            get
+            {
+                IntPtr hdc = GetDC(IntPtr.Zero);
+                int DpiX = GetDeviceCaps(hdc, LOGPIXELSX);
+                ReleaseDC(IntPtr.Zero, hdc);
+                return DpiX;
+            }
+        }
+        /// <summary>
+        /// 当前系统DPI_Y 大小 一般为96
+        /// </summary>
+        public static int DpiY
+        {
+            get
+            {
+                IntPtr hdc = GetDC(IntPtr.Zero);
+                int DpiX = GetDeviceCaps(hdc, LOGPIXELSY);
+                ReleaseDC(IntPtr.Zero, hdc);
+                return DpiX;
+            }
+        }
+        /// <summary>
+        /// 获取真实设置的桌面分辨率大小
+        /// </summary>
+        public static Size DESKTOP
+        {
+            get
+            {
+                IntPtr hdc = GetDC(IntPtr.Zero);
+                Size size = new Size();
+                size.Width = GetDeviceCaps(hdc, DESKTOPHORZRES);
+                size.Height = GetDeviceCaps(hdc, DESKTOPVERTRES);
+                ReleaseDC(IntPtr.Zero, hdc);
+                return size;
+            }
+        }
+
+        /// <summary>
+        /// 获取宽度缩放百分比
+        /// </summary>
+        public static float ScaleX
+        {
+            get
+            {
+                IntPtr hdc = GetDC(IntPtr.Zero);
+                int t = GetDeviceCaps(hdc, DESKTOPHORZRES);
+                int d = GetDeviceCaps(hdc, HORZRES);
+                float ScaleX = (float)GetDeviceCaps(hdc, DESKTOPHORZRES) / (float)GetDeviceCaps(hdc, HORZRES);
+                ReleaseDC(IntPtr.Zero, hdc);
+                return ScaleX;
+            }
+        }
+        /// <summary>
+        /// 获取高度缩放百分比
+        /// </summary>
+        public static float ScaleY
+        {
+            get
+            {
+                IntPtr hdc = GetDC(IntPtr.Zero);
+                float ScaleY = (float)(float)GetDeviceCaps(hdc, DESKTOPVERTRES) / (float)GetDeviceCaps(hdc, VERTRES);
+                ReleaseDC(IntPtr.Zero, hdc);
+                return ScaleY;
+            }
+        }
+        #endregion
     }
 }

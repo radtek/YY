@@ -11,24 +11,24 @@ using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Xr.Common;
 using Xr.Http;
+using Xr.Common.Controls;
 
 namespace Xr.RtManager
 {
     public partial class ClientVersionForm : UserControl
     {
-        Xr.Common.Controls.OpaqueCommand cmd;
-
         public ClientVersionForm()
         {
             InitializeComponent();
         }
 
+        OpaqueCommand cmd;
         private JObject obj { get; set; }
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
-            cmd.ShowOpaqueLayer(225, false);
+            cmd = new OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(0f);
             //this.BackColor = Color.FromArgb(243, 243, 243);
             SearchData(true, 1, pageControl1.PageSize);
         }
@@ -40,7 +40,7 @@ namespace Xr.RtManager
                 + "&&pageSize=" + pageSize;
             String url = AppContext.AppConfig.serverUrl + "sys/clientVersion/list" + param;
 
-            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -198,8 +198,34 @@ namespace Xr.RtManager
 
         private void buttonControl5_Click(object sender, EventArgs e)
         {
-            Xr.Common.Controls.PictureViewer pictureViewer = new Xr.Common.Controls.PictureViewer();
-            pictureViewer.Show();
+            String param = "?title=" + tbTitle.Text
+    + "&&version=" + tbVersion.Text + "&&pageNo=" + 1
+    + "&&pageSize=" + 10;
+            String url = AppContext.AppConfig.serverUrl + "sys/clientVersion/list" + param;
+            cmd.ShowOpaqueLayer();
+            this.DoWorkAsync(5000, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                cmd.HideOpaqueLayer();
+                JObject objT = JObject.Parse(r.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    gcDict.DataSource = objT["result"][0]["list"].ToObject<List<ClientVersionEntity>>();
+                    pageControl1.setData(int.Parse(objT["result"][0]["count"].ToString()),
+                    int.Parse(objT["result"][0]["pageSize"].ToString()),
+                    int.Parse(objT["result"][0]["pageNo"].ToString()));
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            });
+            //Xr.Common.Controls.PictureViewer pictureViewer = new Xr.Common.Controls.PictureViewer();
+            //pictureViewer.Show();
             //cmd.ShowOpaqueLayer();
             //MessageBoxUtils.HintImage("");
             //String param = "?title=" + tbTitle.Text
@@ -281,6 +307,11 @@ namespace Xr.RtManager
             Xr.Common.Controls.PictureViewer pictureViewer = new Xr.Common.Controls.PictureViewer();
             pictureViewer.imgPathStr = "http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-02-20/QQ图片20190220112758.jpg";
             pictureViewer.Show();
+        }
+
+        private void ClientVersionForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
         }
 
     }

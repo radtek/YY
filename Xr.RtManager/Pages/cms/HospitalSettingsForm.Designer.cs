@@ -966,6 +966,7 @@
             this.Name = "HospitalSettingsForm";
             this.Size = new System.Drawing.Size(920, 514);
             this.Load += new System.EventHandler(this.HospitalSettingsForm_Load);
+            this.Resize += new System.EventHandler(this.HospitalSettingsForm_Resize);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcHospitalInfo)).EndInit();

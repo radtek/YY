@@ -615,6 +615,7 @@
             this.Name = "SingleSchedulingForm";
             this.Size = new System.Drawing.Size(1101, 503);
             this.Load += new System.EventHandler(this.SingleSchedulingForm_Load);
+            this.Resize += new System.EventHandler(this.SingleSchedulingForm_Resize);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panelEx3.ResumeLayout(false);

@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.GreenFrmPanel = new System.Windows.Forms.Panel();
-            this.labBoxInfor = new DevExpress.XtraEditors.LabelControl();
             this.button3 = new System.Windows.Forms.Button();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panel_MainFrm = new DevExpress.XtraEditors.PanelControl();
@@ -40,35 +38,12 @@
             this.skinbutLook = new CCWin.SkinControl.SkinButton();
             this.skinbutBig = new CCWin.SkinControl.SkinButton();
             this.skinButNext = new CCWin.SkinControl.SkinButton();
-            this.GreenFrmPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel_MainFrm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // GreenFrmPanel
-            // 
-            this.GreenFrmPanel.BackColor = System.Drawing.Color.Silver;
-            this.GreenFrmPanel.Controls.Add(this.labBoxInfor);
-            this.GreenFrmPanel.Controls.Add(this.button3);
-            this.GreenFrmPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.GreenFrmPanel.Location = new System.Drawing.Point(0, 0);
-            this.GreenFrmPanel.Name = "GreenFrmPanel";
-            this.GreenFrmPanel.Size = new System.Drawing.Size(727, 30);
-            this.GreenFrmPanel.TabIndex = 9;
-            this.GreenFrmPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseDown);
-            this.GreenFrmPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseMove);
-            // 
-            // labBoxInfor
-            // 
-            this.labBoxInfor.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labBoxInfor.Location = new System.Drawing.Point(4, 4);
-            this.labBoxInfor.Name = "labBoxInfor";
-            this.labBoxInfor.Size = new System.Drawing.Size(28, 20);
-            this.labBoxInfor.TabIndex = 1;
-            this.labBoxInfor.Text = "叫号";
             // 
             // button3
             // 
@@ -81,8 +56,8 @@
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(697, 2);
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(696, 0);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(29, 26);
@@ -99,9 +74,9 @@
             this.panelControl1.Controls.Add(this.panel_MainFrm);
             this.panelControl1.Controls.Add(this.panelControl3);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 30);
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(727, 530);
+            this.panelControl1.Size = new System.Drawing.Size(727, 560);
             this.panelControl1.TabIndex = 10;
             // 
             // panel_MainFrm
@@ -110,7 +85,7 @@
             this.panel_MainFrm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_MainFrm.Location = new System.Drawing.Point(0, 48);
             this.panel_MainFrm.Name = "panel_MainFrm";
-            this.panel_MainFrm.Size = new System.Drawing.Size(727, 482);
+            this.panel_MainFrm.Size = new System.Drawing.Size(727, 512);
             this.panel_MainFrm.TabIndex = 3;
             // 
             // panelControl3
@@ -119,6 +94,7 @@
             this.panelControl3.Appearance.Options.UseBackColor = true;
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl3.Controls.Add(this.label2);
+            this.panelControl3.Controls.Add(this.button3);
             this.panelControl3.Controls.Add(this.skinbutLook);
             this.panelControl3.Controls.Add(this.skinbutBig);
             this.panelControl3.Controls.Add(this.skinButNext);
@@ -128,6 +104,8 @@
             this.panelControl3.Size = new System.Drawing.Size(727, 48);
             this.panelControl3.TabIndex = 2;
             this.panelControl3.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl3_Paint);
+            this.panelControl3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseDown);
+            this.panelControl3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GreenFrmPanel_MouseMove);
             // 
             // label2
             // 
@@ -151,7 +129,7 @@
             this.skinbutLook.IsDrawBorder = false;
             this.skinbutLook.IsDrawGlass = false;
             this.skinbutLook.IsEnabledDraw = false;
-            this.skinbutLook.Location = new System.Drawing.Point(549, 8);
+            this.skinbutLook.Location = new System.Drawing.Point(518, 8);
             this.skinbutLook.MouseBack = null;
             this.skinbutLook.Name = "skinbutLook";
             this.skinbutLook.NormlBack = null;
@@ -175,7 +153,7 @@
             this.skinbutBig.IsDrawBorder = false;
             this.skinbutBig.IsDrawGlass = false;
             this.skinbutBig.IsEnabledDraw = false;
-            this.skinbutBig.Location = new System.Drawing.Point(638, 8);
+            this.skinbutBig.Location = new System.Drawing.Point(607, 8);
             this.skinbutBig.MouseBack = null;
             this.skinbutBig.Name = "skinbutBig";
             this.skinbutBig.NormlBack = null;
@@ -217,14 +195,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(727, 560);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.GreenFrmPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "叫号";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.GreenFrmPanel.ResumeLayout(false);
-            this.GreenFrmPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panel_MainFrm)).EndInit();
@@ -237,10 +212,8 @@
 
         #endregion
 
-        public System.Windows.Forms.Panel GreenFrmPanel;
         private System.Windows.Forms.Button button3;
         public DevExpress.XtraEditors.PanelControl panelControl1;
-        public DevExpress.XtraEditors.LabelControl labBoxInfor;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private CCWin.SkinControl.SkinButton skinbutBig;
         private CCWin.SkinControl.SkinButton skinButNext;

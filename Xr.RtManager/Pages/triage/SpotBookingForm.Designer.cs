@@ -50,39 +50,16 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel1 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel_doctors = new System.Windows.Forms.Panel();
-            this.borderPanelButton3 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton4 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton5 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton7 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton8 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton9 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton16 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton17 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton18 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton19 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton20 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton21 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton22 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton23 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton24 = new Xr.Common.Controls.BorderPanelButton();
+            this.mcDoctor = new Xr.Common.Controls.MenuControl();
             this.groupBorderPanel3 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel_depts = new System.Windows.Forms.Panel();
-            this.borderPanelButton50 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton51 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton52 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton53 = new Xr.Common.Controls.BorderPanelButton();
+            this.mcDept = new Xr.Common.Controls.MenuControl();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel5 = new Xr.Common.Controls.GroupBorderPanel();
-            this.panel_timespan = new System.Windows.Forms.Panel();
-            this.borderPanelButton2 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton25 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton26 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton27 = new Xr.Common.Controls.BorderPanelButton();
-            this.borderPanelButton38 = new Xr.Common.Controls.BorderPanelButton();
             this.groupBorderPanel4 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel23 = new System.Windows.Forms.Panel();
-            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
+            this.btn_reservation = new Xr.Common.Controls.ButtonControl();
             this.panel24 = new System.Windows.Forms.Panel();
             this.lab_timespan = new System.Windows.Forms.Label();
             this.panel21 = new System.Windows.Forms.Panel();
@@ -145,6 +122,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.mcTimeSpan = new Xr.Common.Controls.MenuControl();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel6)).BeginInit();
@@ -155,37 +133,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).BeginInit();
             this.groupBorderPanel1.SuspendLayout();
             this.panel_doctors.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel3)).BeginInit();
             this.groupBorderPanel3.SuspendLayout();
             this.panel_depts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton50)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton51)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton52)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton53)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).BeginInit();
             this.groupBorderPanel5.SuspendLayout();
-            this.panel_timespan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton27)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton38)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).BeginInit();
             this.groupBorderPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -464,296 +417,25 @@
             // 
             this.panel_doctors.AutoScroll = true;
             this.panel_doctors.BackColor = System.Drawing.Color.White;
-            this.panel_doctors.Controls.Add(this.borderPanelButton3);
-            this.panel_doctors.Controls.Add(this.borderPanelButton4);
-            this.panel_doctors.Controls.Add(this.borderPanelButton5);
-            this.panel_doctors.Controls.Add(this.borderPanelButton7);
-            this.panel_doctors.Controls.Add(this.borderPanelButton8);
-            this.panel_doctors.Controls.Add(this.borderPanelButton9);
-            this.panel_doctors.Controls.Add(this.borderPanelButton16);
-            this.panel_doctors.Controls.Add(this.borderPanelButton17);
-            this.panel_doctors.Controls.Add(this.borderPanelButton18);
-            this.panel_doctors.Controls.Add(this.borderPanelButton19);
-            this.panel_doctors.Controls.Add(this.borderPanelButton20);
-            this.panel_doctors.Controls.Add(this.borderPanelButton21);
-            this.panel_doctors.Controls.Add(this.borderPanelButton22);
-            this.panel_doctors.Controls.Add(this.borderPanelButton23);
-            this.panel_doctors.Controls.Add(this.borderPanelButton24);
+            this.panel_doctors.Controls.Add(this.mcDoctor);
             this.panel_doctors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_doctors.Location = new System.Drawing.Point(10, 20);
+            this.panel_doctors.Margin = new System.Windows.Forms.Padding(0);
             this.panel_doctors.Name = "panel_doctors";
             this.panel_doctors.Size = new System.Drawing.Size(170, 426);
             this.panel_doctors.TabIndex = 176;
             // 
-            // borderPanelButton3
+            // mcDoctor
             // 
-            this.borderPanelButton3.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton3.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton3.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton3.BtnText = "下午";
-            this.borderPanelButton3.CenterText = true;
-            this.borderPanelButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton3.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton3.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton3.Location = new System.Drawing.Point(0, 420);
-            this.borderPanelButton3.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton3.Name = "borderPanelButton3";
-            this.borderPanelButton3.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton3.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton3.TabIndex = 191;
-            // 
-            // borderPanelButton4
-            // 
-            this.borderPanelButton4.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton4.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton4.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton4.BtnText = "下午";
-            this.borderPanelButton4.CenterText = true;
-            this.borderPanelButton4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton4.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton4.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton4.Location = new System.Drawing.Point(0, 390);
-            this.borderPanelButton4.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton4.Name = "borderPanelButton4";
-            this.borderPanelButton4.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton4.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton4.TabIndex = 192;
-            // 
-            // borderPanelButton5
-            // 
-            this.borderPanelButton5.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton5.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton5.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton5.BtnText = "下午";
-            this.borderPanelButton5.CenterText = true;
-            this.borderPanelButton5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton5.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton5.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton5.Location = new System.Drawing.Point(0, 360);
-            this.borderPanelButton5.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton5.Name = "borderPanelButton5";
-            this.borderPanelButton5.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton5.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton5.TabIndex = 193;
-            // 
-            // borderPanelButton7
-            // 
-            this.borderPanelButton7.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton7.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton7.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton7.BtnText = "下午";
-            this.borderPanelButton7.CenterText = true;
-            this.borderPanelButton7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton7.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton7.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton7.Location = new System.Drawing.Point(0, 330);
-            this.borderPanelButton7.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton7.Name = "borderPanelButton7";
-            this.borderPanelButton7.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton7.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton7.TabIndex = 194;
-            // 
-            // borderPanelButton8
-            // 
-            this.borderPanelButton8.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton8.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton8.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton8.BtnText = "下午";
-            this.borderPanelButton8.CenterText = true;
-            this.borderPanelButton8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton8.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton8.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton8.Location = new System.Drawing.Point(0, 300);
-            this.borderPanelButton8.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton8.Name = "borderPanelButton8";
-            this.borderPanelButton8.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton8.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton8.TabIndex = 195;
-            // 
-            // borderPanelButton9
-            // 
-            this.borderPanelButton9.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton9.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton9.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton9.BtnText = "下午";
-            this.borderPanelButton9.CenterText = true;
-            this.borderPanelButton9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton9.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton9.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton9.Location = new System.Drawing.Point(0, 270);
-            this.borderPanelButton9.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton9.Name = "borderPanelButton9";
-            this.borderPanelButton9.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton9.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton9.TabIndex = 196;
-            // 
-            // borderPanelButton16
-            // 
-            this.borderPanelButton16.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton16.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton16.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton16.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton16.BtnText = "下午";
-            this.borderPanelButton16.CenterText = true;
-            this.borderPanelButton16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton16.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton16.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton16.Location = new System.Drawing.Point(0, 240);
-            this.borderPanelButton16.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton16.Name = "borderPanelButton16";
-            this.borderPanelButton16.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton16.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton16.TabIndex = 197;
-            // 
-            // borderPanelButton17
-            // 
-            this.borderPanelButton17.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton17.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton17.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton17.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton17.BtnText = "下午";
-            this.borderPanelButton17.CenterText = true;
-            this.borderPanelButton17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton17.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton17.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton17.Location = new System.Drawing.Point(0, 210);
-            this.borderPanelButton17.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton17.Name = "borderPanelButton17";
-            this.borderPanelButton17.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton17.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton17.TabIndex = 198;
-            // 
-            // borderPanelButton18
-            // 
-            this.borderPanelButton18.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton18.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton18.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton18.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton18.BtnText = "下午";
-            this.borderPanelButton18.CenterText = true;
-            this.borderPanelButton18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton18.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton18.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton18.Location = new System.Drawing.Point(0, 180);
-            this.borderPanelButton18.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton18.Name = "borderPanelButton18";
-            this.borderPanelButton18.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton18.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton18.TabIndex = 199;
-            // 
-            // borderPanelButton19
-            // 
-            this.borderPanelButton19.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton19.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton19.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton19.BtnText = "下午";
-            this.borderPanelButton19.CenterText = true;
-            this.borderPanelButton19.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton19.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton19.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton19.Location = new System.Drawing.Point(0, 150);
-            this.borderPanelButton19.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton19.Name = "borderPanelButton19";
-            this.borderPanelButton19.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton19.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton19.TabIndex = 200;
-            // 
-            // borderPanelButton20
-            // 
-            this.borderPanelButton20.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton20.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton20.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton20.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton20.BtnText = "下午";
-            this.borderPanelButton20.CenterText = true;
-            this.borderPanelButton20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton20.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton20.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton20.Location = new System.Drawing.Point(0, 120);
-            this.borderPanelButton20.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton20.Name = "borderPanelButton20";
-            this.borderPanelButton20.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton20.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton20.TabIndex = 201;
-            // 
-            // borderPanelButton21
-            // 
-            this.borderPanelButton21.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton21.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton21.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton21.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton21.BtnText = "下午";
-            this.borderPanelButton21.CenterText = true;
-            this.borderPanelButton21.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton21.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton21.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton21.Location = new System.Drawing.Point(0, 90);
-            this.borderPanelButton21.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton21.Name = "borderPanelButton21";
-            this.borderPanelButton21.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton21.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton21.TabIndex = 202;
-            // 
-            // borderPanelButton22
-            // 
-            this.borderPanelButton22.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton22.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton22.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton22.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton22.BtnText = "下午";
-            this.borderPanelButton22.CenterText = true;
-            this.borderPanelButton22.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton22.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton22.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton22.Location = new System.Drawing.Point(0, 60);
-            this.borderPanelButton22.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton22.Name = "borderPanelButton22";
-            this.borderPanelButton22.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton22.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton22.TabIndex = 203;
-            // 
-            // borderPanelButton23
-            // 
-            this.borderPanelButton23.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton23.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton23.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton23.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton23.BtnText = "下午";
-            this.borderPanelButton23.CenterText = true;
-            this.borderPanelButton23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton23.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton23.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton23.Location = new System.Drawing.Point(0, 30);
-            this.borderPanelButton23.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton23.Name = "borderPanelButton23";
-            this.borderPanelButton23.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton23.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton23.TabIndex = 204;
-            // 
-            // borderPanelButton24
-            // 
-            this.borderPanelButton24.BorderColor = System.Drawing.Color.White;
-            this.borderPanelButton24.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton24.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton24.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton24.BtnText = "下午";
-            this.borderPanelButton24.CenterText = true;
-            this.borderPanelButton24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton24.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton24.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton24.Location = new System.Drawing.Point(0, 0);
-            this.borderPanelButton24.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton24.Name = "borderPanelButton24";
-            this.borderPanelButton24.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton24.Size = new System.Drawing.Size(153, 30);
-            this.borderPanelButton24.TabIndex = 205;
+            this.mcDoctor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mcDoctor.itemName = null;
+            this.mcDoctor.itemTag = null;
+            this.mcDoctor.itemText = null;
+            this.mcDoctor.Location = new System.Drawing.Point(0, 0);
+            this.mcDoctor.Name = "mcDoctor";
+            this.mcDoctor.Size = new System.Drawing.Size(170, 426);
+            this.mcDoctor.TabIndex = 2;
+            this.mcDoctor.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.mcDoctor_MenuItemClick);
             // 
             // groupBorderPanel3
             // 
@@ -781,83 +463,25 @@
             // 
             this.panel_depts.AutoScroll = true;
             this.panel_depts.BackColor = System.Drawing.Color.White;
-            this.panel_depts.Controls.Add(this.borderPanelButton50);
-            this.panel_depts.Controls.Add(this.borderPanelButton51);
-            this.panel_depts.Controls.Add(this.borderPanelButton52);
-            this.panel_depts.Controls.Add(this.borderPanelButton53);
+            this.panel_depts.Controls.Add(this.mcDept);
             this.panel_depts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_depts.Location = new System.Drawing.Point(10, 20);
+            this.panel_depts.Margin = new System.Windows.Forms.Padding(0);
             this.panel_depts.Name = "panel_depts";
             this.panel_depts.Size = new System.Drawing.Size(170, 426);
             this.panel_depts.TabIndex = 177;
             // 
-            // borderPanelButton50
+            // mcDept
             // 
-            this.borderPanelButton50.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton50.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton50.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton50.BtnText = "下午";
-            this.borderPanelButton50.CenterText = true;
-            this.borderPanelButton50.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton50.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton50.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton50.Location = new System.Drawing.Point(0, 90);
-            this.borderPanelButton50.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton50.Name = "borderPanelButton50";
-            this.borderPanelButton50.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton50.Size = new System.Drawing.Size(170, 30);
-            this.borderPanelButton50.TabIndex = 202;
-            // 
-            // borderPanelButton51
-            // 
-            this.borderPanelButton51.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton51.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton51.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton51.BtnText = "下午";
-            this.borderPanelButton51.CenterText = true;
-            this.borderPanelButton51.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton51.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton51.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton51.Location = new System.Drawing.Point(0, 60);
-            this.borderPanelButton51.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton51.Name = "borderPanelButton51";
-            this.borderPanelButton51.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton51.Size = new System.Drawing.Size(170, 30);
-            this.borderPanelButton51.TabIndex = 203;
-            // 
-            // borderPanelButton52
-            // 
-            this.borderPanelButton52.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton52.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton52.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton52.BtnText = "下午";
-            this.borderPanelButton52.CenterText = true;
-            this.borderPanelButton52.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton52.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton52.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton52.Location = new System.Drawing.Point(0, 30);
-            this.borderPanelButton52.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton52.Name = "borderPanelButton52";
-            this.borderPanelButton52.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton52.Size = new System.Drawing.Size(170, 30);
-            this.borderPanelButton52.TabIndex = 204;
-            // 
-            // borderPanelButton53
-            // 
-            this.borderPanelButton53.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanelButton53.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton53.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton53.BtnText = "下午";
-            this.borderPanelButton53.CenterText = true;
-            this.borderPanelButton53.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton53.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton53.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton53.Location = new System.Drawing.Point(0, 0);
-            this.borderPanelButton53.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton53.Name = "borderPanelButton53";
-            this.borderPanelButton53.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton53.Size = new System.Drawing.Size(170, 30);
-            this.borderPanelButton53.TabIndex = 205;
+            this.mcDept.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mcDept.itemName = null;
+            this.mcDept.itemTag = null;
+            this.mcDept.itemText = null;
+            this.mcDept.Location = new System.Drawing.Point(0, 0);
+            this.mcDept.Name = "mcDept";
+            this.mcDept.Size = new System.Drawing.Size(170, 426);
+            this.mcDept.TabIndex = 2;
+            this.mcDept.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.mcDept_MenuItemClick);
             // 
             // tableLayoutPanel6
             // 
@@ -881,7 +505,7 @@
             // 
             this.groupBorderPanel5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBorderPanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.groupBorderPanel5.Controls.Add(this.panel_timespan);
+            this.groupBorderPanel5.Controls.Add(this.mcTimeSpan);
             this.groupBorderPanel5.CornerRadius.All = 5;
             this.groupBorderPanel5.CornerRadius.BottomLeft = 5;
             this.groupBorderPanel5.CornerRadius.BottomRight = 5;
@@ -898,112 +522,6 @@
             this.groupBorderPanel5.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
             this.groupBorderPanel5.Size = new System.Drawing.Size(195, 215);
             this.groupBorderPanel5.TabIndex = 183;
-            // 
-            // panel_timespan
-            // 
-            this.panel_timespan.AutoScroll = true;
-            this.panel_timespan.BackColor = System.Drawing.Color.White;
-            this.panel_timespan.Controls.Add(this.borderPanelButton2);
-            this.panel_timespan.Controls.Add(this.borderPanelButton25);
-            this.panel_timespan.Controls.Add(this.borderPanelButton26);
-            this.panel_timespan.Controls.Add(this.borderPanelButton27);
-            this.panel_timespan.Controls.Add(this.borderPanelButton38);
-            this.panel_timespan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_timespan.Location = new System.Drawing.Point(10, 20);
-            this.panel_timespan.Name = "panel_timespan";
-            this.panel_timespan.Size = new System.Drawing.Size(175, 185);
-            this.panel_timespan.TabIndex = 177;
-            // 
-            // borderPanelButton2
-            // 
-            this.borderPanelButton2.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton2.BorderSides = Xr.Common.Controls.BorderSides.Top;
-            this.borderPanelButton2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton2.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton2.BtnText = "下午";
-            this.borderPanelButton2.CenterText = true;
-            this.borderPanelButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton2.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton2.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton2.Location = new System.Drawing.Point(0, 100);
-            this.borderPanelButton2.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton2.Name = "borderPanelButton2";
-            this.borderPanelButton2.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton2.Size = new System.Drawing.Size(175, 25);
-            this.borderPanelButton2.TabIndex = 191;
-            // 
-            // borderPanelButton25
-            // 
-            this.borderPanelButton25.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton25.BorderSides = Xr.Common.Controls.BorderSides.Top;
-            this.borderPanelButton25.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton25.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton25.BtnText = "下午";
-            this.borderPanelButton25.CenterText = true;
-            this.borderPanelButton25.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton25.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton25.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton25.Location = new System.Drawing.Point(0, 75);
-            this.borderPanelButton25.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton25.Name = "borderPanelButton25";
-            this.borderPanelButton25.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton25.Size = new System.Drawing.Size(175, 25);
-            this.borderPanelButton25.TabIndex = 192;
-            // 
-            // borderPanelButton26
-            // 
-            this.borderPanelButton26.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton26.BorderSides = Xr.Common.Controls.BorderSides.Top;
-            this.borderPanelButton26.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton26.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton26.BtnText = "下午";
-            this.borderPanelButton26.CenterText = true;
-            this.borderPanelButton26.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton26.Enabled = false;
-            this.borderPanelButton26.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton26.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton26.Location = new System.Drawing.Point(0, 50);
-            this.borderPanelButton26.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton26.Name = "borderPanelButton26";
-            this.borderPanelButton26.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton26.Size = new System.Drawing.Size(175, 25);
-            this.borderPanelButton26.TabIndex = 193;
-            // 
-            // borderPanelButton27
-            // 
-            this.borderPanelButton27.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton27.BorderSides = Xr.Common.Controls.BorderSides.Top;
-            this.borderPanelButton27.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton27.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton27.BtnText = "下午";
-            this.borderPanelButton27.CenterText = true;
-            this.borderPanelButton27.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton27.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton27.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton27.Location = new System.Drawing.Point(0, 25);
-            this.borderPanelButton27.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton27.Name = "borderPanelButton27";
-            this.borderPanelButton27.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton27.Size = new System.Drawing.Size(175, 25);
-            this.borderPanelButton27.TabIndex = 194;
-            // 
-            // borderPanelButton38
-            // 
-            this.borderPanelButton38.BorderColor = System.Drawing.Color.Black;
-            this.borderPanelButton38.BorderSides = Xr.Common.Controls.BorderSides.Top;
-            this.borderPanelButton38.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanelButton38.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.borderPanelButton38.BtnText = "下午";
-            this.borderPanelButton38.CenterText = true;
-            this.borderPanelButton38.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanelButton38.FillColor1 = System.Drawing.Color.White;
-            this.borderPanelButton38.FillColor2 = System.Drawing.Color.White;
-            this.borderPanelButton38.Location = new System.Drawing.Point(0, 0);
-            this.borderPanelButton38.Margin = new System.Windows.Forms.Padding(0);
-            this.borderPanelButton38.Name = "borderPanelButton38";
-            this.borderPanelButton38.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.borderPanelButton38.Size = new System.Drawing.Size(175, 25);
-            this.borderPanelButton38.TabIndex = 205;
             // 
             // groupBorderPanel4
             // 
@@ -1080,7 +598,7 @@
             // 
             // panel23
             // 
-            this.panel23.Controls.Add(this.buttonControl1);
+            this.panel23.Controls.Add(this.btn_reservation);
             this.panel23.Controls.Add(this.panel24);
             this.panel23.Controls.Add(this.lab_timespan);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1089,20 +607,21 @@
             this.panel23.Size = new System.Drawing.Size(208, 28);
             this.panel23.TabIndex = 188;
             // 
-            // buttonControl1
+            // btn_reservation
             // 
-            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(102, 0);
-            this.buttonControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(60, 28);
-            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Query;
-            this.buttonControl1.TabIndex = 180;
-            this.buttonControl1.Text = "确认预约";
-            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click_1);
+            this.btn_reservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_reservation.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_reservation.Enabled = false;
+            this.btn_reservation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btn_reservation.HoverBackColor = System.Drawing.Color.Empty;
+            this.btn_reservation.Location = new System.Drawing.Point(102, 0);
+            this.btn_reservation.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_reservation.Name = "btn_reservation";
+            this.btn_reservation.Size = new System.Drawing.Size(60, 28);
+            this.btn_reservation.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.btn_reservation.TabIndex = 180;
+            this.btn_reservation.Text = "确认预约";
+            this.btn_reservation.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // panel24
             // 
@@ -1123,7 +642,7 @@
             this.lab_timespan.Name = "lab_timespan";
             this.lab_timespan.Size = new System.Drawing.Size(92, 28);
             this.lab_timespan.TabIndex = 111;
-            this.lab_timespan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lab_timespan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel21
             // 
@@ -1465,6 +984,7 @@
             // lueCardType
             // 
             this.lueCardType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lueCardType.Enabled = false;
             this.lueCardType.Location = new System.Drawing.Point(73, 37);
             this.lueCardType.Name = "lueCardType";
             this.lueCardType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
@@ -1502,7 +1022,7 @@
             this.lab_patientName.Name = "lab_patientName";
             this.lab_patientName.Size = new System.Drawing.Size(124, 28);
             this.lab_patientName.TabIndex = 110;
-            this.lab_patientName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lab_patientName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label17
             // 
@@ -1647,7 +1167,7 @@
             this.lab_tel.Name = "lab_tel";
             this.lab_tel.Size = new System.Drawing.Size(124, 28);
             this.lab_tel.TabIndex = 96;
-            this.lab_tel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lab_tel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label15
             // 
@@ -1672,7 +1192,7 @@
             this.lab_cardID.Name = "lab_cardID";
             this.lab_cardID.Size = new System.Drawing.Size(162, 28);
             this.lab_cardID.TabIndex = 94;
-            this.lab_cardID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lab_cardID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lab_reservationDate
             // 
@@ -1685,7 +1205,7 @@
             this.lab_reservationDate.Name = "lab_reservationDate";
             this.lab_reservationDate.Size = new System.Drawing.Size(124, 28);
             this.lab_reservationDate.TabIndex = 88;
-            this.lab_reservationDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lab_reservationDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
@@ -1742,6 +1262,7 @@
             this.reservationCalendar1.Size = new System.Drawing.Size(279, 185);
             this.reservationCalendar1.TabIndex = 0;
             this.reservationCalendar1.SelectDate += new Xr.Common.Controls.ReservationCalendar.SelectDateDelegate(this.reservationCalendar1_SelectDate);
+            this.reservationCalendar1.ChangeMonth += new Xr.Common.Controls.ReservationCalendar.ChangeMonthDelegate(this.reservationCalendar1_ChangeMonth);
             this.reservationCalendar1.SelectDateTest += new Xr.Common.Controls.ReservationCalendar.SelectDateTestDelegate(this.reservationCalendar1_SelectDateTest);
             // 
             // panel1
@@ -1807,6 +1328,7 @@
             this.btn_readIdcard.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btn_readIdcard.TabIndex = 89;
             this.btn_readIdcard.Text = "读身份证";
+            this.btn_readIdcard.Click += new System.EventHandler(this.btn_readIdcard_Click);
             // 
             // btn_readSocialCard
             // 
@@ -1821,6 +1343,7 @@
             this.btn_readSocialCard.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btn_readSocialCard.TabIndex = 88;
             this.btn_readSocialCard.Text = "读社保卡";
+            this.btn_readSocialCard.Click += new System.EventHandler(this.btn_readSocialcard_Click);
             // 
             // btn_zlk
             // 
@@ -1835,6 +1358,7 @@
             this.btn_zlk.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btn_zlk.TabIndex = 87;
             this.btn_zlk.Text = "读诊疗卡";
+            this.btn_zlk.Click += new System.EventHandler(this.btn_zlk_Click);
             // 
             // lab_cardNoQuery
             // 
@@ -1857,6 +1381,22 @@
             this.label8.Text = " 卡号";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // mcTimeSpan
+            // 
+            this.mcTimeSpan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mcTimeSpan.itemName = null;
+            this.mcTimeSpan.itemTag = null;
+            this.mcTimeSpan.itemText = null;
+            this.mcTimeSpan.Location = new System.Drawing.Point(10, 20);
+            this.mcTimeSpan.Name = "mcTimeSpan";
+            this.mcTimeSpan.Size = new System.Drawing.Size(175, 185);
+            this.mcTimeSpan.TabIndex = 3;
+            this.mcTimeSpan.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.mcTimeSpan_MenuItemClick);
+            // 
             // SpotBookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1877,37 +1417,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).EndInit();
             this.groupBorderPanel1.ResumeLayout(false);
             this.panel_doctors.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel3)).EndInit();
             this.groupBorderPanel3.ResumeLayout(false);
             this.panel_depts.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton50)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton51)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton52)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton53)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).EndInit();
             this.groupBorderPanel5.ResumeLayout(false);
-            this.panel_timespan.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton27)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanelButton38)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).EndInit();
             this.groupBorderPanel4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1956,35 +1471,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private Xr.Common.Controls.GroupBorderPanel groupBorderPanel1;
         private System.Windows.Forms.Panel panel_doctors;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton3;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton4;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton5;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton7;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton8;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton9;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton16;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton17;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton18;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton19;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton20;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton21;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton22;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton23;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton24;
         private Xr.Common.Controls.GroupBorderPanel groupBorderPanel3;
         private System.Windows.Forms.Panel panel_depts;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton50;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton51;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton52;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton53;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private Xr.Common.Controls.GroupBorderPanel groupBorderPanel5;
-        private System.Windows.Forms.Panel panel_timespan;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton2;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton25;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton26;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton27;
-        private Xr.Common.Controls.BorderPanelButton borderPanelButton38;
         private Xr.Common.Controls.GroupBorderPanel groupBorderPanel4;
         private Xr.Common.Controls.GroupBorderPanel groupBorderPanel2;
         private Xr.Common.Controls.ReservationCalendar reservationCalendar1;
@@ -2012,7 +1502,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel23;
-        private Xr.Common.Controls.ButtonControl buttonControl1;
+        private Xr.Common.Controls.ButtonControl btn_reservation;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Label lab_timespan;
         private System.Windows.Forms.Panel panel21;
@@ -2055,6 +1545,9 @@
         private Xr.Common.Controls.ButtonControl btn_zlk;
         private System.Windows.Forms.TextBox lab_cardNoQuery;
         private System.Windows.Forms.Label label8;
+        private Xr.Common.Controls.MenuControl mcDoctor;
+        private Xr.Common.Controls.MenuControl mcDept;
+        private Xr.Common.Controls.MenuControl mcTimeSpan;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

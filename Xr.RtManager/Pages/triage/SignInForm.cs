@@ -1459,8 +1459,11 @@ namespace Xr.RtManager.Pages.triage
             {
                 PatientListStatus = "2";
             }
-            //WorkType = AsynchronousWorks.WaitingPatientList;
-            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
+            if (SelectDoctorid != String.Empty)
+            {
+                //WorkType = AsynchronousWorks.WaitingPatientList;
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
+            }
         }
         private void lueDept_EditValueChanged(object sender, EventArgs e)
         {
@@ -1608,8 +1611,11 @@ namespace Xr.RtManager.Pages.triage
 
         private void btn_refreshPatient_Click(object sender, EventArgs e)
         {
-            //WorkType = AsynchronousWorks.WaitingPatientList;
-            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
+            if (SelectDoctorid != String.Empty)
+            {
+                //WorkType = AsynchronousWorks.WaitingPatientList;
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
+            }
         }
         private void 加急ListToolStripMenuItem_Click(object sender, EventArgs e)
         {

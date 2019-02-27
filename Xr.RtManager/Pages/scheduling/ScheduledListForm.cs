@@ -27,7 +27,7 @@ namespace Xr.RtManager.Pages.scheduling
             cmd.ShowOpaqueLayer(0f);
             String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync( 0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -297,6 +297,11 @@ namespace Xr.RtManager.Pages.scheduling
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+        private void ScheduledListForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
         }
         
     }

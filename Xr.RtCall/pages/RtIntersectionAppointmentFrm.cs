@@ -379,6 +379,10 @@ namespace Xr.RtCall.pages
                 label = (Label)panelEx.Controls[0];
             }
             DoctorId = label.Tag.ToString();
+            YuYueId = "";
+            label13.Text = "";
+            List<Xr.Common.Controls.Item> item = new List<Common.Controls.Item>();
+            menuList.setDataSource(item);
             DoctorScheduling(label.Tag.ToString());
         }
         #endregion 

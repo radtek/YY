@@ -92,5 +92,9 @@ namespace Xr.RtManager
 
 
         public System.Windows.Forms.Control waitControl { get; set; }
+
+        public Xr.Common.Controls.OpaqueCommand cmd { get; set; }
+
+        public bool openStatus { get; set; }
     }
 }

@@ -224,6 +224,11 @@ namespace Xr.RtManager
             bgWorkder.RunWorkerAsync(funcArg);
         }
 
+        private void MenuForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
+
 
     
     }

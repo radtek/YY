@@ -43,6 +43,7 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.buttonControl6 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl5 = new Xr.Common.Controls.ButtonControl();
             this.tbVersion = new DevExpress.XtraEditors.TextEdit();
             this.tbTitle = new DevExpress.XtraEditors.TextEdit();
@@ -52,7 +53,6 @@
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonControl6 = new Xr.Common.Controls.ButtonControl();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDict)).BeginInit();
@@ -265,6 +265,19 @@
             this.borderPanel1.Size = new System.Drawing.Size(1017, 50);
             this.borderPanel1.TabIndex = 0;
             // 
+            // buttonControl6
+            // 
+            this.buttonControl6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl6.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl6.Location = new System.Drawing.Point(964, 9);
+            this.buttonControl6.Name = "buttonControl6";
+            this.buttonControl6.Size = new System.Drawing.Size(75, 30);
+            this.buttonControl6.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.buttonControl6.TabIndex = 94;
+            this.buttonControl6.Text = "测试";
+            this.buttonControl6.Click += new System.EventHandler(this.buttonControl6_Click);
+            // 
             // buttonControl5
             // 
             this.buttonControl5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
@@ -366,19 +379,6 @@
             this.label1.TabIndex = 82;
             this.label1.Text = "版本标题：";
             // 
-            // buttonControl6
-            // 
-            this.buttonControl6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.buttonControl6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.buttonControl6.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl6.Location = new System.Drawing.Point(964, 9);
-            this.buttonControl6.Name = "buttonControl6";
-            this.buttonControl6.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl6.Style = Xr.Common.Controls.ButtonStyle.Query;
-            this.buttonControl6.TabIndex = 94;
-            this.buttonControl6.Text = "测试";
-            this.buttonControl6.Click += new System.EventHandler(this.buttonControl6_Click);
-            // 
             // ClientVersionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -388,6 +388,7 @@
             this.Name = "ClientVersionForm";
             this.Size = new System.Drawing.Size(1037, 481);
             this.Load += new System.EventHandler(this.UserForm_Load);
+            this.Resize += new System.EventHandler(this.ClientVersionForm_Resize);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcDict)).EndInit();

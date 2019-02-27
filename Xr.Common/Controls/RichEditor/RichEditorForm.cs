@@ -28,7 +28,7 @@ namespace Xr.Common.Controls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            text = HtmlTransform2Str(richEditor1.InnerHtml);
+            text = richEditor1.InnerHtml;
             DialogResult = DialogResult.OK;
         }
 

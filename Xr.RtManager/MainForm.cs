@@ -26,15 +26,17 @@ namespace Xr.RtManager
         public MainForm()
         {
             InitializeComponent();
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             panMenuBar.BorderColor = borderColor;
         }
         Xr.Common.Controls.OpaqueCommand cmd;
+        Xr.Common.Controls.OpaqueCommand cmd2;
         private Color borderColor = Color.FromArgb(157, 160, 170);
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            cmd = new Xr.Common.Controls.OpaqueCommand(this);
+            AppContext.Session.openStatus = false;
             cmd.ShowOpaqueLayer(0f);
             labBottomLeft.Text = AppContext.Session.deptName + " | " + AppContext.Session.name + " | " + System.DateTime.Now.ToString();
             this.timer1.Start();
@@ -236,7 +238,7 @@ namespace Xr.RtManager
             //背景色的变化
             if (selectionPanelTop.BackColor == Color.Transparent)
             {
-                selectionPanelTop.BackColor = Color.FromArgb(24, 166, 137);
+                selectionPanelTop.BackColor = Color.FromArgb(57, 61, 73);
                 item.ForeColor = Color.White;
             }
             else
@@ -246,8 +248,6 @@ namespace Xr.RtManager
             }
         }
 
-        //添加菜单模块的定时器，如果不用定时器(异步应该也可以，没试过)的话，所选菜单的背景色变换会被分为两个阶段，不好看
-        System.Windows.Forms.Timer menuTimer; 
         //记录所选菜单的name、标题、链接
         String[] param = new String[] {null, null, null };
         Color OneLevelMouseOriginally = Color.Transparent;//一级菜单原色
@@ -274,23 +274,46 @@ namespace Xr.RtManager
             //修改选择的二级菜单背景色
             selectionPanel.BackColor = Color.FromArgb(24, 166, 137);
             selectionLabel.ForeColor = Color.White;
-            if (selectionLabel.Tag != null && selectionLabel.Tag.ToString().Length>0)
+            //这里用异步延迟0.1秒再加载模块，不然菜单的样式反应不过来
+            //（改到一半的时候因为加载模块而卡顿，导致菜单界面不好看）
+            //这里不能使用定时器，使用定时器的时候，一直点同一个选项会导致定时器无限循环(不知道为什么没有关闭)
+            this.DoWorkAsync(200, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                param[0] = selectionLabel.Tag.ToString();
-                param[1] = selectionLabel.Name;
-                param[2] = selectionLabel.Text;
-            }
-            else
-            {
-                param[0] = null;
-                param[1] = null;
-                param[2] = null;
-            }
+                return null;
 
-            menuTimer = new System.Windows.Forms.Timer();
-            menuTimer.Interval = 100;
-            menuTimer.Enabled = true;
-            menuTimer.Tick += new EventHandler(timer1EventProcessor);//添加事件
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                if (selectionLabel.Tag != null && selectionLabel.Tag.ToString().Length > 0)
+                {
+                    param[0] = selectionLabel.Tag.ToString();
+                    param[1] = selectionLabel.Name;
+                    param[2] = selectionLabel.Text;
+                }
+                else
+                {
+                    param[0] = null;
+                    param[1] = null;
+                    param[2] = null;
+                }
+
+                String href = param[0];
+                String id = param[1];
+                String name = param[2];
+                if (href != "" && href != null)
+                {
+                    int i = GetTabName(id);
+                    if (i == -1)
+                    {
+                        System.Type tab = System.Type.GetType("Xr.RtManager." + href);
+                        //UserControl uc ;//= (UserControl)Activator.CreateInstance(tab);
+                        AaddUserControl(tab, id, name);
+                    }
+                    else
+                    {
+                        xtraTabControl1.SelectedTabPageIndex = i;
+                    }
+                }
+            });
         }
 
         /// <summary>
@@ -304,7 +327,7 @@ namespace Xr.RtManager
             Label label = (Label)sender;
             PanelEx selectionPanel = (PanelEx)label.Parent;
             OneLevelMouseOriginally = selectionPanel.BackColor;
-            selectionPanel.BackColor = Color.FromArgb(26, 179, 148);
+            selectionPanel.BackColor = Color.FromArgb(47, 64, 86);
             label.ForeColor = Color.White;
             toolTip1.SetToolTip(label, label.Text);
         }
@@ -318,12 +341,12 @@ namespace Xr.RtManager
         {
             Label label = (Label)sender;
             PanelEx selectionPanel = (PanelEx)label.Parent;
-            if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137))
+            if (selectionPanel.BackColor != Color.FromArgb(57, 61, 73))
             {
                 selectionPanel.BackColor = OneLevelMouseOriginally;
             }
-            if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137)
-                && selectionPanel.BackColor != Color.FromArgb(26, 179, 148))
+            if (selectionPanel.BackColor != Color.FromArgb(47, 64, 86)
+                && selectionPanel.BackColor != Color.FromArgb(57, 61, 73))
             {
                 label.ForeColor = Color.Black;
             }
@@ -364,32 +387,6 @@ namespace Xr.RtManager
             }
         }
 
-        /// <summary>
-        /// 添加菜单模块的定时事件
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        public void timer1EventProcessor(object source, EventArgs e)
-        {
-            menuTimer.Stop();
-            String href = param[0];
-            String id = param[1];
-            String name = param[2];
-            if (href != "" && href != null)
-            {
-                int i = GetTabName(id);
-                if (i == -1)
-                {
-                    System.Type tab = System.Type.GetType("Xr.RtManager." + href);
-                    //UserControl uc ;//= (UserControl)Activator.CreateInstance(tab);
-                    AaddUserControl(tab, id, name);
-                }
-                else
-                {
-                    xtraTabControl1.SelectedTabPageIndex = i;
-                }
-            }
-        }
         #endregion 
 
         /// <summary>  
@@ -429,16 +426,25 @@ namespace Xr.RtManager
         public delegate void ShowDatatableTypeDelegate(XtraTabPage page, System.Type type );
         private void showPage(XtraTabPage page, System.Type type)
         {
-            UserControl uc = (UserControl)Activator.CreateInstance(type);
-            uc.BackColor = Color.Transparent;
-            setUcUI(null, uc);
             //使用一个有双缓存的panel做背景，避免背景图片闪烁
             PanelEnhanced panelE = new PanelEnhanced();
             panelE.BackgroundImage = Properties.Resources.bg2;
             panelE.Dock = DockStyle.Fill;
-            panelE.Controls.Add(uc);
             page.Controls.Add(panelE);
-           
+            cmd2 = new Xr.Common.Controls.OpaqueCommand(page);
+            cmd2.ShowOpaqueLayer(0f);
+            this.DoWorkAsync(100, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                return null;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                UserControl uc = (UserControl)Activator.CreateInstance(type);
+                uc.BackColor = Color.Transparent;
+                setUcUI(null, uc);
+                panelE.Controls.Add(uc);
+                cmd2.HideOpaqueLayer();
+            });
         }
         private void setUcUI(XtraTabPage page, UserControl Xuser)
         {
@@ -490,6 +496,19 @@ namespace Xr.RtManager
 
                 AppContext.Session.waitControl = page;
                 this.Invoke(new ShowDatatableTypeDelegate(showPage), new object[] { page, type });
+                //cmd2 = new Xr.Common.Controls.OpaqueCommand(this);
+                //AppContext.Session.cmd = cmd2;
+                //cmd2.ShowOpaqueLayer(1f);
+                //this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                //{
+                //    this.Invoke(new ShowDatatableTypeDelegate(showPage), new object[] { page, type });
+                //    return null;
+
+                //}, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                //{
+                //    cmd2.HideOpaqueLayer();
+                //});
+                
             }
             catch (Exception ex)
             {
@@ -623,15 +642,19 @@ namespace Xr.RtManager
         }
         private void xtraTabControl_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            DevExpress.XtraTab.ViewInfo.XtraTabHitInfo hinfo = xtraTabControl1.CalcHitInfo(new Point(e.X, e.Y));
+            //判断点击在标签上才打开选项卡菜单
+            if (e.Button == MouseButtons.Right && hinfo.Page!=null)
             {
-                xtraTabControl1.ContextMenuStrip = null;
+                contextMenuStrip1.Show(xtraTabControl1, new Point(e.X, e.Y));
+                
+               // xtraTabControl1.ContextMenuStrip = null;
 
                 //TreeListHitInfo hInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y));
                 //TreeListNode node = hInfo.Node;
                 //treeList1.FocusedNode = node;
-
-                xtraTabControl1.ContextMenuStrip = contextMenuStrip1;
+                
+                //xtraTabControl1.ContextMenuStrip = contextMenuStrip1;
 
             }
         }
@@ -789,6 +812,11 @@ namespace Xr.RtManager
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
         }
     }
 }

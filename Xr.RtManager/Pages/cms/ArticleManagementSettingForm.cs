@@ -498,6 +498,7 @@ namespace Xr.RtManager.Pages.cms
                         break;
                 }
                 #endregion
+                clinicInfoEntity.content = System.Web.HttpUtility.UrlEncode(clinicInfoEntity.content, Encoding.UTF8);
                 String param = PackReflectionEntity<Article>.GetEntityToRequestParameters(clinicInfoEntity, true);
                 String url = AppContext.AppConfig.serverUrl + "cms/article/save?";
                 String data = HttpClass.httpPost(url, param);

@@ -26,7 +26,7 @@ namespace Xr.RtCall.pages
             f.panelControl1.Controls.Clear();
             f.Height = rcf.Height + 30;
             f.Width = rcf.Width;
-            f.labBoxInfor.Text = "";
+            //f.labBoxInfor.Text = "";
             f.panelControl1.Controls.Add(rcf);
             f.Show();
         }

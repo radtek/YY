@@ -35,6 +35,7 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
             this.Postoperative = new DevExpress.XtraEditors.RadioGroup();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.skinbutNew = new CCWin.SkinControl.SkinButton();
             this.label1 = new System.Windows.Forms.Label();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
@@ -48,7 +49,6 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -58,12 +58,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).BeginInit();
             this.borderPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Pateion)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Pateion)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -155,6 +155,15 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem("2", "已就诊")});
             this.Postoperative.Size = new System.Drawing.Size(157, 35);
             this.Postoperative.TabIndex = 183;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.skinbutNew);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(183, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(104, 39);
+            this.panel1.TabIndex = 176;
             // 
             // skinbutNew
             // 
@@ -353,15 +362,6 @@
             this.gridColumn6.VisibleIndex = 5;
             this.gridColumn6.Width = 158;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.skinbutNew);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(183, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(104, 39);
-            this.panel1.TabIndex = 176;
-            // 
             // RtCallPeationFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -379,12 +379,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).EndInit();
             this.borderPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_Pateion)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gv_Pateion)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -264,6 +264,7 @@
             this.Name = "MenuForm";
             this.Size = new System.Drawing.Size(1091, 481);
             this.Load += new System.EventHandler(this.MenuForm_Load);
+            this.Resize += new System.EventHandler(this.MenuForm_Resize);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();

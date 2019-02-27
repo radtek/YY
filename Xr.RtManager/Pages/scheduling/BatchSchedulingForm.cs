@@ -33,7 +33,7 @@ namespace Xr.RtManager.Pages.scheduling
             //设置科室列表
             String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync(250, (o) => 
+            this.DoWorkAsync( 0, (o) => 
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -58,7 +58,7 @@ namespace Xr.RtManager.Pages.scheduling
 
                     //查询日期下拉框数据
                     url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findWeeks";
-                    this.DoWorkAsync(250, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    this.DoWorkAsync( 0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
                         data = HttpClass.httpPost(url);
                         return data;
@@ -792,6 +792,11 @@ namespace Xr.RtManager.Pages.scheduling
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
+        }
+
+        private void BatchSchedulingForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
         }
         
     }

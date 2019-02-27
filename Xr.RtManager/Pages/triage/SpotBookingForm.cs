@@ -849,8 +849,33 @@ namespace Xr.RtManager.Pages.triage
                         //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
               
                         JObject objT = result.obj as JObject;
-                        List<DeptInfoEntity> list = objT["result"].ToObject<List<DeptInfoEntity>>();
-                        panel_depts.Controls.Clear();
+                        List<DeptEntity> list = objT["result"].ToObject<List<DeptEntity>>();
+                            List<Item> itemList = new List<Item>();
+                            if (list.Count > 0)
+                            {
+                                foreach (DeptEntity dept in list)
+                                {
+                                    Item item = new Item();
+                                    item.name = dept.name;
+                                    item.value = dept.id;
+                                    item.tag = dept.id;
+                                    item.parentId = dept.parentId;
+                                    itemList.Add(item);
+                                }
+                                mcDept.setDataSource(itemList);
+                                mcDept.EditValue(itemList[0].value);
+                                SelectDeptid = itemList[0].value;
+
+                                NeedWaitingFrm = false;
+                                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctor, Argument = new String[] { SelectDeptid } });
+                            }
+                            else
+                            { 
+                                mcDept.setDataSource(itemList); 
+                            }
+
+                        /*
+                        //panel_depts.Controls.Clear();
                         if (list.Count > 0)
                         {
                             list.Reverse();
@@ -861,7 +886,9 @@ namespace Xr.RtManager.Pages.triage
                                 BorderPanelButton btn = new BorderPanelButton();
 
                                 btn.BorderSides = Xr.Common.Controls.BorderSides.None;
+                                btn.BorderColor = System.Drawing.Color.White;
                                 btn.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+                                btn.BorderWidth = 0;
                                 btn.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
                                 btn.BtnText = item.name;
                                 btn.Dock = System.Windows.Forms.DockStyle.Top;
@@ -869,6 +896,7 @@ namespace Xr.RtManager.Pages.triage
                                 btn.FillColor2 = System.Drawing.Color.White;
                                 btn.Location = new System.Drawing.Point(0, 75);
                                 btn.Margin = new System.Windows.Forms.Padding(0);
+                                btn.Padding = new System.Windows.Forms.Padding(0);
                                 btn.Tag = item.id;
                                 btn.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
                                 btn.Size = new System.Drawing.Size(170, 25);
@@ -885,6 +913,7 @@ namespace Xr.RtManager.Pages.triage
                             NeedWaitingFrm = false;
                             Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctor, Argument = new String[] { SelectDeptid } });
                         }
+                         */
                         //cmd.HideOpaqueLayer();
                         //cmd = new Xr.Common.Controls.OpaqueCommand(this);
                         return;
@@ -905,7 +934,32 @@ namespace Xr.RtManager.Pages.triage
                         //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
               
                         JObject objT = result.obj as JObject;
-                        List<DoctorInfoEntity> list = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
+                        List<DoctorInfoEntity> doctorList = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
+                        List<Item> itemList = new List<Item>();
+                        if (doctorList.Count > 0)
+                        {
+                            //设置医生列表
+                           
+                            foreach (DoctorInfoEntity doctor in doctorList)
+                            {
+                                Item item = new Item();
+                                item.name = String.Format("{0,-6}[{1}]", doctor.name, doctor.job);//doctor.name + " [" + doctor.job + "]";
+                                item.value = doctor.id;
+                                item.tag = doctor.id;
+                                itemList.Add(item);
+                            }
+                            mcDoctor.setDataSource(itemList);
+                            mcDoctor.EditValue(itemList[0].value);
+                            SelectDoctorid = itemList[0].value;
+
+                            NeedWaitingFrm = false;
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctorAvailableDate, Argument = new String[] { SelectDeptid, SelectDoctorid } });
+                        }
+                        else
+                        { 
+                            mcDoctor.setDataSource(itemList);
+                        }
+                        /*
                         panel_doctors.Controls.Clear();
                         if (list.Count > 0)
                         {
@@ -944,6 +998,7 @@ namespace Xr.RtManager.Pages.triage
                             //cmd.HideOpaqueLayer();
                             //cmd = new Xr.Common.Controls.OpaqueCommand(this);
                         }
+                         */
                         return;
                     }
                     #endregion
@@ -1008,18 +1063,40 @@ namespace Xr.RtManager.Pages.triage
                         gc_patient.DataSource = patientList;
 
                         //更新医生可预约时间段
-                        panel_timespan.Controls.Clear();
-                         objT = objTs[1];
-                         //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
+                        //panel_timespan.Controls.Clear();
+                        objT = objTs[1];
+                        //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
                         List<TimeSpanEntity> list = objT["result"].ToObject<List<TimeSpanEntity>>();
+                        List<Item> itemList = new List<Item>();
                         SelectSchemaid = String.Empty;
                         lab_timespan.Text = String.Empty;
-                        //btn_reservation.Enabled = false;
+                        btn_reservation.Enabled = false;
                         if (list.Count > 0)
                         {
-                            list.Reverse();
-                            
+                            //list.Reverse();
                             String Period = list[0].period;
+                            
+                            foreach (TimeSpanEntity timeSpan in list)
+                            {
+                                if (Period != timeSpan.period)//按照午别分组 添加个空按钮分隔
+                                {
+                                    Item item1 = new Item();
+                                    item1.Enable = false;
+                                    item1.name = "";
+                                    item1.tag = "";
+                                    itemList.Add(item1);
+                                    Period = timeSpan.period;
+                                }
+                                Item item = new Item();
+                                item.name = timeSpan.beginTime + "-" + timeSpan.endTime + "    <" + timeSpan.num + ">";
+                                item.value = timeSpan.id;
+                                item.tag = timeSpan.beginTime + "-" + timeSpan.endTime;
+                                itemList.Add(item);
+                            }
+                            mcTimeSpan.setDataSource(itemList);
+
+
+                            /*
                             foreach (var item in list)
                             {
                                 if (Period != item.period)//按照午别分组 添加个空按钮分隔
@@ -1064,6 +1141,11 @@ namespace Xr.RtManager.Pages.triage
                                 this.panel_timespan.Controls.Add(btn);
 
                             }
+                             */
+                        }
+                        else
+                        {
+                            mcTimeSpan.setDataSource(itemList);
                         }
                         cmd.HideOpaqueLayer();
                         return;
@@ -1090,10 +1172,10 @@ namespace Xr.RtManager.Pages.triage
                             rBtn_male.Checked = true;
                         }
                         else
-                        { 
-                            rBtn_female.Checked = true; 
+                        {
+                            rBtn_female.Checked = true;
                         }
-                        lueCardType.EditValue=CardType;
+                        lueCardType.EditValue = CardType;
                         if (CardType == "2")//诊疗卡
                         {
                             lab_cardID.Text = objT["result"]["zlk"].ToString();
@@ -1112,7 +1194,7 @@ namespace Xr.RtManager.Pages.triage
                          */
                         if (SelectSchemaid != String.Empty)
                         {
-                            //btn_reservation.Enabled = true;
+                            btn_reservation.Enabled = true;
                         }
                         //MessageBoxUtils.Hint("请选择医生为该患者现场挂号");
                     }
@@ -1277,6 +1359,51 @@ namespace Xr.RtManager.Pages.triage
             }
         }
         /// <summary>
+        /// 科室点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mcDept_MenuItemClick(object sender, EventArgs e)
+        {
+            Label label = null;
+            if (typeof(Label).IsInstanceOfType(sender))
+            {
+                label = (Label)sender;
+            }
+            else
+            {
+                PanelEx panelEx = (PanelEx)sender;
+                label = (Label)panelEx.Controls[0];
+            }
+            SelectDeptid = label.Tag.ToString();
+                //更新候诊列表
+                //WorkType = AsynchronousWorks.WaitingPatientList;
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctor, Argument = new String[] { SelectDeptid } });
+        }
+        /// <summary>
+        /// 医生点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mcDoctor_MenuItemClick(object sender, EventArgs e)
+        {
+            ClearReservationUIInfo();
+            Label label = null;
+            if (typeof(Label).IsInstanceOfType(sender))
+            {
+                label = (Label)sender;
+            }
+            else
+            {
+                PanelEx panelEx = (PanelEx)sender;
+                label = (Label)panelEx.Controls[0];
+            }
+            SelectDoctorid = label.Tag.ToString();
+            //更新日历
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctorAvailableDate, Argument = new String[] { SelectDeptid, SelectDoctorid } });
+        }
+
+        /// <summary>
         /// 医生点击事件
         /// </summary>
         /// <param name="sender"></param>
@@ -1349,8 +1476,32 @@ namespace Xr.RtManager.Pages.triage
                 lab_timespan.Text = args[1];
                 if (Patientid != String.Empty)
                 {
-                    //btn_reservation.Enabled = true;
+                    btn_reservation.Enabled = true;
                 }
+            }
+        }
+        /// <summary>
+        /// 时间段点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mcTimeSpan_MenuItemClick(object sender, EventArgs e)
+        {
+            Label label = null;
+            if (typeof(Label).IsInstanceOfType(sender))
+            {
+                label = (Label)sender;
+            }
+            else
+            {
+                PanelEx panelEx = (PanelEx)sender;
+                label = (Label)panelEx.Controls[0];
+            }
+            SelectSchemaid = label.Name;
+            lab_timespan.Text = label.Tag.ToString();
+            if (Patientid != String.Empty)
+            {
+                btn_reservation.Enabled = true;
             }
         }
         private void SpotBookingForm_Resize(object sender, EventArgs e)
@@ -1366,7 +1517,7 @@ namespace Xr.RtManager.Pages.triage
             prament.Add("cradNo", lab_cardID.Text.Trim());//卡号
             prament.Add("tempPhone", lab_tel.Text.Trim());//手机号
              */
-            //btn_reservation.Enabled = false;
+            btn_reservation.Enabled = false;
 
             lab_patientName.Text = String.Empty;
             //lab_name.Text = objT["result"]["age"].ToString();
@@ -1381,7 +1532,7 @@ namespace Xr.RtManager.Pages.triage
         }
         void ClearReservationUIInfo()
         {
-            //btn_reservation.Enabled = false;
+            btn_reservation.Enabled = false;
             //SelectDeptid = String.Empty;
             SelectDoctorid = String.Empty;
             SelectSchemaid = String.Empty;
@@ -1389,7 +1540,8 @@ namespace Xr.RtManager.Pages.triage
             lab_timespan.Text = String.Empty;
             reservationCalendar1.ChangeValidDate(new List<Dictionary<int, DateTime>>() );
             gc_patient.DataSource = null;
-            panel_timespan.Controls.Clear();
+            mcTimeSpan.setDataSource( new List<Item>());
+            //panel_timespan.Controls.Clear();
         }
         /// <summary>
         ///  科室实体
@@ -1626,11 +1778,6 @@ namespace Xr.RtManager.Pages.triage
         private void reservationCalendar1_ChangeMonth(DateTime SelectedMonth)
         {
             //changeMonth 置空
-        }
-
-        private void buttonControl1_Click_1(object sender, EventArgs e)
-        {
-
         }
 
 

@@ -14,6 +14,7 @@ using Xr.Common;
 using Xr.Common.Controls;
 using DevExpress.XtraEditors;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace Xr.RtManager.Pages.cms
 {
@@ -36,7 +37,7 @@ namespace Xr.RtManager.Pages.cms
         /// <summary>
         /// 选中医生列表
         /// </summary>
-        private List<DoctorVSEntity> selectDoctorList { get; set; }
+        //private List<DoctorVSEntity> selectDoctorList { get; set; }
 
         private String hospitalId { get; set; }
         private String deptId { get; set; }
@@ -55,7 +56,7 @@ namespace Xr.RtManager.Pages.cms
             //设置科室列表
             String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync( 100, (o) => 
+            this.DoWorkAsync( 0, (o) => 
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -80,7 +81,7 @@ namespace Xr.RtManager.Pages.cms
 
                     //获取默认出诊时间字典配置
                     url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
-                    this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    this.DoWorkAsync( 0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
                         data = HttpClass.httpPost(url);
                         return data;
@@ -1013,6 +1014,7 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="e"></param>
         private void menuControl2_MenuItemClick(object sender, EventArgs e)
         {
+            List<DoctorVSEntity> selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
             if (selectDoctorList!=null && selectDoctorList.Count > 0)
             {
                 MessageBoxUtils.Hint("请先保存当前科室设置或者清空已选医生再切换科室!", HintMessageBoxIcon.Error);
@@ -1153,25 +1155,27 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //var selectedRow = bandedGridView1.GetFocusedRow() as DoctorVSEntity;
-            //if (selectedRow == null)
-            //    return;
-            List<DoctorVSEntity> doctorList = bandedGridView1.DataSource as List<DoctorVSEntity>;
-            selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
+            List < DoctorVSEntity > doctorList = Clone<List<DoctorVSEntity>>(bandedGridView1.DataSource as List<DoctorVSEntity>);
+            List<DoctorVSEntity> selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
             if (selectDoctorList == null) selectDoctorList = new List<DoctorVSEntity>();
             foreach (DoctorVSEntity selectedRow in doctorList)
             {
                 if (selectedRow.check)
                 {
+                    bool flag = true; 
                     for (int i = 0; i < selectDoctorList.Count; i++)
                     {
                         if (selectDoctorList[i].doctorId.Equals(selectedRow.doctorId))
                         {
-                            return;
+                            flag = false;
+                            break;
                         }
                     }
-                    selectedRow.check = false;
-                    selectDoctorList.Add(selectedRow);
+                    if (flag)
+                    {
+                        selectedRow.check = false;
+                        selectDoctorList.Add(selectedRow);
+                    }
                 }
             }
             gridControl1.DataSource = selectDoctorList;
@@ -1219,6 +1223,7 @@ namespace Xr.RtManager.Pages.cms
             //}
             //gridControl1.DataSource = selectDoctorList;
             //gridControl1.RefreshDataSource();
+            List<DoctorVSEntity> selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
             int count = selectDoctorList.Count;
             int n=0;
             for (int i = 0; i < count; i++)
@@ -1238,13 +1243,14 @@ namespace Xr.RtManager.Pages.cms
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
+            List<DoctorVSEntity> selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
             selectDoctorList.Clear();
             gridControl1.DataSource = selectDoctorList;
             gridControl1.RefreshDataSource();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+            List<DoctorVSEntity> selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
             if (selectDoctorList == null || selectDoctorList.Count == 0)
             {
                 return;
@@ -1656,6 +1662,23 @@ namespace Xr.RtManager.Pages.cms
         }
 
         /// <summary>
+        /// 深克隆方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="RealObject"></param>
+        /// <returns></returns>
+        public static T Clone<T>(T RealObject)
+        {
+            using (Stream stream = new MemoryStream())
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                serializer.Serialize(stream, RealObject);
+                stream.Seek(0, SeekOrigin.Begin);
+                return (T)serializer.Deserialize(stream);
+            }
+        }
+
+        /// <summary>
         /// 多线程异步后台处理某些耗时的数据，不会卡死界面
         /// </summary>
         /// <param name="time">线程延迟多少</param>
@@ -1706,6 +1729,10 @@ namespace Xr.RtManager.Pages.cms
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
-        
+
+        private void VisitingTimeSettingsForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
     }
 }

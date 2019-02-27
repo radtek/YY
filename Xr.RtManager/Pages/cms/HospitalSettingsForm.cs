@@ -13,6 +13,7 @@ using System.Net;
 using Xr.Common;
 using Xr.Common.Controls;
 using System.Threading;
+using System.Web;
 
 namespace Xr.RtManager.Pages.cms
 {
@@ -29,11 +30,11 @@ namespace Xr.RtManager.Pages.cms
         private void HospitalSettingsForm_Load(object sender, EventArgs e)
         {
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
-            cmd.ShowOpaqueLayer(225, false);
+            cmd.ShowOpaqueLayer(0f);
             dcHospitalInfo.DataType = typeof(HospitalInfoEntity);
             //查询医院类型下拉框数据
             String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=hospital_type";
-            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -49,7 +50,7 @@ namespace Xr.RtManager.Pages.cms
 
                     //查询状态下拉框数据
                     String url2 = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=is_use";
-                    this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
                         String data = HttpClass.httpPost(url2);
                         return data;
@@ -85,7 +86,7 @@ namespace Xr.RtManager.Pages.cms
         public void SearchData(int pageNo, int pageSize)
         {
             String url = AppContext.AppConfig.serverUrl + "cms/hospital/list?pageNo="+pageNo;
-            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -173,7 +174,7 @@ namespace Xr.RtManager.Pages.cms
                 model.FileContent = new FileStream(logoFilePath, FileMode.Open);
                 lstPara.Add(model);
                 cmd.ShowOpaqueLayer(225, true);
-                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
                     String data = HttpClass.PostForm(url, lstPara);
                     return data;
@@ -242,7 +243,7 @@ namespace Xr.RtManager.Pages.cms
                 model.FileContent = new FileStream(pictureFilePath, FileMode.Open);
                 lstPara.Add(model);
                 cmd.ShowOpaqueLayer(225, true);
-                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
                     String data = HttpClass.PostForm(url, lstPara);
                     return data;
@@ -308,11 +309,11 @@ namespace Xr.RtManager.Pages.cms
             var selectedRow = gridView1.GetFocusedRow() as HospitalInfoEntity;
             if (selectedRow == null)
                 return;
-            cmd.ShowOpaqueLayer(225, true);
+            cmd.ShowOpaqueLayer();
             String url = AppContext.AppConfig.serverUrl + "cms/hospital/findById?id=" + selectedRow.id;
             
 
-            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
                 return data;
@@ -385,12 +386,14 @@ namespace Xr.RtManager.Pages.cms
                 return;
             }
             hospitalInfo.pictureUrl = pictureServiceFilePath;
+            //文本编辑框的内容要转编码，不然后台获取的时候会不对
+            hospitalInfo.information = HttpUtility.UrlEncode(hospitalInfo.information, Encoding.UTF8);
             //请求接口
             String param = PackReflectionEntity<HospitalInfoEntity>.GetEntityToRequestParameters(hospitalInfo, true);
             String url = AppContext.AppConfig.serverUrl + "cms/hospital/save?";
 
             cmd.ShowOpaqueLayer(225, true);
-            this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url, param);
                 return data;
@@ -431,7 +434,7 @@ namespace Xr.RtManager.Pages.cms
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "cms/hospital/delete" + param;
                 cmd.ShowOpaqueLayer(225, true);
-                this.DoWorkAsync((o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
                     String data = HttpClass.httpPost(url);
                     return data;
@@ -466,10 +469,11 @@ namespace Xr.RtManager.Pages.cms
         /// <summary>
         /// 多线程异步后台处理某些耗时的数据，不会卡死界面
         /// </summary>
+        /// <param name="time">线程延迟多少</param>
         /// <param name="workFunc">Func委托，包装耗时处理（不含UI界面处理），示例：(o)=>{ 具体耗时逻辑; return 处理的结果数据 }</param>
         /// <param name="funcArg">Func委托参数，用于跨线程传递给耗时处理逻辑所需要的对象，示例：String对象、JObject对象或DataTable等任何一个值</param>
         /// <param name="workCompleted">Action委托，包装耗时处理完成后，下步操作（一般是更新界面的数据或UI控件），示列：(r)=>{ datagirdview1.DataSource=r; }</param>
-        protected void DoWorkAsync(Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
+        protected void DoWorkAsync(int time, Func<object, object> workFunc, object funcArg = null, Action<object> workCompleted = null)
         {
             var bgWorkder = new BackgroundWorker();
 
@@ -497,7 +501,6 @@ namespace Xr.RtManager.Pages.cms
                 }
                 catch (Exception ex)
                 {
-                    cmd.HideOpaqueLayer();
                     throw new Exception(ex.InnerException.Message);
                 }
             };
@@ -508,7 +511,7 @@ namespace Xr.RtManager.Pages.cms
                 var result = workFunc(arg.Argument);
                 arg.Result = result;
                 bgWorkder.ReportProgress(100);
-                Thread.Sleep(500);
+                Thread.Sleep(time);
             };
 
             bgWorkder.RunWorkerAsync(funcArg);
@@ -548,6 +551,11 @@ namespace Xr.RtManager.Pages.cms
             //    pv.imgPathStr = logoFilePath;
             //    pv.Show();
             //}
+        }
+
+        private void HospitalSettingsForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
         }
 
     }

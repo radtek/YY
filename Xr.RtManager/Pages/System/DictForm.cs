@@ -215,5 +215,10 @@ namespace Xr.RtManager
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
+
+        private void DictForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
     }
 }

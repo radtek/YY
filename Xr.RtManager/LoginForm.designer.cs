@@ -127,6 +127,7 @@
             this.tbPassword.TabIndex = 145;
             this.tbPassword.Text = "admin";
             this.tbPassword.TextMargin = new System.Windows.Forms.Padding(1, -1, 1, 1);
+            this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPassword_KeyDown);
             // 
             // tbLoginName
             // 
@@ -141,6 +142,7 @@
             this.tbLoginName.TabIndex = 144;
             this.tbLoginName.Text = "system_admin";
             this.tbLoginName.TextMargin = new System.Windows.Forms.Padding(1, -1, 1, 1);
+            this.tbLoginName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbLoginName_KeyDown);
             // 
             // LoginForm
             // 
@@ -160,6 +162,7 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Resize += new System.EventHandler(this.LoginForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -12,12 +12,13 @@ using Newtonsoft.Json.Linq;
 using Xr.Common;
 using Xr.RtManager.Utils;
 using Xr.Http;
+using Xr.Common.Controls;
 
 namespace Xr.RtManager
 {
     public partial class UserForm : UserControl
     {
-        Xr.Common.Controls.OpaqueCommand cmd;
+        OpaqueCommand cmd;
         private JObject obj { get; set; }
 
         public UserForm()
@@ -29,10 +30,8 @@ namespace Xr.RtManager
         private void UserForm_Load(object sender, EventArgs e)
         {
             //this.BackColor = Color.FromArgb(243, 243, 243);
-            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
-            // 弹出加载提示框
-            //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
-            cmd.ShowOpaqueLayer(225, false);
+            cmd = new OpaqueCommand(AppContext.Session.waitControl);
+            cmd.ShowOpaqueLayer(0f);
             // 开始异步
             BackgroundWorkerUtil.start_run(bw_DoWork, bw_RunWorkerCompleted, null, false);
 
@@ -42,7 +41,6 @@ namespace Xr.RtManager
         {
             try
             {
-                System.Threading.Thread.Sleep(2000);
                 String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
                 e.Result = HttpClass.httpPost(url);
             }
@@ -149,8 +147,7 @@ namespace Xr.RtManager
         {
             // 弹出加载提示框
             //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
-            cmd = new Xr.Common.Controls.OpaqueCommand(this);
-            cmd.ShowOpaqueLayer(225, true);
+            cmd.ShowOpaqueLayer();
             SearchData(1, pageControl1.PageSize);
         }
 
@@ -160,7 +157,7 @@ namespace Xr.RtManager
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 Thread.Sleep(300);
-                cmd.ShowOpaqueLayer(255, true);
+                cmd.ShowOpaqueLayer();
                 SearchData(1, pageControl1.PageSize);
                 MessageBoxUtils.Hint("保存成功!");
             }
@@ -177,7 +174,7 @@ namespace Xr.RtManager
             if (edit.ShowDialog() == DialogResult.OK)
             {
                 Thread.Sleep(300);
-                cmd.ShowOpaqueLayer(255, true);
+                cmd.ShowOpaqueLayer();
                 SearchData(1, pageControl1.PageSize);
                 MessageBoxUtils.Hint("修改用户成功!");
             }
@@ -249,8 +246,13 @@ namespace Xr.RtManager
 
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
-            cmd.ShowOpaqueLayer(225, true);
+            cmd.ShowOpaqueLayer();
             SearchData(CurrentPage, PageSize);
+        }
+
+        private void UserForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
         }
     }
 }

@@ -2894,6 +2894,7 @@
             this.Name = "VisitingTimeSettingsForm";
             this.Size = new System.Drawing.Size(1345, 615);
             this.Load += new System.EventHandler(this.DeptSettingsForm_Load);
+            this.Resize += new System.EventHandler(this.VisitingTimeSettingsForm_Resize);
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel15.ResumeLayout(false);

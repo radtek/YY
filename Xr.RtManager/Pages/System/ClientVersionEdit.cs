@@ -169,7 +169,7 @@ namespace Xr.RtManager
                 model.FileName = filePath.Substring(i, l - i);
                 model.FileContent = new FileStream(filePath, FileMode.Open);
                 lstPara.Add(model);
-
+                cmd.ShowOpaqueLayer();
                 this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
                     String data = HttpClass.PostForm(url, lstPara);
@@ -177,6 +177,7 @@ namespace Xr.RtManager
 
                 }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
+                    cmd.HideOpaqueLayer();
                     JObject objT = JObject.Parse(data.ToString());
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
@@ -246,5 +247,6 @@ namespace Xr.RtManager
 
             bgWorkder.RunWorkerAsync(funcArg);
         }
+    
     }
 }

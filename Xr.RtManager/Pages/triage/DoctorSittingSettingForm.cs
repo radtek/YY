@@ -32,6 +32,10 @@ namespace Xr.RtManager.Pages.triage
             this.endDate.Text = DateTime.Now.ToString("yyy-MM-dd");
             #endregion 
             cmd.HideOpaqueLayer();
+            dateEdit3.Properties.MinValue = DateTime.Now;
+            dateEdit3.Properties.MaxValue = DateTime.Now.AddDays(90);
+            dateEdit4.Properties.MinValue = DateTime.Now;
+            dateEdit4.Properties.MaxValue = DateTime.Now.AddDays(90);
         }
         #region 医生坐诊分页查询
         /// <summary>

@@ -52,7 +52,8 @@ namespace Xr.RtManager.Pages.booking
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
-                List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                List<DeptEntity> deptList = new List<DeptEntity>() { new DeptEntity { id = " ", parentId = "", name = "请选择" } };
+                deptList.AddRange(objT["result"].ToObject<List<DeptEntity>>());
                 /*DeptEntity dept = new DeptEntity();
                 dept.id = "0";
                 dept.name = "无";
@@ -69,8 +70,16 @@ namespace Xr.RtManager.Pages.booking
                 MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 return;
             }
-            //默认选中第一个
-            treeDeptId.EditValue = AppContext.Session.deptList[0].id;
+            //若没配置科室编码让其选择一个
+            if (AppContext.AppConfig.deptCode == String.Empty)
+            {
+                treeDeptId.EditValue = " ";
+            }
+            else
+            {
+                
+                treeDeptId.EditValue = AppContext.Session.deptId;
+            }
 
             //预约状态下拉框数据
             String param = "type={0}";
@@ -279,6 +288,7 @@ namespace Xr.RtManager.Pages.booking
             this.deStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.deStart.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.deStart.Properties.VistaCalendarInitialViewStyle = VistaCalendarInitialViewStyle.MonthView;
+            this.deStart.EditValue = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month,1);
 
             this.deEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
             this.deEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -287,7 +297,7 @@ namespace Xr.RtManager.Pages.booking
             this.deEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.deEnd.Properties.VistaCalendarInitialViewStyle = VistaCalendarInitialViewStyle.MonthView;
             this.deEnd.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearView)));
-
+            this.deEnd.EditValue = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, System.DateTime.Now.Day);
         }
     }
     /// <summary>

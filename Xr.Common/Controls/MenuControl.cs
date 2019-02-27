@@ -72,15 +72,17 @@ namespace Xr.Common.Controls
                 label.Dock = DockStyle.Fill;
                 //label.AutoSize = false;
                 label.Text = item.name;
-                label.Click += new EventHandler(MenuClicked);
-                label.MouseEnter += new EventHandler(TwoLevelMouseEnter);
-                label.MouseLeave += new EventHandler(TwoLevelMouseLeave);
+                if (item.Enable)//可设置Item为无效从而不响应事件
+                {
+                    label.Click += new EventHandler(MenuClicked);
+                    label.MouseEnter += new EventHandler(TwoLevelMouseEnter);
+                    label.MouseLeave += new EventHandler(TwoLevelMouseLeave);
+
+                    itemPanel.Click += new EventHandler(PanelMenuClicked);
+                    itemPanel.MouseEnter += new EventHandler(PanelMouseEnter);
+                    itemPanel.MouseLeave += new EventHandler(PanelMouseLeave);
+                }
                 itemPanel.Controls.Add(label);
-
-                itemPanel.Click += new EventHandler(PanelMenuClicked);
-                itemPanel.MouseEnter += new EventHandler(PanelMouseEnter);
-                itemPanel.MouseLeave += new EventHandler(PanelMouseLeave);
-
                 panelEx1.Controls.Add(itemPanel);
                 //panelEx1.BringToFront();
                 //String name = ""; //重新组织的字符串
@@ -321,6 +323,12 @@ namespace Xr.Common.Controls
     }
     public class Item
     {
+        private bool enble = true;
+        public bool Enable
+        {
+            get { return enble; }
+            set { enble = value; }
+        }
         public String value { get; set; }
         public String name { get; set; }
         public String sort { get; set; }

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinbutNew = new CCWin.SkinControl.SkinButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -40,17 +42,19 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelControl1, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 32);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.06452F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.93548F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(322, 124);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 143);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -62,9 +66,9 @@
             this.label1.Location = new System.Drawing.Point(1, 1);
             this.label1.Margin = new System.Windows.Forms.Padding(1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(320, 70);
+            this.label1.Size = new System.Drawing.Size(331, 93);
             this.label1.TabIndex = 0;
-            this.label1.Text = "当前患者/Y001/男/王正伟";
+            this.label1.Text = "";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelControl1
@@ -75,9 +79,9 @@
             this.panelControl1.Controls.Add(this.skinButton1);
             this.panelControl1.Controls.Add(this.skinbutNew);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(3, 75);
+            this.panelControl1.Location = new System.Drawing.Point(3, 98);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(316, 46);
+            this.panelControl1.Size = new System.Drawing.Size(327, 42);
             this.panelControl1.TabIndex = 1;
             // 
             // skinButton1
@@ -92,7 +96,7 @@
             this.skinButton1.IsDrawBorder = false;
             this.skinButton1.IsDrawGlass = false;
             this.skinButton1.IsEnabledDraw = false;
-            this.skinButton1.Location = new System.Drawing.Point(160, 7);
+            this.skinButton1.Location = new System.Drawing.Point(173, 6);
             this.skinButton1.MouseBack = null;
             this.skinButton1.Name = "skinButton1";
             this.skinButton1.NormlBack = null;
@@ -116,7 +120,7 @@
             this.skinbutNew.IsDrawBorder = false;
             this.skinbutNew.IsDrawGlass = false;
             this.skinbutNew.IsEnabledDraw = false;
-            this.skinbutNew.Location = new System.Drawing.Point(44, 7);
+            this.skinbutNew.Location = new System.Drawing.Point(57, 6);
             this.skinbutNew.MouseBack = null;
             this.skinbutNew.Name = "skinbutNew";
             this.skinbutNew.NormlBack = null;
@@ -128,14 +132,23 @@
             this.skinbutNew.UseVisualStyleBackColor = false;
             this.skinbutNew.Click += new System.EventHandler(this.skinbutNew_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(336, 30);
+            this.panel1.TabIndex = 1;
+            // 
             // RtCallMessageFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "RtCallMessageFrm";
-            this.Size = new System.Drawing.Size(322, 124);
+            this.Size = new System.Drawing.Size(336, 178);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -151,5 +164,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private CCWin.SkinControl.SkinButton skinButton1;
         private CCWin.SkinControl.SkinButton skinbutNew;
+        private System.Windows.Forms.Panel panel1;
     }
 }

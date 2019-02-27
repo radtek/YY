@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
-            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView4 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle4 = new DevExpress.XtraCharts.ChartTitle();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition4 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition5 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.select = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn20 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -45,6 +43,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.gc_statistics = new DevExpress.XtraGrid.GridControl();
             this.gv_statistics = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -167,6 +166,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
             this.btnQuery = new Xr.Common.Controls.ButtonControl();
             this.deEnd = new DevExpress.XtraEditors.DateEdit();
@@ -181,19 +181,18 @@
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.panelEx12 = new Xr.Common.Controls.PanelEx();
+            this.panelEx15 = new Xr.Common.Controls.PanelEx();
+            this.panelEx16 = new Xr.Common.Controls.PanelEx();
+            this.panelEx17 = new Xr.Common.Controls.PanelEx();
+            this.panelEx13 = new Xr.Common.Controls.PanelEx();
+            this.panelEx14 = new Xr.Common.Controls.PanelEx();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.排号前移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.排号后移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.排号作废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.现场预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -202,7 +201,7 @@
             this.panel5.SuspendLayout();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView4)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_statistics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_statistics)).BeginInit();
@@ -339,16 +338,28 @@
             this.chartControl1.Margin = new System.Windows.Forms.Padding(10);
             this.chartControl1.Name = "chartControl1";
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.chartControl1.SeriesTemplate.View = lineSeriesView1;
+            this.chartControl1.SeriesTemplate.View = lineSeriesView4;
             this.chartControl1.Size = new System.Drawing.Size(1003, 277);
             this.chartControl1.TabIndex = 167;
-            chartTitle1.Alignment = System.Drawing.StringAlignment.Near;
-            chartTitle1.Font = new System.Drawing.Font("微软雅黑", 18F);
-            chartTitle1.Indent = 1;
-            chartTitle1.Text = "预约总数趋势图";
-            chartTitle1.TextColor = System.Drawing.Color.Black;
+            chartTitle4.Alignment = System.Drawing.StringAlignment.Near;
+            chartTitle4.Font = new System.Drawing.Font("微软雅黑", 18F);
+            chartTitle4.Indent = 1;
+            chartTitle4.Text = "预约总数趋势图";
+            chartTitle4.TextColor = System.Drawing.Color.Black;
             this.chartControl1.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
-            chartTitle1});
+            chartTitle4});
+            // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 18F);
+            this.label4.Location = new System.Drawing.Point(10, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(1003, 31);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "预约总数趋势图";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label4.Visible = false;
             // 
             // panel6
             // 
@@ -377,10 +388,14 @@
             // 
             // gv_statistics
             // 
+            this.gv_statistics.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gv_statistics.Appearance.EvenRow.Options.UseBackColor = true;
             this.gv_statistics.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_statistics.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_statistics.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gv_statistics.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gv_statistics.Appearance.OddRow.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gv_statistics.Appearance.OddRow.Options.UseBackColor = true;
             this.gv_statistics.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_statistics.Appearance.Row.Options.UseFont = true;
             this.gv_statistics.Appearance.Row.Options.UseTextOptions = true;
@@ -396,13 +411,6 @@
             this.gridColumn19,
             this.gridColumn20,
             this.gridColumn21});
-            styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
-            styleFormatCondition1.Appearance.Options.UseBackColor = true;
-            styleFormatCondition1.ApplyToRow = true;
-            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition1.Value1 = "1";
-            this.gv_statistics.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1});
             this.gv_statistics.GridControl = this.gc_statistics;
             this.gv_statistics.Name = "gv_statistics";
             this.gv_statistics.OptionsBehavior.Editable = false;
@@ -846,13 +854,13 @@
             this.bandedGridColumn9,
             this.bandedGridColumn10,
             this.bandedGridColumn11});
-            styleFormatCondition2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
-            styleFormatCondition2.Appearance.Options.UseBackColor = true;
-            styleFormatCondition2.ApplyToRow = true;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition2.Value1 = "1";
+            styleFormatCondition3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
+            styleFormatCondition3.Appearance.Options.UseBackColor = true;
+            styleFormatCondition3.ApplyToRow = true;
+            styleFormatCondition3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition3.Value1 = "1";
             this.gv_docInfo.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition2});
+            styleFormatCondition3});
             this.gv_docInfo.GridControl = this.gc_docInfo;
             this.gv_docInfo.Name = "gv_docInfo";
             this.gv_docInfo.OptionsBehavior.Editable = false;
@@ -1151,14 +1159,14 @@
             this.gridColumn1,
             this.gridColumn7,
             this.gridColumn5});
-            styleFormatCondition3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
-            styleFormatCondition3.Appearance.Options.UseBackColor = true;
-            styleFormatCondition3.ApplyToRow = true;
-            styleFormatCondition3.Column = this.select;
-            styleFormatCondition3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition3.Value1 = "1";
+            styleFormatCondition4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
+            styleFormatCondition4.Appearance.Options.UseBackColor = true;
+            styleFormatCondition4.ApplyToRow = true;
+            styleFormatCondition4.Column = this.select;
+            styleFormatCondition4.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition4.Value1 = "1";
             this.gv_deptInfo.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition3});
+            styleFormatCondition4});
             this.gv_deptInfo.GridControl = this.gc_deptInfo;
             this.gv_deptInfo.Name = "gv_deptInfo";
             this.gv_deptInfo.OptionsBehavior.Editable = false;
@@ -1470,13 +1478,13 @@
             this.bandedGridColumn16,
             this.bandedGridColumn17,
             this.bandedGridColumn18});
-            styleFormatCondition4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
-            styleFormatCondition4.Appearance.Options.UseBackColor = true;
-            styleFormatCondition4.ApplyToRow = true;
-            styleFormatCondition4.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition4.Value1 = "1";
+            styleFormatCondition5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
+            styleFormatCondition5.Appearance.Options.UseBackColor = true;
+            styleFormatCondition5.ApplyToRow = true;
+            styleFormatCondition5.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition5.Value1 = "1";
             this.gv_docInfoNCD.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition4});
+            styleFormatCondition5});
             this.gv_docInfoNCD.GridControl = this.gc_docInfoNCD;
             this.gv_docInfoNCD.Name = "gv_docInfoNCD";
             this.gv_docInfoNCD.OptionsBehavior.Editable = false;
@@ -1774,14 +1782,14 @@
             this.bandedGridColumn26,
             this.bandedGridColumn27,
             this.bandedGridColumn28});
-            styleFormatCondition5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
-            styleFormatCondition5.Appearance.Options.UseBackColor = true;
-            styleFormatCondition5.ApplyToRow = true;
-            styleFormatCondition5.Column = this.bandedGridColumn20;
-            styleFormatCondition5.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition5.Value1 = "1";
+            styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
+            styleFormatCondition1.Appearance.Options.UseBackColor = true;
+            styleFormatCondition1.ApplyToRow = true;
+            styleFormatCondition1.Column = this.bandedGridColumn20;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition1.Value1 = "1";
             this.gv_deptInfoNCD.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition5});
+            styleFormatCondition1});
             this.gv_deptInfoNCD.GridControl = this.gc_deptInfoNCD;
             this.gv_deptInfoNCD.Name = "gv_deptInfoNCD";
             this.gv_deptInfoNCD.OptionsBehavior.Editable = false;
@@ -2059,8 +2067,9 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
+            this.tableLayoutPanel2.Controls.Add(this.buttonControl1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonControl2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnQuery, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -2069,8 +2078,23 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(292, 30);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(325, 30);
             this.tableLayoutPanel2.TabIndex = 190;
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl1.Location = new System.Drawing.Point(164, 0);
+            this.buttonControl1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(124, 30);
+            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Green;
+            this.buttonControl1.TabIndex = 92;
+            this.buttonControl1.Text = "导出平均候诊时间";
+            this.buttonControl1.Click += new System.EventHandler(this.btn_exportWaitTime_Click);
             // 
             // buttonControl2
             // 
@@ -2081,7 +2105,7 @@
             this.buttonControl2.Location = new System.Drawing.Point(85, 0);
             this.buttonControl2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(70, 30);
+            this.buttonControl2.Size = new System.Drawing.Size(69, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Green;
             this.buttonControl2.TabIndex = 91;
             this.buttonControl2.Text = "导出Excel";
@@ -2418,18 +2442,6 @@
             this.现场预约ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.现场预约ToolStripMenuItem.Text = "现场预约";
             // 
-            // label4
-            // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 18F);
-            this.label4.Location = new System.Drawing.Point(10, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1003, 31);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "预约总数趋势图";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label4.Visible = false;
-            // 
             // AppointmentStatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2446,7 +2458,7 @@
             this.xtraTabPage1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.xtraScrollableControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_statistics)).EndInit();
@@ -2648,6 +2660,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
         private System.Windows.Forms.Label label4;
+        private Xr.Common.Controls.ButtonControl buttonControl1;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;
