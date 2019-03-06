@@ -20,10 +20,12 @@ namespace Xr.RtManager.Pages.booking
 {
     public partial class AppointmentQueryForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public AppointmentQueryForm()
         {
             InitializeComponent();
+            MainForm = (Form)this.Parent;
             //cmd = new Xr.Common.Controls.OpaqueCommand(this);
             //cmd.ShowOpaqueLayer(225, true);
         }
@@ -67,7 +69,7 @@ namespace Xr.RtManager.Pages.booking
             }
             else
             {
-                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
             //若没配置科室编码让其选择一个
@@ -101,7 +103,7 @@ namespace Xr.RtManager.Pages.booking
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
             //预约途径下拉框数据
@@ -122,7 +124,7 @@ namespace Xr.RtManager.Pages.booking
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
         private void buttonControl1_Click(object sender, EventArgs e)
@@ -137,15 +139,19 @@ namespace Xr.RtManager.Pages.booking
         private bool VerifyInfo()
         { //deStart.Text,
             //deEnd.Text
-
+            if (treeDeptId.EditValue == " ")
+            {
+                MessageBoxUtils.Hint("请选择科室", HintMessageBoxIcon.Error, MainForm);
+                return false;
+            }
             if (deStart.EditValue == null)
             {
-                MessageBox.Show("请选择开始日期");
+                MessageBoxUtils.Hint("请选择开始日期", HintMessageBoxIcon.Error, MainForm);
                 return false;
             }
             if (deEnd.EditValue == null)
             {
-                MessageBox.Show("请选择结束日期");
+                MessageBoxUtils.Hint("请选择结束日期", HintMessageBoxIcon.Error, MainForm);
                 return false;
             }
 
@@ -156,7 +162,7 @@ namespace Xr.RtManager.Pages.booking
             
             if (dtEnd < dtStart)
             {
-                MessageBox.Show("结束日期需大于开始日期");
+                MessageBoxUtils.Hint("结束日期需大于开始日期", HintMessageBoxIcon.Error, MainForm);
                 return false;
             }
 
@@ -242,14 +248,14 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
             finally
             {

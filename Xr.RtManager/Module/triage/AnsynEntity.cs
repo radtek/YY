@@ -104,6 +104,10 @@ namespace Xr.RtManager.Module.triage
         /// 现场预约
         /// </summary>
         Reservation,
+        /// <summary>
+        /// 取消现场预约
+        /// </summary>
+        CancelReservation,
         Null
     }
 }

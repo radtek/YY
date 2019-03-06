@@ -28,11 +28,14 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         private JObject obj { get; set; }
 
         private void LogForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
@@ -64,7 +67,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -98,7 +102,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }

@@ -19,6 +19,7 @@ namespace Xr.RtManager.Pages.booking
 {
     public partial class BlackListAdminForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public BlackListAdminForm()
         {
@@ -31,6 +32,8 @@ namespace Xr.RtManager.Pages.booking
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             QueryInfo(1,10);
 
@@ -107,7 +110,7 @@ namespace Xr.RtManager.Pages.booking
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MainForm);
                         //MessageBox.Show(objT["message"].ToString());
                         return;
                     }
@@ -115,7 +118,7 @@ namespace Xr.RtManager.Pages.booking
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MainForm);
                 //MessageBox.Show(ex.Message);
             }
             finally
@@ -171,7 +174,7 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    MessageBoxUtils.Hint(objT["message"].ToString());
+                    MessageBoxUtils.Hint(objT["message"].ToString(), HintMessageBoxIcon.Error, MainForm);
                     //MessageBox.Show(objT["message"].ToString());
                 }
             }
@@ -276,7 +279,7 @@ namespace Xr.RtManager.Pages.booking
             if (itemList.Count > 0)
             {
                 if (MessageBoxUtils.Show("确认解冻选中的黑名单吗?", MessageBoxButtons.OKCancel,
-             MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+             MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
                 {
                     foreach (var item in itemList)
                     {
@@ -292,7 +295,7 @@ namespace Xr.RtManager.Pages.booking
             else
             {
                 //MessageBox.Show("请选择要解冻的数据行");
-                MessageBoxUtils.Show("请选择要解冻的数据行", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("请选择要解冻的数据行", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MainForm);
             }
 
         }
@@ -319,7 +322,7 @@ namespace Xr.RtManager.Pages.booking
             var Frm = new BlackListAddFrm();
             if (Frm.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("保存成功!");
+                MessageBoxUtils.Hint("保存成功!", MainForm);
                 QueryInfo(1, pageControl1.PageSize);
             }
         }

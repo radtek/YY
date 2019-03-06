@@ -26,6 +26,7 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
 
         public DoctorInfoEntity doctorInfo { get; set; }
@@ -40,6 +41,8 @@ namespace Xr.RtManager.Pages.cms
 
         private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             //把这行删了，再显示分页控件，就是分页了，不过宽度不够显示分页控件
             pageControl1.PageSize = 10000;//一页一万条，不显示分页；
             dcDoctorInfo.DataType = typeof(DoctorInfoEntity);
@@ -76,7 +79,8 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -99,7 +103,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -122,7 +126,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -145,7 +149,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -168,7 +172,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -191,7 +195,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -212,7 +216,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -261,7 +265,7 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -295,7 +299,7 @@ namespace Xr.RtManager.Pages.cms
             catch (Exception ex)
             {
                 Xr.Log4net.LogHelper.Error(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
 
@@ -329,19 +333,19 @@ namespace Xr.RtManager.Pages.cms
                         this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
                         pictureServiceFilePath = objT["result"][0].ToString();
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("上传图片成功");
+                        MessageBoxUtils.Hint("上传图片成功", MainForm);
                     }
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         return;
                     }
                 });
             }
             else
             {
-                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
         #endregion
@@ -408,6 +412,20 @@ namespace Xr.RtManager.Pages.cms
             groupBox1.Enabled = true;
             doctorInfo = new DoctorInfoEntity();
             cbIgnoreHoliday.CheckState = CheckState.Checked;
+            List<DictEntity> isShowList = lueIsShow.Properties.DataSource as List<DictEntity>;
+            if (isShowList.Count > 0)
+                lueIsShow.EditValue = isShowList[0].value;
+            List<DictEntity> isUseList = lueIsUse.Properties.DataSource as List<DictEntity>;
+            if (isUseList.Count > 0)
+                lueIsUse.EditValue = isUseList[0].value;
+            List<DictEntity> registerTypeList = lueRegisterType.Properties.DataSource as List<DictEntity>;
+            if (registerTypeList.Count > 0)
+                lueRegisterType.EditValue = registerTypeList[0].value;
+            List<DictEntity> sexList = lueSex.Properties.DataSource as List<DictEntity>;
+            if (sexList.Count > 0)
+                lueSex.EditValue = sexList[0].value;
+            
+            
         }
 
 
@@ -493,14 +511,14 @@ namespace Xr.RtManager.Pages.cms
                         else
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         }
                     });
                 }
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
 
@@ -556,6 +574,7 @@ namespace Xr.RtManager.Pages.cms
                     TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
                     for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
                     {
+                        if (tabPage.Controls.Count == 0) break;
                         TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
                         if (tlp.Enabled)
                         {
@@ -626,12 +645,12 @@ namespace Xr.RtManager.Pages.cms
                     tableLayoutPanel4.Enabled = false;
                     pbDispose();
                     pageControl1_Query(pageControl1.CurrentPage, pageControl1.PageSize);
-                    MessageBoxUtils.Hint("保存成功！");
+                    MessageBoxUtils.Hint("保存成功！", MainForm);
                 }
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -643,7 +662,7 @@ namespace Xr.RtManager.Pages.cms
                 return;
 
             if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
             {
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "cms/doctor/delete" + param;
@@ -659,12 +678,12 @@ namespace Xr.RtManager.Pages.cms
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         SearchData(pageControl1.CurrentPage, pageControl1.PageSize);
-                        MessageBoxUtils.Hint("删除成功!");
+                        MessageBoxUtils.Hint("删除成功!", MainForm);
                     }
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 });
             }
@@ -696,10 +715,6 @@ namespace Xr.RtManager.Pages.cms
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
                 List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
-                DeptEntity dept = new DeptEntity();
-                dept.id = "0";
-                dept.name = "无";
-                deptList.Insert(0, dept);
                 treeDeptId.Properties.DataSource = deptList;
                 treeDeptId.Properties.TreeList.KeyFieldName = "id";
                 treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
@@ -708,7 +723,7 @@ namespace Xr.RtManager.Pages.cms
             }
             else
             {
-                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
         }
@@ -828,7 +843,7 @@ namespace Xr.RtManager.Pages.cms
                         || defaultVisit.mSubsection.Trim().Length == 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("上午的设置不能为空");
+                        MessageBoxUtils.Hint("上午的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.mStart.Split(new char[] { ':', '：' });
@@ -836,13 +851,13 @@ namespace Xr.RtManager.Pages.cms
                     if (startArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("上午的开始时间设置有误");
+                        MessageBoxUtils.Hint("上午的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("上午的结束时间设置有误");
+                        MessageBoxUtils.Hint("上午的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -852,13 +867,13 @@ namespace Xr.RtManager.Pages.cms
                     if (minute <= 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("上午结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("上午结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.mSubsection))
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("上午分段时间大于总时间");
+                        MessageBoxUtils.Hint("上午分段时间大于总时间", MainForm);
                         return;
                     }
                     rowMorningNum = minute / int.Parse(defaultVisit.mSubsection);
@@ -871,7 +886,7 @@ namespace Xr.RtManager.Pages.cms
                         || defaultVisit.aSubsection.Trim().Length == 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("下午的设置不能为空");
+                        MessageBoxUtils.Hint("下午的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.aStart.Split(new char[] { ':', '：' });
@@ -879,13 +894,13 @@ namespace Xr.RtManager.Pages.cms
                     if (startArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("下午的开始时间设置有误");
+                        MessageBoxUtils.Hint("下午的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("下午的结束时间设置有误");
+                        MessageBoxUtils.Hint("下午的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -895,13 +910,13 @@ namespace Xr.RtManager.Pages.cms
                     if (minute <= 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("下午结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("下午结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.aSubsection))
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("下午分段时间大于总时间");
+                        MessageBoxUtils.Hint("下午分段时间大于总时间", MainForm);
                         return;
                     }
                     rowAfternoonNum = minute / int.Parse(defaultVisit.aSubsection);
@@ -914,7 +929,7 @@ namespace Xr.RtManager.Pages.cms
                         || defaultVisit.nSubsection.Trim().Length == 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("晚上的设置不能为空");
+                        MessageBoxUtils.Hint("晚上的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.nStart.Split(new char[] { ':', '：' });
@@ -922,13 +937,13 @@ namespace Xr.RtManager.Pages.cms
                     if (startArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("晚上的开始时间设置有误");
+                        MessageBoxUtils.Hint("晚上的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("晚上的结束时间设置有误");
+                        MessageBoxUtils.Hint("晚上的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -944,13 +959,13 @@ namespace Xr.RtManager.Pages.cms
                     if (minute <= 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("晚上结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("晚上结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.nSubsection))
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("晚上分段时间大于总时间");
+                        MessageBoxUtils.Hint("晚上分段时间大于总时间", MainForm);
                         return;
                     }
                     rowNightNum = minute / int.Parse(defaultVisit.nSubsection);
@@ -963,7 +978,7 @@ namespace Xr.RtManager.Pages.cms
                         || defaultVisit.allSubsection.Trim().Length == 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("全天的设置不能为空");
+                        MessageBoxUtils.Hint("全天的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.allStart.Split(new char[] { ':', '：' });
@@ -971,13 +986,13 @@ namespace Xr.RtManager.Pages.cms
                     if (startArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("全天的开始时间设置有误");
+                        MessageBoxUtils.Hint("全天的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("全天的结束时间设置有误");
+                        MessageBoxUtils.Hint("全天的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -991,13 +1006,13 @@ namespace Xr.RtManager.Pages.cms
                     if (minute <= 0)
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.nSubsection))
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Hint("全天分段时间大于总时间");
+                        MessageBoxUtils.Hint("全天分段时间大于总时间", MainForm);
                         return;
                     }
                     rowAllDayNum = minute / int.Parse(defaultVisit.allSubsection);
@@ -1707,10 +1722,10 @@ namespace Xr.RtManager.Pages.cms
         private void DoctorSettingsForm_Resize(object sender, EventArgs e)
         {
             float tlpWidth = this.Width * 30 / 100;
-            if (tlpWidth < 410)
+            if (tlpWidth < 415)
                 tableLayoutPanel1.ColumnStyles[1].Width = tlpWidth;
             else
-                tableLayoutPanel1.ColumnStyles[1].Width = 410;
+                tableLayoutPanel1.ColumnStyles[1].Width = 415;
             cmd.rectDisplay = this.DisplayRectangle;
         }
 

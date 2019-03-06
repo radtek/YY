@@ -28,7 +28,7 @@ namespace Xr.RtManager
         ///   应用程序的主入口点。
         /// </summary>
         public static ApplicationContext context;
-
+        private static Form mainForm;
 
         [STAThread]
         private static void Main()
@@ -45,7 +45,7 @@ namespace Xr.RtManager
                 var aProcessName = Process.GetCurrentProcess().ProcessName;
                 if ((Process.GetProcessesByName(aProcessName)).GetUpperBound(0) > 0)
                 {
-                    MessageBoxUtils.Show(@"系统已经在运行中，如果要重新启动，请从进程中关闭...", @"系统警告", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(@"系统已经在运行中，如果要重新启动，请从进程中关闭...", @"系统警告", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, mainForm);
                 }
                 else
                 {
@@ -70,7 +70,7 @@ namespace Xr.RtManager
             {
                 Xr.Log4net.LogHelper.Error("Main:" + ex);
                 //MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。");
-                MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, mainForm);
                 //DigiForm digiForm = new DigiForm();
                 //digiForm.UpdateAppSettings(DigiForm.RUNFORMFULLNAME, DigiForm.LOGINFORMFULLNAME);
             }
@@ -87,9 +87,9 @@ namespace Xr.RtManager
                 login.ShowDialog();
                 if (login.DialogResult == DialogResult.OK)
                 {
-                    MainForm form = new MainForm();
-                    context.MainForm = form;
-                    form.Show();
+                    mainForm = new MainForm();
+                    context.MainForm = mainForm;
+                    mainForm.Show();
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace Xr.RtManager
             }
             if (ex.Message.Equals("远程服务器返回错误: (400) 错误的请求。") || ex.Message.Equals("会话失效，请重启程序"))
             {
-                if (MessageBoxUtils.Show("系统出现异常："+ex.Message+"\r\n请重新登录系统", MessageBoxButtons.OKCancel, new[] { "重新登录", "退出系统" }) == DialogResult.OK)
+                if (MessageBoxUtils.Show("系统出现异常：" + ex.Message + "\r\n请重新登录系统", MessageBoxButtons.OKCancel, new[] { "重新登录", "退出系统" }, mainForm) == DialogResult.OK)
                 {
                     //Application.Restart();
                     Application.ExitThread();
@@ -127,7 +127,7 @@ namespace Xr.RtManager
             }
             else
             {
-                MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, mainForm);
             }
             //MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));
         }
@@ -139,7 +139,7 @@ namespace Xr.RtManager
             {
                 Xr.Log4net.LogHelper.Error("CurrentDomain_UnhandledException:" + ex);
             }
-            MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            MessageBoxUtils.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, mainForm);
             //MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));
         }
 

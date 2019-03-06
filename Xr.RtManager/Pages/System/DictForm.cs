@@ -21,12 +21,15 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
 
         private JObject obj { get; set; }
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             //this.BackColor = Color.FromArgb(243, 243, 243);
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
@@ -63,7 +66,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -82,7 +86,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData(true, 1, pageControl1.PageSize);
-                MessageBoxUtils.Hint("保存成功!");
+                MessageBoxUtils.Hint("保存成功!", MainForm);
             }
         }
 
@@ -93,7 +97,7 @@ namespace Xr.RtManager
                 return;
 
              if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
              {
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "sys/sysDict/delete" + param;
@@ -110,12 +114,13 @@ namespace Xr.RtManager
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
-                        MessageBoxUtils.Hint("删除成功!");
+                        MessageBoxUtils.Hint("删除成功!", MainForm);
                     }
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 });
              }
@@ -134,7 +139,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-                MessageBoxUtils.Hint("修改成功!");
+                MessageBoxUtils.Hint("修改成功!", MainForm);
             }
         }
 
@@ -154,7 +159,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
-                MessageBoxUtils.Hint("添加成功!");
+                MessageBoxUtils.Hint("添加成功!", MainForm);
             }
         }
 

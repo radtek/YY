@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.components = new System.ComponentModel.Container();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.lblMessage = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();

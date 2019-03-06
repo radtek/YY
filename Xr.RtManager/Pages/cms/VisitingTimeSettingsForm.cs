@@ -25,6 +25,7 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
 
         public DoctorInfoEntity doctorInfo { get; set; }
@@ -45,6 +46,7 @@ namespace Xr.RtManager.Pages.cms
 
         private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             dcDoctorInfo.DataType = typeof(DoctorInfoEntity);
             dcDefaultVisit.DataType = typeof(DefaultVisitEntity);
@@ -99,7 +101,7 @@ namespace Xr.RtManager.Pages.cms
                         else
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             return;
                         }
                     });
@@ -107,7 +109,7 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -261,19 +263,19 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.mStart.Trim().Length == 0 || defaultVisit.mEnd.Trim().Length == 0
                         || defaultVisit.mSubsection.Trim().Length == 0)
                     {
-                        MessageBoxUtils.Hint("上午的设置不能为空");
+                        MessageBoxUtils.Hint("上午的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.mStart.Split(new char[] { ':', '：' });
                     String[] endArr = defaultVisit.mEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("上午的开始时间设置有误");
+                        MessageBoxUtils.Hint("上午的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("上午的结束时间设置有误");
+                        MessageBoxUtils.Hint("上午的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -282,12 +284,12 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
-                        MessageBoxUtils.Hint("上午结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("上午结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.mSubsection))
                     {
-                        MessageBoxUtils.Hint("上午分段时间大于总时间");
+                        MessageBoxUtils.Hint("上午分段时间大于总时间", MainForm);
                         return;
                     }
                     rowMorningNum = minute / int.Parse(defaultVisit.mSubsection);
@@ -299,19 +301,19 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.aStart.Trim().Length == 0 || defaultVisit.aEnd.Trim().Length == 0
                         || defaultVisit.aSubsection.Trim().Length == 0)
                     {
-                        MessageBoxUtils.Hint("下午的设置不能为空");
+                        MessageBoxUtils.Hint("下午的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.aStart.Split(new char[] { ':', '：' });
                     String[] endArr = defaultVisit.aEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("下午的开始时间设置有误");
+                        MessageBoxUtils.Hint("下午的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("下午的结束时间设置有误");
+                        MessageBoxUtils.Hint("下午的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -320,12 +322,12 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
-                        MessageBoxUtils.Hint("下午结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("下午结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.aSubsection))
                     {
-                        MessageBoxUtils.Hint("下午分段时间大于总时间");
+                        MessageBoxUtils.Hint("下午分段时间大于总时间", MainForm);
                         return;
                     }
                     rowAfternoonNum = minute / int.Parse(defaultVisit.aSubsection);
@@ -337,19 +339,19 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.nStart.Trim().Length == 0 || defaultVisit.nEnd.Trim().Length == 0
                         || defaultVisit.nSubsection.Trim().Length == 0)
                     {
-                        MessageBoxUtils.Hint("晚上的设置不能为空");
+                        MessageBoxUtils.Hint("晚上的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.nStart.Split(new char[] { ':', '：' });
                     String[] endArr = defaultVisit.nEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("晚上的开始时间设置有误");
+                        MessageBoxUtils.Hint("晚上的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("晚上的结束时间设置有误");
+                        MessageBoxUtils.Hint("晚上的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -364,12 +366,12 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
-                        MessageBoxUtils.Hint("晚上结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("晚上结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.nSubsection))
                     {
-                        MessageBoxUtils.Hint("晚上分段时间大于总时间");
+                        MessageBoxUtils.Hint("晚上分段时间大于总时间", MainForm);
                         return;
                     }
                     rowNightNum = minute / int.Parse(defaultVisit.nSubsection);
@@ -381,19 +383,19 @@ namespace Xr.RtManager.Pages.cms
                     if (defaultVisit.allStart.Trim().Length == 0 || defaultVisit.allEnd.Trim().Length == 0
                         || defaultVisit.allSubsection.Trim().Length == 0)
                     {
-                        MessageBoxUtils.Hint("全天的设置不能为空");
+                        MessageBoxUtils.Hint("全天的设置不能为空", MainForm);
                         return;
                     }
                     String[] startArr = defaultVisit.allStart.Split(new char[] { ':', '：' });
                     String[] endArr = defaultVisit.allEnd.Split(new char[] { ':', '：' });
                     if (startArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("全天的开始时间设置有误");
+                        MessageBoxUtils.Hint("全天的开始时间设置有误", MainForm);
                         return;
                     }
                     if (endArr.Length != 2)
                     {
-                        MessageBoxUtils.Hint("全天的结束时间设置有误");
+                        MessageBoxUtils.Hint("全天的结束时间设置有误", MainForm);
                         return;
                     }
                     DateTime d1 = new DateTime(2004, 1, 1, int.Parse(startArr[0]), int.Parse(startArr[1]), 00);
@@ -406,12 +408,12 @@ namespace Xr.RtManager.Pages.cms
                     int minute = d3.Hours * 60 + d3.Minutes;
                     if (minute <= 0)
                     {
-                        MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间");
+                        MessageBoxUtils.Hint("全天结束时间不能小于或等于开始时间", MainForm);
                         return;
                     }
                     if (minute < int.Parse(defaultVisit.nSubsection))
                     {
-                        MessageBoxUtils.Hint("全天分段时间大于总时间");
+                        MessageBoxUtils.Hint("全天分段时间大于总时间", MainForm);
                         return;
                     }
                     rowAllDayNum = minute / int.Parse(defaultVisit.allSubsection);
@@ -1017,7 +1019,7 @@ namespace Xr.RtManager.Pages.cms
             List<DoctorVSEntity> selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
             if (selectDoctorList!=null && selectDoctorList.Count > 0)
             {
-                MessageBoxUtils.Hint("请先保存当前科室设置或者清空已选医生再切换科室!", HintMessageBoxIcon.Error);
+                MessageBoxUtils.Hint("请先保存当前科室设置或者清空已选医生再切换科室!", HintMessageBoxIcon.Error, MainForm);
                 return;
             }
             Label label = null;
@@ -1047,7 +1049,7 @@ namespace Xr.RtManager.Pages.cms
             if (tabControl1.Controls[0].Controls.Count == 0)
             {
                 cmd.HideOpaqueLayer();
-                MessageBoxUtils.Hint("请先在左边更新默认出诊时间", HintMessageBoxIcon.Error);
+                MessageBoxUtils.Hint("请先在左边更新默认出诊时间", HintMessageBoxIcon.Error, MainForm);
                 return;
             }
             String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.id=" + hospitalId + "&dept.id=" + deptId;
@@ -1124,7 +1126,7 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -1651,12 +1653,12 @@ namespace Xr.RtManager.Pages.cms
                     selectDoctorList.Clear();
                     gridControl1.DataSource = selectDoctorList;
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Hint("保存成功！");
+                    MessageBoxUtils.Hint("保存成功！", MainForm);
                 }
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }

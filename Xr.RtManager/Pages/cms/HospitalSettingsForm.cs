@@ -24,11 +24,14 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public HospitalInfoEntity hospitalInfo { get; set; }
 
         private void HospitalSettingsForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             dcHospitalInfo.DataType = typeof(HospitalInfoEntity);
@@ -69,7 +72,7 @@ namespace Xr.RtManager.Pages.cms
                         else
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             return;
                         }
                     });
@@ -77,7 +80,7 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -121,7 +124,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -155,7 +158,7 @@ namespace Xr.RtManager.Pages.cms
             catch (Exception ex)
             {
                 Xr.Log4net.LogHelper.Error(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
 
@@ -189,18 +192,18 @@ namespace Xr.RtManager.Pages.cms
                         var bytes = web.DownloadData(objT["result"][0].ToString());
                         this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
                         logoServiceFilePath = objT["result"][0].ToString();
-                        MessageBoxUtils.Hint("上传图片成功");
+                        MessageBoxUtils.Hint("上传图片成功", MainForm);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         return;
                     }
                 });
             }
             else
             {
-                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
 
@@ -224,7 +227,7 @@ namespace Xr.RtManager.Pages.cms
             catch (Exception ex)
             {
                 Xr.Log4net.LogHelper.Error(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
 
@@ -258,18 +261,18 @@ namespace Xr.RtManager.Pages.cms
                         var bytes = web.DownloadData(objT["result"][0].ToString());
                         this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
                         pictureServiceFilePath = objT["result"][0].ToString();
-                        MessageBoxUtils.Hint("上传图片成功");
+                        MessageBoxUtils.Hint("上传图片成功", MainForm);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         return;
                     }
                 });
             }
             else
             {
-                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
         #endregion
@@ -287,6 +290,12 @@ namespace Xr.RtManager.Pages.cms
 
             groupBox1.Enabled = true;
             hospitalInfo = new HospitalInfoEntity();
+            List<DictEntity> isUseList = lueIsUse.Properties.DataSource as List<DictEntity>;
+            if (isUseList.Count > 0)
+                lueIsUse.EditValue = isUseList[0].value;
+            List<DictEntity> hospitalTypeList = lueHospitalType.Properties.DataSource as List<DictEntity>;
+            if (hospitalTypeList.Count > 0)
+                lueHospitalType.EditValue = hospitalTypeList[0].value;
         }
 
 
@@ -361,7 +370,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -413,11 +422,11 @@ namespace Xr.RtManager.Pages.cms
                     pbPicture.Image = null;
                     pbPicture.Refresh();
                     pictureServiceFilePath = null;
-                    MessageBoxUtils.Hint("保存成功！");
+                    MessageBoxUtils.Hint("保存成功！", MainForm);
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -429,7 +438,7 @@ namespace Xr.RtManager.Pages.cms
                 return;
 
             if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
             {
                 String param = "?id=" + selectedRow.id;
                 String url = AppContext.AppConfig.serverUrl + "cms/hospital/delete" + param;
@@ -445,11 +454,11 @@ namespace Xr.RtManager.Pages.cms
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         SearchData(pageControl1.CurrentPage, pageControl1.PageSize);
-                        MessageBoxUtils.Hint("删除成功!");
+                        MessageBoxUtils.Hint("删除成功!", MainForm);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 });
             }

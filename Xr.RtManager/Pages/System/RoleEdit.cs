@@ -23,6 +23,7 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
 
         public RoleEntity role { get; set; }
@@ -94,7 +95,8 @@ namespace Xr.RtManager
                             else
                             {
                                 cmd.HideOpaqueLayer();
-                                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                             }
                         });
                     }
@@ -107,7 +109,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 }
             });
         }
@@ -213,7 +216,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 }
             });
         }

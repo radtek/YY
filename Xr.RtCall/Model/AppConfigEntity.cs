@@ -27,7 +27,7 @@ namespace Xr.RtCall.Model
         /// </summary>
         public String ClincCode { get; set; }
         /// <summary>
-        /// 是否启动Socket
+        /// 是否启动Socket(true , false)
         /// </summary>
         public String StartUpSocket { get; set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Xr.RtCall.Model
         /// </summary>
         public String sleepOutPutTime { get; set; }
         /// <summary>
-        /// 是否启动注入患者ID
+        /// 是否启动注入患者ID(true , false)
         /// </summary>
         public String WhetherToAssign { get; set; }
     }

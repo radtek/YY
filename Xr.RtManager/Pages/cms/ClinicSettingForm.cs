@@ -15,11 +15,14 @@ namespace Xr.RtManager.Pages.cms
 {
     public partial class ClinicSettingForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         
         public ClinicSettingForm()
         {
             InitializeComponent();
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
@@ -79,7 +82,8 @@ namespace Xr.RtManager.Pages.cms
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("诊室设置下查询科室列表信息错误："+ex.Message);
             }
         }
@@ -120,13 +124,15 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
                 cmd.HideOpaqueLayer();
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("查询科室列表错误信息：" + ex.Message);
             }
         }
@@ -172,7 +178,8 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
@@ -248,7 +255,8 @@ namespace Xr.RtManager.Pages.cms
                 if (selectedRow == null)
                     return;
                 MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm);
                 if (dr == DialogResult.OK)
                 {
                     String param = "?id=" + selectedRow.id;
@@ -257,7 +265,7 @@ namespace Xr.RtManager.Pages.cms
                     JObject objT = JObject.Parse(data);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        Xr.Common.MessageBoxUtils.Hint("删除成功");
+                        Xr.Common.MessageBoxUtils.Hint("删除成功", MainForm);
                         if (deptId != "")
                         {
                             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, deptId);
@@ -270,14 +278,16 @@ namespace Xr.RtManager.Pages.cms
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("诊室删除错误信息：" + ex.Message);
             }
         }
@@ -344,7 +354,7 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("保存成功!");
+                    MessageBoxUtils.Hint("保存成功!", MainForm);
                     if (deptId != "")
                     {
                         SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, deptId);
@@ -358,12 +368,14 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("诊室保存错误信息：" + ex.Message);
             }
         }
@@ -427,10 +439,12 @@ namespace Xr.RtManager.Pages.cms
         {
             if (deptId != "")
             {
+                cmd.ShowOpaqueLayer(225, false);
                 SearchData(CurrentPage, PageSize, AppContext.Session.hospitalId, deptId);
             }
             else
             {
+                cmd.ShowOpaqueLayer(225, false);
                 SearchData(CurrentPage, PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
             }
           //  SearchData(CurrentPage,PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);

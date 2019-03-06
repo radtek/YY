@@ -40,22 +40,22 @@ namespace Xr.RtManager
         {
             if (txt_patientId.Text == "")
             {
-                MessageBox.Show("请填写患者ID");
+                MessageBoxUtils.Hint("请填写患者ID", HintMessageBoxIcon.Error, this);
                 return ;
             }
             if (txt_patientName.Text == "")
             {
-                MessageBox.Show("请填写患者姓名");
+                MessageBoxUtils.Hint("请填写患者姓名", HintMessageBoxIcon.Error, this);
                 return ;
             }
             if (txt_phone.Text == "")
             {
-                MessageBox.Show("请填写电话");
+                MessageBoxUtils.Hint("请填写电话", HintMessageBoxIcon.Error, this);
                 return ;
             }
             if (txt_breakTimes.Text == "")
             {
-                MessageBox.Show("请填写爽约次数");
+                MessageBoxUtils.Hint("请填写爽约次数", HintMessageBoxIcon.Error, this);
                 return ;
             }
             string sex = "1";
@@ -97,7 +97,7 @@ namespace Xr.RtManager
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
             }
         }
 

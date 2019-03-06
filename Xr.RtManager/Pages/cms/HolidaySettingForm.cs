@@ -14,14 +14,16 @@ namespace Xr.RtManager.Pages.cms
 {
     public partial class HolidaySettingForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public HolidaySettingForm()
         {
             InitializeComponent();
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             HolidaySettingList(1,pageControl1.PageSize);
-            cmd.HideOpaqueLayer();
             #region 
             //string StartYear = (DateTime.Now.Year-2).ToString();//获取当前年份
             //string SeparatedYear = (DateTime.Now.Year -(Convert.ToInt32(StartYear)-5)).ToString();
@@ -49,15 +51,18 @@ namespace Xr.RtManager.Pages.cms
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
+                    cmd.HideOpaqueLayer();
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    cmd.HideOpaqueLayer();
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                cmd.HideOpaqueLayer();
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("获取节假日列表错误信息：" + ex.Message);
             }
         }
@@ -75,12 +80,12 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("查询节假日详情错误信息：" + ex.Message);
             }
         }
@@ -102,12 +107,12 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("查询指定医院下节假日列表错误信息：" + ex.Message);
             }
         }
@@ -131,12 +136,12 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("查询时间段内属于节假日的日期错误信息：" + ex.Message);
             }
         }
@@ -201,7 +206,7 @@ namespace Xr.RtManager.Pages.cms
                 if (selectedRow == null)
                     return;
                 //MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm);
                 if (dr == DialogResult.OK)
                 {
                     String param = "?id=" + selectedRow.id;
@@ -210,18 +215,18 @@ namespace Xr.RtManager.Pages.cms
                     JObject objT = JObject.Parse(data);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        Xr.Common.MessageBoxUtils.Hint("删除成功");
+                        Xr.Common.MessageBoxUtils.Hint("删除成功", MainForm);
                         HolidaySettingList(1, pageControl1.PageSize);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("节假日修改错误信息：" + ex.Message);
             }
         }
@@ -266,19 +271,19 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("保存成功!");
+                    MessageBoxUtils.Hint("保存成功!", MainForm);
                     dcHodily.ClearValue();
                     groupBox1.Enabled = false ;
                     HolidaySettingList(1, pageControl1.PageSize);
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("节假日保存错误信息：" + ex.Message);
             }
         }
@@ -320,6 +325,7 @@ namespace Xr.RtManager.Pages.cms
         #region 分页跳转事件
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
+            cmd.ShowOpaqueLayer(225, false);
             HolidaySettingList(CurrentPage,PageSize);
         }
         #endregion 

@@ -18,6 +18,7 @@ namespace Xr.RtManager.Pages.triage
 {
     public partial class SpotBookingForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public SpotBookingForm()
         {
@@ -38,6 +39,7 @@ namespace Xr.RtManager.Pages.triage
         }
         private void UserForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             getLuesInfo();
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDept});
@@ -69,10 +71,63 @@ namespace Xr.RtManager.Pages.triage
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             } 
         }
+        #region 输入文本框限制
+        private void txt_cardNoQuery_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键  
+            {
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+        private void txt_cardNoQuery_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate
+            {
+                (sender as TextBox).SelectAll();
+            });
+        }
+        private void txt_cardNoQuery_KeyUp(object sender, KeyEventArgs e)
+        {
+            //允许Ctrl+v粘贴数字
+            if (e.KeyData == (Keys.Control | Keys.V))
+            {
+                if (Clipboard.ContainsText())
+                {
+                    try
+                    {
+                        Convert.ToInt64(Clipboard.GetText());  //检查是否数字
+                        //((TextBox)sender).SelectedText = Clipboard.GetText().Trim(); //Ctrl+V 粘贴  
+                        ((TextBox)sender).Text = Clipboard.GetText().Trim();
+
+                    }
+                    catch (Exception)
+                    {
+                        e.Handled = true;
+                        //throw;
+                    }
+                }
+            }
+
+            if (txt_cardNoQuery.Text != String.Empty)
+            {
+                if (e.KeyCode == Keys.Control || e.KeyCode == Keys.Enter)
+                {
+                    CardType = "2";
+                    CardID = txt_cardNoQuery.Text;
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+                    gc_patient.Focus();
+                }
+            }
+        }
+#endregion
+
         private void btn_zlk_Click(object sender, EventArgs e)
         {
             //ClearUIInfo();
@@ -142,6 +197,10 @@ namespace Xr.RtManager.Pages.triage
         /// 午别
         /// </summary>
         private String Period = "0";
+        /// <summary>
+        ///预约记录主键 (患者列表用)
+        /// </summary>
+        private String RegisterId = String.Empty;
         /// <summary>
         /// 患者列表状态：0预约、1候诊中、2已就诊、null全部
         /// </summary>
@@ -443,7 +502,7 @@ namespace Xr.RtManager.Pages.triage
                     {
                         param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
                     }
-                    url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByCradNo?" + param;
+                    url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByCardNo?" + param;
                     String jsonStr = HttpClass.httpPost(url);
                     JObject objT = JObject.Parse(jsonStr);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -697,6 +756,47 @@ namespace Xr.RtManager.Pages.triage
                 }
             }
             #endregion
+            #region 取消预约
+            //取消候诊
+            else if (workType == AsynchronousWorks.CancelReservation)
+            {
+                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                // 异步操作2
+                //Thread.Sleep(300);
+                //提交异步操作结果供结束时操作
+
+                String param = "";
+                //请求取消预约
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("registerId", Pras[0]);
+                //prament.Add("triageId", TriageId);
+                //prament.Add("pageSize", "10000");
+
+                String url = String.Empty;
+                if (prament.Count != 0)
+                {
+                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                }
+                url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/cancelBooking?" + param;
+                String jsonStr = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(jsonStr);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    result.obj = objT;
+                    result.result = true;
+                    //result.msg = "成功";
+                    result.msg = objT["message"].ToString();
+                    e.Result = result;
+                }
+                else
+                {
+                    result.result = false;
+                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                    e.Result = result;
+                }
+
+            }
+            #endregion
             #region 该医生当日预约名单
             else if (workType == AsynchronousWorks.ReservationPatientList)
             {
@@ -828,7 +928,7 @@ namespace Xr.RtManager.Pages.triage
                 if (e.Result == null)
                 {
                     //MessageBoxUtils.Hint("操作失败，请稍候尝试。");
-                    MessageBoxUtils.Show("操作失败，请稍候尝试。", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show("操作失败，请稍候尝试。", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
                 var result = (SycResult)e.Result;
@@ -1199,6 +1299,35 @@ namespace Xr.RtManager.Pages.triage
                         //MessageBoxUtils.Hint("请选择医生为该患者现场挂号");
                     }
                     #endregion
+                    #region 取消现场预约
+                    if (workType == AsynchronousWorks.CancelReservation)
+                    {
+                        if (result.obj == null)
+                        {
+                            //_waitForm.DialogResult = DialogResult.OK;
+                            //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
+                            //_waitForm.Close();
+                            return;
+                        }
+
+                        JObject objT = result.obj as JObject;
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            //重新查询更新状态
+                            //workType = AsynchronousWorks.QueryID;
+                            //CardID = lab_cardNo.Text;
+                            NeedWaitingFrm = false;
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctorAvailableTimeSpan, Argument = new String[] { SelectDeptid, SelectDoctorid, lab_reservationDate.Text } });
+
+                            MessageBoxUtils.Hint(result.msg, MainForm);
+                        }
+                        else
+                        {
+                            //MessageBoxUtils.Hint(objT["message"].ToString());
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                        }
+                    }
+                    #endregion
                     #region 现场预约
                     if (workType == AsynchronousWorks.Reservation)
                     {
@@ -1229,7 +1358,7 @@ namespace Xr.RtManager.Pages.triage
                             //CardID = lab_cardNo.Text;
                             NeedWaitingFrm = false;
                             Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctorAvailableTimeSpan, Argument = new String[] { SelectDeptid, SelectDoctorid, lab_reservationDate.Text } });
-
+                            ClearPatientUIInfo();
                             //打印小票
                             /*PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["waitingNum"].ToString(), lab_zlk.Text = objT["result"]["currentTime"].ToString());
                             string message = "";
@@ -1242,12 +1371,12 @@ namespace Xr.RtManager.Pages.triage
                                 MessageBoxUtils.Hint("打印小票完成");
                             }
                              */
-                            MessageBoxUtils.Hint(result.msg);
+                            MessageBoxUtils.Hint(result.msg, MainForm);
                         }
                         else
                         {
                             //MessageBoxUtils.Hint(objT["message"].ToString());
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         }
                     }
                     #endregion
@@ -1293,7 +1422,7 @@ namespace Xr.RtManager.Pages.triage
                     #endregion
                 }
                 else
-                    MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 //MessageBoxUtils.Hint(result.msg);
 
             }
@@ -1301,9 +1430,9 @@ namespace Xr.RtManager.Pages.triage
             {
                 cmd.HideOpaqueLayer();
                 if (ex.Message == "操作被取消。")
-                    MessageBoxUtils.Hint(ex.Message);
+                    MessageBoxUtils.Hint(ex.Message, MainForm);
                 else
-                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
             finally
             {
@@ -1504,6 +1633,47 @@ namespace Xr.RtManager.Pages.triage
                 btn_reservation.Enabled = true;
             }
         }
+        //患者列表右键点击事件
+        private void gv_patients_MouseDown(object sender, MouseEventArgs e)
+        {
+            //鼠标右键点击
+            System.Threading.Thread.Sleep(10);
+            if (e.Button == MouseButtons.Right)
+            {
+
+                //GridHitInfo gridHitInfo = gridView.CalcHitInfo(e.X, e.Y);
+                DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo gridHitInfo = gv_patient.CalcHitInfo(e.X, e.Y);
+
+                if (gridHitInfo.Column != null)
+                {
+                    if (!gridHitInfo.InColumnPanel)//判断是否在单元格内
+                    {
+
+                        int i = gridHitInfo.RowHandle;
+                        PatientListEntity obj = gv_patient.GetRow(i) as PatientListEntity;
+                        if (obj.status != "4")//判断该记录不为取消状态
+                        {
+                            RegisterId = obj.id;
+                            contextMenuStrip1.Show(gc_patient, e.Location);
+                        }
+                    }
+                }
+            }
+        }
+        //取消预约
+        private void CancelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBoxUtils.Show("确定为该患者取消预约吗?", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
+            {
+                //WorkType = AsynchronousWorks.CancelWaiting;
+                if (RegisterId != null && RegisterId != String.Empty)
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.CancelReservation, Argument = new String[] { RegisterId } });
+                else
+                    MessageBoxUtils.Hint("该患者尚未分诊", HintMessageBoxIcon.Error, MainForm);
+            }
+
+        }
         private void SpotBookingForm_Resize(object sender, EventArgs e)
         {
             cmd.rectDisplay = this.DisplayRectangle;
@@ -1686,6 +1856,8 @@ namespace Xr.RtManager.Pages.triage
             /// 预约状态
             /// </summary>
             public String status { get; set; }
+
+
             /// <summary>
             /// 预约途径
             /// </summary>
@@ -1727,13 +1899,36 @@ namespace Xr.RtManager.Pages.triage
             /// </summary>
             public String address { get; set; }
             /// <summary>
+            /// 预约状态Txt
+            /// </summary>
+            public String statusTxt { get; set; }
+            /// <summary>
             /// 预约途径TxT
             /// </summary>
             public String registerWayTxt { get; set; }
+            private String _visitTypeTxt;
             /// <summary>
-            /// 就诊类别,初诊、复诊TxT
+            /// 就诊类别TxT,就诊类别：0.初诊 ，1.复诊
             /// </summary>
-            public String visitTypeTxt { get; set; }
+            public String visitTypeTxt
+            {
+                get
+                {
+                    if (_visitTypeTxt == "0")
+                    {
+                        return "初诊";
+                    }
+                    else 
+                    {
+                        return "复诊";
+                    }
+                }
+
+                set
+                {
+                    _visitTypeTxt = value;
+                }
+            }
         }
         /// <summary>
         ///  可约日期实体
@@ -1782,6 +1977,8 @@ namespace Xr.RtManager.Pages.triage
 
 
 
+
+
         /*
         #region 获取卡类型
         /// <summary>
@@ -1817,7 +2014,7 @@ namespace Xr.RtManager.Pages.triage
                                }
                                else
                                {
-                                   MessageBox.Show(objT["message"].ToString());
+                                   MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                                }
                            }
                            break;

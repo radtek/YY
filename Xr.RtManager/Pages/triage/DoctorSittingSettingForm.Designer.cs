@@ -519,7 +519,7 @@
             // 
             // gridColumn11
             // 
-            this.gridColumn11.Caption = "临时停诊";
+            this.gridColumn11.Caption = "临时停开诊";
             this.gridColumn11.FieldName = "isStop";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;

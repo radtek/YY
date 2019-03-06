@@ -17,7 +17,6 @@ using Xr.Common;
 
 namespace Xr.RtCall.pages
 {
-   // public delegate void CalculatorDelegate(string num1, Dictionary<string, string> prament); // 委托,声明在类之外
     public partial class RtCallPeationFrm : UserControl
     {
         public SynchronizationContext _context;
@@ -66,7 +65,7 @@ namespace Xr.RtCall.pages
                                 }
                                 else
                                 {
-                                    _context.Send((s) => MessageBoxUtils.Hint(objT["message"].ToString()), null);
+                                    _context.Send((s) => MessageBoxUtils.Hint(objT["message"].ToString(), Form1.pCurrentWin), null);
                                 }
                             }
                             break;

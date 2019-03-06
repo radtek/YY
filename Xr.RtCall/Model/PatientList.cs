@@ -63,15 +63,6 @@ namespace Xr.RtCall.Model
         /// </summary>
         public string telPhone { get;set;}
     }
-    public class PatientList
-    {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string sex { get; set; }
-        public string Cardno { get; set; }
-        public string time { get; set; }
-        public string times { get; set; }
-    }
     /// <summary>
     /// 卡类型
     /// </summary>
@@ -91,11 +82,6 @@ namespace Xr.RtCall.Model
         public string beginTime { get; set; }
         public string endTime { get; set; }
         public string  num { get; set; }
-    }
-    public class CallNext
-    {
-        public static String triageId { get; set; }
-        public static String smallCellShow { get; set; }
     }
     public class DoctorScheduling
     {

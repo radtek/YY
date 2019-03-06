@@ -1153,6 +1153,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel22.Location = new System.Drawing.Point(103, 227);
             this.panel22.Name = "panel22";
+            this.panel22.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.panel22.Size = new System.Drawing.Size(728, 30);
             this.panel22.TabIndex = 43;
             // 
@@ -1160,12 +1161,12 @@
             // 
             this.dcDeptInfo.SetDataMember(this.textEdit8, "waitingDesc");
             this.textEdit8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit8.Location = new System.Drawing.Point(0, 0);
+            this.textEdit8.Location = new System.Drawing.Point(8, 0);
             this.textEdit8.Name = "textEdit8";
             this.textEdit8.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit8.Properties.Appearance.Options.UseFont = true;
             this.textEdit8.Properties.AutoHeight = false;
-            this.textEdit8.Size = new System.Drawing.Size(728, 30);
+            this.textEdit8.Size = new System.Drawing.Size(720, 30);
             this.textEdit8.TabIndex = 1;
             // 
             // label15

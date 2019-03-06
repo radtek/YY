@@ -35,12 +35,42 @@ namespace Xr.RtCall
                   ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             #endregion 
-            this.Size = new Size(727,48);
-            pCurrentWin = this;
             _context = SynchronizationContext.Current;
-            GetDoctorAndClinc();//获取科室
+            this.Size = new Size(727, 48);
+            pCurrentWin = this;
             IsMax = false;
+            GetDoctorAndClinc();
+            IsStop(EncryptionClass.UserOrPassWordInfor(System.Windows.Forms.Application.StartupPath + "\\doctorCode.txt"));
         }
+        #region 判断是否启动叫号
+        /// <summary>
+        /// 判断是否启动叫号
+        /// </summary>
+        public void IsStop(string code)
+        {
+            try
+            {
+                String url = AppContext.AppConfig.serverUrl + InterfaceAddress.IsStop + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId + "&clinicId=" + HelperClass.clinicId + "&code=" + code;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    Log4net.LogHelper.Info("程序启动成功");
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtils.Show("程序启动出现错误,请重启", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                this.Close();
+                Log4net.LogHelper.Error("是否启动叫号程序错误信息："+ex.Message);
+            }
+        }
+        #endregion 
         #region 帮助事件
         #region 键盘按Esc关闭窗体
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -71,9 +101,21 @@ namespace Xr.RtCall
                 switch (keyData)
                 {
                     case Keys.Escape:
-                        if (  MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                        if (this.Size.Height == 48)
                         {
-                            this.Close();
+                            if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
+                            {
+                                this.Close();
+                                Log4net.LogHelper.Info("退出系统成功");
+                            }
+                        }
+                        else
+                        {
+                            if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this) == DialogResult.OK)
+                            {
+                                this.Close();
+                                Log4net.LogHelper.Info("退出系统成功");
+                            }
                         }
                         break;
                 }
@@ -89,9 +131,21 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+            if (this.Size.Height == 48)
             {
-                this.Close();
+                if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
+                {
+                    this.Close();
+                    Log4net.LogHelper.Info("退出系统成功");
+                }
+            }
+            else
+            {
+                if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this) == DialogResult.OK)
+                {
+                    this.Close();
+                    Log4net.LogHelper.Info("退出系统成功");
+                }
             }
         }
         #endregion 
@@ -191,7 +245,14 @@ namespace Xr.RtCall
                             }
                             else
                             {
-                                _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1), null);
+                                if ( this.Size.Height==48)
+                                {
+                                    _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null), null);
+                                }
+                                else
+                                {
+                                    _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this), null);
+                                }
                                 _context.Send((s) => label2.Text = "等待呼叫病人 [请稍候...]", null);
                             }
                         }
@@ -200,7 +261,7 @@ namespace Xr.RtCall
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,this);
                 Log4net.LogHelper.Error("呼叫下一位错误信息："+ex.Message);
             }
         }
@@ -215,8 +276,11 @@ namespace Xr.RtCall
             f.Width = rcf.Width;
             f.Controls.Add(rcf);
             f.StartPosition = FormStartPosition.CenterScreen;
-            //int x = SystemInformation.PrimaryMonitorSize.Width - this.Width;
-            //f.Location = new Point(x, 0);
+            if (this.Size.Height != 48)
+            {
+                f.Location = new Point((this.Width - this.Width) / 2 + this.Location.X,
+                   (this.Height - this.Height) / 2 + this.Location.Y);//相对程序居中
+            }
             f.ShowDialog();
         }
         #endregion 
@@ -295,11 +359,11 @@ namespace Xr.RtCall
         {
             if (errorCode == 0)
             {
-                LogClass.WriteLog("Socket连接关闭"); 
+               Log4net.LogHelper.Info("Socket连接关闭"); 
             }
             else
             {
-                LogClass.WriteLog(string.Format("Socket连接异常关闭：{0}，{1}", client.ErrorMessage, client.ErrorCode));
+               Log4net.LogHelper.Info(string.Format("Socket连接异常关闭：{0}，{1}", client.ErrorMessage, client.ErrorCode));
             }
             return HandleResult.Ok;
         }
@@ -355,14 +419,14 @@ namespace Xr.RtCall
                                {
                                    if (isStop == 1)
                                    {
-                                       _context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
-                                       _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);//skinButNext 59, 175, 218
+                                       _context.Send((s) => MessageBoxUtils.Hint("操作成功!",this), null);
+                                       _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
                                        _context.Send((s) => skinButNext.Enabled=false, null);
                                        _context.Send((s) => skinButNext.BaseColor=Color.Gray, null);
                                    }
                                    else
                                    {
-                                       _context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
+                                       _context.Send((s) => MessageBoxUtils.Hint("操作成功!",this), null);
                                        _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
                                        _context.Send((s) => skinButNext.Enabled = true, null);
                                        _context.Send((s) => skinButNext.BaseColor = Color.FromArgb(59, 175, 218), null);
@@ -370,7 +434,7 @@ namespace Xr.RtCall
                                }
                                else
                                {
-                                   _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1), null);
+                                   _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1,this), null);
                                }
                            }
                            break;
@@ -404,7 +468,7 @@ namespace Xr.RtCall
                 }
                 else
                 {
-                    Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,this);
                     return;
                 }
                 // 查询科室数据
@@ -429,7 +493,7 @@ namespace Xr.RtCall
                 JObject cobjTs = JObject.Parse(cdatas);
                 if (string.Compare(cobjTs["state"].ToString(), "true", true) == 0)
                 {
-                    HelperClass.doctorId = cobjTs["result"].ToString();
+                    HelperClass.doctorId = cobjTs["result"]["doctorId"].ToString();
                 }
             }
             catch (Exception ex)
@@ -439,14 +503,11 @@ namespace Xr.RtCall
         }
         #endregion 
         #region 解决绘制控件时的闪烁问题
-        protected override CreateParams CreateParams
+        protected override void WndProc(ref Message m)
         {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000; // Turn on WS_EX_COMPOSITED 
-                return cp;
-            }
+            if (m.Msg == 0x0014) // 禁掉清除背景消息
+                return;
+            base.WndProc(ref m);
         }
         #endregion 
     }

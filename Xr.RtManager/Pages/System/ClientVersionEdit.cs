@@ -76,7 +76,8 @@ namespace Xr.RtManager
                             else
                             {
                                 cmd.HideOpaqueLayer();
-                                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                                 return;
                             }
                         });
@@ -90,7 +91,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                     return;
                 }
             });
@@ -125,7 +127,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 }
             });
         }
@@ -151,7 +154,8 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, this);
             }
         }
 
@@ -182,18 +186,20 @@ namespace Xr.RtManager
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         serviceFilePath = objT["result"][0].ToString();
-                        MessageBoxUtils.Hint("上传文件成功");
+                        MessageBoxUtils.Hint("上传文件成功", this);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                         return;
                     }
                 });
             }
             else
             {
-                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, this);
             }
         }
         /// <summary>

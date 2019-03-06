@@ -181,6 +181,7 @@
     <Compile Include="Module\cms\WorkingDayEntity.cs" />
     <Compile Include="Module\cms\HospitalInfoEntity.cs" />
     <Compile Include="Module\cms\MessageInfoEntity.cs" />
+    <Compile Include="Module\scheduling\SourceDataEntity.cs" />
     <Compile Include="Module\scheduling\ScheduledEntity.cs" />
     <Compile Include="Module\scheduling\SchedulingSubEntity.cs" />
     <Compile Include="Module\scheduling\SchedulingEntity.cs" />
@@ -275,6 +276,12 @@
     </Compile>
     <Compile Include="Pages\cms\MessageManagement.Designer.cs">
       <DependentUpon>MessageManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\scheduling\ModifyNumberSourceEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\scheduling\ModifyNumberSourceEdit.Designer.cs">
+      <DependentUpon>ModifyNumberSourceEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\scheduling\RemarksEdit.cs">
       <SubType>Form</SubType>
@@ -463,6 +470,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Utils\WebConfigHelper.cs" />
     <EmbeddedResource Include="Control\RoomPanelButton.resx">
       <DependentUpon>RoomPanelButton.cs</DependentUpon>
     </EmbeddedResource>
@@ -519,6 +527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\cms\MessageManagement.resx">
       <DependentUpon>MessageManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\scheduling\ModifyNumberSourceEdit.resx">
+      <DependentUpon>ModifyNumberSourceEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\scheduling\RemarksEdit.resx">
       <DependentUpon>RemarksEdit.cs</DependentUpon>

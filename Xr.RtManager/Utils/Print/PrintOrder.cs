@@ -20,7 +20,7 @@ namespace Xr.RtManager.Utils
         /// <summary>
         /// 设置打印纸高 
         /// </summary>
-        public static int pageHeight = 450;
+        public static int pageHeight = 350;
 
         /// <summary>
         /// 设置打印纸宽
@@ -108,7 +108,7 @@ namespace Xr.RtManager.Utils
                 try
                 {
                     printOrder = order;
-                    printDocument.DefaultPageSettings.PaperSize = new PaperSize("Custom", 210, 350);
+                    printDocument.DefaultPageSettings.PaperSize = new PaperSize("Custom", pageWidth, pageHeight);//指定纸张大小
                     printDocument.PrinterSettings.PrinterName = printName;
                     printDocument.Print();
 
@@ -129,7 +129,7 @@ namespace Xr.RtManager.Utils
                 try
                 {
                     printOrder = order;
-                    printDocument.DefaultPageSettings.PaperSize = new PaperSize("Custom", 300, 350);
+                    printDocument.DefaultPageSettings.PaperSize = new PaperSize("Custom", pageWidth, pageHeight);
                     printDocument.Print();
                 }
                 catch 

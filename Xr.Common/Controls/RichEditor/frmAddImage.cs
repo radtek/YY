@@ -111,14 +111,14 @@ namespace Xr.Common.Controls
                     }
                     else
                     {
-                        MessageBoxUtils.Hint("上传图片失败：" + refMsg);
+                        MessageBoxUtils.Hint("上传图片失败：" + refMsg, this);
                     }
 
                 }
                 catch (Exception ex)
                 {
                     //this.Error("图片上传失败，请联系管理员!错误信息：\n" + ex.Message, "错误");
-                    MessageBoxUtils.Hint("上传图片失败：" + ex.Message);
+                    MessageBoxUtils.Hint("上传图片失败：" + ex.Message, this);
                 }
 
                 //上传图片到WEB服务器上

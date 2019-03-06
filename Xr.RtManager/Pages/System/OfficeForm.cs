@@ -21,11 +21,13 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         private JObject obj { get; set; }
 
         private void OfficeForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             SearchData();
@@ -53,7 +55,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -72,7 +75,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData();
-                MessageBoxUtils.Hint("保存成功!");
+                MessageBoxUtils.Hint("保存成功!", MainForm);
             }
         }
 
@@ -91,18 +94,19 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData();
-                MessageBoxUtils.Hint("修改成功!");
+                MessageBoxUtils.Hint("修改成功!", MainForm);
             }
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
+            if (treeList1.FocusedNode == null) return;
             String id = Convert.ToString(treeList1.FocusedNode.GetValue("id"));
             if (id == null)
                 return;
 
             if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
             {
                 String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/delete?id=" + id;
                 cmd.ShowOpaqueLayer();
@@ -117,12 +121,13 @@ namespace Xr.RtManager
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         SearchData();
-                        MessageBoxUtils.Hint("删除成功!");
+                        MessageBoxUtils.Hint("删除成功!", MainForm);
                     }
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 });
             }
@@ -142,7 +147,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData();
-                MessageBoxUtils.Hint("添加成功!");
+                MessageBoxUtils.Hint("添加成功!", MainForm);
             }
         }
 

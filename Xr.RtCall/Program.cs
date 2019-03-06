@@ -31,16 +31,16 @@ namespace Xr.RtCall
                 }
                 else
                 {
-                     Application.EnableVisualStyles();
-                     Application.SetCompatibleTextRenderingDefault(false);
-                     Xr.RtCall.Model.AppContext.Load();
-                     Application.Run(new Form1());
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Xr.RtCall.Model.AppContext.Load();
+                    Application.Run(new Form1());
                 }
             }
             catch (Exception ex)
             {
-                LogClass.WriteLog("Main:" + ex);
-                MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。");
+                Log4net.LogHelper.Error("Main:" + ex);
+                // MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。");
             }
         }
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
@@ -48,7 +48,7 @@ namespace Xr.RtCall
             var ex = e.Exception;
             if (ex != null)
             {
-                LogClass.WriteLog("Application_ThreadException:" + ex);
+                Log4net.LogHelper.Error("Application_ThreadException:" + ex);
             }
 
             MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));
@@ -59,7 +59,7 @@ namespace Xr.RtCall
             var ex = e.ExceptionObject as Exception;
             if (ex != null)
             {
-                LogClass.WriteLog("CurrentDomain_UnhandledException:" + ex);
+                Log4net.LogHelper.Error("CurrentDomain_UnhandledException:" + ex);
             }
 
             MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")));

@@ -56,11 +56,19 @@
             this.mcDept = new Xr.Common.Controls.MenuControl();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel5 = new Xr.Common.Controls.GroupBorderPanel();
+            this.mcTimeSpan = new Xr.Common.Controls.MenuControl();
             this.groupBorderPanel4 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.borderPanel7 = new Xr.Common.Controls.BorderPanel();
+            this.lab_tel = new System.Windows.Forms.Label();
+            this.borderPanel6 = new Xr.Common.Controls.BorderPanel();
+            this.lab_patientName = new System.Windows.Forms.Label();
+            this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
+            this.lab_cardID = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
             this.btn_reservation = new Xr.Common.Controls.ButtonControl();
             this.panel24 = new System.Windows.Forms.Panel();
+            this.borderPanel4 = new Xr.Common.Controls.BorderPanel();
             this.lab_timespan = new System.Windows.Forms.Label();
             this.panel21 = new System.Windows.Forms.Panel();
             this.rBtn_isMxbT = new System.Windows.Forms.RadioButton();
@@ -92,7 +100,6 @@
             this.rBtn_isCyfzF = new System.Windows.Forms.RadioButton();
             this.lueNote = new DevExpress.XtraEditors.LookUpEdit();
             this.lueCardType = new DevExpress.XtraEditors.LookUpEdit();
-            this.lab_patientName = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -104,12 +111,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.lab_tel = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.lab_cardID = new System.Windows.Forms.Label();
-            this.lab_reservationDate = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.borderPanel2 = new Xr.Common.Controls.BorderPanel();
+            this.lab_reservationDate = new System.Windows.Forms.Label();
             this.groupBorderPanel2 = new Xr.Common.Controls.GroupBorderPanel();
             this.reservationCalendar1 = new Xr.Common.Controls.ReservationCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -118,11 +124,12 @@
             this.btn_readIdcard = new Xr.Common.Controls.ButtonControl();
             this.btn_readSocialCard = new Xr.Common.Controls.ButtonControl();
             this.btn_zlk = new Xr.Common.Controls.ButtonControl();
-            this.lab_cardNoQuery = new System.Windows.Forms.TextBox();
+            this.txt_cardNoQuery = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.mcTimeSpan = new Xr.Common.Controls.MenuControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.加急ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel6)).BeginInit();
@@ -142,7 +149,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).BeginInit();
             this.groupBorderPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel7)).BeginInit();
+            this.borderPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel6)).BeginInit();
+            this.borderPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).BeginInit();
+            this.borderPanel5.SuspendLayout();
             this.panel23.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel4)).BeginInit();
+            this.borderPanel4.SuspendLayout();
             this.panel21.SuspendLayout();
             this.panel19.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -152,12 +167,15 @@
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCardType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).BeginInit();
+            this.borderPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).BeginInit();
             this.groupBorderPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -258,6 +276,7 @@
             this.gv_patient.OptionsView.ShowGroupPanel = false;
             this.gv_patient.OptionsView.ShowIndicator = false;
             this.gv_patient.RowHeight = 30;
+            this.gv_patient.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gv_patients_MouseDown);
             // 
             // gridColumn5
             // 
@@ -275,6 +294,7 @@
             this.gridColumn7.FieldName = "workDate";
             this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 0;
             // 
@@ -288,6 +308,7 @@
             this.gridColumn10.FieldName = "time";
             this.gridColumn10.MinWidth = 25;
             this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 1;
             // 
@@ -301,6 +322,7 @@
             this.gridColumn11.FieldName = "patientName";
             this.gridColumn11.MinWidth = 25;
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 2;
             // 
@@ -314,6 +336,7 @@
             this.gridColumn12.FieldName = "sex";
             this.gridColumn12.MinWidth = 25;
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 3;
             // 
@@ -322,6 +345,7 @@
             this.gridColumn13.Caption = "联系电话";
             this.gridColumn13.FieldName = "tempPhone";
             this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 4;
             // 
@@ -335,22 +359,25 @@
             this.gridColumn14.FieldName = "statusTxt";
             this.gridColumn14.MinWidth = 25;
             this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 5;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "预约类别";
-            this.gridColumn1.FieldName = "registerWay";
+            this.gridColumn1.Caption = "预约途径";
+            this.gridColumn1.FieldName = "registerWayTxt";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 6;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "就诊类别";
-            this.gridColumn2.FieldName = "visitType";
+            this.gridColumn2.FieldName = "visitTypeTxt";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 7;
             // 
@@ -359,6 +386,7 @@
             this.gridColumn3.Caption = "登记时间";
             this.gridColumn3.FieldName = "registerTime";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 8;
             // 
@@ -367,6 +395,7 @@
             this.gridColumn4.Caption = "备注";
             this.gridColumn4.FieldName = "note";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 9;
             // 
@@ -523,6 +552,18 @@
             this.groupBorderPanel5.Size = new System.Drawing.Size(195, 215);
             this.groupBorderPanel5.TabIndex = 183;
             // 
+            // mcTimeSpan
+            // 
+            this.mcTimeSpan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mcTimeSpan.itemName = null;
+            this.mcTimeSpan.itemTag = null;
+            this.mcTimeSpan.itemText = null;
+            this.mcTimeSpan.Location = new System.Drawing.Point(10, 20);
+            this.mcTimeSpan.Name = "mcTimeSpan";
+            this.mcTimeSpan.Size = new System.Drawing.Size(175, 185);
+            this.mcTimeSpan.TabIndex = 3;
+            this.mcTimeSpan.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.mcTimeSpan_MenuItemClick);
+            // 
             // groupBorderPanel4
             // 
             this.groupBorderPanel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
@@ -554,6 +595,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.borderPanel7, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.borderPanel6, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.borderPanel5, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel23, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel21, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.panel19, 3, 2);
@@ -564,7 +608,6 @@
             this.tableLayoutPanel1.Controls.Add(this.panel9, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.lueNote, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.lueCardType, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lab_patientName, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label17, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.label11, 2, 3);
@@ -576,12 +619,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label19, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lab_tel, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label15, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lab_cardID, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lab_reservationDate, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label7, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.borderPanel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 15);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -593,14 +634,84 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(484, 220);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // borderPanel7
+            // 
+            this.borderPanel7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel7.Controls.Add(this.lab_tel);
+            this.borderPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borderPanel7.Location = new System.Drawing.Point(73, 105);
+            this.borderPanel7.Name = "borderPanel7";
+            this.borderPanel7.Padding = new System.Windows.Forms.Padding(1);
+            this.borderPanel7.Size = new System.Drawing.Size(124, 28);
+            this.borderPanel7.TabIndex = 193;
+            // 
+            // lab_tel
+            // 
+            this.lab_tel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_tel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lab_tel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lab_tel.Location = new System.Drawing.Point(1, 1);
+            this.lab_tel.Margin = new System.Windows.Forms.Padding(3);
+            this.lab_tel.Name = "lab_tel";
+            this.lab_tel.Size = new System.Drawing.Size(122, 26);
+            this.lab_tel.TabIndex = 98;
+            this.lab_tel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // borderPanel6
+            // 
+            this.borderPanel6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel6.Controls.Add(this.lab_patientName);
+            this.borderPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borderPanel6.Location = new System.Drawing.Point(73, 71);
+            this.borderPanel6.Name = "borderPanel6";
+            this.borderPanel6.Padding = new System.Windows.Forms.Padding(1);
+            this.borderPanel6.Size = new System.Drawing.Size(124, 28);
+            this.borderPanel6.TabIndex = 192;
+            // 
+            // lab_patientName
+            // 
+            this.lab_patientName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_patientName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lab_patientName.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lab_patientName.Location = new System.Drawing.Point(1, 1);
+            this.lab_patientName.Margin = new System.Windows.Forms.Padding(3);
+            this.lab_patientName.Name = "lab_patientName";
+            this.lab_patientName.Size = new System.Drawing.Size(122, 26);
+            this.lab_patientName.TabIndex = 112;
+            this.lab_patientName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // borderPanel5
+            // 
+            this.borderPanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel5.Controls.Add(this.lab_cardID);
+            this.borderPanel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.borderPanel5.Location = new System.Drawing.Point(273, 37);
+            this.borderPanel5.Name = "borderPanel5";
+            this.borderPanel5.Padding = new System.Windows.Forms.Padding(1);
+            this.borderPanel5.Size = new System.Drawing.Size(162, 28);
+            this.borderPanel5.TabIndex = 191;
+            // 
+            // lab_cardID
+            // 
+            this.lab_cardID.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_cardID.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lab_cardID.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lab_cardID.Location = new System.Drawing.Point(1, 1);
+            this.lab_cardID.Margin = new System.Windows.Forms.Padding(3);
+            this.lab_cardID.Name = "lab_cardID";
+            this.lab_cardID.Size = new System.Drawing.Size(160, 26);
+            this.lab_cardID.TabIndex = 96;
+            this.lab_cardID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel23
             // 
             this.panel23.Controls.Add(this.btn_reservation);
             this.panel23.Controls.Add(this.panel24);
-            this.panel23.Controls.Add(this.lab_timespan);
+            this.panel23.Controls.Add(this.borderPanel4);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel23.Location = new System.Drawing.Point(273, 3);
             this.panel23.Name = "panel23";
@@ -631,17 +742,27 @@
             this.panel24.Size = new System.Drawing.Size(10, 28);
             this.panel24.TabIndex = 2;
             // 
+            // borderPanel4
+            // 
+            this.borderPanel4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel4.Controls.Add(this.lab_timespan);
+            this.borderPanel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.borderPanel4.Location = new System.Drawing.Point(0, 0);
+            this.borderPanel4.Name = "borderPanel4";
+            this.borderPanel4.Padding = new System.Windows.Forms.Padding(1);
+            this.borderPanel4.Size = new System.Drawing.Size(92, 28);
+            this.borderPanel4.TabIndex = 191;
+            // 
             // lab_timespan
             // 
-            this.lab_timespan.BackColor = System.Drawing.Color.Gainsboro;
-            this.lab_timespan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lab_timespan.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_timespan.Dock = System.Windows.Forms.DockStyle.Left;
             this.lab_timespan.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_timespan.Location = new System.Drawing.Point(0, 0);
+            this.lab_timespan.Location = new System.Drawing.Point(1, 1);
             this.lab_timespan.Margin = new System.Windows.Forms.Padding(5);
             this.lab_timespan.Name = "lab_timespan";
-            this.lab_timespan.Size = new System.Drawing.Size(92, 28);
-            this.lab_timespan.TabIndex = 111;
+            this.lab_timespan.Size = new System.Drawing.Size(90, 26);
+            this.lab_timespan.TabIndex = 113;
             this.lab_timespan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel21
@@ -1011,19 +1132,6 @@
             this.lueCardType.Size = new System.Drawing.Size(124, 28);
             this.lueCardType.TabIndex = 178;
             // 
-            // lab_patientName
-            // 
-            this.lab_patientName.BackColor = System.Drawing.Color.Gainsboro;
-            this.lab_patientName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_patientName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lab_patientName.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_patientName.Location = new System.Drawing.Point(73, 71);
-            this.lab_patientName.Margin = new System.Windows.Forms.Padding(3);
-            this.lab_patientName.Name = "lab_patientName";
-            this.lab_patientName.Size = new System.Drawing.Size(124, 28);
-            this.lab_patientName.TabIndex = 110;
-            this.lab_patientName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label17
             // 
             this.label17.Dock = System.Windows.Forms.DockStyle.Right;
@@ -1156,19 +1264,6 @@
             this.label19.Text = "卡类型";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lab_tel
-            // 
-            this.lab_tel.BackColor = System.Drawing.Color.Gainsboro;
-            this.lab_tel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_tel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lab_tel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_tel.Location = new System.Drawing.Point(73, 105);
-            this.lab_tel.Margin = new System.Windows.Forms.Padding(3);
-            this.lab_tel.Name = "lab_tel";
-            this.lab_tel.Size = new System.Drawing.Size(124, 28);
-            this.lab_tel.TabIndex = 96;
-            this.lab_tel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label15
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Right;
@@ -1180,32 +1275,6 @@
             this.label15.TabIndex = 95;
             this.label15.Text = "卡号";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lab_cardID
-            // 
-            this.lab_cardID.BackColor = System.Drawing.Color.Gainsboro;
-            this.lab_cardID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_cardID.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lab_cardID.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_cardID.Location = new System.Drawing.Point(273, 37);
-            this.lab_cardID.Margin = new System.Windows.Forms.Padding(3);
-            this.lab_cardID.Name = "lab_cardID";
-            this.lab_cardID.Size = new System.Drawing.Size(162, 28);
-            this.lab_cardID.TabIndex = 94;
-            this.lab_cardID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lab_reservationDate
-            // 
-            this.lab_reservationDate.BackColor = System.Drawing.Color.Gainsboro;
-            this.lab_reservationDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_reservationDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lab_reservationDate.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_reservationDate.Location = new System.Drawing.Point(73, 3);
-            this.lab_reservationDate.Margin = new System.Windows.Forms.Padding(3);
-            this.lab_reservationDate.Name = "lab_reservationDate";
-            this.lab_reservationDate.Size = new System.Drawing.Size(124, 28);
-            this.lab_reservationDate.TabIndex = 88;
-            this.lab_reservationDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
@@ -1230,6 +1299,29 @@
             this.label1.TabIndex = 85;
             this.label1.Text = "预约日期";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // borderPanel2
+            // 
+            this.borderPanel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel2.Controls.Add(this.lab_reservationDate);
+            this.borderPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borderPanel2.Location = new System.Drawing.Point(73, 3);
+            this.borderPanel2.Name = "borderPanel2";
+            this.borderPanel2.Padding = new System.Windows.Forms.Padding(1);
+            this.borderPanel2.Size = new System.Drawing.Size(124, 28);
+            this.borderPanel2.TabIndex = 189;
+            // 
+            // lab_reservationDate
+            // 
+            this.lab_reservationDate.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_reservationDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lab_reservationDate.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lab_reservationDate.Location = new System.Drawing.Point(1, 1);
+            this.lab_reservationDate.Margin = new System.Windows.Forms.Padding(3);
+            this.lab_reservationDate.Name = "lab_reservationDate";
+            this.lab_reservationDate.Size = new System.Drawing.Size(122, 26);
+            this.lab_reservationDate.TabIndex = 90;
+            this.lab_reservationDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBorderPanel2
             // 
@@ -1281,7 +1373,7 @@
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanel1.Controls.Add(this.tableLayoutPanel2);
-            this.borderPanel1.Controls.Add(this.lab_cardNoQuery);
+            this.borderPanel1.Controls.Add(this.txt_cardNoQuery);
             this.borderPanel1.Controls.Add(this.label8);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -1360,15 +1452,18 @@
             this.btn_zlk.Text = "读诊疗卡";
             this.btn_zlk.Click += new System.EventHandler(this.btn_zlk_Click);
             // 
-            // lab_cardNoQuery
+            // txt_cardNoQuery
             // 
-            this.lab_cardNoQuery.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lab_cardNoQuery.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lab_cardNoQuery.Location = new System.Drawing.Point(56, 10);
-            this.lab_cardNoQuery.Multiline = true;
-            this.lab_cardNoQuery.Name = "lab_cardNoQuery";
-            this.lab_cardNoQuery.Size = new System.Drawing.Size(146, 30);
-            this.lab_cardNoQuery.TabIndex = 90;
+            this.txt_cardNoQuery.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txt_cardNoQuery.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.txt_cardNoQuery.Location = new System.Drawing.Point(56, 10);
+            this.txt_cardNoQuery.Multiline = true;
+            this.txt_cardNoQuery.Name = "txt_cardNoQuery";
+            this.txt_cardNoQuery.Size = new System.Drawing.Size(146, 30);
+            this.txt_cardNoQuery.TabIndex = 90;
+            this.txt_cardNoQuery.Enter += new System.EventHandler(this.txt_cardNoQuery_Enter);
+            this.txt_cardNoQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cardNoQuery_KeyPress);
+            this.txt_cardNoQuery.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_cardNoQuery_KeyUp);
             // 
             // label8
             // 
@@ -1385,17 +1480,19 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // mcTimeSpan
+            // contextMenuStrip1
             // 
-            this.mcTimeSpan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mcTimeSpan.itemName = null;
-            this.mcTimeSpan.itemTag = null;
-            this.mcTimeSpan.itemText = null;
-            this.mcTimeSpan.Location = new System.Drawing.Point(10, 20);
-            this.mcTimeSpan.Name = "mcTimeSpan";
-            this.mcTimeSpan.Size = new System.Drawing.Size(175, 185);
-            this.mcTimeSpan.TabIndex = 3;
-            this.mcTimeSpan.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.mcTimeSpan_MenuItemClick);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.加急ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            // 
+            // 加急ToolStripMenuItem
+            // 
+            this.加急ToolStripMenuItem.Name = "加急ToolStripMenuItem";
+            this.加急ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.加急ToolStripMenuItem.Text = "取消预约";
+            this.加急ToolStripMenuItem.Click += new System.EventHandler(this.CancelToolStripMenuItem_Click);
             // 
             // SpotBookingForm
             // 
@@ -1426,7 +1523,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).EndInit();
             this.groupBorderPanel4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel7)).EndInit();
+            this.borderPanel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel6)).EndInit();
+            this.borderPanel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).EndInit();
+            this.borderPanel5.ResumeLayout(false);
             this.panel23.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel4)).EndInit();
+            this.borderPanel4.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
             this.panel21.PerformLayout();
             this.panel19.ResumeLayout(false);
@@ -1443,6 +1548,8 @@
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCardType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).EndInit();
+            this.borderPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).EndInit();
             this.groupBorderPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -1450,6 +1557,7 @@
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1483,7 +1591,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lab_patientName;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -1495,16 +1602,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label lab_tel;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lab_cardID;
-        private System.Windows.Forms.Label lab_reservationDate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel23;
         private Xr.Common.Controls.ButtonControl btn_reservation;
         private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.Label lab_timespan;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.RadioButton rBtn_isMxbT;
         private System.Windows.Forms.Panel panel22;
@@ -1543,11 +1646,23 @@
         private Xr.Common.Controls.ButtonControl btn_readIdcard;
         private Xr.Common.Controls.ButtonControl btn_readSocialCard;
         private Xr.Common.Controls.ButtonControl btn_zlk;
-        private System.Windows.Forms.TextBox lab_cardNoQuery;
+        private System.Windows.Forms.TextBox txt_cardNoQuery;
         private System.Windows.Forms.Label label8;
         private Xr.Common.Controls.MenuControl mcDoctor;
         private Xr.Common.Controls.MenuControl mcDept;
         private Xr.Common.Controls.MenuControl mcTimeSpan;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 加急ToolStripMenuItem;
+        private Xr.Common.Controls.BorderPanel borderPanel7;
+        private System.Windows.Forms.Label lab_tel;
+        private Xr.Common.Controls.BorderPanel borderPanel6;
+        private System.Windows.Forms.Label lab_patientName;
+        private Xr.Common.Controls.BorderPanel borderPanel5;
+        private System.Windows.Forms.Label lab_cardID;
+        private Xr.Common.Controls.BorderPanel borderPanel4;
+        private System.Windows.Forms.Label lab_timespan;
+        private Xr.Common.Controls.BorderPanel borderPanel2;
+        private System.Windows.Forms.Label lab_reservationDate;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

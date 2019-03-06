@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -120,12 +121,12 @@
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.panelEx12 = new Xr.Common.Controls.PanelEx();
-            this.panelEx15 = new Xr.Common.Controls.PanelEx();
-            this.panelEx16 = new Xr.Common.Controls.PanelEx();
-            this.panelEx17 = new Xr.Common.Controls.PanelEx();
-            this.panelEx13 = new Xr.Common.Controls.PanelEx();
-            this.panelEx14 = new Xr.Common.Controls.PanelEx();
+            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcAppointmentInfo)).BeginInit();
@@ -478,7 +479,7 @@
             // gridColumn10
             // 
             this.gridColumn10.Caption = "就诊类别";
-            this.gridColumn10.FieldName = "visitTypeTxt";
+            this.gridColumn10.FieldName = "visitType";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
@@ -661,7 +662,7 @@
             // 
             // lab_registerTime
             // 
-            this.lab_registerTime.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_registerTime.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_registerTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_registerTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_registerTime.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -674,7 +675,7 @@
             // 
             // lab_cardNo
             // 
-            this.lab_cardNo.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_cardNo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_cardNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_cardNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_cardNo.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -687,7 +688,7 @@
             // 
             // lab_cardType
             // 
-            this.lab_cardType.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_cardType.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_cardType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_cardType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_cardType.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -700,7 +701,7 @@
             // 
             // lab_note
             // 
-            this.lab_note.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_note.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_note.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel2.SetColumnSpan(this.lab_note, 5);
             this.lab_note.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -715,7 +716,7 @@
             // 
             // lab_patientName
             // 
-            this.lab_patientName.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_patientName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_patientName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_patientName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_patientName.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -728,7 +729,7 @@
             // 
             // lab_address
             // 
-            this.lab_address.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_address.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel2.SetColumnSpan(this.lab_address, 5);
             this.lab_address.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -741,7 +742,7 @@
             // 
             // lab_doctorName
             // 
-            this.lab_doctorName.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_doctorName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_doctorName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_doctorName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_doctorName.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -754,7 +755,7 @@
             // 
             // lab_tempPhone
             // 
-            this.lab_tempPhone.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_tempPhone.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_tempPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_tempPhone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_tempPhone.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -767,7 +768,7 @@
             // 
             // lab_age
             // 
-            this.lab_age.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_age.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_age.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_age.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_age.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -780,7 +781,7 @@
             // 
             // lab_visitType
             // 
-            this.lab_visitType.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_visitType.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_visitType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_visitType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_visitType.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -793,7 +794,7 @@
             // 
             // lab_beginTime
             // 
-            this.lab_beginTime.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_beginTime.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_beginTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_beginTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_beginTime.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -938,7 +939,7 @@
             // 
             // lab_statusTxt
             // 
-            this.lab_statusTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_statusTxt.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_statusTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_statusTxt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_statusTxt.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -963,7 +964,7 @@
             // 
             // lab_sex
             // 
-            this.lab_sex.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_sex.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_sex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_sex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_sex.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -976,7 +977,7 @@
             // 
             // lab_deptName
             // 
-            this.lab_deptName.BackColor = System.Drawing.Color.Gainsboro;
+            this.lab_deptName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_deptName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_deptName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_deptName.Font = new System.Drawing.Font("微软雅黑", 9F);

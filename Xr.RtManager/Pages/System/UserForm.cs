@@ -18,6 +18,7 @@ namespace Xr.RtManager
 {
     public partial class UserForm : UserControl
     {
+        private Form MainForm; //主窗体
         OpaqueCommand cmd;
         private JObject obj { get; set; }
 
@@ -29,6 +30,8 @@ namespace Xr.RtManager
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             //this.BackColor = Color.FromArgb(243, 243, 243);
             cmd = new OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
@@ -76,13 +79,15 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
                 Xr.Log4net.LogHelper.Error(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
             }
         }
 
@@ -128,7 +133,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex )
@@ -159,7 +165,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData(1, pageControl1.PageSize);
-                MessageBoxUtils.Hint("保存成功!");
+                MessageBoxUtils.Hint("保存成功!", MainForm);
             }
         }
 
@@ -176,7 +182,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData(1, pageControl1.PageSize);
-                MessageBoxUtils.Hint("修改用户成功!");
+                MessageBoxUtils.Hint("修改用户成功!", MainForm);
             }
         }
 
@@ -187,7 +193,7 @@ namespace Xr.RtManager
                 return;
 
             if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
             {
                 String url = AppContext.AppConfig.serverUrl + "sys/sysUser/delete?id=" + selectedRow.id;
                 String data = HttpClass.httpPost(url);
@@ -195,11 +201,12 @@ namespace Xr.RtManager
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     SearchData(1, pageControl1.PageSize);
-                    MessageBoxUtils.Hint("删除用户成功!");
+                    MessageBoxUtils.Hint("删除用户成功!", MainForm);
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
         }
@@ -216,12 +223,13 @@ namespace Xr.RtManager
                 return;
             if (selectedRow.isLocked.Equals("0"))
             {
-                MessageBoxUtils.Hint("该用户没有被锁定，无需解锁!");
+                MessageBoxUtils.Hint("该用户没有被锁定，无需解锁!", MainForm);
                 return;
             }
             if (!AppContext.Session.userType.Equals("1"))
             {
-                MessageBoxUtils.Hint("当前用户不是管理员用户，没有解锁的权限!", HintMessageBoxIcon.Error);
+                MessageBoxUtils.Hint("当前用户不是管理员用户，没有解锁的权限!",
+                    HintMessageBoxIcon.Error, MainForm);
                 return;
             }
             MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
@@ -234,12 +242,13 @@ namespace Xr.RtManager
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("解锁用户成功!");
+                    MessageBoxUtils.Hint("解锁用户成功!", MainForm);
                     SearchData(1, pageControl1.PageSize);
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
         }

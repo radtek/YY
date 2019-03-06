@@ -13,6 +13,8 @@ namespace Xr.Common.Controls
             tePageSize.Text = pageSize.ToString();
         }
 
+        public Form MainForm;
+
         private int record = 0;
 
         //事件处理函数形式，用delegate定义
@@ -112,7 +114,7 @@ namespace Xr.Common.Controls
             {
                 if (CurrentPage == 1)
                 {
-                    MessageBoxUtils.Hint("当前已经是首页", HintMessageBoxIcon.Error);
+                    MessageBoxUtils.Hint("当前已经是首页", HintMessageBoxIcon.Error, MainForm);
                     return;
                 }
                 else
@@ -134,7 +136,7 @@ namespace Xr.Common.Controls
             {
                 if (CurrentPage == 1)
                 {
-                    MessageBoxUtils.Hint("当前已经是首页", HintMessageBoxIcon.Error);
+                    MessageBoxUtils.Hint("当前已经是首页", HintMessageBoxIcon.Error, MainForm);
                     return;
                 }
                 else
@@ -155,7 +157,7 @@ namespace Xr.Common.Controls
             {
                 if (CurrentPage == PageNum)
                 {
-                    MessageBoxUtils.Hint("当前已经是末页", HintMessageBoxIcon.Error);
+                    MessageBoxUtils.Hint("当前已经是末页", HintMessageBoxIcon.Error, MainForm);
                     return;
                 }
                 else
@@ -176,7 +178,7 @@ namespace Xr.Common.Controls
             {
                 if (CurrentPage == PageNum)
                 {
-                    MessageBoxUtils.Hint("当前已经是末页", HintMessageBoxIcon.Error);
+                    MessageBoxUtils.Hint("当前已经是末页", HintMessageBoxIcon.Error, MainForm);
                     return;
                 }
                 else
@@ -231,7 +233,7 @@ namespace Xr.Common.Controls
             }
             if (count > PageNum)
             {
-                MessageBoxUtils.Hint("跳转页码大于总页数", HintMessageBoxIcon.Error);
+                MessageBoxUtils.Hint("跳转页码大于总页数", HintMessageBoxIcon.Error, MainForm);
                 return;
             }
 

@@ -19,6 +19,7 @@ namespace Xr.RtManager.Pages.scheduling
 {
     public partial class BatchSchedulingForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
 
         public BatchSchedulingForm()
@@ -28,6 +29,7 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void BatchSchedulingForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             //设置科室列表
@@ -100,7 +102,7 @@ namespace Xr.RtManager.Pages.scheduling
                         else
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             return;
                         }
                     });
@@ -108,7 +110,7 @@ namespace Xr.RtManager.Pages.scheduling
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -381,7 +383,7 @@ namespace Xr.RtManager.Pages.scheduling
                                     else
                                     {
                                         cmd.HideOpaqueLayer();
-                                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                                         return;
                                     }
                                 });
@@ -389,7 +391,7 @@ namespace Xr.RtManager.Pages.scheduling
                             else
                             {
                                 cmd.HideOpaqueLayer();
-                                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                                 return;
                             }
                         });
@@ -397,7 +399,7 @@ namespace Xr.RtManager.Pages.scheduling
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         return;
                     }
                 });
@@ -722,11 +724,11 @@ namespace Xr.RtManager.Pages.scheduling
                 cmd.HideOpaqueLayer();
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("保存成功!");
+                    MessageBoxUtils.Hint("保存成功!", MainForm);
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
 

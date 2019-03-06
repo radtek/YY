@@ -22,11 +22,14 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
-        OpaqueCommand cmd;
+        private Form MainForm; //主窗体
+        private OpaqueCommand cmd;
         private JObject obj { get; set; }
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             //this.BackColor = Color.FromArgb(243, 243, 243);
@@ -58,7 +61,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -77,7 +81,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer(255, true);
                 SearchData(true, 1, pageControl1.PageSize);
-                MessageBoxUtils.Hint("保存成功!");
+                MessageBoxUtils.Hint("保存成功!", MainForm);
                 
             }
         }
@@ -88,7 +92,7 @@ namespace Xr.RtManager
             if (selectedRow == null)
                 return;
              if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, 
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
              {
                 cmd.ShowOpaqueLayer(225, true);
                 String param = "?id=" + selectedRow.id;
@@ -104,11 +108,12 @@ namespace Xr.RtManager
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
-                        MessageBoxUtils.Hint("删除成功!");
+                        MessageBoxUtils.Hint("删除成功!", MainForm);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 });
              }
@@ -124,7 +129,7 @@ namespace Xr.RtManager
             edit.Text = "版本修改";
             if (edit.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("修改成功!");
+                MessageBoxUtils.Hint("修改成功!", MainForm);
                 this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
                     Thread.Sleep(2700);
@@ -221,7 +226,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
             //Xr.Common.Controls.PictureViewer pictureViewer = new Xr.Common.Controls.PictureViewer();
@@ -302,16 +308,14 @@ namespace Xr.RtManager
             //});
         }
 
-        private void buttonControl6_Click(object sender, EventArgs e)
-        {
-            Xr.Common.Controls.PictureViewer pictureViewer = new Xr.Common.Controls.PictureViewer();
-            pictureViewer.imgPathStr = "http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-02-20/QQ图片20190220112758.jpg";
-            pictureViewer.Show();
-        }
-
         private void ClientVersionForm_Resize(object sender, EventArgs e)
         {
             cmd.rectDisplay = this.DisplayRectangle;
+        }
+
+        private void buttonControl5_Click_1(object sender, EventArgs e)
+        {
+            MessageBoxUtils.Show("123", MessageBoxButtons.OK, MainForm);
         }
 
     }

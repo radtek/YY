@@ -25,7 +25,9 @@ namespace Xr.RtManager.Pages.scheduling
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
+        private bool ifQuery = true;//用于控制保存成功后清除时段不出发查询事件
         /// <summary>
         /// 出诊信息模板
         /// </summary>
@@ -33,6 +35,7 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void SingleSchedulingForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             dateEdit1.Properties.MinValue = DateTime.Now;
             dateEdit1.Properties.MaxValue = DateTime.Now.AddDays(90);
 
@@ -86,7 +89,7 @@ namespace Xr.RtManager.Pages.scheduling
                         else
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             return;
                         }
                     });
@@ -94,7 +97,7 @@ namespace Xr.RtManager.Pages.scheduling
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -146,7 +149,7 @@ namespace Xr.RtManager.Pages.scheduling
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -164,131 +167,134 @@ namespace Xr.RtManager.Pages.scheduling
             //清除排班数据
             panel9.Controls.Clear();
 
-            if (dateEdit1.Text == null || dateEdit1.Text.ToString().Length == 0)
+            if (ifQuery)
             {
-                dataController1.ShowError(dateEdit1, "日期不能为空");
-                return;
-            }
-
-            workDate = dateEdit1.Text;
-
-            CheckState morning = cbMorning.CheckState;
-            CheckState afternoon = cbAfternoon.CheckState;
-            CheckState night = cbNight.CheckState;
-            CheckState allDay = cbAllAay.CheckState;
-
-            List<String> periodList = new List<String>();
-            if (morning == CheckState.Checked) periodList.Add("0");
-            if (afternoon == CheckState.Checked) periodList.Add("1");
-            if (night == CheckState.Checked) periodList.Add("2");
-            if (allDay == CheckState.Checked) periodList.Add("3");
-            if (periodList.Count == 0)
-            {
-                dataController1.ShowError(cbAllAay, "至少选一个");
-                return;
-            }
-            String param = null;
-            String url = null;
-            String data = null;
-            JObject objT = null;
-            cmd.ShowOpaqueLayer();
-            this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
-            {
-                for (int i = 0; i < periodList.Count; i++)
+                if (dateEdit1.Text == null || dateEdit1.Text.ToString().Length == 0)
                 {
-                    param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
-                        + "&hospitalId=" + mcDept.itemTag + "&workDate=" + workDate
-                        + "&period=" + periodList[i];
-                    url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/isExist?" + param;
-                    data = HttpClass.httpPost(url);
-                    objT = JObject.Parse(data);
-                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                    {
-                        if (string.Compare(objT["result"].ToString(), "true", true) != 0)
-                        {
-                            String sd = "";
-                            if (periodList[i] == "0") sd = "上午";
-                            else if (periodList[i] == "1") sd = "下午";
-                            else if (periodList[i] == "2") sd = "晚午";
-                            else if (periodList[i] == "3") sd = "全天";
-                            //labMsg.Text = "该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
-                            return "1|该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
-                        }
-                    }
-                    else
-                    {
-                        return "2|" + objT["message"].ToString();
-                    }
-                }
-                return "0|0";
-
-            }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
-            {
-                string[] sArray = data2.ToString().Split('|');
-                if (sArray[0] == "1")
-                {
-                    labMsg.Text = sArray[1];
-                    cmd.HideOpaqueLayer();
+                    dataController1.ShowError(dateEdit1, "日期不能为空");
                     return;
                 }
-                else if (sArray[0] == "2")
+
+                workDate = dateEdit1.Text;
+
+                CheckState morning = cbMorning.CheckState;
+                CheckState afternoon = cbAfternoon.CheckState;
+                CheckState night = cbNight.CheckState;
+                CheckState allDay = cbAllAay.CheckState;
+
+                List<String> periodList = new List<String>();
+                if (morning == CheckState.Checked) periodList.Add("0");
+                if (afternoon == CheckState.Checked) periodList.Add("1");
+                if (night == CheckState.Checked) periodList.Add("2");
+                if (allDay == CheckState.Checked) periodList.Add("3");
+                if (periodList.Count == 0)
                 {
-                    labMsg.Text = "";
-                    cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(sArray[1], MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    dataController1.ShowError(cbAllAay, "至少选一个");
                     return;
                 }
-                else
-                {
-                    labMsg.Text = "";
-                }
-                List<List<WorkingDayEntity>> sList = new List<List<WorkingDayEntity>>();
+                String param = null;
+                String url = null;
+                String data = null;
+                JObject objT = null;
+                cmd.ShowOpaqueLayer();
                 this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
-                    //for (int i = periodList.Count - 1; i >= 0; i--)
                     for (int i = 0; i < periodList.Count; i++)
                     {
                         param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
-                            + "&workDate=" + workDate + "&period=" + periodList[i];
-                        url = AppContext.AppConfig.serverUrl + "cms/doctorVisitingTime/findByPropertys?" + param;
+                            + "&hospitalId=" + mcDept.itemTag + "&workDate=" + workDate
+                            + "&period=" + periodList[i];
+                        url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/isExist?" + param;
                         data = HttpClass.httpPost(url);
                         objT = JObject.Parse(data);
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
-                            List<WorkingDayEntity> workingDayList = objT["result"].ToObject<List<WorkingDayEntity>>();
-                            sList.Add(workingDayList);
-                            //setWorkingDay(workingDayList, periodList[i]);
+                            if (string.Compare(objT["result"].ToString(), "true", true) != 0)
+                            {
+                                String sd = "";
+                                if (periodList[i] == "0") sd = "上午";
+                                else if (periodList[i] == "1") sd = "下午";
+                                else if (periodList[i] == "2") sd = "晚午";
+                                else if (periodList[i] == "3") sd = "全天";
+                                //labMsg.Text = "该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
+                                return "1|该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
+                            }
                         }
                         else
                         {
-                            //MessageBox.Show(objT["message"].ToString());
                             return "2|" + objT["message"].ToString();
                         }
                     }
                     return "0|0";
 
-                }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                 {
-                    string[] sArray2 = data3.ToString().Split('|');
-                    if (sArray2[0] == "2")
+                    string[] sArray = data2.ToString().Split('|');
+                    if (sArray[0] == "1")
                     {
+                        labMsg.Text = sArray[1];
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(sArray[1], MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         return;
                     }
-                    for (int i = sList.Count()-1; i >= 0; i--)
+                    else if (sArray[0] == "2")
                     {
-                        setWorkingDay(sList[i], periodList[i]);
+                        labMsg.Text = "";
+                        cmd.HideOpaqueLayer();
+                        MessageBoxUtils.Show(sArray[1], MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                        return;
                     }
-                    for (int i = 0; i < panel9.Controls.Count; i++)
+                    else
                     {
-                        Panel panel = (Panel)panel9.Controls[i];
-                        GroupBox gb = (GroupBox)panel.Controls[0];
-                        if (gb.Height < panel.Height) gb.Height = panel.Height;
+                        labMsg.Text = "";
                     }
-                    cmd.HideOpaqueLayer();
+                    List<List<WorkingDayEntity>> sList = new List<List<WorkingDayEntity>>();
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        //for (int i = periodList.Count - 1; i >= 0; i--)
+                        for (int i = 0; i < periodList.Count; i++)
+                        {
+                            param = "deptId=" + mcDept.itemName + "&doctorId=" + mcDoctor.itemName
+                                + "&workDate=" + workDate + "&period=" + periodList[i];
+                            url = AppContext.AppConfig.serverUrl + "cms/doctorVisitingTime/findByPropertys?" + param;
+                            data = HttpClass.httpPost(url);
+                            objT = JObject.Parse(data);
+                            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                            {
+                                List<WorkingDayEntity> workingDayList = objT["result"].ToObject<List<WorkingDayEntity>>();
+                                sList.Add(workingDayList);
+                                //setWorkingDay(workingDayList, periodList[i]);
+                            }
+                            else
+                            {
+                                //MessageBox.Show(objT["message"].ToString());
+                                return "2|" + objT["message"].ToString();
+                            }
+                        }
+                        return "0|0";
+
+                    }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        string[] sArray2 = data3.ToString().Split('|');
+                        if (sArray2[0] == "2")
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBoxUtils.Show(sArray[1], MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                            return;
+                        }
+                        for (int i = sList.Count() - 1; i >= 0; i--)
+                        {
+                            setWorkingDay(sList[i], periodList[i]);
+                        }
+                        for (int i = 0; i < panel9.Controls.Count; i++)
+                        {
+                            Panel panel = (Panel)panel9.Controls[i];
+                            GroupBox gb = (GroupBox)panel.Controls[0];
+                            if (gb.Height < panel.Height) gb.Height = panel.Height;
+                        }
+                        cmd.HideOpaqueLayer();
+                    });
                 });
-            });
+            }
         }
 
         /// <summary>
@@ -577,13 +583,19 @@ namespace Xr.RtManager.Pages.scheduling
         private void mcDoctor_MenuItemClick(object sender, EventArgs e)
         {
             panel8.Enabled = true;
+            if(dateEdit1.EditValue!=null &&(cbMorning.CheckState==CheckState.Checked || 
+                cbAfternoon.CheckState==CheckState.Checked || cbNight.CheckState==CheckState.Checked ||
+                cbAllAay.CheckState == CheckState.Checked))
+            {
+                setScheduling();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (workDate == null)
             {
-                MessageBoxUtils.Hint("请先查询后进行排班再保存", HintMessageBoxIcon.Error);
+                MessageBoxUtils.Hint("请先查询后进行排班再保存", HintMessageBoxIcon.Error, MainForm);
             }
             if (lueIsUse.Text == null || lueIsUse.Text.ToString().Length == 0)
             {
@@ -666,15 +678,17 @@ namespace Xr.RtManager.Pages.scheduling
                 cmd.HideOpaqueLayer();
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
+                    ifQuery = false;
                     cbMorning.CheckState = CheckState.Unchecked;
                     cbAfternoon.CheckState = CheckState.Unchecked;
                     cbNight.CheckState = CheckState.Unchecked;
                     cbAllAay.CheckState = CheckState.Unchecked;
-                    MessageBoxUtils.Hint("保存成功!");
+                    ifQuery = true;
+                    MessageBoxUtils.Hint("保存成功!", MainForm);
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -713,7 +727,7 @@ namespace Xr.RtManager.Pages.scheduling
         private void cbAllAay_CheckStateChanged(object sender, EventArgs e)
         {
             setScheduling();
-            CheckBox cb = (CheckBox)sender;
+            //CheckBox cb = (CheckBox)sender;
             //if (cb.CheckState == CheckState.Checked)
             //{
             //    setScheduling();

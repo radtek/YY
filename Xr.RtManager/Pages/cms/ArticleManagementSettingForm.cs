@@ -16,15 +16,21 @@ namespace Xr.RtManager.Pages.cms
 {
     public partial class ArticleManagementSettingForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
+        ArticleInfoEntity CickInfo;
         public ArticleManagementSettingForm()
         {
             InitializeComponent();
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             First();
             ArticleCategoryCollection();
             cmd.HideOpaqueLayer();
+            CickInfo = new ArticleInfoEntity();
+            CickInfo.id = "";
         }
         #region 类型设置
         List<FirstOne> firs;
@@ -111,7 +117,8 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception)
@@ -162,7 +169,7 @@ namespace Xr.RtManager.Pages.cms
                 }
                 list.Insert(0, new ArticleInfoEntity { createById = "", createByName = "", createDate = "", hospitalId = "", id = "", isUse = "0", name = "", updateById = "", updateByName = "", updateDate = "" });
                 gv_Article.FocusedColumn = this.gridColumn3;
-                this.gv_Article.ShowEditor();
+                this.gv_Article.ShowEditor(gridColumn3);
                 this.gc_Article.DataSource = list;
                 gc_Article.RefreshDataSource();
             }
@@ -185,11 +192,12 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow = gv_Article.GetFocusedRow() as ArticleInfoEntity;
                 if (selectedRow.name == "" || selectedRow.isUse == "")
                 {
-                    MessageBoxUtils.Show("请填写栏目名称和选择状态", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show("请填写栏目名称和选择状态", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
                 String param = "";
-                if (selectedRow.isUse == "启用")
+                if (selectedRow.isUse == "0"||selectedRow.isUse == "启用")
                 {
                     param = "?" + "hospitalId=" + AppContext.Session.hospitalId + "&id=" + selectedRow.id + "&name=" + selectedRow.name + "&isUse=" + "0";
                 }
@@ -202,17 +210,19 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("保存成功!");
+                    MessageBoxUtils.Hint("保存成功!", MainForm);
                     ArticleCategoryCollection();
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("保存文章错误信息：" + ex.Message);
             }
         }
@@ -228,7 +238,8 @@ namespace Xr.RtManager.Pages.cms
             try
             {
                 //MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?",MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?",MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm);
                 if (dr == DialogResult.OK)
                 {
                     String param = "?" + "id=" + CickInfo.id;
@@ -237,18 +248,20 @@ namespace Xr.RtManager.Pages.cms
                     JObject objT = JObject.Parse(data);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        MessageBoxUtils.Hint("删除成功!");
+                        MessageBoxUtils.Hint("删除成功!", MainForm);
                         ArticleCategoryCollection();
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("删除文章错误信息：" + ex.Message);
             }
         }
@@ -329,7 +342,8 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
               //listoffice.Insert(0,new TreeList { id = "", parentId = "", name = "全部" });
@@ -387,7 +401,8 @@ namespace Xr.RtManager.Pages.cms
                         if (treeKeshi.Text.Trim() == "" || treeKeshi.Text.Trim() == "全部")
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show("当类型为科室时,科室不能为空", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show("当类型为科室时,科室不能为空", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             this.gc_Atrlices.DataSource = null;
                             return;
                         }
@@ -396,7 +411,8 @@ namespace Xr.RtManager.Pages.cms
                         if (luDoctords.Text.Trim() == "" || luDoctords.Text.Trim() == "全部")
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show("当类型为医生时,医生不能为空", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show("当类型为医生时,医生不能为空", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             this.gc_Atrlices.DataSource = null;
                             return;
                         }
@@ -449,13 +465,15 @@ namespace Xr.RtManager.Pages.cms
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
                 cmd.HideOpaqueLayer();
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("查询列表错误信息：" + ex.Message);
             }
         }
@@ -485,14 +503,16 @@ namespace Xr.RtManager.Pages.cms
                     case "2"://科室
                         if (clinicInfoEntity.deptId == "" || clinicInfoEntity.deptId == null)
                         {
-                            MessageBoxUtils.Show("请选择科室", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show("请选择科室", MessageBoxButtons.OK, MessageBoxIcon.Error,
+                                MessageBoxDefaultButton.Button1, MainForm);
                             return;
                         }
                         break;
                     case "3"://医生
                         if (clinicInfoEntity.doctorId == "" || clinicInfoEntity.doctorId == null || clinicInfoEntity.deptId == "" || clinicInfoEntity.deptId == null)
                         {
-                            MessageBoxUtils.Show("请选择科室和医生", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show("请选择科室和医生", MessageBoxButtons.OK, MessageBoxIcon.Error,
+                                MessageBoxDefaultButton.Button1, MainForm);
                             return;
                         }
                         break;
@@ -505,7 +525,7 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("保存成功!");
+                    MessageBoxUtils.Hint("保存成功!", MainForm);
                     groupBox3.Enabled = false;
                     if (CickInfo.id != "")
                     {
@@ -520,12 +540,14 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("保存文章错误信息：" + ex.Message);
             }
         }
@@ -620,9 +642,9 @@ namespace Xr.RtManager.Pages.cms
         }
         #endregion
         #region 记录点击列表事件
-        dynamic CickInfo;
         private void gc_Article_Click(object sender, EventArgs e)
         {
+            cmd.ShowOpaqueLayer(225, true);
             CickInfo = gv_Article.GetFocusedRow() as ArticleInfoEntity;
             SelectInfoPage(1, pageControl1.PageSize, CickInfo.id);
         }
@@ -695,7 +717,8 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             }
@@ -773,7 +796,8 @@ namespace Xr.RtManager.Pages.cms
             try
             {
                 //MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm);
                 if (dr == DialogResult.OK)
                 {
                     String param = "?" + "id=" + clinicInfoEntity.id;
@@ -782,7 +806,7 @@ namespace Xr.RtManager.Pages.cms
                     JObject objT = JObject.Parse(data);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        MessageBoxUtils.Hint("删除成功!");
+                        MessageBoxUtils.Hint("删除成功!", MainForm);
                         groupBox3.Enabled = false;
                         if (CickInfo.id != "")
                         {
@@ -797,14 +821,16 @@ namespace Xr.RtManager.Pages.cms
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                       //  MessageBox.Show(objT["message"].ToString());
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("删除文章错误信息：" + ex.Message);
             }
         }
@@ -819,11 +845,13 @@ namespace Xr.RtManager.Pages.cms
         {
             if (CickInfo.id != "")
             {
+                cmd.ShowOpaqueLayer(225, false);
                 SelectInfoPage(CurrentPage, PageSize, CickInfo.id);
                 gv_Article.FocusedColumn = this.gridColumn5;
             }
             else
             {
+                cmd.ShowOpaqueLayer(225, false);
                 SelectInfoPage(CurrentPage, PageSize, "");
             }
             //SelectInfoPage(CurrentPage,PageSize, "");

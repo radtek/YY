@@ -27,6 +27,7 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public UserEntity user { get; set; }
         private String oldLoginName;
@@ -72,7 +73,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                     return;
                 }
             });
@@ -96,7 +98,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                     return;
                 }
 
@@ -154,7 +157,8 @@ namespace Xr.RtManager
                         }
                         else
                         {
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                                MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                         }
                     });
                 }
@@ -276,7 +280,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 }
             });
         }
@@ -305,7 +310,8 @@ namespace Xr.RtManager
             catch (Exception ex)
             {
                 Xr.Log4net.LogHelper.Error(ex.Message);
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, 
+                    MessageBoxDefaultButton.Button1, this);
             }
         }
 
@@ -340,18 +346,20 @@ namespace Xr.RtManager
                         serviceFilePath = objT["result"][0].ToString();
                         var bytes = web.DownloadData(serviceFilePath);
                         this.pictureBox1.Image = Bitmap.FromStream(new MemoryStream(bytes));
-                        MessageBoxUtils.Hint("上传图片成功");
+                        MessageBoxUtils.Hint("上传图片成功", this);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, 
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                         return;
                     }
                 });
             }
             else
             {
-                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show("请选择要上传的文件", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
             }
         }
 

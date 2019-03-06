@@ -13,15 +13,18 @@ namespace Xr.Common
     /// </summary>
     public static class MessageBoxUtils
     {
+        #region 消息框
         /// <summary>
         /// 显示消息框
         /// </summary>
         /// <param name="text">需要显示在消息框中的文本</param>
         /// <param name="buttons">指定在消息框中显示哪些按钮</param>
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
         /// <returns></returns>
-        public static DialogResult Show(string text, MessageBoxButtons buttons)
+        public static DialogResult Show(string text, MessageBoxButtons buttons, Control control)
         {
-            return Show(text, buttons, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            return Show(text, buttons, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
+                control);
         }
 
         /// <summary>
@@ -30,10 +33,13 @@ namespace Xr.Common
         /// <param name="text">需要显示在消息框中的文本</param>
         /// <param name="buttons">指定在消息框中显示哪些按钮</param>
         /// <param name="buttonTexts">按钮文本</param>
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
         /// <returns></returns>
-        public static DialogResult Show(string text, MessageBoxButtons buttons, string[] buttonTexts)
+        public static DialogResult Show(string text, MessageBoxButtons buttons, string[] buttonTexts,
+            Control control)
         {
-            return Show(text, buttons, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, buttonTexts);
+            return Show(text, buttons, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, 
+                buttonTexts, control);
         }
 
         /// <summary>
@@ -43,10 +49,12 @@ namespace Xr.Common
         /// <param name="buttons">指定在消息框中显示哪些按钮</param>
         /// <param name="icon">指定在消息框中显示哪个图标</param>
         /// <param name="defaultButton">指定消息框中的默认按钮</param>
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
         /// <returns></returns>
-        public static DialogResult Show(string text, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
+        public static DialogResult Show(string text, MessageBoxButtons buttons, MessageBoxIcon icon, 
+            MessageBoxDefaultButton defaultButton, Control control)
         {
-            return Show(text, "信息", buttons, icon, defaultButton);
+            return Show(text, "信息", buttons, icon, defaultButton, control);
         }
 
         /// <summary>
@@ -57,10 +65,12 @@ namespace Xr.Common
         /// <param name="buttons">指定在消息框中显示哪些按钮</param>
         /// <param name="icon">指定在消息框中显示哪个图标</param>
         /// <param name="defaultButton">指定消息框中的默认按钮</param>
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
         /// <returns></returns>
-        public static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
+        public static DialogResult Show(string text, string caption, MessageBoxButtons buttons, 
+            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, Control control)
         {
-            return Show(text, caption, buttons, icon, defaultButton, null);
+            return Show(text, caption, buttons, icon, defaultButton, null, control);
         }
 
         /// <summary>
@@ -71,10 +81,12 @@ namespace Xr.Common
         /// <param name="icon">指定在消息框中显示哪个图标</param>
         /// <param name="defaultButton">指定消息框中的默认按钮</param>
         /// <param name="buttonTexts">按钮文本</param>
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
         /// <returns></returns>
-        public static DialogResult Show(string text, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, string[] buttonTexts)
+        public static DialogResult Show(string text, MessageBoxButtons buttons, MessageBoxIcon icon, 
+            MessageBoxDefaultButton defaultButton, string[] buttonTexts, Control control)
         {
-            return Show(text, "信息", buttons, icon, defaultButton, buttonTexts);
+            return Show(text, "信息", buttons, icon, defaultButton, buttonTexts, control);
         }
 
         /// <summary>
@@ -86,10 +98,21 @@ namespace Xr.Common
         /// <param name="icon">指定在消息框中显示哪个图标</param>
         /// <param name="defaultButton">指定消息框中的默认按钮</param>
         /// <param name="buttonTexts">按钮文本</param>
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
         /// <returns></returns>
-        public static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, string[] buttonTexts)
+        public static DialogResult Show(string text, string caption, MessageBoxButtons buttons, 
+            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, string[] buttonTexts,
+            Control control)
         {
-            var frmMessageBox = new MessageBoxForm();
+            MessageBoxForm frmMessageBox;
+            if (control != null)
+            {
+                frmMessageBox = new MessageBoxForm(control);
+            }
+            else
+            {
+                frmMessageBox = new MessageBoxForm();
+            }
             frmMessageBox.Message = text;
             frmMessageBox.Caption = caption;
             frmMessageBox.Buttons = buttons;
@@ -99,15 +122,16 @@ namespace Xr.Common
             frmMessageBox.Initialize();
             return frmMessageBox.ShowDialog(GetMessageBoxOwner());
         }
-
+        #endregion
 
         /// <summary>
         /// 显示弱消息提示框，3秒后自动消失
         /// </summary>
         /// <param name="text">需要显示在提示框中的文字</param>
-        public static void Hint(string text)
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
+        public static void Hint(string text, Control control)
         {
-            Hint(text, HintMessageBoxIcon.Success, 3, false, false);
+            Hint(text, HintMessageBoxIcon.Success, 3, false, false, control);
         }
 
         /// <summary>
@@ -115,9 +139,10 @@ namespace Xr.Common
         /// </summary>
         /// <param name="text">需要显示在提示框中的文字</param>
         /// <param name="aotuSize">根据消息自适应大小,根据/n进行换行</param>
-        public static void Hint(string text, bool aotuSize)
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
+        public static void Hint(string text, bool aotuSize, Control control)
         {
-            Hint(text, HintMessageBoxIcon.Success, 5, false, aotuSize);
+            Hint(text, HintMessageBoxIcon.Success, 5, false, aotuSize, control);
         }
 
         /// <summary>
@@ -125,9 +150,10 @@ namespace Xr.Common
         /// </summary>
         /// <param name="text">需要显示在提示框中的文字</param>
         /// <param name="icon">需要显示在提示框中的图标</param>
-        public static void Hint(string text, HintMessageBoxIcon icon)
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
+        public static void Hint(string text, HintMessageBoxIcon icon, Control control)
         {
-            Hint(text, icon, 3, false, false);
+            Hint(text, icon, 3, false, false, control);
         }
 
         /// <summary>
@@ -136,9 +162,10 @@ namespace Xr.Common
         /// <param name="text">需要显示在提示框中的文字</param>
         /// <param name="durationSeconds">提示框显示的秒数，超过这个秒数后，提示框自动消失</param>
         /// <param name="keepAliveOnOuterClick">点击消息框外侧区域时，是否自动关闭消息框</param>
-        public static void Hint(string text, int durationSeconds, bool keepAliveOnOuterClick)
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
+        public static void Hint(string text, int durationSeconds, bool keepAliveOnOuterClick, Control control)
         {
-            Hint(text, HintMessageBoxIcon.Success, durationSeconds, keepAliveOnOuterClick, false);
+            Hint(text, HintMessageBoxIcon.Success, durationSeconds, keepAliveOnOuterClick, false, control);
         }
 
         /// <summary>
@@ -149,9 +176,17 @@ namespace Xr.Common
         /// <param name="durationSeconds">提示框显示的秒数，超过这个秒数后，提示框自动消失</param>
         /// <param name="keepAliveOnOuterClick">点击消息框外侧区域时，是否自动关闭消息框</param>
         /// <param name="autoSize">根据消息自适应大小</param>
-        public static void Hint(string text, HintMessageBoxIcon icon, int durationSeconds, bool keepAliveOnOuterClick, bool autoSize)
+        /// <param name="control">控件(目前只支持顶级控件)，将消息框在该控件居中显示，为null在屏幕居中显示</param>
+        public static void Hint(string text, HintMessageBoxIcon icon, int durationSeconds, 
+            bool keepAliveOnOuterClick, bool autoSize, Control control)
         {
             var frmMessageBox = new HintMessageBoxForm();
+            if (control != null)
+            {
+                frmMessageBox.StartPosition = FormStartPosition.Manual;
+                frmMessageBox.Location = new Point((control.Width - frmMessageBox.Width) / 2 + control.Location.X,
+                    (control.Height - frmMessageBox.Height) / 2 + control.Location.Y);//相对程序居中
+            }
             frmMessageBox.flag = autoSize;
             frmMessageBox.Message = text;
             frmMessageBox.MessageBoxIcon = icon;

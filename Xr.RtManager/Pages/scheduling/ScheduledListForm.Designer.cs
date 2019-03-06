@@ -51,6 +51,7 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.btnUp = new Xr.Common.Controls.ButtonControl();
             this.treeDept = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeList2 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -337,6 +338,7 @@
             // 
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.btnUp);
             this.borderPanel1.Controls.Add(this.treeDept);
             this.borderPanel1.Controls.Add(this.deEnd);
             this.borderPanel1.Controls.Add(this.deBegin);
@@ -358,6 +360,19 @@
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Size = new System.Drawing.Size(1081, 50);
             this.borderPanel1.TabIndex = 1;
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnUp.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnUp.Location = new System.Drawing.Point(798, 10);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(130, 30);
+            this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.btnUp.TabIndex = 112;
+            this.btnUp.Text = "修改排班号源数量";
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // treeDept
             // 
@@ -593,5 +608,6 @@
         private DevExpress.XtraTreeList.TreeList treeList2;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
+        private Xr.Common.Controls.ButtonControl btnUp;
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Xr.Http;
+using Xr.Common;
 
 namespace Xr.RtManager.Pages.triage
 {
@@ -48,7 +49,7 @@ namespace Xr.RtManager.Pages.triage
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 return;
             } 
     

@@ -11,64 +11,68 @@ namespace Xr.RtCall.Model
    public static class InterfaceAddress
     {
        /// <summary>
-        /// 医院
+        /// 医院接口地址
        /// </summary>
-       public static String hostal = "api/itf/intro/hospitalByCode";
+       public static String hostal = "itf/intro/hospitalByCode";
        /// <summary>
-       /// 科室
+       /// 科室接口地址
        /// </summary>
-       public static String dept = "api/itf/intro/deptByhospitalCode";
+       public static String dept = "itf/intro/deptByhospitalCode";
        /// <summary>
-       /// 医生
+       /// 医生接口地址
        /// </summary>
-       public static String doctor = "api/itf/triage/findDoctorIdByClinicId";
+       public static String doctor = "itf/triage/findDoctorIdByClinicId";
        /// <summary>
-       /// 诊室
+       /// 诊室接口地址
        /// </summary>
-       public static String clinc = "api/itf/triage/findClinicIdByCode";
+       public static String clinc = "itf/triage/findClinicIdByCode";
        /// <summary>
-       /// 下一位
+       /// 下一位接口地址
        /// </summary>
-       public static String callNextPerson = "api/itf/call/callNextPerson";
+       public static String callNextPerson = "itf/call/callNextPerson";
        /// <summary>
-       /// 呼号到诊
+       /// 呼号到诊接口地址
        /// </summary>
-       public static String inPlace = "api/itf/call/inPlace";
+       public static String inPlace = "itf/call/inPlace";
        /// <summary>
-       /// 过号重排
+       /// 过号重排接口地址
        /// </summary>
-       public static String passNum = "api/itf/triage/passNum";
+       public static String passNum = "itf/triage/passNum";
        /// <summary>
-       /// 临时停诊/继续开诊
+       /// 临时停诊/继续开诊接口地址
        /// </summary>
-       public static String openStop = "api/itf/call/openStop";
+       public static String openStop = "itf/call/openStop";
        /// <summary>
-       /// 完成就诊
+       /// 完成就诊接口地址
        /// </summary>
-       public static String completeTriage = "api/itf/call/completeTriage";
+       public static String completeTriage = "itf/call/completeTriage";
        /// <summary>
-       /// 患者列表
+       /// 患者列表接口地址
        /// </summary>
-       public static String findPatientListByDoctor = "api/itf/triage/findTriageListByDoctor";
+       public static String findPatientListByDoctor = "itf/triage/findTriageListByDoctor";
        /// <summary>
-       /// 获取卡类型
+       /// 获取卡类型接口地址
        /// </summary>
-       public static String card_type = "api/sys/sysDict/findByType";
+       public static String card_type = "sys/sysDict/findByType";
        /// <summary>
-       /// 医生排班日期
+       /// 医生排班日期接口地址
        /// </summary>
-       public static String findByDeptAndDoctor = "api/itf/booking/findByDeptAndDoctor";
+       public static String findByDeptAndDoctor = "itf/booking/findByDeptAndDoctor";
        /// <summary>
-       /// 日期排班号源
+       /// 日期排班号源接口地址
        /// </summary>
-       public static String findTimeNum = "api/itf/booking/findTimeNum";
+       public static String findTimeNum = "itf/booking/findTimeNum";
        /// <summary>
-       /// 科室下面的医生
+       /// 科室下面的医生接口地址
        /// </summary>
-       public static String DoctorName = "api/itf/intro/doctorByDeptId";
+       public static String DoctorName = "itf/intro/doctorByDeptId";
        /// <summary>
-       /// 确认预约
+       /// 确认预约接口地址
        /// </summary>
-       public static String confirmBooking = "api/itf/booking/confirmBooking";
+       public static String confirmBooking = "itf/booking/confirmBooking";
+       /// <summary>
+       /// 确认是否启动
+       /// </summary>
+       public static String IsStop = "itf/call/transferRoom";
     }
 }

@@ -138,7 +138,6 @@ namespace Xr.RtManager
         /// <summary>
         /// 预约提示
         /// </summary>
-        [Required]
         public String tipsMsg { get; set; }
 
         /// <summary>

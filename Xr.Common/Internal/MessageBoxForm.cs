@@ -26,9 +26,17 @@ namespace Xr.Common.Internal
 
         private List<ButtonControl> buttons = new List<ButtonControl>();
 
+        private Control controlP; //将窗体显示在此控件的中间，为null则显示在屏幕中间
+
         public MessageBoxForm()
         {
             InitializeComponent();
+        }
+
+        public MessageBoxForm(Control control)
+        {
+            InitializeComponent();
+            controlP = control;
         }
 
         public string Message { get; set; }
@@ -275,9 +283,19 @@ namespace Xr.Common.Internal
                 buttonLeft += button.Width + ButtonSpace;
             }
 
-            var workingArea = Screen.GetWorkingArea(this);
-            this.Location = new Point(workingArea.Left + (workingArea.Width - this.Width) / 2,
-                                      workingArea.Top + (workingArea.Height - this.Height) / 2);
+            if (controlP == null)
+            {
+                var workingArea = Screen.GetWorkingArea(this);
+                this.Location = new Point(workingArea.Left + (workingArea.Width - this.Width) / 2,
+                                          workingArea.Top + (workingArea.Height - this.Height) / 2);
+            }
+            else
+            {
+                //Point p = controlP.PointToScreen(controlP.Location);
+                this.Location = new Point((controlP.Width - this.Width) / 2 + controlP.Location.X, 
+                    (controlP.Height - this.Height) / 2 + controlP.Location.Y);//相对程序居中
+            }
+            
         }
 
         private void Button_Click(object sender, EventArgs e)

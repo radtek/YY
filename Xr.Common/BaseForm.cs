@@ -59,6 +59,19 @@ namespace Xr.Common
             //lookUpEditManager = new DictLookUpEditManager();
         }
 
+        [Description("将弹出窗体设置到软件工作区域（不包括软件头部区域，其高度为70）的中间进行显示"), Category("自定义属性")]
+        private bool sfjz
+        {
+            get
+            {
+                return sfjz;
+            }
+            set
+            {
+                sfjz = value;
+            }
+        }
+
         //隐藏这个属性，防止继承窗体中修改这个属性造成界面混乱
         [Browsable(false)]
         public new Padding Padding
@@ -103,10 +116,13 @@ namespace Xr.Common
                 //this.KeyPreview = hotkeysManager.Count > 0;  //这种写法，如果窗体的KeyPreview为true，可能会被改成false，造成程序错误
                 if (hotkeysManager.Count > 0) this.KeyPreview = true;
 
-                //将弹出窗体设置到软件工作区域（不包括软件头部区域，其高度为70）的中间进行显示
-                var workingArea = Screen.GetWorkingArea(this);
-                this.Left = workingArea.Left + (workingArea.Width - this.Width) / 2;
-                this.Top = workingArea.Top + (workingArea.Height - 70 - this.Height) / 2 + 70;
+                if (!this.Tag.Equals("bdw"))
+                {
+                    //将弹出窗体设置到软件工作区域（不包括软件头部区域，其高度为70）的中间进行显示
+                    var workingArea = Screen.GetWorkingArea(this);
+                    this.Left = workingArea.Left + (workingArea.Width - this.Width) / 2;
+                    this.Top = workingArea.Top + (workingArea.Height - 70 - this.Height) / 2 + 70;
+                }
             }
         }
 

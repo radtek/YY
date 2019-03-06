@@ -250,6 +250,10 @@
             this.gridColumn6});
             this.gv_Pateion.GridControl = this.gc_Pateion;
             this.gv_Pateion.Name = "gv_Pateion";
+            this.gv_Pateion.OptionsBehavior.ReadOnly = true;
+            this.gv_Pateion.OptionsCustomization.AllowFilter = false;
+            this.gv_Pateion.OptionsCustomization.AllowSort = false;
+            this.gv_Pateion.OptionsMenu.EnableColumnMenu = false;
             this.gv_Pateion.OptionsView.ShowGroupPanel = false;
             this.gv_Pateion.OptionsView.ShowIndicator = false;
             this.gv_Pateion.RowHeight = 25;

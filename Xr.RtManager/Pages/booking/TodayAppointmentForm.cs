@@ -18,6 +18,7 @@ namespace Xr.RtManager.Pages.booking
 {
     public partial class TodayAppointmentForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public TodayAppointmentForm()
         {
@@ -29,6 +30,7 @@ namespace Xr.RtManager.Pages.booking
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             getLuesInfo();
             性别.Caption = "性\r\n别";
             年龄.Caption = "年\r\n龄";
@@ -65,7 +67,7 @@ namespace Xr.RtManager.Pages.booking
             }
             else
             {
-                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
             //若没配置科室编码让其选择一个
@@ -99,7 +101,7 @@ namespace Xr.RtManager.Pages.booking
             }
             else
             {
-                MessageBox.Show(objT["message"].ToString());
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
           
@@ -115,6 +117,11 @@ namespace Xr.RtManager.Pages.booking
         AppointmentQueryParam CurrentParam = new AppointmentQueryParam();
         private bool VerifyInfo()
         {
+            if (treeDeptId.EditValue == " ")
+            {
+                MessageBoxUtils.Hint("请选择科室", HintMessageBoxIcon.Error, MainForm);
+                return false;
+            }
             String dtStart = System.DateTime.Today.ToString("yyyy-MM-dd");
             String dtEnd = System.DateTime.Today.AddDays(1).ToString("yyyy-MM-dd");
 
@@ -204,14 +211,14 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
             finally
             {

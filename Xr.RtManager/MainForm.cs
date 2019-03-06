@@ -34,6 +34,7 @@ namespace Xr.RtManager
         Xr.Common.Controls.OpaqueCommand cmd2;
         private Color borderColor = Color.FromArgb(157, 160, 170);
 
+        #region 加载事件
         private void MainForm_Load(object sender, EventArgs e)
         {
             AppContext.Session.openStatus = false;
@@ -76,6 +77,7 @@ namespace Xr.RtManager
             });
             //AppContext.Session.waitControl = xtraTabControl1;
         }
+        #endregion
 
         #region 菜单相关事件
         //添加菜单
@@ -470,7 +472,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
             }
         }
         /// <summary>  
@@ -512,7 +514,7 @@ namespace Xr.RtManager
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
             }
         }
         /// <summary>
@@ -523,24 +525,15 @@ namespace Xr.RtManager
         /// <param name="navigationData">参数</param>
         public void JumpInterface(string name, string caption, object navigationData)
         {
-            //int i = GetTabName(name);
-            //if (i == -1)
-            //{
-                Dictionary<string, object> data = new Dictionary<string, object>();
-                data = (Dictionary<String, Object>)navigationData;
-                //this._pkPv = data["pkPv"].ToString();
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data = (Dictionary<String, Object>)navigationData;
 
-                if (name.Equals("RoleDistributionForm"))
-                {
-                    RoleDistributionForm tab = new RoleDistributionForm();
-                    tab.id = data["id"].ToString();
-                    AaddUserControl(tab, name, caption);
-                }
-            //}
-            //else
-            //{
-            //    xtraTabControl1.SelectedTabPageIndex = i;
-            //}
+            if (name.Equals("RoleDistributionForm"))
+            {
+                RoleDistributionForm tab = new RoleDistributionForm();
+                tab.id = data["id"].ToString();
+                AaddUserControl(tab, name, caption);
+            }
         }
 
         /// <summary>
@@ -614,7 +607,7 @@ namespace Xr.RtManager
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBoxUtils.Show("你确定退出系统吗?", MessageBoxButtons.OKCancel,
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, this) == DialogResult.OK)
              {
                 String url = AppContext.AppConfig.serverUrl + "logout";
                 String data = HttpClass.httpPost(url);
@@ -750,7 +743,7 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    if (MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OKCancel, new[] { "重新登录", "退出系统" }) == DialogResult.OK)
+                    if (MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OKCancel, new[] { "重新登录", "退出系统" }, this) == DialogResult.OK)
                     {
                         Application.Restart();
                     }

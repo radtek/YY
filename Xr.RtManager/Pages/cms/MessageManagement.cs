@@ -15,16 +15,18 @@ namespace Xr.RtManager.Pages.cms
 {
     public partial class MessageManagement : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public MessageManagement()
         {
             InitializeComponent();
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             MessageContentTemplateList(1,pageControl1.PageSize);
             TemplateType();
             Thread.Sleep(500);
-            cmd.HideOpaqueLayer();
         }
         #region 测试
         public List<MessageInfoEntity> Date = new List<MessageInfoEntity>();
@@ -49,15 +51,18 @@ namespace Xr.RtManager.Pages.cms
                     pageControl1.setData(int.Parse(objT["result"]["count"].ToString()),
                     int.Parse(objT["result"]["pageSize"].ToString()),
                     int.Parse(objT["result"]["pageNo"].ToString()));
+                    cmd.HideOpaqueLayer();
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    cmd.HideOpaqueLayer();
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                cmd.HideOpaqueLayer();
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("获取消息内容模版列表错误信息：" + ex.Message);
             }
         }
@@ -79,12 +84,12 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("查询消息模板详情错误信息：" + ex.Message);
             }
         }
@@ -106,12 +111,12 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("获取指定医院下消息模板列表错误信息：" + ex.Message);
             }
         }
@@ -192,7 +197,7 @@ namespace Xr.RtManager.Pages.cms
                 if (selectedRow == null)
                     return;
                 //MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                DialogResult dr = MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm);
 
                 if (dr == DialogResult.OK)
                 {
@@ -202,19 +207,19 @@ namespace Xr.RtManager.Pages.cms
                     JObject objT = JObject.Parse(data);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        Xr.Common.MessageBoxUtils.Hint("删除成功");
+                        Xr.Common.MessageBoxUtils.Hint("删除成功", MainForm);
                         MessageContentTemplateList(1, pageControl1.PageSize);
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("消息模板列表删除错误信息：" + ex.Message);
             }
         }
@@ -241,19 +246,19 @@ namespace Xr.RtManager.Pages.cms
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("保存成功!");
+                    MessageBoxUtils.Hint("保存成功!", MainForm);
                     dcMessage.ClearValue();
                     MessageContentTemplateList(1, pageControl1.PageSize);
                     groupBox1.Enabled = false;
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("消息模板列表保存错误信息：" + ex.Message);
             }
         }
@@ -278,13 +283,13 @@ namespace Xr.RtManager.Pages.cms
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("获取消息内容模板类型错误信息：" + ex.Message);
             }
         }
@@ -332,6 +337,7 @@ namespace Xr.RtManager.Pages.cms
         #region 分页跳转事件
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
+            cmd.ShowOpaqueLayer(225, false);
             MessageContentTemplateList(CurrentPage, PageSize);
         }
         #endregion 

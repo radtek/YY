@@ -123,7 +123,6 @@ namespace Xr.RtManager
         /// <summary>
         /// 候诊说明
         /// </summary>
-        [Required]
         public String waitingDesc { get; set; }
         
         /// <summary>

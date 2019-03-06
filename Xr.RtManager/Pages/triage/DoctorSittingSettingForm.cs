@@ -16,10 +16,13 @@ namespace Xr.RtManager.Pages.triage
 {
     public partial class DoctorSittingSettingForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         public DoctorSittingSettingForm()
         {
             InitializeComponent();
+            MainForm = (Form)this.Parent;
+            pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             #region
@@ -61,13 +64,13 @@ namespace Xr.RtManager.Pages.triage
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
                 cmd.HideOpaqueLayer();
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("医生坐诊分页查询列表错误信息：" + ex.Message);
             }
         }
@@ -94,7 +97,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
                 listoffice.Add(new TreeList { id = "", parentId = "", name = "请选择" });
@@ -103,6 +106,7 @@ namespace Xr.RtManager.Pages.triage
                 treeListLookUpEdit1.Properties.TreeList.ParentFieldName = "parentId";
                 treeListLookUpEdit1.Properties.DisplayMember = "name";
                 treeListLookUpEdit1.Properties.ValueMember = "id";
+                treeListLookUpEdit1.EditValue = AppContext.Session.deptId;
                 treeListLookUpEdit2.Properties.DataSource = listoffice;
                 treeListLookUpEdit2.Properties.TreeList.KeyFieldName = "id";
                 treeListLookUpEdit2.Properties.TreeList.ParentFieldName = "parentId";
@@ -112,7 +116,7 @@ namespace Xr.RtManager.Pages.triage
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("获取科室错误信息：" + ex.Message);
             }
         }
@@ -159,13 +163,13 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                Log4net.LogHelper.Error("获取科室下面的医生错误信息："+ex.Message);
             }
         }
@@ -219,10 +223,10 @@ namespace Xr.RtManager.Pages.triage
                  switch (e.Value.ToString())
                 {
                     case "0":
-                        e.DisplayText = "是";
+                        e.DisplayText = "开";
                         break;
                     case "1":
-                        e.DisplayText = "否";
+                        e.DisplayText = "停";
                         break;
                 }
             }
@@ -266,12 +270,12 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("获取诊室列表错误信息：" + ex.Message);
             }
         }
@@ -348,7 +352,7 @@ namespace Xr.RtManager.Pages.triage
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint(objT["message"].ToString());
+                    MessageBoxUtils.Hint(objT["message"].ToString(), MainForm);
                     DoctorSittingSelect(1, pageControl1.PageSize, DateTime.Now.ToString("yyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd"));
                     this.gcScheduled.DataSource = null;
                     dateEdit4.Text = "";
@@ -358,12 +362,12 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("保存医生坐诊设置错误信息：" + ex.Message);
             }
         }
@@ -394,14 +398,14 @@ namespace Xr.RtManager.Pages.triage
                     }
                     else
                     {
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         Check = false;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 Log4net.LogHelper.Error("检查当前科室+日期+诊室是否已经存在错误信息:" + ex.Message);
             }
             return Check;
@@ -422,7 +426,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBoxUtils.Show("选择的开始日期不能小于当前日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show("选择的开始日期不能小于当前日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     dateEdit3.Text = "";
                 }
             }
@@ -471,7 +475,7 @@ namespace Xr.RtManager.Pages.triage
                 }
                 else
                 {
-                    MessageBoxUtils.Show("选择的结束日期不能小于当前日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show("选择的结束日期不能小于当前日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     dateEdit4.Text = "";
                 }
             }
@@ -482,6 +486,32 @@ namespace Xr.RtManager.Pages.triage
         {
             try
             {
+                #region 
+                if (treeListLookUpEdit2.Text == "请选择") 
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show("请选择科室", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    return;
+                }
+                if (lookUpEdit1.Text == "请选择"||lookUpEdit1.Text == "")
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show("请选择医生", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    return;
+                }
+                if (dateEdit3.Text == "")
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show("请选择开始日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    return;
+                }
+                if (dateEdit4.Text == "")
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show("请选择结束日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    return;
+                }
+                #endregion 
                 String Url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findPlanPeriod?hospitalId="+AppContext.Session.hospitalId+"&deptId="+treeListLookUpEdit2.EditValue+"&doctorId="+lookUpEdit1.EditValue+"&beginDate="+this.dateEdit3.Text.Trim()+"&endDate="+this.dateEdit4.Text.Trim();
                 String data = HttpClass.httpPost(Url);
                 JObject objT = JObject.Parse(data);
@@ -502,13 +532,13 @@ namespace Xr.RtManager.Pages.triage
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     this.gcScheduled.DataSource = null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 cmd.HideOpaqueLayer();
                 Log4net.LogHelper.Error(" 获取指定医院、科室、医生、日期范围内医生每个日期的排班时段及坐诊诊室错误信息：" + ex.Message);
             }
@@ -594,6 +624,7 @@ namespace Xr.RtManager.Pages.triage
         #region 分页跳转
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
+            cmd.ShowOpaqueLayer(225, false);
             DoctorSittingSelect(CurrentPage, PageSize, beginDate.Text.Trim(), endDate.Text.Trim());
         }
         #endregion 

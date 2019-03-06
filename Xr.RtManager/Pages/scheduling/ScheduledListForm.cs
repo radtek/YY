@@ -12,6 +12,7 @@ namespace Xr.RtManager.Pages.scheduling
 {
     public partial class ScheduledListForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
 
         public ScheduledListForm()
@@ -21,6 +22,7 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void ScheduledListForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             deBegin.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
             deEnd.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
@@ -74,7 +76,7 @@ namespace Xr.RtManager.Pages.scheduling
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -100,7 +102,7 @@ namespace Xr.RtManager.Pages.scheduling
             }
             else
             {
-                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
         }
@@ -149,7 +151,7 @@ namespace Xr.RtManager.Pages.scheduling
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
             });
@@ -197,7 +199,7 @@ namespace Xr.RtManager.Pages.scheduling
             {
                 Thread.Sleep(300);
                 SearchData();
-                MessageBoxUtils.Hint("修改成功!");
+                MessageBoxUtils.Hint("修改成功!", MainForm);
             }
         }
 
@@ -207,13 +209,13 @@ namespace Xr.RtManager.Pages.scheduling
 
             if (e.OldValue.Equals("1"))
             {
-                this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue); 
-                MessageBoxUtils.Hint("不能修改停诊状态的排班");
+                this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue);
+                MessageBoxUtils.Hint("不能修改停诊状态的排班", MainForm);
                 return;
             }
 
             if (MessageBoxUtils.Show("确定要修改状态吗?", MessageBoxButtons.OKCancel,
-                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
             {
                 var selectedRow = gridView1.GetFocusedRow() as ScheduledEntity;
                 String period = "";
@@ -233,12 +235,12 @@ namespace Xr.RtManager.Pages.scheduling
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    MessageBoxUtils.Hint("修改成功!");
+                    MessageBoxUtils.Hint("修改成功!", MainForm);
                 }
                 else
                 {
                     this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue);
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             else
@@ -302,6 +304,29 @@ namespace Xr.RtManager.Pages.scheduling
         private void ScheduledListForm_Resize(object sender, EventArgs e)
         {
             cmd.rectDisplay = this.DisplayRectangle;
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            var selectedRow = gridView1.GetFocusedRow() as ScheduledEntity;
+            if (selectedRow == null)
+                return;
+            var edit = new ModifyNumberSourceEdit();
+            edit.scheduled = selectedRow;
+            if (edit.ShowDialog() == DialogResult.OK)
+            {
+                MessageBoxUtils.Hint("修改成功!", MainForm);
+                //this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                //{
+                //    Thread.Sleep(2700);
+                //    return null;
+
+                //}, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                //{
+                //    cmd.ShowOpaqueLayer(255, true);
+                //    SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                //});
+            }
         }
         
     }

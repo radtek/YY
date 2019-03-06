@@ -21,12 +21,14 @@ namespace Xr.RtManager
             InitializeComponent();
         }
 
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
 
         public String id { get; set; }
 
         private void RoleDistributionForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             SearchData();
@@ -51,7 +53,8 @@ namespace Xr.RtManager
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             });
         }
@@ -65,7 +68,7 @@ namespace Xr.RtManager
                 Thread.Sleep(300);
                 cmd.ShowOpaqueLayer();
                 SearchData();
-                MessageBoxUtils.Hint(edit.msg, true);
+                MessageBoxUtils.Hint(edit.msg, true, MainForm);
             }
         }
 
@@ -74,10 +77,9 @@ namespace Xr.RtManager
             var selectedRow = gvUser.GetFocusedRow() as UserEntity;
             if (selectedRow == null)
                 return;
-            MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
-            DialogResult dr = MessageBox.Show("确定要移除吗?", "删除用户", messButton);
 
-            if (dr == DialogResult.OK)
+            if (MessageBoxUtils.Show("确定要移除吗?", MessageBoxButtons.OKCancel,
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
             {
                 String url = AppContext.AppConfig.serverUrl + "sys/sysRole/outrole?userId=" + selectedRow.id + "&&roleId=" + id;
                 cmd.ShowOpaqueLayer();
@@ -92,12 +94,13 @@ namespace Xr.RtManager
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         SearchData();
-                        MessageBoxUtils.Hint(objT["message"].ToString());
+                        MessageBoxUtils.Hint(objT["message"].ToString(), MainForm);
                     }
                     else
                     {
                         cmd.HideOpaqueLayer();
-                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     }
                 });
             }

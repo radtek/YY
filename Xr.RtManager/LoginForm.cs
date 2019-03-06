@@ -104,14 +104,14 @@ namespace Xr.RtManager
                         else
                         {
                             cmd.HideOpaqueLayer();
-                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                         }
                     });
                 }
                 else
                 {
                     cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 }
             });
         }
@@ -128,7 +128,7 @@ namespace Xr.RtManager
             ModifyPasswordForm form = new ModifyPasswordForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                MessageBoxUtils.Hint("修改密码成功!");
+                MessageBoxUtils.Hint("修改密码成功!", this);
             }
         }
 

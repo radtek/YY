@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.tmHeartbeat = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tmHeartbeat = new System.Windows.Forms.Timer(this.components);
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -41,10 +42,10 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panMenuBar = new Xr.Common.Controls.PanelEx();
-            this.panelEx1 = new Xr.Common.Controls.PanelEx();
-            this.panelEx3 = new Xr.Common.Controls.PanelEx();
-            this.panelEx2 = new Xr.Common.Controls.PanelEx();
+            this.panMenuBar = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx3 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx2 = new Xr.Common.Controls.PanelEx(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,8 +53,8 @@
             this.labBottomRight = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labBottomLeft = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.关闭其他页签ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关闭全部页签ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelEnhanced1.SuspendLayout();
@@ -112,7 +113,6 @@
             // panelEnhanced1
             // 
             this.panelEnhanced1.BackgroundImage = global::Xr.RtManager.Properties.Resources.bg;
-            this.panelEnhanced1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelEnhanced1.Controls.Add(this.xtraTabControl1);
             this.panelEnhanced1.Controls.Add(this.panel4);
             this.panelEnhanced1.Controls.Add(this.panel5);
@@ -340,6 +340,7 @@
             this.Controls.Add(this.panelEnhanced1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1080, 768);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "博爱预约分诊系统";

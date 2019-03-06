@@ -89,7 +89,7 @@ namespace Xr.RtCall.pages
                                    Dictionary<int, DateTime> dc1 = new Dictionary<int, DateTime>();
                                    if (list.Count == 0)
                                    {
-                                       _context.Send((s) => Xr.Common.MessageBoxUtils.Show("当前选择医生没有排班日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1), null);
+                                       _context.Send((s) => Xr.Common.MessageBoxUtils.Show("当前选择医生没有排班日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,Form1.pCurrentWin), null);
                                        _context.Send((s) => reservationCalendar1.ChangeValidDate(dcs), null);
                                        return;
                                    }
@@ -109,7 +109,7 @@ namespace Xr.RtCall.pages
                                }
                                else
                                {
-                                   _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1), null);
+                                   _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,Form1.pCurrentWin), null);
                                }
                            }
                            break;
@@ -169,7 +169,7 @@ namespace Xr.RtCall.pages
                                 }
                                 else
                                 {
-                                 _context.Send((s) =>Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1),null);
+                                 _context.Send((s) =>Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,Form1.pCurrentWin),null);
                                 }
                             }
                             break;
@@ -191,7 +191,7 @@ namespace Xr.RtCall.pages
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
                 prament.Add("pageNo", "1");
-                prament.Add("pageSize", "1000");
+                prament.Add("pageSize", "1000");//暂时没有分页就一页传大点
                 prament.Add("hospital.id", HelperClass.hospitalId);//医院主键
                 prament.Add("dept.id", HelperClass.deptId);//科室主键
                 Xr.RtCall.Model.RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.DoctorName, prament, Method.POST,
@@ -224,7 +224,7 @@ namespace Xr.RtCall.pages
                                 }
                                 else
                                 {
-                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1), null);
+                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,Form1.pCurrentWin), null);
                                 }
                             }
                             break;
@@ -299,12 +299,12 @@ namespace Xr.RtCall.pages
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1), null);
+                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1,Form1.pCurrentWin), null);
                                      _context.Send((s) => butReturn_Click(sender,e),null);
                                 }
                                 else
                                 {
-                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1), null);
+                                    _context.Send((s) => Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, Form1.pCurrentWin), null);
                                 }
                             }
                             break;
@@ -314,7 +314,7 @@ namespace Xr.RtCall.pages
             }
             catch (Exception ex)
             {
-                Xr.Common.MessageBoxUtils.Show("确认预约错误信息" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                Xr.Common.MessageBoxUtils.Show("确认预约错误信息" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, Form1.pCurrentWin);
                 Log4net.LogHelper.Error("确认预约错误信息：" + ex.Message);
             }
         }

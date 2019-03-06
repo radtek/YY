@@ -19,12 +19,14 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraEditors;
 using System.Globalization;
+using System.Net;
 
 
 namespace Xr.RtManager.Pages.booking
 {
     public partial class AppointmentStatisticsForm : UserControl
     {
+        private Form MainForm; //主窗体
         Xr.Common.Controls.OpaqueCommand cmd;
         /// <summary>
         /// 查询日期格式类型
@@ -35,8 +37,10 @@ namespace Xr.RtManager.Pages.booking
             InitializeComponent();
             
         }
+                
         private void UserForm_Load(object sender, EventArgs e)
         {
+            MainForm = (Form)this.Parent;
             //Infor();
             cmd = new Xr.Common.Controls.OpaqueCommand(this);
             gridBand3.Caption = gridBand15.Caption = gridBand32.Caption = gridBand13.Caption = "开放总额\r\n(预约+现场)";
@@ -62,7 +66,7 @@ namespace Xr.RtManager.Pages.booking
             }
             else
             {
-                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
             //若没配置科室编码让其选择一个
@@ -113,43 +117,50 @@ namespace Xr.RtManager.Pages.booking
         }
         AppointmentStatisticsQueryParam CurrentParam=new AppointmentStatisticsQueryParam();
         private bool VerifyInfo()
-        { //deStart.Text,
+        { 
+            //deStart.Text,
             //deEnd.Text
+            if (treeDeptId.EditValue == " ")
+            {
+                MessageBoxUtils.Hint("请选择科室", HintMessageBoxIcon.Error, MainForm);
+                return false;
+            }
             if (deStart.EditValue == null)
             {
-                MessageBox.Show("请选择开始日期");
-                return false; 
+                MessageBoxUtils.Hint("请选择开始日期", HintMessageBoxIcon.Error, MainForm);
+                return false;
             }
             if (deEnd.EditValue == null)
             {
-                MessageBox.Show("请选择结束日期");
-                return false; 
+                MessageBoxUtils.Hint("请选择结束日期", HintMessageBoxIcon.Error, MainForm);
+                return false;
             }
 
-               DateTime dtStart = new DateTime();
-               DateTime dtEnd = new DateTime();
-               if (QueryDateType != "day")
-               {
-                   dtStart = DateTime.ParseExact(deStart.Text+"-01", "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
-                   dtEnd = DateTime.ParseExact(deEnd.Text+"-01", "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
-               }
-               else
-               {
-                   dtStart = DateTime.ParseExact(deStart.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
-                   dtEnd = DateTime.ParseExact(deEnd.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
-               }
-               if (dtEnd <dtStart )
-               {
-                   MessageBox.Show("结束日期需大于开始日期");
-                   return false; 
-               }
+            DateTime dtStart = new DateTime();
+            DateTime dtEnd = new DateTime();
+            if (QueryDateType != "day")
+            {
+                dtStart = DateTime.ParseExact(deStart.Text + "-01", "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
+                dtEnd = DateTime.ParseExact(deEnd.Text + "-01", "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                dtStart = DateTime.ParseExact(deStart.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
+                dtEnd = DateTime.ParseExact(deEnd.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
+            }
+            if (dtEnd < dtStart)
+            {
+                MessageBoxUtils.Hint("结束日期需大于开始日期", HintMessageBoxIcon.Error, MainForm);
+                return false;
+            }
 
-               CurrentParam.hospitalId = AppContext.Session.hospitalId;
-               CurrentParam.deptId = treeDeptId.EditValue.ToString();
-               CurrentParam.reportType = QueryDateType;
-               CurrentParam.startDate = deStart.Text;
-               CurrentParam.endDate = deEnd.Text;
-            
+            CurrentParam.hospitalId = AppContext.Session.hospitalId;
+            CurrentParam.deptId = treeDeptId.EditValue.ToString();
+            CurrentParam.deptName = treeDeptId.Text.ToString();
+            CurrentParam.reportType = QueryDateType;
+            CurrentParam.startDate = deStart.Text;
+            CurrentParam.endDate = deEnd.Text;
+
             return true;
         }
         private void QueryInfo()
@@ -271,7 +282,7 @@ namespace Xr.RtManager.Pages.booking
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         return;
                     }
                     #endregion
@@ -279,7 +290,7 @@ namespace Xr.RtManager.Pages.booking
                     objT = JObject.Parse(datas[1]);
                     if (string.Compare(objT["state"].ToString(), "true", true) != 0)
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         return;
                     }
                     else
@@ -301,7 +312,7 @@ namespace Xr.RtManager.Pages.booking
                     }
                     else
                     {
-                        MessageBox.Show(objT["message"].ToString());
+                        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                         return;
                     }
                     #endregion
@@ -323,7 +334,7 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
                 #endregion
@@ -343,7 +354,7 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                     return;
                 }
                 #endregion
@@ -351,7 +362,7 @@ namespace Xr.RtManager.Pages.booking
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
             finally
             {
@@ -422,12 +433,12 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
             finally
             {
@@ -499,12 +510,12 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    MessageBox.Show(objT["message"].ToString());
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
             finally
             {
@@ -682,47 +693,86 @@ namespace Xr.RtManager.Pages.booking
         {
             if (VerifyInfo())
             {
-                WebBrowser webBrowser1 = new WebBrowser();
-                webBrowser1.FileDownload += new EventHandler(webBrowser1_FileDownload);
-                String param = @"type={0}&hospitalId={1}&deptId={2}&reportType={3}&startDate={4}&endDate={5}";
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Execl files(*.xls)|*.xls";
+                saveFileDialog.FilterIndex = 0;
+                saveFileDialog.RestoreDirectory = true; //保存对话框是否记忆上次打开的目录
+                //saveFileDialog.CreatePrompt = true;
+                saveFileDialog.Title = "导出Excel文件到";
+                DateTime now = DateTime.Now;
+                saveFileDialog.FileName = TabpageName + "表";// + now.Year.ToString().PadLeft(2) + now.Month.ToString().PadLeft(2, '0') + now.Day.ToString().PadLeft(2, '0') + "-" + now.Hour.ToString().PadLeft(2, '0') + now.Minute.ToString().PadLeft(2, '0') + now.Second.ToString().PadLeft(2, '0');
+                //点了保存按钮进入
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (saveFileDialog.FileName.Trim() == "")
+                    {
+                        MessageBoxUtils.Hint("请输入要保存的文件名", HintMessageBoxIcon.Error, MainForm);
+                        return;
+                    }
 
-                if (TabpageName == "汇总信息")
-                {
-                    param = String.Format(
-                       param, "3",
-                       CurrentParam.hospitalId,
-                       CurrentParam.deptId,
-                       CurrentParam.reportType,
-                       CurrentParam.startDate,
-                       CurrentParam.endDate);
+                    Thread.Sleep(200);
+                    cmd.ShowOpaqueLayer(225, true);
+                    String param = @"type={0}&hospitalId={1}&deptId={2}&reportType={3}&startDate={4}&endDate={5}";
+
+                    if (TabpageName == "汇总信息")
+                    {
+                        param = String.Format(
+                           param, "3",
+                           CurrentParam.hospitalId,
+                           CurrentParam.deptId,
+                           CurrentParam.reportType,
+                           CurrentParam.startDate,
+                           CurrentParam.endDate);
+                    }
+                    else if (TabpageName == "详细信息")
+                    {
+                        param = String.Format(
+                           param, "1",
+                           CurrentParam.hospitalId,
+                           CurrentParam.deptId,
+                           CurrentParam.reportType,
+                           CurrentParam.startDate,
+                           CurrentParam.endDate);
+                    }
+                    else
+                    {
+                        param = String.Format(
+                           param, "2",
+                           CurrentParam.hospitalId,
+                           CurrentParam.deptId,
+                           CurrentParam.reportType,
+                           CurrentParam.startDate,
+                           CurrentParam.endDate);
+                    }
+                    String url = AppContext.AppConfig.serverUrl + "sch/report/exportExcel?" + param;
+                    String[] args = { url, saveFileDialog.FileName };
+                    // 开始异步
+                    //BackgroundWorkerUtil.start_run(bw_DoWorkExcel, bw_RunWorkerExcelCompleted, null, false);
+                    Thread t = new Thread(DownLoadFile);//创建线程
+                    t.Start(args);//用来给函数传递参数，开启线程
+                    
                 }
-                else if (TabpageName == "详细信息")
-                {
-                    param = String.Format(
-                       param, "1",
-                       CurrentParam.hospitalId,
-                       CurrentParam.deptId,
-                       CurrentParam.reportType,
-                       CurrentParam.startDate,
-                       CurrentParam.endDate);
-                }
-                else
-                {
-                    param = String.Format(
-                       param, "2",
-                       CurrentParam.hospitalId,
-                       CurrentParam.deptId,
-                       CurrentParam.reportType,
-                       CurrentParam.startDate,
-                       CurrentParam.endDate);
-                }
-                String url = AppContext.AppConfig.serverUrl + "sch/report/exportExcel?" + param;
-                cmd.ShowOpaqueLayer(225, true);
-                webBrowser1.Url = new Uri(url);
-                
             }
- 
+
         }
+        //异步下载
+        void DownLoadFile(object Args)
+        {
+
+            // 远程获取目标页面源码
+            string strTargetHtml = string.Empty;
+            String[] args = Args as String[];
+            WebClient wc = new WebClient();
+            wc.DownloadFile(args[0], args[1]);
+            wc.Dispose();
+            Action action = () =>
+            {
+                cmd.HideOpaqueLayer();
+            };
+            Invoke(action);
+        }
+            
+		
         /// <summary>
         /// 导出平均候诊时间
         /// </summary>
@@ -732,27 +782,44 @@ namespace Xr.RtManager.Pages.booking
         {
             if (VerifyInfo())
             {
-                WebBrowser webBrowser1 = new WebBrowser();
-                webBrowser1.FileDownload += new EventHandler(webBrowser1_FileDownload);
-                String param = @"thospitalId={0}&deptId={1}&reportType={2}&startDate={3}&endDate={4}";
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Execl files(*.xls)|*.xls";
+                saveFileDialog.FilterIndex = 0;
+                saveFileDialog.RestoreDirectory = true; //保存对话框是否记忆上次打开的目录
+                //saveFileDialog.CreatePrompt = true;
+                saveFileDialog.Title = "导出Excel文件到";
+                DateTime now = DateTime.Now;
+                saveFileDialog.FileName = CurrentParam.deptName+"平均候诊时间表";// + now.Year.ToString().PadLeft(2) + now.Month.ToString().PadLeft(2, '0') + now.Day.ToString().PadLeft(2, '0') + "-" + now.Hour.ToString().PadLeft(2, '0') + now.Minute.ToString().PadLeft(2, '0') + now.Second.ToString().PadLeft(2, '0');
+                //点了保存按钮进入
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (saveFileDialog.FileName.Trim() == "")
+                    {
+                        MessageBoxUtils.Hint("请输入要保存的文件名", HintMessageBoxIcon.Error, MainForm);
+                        return;
+                    }
+                    
+                    Thread.Sleep(200);
+                    cmd.ShowOpaqueLayer(225, true);
+                    String param = @"thospitalId={0}&deptId={1}&reportType={2}&startDate={3}&endDate={4}";
 
 
-                param = String.Format(
-                   param, CurrentParam.hospitalId,
-                   CurrentParam.deptId,
-                   CurrentParam.reportType,
-                   CurrentParam.startDate,
-                   CurrentParam.endDate);
+                    param = String.Format(
+                       param, CurrentParam.hospitalId,
+                       CurrentParam.deptId,
+                       CurrentParam.reportType,
+                       CurrentParam.startDate,
+                       CurrentParam.endDate);
 
-                String url = AppContext.AppConfig.serverUrl + "sch/report/exportWaitTime?" + param;
-                cmd.ShowOpaqueLayer(225, true);
-                webBrowser1.Url = new Uri(url);
+                    String url = AppContext.AppConfig.serverUrl + "sch/report/exportWaitTime?" + param;
+                    String[] args = { url, saveFileDialog.FileName };
+                    // 开始异步
+                    //BackgroundWorkerUtil.start_run(bw_DoWorkExcel, bw_RunWorkerExcelCompleted, null, false);
+                    Thread t = new Thread(DownLoadFile);//创建线程
+                    t.Start(args);//用来给函数传递参数，开启线程
+                }
             }
 
-        }
-        private void webBrowser1_FileDownload(object sender, EventArgs e)
-        {
-            cmd.HideOpaqueLayer();
         }
 
 
@@ -785,7 +852,10 @@ namespace Xr.RtManager.Pages.booking
         /// 科室ID
         /// </summary>
         public String deptId { get; set; }
-
+        /// <summary>
+        /// 科室名称
+        /// </summary>
+        public String deptName { get; set; }
         /// <summary>
         /// 日期类型
         /// </summary>

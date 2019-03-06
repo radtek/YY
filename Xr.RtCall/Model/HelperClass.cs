@@ -97,8 +97,4 @@ namespace Xr.RtCall.Model
         public String id { get; set; }
         public String name { get; set; }
     }
-    public class Clinc
-    {
-        public String clinicId { get; set; }
-    }
 }

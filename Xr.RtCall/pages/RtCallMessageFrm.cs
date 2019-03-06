@@ -64,17 +64,19 @@ namespace Xr.RtCall.pages
                                          if (Convert.ToBoolean(AppContext.AppConfig.WhetherToAssign))
                                          {
                                              string patientId=objT["result"][0]["patientId"].ToString();
-                                             _context.Send((s) => Assignment(patientId), null);//把患者ID传给医生工作站并让医生工作站回车查询
-                                        
+                                             _context.Send((s) => Assignment(patientId), null);//把患者ID传给医生工作站并让医生工作站回车
                                          }
                                      }
-                                     //_context.Send((s) => MessageBoxUtils.Hint("操作成功!"), null);
+                                     else
+                                     {
+                                         _context.Send((s) => Form1.pCurrentWin.label2.Text = "等待呼叫病人 [请稍候...]",null);
+                                     }
                                      _context.Send((s) => CloseForm(), null);
                                      _context.Send((s) => ShuaXin(), null);
                                  }
                                  else
                                  {
-                                     _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1), null);
+                                     _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1,this), null);
                                  }
                              }
                              break;
@@ -86,6 +88,9 @@ namespace Xr.RtCall.pages
                Log4net.LogHelper.Error("获取完成下一位/过号下一位错误信息：" + ex.Message);
             }
         }
+        /// <summary>
+        /// 是否刷新患者列表
+        /// </summary>
         public void ShuaXin()
         {
             if (Form1.IsMax)
@@ -93,6 +98,9 @@ namespace Xr.RtCall.pages
                 RtCallPeationFrm.RTCallfrm.PatientList();
             }
         }
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
         public void CloseForm()
         {
             Form f1 = this.Parent as HostingForm;
@@ -113,7 +121,7 @@ namespace Xr.RtCall.pages
         private readonly int MOUSEEVENTF_MIDDLEDOWN = 0x0020; //模拟鼠标中键按下 
         private readonly int MOUSEEVENTF_MIDDLEUP = 0x0040;// 模拟鼠标中键抬起 
 
-        [System.Runtime.InteropServices.DllImport("user32")]
+        [DllImport("user32")]
         public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
         /// <summary>
         /// 把患者ID传给医生工作站(利用鼠标的复制和粘贴)
