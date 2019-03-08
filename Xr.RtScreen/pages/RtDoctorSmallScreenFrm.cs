@@ -21,15 +21,25 @@ namespace Xr.RtScreen.pages
         public RtDoctorSmallScreenFrm()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true); // 双缓冲
+            this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw |
+        ControlStyles.OptimizedDoubleBuffer |
+        ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             Control.CheckForIllegalCrossThreadCalls = false;
             _context = new SynchronizationContext();
             pictureBox1.ImageLocation = "man.png";
             GetDoctorSmallScreenInfo();
             time();
+        }
+        protected override void WndProc(ref Message m)
+        {
+
+            if (m.Msg == 0x0014) // 禁掉清除背景消息
+
+                return;
+
+            base.WndProc(ref m);
+
         }
         #region 获取信息
         string doctorIntro = "";
@@ -52,7 +62,7 @@ namespace Xr.RtScreen.pages
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-                                    DoctorSmallScreenClass smallscreen = Newtonsoft.Json.JsonConvert.DeserializeObject<DoctorSmallScreenClass>(objT["result"].ToString()); 
+                                    DoctorSmallScreenClass smallscreen = Newtonsoft.Json.JsonConvert.DeserializeObject<DoctorSmallScreenClass>(objT["result"].ToString());
                                     _context.Send((s) => label1.Text = smallscreen.clinicName, null);
                                     _context.Send((s) => label2.Text = smallscreen.doctorName, null);
                                     _context.Send((s) => label3.Text = smallscreen.doctorExcellence + smallscreen.doctorJob, null);
@@ -61,9 +71,9 @@ namespace Xr.RtScreen.pages
                                     if (doctorIntro != smallscreen.doctorIntro)
                                     {
                                         doctorIntro = smallscreen.doctorIntro;
-                                        _context.Send((s) => scrollingTexts1.ScrollText = smallscreen.doctorIntro, null);
+                                        _context.Send((s) => GetDoctorInfo(smallscreen.doctorIntro), null);
                                     }
-                                    _context.Send((s) => scrollingText1.ScrollText = smallscreen.waitPatient, null);
+                                    _context.Send((s) => GetWasitPatrent(smallscreen.waitPatient), null);
                                     _context.Send((s) => label8.Text = smallscreen.nextPatient, null);
                                     _context.Send((s) => GetImage(smallscreen.doctorHeader), null);
                                 }
@@ -78,7 +88,7 @@ namespace Xr.RtScreen.pages
             }
             catch (Exception ex)
             {
-               Log4net.LogHelper.Error("获取诊室小屏错误信息：" + ex.Message);
+                Log4net.LogHelper.Error("获取诊室小屏错误信息：" + ex.Message);
             }
         }
         public void GetImage(dynamic value)
@@ -89,7 +99,34 @@ namespace Xr.RtScreen.pages
             }
             catch
             {
-                
+
+            }
+        }
+        public void GetWasitPatrent(string wasitPatient)
+        {
+            try
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+             {
+                 scrollingText1.ScrollText = wasitPatient;
+             });
+            }
+            catch
+            {
+
+            }
+        }
+        public void GetDoctorInfo(string docotrinfo)
+        {
+            try
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    scrollingTexts1.ScrollText = docotrinfo;
+                });
+            }
+            catch
+            {
             }
         }
         #endregion
@@ -106,7 +143,7 @@ namespace Xr.RtScreen.pages
             Pen pp = new Pen(Color.White);
             e.Graphics.DrawRectangle(pp, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.X + this.Width - 1, e.CellBounds.Y + this.Height - 1);
         }
-        #endregion 
+        #endregion
         #region 时间指针
         public void time()
         {
@@ -124,6 +161,6 @@ namespace Xr.RtScreen.pages
         {
             GetDoctorSmallScreenInfo();
         }
-        #endregion 
+        #endregion
     }
 }
