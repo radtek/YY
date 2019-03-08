@@ -37,6 +37,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.lab_failedCount = new System.Windows.Forms.Label();
             this.lab_succeedCount = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // txt_log
@@ -103,6 +104,10 @@
             this.lab_succeedCount.TabIndex = 17;
             this.lab_succeedCount.Text = "正常次数：";
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // SpeakVoicemainFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -133,5 +138,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lab_failedCount;
         private System.Windows.Forms.Label lab_succeedCount;
+        private System.Windows.Forms.Timer timer2;
     }
 }

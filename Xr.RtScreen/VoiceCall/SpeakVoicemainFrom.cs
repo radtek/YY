@@ -30,7 +30,8 @@ namespace Xr.RtScreen.VoiceCall
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             timer1.Interval = Int32.Parse(ConfigurationManager.AppSettings["CallNextSpan"]);
             this.WindowState = FormWindowState.Minimized;
-            this.Size = new Size(739,150);
+            this.Size = new Size(739, 150);
+            time();
         }
         #region 数据更新
         public static Func<List<CallPrint>> GetDataUpdate = new Func<List<CallPrint>>(delegate()
@@ -53,10 +54,11 @@ namespace Xr.RtScreen.VoiceCall
             lab_failedCount.Text = "失败次数：" + failedCount;
             lab_lasttime.Text = "最后时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
-
+        static List<CallPrint> listPrint;
         private static List<CallPrint> GetData()
         {
             List<CallPrint> cpList = new List<CallPrint>();
+            listPrint = new List<CallPrint>();
             string Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList;
             Dictionary<string, string> pa = new Dictionary<string, string>();
             pa.Add("hospitalId", HelperClass.hospitalId);
@@ -70,7 +72,7 @@ namespace Xr.RtScreen.VoiceCall
                 pa.Add("clinicId", HelperClass.clincId);//HelperClass.clincId
             }
             string result = HttpHelper.CallRemote(Url, pa, HttpMethod.Post);
-            Log4net.LogHelper.Info("呼号请求地址："+Url+ "?" + string.Join("&", pa.Select(x => x.Key + "=" + x.Value).ToArray()));
+            Log4net.LogHelper.Info("呼号请求地址：" + Url + "?" + string.Join("&", pa.Select(x => x.Key + "=" + x.Value).ToArray()));
             try
             {
                 var objT = Newtonsoft.Json.Linq.JObject.Parse(result);
@@ -97,9 +99,10 @@ namespace Xr.RtScreen.VoiceCall
             }
             catch (Exception rx)
             {
-                Log4net.LogHelper.Error("查询呼号错误信息："+rx.Message);
+                Log4net.LogHelper.Error("查询呼号错误信息：" + rx.Message);
                 failedCount++;
             }
+            listPrint = cpList;
             return cpList;
         }
         #endregion
@@ -170,7 +173,7 @@ namespace Xr.RtScreen.VoiceCall
             PlayVoice();
         }
         #endregion
-        #region 
+        #region 把数据写入到界面
         private delegate void LogPrintDelegate(string log);
         public void LogPrint(string log)
         {
@@ -190,11 +193,31 @@ namespace Xr.RtScreen.VoiceCall
                 txt_log.Text = txt_log.Text.Insert(0, newLine);
             }
         }
-#endregion
-
         private void SpeakVoicemainFrom_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
         }
+        #endregion
+        #region 清除滚动文字信息
+        public void time()
+        {
+            if (!timer2.Enabled)
+            {
+                timer2.Interval = 1 * 60 * 1000;
+                timer2.Start();
+            }
+            else
+            {
+                timer2.Stop();
+            }
+        }
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (listPrint.Count == 0)
+            {
+                setFormTextValue("请耐心等候叫号");
+            }
+        }
+        #endregion
     }
 }
