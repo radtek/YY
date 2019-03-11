@@ -24,6 +24,7 @@ namespace Xr.RtManager.Pages.booking
         public BlackListAdminForm()
         {
             InitializeComponent();
+            timer1.Interval = Int32.Parse(ConfigurationManager.AppSettings["AutoRefreshTimeSpan"]) * 1000;
             //cmd = new Xr.Common.Controls.OpaqueCommand(this);
             //cmd.ShowOpaqueLayer(225, true);
         }

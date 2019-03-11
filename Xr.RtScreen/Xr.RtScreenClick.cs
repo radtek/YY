@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using Xr.Http;
 using RestSharp;
 using System.Net;
+using Xr.Common;
 
 namespace Xr.RtScreen
 {
@@ -22,6 +23,8 @@ namespace Xr.RtScreen
     {
         public static Form1 pCurrentWin = null;//初始化的时候窗体对象赋值
         public static String ScreenType { get; set; }
+         LodingFrm loadingfrm;
+         SplashScreenManager loading;
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +33,10 @@ namespace Xr.RtScreen
                   ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
             pCurrentWin = this;
+            loadingfrm = new LodingFrm(this);
+            //将Loaing窗口，注入到 SplashScreenManager 来管理
+            loading = new SplashScreenManager(loadingfrm);
+            loading.ShowLoading();
             Log4net.LogHelper.Info("程序启动");
             GetDoctorAndClinc();
             #region 
@@ -72,7 +79,19 @@ namespace Xr.RtScreen
                     List<HelperClassDoctor> list = new List<HelperClassDoctor>();
                     HelperClassDoctor two = Newtonsoft.Json.JsonConvert.DeserializeObject<HelperClassDoctor>(objT["result"].ToString());
                     list.Add(two);
+                    if (list[0] == null)
+                    {
+                        loading.CloseWaitForm();
+                        MessageBoxUtils.Show("未查询到医院信息，请检查后重启", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                        System.Environment.Exit(0);
+                    }
                     HelperClass.list = list;
+                }
+                else
+                {
+                    loading.CloseWaitForm();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                    System.Environment.Exit(0);
                 }
                 //查询科室数据
                 String urls = AppContext.AppConfig.serverUrl + InterfaceAddress.dept + "?hospital.code=" + AppContext.AppConfig.hospitalCode;
@@ -81,6 +100,12 @@ namespace Xr.RtScreen
                 if (string.Compare(objTs["state"].ToString(), "true", true) == 0)
                 {
                     HelperClass.DepartmentList = objTs["result"].ToObject<List<HelperClinc>>();
+                }
+                else
+                {
+                    loading.CloseWaitForm();
+                    MessageBoxUtils.Show(objTs["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                    System.Environment.Exit(0);
                 }
                 //查询诊室数据
                 String urlss = AppContext.AppConfig.serverUrl + InterfaceAddress.clin + "?code=" + AppContext.AppConfig.clinicCode;
@@ -91,10 +116,22 @@ namespace Xr.RtScreen
                     //Clinc clinc = Newtonsoft.Json.JsonConvert.DeserializeObject<Clinc>(objT["result"].ToString());
                     HelperClass.clincId = objTss["result"]["clinicId"].ToString();
                 }
+                else
+                {
+                    loading.CloseWaitForm();
+                    MessageBoxUtils.Show(objTss["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                    System.Environment.Exit(0);
+                }
             }
             catch (Exception ex)
             {
+                loading.CloseWaitForm();
+                MessageBoxUtils.Show("程序启动出现错误,请检查后重启", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                System.Environment.Exit(0);
                 Log4net.LogHelper.Error("叫号获取科室和医院主键错误信息：" + ex.Message);
+            }
+            finally {
+                loading.CloseWaitForm();
             }
         }
         #endregion 

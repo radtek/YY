@@ -464,7 +464,7 @@
             this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnQuery.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnQuery.Location = new System.Drawing.Point(717, 10);
+            this.btnQuery.Location = new System.Drawing.Point(611, 10);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 30);
             this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -535,7 +535,7 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(611, 10);
+            this.btnSave.Location = new System.Drawing.Point(692, 10);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;

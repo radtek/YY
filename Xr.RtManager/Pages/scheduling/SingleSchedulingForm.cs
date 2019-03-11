@@ -214,7 +214,7 @@ namespace Xr.RtManager.Pages.scheduling
                                 String sd = "";
                                 if (periodList[i] == "0") sd = "上午";
                                 else if (periodList[i] == "1") sd = "下午";
-                                else if (periodList[i] == "2") sd = "晚午";
+                                else if (periodList[i] == "2") sd = "晚上";
                                 else if (periodList[i] == "3") sd = "全天";
                                 //labMsg.Text = "该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
                                 return "1|该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";

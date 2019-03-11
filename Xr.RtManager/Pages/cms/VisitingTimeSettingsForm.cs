@@ -440,6 +440,7 @@ namespace Xr.RtManager.Pages.cms
                             if (rowMorningNum > 3) row = rowMorningNum + 1;
                             else row = 4;
                             dt1 = DateTime.Parse("2008-08-08 " + defaultVisit.mStart + ":00");
+                            Log4net.LogHelper.Info(dt1.ToString());
                             dt2 = dt1.AddMinutes(int.Parse(defaultVisit.mSubsection));
                             timeInterval = "上午";
                             if (morning != CheckState.Checked)
@@ -582,8 +583,8 @@ namespace Xr.RtManager.Pages.cms
                         {
                             if (j == 0 && morning == CheckState.Checked)
                             {
-                                start = dt1.ToString().Substring(11, 5);
-                                end = dt2.ToString().Substring(11, 5);
+                                start = dt1.ToString("HH:mm");
+                                end = dt2.ToString("HH:mm");
                                 dt1 = dt2;
                                 dt2 = dt1.AddMinutes(int.Parse(defaultVisit.mSubsection));
                                 if (r > rowMorningNum)
@@ -599,8 +600,8 @@ namespace Xr.RtManager.Pages.cms
                             }
                             if (j == 1 && afternoon == CheckState.Checked)
                             {
-                                start = dt1.ToString().Substring(11, 5);
-                                end = dt2.ToString().Substring(11, 5);
+                                start = dt1.ToString("HH:mm");
+                                end = dt2.ToString("HH:mm");
                                 dt1 = dt2;
                                 dt2 = dt1.AddMinutes(int.Parse(defaultVisit.aSubsection));
                                 if (r > rowAfternoonNum)
@@ -616,8 +617,8 @@ namespace Xr.RtManager.Pages.cms
                             }
                             if (j == 2 && night == CheckState.Checked)
                             {
-                                start = dt1.ToString().Substring(11, 5);
-                                end = dt2.ToString().Substring(11, 5);
+                                start = dt1.ToString("HH:mm");
+                                end = dt2.ToString("HH:mm");
                                 dt1 = dt2;
                                 dt2 = dt1.AddMinutes(int.Parse(defaultVisit.nSubsection));
                                 if (r > rowNightNum)
@@ -633,8 +634,8 @@ namespace Xr.RtManager.Pages.cms
                             }
                             if (j == 3 && allDay == CheckState.Checked)
                             {
-                                start = dt1.ToString().Substring(11, 5);
-                                end = dt2.ToString().Substring(11, 5);
+                                start = dt1.ToString("HH:mm");
+                                end = dt2.ToString("HH:mm");
                                 dt1 = dt2;
                                 dt2 = dt1.AddMinutes(int.Parse(defaultVisit.allSubsection));
                                 if (r > rowAllDayNum)

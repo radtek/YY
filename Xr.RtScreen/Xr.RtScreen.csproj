@@ -78,6 +78,7 @@
     <Reference Include="DevExpress.Utils.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Xpo.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -126,7 +127,14 @@
     <Compile Include="Models\InterfaceAddress.cs" />
     <Compile Include="Models\RestSharpHelper.cs" />
     <Compile Include="Models\ScreenClass.cs" />
+    <Compile Include="Models\SplashScreenManager.cs" />
     <Compile Include="Models\WebConfigHelper.cs" />
+    <Compile Include="pages\LodingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pages\LodingFrm.Designer.cs">
+      <DependentUpon>LodingFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="pages\RtDoctorSmallScreenFrm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +174,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="pages\LodingFrm.resx">
+      <DependentUpon>LodingFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\RtDoctorSmallScreenFrm.resx">
       <DependentUpon>RtDoctorSmallScreenFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +257,7 @@
     <Content Include="man.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\loading3.gif" />
     <Content Include="RtScreenSocket\HPSocket4C-SSL_U.dll" />
     <Content Include="RtScreenSocket\HPSocket4C_U.dll" />
     <Content Include="RtScreenSocket\HPSocketCS.dll" />

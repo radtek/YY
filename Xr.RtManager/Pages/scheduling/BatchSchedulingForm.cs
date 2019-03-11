@@ -448,6 +448,41 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void bandedGridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
+            DateTime dt = DateTime.ParseExact(lueDate.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
+            String zj = e.Column.Caption.Substring(0,2);//周几
+            if (zj.Equals("周一"))
+            {
+            }
+            else if (zj.Equals("周二"))
+            {
+                dt = dt.AddDays(1);
+            }
+            else if (zj.Equals("周三"))
+            {
+                dt = dt.AddDays(2);
+            }
+            else if (zj.Equals("周四"))
+            {
+                dt = dt.AddDays(3);
+            }
+            else if (zj.Equals("周五"))
+            {
+                dt = dt.AddDays(4);
+            }
+            else if (zj.Equals("周六"))
+            {
+                dt = dt.AddDays(5);
+            }
+            else if (zj.Equals("周日"))
+            {
+                dt = dt.AddDays(6);
+            }
+            if (DateTime.Compare(dt, DateTime.Today) < 0) //判断日期大小
+            {
+                MessageBoxUtils.Hint("过去的日期不能排班", HintMessageBoxIcon.Error, MainForm);
+                return;
+            }
+
             if (e.CellValue == null) return;
             if (e.CellValue.Equals("√"))
             {

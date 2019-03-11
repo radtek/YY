@@ -15,6 +15,7 @@ using Xr.Common.Controls;
 using Xr.RtManager.Utils;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraEditors;
+using Xr.RtManager.Module.triage;
 
 namespace Xr.RtManager.Pages.booking
 {
@@ -29,8 +30,19 @@ namespace Xr.RtManager.Pages.booking
             //cmd = new Xr.Common.Controls.OpaqueCommand(this);
             //cmd.ShowOpaqueLayer(225, true);
         }
+        /// <summary>
+        /// 查询卡号
+        /// </summary>
+        private string CardID = String.Empty;
+        /// <summary>
+        /// 患者主键
+        /// </summary>
+        private string Patientid = String.Empty;
+        bool NeedWaitingFrm = true;
+        bool isFirstload = true;
         private void UserForm_Load(object sender, EventArgs e)
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             //下拉框数据
             getLuesInfo();
             //配置时间格式
@@ -42,6 +54,7 @@ namespace Xr.RtManager.Pages.booking
             出院复诊.Caption = "出院\r\n复诊";
             外院转诊.Caption = "外院\r\n转诊";
             登记时间.Caption = "登记\r\n时间";
+            isFirstload = false;
         }
         /// <summary>
         /// 下拉框数据
@@ -127,6 +140,82 @@ namespace Xr.RtManager.Pages.booking
                 MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
             }
         }
+        #region 输入文本框限制
+        private void txt_cardNoQuery_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键  
+            {
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+        private void txt_cardNoQuery_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate
+            {
+                (sender as TextEdit).SelectAll();
+            });
+        }
+        private void txt_cardNoQuery_KeyUp(object sender, KeyEventArgs e)
+        {
+            //允许Ctrl+v粘贴数字
+            if (e.KeyData == (Keys.Control | Keys.V))
+            {
+                if (Clipboard.ContainsText())
+                {
+                    try
+                    {
+                        Convert.ToInt64(Clipboard.GetText());  //检查是否数字
+                        //((TextEdit)sender).SelectedText = Clipboard.GetText().Trim(); //Ctrl+V 粘贴  
+                        ((TextEdit)sender).Text = Clipboard.GetText().Trim();
+
+                    }
+                    catch (Exception)
+                    {
+                        e.Handled = true;
+                        //throw;
+                    }
+                }
+            }
+
+            if (txt_cardNoQuery.Text != String.Empty)
+            {
+                if (e.KeyCode == Keys.Control || e.KeyCode == Keys.Enter)
+                {
+                    CardID = txt_cardNoQuery.Text;
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+                    txt_cardNoQuery.Text = String.Empty;
+                    gcAppointmentInfo.Focus();
+                }
+            }
+        }
+        #endregion
+        private void btn_zlk_Click(object sender, EventArgs e)
+        {
+            //ClearUIInfo();
+            //WorkType = AsynchronousWorks.ReadzlCard;
+            //cmd.IsShowCancelBtn = false;
+            //cmd.ShowOpaqueLayer();
+            CardID = "000675493100";
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+        }
+        private void btn_readSocialcard_Click(object sender, EventArgs e)
+        {
+
+            //WorkType = AsynchronousWorks.ReadSocialcard;
+            timer1.Start();
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadSocialcard });
+        }
+
+        private void btn_readIdcard_Click(object sender, EventArgs e)
+        {
+            //WorkType = AsynchronousWorks.ReadIdCard;
+            timer1.Start();
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadIdCard });
+        }
+        public bool CancelFlag = false;
         private void buttonControl1_Click(object sender, EventArgs e)
         {
             cmd = new OpaqueCommand(this);
@@ -134,6 +223,8 @@ namespace Xr.RtManager.Pages.booking
             {
                 QueryInfo();
             }
+            checkEdit1.Checked = true;
+            panel7.Enabled = false;
         }
         AppointmentQueryParam CurrentParam = new AppointmentQueryParam();
         private bool VerifyInfo()
@@ -264,7 +355,526 @@ namespace Xr.RtManager.Pages.booking
                 cmd.HideOpaqueLayer();
             }
         }
+        private void Asynchronous(AsyncEntity ars)
+        {
+            //异步操作
+            if (!this.backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1 = new BackgroundWorker();
+                var bw = backgroundWorker1;
+                bw.WorkerReportsProgress = true;
+                //需要异步的操作
+                bw.DoWork += new DoWorkEventHandler(DoWork);
+                //异步操作时报告前台状态变更
+                //bw.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+                //异步操作完成后操作
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
+                bw.WorkerSupportsCancellation = true;
+                //异步调用结束后释放操作
+                //bw.Disposed += new EventHandler(Disposed);
+                //开始异步操作
+                bw.RunWorkerAsync(ars);
 
+                //打开等待框
+                 if (ars.WorkType == AsynchronousWorks.ReadzlCard)
+                {
+                    cmd.IsShowCancelBtn = false;
+                    cmd.ShowOpaqueLayer();
+                    ClearUIInfo();
+                }
+
+                else if (ars.WorkType == AsynchronousWorks.ReadIdCard || ars.WorkType == AsynchronousWorks.ReadSocialcard)
+                {
+                    cmd.IsShowCancelBtn = true;
+                    cmd.ShowOpaqueLayer(0.56f, "正在读取...");
+                    ClearUIInfo();
+                }
+                    /*
+                else if (WorkType == AsynchronousWorks.SingInOrRegister)
+                {
+                    //cmd.IsShowCancelBtn = false;
+                    //cmd.ShowOpaqueLayer();
+                }
+                     */
+               else
+                {
+                     if (NeedWaitingFrm)
+                    {
+                        cmd.IsShowCancelBtn = false;
+                        cmd.ShowOpaqueLayer();
+                    }
+                }
+            }
+        }
+        void DoWork(object sender, DoWorkEventArgs e)
+        {
+            SycResult result = new SycResult();
+            String[] Pras = new String[] { };
+            AsyncEntity Arg = e.Argument as AsyncEntity;
+            AsynchronousWorks workType = Arg.WorkType;
+            result.WorkType = Arg.WorkType;
+            if (Arg.Argument != null)
+            {
+                Pras = Arg.Argument;
+            }
+            // 异步操作1
+            Thread.Sleep(100);
+            #region 查询患者信息
+            if (workType == AsynchronousWorks.QueryID || workType == AsynchronousWorks.ReadzlCard)
+            {
+
+                //报告前台状态变更
+                backgroundWorker1.ReportProgress(50);
+                // 异步操作2
+                //Thread.Sleep(300);
+                //提交异步操作结果供结束时操作
+                if (CardID != String.Empty)
+                {
+                    //String serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
+                    //String jsonStr = HttpClass.HRequest(serverUrl + "bedChargeSettle/queryHosRecords?numType=2&&num=" + SocialCardID + "&&queryType=1");
+
+                    String param = "";
+                    //获取患者信息
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    //prament.Add("cardNo", CardID);
+                    prament.Add("cardNo", Pras[0]);
+
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByCardNo?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+                    List<JObject> objTs = new List<JObject>();
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        objTs.Add(objT);
+
+                        result.obj = objTs;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        if (objT["message"].ToString() == "未匹配到患者信息")
+                        {
+                            result.msg = "没有查询到基本信息，请去办卡";
+                        }
+                        else
+                        {
+                            result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        }
+                        e.Result = result;
+                    }
+                    CardID = String.Empty;
+                }
+                else //输入为空时不查询
+                {
+                    result.obj = null;
+                    result.result = true;
+                    result.msg = "成功";
+                    e.Result = result;
+                }
+                NeedWaitingFrm = true;
+            }
+            #endregion
+            #region 读取身份证
+            else if (workType == AsynchronousWorks.ReadIdCard)
+            {
+                //try
+                //{
+                //    JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
+                //    if (idCardInfo != null)
+                //    {
+                //        IDCardID = idCardInfo.Code.ToString();
+                //    }
+                //    if (IDCardID != String.Empty)
+                //    {
+                //        //patientId = carMes.user_id;
+                //        LogClass.WriteLog("读取身份证成功，身份证号：" + IDCardID);
+                //    }
+                //    result.obj = null;
+                //    result.result = true;
+                //    result.msg = "成功";
+                //    e.Result = result;
+                //}
+                //catch (Exception ee)
+                //{
+                //    result.obj = null;
+                //    result.result = false;
+                //    result.msg = "读取身份证失败:" + ee.Message;
+                //    e.Result = result;
+                //}
+
+                try
+                {
+                    BackgroundWorker bgworker = sender as BackgroundWorker;
+                    //绑定委托要执行的方法 
+                    ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
+
+                    //开始异步执行(ReturnDataTable)方法 
+                    IAsyncResult ret = work.BeginInvoke("IdCard", null, null);
+
+                    //(异步编程模式好久就是在执行一个很耗时的方法(ReturnDataTable)时,还能向下继续运行代码) 
+
+                    //接着运行下面的while循环, 
+                    //判断异步操作是否完成 
+                    while (!ret.IsCompleted)
+                    {
+                        //没完成 
+                        //判断是否取消了backgroundworker异步操作 
+                        if (bgworker.CancellationPending)
+                        {
+                            //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
+                            JLIdCardInfoClass.CancelFlag = true;
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
+                    e.Result = work.EndInvoke(ret); //返回查询结果 赋值给e.Result 
+                }
+                catch (Exception ex)
+                {
+                    e.Result = ex.Message;
+                }
+
+            }
+            #endregion
+            #region 读取社保卡
+            else if (workType == AsynchronousWorks.ReadSocialcard)
+            {
+                CancelFlag = false;
+                try
+                {
+                    //while (!CancelFlag)
+                    //{
+
+                    //    SocialCard carMes = new SocialCard();
+                    //    carMes.readCard();
+                    //    if (carMes.message_type == "1")
+                    //    {
+                    //        CancelFlag = true;
+                    //        //patientId = carMes.user_id;
+                    //        LogClass.WriteLog("读取社保卡成功，卡号：" + carMes.user_id);
+                    //        SocialCardID = carMes.user_id;
+                    //    }
+
+                    //}
+                    //result.obj = null;
+                    //result.result = true;
+                    //result.msg = "成功";
+                    //e.Result = result;
+
+                    BackgroundWorker bgworker = sender as BackgroundWorker;
+                    //绑定委托要执行的方法 
+                    ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
+
+                    //开始异步执行(ReturnDataTable)方法 
+                    IAsyncResult ret = work.BeginInvoke("", null, null);
+
+                    //(异步编程模式好久就是在执行一个很耗时的方法(ReturnDataTable)时,还能向下继续运行代码) 
+
+                    //接着运行下面的while循环, 
+                    //判断异步操作是否完成 
+                    while (!ret.IsCompleted)
+                    {
+                        //没完成 
+                        //判断是否取消了backgroundworker异步操作 
+                        if (bgworker.CancellationPending)
+                        {
+                            //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
+                            SocialCard cardMes = new SocialCard();
+                            cardMes.cancelReadCard();
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
+                    e.Result = work.EndInvoke(ret); //返回查询结果 赋值给e.Result 
+                }
+                catch (Exception ee)
+                {
+                    result.obj = null;
+                    result.result = false;
+                    result.msg = "读取社保卡失败:" + ee.Message;
+                    e.Result = result;
+                }
+            }
+            #endregion
+            #region 查询预约信息
+            if (workType == AsynchronousWorks.ReservationPatientList)
+            {
+                List<String> Results = new List<String>();//lueDept.EditValue
+                //String param = "deptId=2&registerWay=0&status=1&patientName=李鹏真&startDate=2019-01-05&endDate=2019-01-11";
+                String param = "";//deptId={0}&registerWay={1}&status={2}&patientName={3}&startDate={4}&endDate={5}&pageSize=10000";
+                /*param = String.Format(param,
+                    CurrentParam.deptId,
+                    CurrentParam.registerWay,
+                    CurrentParam.status,
+                    CurrentParam.patientName,
+                    CurrentParam.startDate,
+                    CurrentParam.endDate);
+                 */
+
+                //获取预约信息
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("deptId", CurrentParam.deptId);
+                if (CurrentParam.registerWay != String.Empty)
+                    prament.Add("registerWay", CurrentParam.registerWay);
+                if (CurrentParam.status != String.Empty)
+                    prament.Add("status", CurrentParam.status);
+                if (checkEdit1.Checked)
+                {
+                    if (CurrentParam.patientName != String.Empty)
+                        prament.Add("patientName", CurrentParam.patientName);
+                }
+                prament.Add("startDate", CurrentParam.startDate);
+                prament.Add("endDate", CurrentParam.endDate);
+
+                prament.Add("patientId", Pras[0]);
+                prament.Add("pageSize", "10000");
+
+                String url = String.Empty;
+                if (prament.Count != 0)
+                {
+                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                }
+                url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/list?" + param;
+                String jsonStr = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(jsonStr);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    result.obj = objT;
+                    result.result = true;
+                    //result.msg = "成功";
+                    result.msg = objT["message"].ToString();
+                    e.Result = result;
+                }
+                else
+                {
+                    result.result = false;
+                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                    e.Result = result;
+                }
+            }
+            #endregion
+        }
+        private delegate SycResult ReadCardDelegate(string parm);  //创建一个委托 
+        /// <summary> 
+        /// 异步委托的方法 
+        /// </summary> 
+        /// <param name="sql"></param> 
+        /// <returns></returns> 
+        private SycResult ReturnReadCardData(string parm)
+        {
+
+            SycResult Result = new SycResult() { result = true };
+            NeedWaitingFrm = false;
+            //System.Threading.Thread.Sleep(10000);
+            if (parm == "IdCard")
+            {
+                System.Threading.Thread.Sleep(3000);
+                if (backgroundWorker1.IsBusy)
+                {
+                    CardID = "000675493100";
+                    Result.WorkType = AsynchronousWorks.ReadIdCard;
+                    Result.obj = CardID;
+                }
+
+                /*JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
+                if (idCardInfo != null)
+                {
+                 if(backgroundWorker1.IsBusy)
+                    CardID = idCardInfo.Code.ToString();
+                }
+                if (CardID != String.Empty)
+                {
+                    //patientId = carMes.user_id;
+                    Result.obj = CardID;
+                    LogClass.WriteLog("读取身份证成功，身份证号：" + IDCardID);
+                }
+                 */
+                //result.obj = null;
+                //result.result = true;
+                //result.msg = "成功
+            }
+            else
+            {
+                System.Threading.Thread.Sleep(3000);
+                if (backgroundWorker1.IsBusy)
+                {
+                    CardID = "000675493100";
+                    Result.WorkType = AsynchronousWorks.ReadSocialcard;
+                    Result.obj = CardID;
+                }
+                /*
+                while (!CancelFlag)
+                {
+                    SocialCard carMes = new SocialCard();
+                    carMes.readCard();
+                    if (carMes.message_type == "1")
+                    {
+                        CancelFlag = true;
+                        //patientId = carMes.user_id;
+                        LogClass.WriteLog("读取社保卡成功，卡号：" + carMes.user_id);
+                        if(backgroundWorker1.IsBusy)
+                          {
+                            CardID = carMes.user_id;
+                            Result.obj = CardID;
+                          }
+                    }
+                }
+                 */
+                //result.obj = null;
+                //result.result = true;
+                //result.msg = "成功";
+                //e.Result = result;
+            }
+
+
+            return Result;
+        }
+        void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //停止异步调用
+            this.backgroundWorker1.CancelAsync();
+            try
+            {
+                //Thread.Sleep(500);
+                //通过异步操作完成结果判断后续提示
+                if (e.Result == null)
+                {
+                    //MessageBoxUtils.Hint("操作失败，请稍候尝试。");
+                    MessageBoxUtils.Show("操作失败，请稍候尝试。", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    return;
+                }
+                var result = (SycResult)e.Result;
+                if (result.result)
+                {
+                    AsynchronousWorks workType = result.WorkType;
+                    #region 患者信息
+                    if (workType == AsynchronousWorks.QueryID || workType == AsynchronousWorks.ReadzlCard)
+                    {
+                        if (result.obj == null)
+                        {
+                            //_waitForm.DialogResult = DialogResult.OK;
+                            //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
+                            //_waitForm.Close();
+                            cmd.HideOpaqueLayer();
+                            return;
+                        }
+                        List<JObject> objTs = result.obj as List<JObject>;//{"code":200,"message":"操作成功","result":{"age":"32","birthday":"1987-12-22","jkt":"003000005010","patientId":"000675493100","patientName":"李鹏真","phone":"17666476268","sbk":"11111111","sex":"男","sfz":"45032219871222151X","zlk":"02071196"},"state":true}
+                        JObject objT = objTs[0];
+                        Patientid = objT["result"]["patientId"].ToString();
+                        NeedWaitingFrm = false;
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid } });
+
+                    }
+                    #endregion
+                    #region 读取身份证
+                    else if (workType == AsynchronousWorks.ReadIdCard)
+                    {
+                        /*
+                        _waitForm.DialogResult = DialogResult.OK;
+                        //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
+                        _waitForm.Close();
+                         */
+                        //workType = AsynchronousWorks.QueryID;
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
+                        //Asynchronous();
+                    }
+                    #endregion
+                    #region 读取社保卡
+                    else if (workType == AsynchronousWorks.ReadSocialcard)
+                    {
+                        //workType = AsynchronousWorks.QueryID;
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
+                        //Asynchronous();
+                    }
+                    #endregion
+                    #region 患者预约信息
+                    else if (workType == AsynchronousWorks.ReservationPatientList)
+                    {
+                        if (result.obj == null)
+                        {
+                            //_waitForm.DialogResult = DialogResult.OK;
+                            //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
+                            //_waitForm.Close();
+                            cmd.HideOpaqueLayer();
+                            return;
+                        }
+                        JObject objT = result.obj as JObject;
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            List<AppointmentEntity> list = objT["result"]["list"].ToObject<List<AppointmentEntity>>();
+                            this.gcAppointmentInfo.DataSource = list;
+                        }
+                        else
+                        {
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                            return;
+                        }
+
+                    }
+                    #endregion
+                }
+                else
+                {
+                    gcAppointmentInfo.DataSource = null;
+                    MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                }
+                //MessageBoxUtils.Hint(result.msg);
+
+            }
+            catch (Exception ex)
+            {
+                cmd.HideOpaqueLayer();
+                if (ex.Message == "操作被取消。")
+                    MessageBoxUtils.Hint(ex.Message, HintMessageBoxIcon.Error, MainForm);
+                else
+                    MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+            }
+            finally
+            {
+                // 关闭加载提示框
+                //DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
+                //cmd.HideOpaqueLayer();
+                //关闭等待框
+                if (NeedWaitingFrm)
+                {
+                    cmd.HideOpaqueLayer();
+                }
+                else
+                {
+                    NeedWaitingFrm = true;
+                }
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!cmd.waitingBox.Visible)
+            {
+                //开始取消 
+                if (backgroundWorker1.IsBusy) //是否在运行异步操作 
+                {
+                    backgroundWorker1.CancelAsync(); //(是)提交取消命令 
+                    if (timer1.Enabled)
+                    {
+                        timer1.Stop();
+                    }
+                }
+            }
+        }
+        void ClearUIInfo()
+        {
+            //CardID = String.Empty;
+        }
         private void gv_AppointmentInfo_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             GridView gv = sender as GridView;
@@ -294,7 +904,7 @@ namespace Xr.RtManager.Pages.booking
             this.deStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.deStart.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.deStart.Properties.VistaCalendarInitialViewStyle = VistaCalendarInitialViewStyle.MonthView;
-            this.deStart.EditValue = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month,1);
+            this.deStart.EditValue = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.AddMonths(-1).Month, 1);
 
             this.deEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
             this.deEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -303,8 +913,90 @@ namespace Xr.RtManager.Pages.booking
             this.deEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.deEnd.Properties.VistaCalendarInitialViewStyle = VistaCalendarInitialViewStyle.MonthView;
             this.deEnd.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearView)));
-            this.deEnd.EditValue = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, System.DateTime.Now.Day);
+            this.deEnd.EditValue = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.AddMonths(1).Month, System.DateTime.Now.Day);
+            
         }
+
+        private void AppointmentQueryForm_Resize(object sender, EventArgs e)
+        {
+            cmd.rectDisplay = this.DisplayRectangle;
+        }
+        private void treeDeptId_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!isFirstload)
+            {
+                if (VerifyInfo())
+                {
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid } });
+                }
+            }
+        }
+
+        private void lueState_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!isFirstload)
+            {
+                if (VerifyInfo())
+                {
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid } });
+                }
+            }
+        }
+
+        private void lueRegisterWay_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!isFirstload)
+            {
+                if (VerifyInfo())
+                {
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid } });
+                }
+            }
+        }
+        private void deStart_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!isFirstload)
+            {
+                if (VerifyInfo())
+                {
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid } });
+                }
+            }
+            
+        }
+
+        private void deEnd_EditValueChanged(object sender, EventArgs e)
+        {
+            if (VerifyInfo())
+            {
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid } });
+            }
+        }
+
+        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
+        {
+            Patientid = String.Empty;
+            txt_cardNoQuery.Text = String.Empty;
+            
+            if (checkEdit1.Checked)
+            {
+                panel7.Enabled = false;
+                gcAppointmentInfo.DataSource = null;
+            }
+            else
+            {
+                panel7.Enabled = true;
+                txt_nameQuery.Text = String.Empty;
+                gcAppointmentInfo.DataSource = null;
+            }
+            /*if (VerifyInfo())
+            {
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid,"True" } });
+            }
+             */
+        }
+
+
     }
     /// <summary>
     /// 下拉框数据

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace Xr.RtManager
 {
@@ -53,12 +54,19 @@ namespace Xr.RtManager
             //获取自动更新的配置文件，用于读取版本号
             string file = System.Windows.Forms.Application.StartupPath + "\\Xr.AutoUpdate.exe";
             WebConfigHelper config = new WebConfigHelper(file, ConfigType.ExeConfig);
-            Double version = System.Convert.ToDouble(config.GetValueByKey("version"));
+            String version = config.GetValueByKey("version");
+            string[] sArray = version.Split('.');
+            //X.Y正式(1.0, 1.1)；X.YZ修改(1.0.1, 1.0.2)
+            int X = int.Parse(sArray[0]);
+            int Y = int.Parse(sArray[1]);
+            int Z = 0;
+            if (sArray.Length > 2)
+                Z = int.Parse(sArray[2]);
 
             //获取本应用程序的配置文件并根据版本号进行修改
             file = System.Windows.Forms.Application.StartupPath + "\\Xr.RtManager.exe";
             WebConfigHelper appConfig = new WebConfigHelper(file, ConfigType.ExeConfig);
-            //if (version > 1.0)
+            //if (X >= 1 && Y >= 1 && Z >=1)
             //{
             //    //添加应用程序配置节点，如果已经存在此节点，则不做操作
             //    appConfig.AddAppSetting("test", "测试");

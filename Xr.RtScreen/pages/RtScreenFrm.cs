@@ -207,6 +207,11 @@ namespace Xr.RtScreen.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
+                if (HelperClass.deptId == ""||HelperClass.deptId == null)
+                {
+                    Xr.Common.MessageBoxUtils.Show("请检查配置的科室是否正确！", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                    System.Environment.Exit(0);
+                }
                 prament.Add("deptId", HelperClass.deptId);
                 Xr.RtScreen.Models.RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findWaitingDesc, prament, Method.POST, result =>
                 {
@@ -224,6 +229,7 @@ namespace Xr.RtScreen.pages
                                 else
                                 {
                                     _context.Send((s) => Xr.Common.MessageBoxUtils.Hint(objT["message"].ToString(), Form1.pCurrentWin), null);
+                                    _context.Send((s) => System.Environment.Exit(0), null);
                                 }
                             }
                             break;

@@ -760,16 +760,36 @@ namespace Xr.RtManager.Pages.booking
         {
 
             // 远程获取目标页面源码
-            string strTargetHtml = string.Empty;
-            String[] args = Args as String[];
-            WebClient wc = new WebClient();
-            wc.DownloadFile(args[0], args[1]);
-            wc.Dispose();
-            Action action = () =>
+            try
             {
-                cmd.HideOpaqueLayer();
-            };
-            Invoke(action);
+                string strTargetHtml = string.Empty;
+                String[] args = Args as String[];
+                WebClient wc = new WebClient();
+                wc.DownloadFile(args[0], args[1]);
+                wc.Dispose();
+
+            }
+            catch (Exception e)
+            {
+                String Msg = e.Message;
+                if(e.InnerException!=null)
+                {
+                    Msg = e.InnerException.Message;
+                }
+                Action action = () =>
+                {
+                    MessageBoxUtils.Hint(Msg, HintMessageBoxIcon.Error, this);
+                };
+                Invoke(action);
+            }
+            finally
+            {
+                Action action = () =>
+                {
+                    cmd.HideOpaqueLayer();
+                };
+                Invoke(action);
+            }
         }
             
 		
