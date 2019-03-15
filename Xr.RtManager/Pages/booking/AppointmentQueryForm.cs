@@ -38,6 +38,9 @@ namespace Xr.RtManager.Pages.booking
         /// 患者主键
         /// </summary>
         private string Patientid = String.Empty;
+        ///预约记录主键 
+        /// </summary>
+        private String RegisterId = String.Empty;
         bool NeedWaitingFrm = true;
         bool isFirstload = true;
         private void UserForm_Load(object sender, EventArgs e)
@@ -335,6 +338,10 @@ namespace Xr.RtManager.Pages.booking
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     List<AppointmentEntity> list = objT["result"]["list"].ToObject<List<AppointmentEntity>>();
+                    if (list.Count == 0)
+                    {
+                        MessageBoxUtils.Hint("预约信息为空", HintMessageBoxIcon.Error, MainForm);
+                    }
                     this.gcAppointmentInfo.DataSource = list;
                 }
                 else
@@ -380,14 +387,12 @@ namespace Xr.RtManager.Pages.booking
                 {
                     cmd.IsShowCancelBtn = false;
                     cmd.ShowOpaqueLayer();
-                    ClearUIInfo();
                 }
 
                 else if (ars.WorkType == AsynchronousWorks.ReadIdCard || ars.WorkType == AsynchronousWorks.ReadSocialcard)
                 {
                     cmd.IsShowCancelBtn = true;
                     cmd.ShowOpaqueLayer(0.56f, "正在读取...");
-                    ClearUIInfo();
                 }
                     /*
                 else if (WorkType == AsynchronousWorks.SingInOrRegister)
@@ -608,7 +613,7 @@ namespace Xr.RtManager.Pages.booking
             }
             #endregion
             #region 查询预约信息
-            if (workType == AsynchronousWorks.ReservationPatientList)
+            else if (workType == AsynchronousWorks.ReservationPatientList)
             {
                 List<String> Results = new List<String>();//lueDept.EditValue
                 //String param = "deptId=2&registerWay=0&status=1&patientName=李鹏真&startDate=2019-01-05&endDate=2019-01-11";
@@ -662,6 +667,47 @@ namespace Xr.RtManager.Pages.booking
                     result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
                     e.Result = result;
                 }
+            }
+            #endregion
+            #region 取消预约
+            //取消候诊
+            else if (workType == AsynchronousWorks.CancelReservation)
+            {
+                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                // 异步操作2
+                //Thread.Sleep(300);
+                //提交异步操作结果供结束时操作
+
+                String param = "";
+                //请求取消预约
+                Dictionary<string, string> prament = new Dictionary<string, string>();
+                prament.Add("registerId", Pras[0]);
+                //prament.Add("triageId", TriageId);
+                //prament.Add("pageSize", "10000");
+
+                String url = String.Empty;
+                if (prament.Count != 0)
+                {
+                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                }
+                url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/cancelBooking?" + param;
+                String jsonStr = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(jsonStr);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    result.obj = objT;
+                    result.result = true;
+                    //result.msg = "成功";
+                    result.msg = objT["message"].ToString();
+                    e.Result = result;
+                }
+                else
+                {
+                    result.result = false;
+                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                    e.Result = result;
+                }
+
             }
             #endregion
         }
@@ -807,26 +853,63 @@ namespace Xr.RtManager.Pages.booking
                             //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
                             //_waitForm.Close();
                             cmd.HideOpaqueLayer();
+                            ClearUIInfo();
                             return;
                         }
                         JObject objT = result.obj as JObject;
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
                             List<AppointmentEntity> list = objT["result"]["list"].ToObject<List<AppointmentEntity>>();
+                            if (list.Count == 0)
+                            { 
+                                MessageBoxUtils.Hint("预约信息为空", HintMessageBoxIcon.Error, MainForm); 
+                            }
                             this.gcAppointmentInfo.DataSource = list;
                         }
                         else
                         {
+                            ClearUIInfo();
                             MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             return;
                         }
 
                     }
                     #endregion
+                    #region 取消现场预约
+                    else if (workType == AsynchronousWorks.CancelReservation)
+                    {
+                        if (result.obj == null)
+                        {
+                            //_waitForm.DialogResult = DialogResult.OK;
+                            //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
+                            //_waitForm.Close();
+                            return;
+                        }
+
+                        JObject objT = result.obj as JObject;
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            //重新查询更新状态
+                            //workType = AsynchronousWorks.QueryID;
+                            //CardID = lab_cardNo.Text;
+                            NeedWaitingFrm = false;
+                            if (VerifyInfo())
+                            {
+                                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReservationPatientList, Argument = new String[] { Patientid } });
+                            }
+                            MessageBoxUtils.Hint(result.msg, MainForm);
+                        }
+                        else
+                        {
+                            //MessageBoxUtils.Hint(objT["message"].ToString());
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                        }
+                    }
+                    #endregion
                 }
                 else
                 {
-                    gcAppointmentInfo.DataSource = null;
+                    
                     MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 }
                 //MessageBoxUtils.Hint(result.msg);
@@ -871,10 +954,6 @@ namespace Xr.RtManager.Pages.booking
                 }
             }
         }
-        void ClearUIInfo()
-        {
-            //CardID = String.Empty;
-        }
         private void gv_AppointmentInfo_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             GridView gv = sender as GridView;
@@ -894,6 +973,61 @@ namespace Xr.RtManager.Pages.booking
             lab_registerTime.Text = CurrentrowItem.registerTime;
             lab_address.Text = CurrentrowItem.address;
             lab_note.Text = CurrentrowItem.note;
+
+            lab_cancelOperaName.Text = CurrentrowItem.cancelOperaName;
+            lab_cancelTime.Text = CurrentrowItem.cancelTime;
+            lab_cancelWayTxt.Text = CurrentrowItem.cancelWayTxt;
+
+            //鼠标右键点击
+            System.Threading.Thread.Sleep(10);
+            if (e.Button == MouseButtons.Right)
+            {
+                if (CurrentrowItem.status == "0")//只有待签到可取消预约
+                {
+                    RegisterId = CurrentrowItem.id;
+                    contextMenuStrip1.Show(gcAppointmentInfo, e.Location);
+                }
+            }
+        }
+        private void gv_AppointmentInfo_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            GridView gv = sender as GridView;
+
+            AppointmentEntity CurrentrowItem = gv.GetRow(e.FocusedRowHandle) as AppointmentEntity;
+            if (CurrentrowItem != null)
+            {
+                lab_deptName.Text = CurrentrowItem.deptName;
+                lab_patientName.Text = CurrentrowItem.patientName;
+                lab_visitType.Text = CurrentrowItem.visitType;
+                lab_doctorName.Text = CurrentrowItem.doctorName;
+                lab_sex.Text = CurrentrowItem.sex;
+                lab_cardType.Text = CurrentrowItem.cardType;
+                lab_beginTime.Text = CurrentrowItem.beginTime;
+                lab_age.Text = CurrentrowItem.age;
+                lab_cardNo.Text = CurrentrowItem.cardNo;
+                lab_statusTxt.Text = CurrentrowItem.statusTxt;
+                lab_tempPhone.Text = CurrentrowItem.tempPhone;
+                lab_registerTime.Text = CurrentrowItem.registerTime;
+                lab_address.Text = CurrentrowItem.address;
+                lab_note.Text = CurrentrowItem.note;
+
+                lab_cancelOperaName.Text = CurrentrowItem.cancelOperaName;
+                lab_cancelTime.Text = CurrentrowItem.cancelTime;
+                lab_cancelWayTxt.Text = CurrentrowItem.cancelWayTxt;
+            }
+        }
+        //取消预约
+        private void CancelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBoxUtils.Show("确定为该患者取消预约吗?", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
+            {
+                //WorkType = AsynchronousWorks.CancelWaiting;
+                if (RegisterId != null && RegisterId != String.Empty)
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.CancelReservation, Argument = new String[] { RegisterId } });
+                else
+                    MessageBoxUtils.Hint("该患者尚未分诊", HintMessageBoxIcon.Error, MainForm);
+            }
 
         }
         public void setDateFomartDefult()
@@ -981,13 +1115,13 @@ namespace Xr.RtManager.Pages.booking
             if (checkEdit1.Checked)
             {
                 panel7.Enabled = false;
-                gcAppointmentInfo.DataSource = null;
+                ClearUIInfo();
             }
             else
             {
                 panel7.Enabled = true;
                 txt_nameQuery.Text = String.Empty;
-                gcAppointmentInfo.DataSource = null;
+                ClearUIInfo();
             }
             /*if (VerifyInfo())
             {
@@ -995,6 +1129,32 @@ namespace Xr.RtManager.Pages.booking
             }
              */
         }
+        private void ClearUIInfo()
+        {
+            gcAppointmentInfo.DataSource = null;
+
+            lab_deptName.Text = String.Empty;
+            lab_patientName.Text = String.Empty;
+            lab_visitType.Text = String.Empty;
+            lab_doctorName.Text = String.Empty;
+            lab_sex.Text = String.Empty;
+            lab_cardType.Text = String.Empty;
+            lab_beginTime.Text = String.Empty;
+            lab_age.Text = String.Empty;
+            lab_cardNo.Text = String.Empty;
+            lab_statusTxt.Text = String.Empty;
+            lab_tempPhone.Text = String.Empty;
+            lab_registerTime.Text = String.Empty;
+            lab_address.Text = String.Empty;
+            lab_note.Text = String.Empty;
+
+            lab_cancelOperaName.Text = String.Empty;
+            lab_cancelTime.Text = String.Empty;
+            lab_cancelWayTxt.Text = String.Empty;
+        }
+
+
+
 
 
     }
@@ -1042,7 +1202,12 @@ namespace Xr.RtManager.Pages.booking
     ///  预约信息实体
     /// </summary>
     public class AppointmentEntity
-    {    /// <summary>
+    {
+        /// <summary>
+        /// 预约主键
+        /// </summary>
+        public String id { get; set; }
+        /// <summary>
         /// 患者姓名
         /// </summary>
         public String patientName { get; set; }
@@ -1086,6 +1251,10 @@ namespace Xr.RtManager.Pages.booking
         /// 医生姓名
         /// </summary>
         public String doctorName { get; set; }
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public String status { get; set; }
 
         /// <summary>
         /// 状态
@@ -1129,9 +1298,21 @@ namespace Xr.RtManager.Pages.booking
         /// </summary>
         public String note { get; set; }
         /// <summary>
-        /// 地址 #
+        /// 地址
         /// </summary>
         public String address { get; set; }
+        /// <summary>
+        /// 取消操作者
+        /// </summary>
+        public String cancelOperaName { get; set; }
+        /// <summary>
+        /// 取消时间
+        /// </summary>
+        public String cancelTime { get; set; }
+        /// <summary>
+        /// 取消方式
+        /// </summary>
+        public String cancelWayTxt { get; set; }
         
     }
 }

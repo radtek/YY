@@ -128,7 +128,10 @@ namespace Xr.RtCall.pages
         /// <param name="e"></param>
         private void skinbutNew_Click(object sender, EventArgs e)
         {
+            this.skinbutNew.Text = "查询中";
             PatientList();
+            Thread.Sleep(1000);
+            this.skinbutNew.Text = "刷新";
         }
         #endregion 
     }

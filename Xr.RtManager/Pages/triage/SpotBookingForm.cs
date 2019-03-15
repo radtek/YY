@@ -310,7 +310,7 @@ namespace Xr.RtManager.Pages.triage
             }
             #endregion
             #region 获取科室可挂号医生
-            if (workType == AsynchronousWorks.QueryDoctor)
+            else if (workType == AsynchronousWorks.QueryDoctor)
             {
                 //报告前台状态变更
                 backgroundWorker1.ReportProgress(50);
@@ -351,7 +351,7 @@ namespace Xr.RtManager.Pages.triage
             }
             #endregion
             #region 获取医生可预约日期
-            if (workType == AsynchronousWorks.QueryDoctorAvailableDate)
+            else if (workType == AsynchronousWorks.QueryDoctorAvailableDate)
             {
                 //报告前台状态变更
                 backgroundWorker1.ReportProgress(50);
@@ -394,7 +394,7 @@ namespace Xr.RtManager.Pages.triage
             }
             #endregion
             #region 获取医生可预约时间段
-            if (workType == AsynchronousWorks.QueryDoctorAvailableTimeSpan)
+            else if (workType == AsynchronousWorks.QueryDoctorAvailableTimeSpan)
             {
                 //报告前台状态变更
                 backgroundWorker1.ReportProgress(50);
@@ -1020,7 +1020,7 @@ namespace Xr.RtManager.Pages.triage
                     }
                     #endregion
                     #region 获取科室可挂号医生
-                    if (workType == AsynchronousWorks.QueryDoctor)
+                    else if (workType == AsynchronousWorks.QueryDoctor)
                     {
                         ClearReservationUIInfo();
                         if (result.obj == null)
@@ -1103,7 +1103,7 @@ namespace Xr.RtManager.Pages.triage
                     }
                     #endregion
                     #region 获取医生可预约日期
-                    if (workType == AsynchronousWorks.QueryDoctorAvailableDate)
+                    else if (workType == AsynchronousWorks.QueryDoctorAvailableDate)
                     {
                         if (result.obj == null)
                         {
@@ -1145,7 +1145,7 @@ namespace Xr.RtManager.Pages.triage
                     }
                     #endregion
                     #region 获取医生可预约时间段
-                    if (workType == AsynchronousWorks.QueryDoctorAvailableTimeSpan)
+                    else if (workType == AsynchronousWorks.QueryDoctorAvailableTimeSpan)
                     {
                         if (result.obj == null)
                         {
@@ -1300,7 +1300,7 @@ namespace Xr.RtManager.Pages.triage
                     }
                     #endregion
                     #region 取消现场预约
-                    if (workType == AsynchronousWorks.CancelReservation)
+                    else if (workType == AsynchronousWorks.CancelReservation)
                     {
                         if (result.obj == null)
                         {
@@ -1329,7 +1329,7 @@ namespace Xr.RtManager.Pages.triage
                     }
                     #endregion
                     #region 现场预约
-                    if (workType == AsynchronousWorks.Reservation)
+                    else if (workType == AsynchronousWorks.Reservation)
                     {
                         if (result.obj == null)
                         {
@@ -1402,7 +1402,7 @@ namespace Xr.RtManager.Pages.triage
                     }
                     #endregion
                     #region 该医生当日预约名单
-                    if (workType == AsynchronousWorks.ReservationPatientList)
+                    else if (workType == AsynchronousWorks.ReservationPatientList)
                     {
                         if (result.obj == null)
                         {
@@ -1651,7 +1651,7 @@ namespace Xr.RtManager.Pages.triage
 
                         int i = gridHitInfo.RowHandle;
                         PatientListEntity obj = gv_patient.GetRow(i) as PatientListEntity;
-                        if (obj.status != "4")//判断该记录不为取消状态
+                        if (obj.status == "0")//只有待签到可取消预约//(obj.status != "4")//判断该记录不为取消状态
                         {
                             RegisterId = obj.id;
                             contextMenuStrip1.Show(gc_patient, e.Location);

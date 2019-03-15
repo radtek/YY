@@ -376,7 +376,7 @@ namespace Xr.RtManager.Pages.cms
             {
                 cmd.ShowOpaqueLayer(225, true);
                 groupBox3.Enabled = false;
-                SelectInfoPage(1, pageControl1.PageSize, "");
+                SelectInfoPage(1, pageControl1.PageSize, CickInfo.id);
                 dcArticle.ClearValue();
             }
             catch (Exception ex)

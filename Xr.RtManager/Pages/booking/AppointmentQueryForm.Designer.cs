@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcAppointmentInfo = new DevExpress.XtraGrid.GridControl();
@@ -72,6 +72,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBorderPanel6 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lab_cancelWayTxt = new System.Windows.Forms.Label();
+            this.lab_cancelTime = new System.Windows.Forms.Label();
+            this.lab_cancelOperaName = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.lab_registerTime = new System.Windows.Forms.Label();
             this.lab_cardNo = new System.Windows.Forms.Label();
             this.lab_cardType = new System.Windows.Forms.Label();
@@ -137,6 +143,8 @@
             this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.加急ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcAppointmentInfo)).BeginInit();
@@ -164,6 +172,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lueState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -272,6 +281,7 @@
             this.gv_AppointmentInfo.OptionsView.ShowIndicator = false;
             this.gv_AppointmentInfo.RowHeight = 30;
             this.gv_AppointmentInfo.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gv_AppointmentInfo_RowCellClick);
+            this.gv_AppointmentInfo.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gv_AppointmentInfo_FocusedRowChanged);
             // 
             // gridBand29
             // 
@@ -626,13 +636,21 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel2.ColumnCount = 6;
+            this.tableLayoutPanel2.ColumnCount = 8;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.Controls.Add(this.lab_cancelWayTxt, 7, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lab_cancelTime, 7, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lab_cancelOperaName, 7, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label21, 6, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label18, 6, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label16, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.lab_registerTime, 5, 3);
             this.tableLayoutPanel2.Controls.Add(this.lab_cardNo, 5, 2);
             this.tableLayoutPanel2.Controls.Add(this.lab_cardType, 5, 1);
@@ -642,7 +660,7 @@
             this.tableLayoutPanel2.Controls.Add(this.lab_doctorName, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.lab_tempPhone, 3, 3);
             this.tableLayoutPanel2.Controls.Add(this.lab_age, 3, 2);
-            this.tableLayoutPanel2.Controls.Add(this.lab_visitType, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lab_visitType, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.lab_beginTime, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label17, 4, 3);
             this.tableLayoutPanel2.Controls.Add(this.label12, 4, 2);
@@ -655,7 +673,7 @@
             this.tableLayoutPanel2.Controls.Add(this.label14, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.label15, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.label19, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lab_statusTxt, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lab_statusTxt, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.label20, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.lab_sex, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.lab_deptName, 1, 0);
@@ -671,8 +689,84 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(697, 248);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(840, 248);
             this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // lab_cancelWayTxt
+            // 
+            this.lab_cancelWayTxt.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_cancelWayTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lab_cancelWayTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lab_cancelWayTxt.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lab_cancelWayTxt.Location = new System.Drawing.Point(700, 73);
+            this.lab_cancelWayTxt.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.lab_cancelWayTxt.Name = "lab_cancelWayTxt";
+            this.lab_cancelWayTxt.Size = new System.Drawing.Size(140, 29);
+            this.lab_cancelWayTxt.TabIndex = 128;
+            this.lab_cancelWayTxt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lab_cancelTime
+            // 
+            this.lab_cancelTime.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_cancelTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lab_cancelTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lab_cancelTime.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lab_cancelTime.Location = new System.Drawing.Point(700, 38);
+            this.lab_cancelTime.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.lab_cancelTime.Name = "lab_cancelTime";
+            this.lab_cancelTime.Size = new System.Drawing.Size(140, 29);
+            this.lab_cancelTime.TabIndex = 127;
+            this.lab_cancelTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lab_cancelOperaName
+            // 
+            this.lab_cancelOperaName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_cancelOperaName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lab_cancelOperaName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lab_cancelOperaName.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lab_cancelOperaName.Location = new System.Drawing.Point(700, 3);
+            this.lab_cancelOperaName.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.lab_cancelOperaName.Name = "lab_cancelOperaName";
+            this.lab_cancelOperaName.Size = new System.Drawing.Size(140, 29);
+            this.lab_cancelOperaName.TabIndex = 126;
+            this.lab_cancelOperaName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label21
+            // 
+            this.label21.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label21.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.Location = new System.Drawing.Point(635, 75);
+            this.label21.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(65, 25);
+            this.label21.TabIndex = 125;
+            this.label21.Text = "取消方式";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label18
+            // 
+            this.label18.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label18.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Location = new System.Drawing.Point(635, 40);
+            this.label18.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 25);
+            this.label18.TabIndex = 124;
+            this.label18.Text = "取消时间";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label16
+            // 
+            this.label16.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label16.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label16.Location = new System.Drawing.Point(635, 5);
+            this.label16.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.label16.Name = "label16";
+            this.label16.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.label16.Size = new System.Drawing.Size(65, 25);
+            this.label16.TabIndex = 123;
+            this.label16.Text = "取 消 者";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lab_registerTime
             // 
@@ -680,10 +774,10 @@
             this.lab_registerTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_registerTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_registerTime.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_registerTime.Location = new System.Drawing.Point(534, 108);
+            this.lab_registerTime.Location = new System.Drawing.Point(490, 108);
             this.lab_registerTime.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_registerTime.Name = "lab_registerTime";
-            this.lab_registerTime.Size = new System.Drawing.Size(163, 29);
+            this.lab_registerTime.Size = new System.Drawing.Size(140, 29);
             this.lab_registerTime.TabIndex = 122;
             this.lab_registerTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -693,10 +787,10 @@
             this.lab_cardNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_cardNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_cardNo.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_cardNo.Location = new System.Drawing.Point(534, 73);
+            this.lab_cardNo.Location = new System.Drawing.Point(490, 73);
             this.lab_cardNo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_cardNo.Name = "lab_cardNo";
-            this.lab_cardNo.Size = new System.Drawing.Size(163, 29);
+            this.lab_cardNo.Size = new System.Drawing.Size(140, 29);
             this.lab_cardNo.TabIndex = 121;
             this.lab_cardNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -706,10 +800,10 @@
             this.lab_cardType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_cardType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_cardType.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_cardType.Location = new System.Drawing.Point(534, 38);
+            this.lab_cardType.Location = new System.Drawing.Point(490, 38);
             this.lab_cardType.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_cardType.Name = "lab_cardType";
-            this.lab_cardType.Size = new System.Drawing.Size(163, 29);
+            this.lab_cardType.Size = new System.Drawing.Size(140, 29);
             this.lab_cardType.TabIndex = 120;
             this.lab_cardType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -717,7 +811,7 @@
             // 
             this.lab_note.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_note.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutPanel2.SetColumnSpan(this.lab_note, 5);
+            this.tableLayoutPanel2.SetColumnSpan(this.lab_note, 7);
             this.lab_note.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_note.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.lab_note.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -725,7 +819,7 @@
             this.lab_note.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_note.Name = "lab_note";
             this.tableLayoutPanel2.SetRowSpan(this.lab_note, 2);
-            this.lab_note.Size = new System.Drawing.Size(627, 67);
+            this.lab_note.Size = new System.Drawing.Size(770, 67);
             this.lab_note.TabIndex = 118;
             // 
             // lab_patientName
@@ -734,10 +828,10 @@
             this.lab_patientName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_patientName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_patientName.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_patientName.Location = new System.Drawing.Point(282, 3);
+            this.lab_patientName.Location = new System.Drawing.Point(260, 3);
             this.lab_patientName.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_patientName.Name = "lab_patientName";
-            this.lab_patientName.Size = new System.Drawing.Size(162, 29);
+            this.lab_patientName.Size = new System.Drawing.Size(140, 29);
             this.lab_patientName.TabIndex = 116;
             this.lab_patientName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -745,13 +839,13 @@
             // 
             this.lab_address.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lab_address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutPanel2.SetColumnSpan(this.lab_address, 5);
+            this.tableLayoutPanel2.SetColumnSpan(this.lab_address, 7);
             this.lab_address.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_address.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.lab_address.Location = new System.Drawing.Point(70, 143);
             this.lab_address.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_address.Name = "lab_address";
-            this.lab_address.Size = new System.Drawing.Size(627, 29);
+            this.lab_address.Size = new System.Drawing.Size(770, 29);
             this.lab_address.TabIndex = 115;
             // 
             // lab_doctorName
@@ -763,7 +857,7 @@
             this.lab_doctorName.Location = new System.Drawing.Point(70, 38);
             this.lab_doctorName.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_doctorName.Name = "lab_doctorName";
-            this.lab_doctorName.Size = new System.Drawing.Size(162, 29);
+            this.lab_doctorName.Size = new System.Drawing.Size(140, 29);
             this.lab_doctorName.TabIndex = 114;
             this.lab_doctorName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -773,10 +867,10 @@
             this.lab_tempPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_tempPhone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_tempPhone.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_tempPhone.Location = new System.Drawing.Point(282, 108);
+            this.lab_tempPhone.Location = new System.Drawing.Point(260, 108);
             this.lab_tempPhone.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_tempPhone.Name = "lab_tempPhone";
-            this.lab_tempPhone.Size = new System.Drawing.Size(162, 29);
+            this.lab_tempPhone.Size = new System.Drawing.Size(140, 29);
             this.lab_tempPhone.TabIndex = 113;
             this.lab_tempPhone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -786,10 +880,10 @@
             this.lab_age.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_age.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_age.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_age.Location = new System.Drawing.Point(282, 73);
+            this.lab_age.Location = new System.Drawing.Point(260, 73);
             this.lab_age.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_age.Name = "lab_age";
-            this.lab_age.Size = new System.Drawing.Size(162, 29);
+            this.lab_age.Size = new System.Drawing.Size(140, 29);
             this.lab_age.TabIndex = 112;
             this.lab_age.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -799,10 +893,10 @@
             this.lab_visitType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_visitType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_visitType.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_visitType.Location = new System.Drawing.Point(534, 3);
+            this.lab_visitType.Location = new System.Drawing.Point(70, 108);
             this.lab_visitType.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_visitType.Name = "lab_visitType";
-            this.lab_visitType.Size = new System.Drawing.Size(163, 29);
+            this.lab_visitType.Size = new System.Drawing.Size(140, 29);
             this.lab_visitType.TabIndex = 111;
             this.lab_visitType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -815,7 +909,7 @@
             this.lab_beginTime.Location = new System.Drawing.Point(70, 73);
             this.lab_beginTime.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_beginTime.Name = "lab_beginTime";
-            this.lab_beginTime.Size = new System.Drawing.Size(162, 29);
+            this.lab_beginTime.Size = new System.Drawing.Size(140, 29);
             this.lab_beginTime.TabIndex = 110;
             this.lab_beginTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -823,31 +917,33 @@
             // 
             this.label17.Dock = System.Windows.Forms.DockStyle.Right;
             this.label17.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.Location = new System.Drawing.Point(469, 110);
+            this.label17.Location = new System.Drawing.Point(405, 110);
             this.label17.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 25);
+            this.label17.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            this.label17.Size = new System.Drawing.Size(85, 25);
             this.label17.TabIndex = 109;
-            this.label17.Text = "登记时间";
+            this.label17.Text = "登 记 时 间";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label12
             // 
             this.label12.Dock = System.Windows.Forms.DockStyle.Right;
             this.label12.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(469, 75);
+            this.label12.Location = new System.Drawing.Point(405, 75);
             this.label12.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 25);
+            this.label12.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            this.label12.Size = new System.Drawing.Size(85, 25);
             this.label12.TabIndex = 108;
-            this.label12.Text = "预约卡号";
+            this.label12.Text = "预 约 卡 号";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
             // 
             this.label11.Dock = System.Windows.Forms.DockStyle.Right;
             this.label11.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(237, 110);
+            this.label11.Location = new System.Drawing.Point(215, 110);
             this.label11.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(45, 25);
@@ -859,7 +955,7 @@
             // 
             this.label10.Dock = System.Windows.Forms.DockStyle.Right;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(237, 75);
+            this.label10.Location = new System.Drawing.Point(215, 75);
             this.label10.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(45, 25);
@@ -871,19 +967,20 @@
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Right;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(469, 5);
+            this.label9.Location = new System.Drawing.Point(405, 5);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 25);
+            this.label9.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            this.label9.Size = new System.Drawing.Size(85, 25);
             this.label9.TabIndex = 105;
-            this.label9.Text = "就诊类别";
+            this.label9.Text = "预 约 状 态";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Right;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(449, 40);
+            this.label2.Location = new System.Drawing.Point(405, 40);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 25);
@@ -900,7 +997,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 25);
             this.label4.TabIndex = 103;
-            this.label4.Text = "预约状态";
+            this.label4.Text = "就诊类别";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
@@ -957,10 +1054,10 @@
             this.lab_statusTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_statusTxt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_statusTxt.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_statusTxt.Location = new System.Drawing.Point(70, 108);
+            this.lab_statusTxt.Location = new System.Drawing.Point(490, 3);
             this.lab_statusTxt.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_statusTxt.Name = "lab_statusTxt";
-            this.lab_statusTxt.Size = new System.Drawing.Size(162, 29);
+            this.lab_statusTxt.Size = new System.Drawing.Size(140, 29);
             this.lab_statusTxt.TabIndex = 96;
             this.lab_statusTxt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -968,7 +1065,7 @@
             // 
             this.label20.Dock = System.Windows.Forms.DockStyle.Right;
             this.label20.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(237, 40);
+            this.label20.Location = new System.Drawing.Point(215, 40);
             this.label20.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(45, 25);
@@ -982,10 +1079,10 @@
             this.lab_sex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_sex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lab_sex.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lab_sex.Location = new System.Drawing.Point(282, 38);
+            this.lab_sex.Location = new System.Drawing.Point(260, 38);
             this.lab_sex.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_sex.Name = "lab_sex";
-            this.lab_sex.Size = new System.Drawing.Size(162, 29);
+            this.lab_sex.Size = new System.Drawing.Size(140, 29);
             this.lab_sex.TabIndex = 94;
             this.lab_sex.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -998,7 +1095,7 @@
             this.lab_deptName.Location = new System.Drawing.Point(70, 3);
             this.lab_deptName.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.lab_deptName.Name = "lab_deptName";
-            this.lab_deptName.Size = new System.Drawing.Size(162, 29);
+            this.lab_deptName.Size = new System.Drawing.Size(140, 29);
             this.lab_deptName.TabIndex = 88;
             this.lab_deptName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1006,7 +1103,7 @@
             // 
             this.label23.Dock = System.Windows.Forms.DockStyle.Right;
             this.label23.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.Location = new System.Drawing.Point(237, 5);
+            this.label23.Location = new System.Drawing.Point(215, 5);
             this.label23.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(45, 25);
@@ -1332,10 +1429,10 @@
             this.lueRegisterWay.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueRegisterWay.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueRegisterWay.Properties.AutoHeight = false;
-            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject3.Options.UseFont = true;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.Options.UseFont = true;
             this.lueRegisterWay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.lueRegisterWay.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -1373,10 +1470,10 @@
             this.lueState.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueState.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueState.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lueState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lueState.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -1558,6 +1655,20 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.加急ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            // 
+            // 加急ToolStripMenuItem
+            // 
+            this.加急ToolStripMenuItem.Name = "加急ToolStripMenuItem";
+            this.加急ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.加急ToolStripMenuItem.Text = "取消预约";
+            this.加急ToolStripMenuItem.Click += new System.EventHandler(this.CancelToolStripMenuItem_Click);
+            // 
             // AppointmentQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1595,6 +1706,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lueState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1707,6 +1819,14 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private System.Windows.Forms.Label lab_cancelWayTxt;
+        private System.Windows.Forms.Label lab_cancelTime;
+        private System.Windows.Forms.Label lab_cancelOperaName;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 加急ToolStripMenuItem;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

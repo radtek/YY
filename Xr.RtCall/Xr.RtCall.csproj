@@ -68,6 +68,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>call.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,10 +93,6 @@
     </Reference>
     <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
-    </Reference>
-    <Reference Include="HPSocketCS, Version=4.3.1.25762, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>RtCallSocket\HPSocketCS.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -221,11 +220,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="call.ico" />
     <Content Include="RtCallSocket\CSkin.dll" />
-    <Content Include="RtCallSocket\HPSocket4C-SSL_U.dll" />
-    <Content Include="RtCallSocket\HPSocket4C_U.dll" />
-    <Content Include="RtCallSocket\HPSocketCS.dll" />
-    <Content Include="RtCallSocket\HPSocketCS.pdb" />
     <Content Include="RtCallSocket\Newtonsoft.Json.dll" />
     <Content Include="RtCallSocket\RestSharp.dll" />
   </ItemGroup>

@@ -99,7 +99,6 @@ namespace Xr.RtScreen.pages
             }
             catch
             {
-
             }
         }
         public void GetWasitPatrent(string wasitPatient)

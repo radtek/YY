@@ -341,13 +341,15 @@ namespace Xr.RtManager.Pages.triage
             }
             // 异步操作1
             Thread.Sleep(100);
-            #region 医生坐诊列表
-            if (workType == AsynchronousWorks.RoomListQuery)
+            try
             {
-                //报告前台状态变更
-                backgroundWorker1.ReportProgress(50);
-                // 异步操作2
-                //Thread.Sleep(300);
+                #region 医生坐诊列表
+                if (workType == AsynchronousWorks.RoomListQuery)
+                {
+                    //报告前台状态变更
+                    backgroundWorker1.ReportProgress(50);
+                    // 异步操作2
+                    //Thread.Sleep(300);
                     String param = "";
                     //获取医生坐诊信息
                     Dictionary<string, string> prament = new Dictionary<string, string>();
@@ -365,7 +367,7 @@ namespace Xr.RtManager.Pages.triage
                     url = AppContext.AppConfig.serverUrl + "sch/doctorSitting/findDoctorSitting?" + param;
                     String jsonStr = HttpClass.httpPost(url);
                     //jsonStr=@"{""code"":200,""message"":""操作成功"",""result"":[{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""全天"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""上午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""下午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""晚上"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""上午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""下午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""晚上"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""}],""state"":true}";
-  
+
                     JObject objT = JObject.Parse(jsonStr);
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
@@ -382,28 +384,231 @@ namespace Xr.RtManager.Pages.triage
                         e.Result = result;
                     }
 
-            }
-            #endregion
-            #region 查询患者信息
-            else if (workType == AsynchronousWorks.QueryID || workType == AsynchronousWorks.ReadzlCard)
-            {
-
-                //报告前台状态变更
-                backgroundWorker1.ReportProgress(50);
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-                if (CardID != String.Empty)
+                }
+                #endregion
+                #region 查询患者信息
+                else if (workType == AsynchronousWorks.QueryID || workType == AsynchronousWorks.ReadzlCard)
                 {
-                    //String serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
-                    //String jsonStr = HttpClass.HRequest(serverUrl + "bedChargeSettle/queryHosRecords?numType=2&&num=" + SocialCardID + "&&queryType=1");
+
+                    //报告前台状态变更
+                    backgroundWorker1.ReportProgress(50);
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
+                    if (CardID != String.Empty)
+                    {
+                        //String serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
+                        //String jsonStr = HttpClass.HRequest(serverUrl + "bedChargeSettle/queryHosRecords?numType=2&&num=" + SocialCardID + "&&queryType=1");
+
+                        String param = "";
+                        //获取患者信息
+                        Dictionary<string, string> prament = new Dictionary<string, string>();
+                        //prament.Add("cardNo", CardID);
+                        prament.Add("cardNo", Pras[0]);
+
+                        //prament.Add("pageSize", "10000");
+
+                        String url = String.Empty;
+                        if (prament.Count != 0)
+                        {
+                            param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                        }
+                        url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByCardNo?" + param;
+                        String jsonStr = HttpClass.httpPost(url);
+                        JObject objT = JObject.Parse(jsonStr);
+                        List<JObject> objTs = new List<JObject>();
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            objTs.Add(objT);
+                            Patientid = objT["result"]["patientId"].ToString();
+
+                            //hospitalId=12&deptId=2&patientId=000675493100
+                            prament.Add("hospitalId", AppContext.Session.hospitalId);
+                            prament.Add("deptId", lueDept.EditValue.ToString());
+                            prament.Add("patientId", Pras[0]);
+                            //prament.Add("patientId", CardID);
+                            //prament.Add("pageSize", "10000");
+
+                            if (prament.Count != 0)
+                            {
+                                param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                            }
+                            url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/patCurrentRegsiter?" + param;
+                            //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                            jsonStr = HttpClass.httpPost(url);//{"code":204,"message":"没有可以签到的预约记录","result":"","state":false}
+                            JObject objT2 = JObject.Parse(jsonStr);
+                            objTs.Add(objT2);
+
+                            result.obj = objTs;
+                            result.result = true;
+                            //result.msg = "成功";
+                            result.msg = objT["message"].ToString();
+                            e.Result = result;
+                        }
+                        else
+                        {
+                            result.result = false;
+                            if (objT["message"].ToString() == "未匹配到患者信息")
+                            {
+                                result.msg = "没有查询到基本信息，请去办卡";
+                            }
+                            else
+                            {
+                                result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                            }
+                            e.Result = result;
+                        }
+                        CardID = String.Empty;
+                    }
+                    else //输入为空时不查询
+                    {
+                        result.obj = null;
+                        result.result = true;
+                        result.msg = "成功";
+                        e.Result = result;
+                    }
+                    NeedWaitingFrm = true;
+                }
+                #endregion
+                #region 读取身份证
+                else if (workType == AsynchronousWorks.ReadIdCard)
+                {
+                    //try
+                    //{
+                    //    JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
+                    //    if (idCardInfo != null)
+                    //    {
+                    //        IDCardID = idCardInfo.Code.ToString();
+                    //    }
+                    //    if (IDCardID != String.Empty)
+                    //    {
+                    //        //patientId = carMes.user_id;
+                    //        LogClass.WriteLog("读取身份证成功，身份证号：" + IDCardID);
+                    //    }
+                    //    result.obj = null;
+                    //    result.result = true;
+                    //    result.msg = "成功";
+                    //    e.Result = result;
+                    //}
+                    //catch (Exception ee)
+                    //{
+                    //    result.obj = null;
+                    //    result.result = false;
+                    //    result.msg = "读取身份证失败:" + ee.Message;
+                    //    e.Result = result;
+                    //}
+
+                    try
+                    {
+                        BackgroundWorker bgworker = sender as BackgroundWorker;
+                        //绑定委托要执行的方法 
+                        ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
+
+                        //开始异步执行(ReturnDataTable)方法 
+                        IAsyncResult ret = work.BeginInvoke("IdCard", null, null);
+
+                        //(异步编程模式好久就是在执行一个很耗时的方法(ReturnDataTable)时,还能向下继续运行代码) 
+
+                        //接着运行下面的while循环, 
+                        //判断异步操作是否完成 
+                        while (!ret.IsCompleted)
+                        {
+                            //没完成 
+                            //判断是否取消了backgroundworker异步操作 
+                            if (bgworker.CancellationPending)
+                            {
+                                //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
+                                JLIdCardInfoClass.CancelFlag = true;
+                                e.Cancel = true;
+                                return;
+                            }
+                        }
+                        e.Result = work.EndInvoke(ret); //返回查询结果 赋值给e.Result 
+                    }
+                    catch (Exception ex)
+                    {
+                        e.Result = ex.Message;
+                    }
+
+                }
+                #endregion
+                #region 读取社保卡
+                else if (workType == AsynchronousWorks.ReadSocialcard)
+                {
+                    CancelFlag = false;
+                    try
+                    {
+                        //while (!CancelFlag)
+                        //{
+
+                        //    SocialCard carMes = new SocialCard();
+                        //    carMes.readCard();
+                        //    if (carMes.message_type == "1")
+                        //    {
+                        //        CancelFlag = true;
+                        //        //patientId = carMes.user_id;
+                        //        LogClass.WriteLog("读取社保卡成功，卡号：" + carMes.user_id);
+                        //        SocialCardID = carMes.user_id;
+                        //    }
+
+                        //}
+                        //result.obj = null;
+                        //result.result = true;
+                        //result.msg = "成功";
+                        //e.Result = result;
+
+                        BackgroundWorker bgworker = sender as BackgroundWorker;
+                        //绑定委托要执行的方法 
+                        ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
+
+                        //开始异步执行(ReturnDataTable)方法 
+                        IAsyncResult ret = work.BeginInvoke("", null, null);
+
+                        //(异步编程模式好久就是在执行一个很耗时的方法(ReturnDataTable)时,还能向下继续运行代码) 
+
+                        //接着运行下面的while循环, 
+                        //判断异步操作是否完成 
+                        while (!ret.IsCompleted)
+                        {
+                            //没完成 
+                            //判断是否取消了backgroundworker异步操作 
+                            if (bgworker.CancellationPending)
+                            {
+                                //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
+                                SocialCard cardMes = new SocialCard();
+                                cardMes.cancelReadCard();
+                                e.Cancel = true;
+                                return;
+                            }
+                        }
+                        e.Result = work.EndInvoke(ret); //返回查询结果 赋值给e.Result 
+                    }
+                    catch (Exception ee)
+                    {
+                        result.obj = null;
+                        result.result = false;
+                        result.msg = "读取社保卡失败:" + ee.Message;
+                        e.Result = result;
+                    }
+                }
+                #endregion
+                #region 签到（查询患者后若有未签到自动调用 或 预约医生停诊后 签到其他医生调用）
+                else if (workType == AsynchronousWorks.SingIn)
+                {
+                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
 
                     String param = "";
-                    //获取患者信息
                     Dictionary<string, string> prament = new Dictionary<string, string>();
-                    //prament.Add("cardNo", CardID);
-                    prament.Add("cardNo", Pras[0]);
-                    
+                    //签到
+                    prament.Add("registerId", RegisterId);
+                    if (Doctorid != String.Empty)
+                    {
+                        prament.Add("doctorId", Doctorid);
+                    }
+                    Doctorid = String.Empty;//请求后置空
                     //prament.Add("pageSize", "10000");
 
                     String url = String.Empty;
@@ -411,33 +616,12 @@ namespace Xr.RtManager.Pages.triage
                     {
                         param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
                     }
-                    url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByCardNo?" + param;
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/signIn?" + param;
                     String jsonStr = HttpClass.httpPost(url);
                     JObject objT = JObject.Parse(jsonStr);
-                    List<JObject> objTs = new List<JObject>();
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
-                        objTs.Add(objT);
-                        Patientid = objT["result"]["patientId"].ToString();
-
-                        //hospitalId=12&deptId=2&patientId=000675493100
-                        prament.Add("hospitalId", AppContext.Session.hospitalId);
-                        prament.Add("deptId", lueDept.EditValue.ToString());
-                        prament.Add("patientId", Pras[0]);
-                        //prament.Add("patientId", CardID);
-                        //prament.Add("pageSize", "10000");
-
-                        if (prament.Count != 0)
-                        {
-                            param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                        }
-                        url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/patCurrentRegsiter?" + param;
-                        //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                        jsonStr = HttpClass.httpPost(url);//{"code":204,"message":"没有可以签到的预约记录","result":"","state":false}
-                        JObject objT2 = JObject.Parse(jsonStr);
-                        objTs.Add(objT2);
-
-                        result.obj = objTs;
+                        result.obj = objT;
                         result.result = true;
                         //result.msg = "成功";
                         result.msg = objT["message"].ToString();
@@ -446,499 +630,324 @@ namespace Xr.RtManager.Pages.triage
                     else
                     {
                         result.result = false;
-                        if (objT["message"].ToString() == "未匹配到患者信息")
-                        {
-                            result.msg = "没有查询到基本信息，请去办卡";
-                        }
-                        else
-                        {
-                            result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-                        }
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+
                         e.Result = result;
                     }
-                    CardID = String.Empty;
+
                 }
-                else //输入为空时不查询
-                {
-                    result.obj = null;
-                    result.result = true;
-                    result.msg = "成功";
-                    e.Result = result;
-                }
-                NeedWaitingFrm = true;
-            }
-            #endregion
-            #region 读取身份证
-            else if (workType == AsynchronousWorks.ReadIdCard)
-            {
-                //try
-                //{
-                //    JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
-                //    if (idCardInfo != null)
-                //    {
-                //        IDCardID = idCardInfo.Code.ToString();
-                //    }
-                //    if (IDCardID != String.Empty)
-                //    {
-                //        //patientId = carMes.user_id;
-                //        LogClass.WriteLog("读取身份证成功，身份证号：" + IDCardID);
-                //    }
-                //    result.obj = null;
-                //    result.result = true;
-                //    result.msg = "成功";
-                //    e.Result = result;
-                //}
-                //catch (Exception ee)
-                //{
-                //    result.obj = null;
-                //    result.result = false;
-                //    result.msg = "读取身份证失败:" + ee.Message;
-                //    e.Result = result;
-                //}
-
-                try
-                {
-                    BackgroundWorker bgworker = sender as BackgroundWorker;
-                    //绑定委托要执行的方法 
-                    ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
-
-                    //开始异步执行(ReturnDataTable)方法 
-                    IAsyncResult ret = work.BeginInvoke("IdCard", null, null);
-
-                    //(异步编程模式好久就是在执行一个很耗时的方法(ReturnDataTable)时,还能向下继续运行代码) 
-
-                    //接着运行下面的while循环, 
-                    //判断异步操作是否完成 
-                    while (!ret.IsCompleted)
-                    {
-                        //没完成 
-                        //判断是否取消了backgroundworker异步操作 
-                        if (bgworker.CancellationPending)
-                        {
-                            //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
-                            JLIdCardInfoClass.CancelFlag = true;
-                            e.Cancel = true;
-                            return;
-                        }
-                    }
-                    e.Result = work.EndInvoke(ret); //返回查询结果 赋值给e.Result 
-                }
-                catch (Exception ex)
-                {
-                    e.Result = ex.Message;
-                }
-
-            }
-            #endregion
-            #region 读取社保卡
-            else if (workType == AsynchronousWorks.ReadSocialcard)
-            {
-                CancelFlag = false;
-                try
-                {
-                    //while (!CancelFlag)
-                    //{
-
-                    //    SocialCard carMes = new SocialCard();
-                    //    carMes.readCard();
-                    //    if (carMes.message_type == "1")
-                    //    {
-                    //        CancelFlag = true;
-                    //        //patientId = carMes.user_id;
-                    //        LogClass.WriteLog("读取社保卡成功，卡号：" + carMes.user_id);
-                    //        SocialCardID = carMes.user_id;
-                    //    }
-
-                    //}
-                    //result.obj = null;
-                    //result.result = true;
-                    //result.msg = "成功";
-                    //e.Result = result;
-
-                    BackgroundWorker bgworker = sender as BackgroundWorker;
-                    //绑定委托要执行的方法 
-                    ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
-
-                    //开始异步执行(ReturnDataTable)方法 
-                    IAsyncResult ret = work.BeginInvoke("", null, null);
-
-                    //(异步编程模式好久就是在执行一个很耗时的方法(ReturnDataTable)时,还能向下继续运行代码) 
-
-                    //接着运行下面的while循环, 
-                    //判断异步操作是否完成 
-                    while (!ret.IsCompleted)
-                    {
-                        //没完成 
-                        //判断是否取消了backgroundworker异步操作 
-                        if (bgworker.CancellationPending)
-                        {
-                            //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
-                            SocialCard cardMes = new SocialCard();
-                            cardMes.cancelReadCard();
-                            e.Cancel = true;
-                            return;
-                        }
-                    }
-                    e.Result = work.EndInvoke(ret); //返回查询结果 赋值给e.Result 
-                }
-                catch (Exception ee)
-                {
-                    result.obj = null;
-                    result.result = false;
-                    result.msg = "读取社保卡失败:" + ee.Message;
-                    e.Result = result;
-                }
-            }
                 #endregion
-            #region 签到（查询患者后若有未签到自动调用 或 预约医生停诊后 签到其他医生调用）
-            else if (workType == AsynchronousWorks.SingIn)
-            {
-                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-
-                String param = "";
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                //签到
-                prament.Add("registerId", RegisterId);
-                if (Doctorid != String.Empty)
+                #region 现场挂号
+                else if (workType == AsynchronousWorks.Register)
                 {
+                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
+
+                    String param = "";
+                    //请求现场挂号
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+
+                    //预约挂号
+                    prament.Add("hospitalId", AppContext.Session.hospitalId);
+                    prament.Add("deptId", lueDept.EditValue.ToString());
                     prament.Add("doctorId", Doctorid);
-                }
-                Doctorid = String.Empty;//请求后置空
-                //prament.Add("pageSize", "10000");
+                    prament.Add("patientId", Patientid);
+                    prament.Add("patientName", lab_name.Text);
+                    if (cb_urgent.Checked)//是否加急：0是、1否
+                    {
+                        prament.Add("urgent", "0");
+                    }
+                    else
+                    {
+                        prament.Add("urgent", "1");
+                    }
+                    //prament.Add("pageSize", "10000");
 
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/signIn?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                    Doctorid = String.Empty;//请求后置空
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/onSite?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
 
-                    e.Result = result;
+                        e.Result = result;
+                    }
                 }
+                #endregion
+                #region 加急
+                //加急
+                else if (workType == AsynchronousWorks.Urgent)
+                {
+                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
 
+                    String param = "";
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    prament.Add("triageId", Pras[0]);
+                    //prament.Add("triageId", TriageId);
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/urgent?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
+                #region 过号重排
+                //过号重排
+                else if (workType == AsynchronousWorks.PassNum)
+                {
+                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
+
+                    String param = "";
+                    //请求过号重排
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    prament.Add("triageId", Pras[0]);
+                    //prament.Add("triageId", TriageId);
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/passNum?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
+                #region 复诊签到
+                //复诊签到
+                else if (workType == AsynchronousWorks.ReviewSignIn)
+                {
+                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
+
+                    String param = "";
+                    //请求复诊签到
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    prament.Add("triageId", Pras[0]);
+                    //prament.Add("triageId", TriageId);
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/reviewSignIn?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
+                #region 取消候诊
+                //取消候诊
+                else if (workType == AsynchronousWorks.CancelWaiting)
+                {
+                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
+
+                    String param = "";
+                    //请求取消候诊
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    prament.Add("triageId", Pras[0]);
+                    //prament.Add("triageId", TriageId);
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/cancelWaiting?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
+                #region 候诊指引单
+                //候诊指引单
+                else if (workType == AsynchronousWorks.WaitingList)
+                {
+                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    //提交异步操作结果供结束时操作
+
+                    String param = "";
+                    //获取候诊指引单
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    prament.Add("triageId", Pras[0]);
+                    //prament.Add("triageId", TriageId);
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/waitingList?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
+                #region 候诊患者列表
+                else if (workType == AsynchronousWorks.WaitingPatientList)
+                {
+                    //报告前台状态变更
+                    backgroundWorker1.ReportProgress(50);
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    String param = "";
+                    //获取候诊患者列表
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    //hospitalId=12&deptId=2&doctorId=1&workDate=2019-01-10&period=3&status=3
+                    prament.Add("hospitalId", AppContext.Session.hospitalId);
+                    prament.Add("deptId", lueDept.EditValue.ToString());
+                    prament.Add("doctorId", SelectDoctorid);
+                    prament.Add("workDate", de_date.Text);
+                    prament.Add("period", Period);
+                    prament.Add("status", PatientListStatus);
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/findPatientListByDoctor?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":"""",""regVisitTime"":""08:00 - 08:30"",""regTime"":""2019-02-15 16:52:57"",""status"":""待签到""},{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":""02096999"",""regVisitTime"":""15:00 - 15:30"",""regTime"":""2019-02-15 17:30:22"",""status"":""待签到""}],""state"":true}";
+
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
             }
-            #endregion
-            #region 现场挂号
-            else if (workType == AsynchronousWorks.Register)
+            catch(Exception ex)
             {
-                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-
-                String param = "";
-                //请求现场挂号
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-
-                //预约挂号
-                prament.Add("hospitalId", AppContext.Session.hospitalId);
-                prament.Add("deptId", lueDept.EditValue.ToString());
-                prament.Add("doctorId", Doctorid);
-                prament.Add("patientId", Patientid);
-                prament.Add("patientName", lab_name.Text);
-                if (cb_urgent.Checked)//是否加急：0是、1否
-                {
-                    prament.Add("urgent", "0");
-                }
-                else
-                {
-                    prament.Add("urgent", "1");
-                }
-                //prament.Add("pageSize", "10000");
-
-                Doctorid = String.Empty;//请求后置空
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/onSite?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-
-                    e.Result = result;
-                }
+                result.result = false;
+                result.msg =ex.Message;// PatientSearchInfoRef.Msg;
+                e.Result = result;
             }
-            #endregion
-            #region 加急
-            //加急
-            else if (workType == AsynchronousWorks.Urgent)
-            {
-                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-
-                String param = "";
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("triageId", Pras[0]);
-                //prament.Add("triageId", TriageId);
-                //prament.Add("pageSize", "10000");
-
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/urgent?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-                    e.Result = result;
-                }
-
-            }
-            #endregion
-            #region 过号重排
-            //过号重排
-            else if (workType == AsynchronousWorks.PassNum)
-            {
-                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-
-                String param = "";
-                //请求过号重排
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("triageId", Pras[0]);
-                //prament.Add("triageId", TriageId);
-                //prament.Add("pageSize", "10000");
-
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/passNum?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-                    e.Result = result;
-                }
-
-            }
-            #endregion
-            #region 复诊签到
-            //复诊签到
-            else if (workType == AsynchronousWorks.ReviewSignIn)
-            {
-                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-
-                String param = "";
-                //请求复诊签到
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("triageId", Pras[0]);
-                //prament.Add("triageId", TriageId);
-                //prament.Add("pageSize", "10000");
-
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/reviewSignIn?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-                    e.Result = result;
-                }
-
-            }
-            #endregion
-            #region 取消候诊
-            //取消候诊
-            else if (workType == AsynchronousWorks.CancelWaiting)
-            {
-                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-
-                String param = "";
-                //请求取消候诊
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("triageId", Pras[0]);
-                //prament.Add("triageId", TriageId);
-                //prament.Add("pageSize", "10000");
-
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/cancelWaiting?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-                    e.Result = result;
-                }
-
-            }
-            #endregion
-            #region 候诊指引单
-            //候诊指引单
-            else if (workType == AsynchronousWorks.WaitingList)
-            {
-                //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                // 异步操作2
-                //Thread.Sleep(300);
-                //提交异步操作结果供结束时操作
-
-                String param = "";
-                //获取候诊指引单
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("triageId", Pras[0]);
-                //prament.Add("triageId", TriageId);
-                //prament.Add("pageSize", "10000");
-
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/waitingList?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-                    e.Result = result;
-                }
-
-            }
-            #endregion
-            #region 候诊患者列表
-            else if (workType == AsynchronousWorks.WaitingPatientList)
-            {
-                //报告前台状态变更
-                backgroundWorker1.ReportProgress(50);
-                // 异步操作2
-                //Thread.Sleep(300);
-                String param = "";
-                //获取候诊患者列表
-                Dictionary<string, string> prament = new Dictionary<string, string>();
-                //hospitalId=12&deptId=2&doctorId=1&workDate=2019-01-10&period=3&status=3
-                prament.Add("hospitalId", AppContext.Session.hospitalId);
-                prament.Add("deptId", lueDept.EditValue.ToString());
-                prament.Add("doctorId", SelectDoctorid);
-                prament.Add("workDate", de_date.Text);
-                prament.Add("period", Period);
-                prament.Add("status",PatientListStatus);
-                //prament.Add("pageSize", "10000");
-
-                String url = String.Empty;
-                if (prament.Count != 0)
-                {
-                    param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
-                }
-                url = AppContext.AppConfig.serverUrl + "sch/registerTriage/findPatientListByDoctor?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":"""",""regVisitTime"":""08:00 - 08:30"",""regTime"":""2019-02-15 16:52:57"",""status"":""待签到""},{""patientName"":""李鹏真"",""registerWay"":""2"",""cradType"":""1 "",""cradNo"":""02096999"",""regVisitTime"":""15:00 - 15:30"",""regTime"":""2019-02-15 17:30:22"",""status"":""待签到""}],""state"":true}";
-
-                JObject objT = JObject.Parse(jsonStr);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
-                }
-                else
-                {
-                    result.result = false;
-                    result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
-                    e.Result = result;
-                }
-
-            }
-            #endregion
         }
         private delegate SycResult ReadCardDelegate(string parm);  //创建一个委托 
         /// <summary> 
@@ -1053,7 +1062,7 @@ namespace Xr.RtManager.Pages.triage
                         List<RoomInfoEntity> list = objT["result"].ToObject<List<RoomInfoEntity>>();
                         flowLayoutPanel1.Controls.Clear();
                         flowLayoutPanel2.Controls.Clear();
-                        lab_countNum_1.Text=lab_countNum.Text = "0";
+                        lab_countNum_1.Text = lab_countNum.Text = "0";
                         foreach (var item in list)
                         {
                             Control.RoomPanelButton btn = new Control.RoomPanelButton();
@@ -1097,7 +1106,7 @@ namespace Xr.RtManager.Pages.triage
                             btn.Tag = new List<String>() { item.period, item.doctorId, item.period + item.doctorId };// item.period + item.doctorId;
                             btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.roomPanelButtonWaiting_MouseClick);
                             List<String> prams = btn.Tag as List<String>;
-                            if (SelectDoctorSchema!=String.Empty&&SelectDoctorSchema == prams[2])
+                            if (SelectDoctorSchema != String.Empty && SelectDoctorSchema == prams[2])
                             {
                                 btn.IsCheck = true;
                             }
@@ -1139,13 +1148,15 @@ namespace Xr.RtManager.Pages.triage
                         //JObject objT1 = JObject.Parse(@"{""code"":200,""message"":""操作成功"",""result"":{""registerId"":9,""registerWay"":""0"",""cardType"":""1 "",""cardNo"":""02102337"",""status"":""0"",""statusTxt"":""待签到"",""triageId"":""""},""state"":true}");
                         if (string.Compare(objT1["state"].ToString(), "true", true) == 0)
                         {
-                            lueRegisterWay.EditValue = objT1["result"]["registerWay"].ToString();
-                            lueCardType.EditValue = objT1["result"]["cardType"].ToString();
-                            lab_cardNo.Text = objT1["result"]["cardNo"].ToString();
-                            lab_state.Text = objT1["result"]["statusTxt"].ToString();
-                            BookingStatus = objT1["result"]["status"].ToString();
-                            RegisterId = objT1["result"]["registerId"].ToString();
-                            TriageId = objT1["result"]["triageId"].ToString();
+                            lueRegisterWay.EditValue = objT1["result"]["registerWay"] == null ? "" : objT1["result"]["registerWay"].ToString();
+                            lueCardType.EditValue = objT1["result"]["cardType"] == null ? "" : objT1["result"]["cardType"].ToString();
+                            lab_cardNo.Text = objT1["result"]["cardNo"] == null ? "" : objT1["result"]["cardNo"].ToString();
+                            lab_state.Text = objT1["result"]["statusTxt"] == null ? "" : objT1["result"]["statusTxt"].ToString();
+
+
+                            BookingStatus = objT1["result"]["status"] == null ? "" : objT1["result"]["status"].ToString();
+                            RegisterId = objT1["result"]["registerId"] == null ? "" : objT1["result"]["registerId"].ToString();
+                            TriageId = objT1["result"]["triageId"] == null ? "" : objT1["result"]["triageId"].ToString();
                             cb_urgent.Enabled = false;
 
                             if (BookingStatus == "0") //未分诊，调用签到接口
@@ -1154,19 +1165,25 @@ namespace Xr.RtManager.Pages.triage
                                 NeedWaitingFrm = false;
                                 Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.SingIn });
                             }
-                            if (BookingStatus == "3") //调用复诊签到接口
+                            else if (BookingStatus == "2") //已在诊
+                            {
+                                //清空界面信息
+                                ClearUIInfo();
+                                MessageBoxUtils.Hint("该患者已在诊", HintMessageBoxIcon.Error, this);
+                            }
+                            else if (BookingStatus == "3") //调用复诊签到接口
                             {
                                 //workType = AsynchronousWorks.ReviewSignIn;
                                 NeedWaitingFrm = false;
-                                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReviewSignIn });
+                                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReviewSignIn, Argument = new String[] { TriageId } });
                             }
-                            if (BookingStatus == "1") //提示已签到，是否需要补打候诊单
+                            else if (BookingStatus == "1") //提示已签到，是否需要补打候诊单
                             {
                                 btn_more.Enabled = true;
                                 btn_print.Enabled = true;
                                 //MessageBoxUtils.Hint("该患者已签到");
                             }
-                            if (BookingStatus == "6") //该患者预约的医生已停诊，请选择其他医生签到
+                            else if (BookingStatus == "6") //该患者预约的医生已停诊，请选择其他医生签到
                             {
                                 btn_more.Enabled = false;
                                 btn_print.Enabled = false;
@@ -1230,7 +1247,7 @@ namespace Xr.RtManager.Pages.triage
                             NeedWaitingFrm = false;
                             Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.RoomListQuery });
                             //打印小票
-                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(),lab_name.Text, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString());
+                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), lab_name.Text, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString());
                             string message = "";
                             if (!print.Print(ref message))
                             {
@@ -1238,7 +1255,7 @@ namespace Xr.RtManager.Pages.triage
                             }
                             else
                             {
-                                MessageBoxUtils.Hint("打印小票完成",MainForm);
+                                MessageBoxUtils.Hint("打印小票完成", MainForm);
                             }
                             //MessageBoxUtils.Hint(result.msg, MainForm);
                         }
@@ -1258,7 +1275,7 @@ namespace Xr.RtManager.Pages.triage
                         _waitForm.Close();
                          */
                         //workType = AsynchronousWorks.QueryID;
-                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() }});
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
                         //Asynchronous();
                     }
                     #endregion
@@ -1266,7 +1283,7 @@ namespace Xr.RtManager.Pages.triage
                     else if (workType == AsynchronousWorks.ReadSocialcard)
                     {
                         //workType = AsynchronousWorks.QueryID;
-                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() }});
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
                         //Asynchronous();
                     }
                     #endregion
@@ -1363,7 +1380,7 @@ namespace Xr.RtManager.Pages.triage
                             //lab_jkt.Text = objT["result"]["tipMsg"].ToString();
 
                             //打印小票
-                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(),lab_name.Text, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString());
+                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), lab_name.Text, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString());
                             string message = "";
                             if (!print.Print(ref message))
                             {
@@ -1406,9 +1423,17 @@ namespace Xr.RtManager.Pages.triage
                     #endregion
                 }
                 else
-                    MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
-                //MessageBoxUtils.Hint(result.msg);
-
+                {
+                    if (result.msg == "没有查询到基本信息，请去办卡")
+                    {
+                        MessageBoxUtils.Hint(result.msg,HintMessageBoxIcon.Error, this);
+                    }
+                    else
+                    {
+                        MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    }
+                    //MessageBoxUtils.Hint(result.msg);
+                }
             }
             catch (Exception ex)
             {

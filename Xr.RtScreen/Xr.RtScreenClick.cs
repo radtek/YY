@@ -28,6 +28,7 @@ namespace Xr.RtScreen
         public Form1()
         {
             InitializeComponent();
+            #region 
             this.SetStyle(ControlStyles.ResizeRedraw |
                   ControlStyles.OptimizedDoubleBuffer |
                   ControlStyles.AllPaintingInWmPaint, true);
@@ -37,6 +38,7 @@ namespace Xr.RtScreen
             //将Loaing窗口，注入到 SplashScreenManager 来管理
             loading = new SplashScreenManager(loadingfrm);
             loading.ShowLoading();
+            #endregion
             Log4net.LogHelper.Info("程序启动");
             GetDoctorAndClinc();
             #region 
@@ -61,6 +63,10 @@ namespace Xr.RtScreen
                     //this.panelControl1.Height = rdscf.Height;
                     rdscf.Dock = DockStyle.Fill;
                     this.panelControl1.Controls.Add(rdscf);
+                    break;
+                default:
+                    MessageBoxUtils.Show("配置的启动屏不正确，请检查后重启", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                    System.Environment.Exit(0);
                     break;
             }
             #endregion 
@@ -138,16 +144,8 @@ namespace Xr.RtScreen
         #region 键盘按Esc关闭窗体
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
-        //private readonly int MOUSEEVENTF_LEFTDOWN = 0x0002;//模拟鼠标移动
-        //private readonly int MOUSEEVENTF_MOVE = 0x0001;//模拟鼠标左键按下
-        //private readonly int MOUSEEVENTF_LEFTUP = 0x0004;//模拟鼠标左键抬起
-        //private readonly int MOUSEEVENTF_ABSOLUTE = 0x8000;//鼠标绝对位置
-        //private readonly int MOUSEEVENTF_RIGHTDOWN = 0x0008; //模拟鼠标右键按下 
-        //private readonly int MOUSEEVENTF_RIGHTUP = 0x0010; //模拟鼠标右键抬起 
-        //private readonly int MOUSEEVENTF_MIDDLEDOWN = 0x0020; //模拟鼠标中键按下 
-        //private readonly int MOUSEEVENTF_MIDDLEUP = 0x0040;// 模拟鼠标中键抬起 
 
-        [System.Runtime.InteropServices.DllImport("user32")]
+        [DllImport("user32")]
         public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
         /// <summary>
         /// 重写按键监视方法，用于操作窗体

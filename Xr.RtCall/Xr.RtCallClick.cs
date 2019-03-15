@@ -1,5 +1,4 @@
-﻿using HPSocketCS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,20 +22,22 @@ namespace Xr.RtCall
 {
     public partial class Form1 : Form
     {
-        HPSocketCS.TcpClient client = new HPSocketCS.TcpClient();
+       //HPSocketCS.TcpClient client = new HPSocketCS.TcpClient();
         public static Form1 pCurrentWin = null;//初始化的时候窗体对象赋值
         public SynchronizationContext _context;
         public Form1()
         {
             InitializeComponent();
             #region 双缓冲
-            this.SetStyle(ControlStyles.ResizeRedraw |
-                  ControlStyles.OptimizedDoubleBuffer |
-                  ControlStyles.AllPaintingInWmPaint, true);
-            this.UpdateStyles();
+            //this.SetStyle(ControlStyles.ResizeRedraw |
+            //      ControlStyles.OptimizedDoubleBuffer |
+            //      ControlStyles.AllPaintingInWmPaint, true);
+            //this.UpdateStyles();
             #endregion 
             _context = SynchronizationContext.Current;
-            this.Size = new Size(727, 48);
+            //panel_MainFrm.Controls.Clear();
+            //this.panel_MainFrm.Visible = false;
+            //panelControl3.Height = 28;
             pCurrentWin = this;
             IsMax = false;
             GetDoctorAndClinc();
@@ -93,7 +94,7 @@ namespace Xr.RtCall
                 switch (keyData)
                 {
                     case Keys.Escape:
-                        if (this.Size.Height == 48)
+                        if (this.Size.Height == 28)
                         {
                             if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
                             {
@@ -123,7 +124,7 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            if (this.Size.Height == 48)
+            if (this.Size.Height == 28)
             {
                 if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
                 {
@@ -171,7 +172,7 @@ namespace Xr.RtCall
                 this.panel_MainFrm.Visible = true;
                 IsMax = true;
                 panel_MainFrm.Controls.Clear();
-                this.Size = new Size(727, 530);
+                this.Size = new Size(727, 480);
                 skinbutBig.Text = "收缩";
                 RtCallPeationFrm rtcpf = new RtCallPeationFrm();
                 rtcpf.Dock = DockStyle.Fill;
@@ -179,11 +180,50 @@ namespace Xr.RtCall
             }
             else
             {
-                this.Size = new Size(727, 48);
+                this.Size = new Size(727, 28);
+                this.panel_MainFrm.Visible = false;
                 IsMax = false;
                 skinbutBig.Text = "展开";
             }
-
+        }
+        #region 发送windows消息
+        [DllImport("User32.dll", EntryPoint = "SendMessage")]
+        private static extern int SendMessage(
+        int hWnd,                  // handle to destination window
+        int Msg,                   // message
+        int wParam,                // first message parameter
+        ref COPYDATASTRUCT lParam  // second message parameter
+        );
+        [DllImport("User32.dll", EntryPoint = "FindWindow")]
+        private static extern int FindWindow(string lpClassName, string lpWindowName);
+        const int WM_COPYDATA = 0x004A;
+        public struct COPYDATASTRUCT
+        {
+            public IntPtr dwData;
+            public int cbData;
+            [MarshalAs(UnmanagedType.LPStr)]
+            public string lpData;
+        }
+        public void SendSess(string id)
+        {
+            int WINDOW_HANDLER = FindWindow("Tfrmworkbench",null); //根据窗口名称，查找窗口
+            if (WINDOW_HANDLER != 0)
+            {
+                MessageBox.Show("YES 找到Tfrmworkbench!!!窗口句柄为：" + WINDOW_HANDLER);
+                byte[] sarr =
+                System.Text.Encoding.Default.GetBytes(id);//消息内容
+                int len = sarr.Length;
+                COPYDATASTRUCT cds;
+                cds.dwData = (IntPtr)100;
+                cds.lpData = id;//消息内容
+                cds.cbData = len + 1;
+                SendMessage(WINDOW_HANDLER, WM_COPYDATA, 0, ref cds);
+                MessageBox.Show("发送的消息为："+cds.lpData+"字符长度："+cds.cbData+"句柄："+cds.dwData);
+            }
+            else
+            {
+                MessageBox.Show("NO 没找到Tfrmworkbench!!!");
+            }
         }
         #endregion
         #region 画边框
@@ -204,6 +244,7 @@ namespace Xr.RtCall
                          1,
                          ButtonBorderStyle.Solid);
         }
+        #endregion
         #endregion
         #endregion
         #region 下一位
@@ -237,13 +278,13 @@ namespace Xr.RtCall
                             }
                             else
                             {
-                                if ( this.Size.Height==48)
+                                if ( this.Size.Height==28)
                                 {
                                     _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null), null);
                                 }
                                 else
                                 {
-                                    _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this), null);
+                                    _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, Form1.pCurrentWin), null);
                                 }
                                 _context.Send((s) => label2.Text = "等待呼叫病人 [请稍候...]", null);
                             }
@@ -268,7 +309,7 @@ namespace Xr.RtCall
             f.Width = rcf.Width;
             f.Controls.Add(rcf);
             f.StartPosition = FormStartPosition.CenterScreen;
-            if (this.Size.Height != 48)
+            if (this.Size.Height != 28)
             {
                 f.Location = new Point((this.Width - this.Width) / 2 + this.Location.X,
                    (this.Height - this.Height) / 2 + this.Location.Y);//相对程序居中
@@ -282,98 +323,25 @@ namespace Xr.RtCall
             int x = SystemInformation.PrimaryMonitorSize.Width - this.Width;
             int y = 0;//要让窗体往上走 只需改变 Y的坐标
             this.Location = new Point(x, y);
+            this.Size = new Size(727, 28);
            // this.TopMost = true;
-            bool TcpSocket =Convert.ToBoolean(AppContext.AppConfig.StartUpSocket);
-            if (TcpSocket)
-            {
-                //绑定事件
-                //开始连接前触发
-                client.OnPrepareConnect += new TcpClientEvent.OnPrepareConnectEventHandler(client_OnPrepareConnect);
-                //连接成功后触发
-                client.OnConnect += new TcpClientEvent.OnConnectEventHandler(client_OnConnect);
-                //发送消息后触发
-                client.OnSend += new TcpClientEvent.OnSendEventHandler(client_OnSend);
-                //收到消息后触发
-                client.OnReceive += new TcpClientEvent.OnReceiveEventHandler(client_OnReceive);
-                //连接关闭后触发
-                client.OnClose += new TcpClientEvent.OnCloseEventHandler(client_OnClose);
-            }
+           // bool TcpSocket =Convert.ToBoolean(AppContext.AppConfig.StartUpSocket);
+            //if (TcpSocket)
+            //{
+            //    //绑定事件
+            //    //开始连接前触发
+            //    client.OnPrepareConnect += new TcpClientEvent.OnPrepareConnectEventHandler(client_OnPrepareConnect);
+            //    //连接成功后触发
+            //    client.OnConnect += new TcpClientEvent.OnConnectEventHandler(client_OnConnect);
+            //    //发送消息后触发
+            //    client.OnSend += new TcpClientEvent.OnSendEventHandler(client_OnSend);
+            //    //收到消息后触发
+            //    client.OnReceive += new TcpClientEvent.OnReceiveEventHandler(client_OnReceive);
+            //    //连接关闭后触发
+            //    client.OnClose += new TcpClientEvent.OnCloseEventHandler(client_OnClose);
+            //}
         }
         #endregion 
-        #region Socket处理
-        #region 事件处理方法
-        /// <summary>
-        /// 开始连接
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="socket"></param>
-        /// <returns></returns>
-        private HandleResult client_OnPrepareConnect(TcpClient sender, IntPtr socket)
-        {
-            return HandleResult.Ok;
-        }
-        /// <summary>
-        /// 异步连接信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <returns></returns>
-        private HandleResult client_OnConnect(TcpClient sender)
-        {
-            //异步连接
-            return HandleResult.Ok;
-        }
-        /// <summary>
-        /// 发送信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="bytes"></param>
-        /// <returns></returns>
-        private HandleResult client_OnSend(TcpClient sender, byte[] bytes)
-        {
-            return HandleResult.Ok;
-        }
-        /// <summary>
-        /// 接受信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="bytes"></param>
-        /// <returns></returns>
-        private HandleResult client_OnReceive(TcpClient sender, byte[] bytes)
-        {
-            string recievedStr = Encoding.Default.GetString(bytes);//接收到的数据
-            return HandleResult.Ok;
-        }
-
-        //当触发了OnClose事件时，表示连接已经被关闭，并且OnClose事件只会被触发一次
-        //通过errorCode参数判断是正常关闭还是异常关闭，0表示正常关闭
-        //bool close=client.Stop();停止服务
-        private HandleResult client_OnClose(TcpClient sender, SocketOperation enOperation, int errorCode)
-        {
-            if (errorCode == 0)
-            {
-               Log4net.LogHelper.Info("Socket连接关闭"); 
-            }
-            else
-            {
-               Log4net.LogHelper.Info(string.Format("Socket连接异常关闭：{0}，{1}", client.ErrorMessage, client.ErrorCode));
-            }
-            return HandleResult.Ok;
-        }
-
-        #endregion 事件处理方法
-        #region Socket请求
-        /*
-         *   if (client.Connect("192.168.11.47", 5478, false))
-            {
-                MessageBox.Show("连接成功");
-            }
-            else
-            {
-               MessageBox.Show(string.Format("无法建立连接：{0}，{1}", client.ErrorMessage, client.ErrorCode));
-            }
-         * */
-        #endregion
-        #endregion
         #region 诊按钮  0：开诊，1：停诊
         /// <summary>
         /// 停诊和开诊按钮

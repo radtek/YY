@@ -176,5 +176,40 @@ namespace Xr.RtCall.pages
             PatientOkAndNext(HelperClass.triageId, "0");
         }
         #endregion 
+        #region 发送windows消息
+        [DllImport("User32.dll", EntryPoint = "SendMessage")]
+        private static extern int SendMessage(
+        int hWnd,                  // handle to destination window
+        int Msg,                   // message
+        int wParam,                // first message parameter
+        ref COPYDATASTRUCT lParam  // second message parameter
+        );
+        public struct COPYDATASTRUCT
+        {
+            public IntPtr dwData;
+            public int cbData;
+            [MarshalAs(UnmanagedType.LPStr)]
+            public string lpData;
+        }
+        [DllImport("User32.dll", EntryPoint = "FindWindow")]
+        private static extern int FindWindow(string lpClassName, string lpWindowName);
+        const int WM_COPYDATA = 0x004A;
+        public void SendSess(string id)
+        { 
+          int WINDOW_HANDLER = FindWindow(null, "receiveForm"); //根据窗口名称，查找窗口
+            if (WINDOW_HANDLER != 0)
+            {
+               // Console.WriteLine("YES 找到receiveForm!!!");
+                byte[] sarr =
+                System.Text.Encoding.Default.GetBytes(id);//消息内容
+                int len = sarr.Length;
+                COPYDATASTRUCT cds;
+                cds.dwData = (IntPtr)100;
+                cds.lpData = id;//消息内容
+                cds.cbData = len + 1;
+                SendMessage(WINDOW_HANDLER, WM_COPYDATA, 0, ref cds);
+            }
+        }
+        #endregion 
     }
 }
