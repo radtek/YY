@@ -11,6 +11,10 @@ namespace Xr.RtCall.Model
    public static class InterfaceAddress
     {
        /// <summary>
+       /// 医院列表接口地址
+       /// </summary>
+        public const String HostalInfo = "itf/intro/hospital/findAll";//itf/intro/hospital/findAll
+       /// <summary>
         /// 医院接口地址
        /// </summary>
        public const String hostal = "itf/intro/hospitalByCode";
@@ -26,6 +30,10 @@ namespace Xr.RtCall.Model
        /// 诊室接口地址
        /// </summary>
        public const String clinc = "itf/triage/findClinicIdByCode";
+       /// <summary>
+       /// 诊室列表接口
+       /// </summary>
+       public const String ClincInfo = "itf/intro/findCliniList";
        /// <summary>
        /// 下一位接口地址
        /// </summary>

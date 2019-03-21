@@ -56,41 +56,36 @@ namespace Xr.RtManager.Pages.cms
 
             cmd.ShowOpaqueLayer(0f);
             //设置科室列表
-            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync( 0, (o) => 
-            {
-                String data = HttpClass.httpPost(url);
-                return data;
+            //String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            //String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+            //this.DoWorkAsync( 0, (o) => 
+            //{
+            //    String data = HttpClass.httpPost(url);
+            //    return data;
 
-            }, null, (data) => 
-            {
-                JObject objT = JObject.Parse(data.ToString());
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
-                    List<Item> itemList = new List<Item>();
-                    foreach (DeptEntity dept in deptList)
-                    {
-                        Item item = new Item();
-                        item.name = dept.name;
-                        item.value = dept.id;
-                        item.tag = dept.hospitalId;
-                        item.parentId = dept.parentId;
-                        itemList.Add(item);
-                    }
-                    menuControl2.setDataSource(itemList);
+            //}, null, (data) => 
+            //{
+                //JObject objT = JObject.Parse(data.ToString());
+                //if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                //{
+                    //List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                    List<DeptEntity> deptList = AppContext.Session.deptList;
+                    treeMenuControl1.KeyFieldName = "id";
+                    treeMenuControl1.ParentFieldName = "parentId";
+                    treeMenuControl1.DisplayMember = "name";
+                    treeMenuControl1.ValueMember = "id";
+                    treeMenuControl1.DataSource = deptList;;
 
                     //获取默认出诊时间字典配置
-                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
+                    String url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingDict";
                     this.DoWorkAsync( 0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
-                        data = HttpClass.httpPost(url);
+                        String data = HttpClass.httpPost(url);
                         return data;
 
                     }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                     {
-                        objT = JObject.Parse(data2.ToString());
+                        JObject objT = JObject.Parse(data2.ToString());
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
                             defaultVisitTemplate = objT["result"].ToObject<DefaultVisitEntity>();
@@ -105,14 +100,14 @@ namespace Xr.RtManager.Pages.cms
                             return;
                         }
                     });
-                }
-                else
-                {
-                    cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
-                    return;
-                }
-            });
+            //    }
+            //    else
+            //    {
+            //        cmd.HideOpaqueLayer();
+            //        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+            //        return;
+            //    }
+            //});
         }
 
         /// <summary>
@@ -1015,27 +1010,20 @@ namespace Xr.RtManager.Pages.cms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void menuControl2_MenuItemClick(object sender, EventArgs e)
+        /// <param name="selectItem"></param>
+        private void treeMenuControl1_MenuItemClick(object sender, EventArgs e, object selectItem)
         {
             List<DoctorVSEntity> selectDoctorList = gridControl1.DataSource as List<DoctorVSEntity>;
-            if (selectDoctorList!=null && selectDoctorList.Count > 0)
+            if (selectDoctorList != null && selectDoctorList.Count > 0)
             {
                 MessageBoxUtils.Hint("请先保存当前科室设置或者清空已选医生再切换科室!", HintMessageBoxIcon.Error, MainForm);
                 return;
             }
-            Label label = null;
-            if (typeof(Label).IsInstanceOfType(sender))
-            {
-                label = (Label)sender;
-            }
-            else
-            {
-                PanelEx panelEx = (PanelEx)sender;
-                label = (Label)panelEx.Controls[0];
-            }
-            hospitalId = label.Tag.ToString();
-            deptId = label.Name;
-            deptName = label.Text;
+
+            DeptEntity dept = selectItem as DeptEntity;
+            hospitalId = dept.hospitalId;
+            deptId = dept.id;
+            deptName = dept.name;
             cmd.ShowOpaqueLayer();
             SearchData(1, 10000);
         }
@@ -1737,5 +1725,7 @@ namespace Xr.RtManager.Pages.cms
         {
             cmd.rectDisplay = this.DisplayRectangle;
         }
+
+
     }
 }

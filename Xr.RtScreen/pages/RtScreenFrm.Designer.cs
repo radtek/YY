@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.scrollingTexts1 = new Xr.RtScreen.RtUserContronl.ScrollingTexts();
             this.scrollingText1 = new Xr.RtScreen.RtUserContronl.ScrollingText();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -139,7 +138,6 @@
             this.scrollingText1.BorderColor = System.Drawing.Color.Black;
             this.scrollingText1.Cursor = System.Windows.Forms.Cursors.Default;
             this.scrollingText1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scrollingText1.Enabled = false;
             this.scrollingText1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.scrollingText1.ForeColor = System.Drawing.Color.Yellow;
             this.scrollingText1.ForegroundBrush = null;
@@ -158,6 +156,8 @@
             this.scrollingText1.TextScrollSpeed = 10;
             this.scrollingText1.VerticleTextPosition = Xr.RtScreen.RtUserContronl.VerticleTextPosition.Center;
             this.scrollingText1.Paint += new System.Windows.Forms.PaintEventHandler(this.scrollingText1_Paint);
+            this.scrollingText1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.scrollingText1_MouseDown);
+            this.scrollingText1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.scrollingText1_MouseMove);
             // 
             // RtScreenFrm
             // 

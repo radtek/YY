@@ -76,14 +76,14 @@ namespace Xr.RtManager
         public String hospitalId { get; set; }
 
         /// <summary>
-        /// 科室id
+        /// 用户所属科室id字符串
         /// </summary>
-        public String deptId { get; set; }
+        public String deptIds { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// 用户所属科室名称字符串
         /// </summary>
-        public String deptName { get; set; }
+        public String deptNames { get; set; }
 
         /// <summary>
         /// 科室列表

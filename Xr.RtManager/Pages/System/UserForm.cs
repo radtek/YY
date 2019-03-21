@@ -61,19 +61,19 @@ namespace Xr.RtManager
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    ModelHandler<OfficeEntity> m = new ModelHandler<OfficeEntity>();
-                    DataTable dt = m.FillDataTable(objT["result"].ToObject<List<OfficeEntity>>());
-                    treeCompany.Properties.DataSource = dt; //绑定数据           
-                    treeCompany.Properties.TreeList.KeyFieldName = "id";//设置ID  
-                    treeCompany.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
-                    treeCompany.Properties.DisplayMember = "name";  //要在树里展示的
-                    treeCompany.Properties.ValueMember = "id";    //对应的value
+                    //ModelHandler<OfficeEntity> m = new ModelHandler<OfficeEntity>();
+                    //DataTable dt = m.FillDataTable(objT["result"].ToObject<List<OfficeEntity>>());
+                    //treeCompany.Properties.DataSource = dt; //绑定数据           
+                    //treeCompany.Properties.TreeList.KeyFieldName = "id";//设置ID  
+                    //treeCompany.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
+                    //treeCompany.Properties.DisplayMember = "name";  //要在树里展示的
+                    //treeCompany.Properties.ValueMember = "id";    //对应的value
 
-                    treeOffice.Properties.DataSource = dt; //绑定数据           
-                    treeOffice.Properties.TreeList.KeyFieldName = "id";//设置ID  
-                    treeOffice.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
-                    treeOffice.Properties.DisplayMember = "name";  //要在树里展示的
-                    treeOffice.Properties.ValueMember = "id";    //对应的value
+                    //treeOffice.Properties.DataSource = dt; //绑定数据           
+                    //treeOffice.Properties.TreeList.KeyFieldName = "id";//设置ID  
+                    //treeOffice.Properties.TreeList.ParentFieldName = "parentId";//设置PreID   
+                    //treeOffice.Properties.DisplayMember = "name";  //要在树里展示的
+                    //treeOffice.Properties.ValueMember = "id";    //对应的value
 
                     SearchData(1, 10);
                 }
@@ -106,8 +106,7 @@ namespace Xr.RtManager
             try
             {
                 System.Threading.Thread.Sleep(500);
-                String param = "?companyId=" + treeCompany.EditValue
-                + "&&officeId=" + treeOffice.EditValue + "&&loginName=" + tbLoginName.Text + "&&name=" + tbName.Text
+                String param = "?loginName=" + tbLoginName.Text + "&&name=" + tbName.Text
                 + "&&pageNo=" + currPageNo + "&&pageSize=" + pageSize;
                 String url = AppContext.AppConfig.serverUrl + "sys/sysUser/findAll" + param;
                 e.Result = HttpClass.httpPost(url);

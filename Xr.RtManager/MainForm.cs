@@ -34,12 +34,17 @@ namespace Xr.RtManager
         Xr.Common.Controls.OpaqueCommand cmd2;
         private Color borderColor = Color.FromArgb(157, 160, 170);
 
+        public int openT6 = -1;//0 社保卡是否正常打开  0正常 非0不正常++++++++++
+
         #region 加载事件
         private void MainForm_Load(object sender, EventArgs e)
         {
             AppContext.Session.openStatus = false;
             cmd.ShowOpaqueLayer(0f);
-            labBottomLeft.Text = AppContext.Session.deptName + " | " + AppContext.Session.name + " | " + System.DateTime.Now.ToString();
+            String deptName = "无";
+            if (AppContext.Session.deptList.Count > 0)
+                deptName = AppContext.Session.deptList[0].name;
+            labBottomLeft.Text = deptName + " | " + AppContext.Session.name + " | " + System.DateTime.Now.ToString();
             this.timer1.Start();
 
             tmHeartbeat.Enabled = true;
@@ -62,10 +67,20 @@ namespace Xr.RtManager
             {
                 AddContextMenu(menu.id, menu.name, menu.href, panMenuBar);
             }
-
+            cmd.ShowOpaqueLayer(0f, "初始化读卡器...");
             this.DoWorkAsync(500,(o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
+                //初始化T6 有线程延迟
+                openT6 = HardwareInitialClass.OpenDevice();
+                if (openT6 != 0)
+                {
+                    LogClass.WriteLog("社保读卡器初始化失败:");
+                }
+                else
+                {
+                    LogClass.WriteLog("社保读卡器初始化成功");
+                }
                 return null;
 
             }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
@@ -620,7 +635,8 @@ namespace Xr.RtManager
                 }
                 else
                 {
-                    MessageBox.Show("退出系统失败:"+objT["message"].ToString());
+                    MessageBoxUtils.Show("会话登出失败:" + objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 }
             }
             else
@@ -791,7 +807,8 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException == null) throw new Exception(ex.Message);
+                    else throw new Exception(ex.InnerException.Message);
                 }
             };
 

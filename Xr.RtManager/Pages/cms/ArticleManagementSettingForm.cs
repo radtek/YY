@@ -63,12 +63,12 @@ namespace Xr.RtManager.Pages.cms
                 this.lookUpEdit1.Properties.DataSource = Two;
                 lookUpEdit1.Properties.DisplayMember = "name";
                 lookUpEdit1.Properties.ValueMember = "id";
-                if (AppContext.AppConfig.deptCode != "")
-                {
-                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
-                    lueType.EditValue = "2";
-                    treeKeshi.EditValue = string.Join(",", from a in listoffice where a.code == AppContext.AppConfig.deptCode select a.id);
-                }
+                //if (AppContext.AppConfig.deptCode != "")
+                //{
+                   // GetDoctorAndDepartment(AppContext.Session.deptIds);
+                    //lueType.EditValue = "2";
+                    //treeKeshi.EditValue = string.Join(",", from a in listoffice where a.code == AppContext.Session.deptIds select a.id);
+               // }
             }
             catch (Exception ex)
             {
@@ -273,17 +273,20 @@ namespace Xr.RtManager.Pages.cms
         List<TreeList> listoffice;
         List<HospitalInfoEntity> doctorInfoEntity;
         #endregion
+        string TypeDoctor = "";
         private void lueType_EditValueChanged(object sender, EventArgs e)
         {
             switch (lueType.Text.Trim())
             {
                 case "科室":
-                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+                    TypeDoctor = "";
+                    GetDoctorAndDepartment(AppContext.Session.deptIds);
                     luDoctords.EditValue = "";
                     break;
                 case "医生":
                     Doc = 1;
-                    SelectDoctor(AppContext.Session.deptId);
+                    TypeDoctor = "全部";
+                    SelectDoctor(AppContext.Session.deptIds);
                     treeKeshi.EditValue = "";
                     break;
                 case "医院":
@@ -291,6 +294,7 @@ namespace Xr.RtManager.Pages.cms
                     luDoctords.Properties.DataSource = null;
                     break;
                 case "全部":
+                    TypeDoctor = "";
                     listoffice = new List<TreeList>();
                     listoffice.Add(new TreeList { id = "", parentId = "", name = "全部" });
                     treeKeshi.Properties.DataSource = listoffice;
@@ -315,15 +319,16 @@ namespace Xr.RtManager.Pages.cms
                     luDoctor.Properties.DataSource = null;
                     break;
                 case "科室":
-                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+                    GetDoctorAndDepartment(AppContext.Session.deptIds);
                     luDoctor.Properties.DataSource = null;
                     luDoctor.Properties.DisplayMember = "name";
                     luDoctor.Properties.ValueMember = "id";
                     break;
                 case "医生":
                     Doc = 2;
-                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
-                    SelectDoctor(AppContext.Session.deptId);
+                    TypeDoctor = "";
+                    GetDoctorAndDepartment(AppContext.Session.deptIds);
+                    SelectDoctor(AppContext.Session.deptIds);
                     break;
             }
         }
@@ -333,30 +338,28 @@ namespace Xr.RtManager.Pages.cms
             {
                 listoffice = new List<TreeList>();
                 //查询科室下拉框数据
-                String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + code;
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                List<DeptEntity> deptList = AppContext.Session.deptList;
+                List<Xr.Common.Controls.Item> itemList = new List<Xr.Common.Controls.Item>();
+                foreach (DeptEntity dept in deptList)
                 {
-                    listoffice = objT["result"].ToObject<List<TreeList>>();
-                }
-                else
-                {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
-                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
-                    return;
+                    Xr.Common.Controls.Item item = new Xr.Common.Controls.Item();
+                    item.name = dept.name;
+                    item.value = dept.id;
+                    item.tag = dept.hospitalId;
+                    item.parentId = dept.parentId;
+                    itemList.Add(item);
                 }
               //listoffice.Insert(0,new TreeList { id = "", parentId = "", name = "全部" });
-                treeKeshi.Properties.DataSource = listoffice;
-                treeKeshi.Properties.TreeList.KeyFieldName = "id";
+                treeKeshi.Properties.DataSource = itemList;
+                treeKeshi.Properties.TreeList.KeyFieldName = "value";
                 treeKeshi.Properties.TreeList.ParentFieldName = "parentId";
                 treeKeshi.Properties.DisplayMember = "name";
-                treeKeshi.Properties.ValueMember = "id";
-                treeWKe.Properties.DataSource = listoffice;
-                treeWKe.Properties.TreeList.KeyFieldName = "id";
+                treeKeshi.Properties.ValueMember = "value";
+                treeWKe.Properties.DataSource = itemList;
+                treeWKe.Properties.TreeList.KeyFieldName = "value";
                 treeWKe.Properties.TreeList.ParentFieldName = "parentId";
                 treeWKe.Properties.DisplayMember = "name";
-                treeWKe.Properties.ValueMember = "id";
+                treeWKe.Properties.ValueMember = "value";
             }
             catch (Exception ex)
             {
@@ -656,6 +659,7 @@ namespace Xr.RtManager.Pages.cms
             try
             {
                 Doc = 1;
+                TypeDoctor = "";
                 SelectDoctor(treeKeshi.EditValue.ToString());
             }
             catch
@@ -669,11 +673,12 @@ namespace Xr.RtManager.Pages.cms
                 if (lookUpEdit1.EditValue != "2" && treeWKe.EditValue!=null)
                 {
                     Doc = 2;
+                    TypeDoctor = "";
                     SelectDoctor(treeWKe.EditValue.ToString());
                 }
                 else
                 {
-                    GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+                    GetDoctorAndDepartment(AppContext.Session.deptIds);
                     luDoctor.Properties.DataSource = null;
                     luDoctor.Properties.DisplayMember = "name";
                     luDoctor.Properties.ValueMember = "id";
@@ -694,7 +699,15 @@ namespace Xr.RtManager.Pages.cms
             {
                 doctorInfoEntity = new List<HospitalInfoEntity>();
                 // 查询医生下拉框数据
-                String url = AppContext.AppConfig.serverUrl + "cms/doctor/findAll?hospital.id=" + AppContext.Session.hospitalId + "&dept.id=" + dept;
+                String url = "";
+                if (TypeDoctor == "全部")
+                {
+                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findAll?hospital.id=" + AppContext.Session.hospitalId + "&deptIds=" + dept; 
+                }
+                else
+                {
+                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findAll?hospital.id=" + AppContext.Session.hospitalId + "&dept.id=" + dept;
+                }
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)

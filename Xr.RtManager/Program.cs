@@ -83,13 +83,30 @@ namespace Xr.RtManager
             {
                 AppContext.Load();
                 AppContext.AppConfig.serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
-                LoginForm login = new LoginForm();
-                login.ShowDialog();
-                if (login.DialogResult == DialogResult.OK)
+                bool jxFlag = true; 
+                if (AppContext.AppConfig.firstStart.Equals("1"))
                 {
-                    mainForm = new MainForm();
-                    context.MainForm = mainForm;
-                    mainForm.Show();
+                    SetUpForm setUp = new SetUpForm();
+                    setUp.ShowDialog();
+                    if (setUp.DialogResult != DialogResult.OK)
+                    {
+                        jxFlag = false;
+                    }
+                }
+                if (jxFlag)
+                {
+                    LoginForm login = new LoginForm();
+                    login.ShowDialog();
+                    if (login.DialogResult == DialogResult.OK)
+                    {
+                        mainForm = new MainForm();
+                        context.MainForm = mainForm;
+                        mainForm.Show();
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
                 }
                 else
                 {
@@ -148,26 +165,17 @@ namespace Xr.RtManager
         /// </summary>
         private static void Restart()
         {
- 
             Thread thtmp = new Thread(new ParameterizedThreadStart(run));
- 
             object appName = Application.ExecutablePath;
- 
             Thread.Sleep(2000);
- 
             thtmp.Start(appName);
- 
         }
 
         private static void run(Object obj)
         {
- 
-        Process ps = new Process();
- 
+            Process ps = new Process();
             ps.StartInfo.FileName = obj.ToString();
- 
             ps.Start();
- 
         }
         ///// <summary>
         ///// 应用程序的主入口点。

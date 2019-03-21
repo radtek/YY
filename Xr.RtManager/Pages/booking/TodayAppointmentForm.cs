@@ -48,18 +48,26 @@ namespace Xr.RtManager.Pages.booking
         void getLuesInfo()
         {
             //查询科室下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            treeDeptId.Properties.DataSource = AppContext.Session.deptList;
+            treeDeptId.Properties.TreeList.KeyFieldName = "id";
+            treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
+            treeDeptId.Properties.DisplayMember = "name";
+            treeDeptId.Properties.ValueMember = "id";
+            //默认选择选择第一个
+            treeDeptId.EditValue = AppContext.Session.deptList[0].id;
+
+            /*String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
                 List<DeptEntity> deptList = new List<DeptEntity>() { new DeptEntity { id = " ", parentId = "", name = "请选择" } };
                 deptList.AddRange(objT["result"].ToObject<List<DeptEntity>>());
-                /*DeptEntity dept = new DeptEntity();
-                dept.id = "0";
-                dept.name = "无";
-                deptList.Insert(0, dept);
-                 */
+                //DeptEntity dept = new DeptEntity();
+                //dept.id = "0";
+                //dept.name = "无";
+                //deptList.Insert(0, dept);
+                 
                 treeDeptId.Properties.DataSource = deptList;
                 treeDeptId.Properties.TreeList.KeyFieldName = "id";
                 treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
@@ -71,7 +79,7 @@ namespace Xr.RtManager.Pages.booking
                 MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
-            //若没配置科室编码让其选择一个
+             //若没配置科室编码让其选择一个
             if (AppContext.AppConfig.deptCode == String.Empty)
             {
                 treeDeptId.EditValue = " ";
@@ -81,13 +89,14 @@ namespace Xr.RtManager.Pages.booking
 
                 treeDeptId.EditValue = AppContext.Session.deptId;
             }
+             */
 
             //预约状态下拉框数据
             String param = "type={0}";
             param = String.Format(param, "register_status_type");
 
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
-            objT = new JObject();
+            String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
+            JObject objT = new JObject();
             objT = JObject.Parse(HttpClass.httpPost(url));
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
@@ -118,7 +127,7 @@ namespace Xr.RtManager.Pages.booking
         AppointmentQueryParam CurrentParam = new AppointmentQueryParam();
         private bool VerifyInfo()
         {
-            if (treeDeptId.EditValue == " ")
+            if (treeDeptId.EditValue== " ")
             {
                 MessageBoxUtils.Hint("请选择科室", HintMessageBoxIcon.Error, MainForm);
                 return false;

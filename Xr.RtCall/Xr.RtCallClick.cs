@@ -61,13 +61,13 @@ namespace Xr.RtCall
                 else
                 {
                     MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                    this.Close();
+                    System.Environment.Exit(0);
                 }
             }
             catch (Exception ex)
             {
                 MessageBoxUtils.Show("程序启动出现错误,请重启", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                this.Close();
+                System.Environment.Exit(0);
                 Log4net.LogHelper.Error("是否启动叫号程序错误信息："+ex.Message);
             }
         }
@@ -98,16 +98,16 @@ namespace Xr.RtCall
                         {
                             if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
                             {
-                                this.Close();
                                 Log4net.LogHelper.Info("退出系统成功");
+                                System.Environment.Exit(0);
                             }
                         }
                         else
                         {
                             if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, Form1.pCurrentWin) == DialogResult.OK)
                             {
-                                this.Close();
                                 Log4net.LogHelper.Info("退出系统成功");
+                                System.Environment.Exit(0);
                             }
                         }
                         break;
@@ -128,16 +128,16 @@ namespace Xr.RtCall
             {
                 if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
                 {
-                    this.Close();
                     Log4net.LogHelper.Info("退出系统成功");
+                    System.Environment.Exit(0);
                 }
             }
             else
             {
                 if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, Form1.pCurrentWin) == DialogResult.OK)
                 {
-                    this.Close();
                     Log4net.LogHelper.Info("退出系统成功");
+                    System.Environment.Exit(0);
                 }
             }
         }
@@ -353,7 +353,10 @@ namespace Xr.RtCall
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("id", HelperClass.doctorId);//医生坐诊记录主键
+                prament.Add("hospitalId", HelperClass.hospitalId);//医院ID
+                prament.Add("deptId", HelperClass.deptId);//科室ID
+                prament.Add("clinicId", HelperClass.clinicId);//诊室ID
+                prament.Add("doctorId", HelperClass.doctorId);//医生ID
                 int isStop = 0;
                 if (skinbutLook.Text == "临时停诊")
                 {
@@ -394,7 +397,14 @@ namespace Xr.RtCall
                                }
                                else
                                {
-                                   _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1,this), null);
+                                   if (this.Height==28)
+                                   {
+                                       _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null), null);
+                                   }
+                                   else
+                                   {
+                                       _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, Form1.pCurrentWin), null);
+                                   }
                                }
                            }
                            break;
@@ -415,6 +425,12 @@ namespace Xr.RtCall
         {
             try
             {
+                if (AppContext.AppConfig.hospitalCode=="")
+                {
+                       Xr.Common.MessageBoxUtils.Show("请检查配置的医院编码是否正确", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,null);
+                    System.Environment.Exit(0);
+                    return;
+                }
                 //查询医院数据
                 String url = AppContext.AppConfig.serverUrl + InterfaceAddress.hostal + "?code=" + AppContext.AppConfig.hospitalCode;
                 String data = HttpClass.httpPost(url);

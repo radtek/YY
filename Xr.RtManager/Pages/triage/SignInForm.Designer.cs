@@ -29,25 +29,35 @@ namespace Xr.RtManager.Pages.triage
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.加急ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.排号作废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过号重排ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
+            this.panelEx12 = new Xr.Common.Controls.PanelEx();
+            this.panelEx15 = new Xr.Common.Controls.PanelEx();
+            this.panelEx16 = new Xr.Common.Controls.PanelEx();
+            this.panelEx17 = new Xr.Common.Controls.PanelEx();
+            this.panelEx13 = new Xr.Common.Controls.PanelEx();
+            this.panelEx14 = new Xr.Common.Controls.PanelEx();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.ReservationInfo_Panel = new Xr.Common.Controls.BorderPanel();
+            this.groupBorderPanel6 = new Xr.Common.Controls.GroupBorderPanel();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.flPanel_ReservationInfo = new System.Windows.Forms.FlowLayoutPanel();
+            this.reservationInfoPanel1 = new Xr.Common.Controls.ReservationInfoPanel();
+            this.reservationInfoPanel2 = new Xr.Common.Controls.ReservationInfoPanel();
+            this.reservationInfoPanel3 = new Xr.Common.Controls.ReservationInfoPanel();
+            this.reservationInfoPanel4 = new Xr.Common.Controls.ReservationInfoPanel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -130,6 +140,7 @@ namespace Xr.RtManager.Pages.triage
             this.btn_zlk = new Xr.Common.Controls.ButtonControl();
             this.txt_cardNoQuery = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.lueCardTypeQuery = new DevExpress.XtraEditors.LookUpEdit();
             this.lueDept = new DevExpress.XtraEditors.LookUpEdit();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -146,6 +157,7 @@ namespace Xr.RtManager.Pages.triage
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.borderPanel3 = new Xr.Common.Controls.BorderPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_refreshPatient = new Xr.Common.Controls.ButtonControl();
@@ -184,7 +196,7 @@ namespace Xr.RtManager.Pages.triage
             this.de_date = new DevExpress.XtraEditors.DateEdit();
             this.label11 = new System.Windows.Forms.Label();
             this.lueDept_1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.contextMenuStrip_waitingList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip_waitingList = new System.Windows.Forms.ContextMenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -192,6 +204,13 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReservationInfo_Panel)).BeginInit();
+            this.ReservationInfo_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel6)).BeginInit();
+            this.groupBorderPanel6.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
+            this.flPanel_ReservationInfo.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -256,6 +275,7 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCardTypeQuery.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDept.Properties)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -468,10 +488,141 @@ namespace Xr.RtManager.Pages.triage
             // 
             this.xtraTabPage1.Appearance.PageClient.BackColor = System.Drawing.Color.Transparent;
             this.xtraTabPage1.Appearance.PageClient.Options.UseBackColor = true;
+            this.xtraTabPage1.Controls.Add(this.ReservationInfo_Panel);
             this.xtraTabPage1.Controls.Add(this.panel3);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(1043, 686);
             this.xtraTabPage1.Text = "挂号签到";
+            // 
+            // ReservationInfo_Panel
+            // 
+            this.ReservationInfo_Panel.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.ReservationInfo_Panel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.ReservationInfo_Panel.Controls.Add(this.groupBorderPanel6);
+            this.ReservationInfo_Panel.Controls.Add(this.panel13);
+            this.ReservationInfo_Panel.FillColor1 = System.Drawing.Color.Transparent;
+            this.ReservationInfo_Panel.FillColor2 = System.Drawing.Color.Transparent;
+            this.ReservationInfo_Panel.Location = new System.Drawing.Point(10, 187);
+            this.ReservationInfo_Panel.Name = "ReservationInfo_Panel";
+            this.ReservationInfo_Panel.Size = new System.Drawing.Size(1023, 10);
+            this.ReservationInfo_Panel.TabIndex = 1;
+            // 
+            // groupBorderPanel6
+            // 
+            this.groupBorderPanel6.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupBorderPanel6.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.groupBorderPanel6.Appearance.Options.UseBackColor = true;
+            this.groupBorderPanel6.Appearance.Options.UseFont = true;
+            this.groupBorderPanel6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.groupBorderPanel6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.groupBorderPanel6.Controls.Add(this.tableLayoutPanel11);
+            this.groupBorderPanel6.CornerRadius.All = 5;
+            this.groupBorderPanel6.CornerRadius.BottomLeft = 5;
+            this.groupBorderPanel6.CornerRadius.BottomRight = 5;
+            this.groupBorderPanel6.CornerRadius.TopLeft = 5;
+            this.groupBorderPanel6.CornerRadius.TopRight = 5;
+            this.groupBorderPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBorderPanel6.FillColor1 = System.Drawing.Color.Transparent;
+            this.groupBorderPanel6.FillColor2 = System.Drawing.Color.Transparent;
+            this.groupBorderPanel6.GroupText = "多条预约信息";
+            this.groupBorderPanel6.GroupTextFont = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.groupBorderPanel6.Location = new System.Drawing.Point(0, 0);
+            this.groupBorderPanel6.Name = "groupBorderPanel6";
+            this.groupBorderPanel6.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
+            this.groupBorderPanel6.Size = new System.Drawing.Size(1023, 10);
+            this.groupBorderPanel6.TabIndex = 178;
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 1;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.Controls.Add(this.flPanel_ReservationInfo, 0, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(10, 20);
+            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(1003, 0);
+            this.tableLayoutPanel11.TabIndex = 1;
+            // 
+            // flPanel_ReservationInfo
+            // 
+            this.flPanel_ReservationInfo.AutoScroll = true;
+            this.flPanel_ReservationInfo.Controls.Add(this.reservationInfoPanel1);
+            this.flPanel_ReservationInfo.Controls.Add(this.reservationInfoPanel2);
+            this.flPanel_ReservationInfo.Controls.Add(this.reservationInfoPanel3);
+            this.flPanel_ReservationInfo.Controls.Add(this.reservationInfoPanel4);
+            this.flPanel_ReservationInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flPanel_ReservationInfo.Location = new System.Drawing.Point(3, 3);
+            this.flPanel_ReservationInfo.Name = "flPanel_ReservationInfo";
+            this.flPanel_ReservationInfo.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.flPanel_ReservationInfo.Size = new System.Drawing.Size(997, 1);
+            this.flPanel_ReservationInfo.TabIndex = 0;
+            // 
+            // reservationInfoPanel1
+            // 
+            this.reservationInfoPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.reservationInfoPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reservationInfoPanel1.Location = new System.Drawing.Point(3, 7);
+            this.reservationInfoPanel1.Name = "reservationInfoPanel1";
+            this.reservationInfoPanel1.Padding = new System.Windows.Forms.Padding(3);
+            this.reservationInfoPanel1.Size = new System.Drawing.Size(800, 60);
+            this.reservationInfoPanel1.TabIndex = 0;
+            // 
+            // reservationInfoPanel2
+            // 
+            this.reservationInfoPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.reservationInfoPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reservationInfoPanel2.Location = new System.Drawing.Point(3, 73);
+            this.reservationInfoPanel2.Name = "reservationInfoPanel2";
+            this.reservationInfoPanel2.Padding = new System.Windows.Forms.Padding(3);
+            this.reservationInfoPanel2.Size = new System.Drawing.Size(800, 60);
+            this.reservationInfoPanel2.TabIndex = 1;
+            // 
+            // reservationInfoPanel3
+            // 
+            this.reservationInfoPanel3.BackColor = System.Drawing.Color.Transparent;
+            this.reservationInfoPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reservationInfoPanel3.Location = new System.Drawing.Point(3, 139);
+            this.reservationInfoPanel3.Name = "reservationInfoPanel3";
+            this.reservationInfoPanel3.Padding = new System.Windows.Forms.Padding(3);
+            this.reservationInfoPanel3.Size = new System.Drawing.Size(800, 60);
+            this.reservationInfoPanel3.TabIndex = 2;
+            // 
+            // reservationInfoPanel4
+            // 
+            this.reservationInfoPanel4.BackColor = System.Drawing.Color.Transparent;
+            this.reservationInfoPanel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reservationInfoPanel4.Location = new System.Drawing.Point(3, 205);
+            this.reservationInfoPanel4.Name = "reservationInfoPanel4";
+            this.reservationInfoPanel4.Padding = new System.Windows.Forms.Padding(3);
+            this.reservationInfoPanel4.Size = new System.Drawing.Size(800, 60);
+            this.reservationInfoPanel4.TabIndex = 3;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.panel13.Controls.Add(this.buttonControl1);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(0, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(1023, 0);
+            this.panel13.TabIndex = 179;
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl1.Location = new System.Drawing.Point(986, 0);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(37, 0);
+            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Del;
+            this.buttonControl1.TabIndex = 177;
+            this.buttonControl1.Text = "关闭";
             // 
             // panel3
             // 
@@ -996,6 +1147,7 @@ namespace Xr.RtManager.Pages.triage
             this.panel6.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.panel6.Size = new System.Drawing.Size(1023, 130);
             this.panel6.TabIndex = 180;
+            this.panel6.Resize += new System.EventHandler(this.panel6_Resize);
             // 
             // groupBorderPanel2
             // 
@@ -1673,6 +1825,7 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel1.Controls.Add(this.tableLayoutPanel2);
             this.borderPanel1.Controls.Add(this.txt_cardNoQuery);
             this.borderPanel1.Controls.Add(this.label3);
+            this.borderPanel1.Controls.Add(this.lueCardTypeQuery);
             this.borderPanel1.Controls.Add(this.lueDept);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -1698,7 +1851,7 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel2.Controls.Add(this.btn_readSocialCard, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btn_zlk, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(355, 10);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(523, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -1755,10 +1908,10 @@ namespace Xr.RtManager.Pages.triage
             // 
             this.txt_cardNoQuery.Dock = System.Windows.Forms.DockStyle.Left;
             this.txt_cardNoQuery.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.txt_cardNoQuery.Location = new System.Drawing.Point(209, 10);
+            this.txt_cardNoQuery.Location = new System.Drawing.Point(333, 10);
             this.txt_cardNoQuery.Multiline = true;
             this.txt_cardNoQuery.Name = "txt_cardNoQuery";
-            this.txt_cardNoQuery.Size = new System.Drawing.Size(146, 30);
+            this.txt_cardNoQuery.Size = new System.Drawing.Size(190, 30);
             this.txt_cardNoQuery.TabIndex = 90;
             this.txt_cardNoQuery.Enter += new System.EventHandler(this.txt_cardNoQuery_Enter);
             this.txt_cardNoQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cardNoQuery_KeyPress);
@@ -1768,12 +1921,41 @@ namespace Xr.RtManager.Pages.triage
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(144, 10);
+            this.label3.Location = new System.Drawing.Point(268, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 30);
             this.label3.TabIndex = 84;
             this.label3.Text = " 卡号";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lueCardTypeQuery
+            // 
+            this.lueCardTypeQuery.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lueCardTypeQuery.Location = new System.Drawing.Point(144, 10);
+            this.lueCardTypeQuery.Name = "lueCardTypeQuery";
+            this.lueCardTypeQuery.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.lueCardTypeQuery.Properties.Appearance.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceFocused.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AutoHeight = false;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            this.lueCardTypeQuery.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
+            this.lueCardTypeQuery.Properties.NullText = "";
+            this.lueCardTypeQuery.Size = new System.Drawing.Size(124, 30);
+            this.lueCardTypeQuery.TabIndex = 178;
             // 
             // lueDept
             // 
@@ -1794,16 +1976,17 @@ namespace Xr.RtManager.Pages.triage
             this.lueDept.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueDept.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueDept.Properties.AutoHeight = false;
-            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject3.Options.UseFont = true;
+            serializableAppearanceObject4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject4.Options.UseFont = true;
             this.lueDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.lueDept.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "状态")});
             this.lueDept.Properties.NullText = "";
             this.lueDept.Size = new System.Drawing.Size(124, 30);
             this.lueDept.TabIndex = 177;
+            this.lueDept.Visible = false;
             this.lueDept.EditValueChanged += new System.EventHandler(this.lueDept_EditValueChanged);
             // 
             // xtraTabPage2
@@ -1926,7 +2109,8 @@ namespace Xr.RtManager.Pages.triage
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn9,
-            this.gridColumn6});
+            this.gridColumn6,
+            this.gridColumn5});
             this.gv_Patients.GridControl = this.gc_Patients;
             this.gv_Patients.Name = "gv_Patients";
             this.gv_Patients.OptionsBehavior.ReadOnly = true;
@@ -1996,7 +2180,7 @@ namespace Xr.RtManager.Pages.triage
             this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn4.Caption = "途径";
+            this.gridColumn4.Caption = "预约途径";
             this.gridColumn4.FieldName = "registerWayTxt";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
@@ -2026,6 +2210,14 @@ namespace Xr.RtManager.Pages.triage
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "分诊时间";
+            this.gridColumn5.FieldName = "triageTime";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 6;
             // 
             // borderPanel3
             // 
@@ -2715,10 +2907,10 @@ namespace Xr.RtManager.Pages.triage
             this.lueDept_1.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueDept_1.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueDept_1.Properties.AutoHeight = false;
-            serializableAppearanceObject4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject4.Options.UseFont = true;
+            serializableAppearanceObject5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject5.Options.UseFont = true;
             this.lueDept_1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
             this.lueDept_1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "状态")});
@@ -2770,6 +2962,13 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ReservationInfo_Panel)).EndInit();
+            this.ReservationInfo_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel6)).EndInit();
+            this.groupBorderPanel6.ResumeLayout(false);
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.flPanel_ReservationInfo.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -2836,6 +3035,7 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lueCardTypeQuery.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDept.Properties)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -2957,7 +3157,6 @@ namespace Xr.RtManager.Pages.triage
         private Xr.Common.Controls.ButtonControl btn_zlk;
         private System.Windows.Forms.TextBox txt_cardNoQuery;
         private System.Windows.Forms.Label label3;
-        private DevExpress.XtraEditors.LookUpEdit lueDept;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
@@ -3048,6 +3247,19 @@ namespace Xr.RtManager.Pages.triage
         private Control.RoomPanelButton roomPanelButton18;
         private Control.RoomPanelButton roomPanelButton19;
         private Control.RoomPanelButton roomPanelButton20;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private BorderPanel ReservationInfo_Panel;
+        private GroupBorderPanel groupBorderPanel6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.Panel panel13;
+        private ButtonControl buttonControl1;
+        private System.Windows.Forms.FlowLayoutPanel flPanel_ReservationInfo;
+        private ReservationInfoPanel reservationInfoPanel1;
+        private ReservationInfoPanel reservationInfoPanel2;
+        private ReservationInfoPanel reservationInfoPanel3;
+        private ReservationInfoPanel reservationInfoPanel4;
+        private DevExpress.XtraEditors.LookUpEdit lueCardTypeQuery;
+        private DevExpress.XtraEditors.LookUpEdit lueDept;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

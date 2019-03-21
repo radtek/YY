@@ -19,11 +19,17 @@ namespace Xr.RtManager
         /// <summary>
         /// 医院编码
         /// </summary>
+        [Required]
         public String hospitalCode { get; set; }
 
         /// <summary>
-        /// 科室编码
+        /// 小票打印机名字
         /// </summary>
-        public String deptCode { get; set; }
+        public String PrinterName { get; set; }
+
+        /// <summary>
+        /// 第一次启动 1：是 0：否
+        /// </summary>
+        public String firstStart { get; set; }
     }
 }

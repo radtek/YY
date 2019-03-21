@@ -21,11 +21,7 @@ namespace Xr.RtCall.Model
         /// <summary>
         /// 诊室ID
         /// </summary>
-        public static String clinicId
-        {
-            get;
-            set;
-        }
+        public static String clinicId { get; set; }
         /// <summary>
         /// 医院主键
         /// </summary>
@@ -91,6 +87,9 @@ namespace Xr.RtCall.Model
         public String id { get; set; }
         public String name { get; set; }
     }
+    /// <summary>
+    /// 诊室数据
+    /// </summary>
     public class HelperClinc
     {
         public String code { get; set; }

@@ -41,6 +41,7 @@ namespace Xr.RtScreen
             #endregion
             Log4net.LogHelper.Info("程序启动");
             GetDoctorAndClinc();
+            //this.TopMost = true;
             #region 
             switch (AppContext.AppConfig.StartupScreen)
             {
@@ -164,13 +165,27 @@ namespace Xr.RtScreen
                     case Keys.Escape:
                         if (Xr.Common.MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1,this) == DialogResult.OK)
                         {
-                            this.Close();
                             Log4net.LogHelper.Info("退出系统成功");
+                            System.Environment.Exit(0);
                         }
                         break;
                 }
             }
             return false;
+        }
+        #endregion
+        #region 窗口最大化和最小化
+        private void 最大化ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void 最小化ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            //this.WindowState = FormWindowState.Minimized;
+            this.Size = new Size(1000,600);
         }
         #endregion
     }

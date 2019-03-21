@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcUser = new DevExpress.XtraGrid.GridControl();
@@ -53,17 +53,9 @@
             this.tbName = new DevExpress.XtraEditors.TextEdit();
             this.tbLoginName = new DevExpress.XtraEditors.TextEdit();
             this.btnQuery = new Xr.Common.Controls.ButtonControl();
-            this.treeOffice = new DevExpress.XtraEditors.TreeListLookUpEdit();
-            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.btnDel = new Xr.Common.Controls.ButtonControl();
-            this.treeCompany = new DevExpress.XtraEditors.TreeListLookUpEdit();
-            this.treeListLookUpEdit1TreeList = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.btnUp = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -78,10 +70,6 @@
             this.borderPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLoginName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeOffice.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeCompany.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -99,10 +87,10 @@
             this.panel4.Controls.Add(this.gcUser);
             this.panel4.Controls.Add(this.pageControl1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 100);
+            this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
-            this.panel4.Size = new System.Drawing.Size(1441, 381);
+            this.panel4.Size = new System.Drawing.Size(1441, 421);
             this.panel4.TabIndex = 63;
             // 
             // gcUser
@@ -114,7 +102,7 @@
             this.gcUser.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1,
             this.repositoryItemCheckEdit1});
-            this.gcUser.Size = new System.Drawing.Size(1421, 332);
+            this.gcUser.Size = new System.Drawing.Size(1421, 372);
             this.gcUser.TabIndex = 15;
             this.gcUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -206,8 +194,6 @@
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
             // 
             // gridColumn3
             // 
@@ -220,8 +206,6 @@
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
             // 
             // gridColumn4
             // 
@@ -306,17 +290,17 @@
             this.gridColumn11.ColumnEdit = this.repositoryItemButtonEdit1;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 8;
+            this.gridColumn11.VisibleIndex = 6;
             // 
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.ForeColor = System.Drawing.Color.SteelBlue;
-            serializableAppearanceObject1.Options.UseFont = true;
-            serializableAppearanceObject1.Options.UseForeColor = true;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.ForeColor = System.Drawing.Color.SteelBlue;
+            serializableAppearanceObject3.Options.UseFont = true;
+            serializableAppearanceObject3.Options.UseForeColor = true;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "解锁", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "解锁", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
@@ -331,7 +315,7 @@
             // 
             this.pageControl1.CurrentPage = 1;
             this.pageControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageControl1.Location = new System.Drawing.Point(10, 342);
+            this.pageControl1.Location = new System.Drawing.Point(10, 382);
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
@@ -346,7 +330,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
-            this.panel1.Size = new System.Drawing.Size(1441, 100);
+            this.panel1.Size = new System.Drawing.Size(1441, 60);
             this.panel1.TabIndex = 8;
             // 
             // borderPanel1
@@ -356,13 +340,9 @@
             this.borderPanel1.Controls.Add(this.tbName);
             this.borderPanel1.Controls.Add(this.tbLoginName);
             this.borderPanel1.Controls.Add(this.btnQuery);
-            this.borderPanel1.Controls.Add(this.treeOffice);
             this.borderPanel1.Controls.Add(this.btnDel);
-            this.borderPanel1.Controls.Add(this.treeCompany);
             this.borderPanel1.Controls.Add(this.btnUp);
             this.borderPanel1.Controls.Add(this.btnAdd);
-            this.borderPanel1.Controls.Add(this.label1);
-            this.borderPanel1.Controls.Add(this.label2);
             this.borderPanel1.Controls.Add(this.label4);
             this.borderPanel1.Controls.Add(this.label3);
             this.borderPanel1.CornerRadius.All = 4;
@@ -375,12 +355,12 @@
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(1421, 90);
+            this.borderPanel1.Size = new System.Drawing.Size(1421, 50);
             this.borderPanel1.TabIndex = 1;
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(384, 52);
+            this.tbName.Location = new System.Drawing.Point(352, 12);
             this.tbName.Name = "tbName";
             this.tbName.Properties.AutoHeight = false;
             this.tbName.Size = new System.Drawing.Size(147, 27);
@@ -388,7 +368,7 @@
             // 
             // tbLoginName
             // 
-            this.tbLoginName.Location = new System.Drawing.Point(116, 52);
+            this.tbLoginName.Location = new System.Drawing.Point(116, 12);
             this.tbLoginName.Name = "tbLoginName";
             this.tbLoginName.Properties.AutoHeight = false;
             this.tbLoginName.Size = new System.Drawing.Size(147, 27);
@@ -399,7 +379,7 @@
             this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnQuery.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnQuery.Location = new System.Drawing.Point(583, 10);
+            this.btnQuery.Location = new System.Drawing.Point(520, 10);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 30);
             this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -407,50 +387,12 @@
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
-            // treeOffice
-            // 
-            this.treeOffice.EditValue = "";
-            this.treeOffice.Location = new System.Drawing.Point(384, 13);
-            this.treeOffice.Name = "treeOffice";
-            this.treeOffice.Properties.AutoHeight = false;
-            this.treeOffice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.treeOffice.Properties.PopupFormSize = new System.Drawing.Size(150, 250);
-            this.treeOffice.Properties.TreeList = this.treeList1;
-            this.treeOffice.Size = new System.Drawing.Size(147, 27);
-            this.treeOffice.TabIndex = 72;
-            // 
-            // treeList1
-            // 
-            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn2});
-            this.treeList1.Location = new System.Drawing.Point(495, -75);
-            this.treeList1.Name = "treeList1";
-            this.treeList1.OptionsBehavior.EnableFiltering = true;
-            this.treeList1.OptionsView.AllowHtmlDrawHeaders = true;
-            this.treeList1.OptionsView.ShowIndentAsRowStyle = true;
-            this.treeList1.RowHeight = 30;
-            this.treeList1.Size = new System.Drawing.Size(410, 195);
-            this.treeList1.TabIndex = 0;
-            // 
-            // treeListColumn2
-            // 
-            this.treeListColumn2.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn2.AppearanceCell.Options.UseFont = true;
-            this.treeListColumn2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn2.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn2.Caption = "部门";
-            this.treeListColumn2.FieldName = "name";
-            this.treeListColumn2.Name = "treeListColumn2";
-            this.treeListColumn2.Visible = true;
-            this.treeListColumn2.VisibleIndex = 0;
-            // 
             // btnDel
             // 
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(673, 50);
+            this.btnDel.Location = new System.Drawing.Point(790, 10);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -458,50 +400,12 @@
             this.btnDel.Text = "删除";
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
-            // treeCompany
-            // 
-            this.treeCompany.EditValue = "";
-            this.treeCompany.Location = new System.Drawing.Point(116, 13);
-            this.treeCompany.Name = "treeCompany";
-            this.treeCompany.Properties.AutoHeight = false;
-            this.treeCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.treeCompany.Properties.PopupFormSize = new System.Drawing.Size(150, 250);
-            this.treeCompany.Properties.TreeList = this.treeListLookUpEdit1TreeList;
-            this.treeCompany.Size = new System.Drawing.Size(147, 27);
-            this.treeCompany.TabIndex = 71;
-            // 
-            // treeListLookUpEdit1TreeList
-            // 
-            this.treeListLookUpEdit1TreeList.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn1});
-            this.treeListLookUpEdit1TreeList.Location = new System.Drawing.Point(0, 0);
-            this.treeListLookUpEdit1TreeList.Name = "treeListLookUpEdit1TreeList";
-            this.treeListLookUpEdit1TreeList.OptionsBehavior.EnableFiltering = true;
-            this.treeListLookUpEdit1TreeList.OptionsView.AllowHtmlDrawHeaders = true;
-            this.treeListLookUpEdit1TreeList.OptionsView.ShowIndentAsRowStyle = true;
-            this.treeListLookUpEdit1TreeList.RowHeight = 30;
-            this.treeListLookUpEdit1TreeList.Size = new System.Drawing.Size(400, 200);
-            this.treeListLookUpEdit1TreeList.TabIndex = 0;
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn1.AppearanceCell.Options.UseFont = true;
-            this.treeListColumn1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn1.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn1.Caption = "公司";
-            this.treeListColumn1.FieldName = "name";
-            this.treeListColumn1.Name = "treeListColumn1";
-            this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 0;
-            // 
             // btnUp
             // 
             this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnUp.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnUp.Location = new System.Drawing.Point(583, 50);
+            this.btnUp.Location = new System.Drawing.Point(700, 10);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 30);
             this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -514,7 +418,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnAdd.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnAdd.Location = new System.Drawing.Point(673, 10);
+            this.btnAdd.Location = new System.Drawing.Point(610, 10);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -522,31 +426,11 @@
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.skinButton2_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(31, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 19);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "归属公司：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(299, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 19);
-            this.label2.TabIndex = 63;
-            this.label2.Text = "归属部门：";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(327, 56);
+            this.label4.Location = new System.Drawing.Point(295, 15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 19);
             this.label4.TabIndex = 66;
@@ -556,7 +440,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(45, 56);
+            this.label3.Location = new System.Drawing.Point(45, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 19);
             this.label3.TabIndex = 65;
@@ -584,10 +468,6 @@
             this.borderPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLoginName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeOffice.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeCompany.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -597,17 +477,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private DevExpress.XtraEditors.TreeListLookUpEdit treeCompany;
-        private DevExpress.XtraTreeList.TreeList treeListLookUpEdit1TreeList;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-        private DevExpress.XtraEditors.TreeListLookUpEdit treeOffice;
-        private DevExpress.XtraTreeList.TreeList treeList1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
         private Xr.Common.Controls.BorderPanel borderPanel1;
         private Xr.Common.Controls.ButtonControl btnQuery;
         private Xr.Common.Controls.ButtonControl btnDel;

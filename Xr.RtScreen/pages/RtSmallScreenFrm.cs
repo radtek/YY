@@ -82,8 +82,8 @@ namespace Xr.RtScreen.pages
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Location = new Point(this.Location.X + e.X - downPoint.X,
-                    this.Location.Y + e.Y - downPoint.Y);
+                Form1.pCurrentWin.Location = new Point(Form1.pCurrentWin.Location.X + e.X - downPoint.X,
+                    Form1.pCurrentWin.Location.Y + e.Y - downPoint.Y);
             }
         }
         #endregion

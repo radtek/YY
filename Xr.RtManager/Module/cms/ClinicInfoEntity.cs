@@ -12,7 +12,6 @@ namespace Xr.RtManager
     public class ClinicInfoEntity
     {
         public String id { get; set; }
-        //[Required]
         [ObjectPoint("hospital.id")]
         public String hospitalId
         {
@@ -21,21 +20,14 @@ namespace Xr.RtManager
                 return AppContext.Session.hospitalId;
             }
         }
-       // [Required]
         [ObjectPoint("dept.id")]
-        public String deptId
-        {
-            get;
-            set;
-            //get
-            //{
-            //    return AppContext.Session.deptId;
-            //}
-        }
+        public String deptId{get;set;}
         [IgnoreParam]
         public String deptname { get; set; }
         public String name { get; set; }
+        [IgnoreParam]
         public String code { get; set; }
+        [IgnoreParam]
         public String prefix { get; set; }
         public String isUse { get; set; }
         [IgnoreParam]
@@ -43,24 +35,4 @@ namespace Xr.RtManager
         [IgnoreParam]
         public String updateDate { get; set; }
     }
-    public class Dept
-    {
-        public String deptname { get; set; }
-        public String id { get; set; }
-        public String code { get; set; }
-        public String isUse { get; set; }
-        public String prefix { get; set; }
-        public String name { get; set; }
-
-    }
-    //public class Dept
-    //{
-    //    public String deptname { get; set; }
-    //    public String id { get; set; }
-    //    public String code { get; set; }
-    //    public String isUse { get; set; }
-    //    public String prefix { get; set; }
-    //    public String name { get; set; }
-
-    //}
 }

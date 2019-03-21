@@ -26,60 +26,36 @@ namespace Xr.RtManager.Pages.scheduling
             deBegin.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
             deEnd.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
-            cmd.ShowOpaqueLayer(0f);
-            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync( 0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
-            {
-                String data = HttpClass.httpPost(url);
-                return data;
 
-            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
-            {
-                JObject objT = JObject.Parse(data.ToString());
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
-                    if (AppContext.AppConfig.deptCode.Trim().Length == 0)
-                    {
-                        DeptEntity dept = new DeptEntity();
-                        dept.id = " ";
-                        dept.parentId = "";
-                        dept.name = "全部科室";
-                        deptList.Insert(0, dept);
-                    }
-                    treeDept.Properties.DataSource = deptList;
-                    treeDept.Properties.TreeList.KeyFieldName = "id";
-                    treeDept.Properties.TreeList.ParentFieldName = "parentId";
-                    treeDept.Properties.DisplayMember = "name";
-                    treeDept.Properties.ValueMember = "id";
-                    treeDept.EditValue = deptList[0].id;
+            List<DeptEntity> deptList = AppContext.Session.deptList;
+            DeptEntity dept = new DeptEntity();
+            dept.id = " ";
+            dept.name = "全部";
+            deptList.Insert(0, dept);
+            treeDept.Properties.DataSource = deptList;
+            treeDept.Properties.TreeList.KeyFieldName = "id";
+            treeDept.Properties.TreeList.ParentFieldName = "parentId";
+            treeDept.Properties.DisplayMember = "name";
+            treeDept.Properties.ValueMember = "id";
+            treeDept.EditValue = deptList[0].id;
 
-                    gridView1.OptionsView.AllowCellMerge = true;
-                    //设置表格中状态下拉框的数据
-                    List<DictEntity> dictList = new List<DictEntity>();
-                    DictEntity dict = new DictEntity();
-                    dict.value = "0";
-                    dict.label = "正常";
-                    dictList.Add(dict);
-                    dict = new DictEntity();
-                    dict.value = "1";
-                    dict.label = "停诊";
-                    dictList.Add(dict);
-                    repositoryItemLookUpEdit1.DataSource = dictList;
-                    repositoryItemLookUpEdit1.DisplayMember = "label";
-                    repositoryItemLookUpEdit1.ValueMember = "value";
-                    repositoryItemLookUpEdit1.ShowHeader = false;
-                    repositoryItemLookUpEdit1.ShowFooter = false;
-                    SearchData();
-                }
-                else
-                {
-                    cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
-                    return;
-                }
-            });
+            gridView1.OptionsView.AllowCellMerge = true;
+            //设置表格中状态下拉框的数据
+            List<DictEntity> dictList = new List<DictEntity>();
+            DictEntity dict = new DictEntity();
+            dict.value = "0";
+            dict.label = "正常";
+            dictList.Add(dict);
+            dict = new DictEntity();
+            dict.value = "1";
+            dict.label = "停诊";
+            dictList.Add(dict);
+            repositoryItemLookUpEdit1.DataSource = dictList;
+            repositoryItemLookUpEdit1.DisplayMember = "label";
+            repositoryItemLookUpEdit1.ValueMember = "value";
+            repositoryItemLookUpEdit1.ShowHeader = false;
+            repositoryItemLookUpEdit1.ShowFooter = false;
+            SearchData();
         }
 
         private void treeDept_EditValueChanged(object sender, EventArgs e)

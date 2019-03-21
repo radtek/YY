@@ -31,16 +31,14 @@ namespace Xr.RtScreen.pages
             GetDoctorSmallScreenInfo();
             time();
         }
+        #region 
         protected override void WndProc(ref Message m)
         {
-
             if (m.Msg == 0x0014) // 禁掉清除背景消息
-
                 return;
-
             base.WndProc(ref m);
-
         }
+        #endregion
         #region 获取信息
         string doctorIntro = "";
         public void GetDoctorSmallScreenInfo()
@@ -121,12 +119,31 @@ namespace Xr.RtScreen.pages
             {
                 System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
-                    scrollingTexts1.ScrollText = docotrinfo;
+                    scrollingTexts1.ScrollText =StripHTML(docotrinfo);
                 });
             }
             catch
             {
             }
+        }
+        /// <summary>
+        /// 去除HTML标记 
+        /// </summary>
+        /// <param name="strHtml">包括HTML的源码 </param>
+        /// <returns>已经去除后的文字</returns>
+        public static string StripHTML(string strHtml)
+        {
+            string[] aryReg = { @"<script[^>]*?>.*?</script>", @"<(\/\s*)?!?((\w+:)?\w+)(\w+(\s*=?\s*(([""'])(\\[""'tbnr]|[^\7])*?\7|\w+)|.{0})|\s)*?(\/\s*)?>", @"([\r\n])[\s]+", @"&(quot|#34);", @"&(amp|#38);", @"&(lt|#60);", @"&(gt|#62);", @"&(nbsp|#160);", @"&(iexcl|#161);", @"&(cent|#162);", @"&(pound|#163);", @"&(copy|#169);", @"&#(\d+);", @"-->", @"<!--.*\n" };
+            string[] aryRep = { "", "", "", "\"", "&", "<", ">", " ", "\xa1", "\xa2", "\xa3", "\xa9", "", "\r\n", "" };
+            string newReg = aryReg[0];
+            string strOutput = strHtml;
+            for (int i = 0; i < aryReg.Length; i++)
+            {
+                System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(aryReg[i], System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                strOutput = regex.Replace(strOutput, aryRep[i]);
+            }
+            strOutput.Replace("<", ""); strOutput.Replace(">", "");
+            strOutput.Replace("\r\n", ""); return strOutput;
         }
         #endregion
         #region 画线条
@@ -161,5 +178,21 @@ namespace Xr.RtScreen.pages
             GetDoctorSmallScreenInfo();
         }
         #endregion
+        #region 跟随鼠标移动
+        Point downPoint;
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            downPoint = new Point(e.X, e.Y);
+        }
+
+        private void label1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Form1.pCurrentWin.Location = new Point(Form1.pCurrentWin.Location.X + e.X - downPoint.X,
+                    Form1.pCurrentWin.Location.Y + e.Y - downPoint.Y);
+            }
+        }
+        #endregion 
     }
 }

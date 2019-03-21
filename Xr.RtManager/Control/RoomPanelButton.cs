@@ -58,6 +58,7 @@ namespace Xr.RtManager.Control
          }
         //bool _EnableCheck;
         public String noonName= "上午";
+        public bool IsStop = false;
         private NoonSpan noon;
         /// <summary>
         /// 获取或设置按钮风格
@@ -124,7 +125,7 @@ namespace Xr.RtManager.Control
             e.Graphics.DrawString(this._Text, _BtnFont, br, (this.Width - (int)textSize.Width) / 2, (this.Height - (int)textSize.Height)/2);
             RectangleF[] rects = {new Rectangle(this.Width - 60, 1, 59, 30), new Rectangle(0, this.Height - 30, this.Width - 1, 29) };
             SolidBrush bush = new SolidBrush(Color.LightGray);
-            if (!this.Enabled)
+            if (this.IsStop)
             {
                 SolidBrush bushBG = new SolidBrush(Color.OrangeRed);
                 RectangleF BGRec = new Rectangle(1, 1, this.Width - 3, this.Height - 3);

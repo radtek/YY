@@ -2040,12 +2040,12 @@
             this.tableLayoutPanel2.Controls.Add(this.buttonControl2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnQuery, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(612, 10);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(579, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(325, 30);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(289, 30);
             this.tableLayoutPanel2.TabIndex = 190;
             // 
             // buttonControl1
@@ -2057,7 +2057,7 @@
             this.buttonControl1.Location = new System.Drawing.Point(164, 0);
             this.buttonControl1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(124, 30);
+            this.buttonControl1.Size = new System.Drawing.Size(114, 30);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Green;
             this.buttonControl1.TabIndex = 92;
             this.buttonControl1.Text = "导出平均候诊时间";
@@ -2097,7 +2097,7 @@
             // 
             this.deEnd.Dock = System.Windows.Forms.DockStyle.Left;
             this.deEnd.EditValue = null;
-            this.deEnd.Location = new System.Drawing.Point(482, 10);
+            this.deEnd.Location = new System.Drawing.Point(449, 10);
             this.deEnd.Name = "deEnd";
             this.deEnd.Properties.AutoHeight = false;
             this.deEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2111,9 +2111,9 @@
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label2.Location = new System.Drawing.Point(467, 10);
+            this.label2.Location = new System.Drawing.Point(435, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 30);
+            this.label2.Size = new System.Drawing.Size(14, 30);
             this.label2.TabIndex = 188;
             this.label2.Text = "-";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2122,7 +2122,7 @@
             // 
             this.deStart.Dock = System.Windows.Forms.DockStyle.Left;
             this.deStart.EditValue = null;
-            this.deStart.Location = new System.Drawing.Point(337, 10);
+            this.deStart.Location = new System.Drawing.Point(305, 10);
             this.deStart.Name = "deStart";
             this.deStart.Properties.AutoHeight = false;
             this.deStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2140,9 +2140,9 @@
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(255, 10);
+            this.label3.Location = new System.Drawing.Point(235, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 30);
+            this.label3.Size = new System.Drawing.Size(70, 30);
             this.label3.TabIndex = 186;
             this.label3.Text = "预约日期";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2159,7 +2159,7 @@
             this.borderPanel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.borderPanel5.FillColor1 = System.Drawing.Color.Transparent;
             this.borderPanel5.FillColor2 = System.Drawing.Color.Transparent;
-            this.borderPanel5.Location = new System.Drawing.Point(174, 10);
+            this.borderPanel5.Location = new System.Drawing.Point(154, 10);
             this.borderPanel5.Margin = new System.Windows.Forms.Padding(1);
             this.borderPanel5.Name = "borderPanel5";
             this.borderPanel5.Padding = new System.Windows.Forms.Padding(1);
@@ -2225,7 +2225,7 @@
             this.treeDeptId.Properties.NullText = "";
             this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
             this.treeDeptId.Properties.TreeList = this.treeList2;
-            this.treeDeptId.Size = new System.Drawing.Size(124, 30);
+            this.treeDeptId.Size = new System.Drawing.Size(104, 30);
             this.treeDeptId.TabIndex = 191;
             // 
             // treeList2

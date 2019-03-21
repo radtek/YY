@@ -10,12 +10,15 @@ using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Xr.Http;
 using Xr.Common;
+using Xr.RtManager.Module.triage;
+using System.Threading;
 
 namespace Xr.RtManager.Pages.triage
 {
     public partial class TranDocFrm : Form
     {
         String Dept = String.Empty;
+        Xr.Common.Controls.OpaqueCommand cmd;
         public TranDocFrm(String deptID)
         {
             InitializeComponent();
@@ -24,41 +27,305 @@ namespace Xr.RtManager.Pages.triage
 
         private void OfficeEdit_Load(object sender, EventArgs e)
         {
+            cmd = new Xr.Common.Controls.OpaqueCommand(this);
+              //获取科室下拉框数据
+            treeDeptId.Properties.DataSource = AppContext.Session.deptList;
+            treeDeptId.Properties.TreeList.KeyFieldName = "id";
+            treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
+            treeDeptId.Properties.DisplayMember = "name";
+            treeDeptId.Properties.ValueMember = "id";
+            //默认选择选择第一个
+            treeDeptId.EditValue = AppContext.Session.deptList[0].id;
+
+        }
+        private void treeDeptId_EditValueChanged(object sender, EventArgs e)
+        {
             //获取获取科室可挂号医生信息
             Dictionary<string, string> prament = new Dictionary<string, string>();
             String param = "";
-            prament.Add("hospital.code", AppContext.Session.hospitalId);
-            prament.Add("dept.id", Dept);
+            prament.Add("hospitalId", AppContext.Session.hospitalId);
+            prament.Add("deptId", treeDeptId.EditValue.ToString());
 
             String url = String.Empty;
             if (prament.Count != 0)
             {
                 param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
             }
-            url = AppContext.AppConfig.serverUrl + "cms/doctor/list?" + param;
+            url = AppContext.AppConfig.serverUrl + "sch/doctorSitting/findSittingDoctor?" + param;
             JObject objT = new JObject();
             objT = JObject.Parse(HttpClass.httpPost(url));
+            //{""code"":200,""message"":""操作成功"",""result"":[{""hospitalId"":12,""deptId"":2,""doctorId"":22,""doctorName"":""梁医生"",""isStop"":""0""},{""hospitalId"":12,""deptId"":2,""doctorId"":20,""doctorName"":""测试"",""isStop"":""0""},{""hospitalId"":12,""deptId"":2,""doctorId"":19,""doctorName"":""1"",""isStop"":""0""},{""hospitalId"":12,""deptId"":2,""doctorId"":13,""doctorName"":""21321"",""isStop"":""0""}],""state"":true}
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
                 //List<Dic> list = objT["result"].ToObject<List<Dic>>();
-                List<DoctorInfoEntity> list = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
+                List<RoomInfoEntity> list = objT["result"].ToObject<List<RoomInfoEntity>>();
                 lueStopDoctor.Properties.DataSource = list;
-                lueStopDoctor.Properties.DisplayMember = "name";
-                lueStopDoctor.Properties.ValueMember = "code";
-                lueStopDoctor.ItemIndex = 0;
+                lueStopDoctor.Properties.DisplayMember = "doctorName";
+                lueStopDoctor.Properties.ValueMember = "doctorId";
+                lueStopDoctor.EditValue = null;
+                //转入医生需判断医生的isStop是否为“0”，为“0”，才显示在转入医生下拉框中；
+                List<RoomInfoEntity> nonStopDoclist = new List<RoomInfoEntity>();
+                foreach (var item in list)
+                {
+                    if (item.isStop == "0")
+                    {
+                        nonStopDoclist.Add(item);
+                    }
+                }
+                //转入医生
+                lueIntoDoctor.Properties.DataSource = nonStopDoclist;
+                lueIntoDoctor.Properties.DisplayMember = "doctorName";
+                lueIntoDoctor.Properties.ValueMember = "doctorId";
+                lueIntoDoctor.EditValue = null;
+
             }
             else
             {
                 MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                 return;
-            } 
-    
+            }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
 
         }
+        
+        bool NeedCloseWaitingFrm = true;
+        private void Asynchronous(AsyncEntity ars)
+        {
+            //异步操作
+            if (!this.backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1 = new BackgroundWorker();
+                var bw = backgroundWorker1;
+                bw.WorkerReportsProgress = true;
+                //需要异步的操作
+                bw.DoWork += new DoWorkEventHandler(DoWork);
+                //异步操作时报告前台状态变更
+                //bw.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+                //异步操作完成后操作
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                bw.WorkerSupportsCancellation = true;
+                //异步调用结束后释放操作
+                bw.Disposed += new EventHandler(Disposed);
+                //开始异步操作
+                bw.RunWorkerAsync(ars);
+
+                //打开等待框
+
+                    if (NeedCloseWaitingFrm)
+                    {
+                        cmd.IsShowCancelBtn = false;
+                        cmd.ShowOpaqueLayer(0.56f, "请稍后...");
+                    }
+                
+            }
+        }
+        void DoWork(object sender, DoWorkEventArgs e)
+        {
+            SycResult result = new SycResult();
+            String[] Pras = new String[] { };
+            AsyncEntity Arg = e.Argument as AsyncEntity;
+            AsynchronousWorks workType = Arg.WorkType;
+            result.WorkType = Arg.WorkType;
+            if (Arg.Argument != null)
+            {
+                Pras = Arg.Argument;
+            }
+            // 异步操作1
+            Thread.Sleep(100);
+            try
+            {
+                #region 候诊中列表
+                if (workType == AsynchronousWorks.WaitingPatientList)
+                {
+                    //报告前台状态变更
+                    backgroundWorker1.ReportProgress(50);
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    String param = "";
+                    //获取医生坐诊信息
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    //hospitalId=12&deptId=2&period=3
+                    prament.Add("hospitalId", AppContext.Session.hospitalId);
+                    prament.Add("deptId", treeDeptId.EditValue.ToString());
+                    prament.Add("doctorId", lueStopDoctor.EditValue.ToString());
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/getWaitingListByDoctorId?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    //jsonStr=@"{""code"":200,""message"":""操作成功"",""result"":[{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""全天"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""上午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""下午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""晚上"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""上午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""下午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""晚上"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""}],""state"":true}";
+
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
+                #region 患者转诊
+                if (workType == AsynchronousWorks.PatientTranDoc)
+                {
+                    //报告前台状态变更
+                    backgroundWorker1.ReportProgress(50);
+                    // 异步操作2
+                    //Thread.Sleep(300);
+                    String param = "";
+                    //获取医生坐诊信息
+                    Dictionary<string, string> prament = new Dictionary<string, string>();
+                    //hospitalId=12&deptId=2&period=3
+                    prament.Add("hospitalId", AppContext.Session.hospitalId);
+                    prament.Add("deptId", treeDeptId.EditValue.ToString());
+                    prament.Add("doctorId", lueStopDoctor.EditValue.ToString());
+                    //prament.Add("pageSize", "10000");
+
+                    String url = String.Empty;
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    url = AppContext.AppConfig.serverUrl + "sch/registerTriage/getWaitingListByDoctorId?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    //jsonStr=@"{""code"":200,""message"":""操作成功"",""result"":[{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""晚上"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""下午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":1,""doctorName"":""张医生"",""period"":""上午"",""clinicPrefix"":""A"",""clinicName"":""01诊室"",""waitingNum"":0,""siteSyNum"":80,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""全天"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""上午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""下午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""晚上"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""上午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""下午"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""},{""doctorId"":15,""doctorName"":""杰大哥"",""period"":""晚上"",""clinicPrefix"":""B"",""clinicName"":""02诊室"",""waitingNum"":0,""siteSyNum"":0,""isStop"":""0""}],""state"":true}";
+
+                    JObject objT = JObject.Parse(jsonStr);
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.msg = objT["message"].ToString();// PatientSearchInfoRef.Msg;
+                        e.Result = result;
+                    }
+
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                result.result = false;
+                result.msg = ex.Message;// PatientSearchInfoRef.Msg;
+                e.Result = result;
+            }
+        }
+        void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //停止异步调用
+            this.backgroundWorker1.CancelAsync();
+
+            try
+            {
+                //Thread.Sleep(500);
+                //通过异步操作完成结果判断后续提示
+                if (e.Result == null)
+                {
+                    //MessageBoxUtils.Hint("操作失败，请稍候尝试。");
+                    MessageBoxUtils.Show("操作失败，请稍候尝试。", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                    return;
+                }
+                var result = (SycResult)e.Result;
+                if (result.result)
+                {
+                    AsynchronousWorks workType = result.WorkType;
+                    #region 候诊中列表
+                    if (workType == AsynchronousWorks.WaitingPatientList)
+                    {
+                        if (result.obj == null)
+                        {
+                            //_waitForm.DialogResult = DialogResult.OK;
+                            //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
+                            //_waitForm.Close();
+                            cmd.HideOpaqueLayer();
+                            return;
+                        }
+
+                        JObject objT = result.obj as JObject;
+                        List<RoomInfoEntity> list = objT["result"].ToObject<List<RoomInfoEntity>>();
+                        Gc_patients.DataSource = list;
+
+                        cmd.HideOpaqueLayer();
+                        //cmd = new Xr.Common.Controls.OpaqueCommand(this);
+                        return;
+                    }
+                    #endregion
+                    #region 患者转诊
+                    if (workType == AsynchronousWorks.PatientTranDoc)
+                    {
+                        if (result.obj == null)
+                        {
+                            //_waitForm.DialogResult = DialogResult.OK;
+                            //_waitForm.ChangeNoticeComplete(result.msg, Dialog.HintMessageBoxIcon.Error);
+                            //_waitForm.Close();
+                            cmd.HideOpaqueLayer();
+                            return;
+                        }
+                        
+                        NeedCloseWaitingFrm = false;
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
+                        MessageBoxUtils.Hint("操作成功",this);
+
+                        
+                        //cmd = new Xr.Common.Controls.OpaqueCommand(this);
+                        return;
+                    }
+                    #endregion
+                }
+                else
+                {
+                    Gc_patients.DataSource = null;
+                    MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                    cmd.HideOpaqueLayer();
+                    //MessageBoxUtils.Hint(result.msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                cmd.HideOpaqueLayer();
+            }
+            finally
+            {
+                // 关闭加载提示框
+                //DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
+                //cmd.HideOpaqueLayer();
+                //关闭等待框
+                if (NeedCloseWaitingFrm)
+                {
+                    cmd.HideOpaqueLayer();
+                }
+                else
+                {
+                    NeedCloseWaitingFrm = true;
+                }
+            }
+        }
+        new void Disposed(object sender, object e)
+        {
+
+        }
+
         private void gv_patients_MouseDown(object sender, MouseEventArgs e)
         {
             //鼠标左键点击
@@ -148,5 +415,38 @@ namespace Xr.RtManager.Pages.triage
         {
             DialogResult = DialogResult.Cancel;
         }
+        private void lueStopDoctor_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueStopDoctor.EditValue != null)
+            {
+                if (lueStopDoctor.EditValue == lueIntoDoctor.EditValue)
+                {
+                    lueStopDoctor.EditValue = null;
+                    MessageBoxUtils.Hint("转入医生不能与停诊医生相同", HintMessageBoxIcon.Error, this);
+                }
+                else
+                {
+                    //读取该医生候诊信息
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
+                }
+            }
+            else
+            {
+                Gc_patients.DataSource = null;
+            }
+        }
+        private void lueIntoDoctor_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueIntoDoctor.EditValue != null)
+            {
+                if (lueStopDoctor.EditValue == lueIntoDoctor.EditValue)
+                {
+                    lueIntoDoctor.EditValue = null;
+                    MessageBoxUtils.Hint("转入医生不能与停诊医生相同", HintMessageBoxIcon.Error, this);
+                }
+            }
+        }
+
+     
     }
 }

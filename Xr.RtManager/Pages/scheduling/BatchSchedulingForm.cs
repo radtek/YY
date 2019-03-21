@@ -33,41 +33,36 @@ namespace Xr.RtManager.Pages.scheduling
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             //设置科室列表
-            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync( 0, (o) => 
-            {
-                String data = HttpClass.httpPost(url);
-                return data;
+            //String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            //String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+            //this.DoWorkAsync( 0, (o) => 
+            //{
+            //    String data = HttpClass.httpPost(url);
+            //    return data;
 
-            }, null, (data) => 
-            {
-                JObject objT = JObject.Parse(data.ToString());
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
-                    List<Item> itemList = new List<Item>();
-                    foreach (DeptEntity dept in deptList)
-                    {
-                        Item item = new Item();
-                        item.name = dept.name;
-                        item.value = dept.id;
-                        item.tag = dept.hospitalId;
-                        item.parentId = dept.parentId;
-                        itemList.Add(item);
-                    }
-                    mcDept.setDataSource(itemList);
+            //}, null, (data) => 
+            //{
+            //    JObject objT = JObject.Parse(data.ToString());
+            //    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            //    {
+                    //List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
+                    List<DeptEntity> deptList = AppContext.Session.deptList;
+                    treeMenuControl1.KeyFieldName = "id";
+                    treeMenuControl1.ParentFieldName = "parentId";
+                    treeMenuControl1.DisplayMember = "name";
+                    treeMenuControl1.ValueMember = "id";
+                    treeMenuControl1.DataSource = deptList;
 
                     //查询日期下拉框数据
-                    url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findWeeks";
+                    String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findWeeks";
                     this.DoWorkAsync( 0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
-                        data = HttpClass.httpPost(url);
+                        String data = HttpClass.httpPost(url);
                         return data;
 
                     }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                     {
-                        objT = JObject.Parse(data2.ToString());
+                        JObject objT = JObject.Parse(data2.ToString());
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
                             List<DictEntity> dictList = new List<DictEntity>();
@@ -106,14 +101,14 @@ namespace Xr.RtManager.Pages.scheduling
                             return;
                         }
                     });
-                }
-                else
-                {
-                    cmd.HideOpaqueLayer();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
-                    return;
-                }
-            });
+            //    }
+            //    else
+            //    {
+            //        cmd.HideOpaqueLayer();
+            //        MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+            //        return;
+            //    }
+            //});
         }
 
         private void btnTswk_Click(object sender, EventArgs e)
@@ -143,19 +138,19 @@ namespace Xr.RtManager.Pages.scheduling
             SearchData();
         }
 
-        private void mcDept_MenuItemClick(object sender, EventArgs e)
+        private void treeMenuControl1_MenuItemClick(object sender, EventArgs e, object selectItem)
         {
             SearchData();
         }
 
         public void SearchData()
         {
-            if (mcDept.itemName != null && lueDate.Text.Length > 0)
+            if (treeMenuControl1.EditValue != null && lueDate.Text.Length > 0)
             {
                 //检查是否是节假日
                 List<String> holidayList = new List<String>();
                 DateTime dtEnd = DateTime.Parse(lueDate.Text + " 00:00:00").AddDays(6);
-                String param = "hospitalId=" + mcDept.itemTag + "&beginDate=" + lueDate.Text + "&endDate=" + dtEnd.ToString("u").Substring(0, 10);
+                String param = "hospitalId=" + AppContext.Session.hospitalId + "&beginDate=" + lueDate.Text + "&endDate=" + dtEnd.ToString("u").Substring(0, 10);
                 String url = AppContext.AppConfig.serverUrl + "cms/holiday/checkHolidayForDate?" + param;
                 cmd.ShowOpaqueLayer();
                 this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
@@ -301,7 +296,7 @@ namespace Xr.RtManager.Pages.scheduling
                         List<DoctorVSEntity> DVSList = new List<DoctorVSEntity>();//表格数据
                         List<SchedulingEntity> pbList = null;//后台返回的排班数据
                         //获取排班数据
-                        param = "hospitalId=" + mcDept.itemTag + "&deptId=" + mcDept.itemName + "&date=" + lueDate.Text;
+                        param = "hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + treeMenuControl1.EditValue + "&date=" + lueDate.Text;
                         url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findByDeptAndDate?" + param;
                         this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                         {
@@ -316,7 +311,7 @@ namespace Xr.RtManager.Pages.scheduling
                                 pbList = objT["result"].ToObject<List<SchedulingEntity>>();
 
                                 //获取医生列表
-                                param = "pageNo=1&pageSize=10000&hospital.id=" + mcDept.itemTag + "&dept.id=" + mcDept.itemName;
+                                param = "pageNo=1&pageSize=10000&hospital.id=" + AppContext.Session.hospitalId + "&dept.id=" + treeMenuControl1.EditValue;
                                 url = AppContext.AppConfig.serverUrl + "cms/doctor/list?" + param;
                                 this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                                 {
@@ -744,7 +739,7 @@ namespace Xr.RtManager.Pages.scheduling
             }
             #endregion
             String scheduSets = Newtonsoft.Json.JsonConvert.SerializeObject(schedulingSubList);
-            String param = "hospitalId=" + mcDept.itemTag + "&deptId=" + mcDept.itemName + "&scheduSets=" + scheduSets;
+            String param = "hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + treeMenuControl1.EditValue + "&scheduSets=" + scheduSets;
             String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/saveToMany?";
 
             cmd.ShowOpaqueLayer(0.56f, "正在提交数据中");
@@ -835,6 +830,8 @@ namespace Xr.RtManager.Pages.scheduling
         {
             cmd.rectDisplay = this.DisplayRectangle;
         }
+
+
         
     }
 }

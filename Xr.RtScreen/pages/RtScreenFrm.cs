@@ -74,12 +74,12 @@ namespace Xr.RtScreen.pages
                                     if (clinicInfo.Count != a)
                                     {
                                         _context.Send((s) => DynamicLayout(this.tableLayoutPanel1, clinicInfo.Count + 1, 6), null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[0].Width = 30, null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[1].Width = 40, null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[2].Width = 40, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[0].Width = 25, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[1].Width = 55, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[2].Width = 50, null);
                                         _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[3].Width = 80, null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[4].Width = 40, null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[5].Width = 40, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[4].Width = 35, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[5].Width = 30, null);
                                     }
                                     a = clinicInfo.Count;
                                     _context.Send((s) => Assignment(), null);
@@ -588,5 +588,21 @@ namespace Xr.RtScreen.pages
             DoctorSittingConsultations();
         }
         #endregion
+        #region 更随移动
+        Point downPoint;
+        private void scrollingText1_MouseDown(object sender, MouseEventArgs e)
+        {
+            downPoint = new Point(e.X, e.Y);
+        }
+
+        private void scrollingText1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Form1.pCurrentWin.Location = new Point(Form1.pCurrentWin.Location.X + e.X - downPoint.X,
+                     Form1.pCurrentWin.Location.Y + e.Y - downPoint.Y);
+            }
+        }
+        #endregion 
     }
 }

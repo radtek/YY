@@ -94,6 +94,7 @@
     <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>RtCallSocket\Newtonsoft.Json.dll</HintPath>
@@ -155,6 +156,12 @@
     <Compile Include="pages\RtIntersectionAppointmentFrm.Designer.cs">
       <DependentUpon>RtIntersectionAppointmentFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Xr.RtCallSettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Xr.RtCallSettingFrm.Designer.cs">
+      <DependentUpon>Xr.RtCallSettingFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Xr.RtCallClick.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +195,9 @@
     </Compile>
     <EmbeddedResource Include="Xr.RtCallClick.resx">
       <DependentUpon>Xr.RtCallClick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xr.RtCallSettingFrm.resx">
+      <DependentUpon>Xr.RtCallSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

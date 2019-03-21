@@ -26,11 +26,10 @@ namespace Xr.RtManager.Pages.triage
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             #region
-            GetDoctorAndDepartment(AppContext.AppConfig.deptCode);
+            GetDoctorAndDepartment(AppContext.Session.deptIds);
             Doc = 0;
-            SelectDoctor(AppContext.Session.deptId);
+            //SelectDoctor(AppContext.Session.deptIds);
             DoctorSittingSelect(1, pageControl1.PageSize,DateTime.Now.ToString("yyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd"));
-            GetClinicList(AppContext.Session.hospitalId,AppContext.Session.deptId);
             this.beginDate.Text = DateTime.Now.ToString("yyy-MM-dd");
             this.endDate.Text = DateTime.Now.ToString("yyy-MM-dd");
             #endregion 
@@ -50,7 +49,7 @@ namespace Xr.RtManager.Pages.triage
         {
             try
             {
-                String url = AppContext.AppConfig.serverUrl + "sch/doctorSitting/list?pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + string.Join(",", from p in listoffice where p.name == treeListLookUpEdit1.Text.Trim() select p.id) + "&doctorId=" + string.Join(",", from d in doctorInfoEntity where d.name == luDoctords.Text.Trim() select d.id) + "&beginDate=" + beginDate + "&endDate=" + endDate;
+                String url = AppContext.AppConfig.serverUrl + "sch/doctorSitting/list?pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + string.Join(",", from p in listoffice where p.name == treeListLookUpEdit1.Text.Trim() select p.value) + "&doctorId=" + string.Join(",", from d in doctorInfoEntity where d.name == luDoctords.Text.Trim() select d.id) + "&beginDate=" + beginDate + "&endDate=" + endDate;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -76,7 +75,7 @@ namespace Xr.RtManager.Pages.triage
         }
         #endregion 
         #region 获取科室信息
-        List<TreeList> listoffice;
+        List<Xr.Common.Controls.Item> listoffice;
         List<HospitalInfoEntity> doctorInfoEntity;
         /// <summary>
         /// 获取科室信息
@@ -86,33 +85,45 @@ namespace Xr.RtManager.Pages.triage
         {
             try
             {
-                listoffice = new List<TreeList>();
+                listoffice = new List<Xr.Common.Controls.Item>();
                 //查询科室下拉框数据
-                String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + code;
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                //String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&deptIds=" + code;
+                //String data = HttpClass.httpPost(url);
+                //JObject objT = JObject.Parse(data);
+                //if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                //{
+                //    listoffice = objT["result"].ToObject<List<TreeList>>();
+                //}
+                //else
+                //{
+                //    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                //    return;
+                //}
+                List<DeptEntity> deptList = AppContext.Session.deptList;
+                List<Xr.Common.Controls.Item> itemList = new List<Xr.Common.Controls.Item>();
+                foreach (DeptEntity dept in deptList)
                 {
-                    listoffice = objT["result"].ToObject<List<TreeList>>();
+                    Xr.Common.Controls.Item item = new Xr.Common.Controls.Item();
+                    item.name = dept.name;
+                    item.value = dept.id;
+                    item.tag = dept.hospitalId;
+                    item.parentId = dept.parentId;
+                    itemList.Add(item);
                 }
-                else
-                {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
-                    return;
-                }
-                listoffice.Add(new TreeList { id = "", parentId = "", name = "请选择" });
-                treeListLookUpEdit1.Properties.DataSource = listoffice;
-                treeListLookUpEdit1.Properties.TreeList.KeyFieldName = "id";
+                listoffice = itemList;
+                itemList.Insert(0,new Xr.Common.Controls.Item { value = "", tag = "", name = "请选择" ,parentId=""});
+                treeListLookUpEdit1.Properties.DataSource = itemList;
+                treeListLookUpEdit1.Properties.TreeList.KeyFieldName = "value";
                 treeListLookUpEdit1.Properties.TreeList.ParentFieldName = "parentId";
                 treeListLookUpEdit1.Properties.DisplayMember = "name";
-                treeListLookUpEdit1.Properties.ValueMember = "id";
-                treeListLookUpEdit1.EditValue = AppContext.Session.deptId;
-                treeListLookUpEdit2.Properties.DataSource = listoffice;
-                treeListLookUpEdit2.Properties.TreeList.KeyFieldName = "id";
+                treeListLookUpEdit1.Properties.ValueMember = "value";
+                treeListLookUpEdit1.EditValue = AppContext.Session.deptList[0].id;
+                treeListLookUpEdit2.Properties.DataSource = itemList;
+                treeListLookUpEdit2.Properties.TreeList.KeyFieldName = "value";
                 treeListLookUpEdit2.Properties.TreeList.ParentFieldName = "parentId";
                 treeListLookUpEdit2.Properties.DisplayMember = "name";
-                treeListLookUpEdit2.Properties.ValueMember = "id";
-                treeListLookUpEdit2.EditValue = AppContext.Session.deptId;
+                treeListLookUpEdit2.Properties.ValueMember = "value";
+                treeListLookUpEdit2.EditValue = AppContext.Session.deptList[0].id;
             }
             catch (Exception ex)
             {
@@ -618,6 +629,7 @@ namespace Xr.RtManager.Pages.triage
         private void buttonControl3_Click(object sender, EventArgs e)
         {
             cmd.ShowOpaqueLayer(225, true);
+            GetClinicList(AppContext.Session.hospitalId, treeListLookUpEdit2.EditValue.ToString());
             GetDoctorSittingClinic();
         }
         #endregion 
@@ -626,6 +638,14 @@ namespace Xr.RtManager.Pages.triage
         {
             cmd.ShowOpaqueLayer(225, false);
             DoctorSittingSelect(CurrentPage, PageSize, beginDate.Text.Trim(), endDate.Text.Trim());
+        }
+        #endregion 
+        #region 临时坐诊
+        private void buttonControl4_Click(object sender, EventArgs e)
+        {
+            TemporaryStopFrm tsf = new TemporaryStopFrm();
+            tsf.ShowDialog();
+            DoctorSittingSelect(1, pageControl1.PageSize, DateTime.Now.ToString("yyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd"));
         }
         #endregion 
     }

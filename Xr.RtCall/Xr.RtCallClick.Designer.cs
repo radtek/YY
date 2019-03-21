@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button3 = new System.Windows.Forms.Button();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -110,7 +109,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(130, 0);
+            this.label2.Location = new System.Drawing.Point(186, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(227, 27);
             this.label2.TabIndex = 2;
@@ -138,7 +137,6 @@
             this.skinbutLook.TabIndex = 0;
             this.skinbutLook.Text = "临时停诊";
             this.skinbutLook.UseVisualStyleBackColor = false;
-            this.skinbutLook.Visible = false;
             this.skinbutLook.Click += new System.EventHandler(this.skinbutLook_Click);
             // 
             // skinbutBig

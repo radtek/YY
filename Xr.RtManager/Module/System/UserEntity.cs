@@ -21,7 +21,7 @@ namespace Xr.RtManager
         /// <summary>
         /// 归属公司id
         /// </summary>
-        [ObjectPoint("company.id")]
+        [IgnoreParam]
         public String companyId { get; set; }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Xr.RtManager
         /// <summary>
         /// 归属部门id
         /// </summary>
-        [ObjectPoint("office.id")]
+        [IgnoreParam]
         public String officeId { get; set; }
 
         /// <summary>
@@ -101,6 +101,11 @@ namespace Xr.RtManager
         /// </summary>
         [Required]
         public String isResetPwd { get; set; }
+
+        /// <summary>
+        /// 所属科室id字符串(1,2,3,4)
+        /// </summary>
+        public String deptIds { get; set; }
 
         /// <summary>
         /// // 是否锁定，0开放、1锁定

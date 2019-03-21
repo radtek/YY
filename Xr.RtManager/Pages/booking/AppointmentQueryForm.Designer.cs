@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcAppointmentInfo = new DevExpress.XtraGrid.GridControl();
@@ -115,6 +115,7 @@
             this.btn_zlk = new Xr.Common.Controls.ButtonControl();
             this.txt_cardNoQuery = new DevExpress.XtraEditors.TextEdit();
             this.label13 = new System.Windows.Forms.Label();
+            this.lueCardTypeQuery = new DevExpress.XtraEditors.LookUpEdit();
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
@@ -135,15 +136,15 @@
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx12 = new Xr.Common.Controls.PanelEx();
+            this.panelEx15 = new Xr.Common.Controls.PanelEx();
+            this.panelEx16 = new Xr.Common.Controls.PanelEx();
+            this.panelEx17 = new Xr.Common.Controls.PanelEx();
+            this.panelEx13 = new Xr.Common.Controls.PanelEx();
+            this.panelEx14 = new Xr.Common.Controls.PanelEx();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.加急ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -159,6 +160,7 @@
             this.panel7.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_cardNoQuery.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCardTypeQuery.Properties)).BeginInit();
             this.panel6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_nameQuery.Properties)).BeginInit();
@@ -1161,11 +1163,12 @@
             this.panel7.Controls.Add(this.tableLayoutPanel3);
             this.panel7.Controls.Add(this.txt_cardNoQuery);
             this.panel7.Controls.Add(this.label13);
+            this.panel7.Controls.Add(this.lueCardTypeQuery);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Enabled = false;
             this.panel7.Location = new System.Drawing.Point(0, 75);
             this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.panel7.Padding = new System.Windows.Forms.Padding(20, 5, 0, 0);
             this.panel7.Size = new System.Drawing.Size(1009, 35);
             this.panel7.TabIndex = 183;
             // 
@@ -1179,7 +1182,7 @@
             this.tableLayoutPanel3.Controls.Add(this.btn_readSocialCard, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.btn_zlk, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(235, 5);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(385, 5);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
@@ -1236,12 +1239,12 @@
             // txt_cardNoQuery
             // 
             this.txt_cardNoQuery.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txt_cardNoQuery.Location = new System.Drawing.Point(80, 5);
+            this.txt_cardNoQuery.Location = new System.Drawing.Point(195, 5);
             this.txt_cardNoQuery.Name = "txt_cardNoQuery";
             this.txt_cardNoQuery.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.txt_cardNoQuery.Properties.Appearance.Options.UseFont = true;
             this.txt_cardNoQuery.Properties.AutoHeight = false;
-            this.txt_cardNoQuery.Size = new System.Drawing.Size(155, 30);
+            this.txt_cardNoQuery.Size = new System.Drawing.Size(190, 30);
             this.txt_cardNoQuery.TabIndex = 177;
             this.txt_cardNoQuery.Enter += new System.EventHandler(this.txt_cardNoQuery_Enter);
             this.txt_cardNoQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cardNoQuery_KeyPress);
@@ -1251,12 +1254,41 @@
             // 
             this.label13.Dock = System.Windows.Forms.DockStyle.Left;
             this.label13.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(0, 5);
+            this.label13.Location = new System.Drawing.Point(144, 5);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 30);
+            this.label13.Size = new System.Drawing.Size(51, 30);
             this.label13.TabIndex = 176;
             this.label13.Text = " 卡号";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lueCardTypeQuery
+            // 
+            this.lueCardTypeQuery.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lueCardTypeQuery.Location = new System.Drawing.Point(20, 5);
+            this.lueCardTypeQuery.Name = "lueCardTypeQuery";
+            this.lueCardTypeQuery.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.lueCardTypeQuery.Properties.Appearance.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceFocused.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AutoHeight = false;
+            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject1.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.lueCardTypeQuery.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
+            this.lueCardTypeQuery.Properties.NullText = "";
+            this.lueCardTypeQuery.Size = new System.Drawing.Size(124, 30);
+            this.lueCardTypeQuery.TabIndex = 179;
             // 
             // panel6
             // 
@@ -1429,10 +1461,10 @@
             this.lueRegisterWay.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueRegisterWay.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueRegisterWay.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lueRegisterWay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lueRegisterWay.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -1470,10 +1502,10 @@
             this.lueState.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueState.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueState.Properties.AutoHeight = false;
-            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject2.Options.UseFont = true;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.Options.UseFont = true;
             this.lueState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.lueState.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
@@ -1665,7 +1697,7 @@
             // 加急ToolStripMenuItem
             // 
             this.加急ToolStripMenuItem.Name = "加急ToolStripMenuItem";
-            this.加急ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.加急ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.加急ToolStripMenuItem.Text = "取消预约";
             this.加急ToolStripMenuItem.Click += new System.EventHandler(this.CancelToolStripMenuItem_Click);
             // 
@@ -1693,6 +1725,7 @@
             this.panel7.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txt_cardNoQuery.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCardTypeQuery.Properties)).EndInit();
             this.panel6.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txt_nameQuery.Properties)).EndInit();
@@ -1827,6 +1860,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 加急ToolStripMenuItem;
+        private DevExpress.XtraEditors.LookUpEdit lueCardTypeQuery;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

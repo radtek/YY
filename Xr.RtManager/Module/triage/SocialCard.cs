@@ -138,32 +138,32 @@ namespace Xr.RtManager.Module.triage
                     sex = "1";
                 else
                     sex = "2";
-                user_id = Encoding.Default.GetString(cardMeassageByte, 1, 8).Trim(); LogClass.WriteLog("user_id:" + user_id);
-                birthday = Encoding.Default.GetString(cardMeassageByte, 54, 8).Trim(); LogClass.WriteLog("birthday:" + birthday);
-                user_type = Encoding.Default.GetString(cardMeassageByte, 62, 2).Trim(); LogClass.WriteLog("user_type:" + user_type);
-                telephone = Encoding.Default.GetString(cardMeassageByte, 64, 12).Trim(); LogClass.WriteLog("telephone:" + telephone);
-                blood_type = Encoding.Default.GetString(cardMeassageByte, 76, 1).Trim(); LogClass.WriteLog("blood_type:" + blood_type);
-                ill_history = Encoding.Default.GetString(cardMeassageByte, 77, 14).Trim(); LogClass.WriteLog("ill_history:" + ill_history);
-                h_ill_history = Encoding.Default.GetString(cardMeassageByte, 91, 12).Trim(); LogClass.WriteLog("h_ill_history:" + h_ill_history);
-                address1 = Encoding.Default.GetString(cardMeassageByte, 103, 40).Trim(); LogClass.WriteLog("address1:" + address1);
-                post_id = Encoding.Default.GetString(cardMeassageByte, 143, 6).Trim(); LogClass.WriteLog("post_id:" + post_id);
-                linkman = Encoding.Default.GetString(cardMeassageByte, 149, 10).Trim(); LogClass.WriteLog("linkman:" + linkman);
-                area_code = Encoding.Default.GetString(cardMeassageByte, 159, 2).Trim(); LogClass.WriteLog("area_code:" + area_code);
-                cs_amount = Encoding.Default.GetString(cardMeassageByte, 161, 12).Trim(); LogClass.WriteLog("cs_amount:" + cs_amount);
-                sb_amount = Encoding.Default.GetString(cardMeassageByte, 173, 12).Trim(); LogClass.WriteLog("sb_amount:" + sb_amount);
-                sp_amount = Encoding.Default.GetString(cardMeassageByte, 185, 12).Trim(); LogClass.WriteLog("sp_amount:" + sp_amount);
-                zfu_amount = Encoding.Default.GetString(cardMeassageByte, 197, 12).Trim(); LogClass.WriteLog("zfu_amount:" + zfu_amount);
-                card = Encoding.Default.GetString(cardMeassageByte, 209, 16).Trim(); LogClass.WriteLog("card:" + card);
-                LogClass.WriteLog("个账金额：" + sb_amount);
+                user_id = Encoding.Default.GetString(cardMeassageByte, 1, 8).Trim(); //LogClass.WriteLog("user_id:" + user_id);
+                birthday = Encoding.Default.GetString(cardMeassageByte, 54, 8).Trim(); //LogClass.WriteLog("birthday:" + birthday);
+                user_type = Encoding.Default.GetString(cardMeassageByte, 62, 2).Trim(); //LogClass.WriteLog("user_type:" + user_type);
+                telephone = Encoding.Default.GetString(cardMeassageByte, 64, 12).Trim();// LogClass.WriteLog("telephone:" + telephone);
+                blood_type = Encoding.Default.GetString(cardMeassageByte, 76, 1).Trim(); //LogClass.WriteLog("blood_type:" + blood_type);
+                ill_history = Encoding.Default.GetString(cardMeassageByte, 77, 14).Trim(); //LogClass.WriteLog("ill_history:" + ill_history);
+                h_ill_history = Encoding.Default.GetString(cardMeassageByte, 91, 12).Trim(); //LogClass.WriteLog("h_ill_history:" + h_ill_history);
+                address1 = Encoding.Default.GetString(cardMeassageByte, 103, 40).Trim(); //LogClass.WriteLog("address1:" + address1);
+                post_id = Encoding.Default.GetString(cardMeassageByte, 143, 6).Trim(); //LogClass.WriteLog("post_id:" + post_id);
+                linkman = Encoding.Default.GetString(cardMeassageByte, 149, 10).Trim(); //LogClass.WriteLog("linkman:" + linkman);
+                area_code = Encoding.Default.GetString(cardMeassageByte, 159, 2).Trim(); //LogClass.WriteLog("area_code:" + area_code);
+                cs_amount = Encoding.Default.GetString(cardMeassageByte, 161, 12).Trim(); //LogClass.WriteLog("cs_amount:" + cs_amount);
+                sb_amount = Encoding.Default.GetString(cardMeassageByte, 173, 12).Trim(); //LogClass.WriteLog("sb_amount:" + sb_amount);
+                sp_amount = Encoding.Default.GetString(cardMeassageByte, 185, 12).Trim(); //LogClass.WriteLog("sp_amount:" + sp_amount);
+                zfu_amount = Encoding.Default.GetString(cardMeassageByte, 197, 12).Trim(); //LogClass.WriteLog("zfu_amount:" + zfu_amount);
+                card = Encoding.Default.GetString(cardMeassageByte, 209, 16).Trim(); //LogClass.WriteLog("card:" + card);
+                //LogClass.WriteLog("个账金额：" + sb_amount);
             }
             else
             {
                 StringBuilder msg = new StringBuilder();
                 HardwareInitialClass.GetErrorMsg(msg);
                 return_msg = "社保读卡失败：" + temR + "|" + msg;
-                LogClass.WriteLog("社保读卡失败：" + temR + "|" + msg);
+                //LogClass.WriteLog("社保读卡失败：" + temR + "|" + msg);
                 int resetR = HardwareInitialClass.ResetDev();//读卡失败时，进行复位
-                LogClass.WriteLog("复位结果：" + resetR);
+                //LogClass.WriteLog("复位结果：" + resetR);
             }
 
             return temR;

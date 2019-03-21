@@ -106,8 +106,6 @@
             this.gridColumn31 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.mcDept = new Xr.Common.Controls.MenuControl();
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9 = new Xr.Common.Controls.PanelEx(this.components);
             this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -120,6 +118,7 @@
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.dataController1 = new Xr.Common.Controls.DataController(this.components);
+            this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -127,7 +126,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcDoctor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.mcDept.SuspendLayout();
             this.panelEx1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelEx2.SuspendLayout();
@@ -1011,7 +1009,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.mcDept);
+            this.panel2.Controls.Add(this.treeMenuControl1);
             this.panel2.Controls.Add(this.panelEx1);
             this.panel2.Controls.Add(this.panelEx2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -1019,35 +1017,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(171, 423);
             this.panel2.TabIndex = 0;
-            // 
-            // mcDept
-            // 
-            this.mcDept.Controls.Add(this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9);
-            this.mcDept.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mcDept.itemName = null;
-            this.mcDept.itemTag = null;
-            this.mcDept.itemText = null;
-            this.mcDept.Location = new System.Drawing.Point(0, 134);
-            this.mcDept.Name = "mcDept";
-            this.mcDept.Size = new System.Drawing.Size(171, 289);
-            this.mcDept.TabIndex = 4;
-            this.mcDept.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.mcDept_MenuItemClick);
-            // 
-            // object_6f5ddf94_5d86_487d_be0a_e3f785621bd9
-            // 
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.AutoScroll = true;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.BackColor = System.Drawing.Color.Transparent;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.BorderSize = 1;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.Location = new System.Drawing.Point(0, 0);
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.Name = "object_6f5ddf94_5d86_487d_be0a_e3f785621bd9";
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.Size = new System.Drawing.Size(171, 289);
-            this.object_6f5ddf94_5d86_487d_be0a_e3f785621bd9.TabIndex = 0;
             // 
             // panelEx1
             // 
@@ -1215,6 +1184,29 @@
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // treeMenuControl1
+            // 
+            this.treeMenuControl1.AutoScroll = true;
+            this.treeMenuControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
+            this.treeMenuControl1.BorderSize = 1;
+            this.treeMenuControl1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.DataSource = null;
+            this.treeMenuControl1.DisplayMember = "name";
+            this.treeMenuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeMenuControl1.EditValue = null;
+            this.treeMenuControl1.KeyFieldName = "id";
+            this.treeMenuControl1.Location = new System.Drawing.Point(0, 134);
+            this.treeMenuControl1.Name = "treeMenuControl1";
+            this.treeMenuControl1.ParentFieldName = "parentId";
+            this.treeMenuControl1.Size = new System.Drawing.Size(171, 289);
+            this.treeMenuControl1.TabIndex = 4;
+            this.treeMenuControl1.UseZoom = false;
+            this.treeMenuControl1.ValueMember = "value";
+            this.treeMenuControl1.MenuItemClick += new Xr.Common.Controls.TreeMenuControl.ItemClick(this.treeMenuControl1_MenuItemClick);
+            // 
             // BatchSchedulingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1231,8 +1223,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcDoctor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.mcDept.ResumeLayout(false);
-            this.mcDept.PerformLayout();
             this.panelEx1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -1300,8 +1290,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn30;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn40;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn31;
-        private Xr.Common.Controls.MenuControl mcDept;
-        private Xr.Common.Controls.PanelEx object_6f5ddf94_5d86_487d_be0a_e3f785621bd9;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand 姓名;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand monday;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand mondayMorning;
@@ -1338,5 +1326,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand sundayAfternoon;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand sundayNight;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand sundayAllDay;
+        private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
     }
 }

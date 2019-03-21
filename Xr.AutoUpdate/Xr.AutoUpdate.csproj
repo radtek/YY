@@ -102,11 +102,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="call.ico" />
     <Content Include="favicon.ico" />
     <Content Include="icon.ico" />
     <Content Include="ICSharpCode.SharpZipLib.dll" />
     <Content Include="Log4net\log4net.dll" />
     <Content Include="Newtonsoft.Json.dll" />
+    <Content Include="Show.ico" />
     <None Include="Resources\Icon1.ico" />
   </ItemGroup>
   <ItemGroup>

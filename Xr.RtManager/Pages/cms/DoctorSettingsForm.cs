@@ -49,41 +49,15 @@ namespace Xr.RtManager.Pages.cms
             dcDefaultVisit.DataType = typeof(DefaultVisitEntity);
             //清除默认出诊时间模板数据
             dcDefaultVisit.ClearValue();
-            menuControl2.borderColor = Color.FromArgb(214, 214, 214);
+            //menuControl2.borderColor = Color.FromArgb(214, 214, 214);
             //cmd.ShowOpaqueLayer(0f);
-            
-            String param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-            this.DoWorkAsync( 0, (o) => 
-            {
-                String data = HttpClass.httpPost(url);
-                return data;
 
-            }, null, (r) => 
-            {
-                JObject objT = JObject.Parse(r.ToString());
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    List<DeptEntity> deptList = objT["result"].ToObject<List<DeptEntity>>();
-                    List<Item> itemList = new List<Item>();
-                    foreach (DeptEntity dept in deptList)
-                    {
-                        Item item = new Item();
-                        item.name = dept.name;
-                        item.value = dept.id;
-                        item.tag = dept.hospitalId;
-                        item.parentId = dept.parentId;
-                        itemList.Add(item);
-                    }
-                    menuControl2.setDataSource(itemList);
-                }
-                else
-                {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
-                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
-                    return;
-                }
-            });
+            List<DeptEntity> deptList = AppContext.Session.deptList;
+            treeMenuControl1.KeyFieldName = "id";
+            treeMenuControl1.ParentFieldName = "parentId";
+            treeMenuControl1.DisplayMember = "name";
+            treeMenuControl1.ValueMember = "id";
+            treeMenuControl1.DataSource = deptList;
 
             //查询医院下拉框数据
             String url2 = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
@@ -424,8 +398,7 @@ namespace Xr.RtManager.Pages.cms
             List<DictEntity> sexList = lueSex.Properties.DataSource as List<DictEntity>;
             if (sexList.Count > 0)
                 lueSex.EditValue = sexList[0].value;
-            
-            
+            lueHospital.EditValue = AppContext.Session.hospitalId;
         }
 
 
@@ -532,6 +505,9 @@ namespace Xr.RtManager.Pages.cms
                 return;
             }
             dcDoctorInfo.GetValue(doctorInfo);
+            //加号数量和挂号价格默认为0
+            doctorInfo.addNum = "0";
+            doctorInfo.price = "0";
 
             if (cbIgnoreHoliday.CheckState == CheckState.Checked)
                 doctorInfo.ignoreHoliday = "1";
@@ -709,7 +685,7 @@ namespace Xr.RtManager.Pages.cms
             }
             HospitalInfoEntity hospitalInfo = lueHospital.GetSelectedDataRow() as HospitalInfoEntity;
             //查询科室下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code + "&deptIds=" + AppContext.Session.deptIds;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -728,20 +704,11 @@ namespace Xr.RtManager.Pages.cms
             }
         }
 
-        private void menuControl2_MenuItemClick(object sender, EventArgs e)
+        private void treeMenuControl1_MenuItemClick(object sender, EventArgs e, object selectItem)
         {
-            Label label = null;
-            if (typeof(Label).IsInstanceOfType(sender))
-            {
-                label = (Label)sender;
-            }
-            else
-            {
-                PanelEx panelEx = (PanelEx)sender;
-                label = (Label)panelEx.Controls[0];
-            }
-            hospitalId = label.Tag.ToString();
-            deptId = label.Name;
+            DeptEntity dept = selectItem as DeptEntity;
+            hospitalId = dept.hospitalId;
+            deptId = dept.id;
             cmd.ShowOpaqueLayer();
             SearchData(1, pageControl1.PageSize);
         }
@@ -1734,5 +1701,7 @@ namespace Xr.RtManager.Pages.cms
             PictureViewer pv = new PictureViewer(pbPicture.Image);
             pv.Show();
         }
+
+
     }
 }

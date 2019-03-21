@@ -59,20 +59,21 @@ namespace Xr.RtScreen.VoiceCall
         {
             List<CallPrint> cpList = new List<CallPrint>();
             listPrint = new List<CallPrint>();
-            string Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList;
-            Dictionary<string, string> pa = new Dictionary<string, string>();
-            pa.Add("hospitalId", HelperClass.hospitalId);
-            pa.Add("deptId", HelperClass.deptId);
+            //Dictionary<string, string> pa = new Dictionary<string, string>();
+            //pa.Add("hospitalId", HelperClass.hospitalId);
+            //pa.Add("deptId", HelperClass.deptId);
+            string Url = "";
             if (Form1.ScreenType == "1")
             {
-                pa.Add("clinicId", "");
+                Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId + "&clinicId="+"";
             }
             else
             {
-                pa.Add("clinicId", HelperClass.clincId);//HelperClass.clincId
+                Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId + "&clinicId=" + HelperClass.clincId;
             }
-            string result = HttpHelper.CallRemote(Url, pa, HttpMethod.Post);
-            Log4net.LogHelper.Info("呼号请求地址：" + Url + "?" + string.Join("&", pa.Select(x => x.Key + "=" + x.Value).ToArray()));
+           // string Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList + "?" + string.Join("&", pa.Select(x => x.Key + "=" + x.Value).ToArray());
+            string result = HttpClass.httpPost(Url);
+            Log4net.LogHelper.Info("呼号请求地址：" + Url);
             try
             {
                 var objT = Newtonsoft.Json.Linq.JObject.Parse(result);

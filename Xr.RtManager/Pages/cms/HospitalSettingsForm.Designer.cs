@@ -82,6 +82,9 @@
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
             this.panel10 = new System.Windows.Forms.Panel();
             this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -91,6 +94,7 @@
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.dcHospitalInfo = new Xr.Common.Controls.DataController(this.components);
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcHospitalInfo)).BeginInit();
@@ -120,6 +124,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
@@ -183,6 +189,7 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
+            this.gridColumn9,
             this.gridColumn5,
             this.gridColumn6,
             this.gridColumn7});
@@ -269,7 +276,7 @@
             this.gridColumn5.MinWidth = 25;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 5;
             // 
             // gridColumn6
             // 
@@ -282,7 +289,7 @@
             this.gridColumn6.MinWidth = 25;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 6;
             // 
             // gridColumn7
             // 
@@ -295,7 +302,7 @@
             this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.VisibleIndex = 7;
             // 
             // pageControl1
             // 
@@ -377,6 +384,8 @@
             this.tableLayoutPanel1.Controls.Add(this.panel20, 7, 1);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 5, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -859,6 +868,43 @@
             this.pbLogo.TabStop = false;
             this.pbLogo.Click += new System.EventHandler(this.pbLogo_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.Location = new System.Drawing.Point(419, 32);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 32);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "坐诊数量:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.textEdit4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(519, 35);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.panel2.Size = new System.Drawing.Size(102, 26);
+            this.panel2.TabIndex = 29;
+            // 
+            // textEdit4
+            // 
+            this.dcHospitalInfo.SetDataMember(this.textEdit4, "temporaryNumSite");
+            this.textEdit4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textEdit4.Location = new System.Drawing.Point(8, 0);
+            this.textEdit4.Name = "textEdit4";
+            this.textEdit4.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit4.Properties.Appearance.Options.UseFont = true;
+            this.textEdit4.Properties.AutoHeight = false;
+            this.textEdit4.Properties.Mask.EditMask = "[0-9]*";
+            this.textEdit4.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.textEdit4.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.textEdit4.Size = new System.Drawing.Size(94, 26);
+            this.textEdit4.TabIndex = 30;
+            // 
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -958,6 +1004,14 @@
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "临时坐诊数量";
+            this.gridColumn9.FieldName = "temporaryNumSite";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 4;
+            // 
             // HospitalSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -997,6 +1051,8 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
@@ -1066,5 +1122,9 @@
         private System.Windows.Forms.Panel panel18;
         private Xr.Common.Controls.ButtonControl btnUp;
         private Xr.Common.Controls.ButtonControl btnEdit;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.TextEdit textEdit4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
     }
 }

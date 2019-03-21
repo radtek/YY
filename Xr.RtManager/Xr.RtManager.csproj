@@ -319,6 +319,24 @@
     <Compile Include="Pages\System\ClientVersionEdit.Designer.cs">
       <DependentUpon>ClientVersionEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\System\SetUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\System\SetUpForm.Designer.cs">
+      <DependentUpon>SetUpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\System\SetUpUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\System\SetUpUC.Designer.cs">
+      <DependentUpon>SetUpUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\System\TestForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\System\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\System\LogForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -432,6 +450,12 @@
     </Compile>
     <Compile Include="Pages\triage\SpotBookingForm.Designer.cs">
       <DependentUpon>SpotBookingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\triage\TemporaryStopFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\triage\TemporaryStopFrm.Designer.cs">
+      <DependentUpon>TemporaryStopFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\triage\TranDocFrm.cs">
       <SubType>Form</SubType>
@@ -549,6 +573,15 @@
     <EmbeddedResource Include="Pages\System\ClientVersionEdit.resx">
       <DependentUpon>ClientVersionEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\System\SetUpForm.resx">
+      <DependentUpon>SetUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\System\SetUpUC.resx">
+      <DependentUpon>SetUpUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\System\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\System\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -605,6 +638,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\triage\SpotBookingForm.resx">
       <DependentUpon>SpotBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\triage\TemporaryStopFrm.resx">
+      <DependentUpon>TemporaryStopFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\triage\TranDocFrm.resx">
       <DependentUpon>TranDocFrm.cs</DependentUpon>

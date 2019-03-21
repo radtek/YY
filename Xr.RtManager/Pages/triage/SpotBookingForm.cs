@@ -68,6 +68,11 @@ namespace Xr.RtManager.Pages.triage
                 lueCardType.Properties.DisplayMember = "label";
                 lueCardType.Properties.ValueMember = "value";
                 lueCardType.ItemIndex = 0;
+
+                lueCardTypeQuery.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                lueCardTypeQuery.Properties.DisplayMember = "label";
+                lueCardTypeQuery.Properties.ValueMember = "value";
+                lueCardTypeQuery.ItemIndex = 1;
             }
             else
             {
@@ -80,7 +85,11 @@ namespace Xr.RtManager.Pages.triage
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                if ((e.KeyChar == 'X'))//这是允许输入"X"  
+                {
+
+                }
+                else if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                 {
                     e.Handled = true;
                 }
@@ -121,7 +130,7 @@ namespace Xr.RtManager.Pages.triage
                 {
                     CardType = "2";
                     CardID = txt_cardNoQuery.Text;
-                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID, lueCardTypeQuery.EditValue.ToString() } });
                     gc_patient.Focus();
                 }
             }
@@ -136,7 +145,7 @@ namespace Xr.RtManager.Pages.triage
             //cmd.ShowOpaqueLayer();
             CardType = "2";
             CardID = "000675493100";
-            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID,"2" } });
         }
         private void btn_readSocialcard_Click(object sender, EventArgs e)
         {
@@ -229,7 +238,7 @@ namespace Xr.RtManager.Pages.triage
                  if (ars.WorkType == AsynchronousWorks.ReadzlCard)
                 {
                     cmd.IsShowCancelBtn = false;
-                    cmd.ShowOpaqueLayer();
+                    cmd.ShowOpaqueLayer(0.56f, "请稍后...");
                     ClearPatientUIInfo();
                 }
 
@@ -251,7 +260,7 @@ namespace Xr.RtManager.Pages.triage
                     if (NeedWaitingFrm)
                     {
                         cmd.IsShowCancelBtn = false;
-                        cmd.ShowOpaqueLayer();
+                        cmd.ShowOpaqueLayer(0.56f, "请稍后...");
                     }
                 }
             }
@@ -289,8 +298,8 @@ namespace Xr.RtManager.Pages.triage
                     param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
                 }
                 url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
-                String jsonStr = HttpClass.httpPost(url);
-                //jsonStr=@"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
+                //String jsonStr = HttpClass.httpPost(url);
+                String jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
                 JObject objT = JObject.Parse(jsonStr);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
@@ -492,6 +501,7 @@ namespace Xr.RtManager.Pages.triage
                     String param = "";
                     //获取患者信息
                     Dictionary<string, string> prament = new Dictionary<string, string>();
+                    /*
                     //prament.Add("cardNo", CardID);
                     prament.Add("cardNo", Pras[0]);
 
@@ -505,6 +515,17 @@ namespace Xr.RtManager.Pages.triage
                     url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByCardNo?" + param;
                     String jsonStr = HttpClass.httpPost(url);
                     JObject objT = JObject.Parse(jsonStr);
+                     */
+                    prament.Add("cardNo", Pras[0]);
+                    prament.Add("cardType", Pras[1]);
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    String url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByTyptAndCardNo?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         Patientid = objT["result"]["patientId"].ToString();
@@ -570,6 +591,7 @@ namespace Xr.RtManager.Pages.triage
 
                 try
                 {
+                    JLIdCardInfoClass.CancelFlag = false;
                     BackgroundWorker bgworker = sender as BackgroundWorker;
                     //绑定委托要执行的方法 
                     ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
@@ -647,6 +669,7 @@ namespace Xr.RtManager.Pages.triage
                             //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
                             SocialCard cardMes = new SocialCard();
                             cardMes.cancelReadCard();
+                            CancelFlag = true;
                             e.Cancel = true;
                             return;
                         }
@@ -658,6 +681,7 @@ namespace Xr.RtManager.Pages.triage
                     result.obj = null;
                     result.result = false;
                     result.msg = "读取社保卡失败:" + ee.Message;
+                    CancelFlag = true;
                     e.Result = result;
                 }
             }
@@ -859,7 +883,7 @@ namespace Xr.RtManager.Pages.triage
                 System.Threading.Thread.Sleep(3000);
                 if (backgroundWorker1.IsBusy)
                 {
-                    CardID = "000675493100";
+                    CardID = "45032219871222151X";
                     Result.WorkType = AsynchronousWorks.ReadIdCard;
                     Result.obj = CardID;
                 }
@@ -868,7 +892,10 @@ namespace Xr.RtManager.Pages.triage
                 if (idCardInfo != null)
                 {
                  if(backgroundWorker1.IsBusy)
+                    {
                     CardID = idCardInfo.Code.ToString();
+                    Result.WorkType = AsynchronousWorks.ReadIdCard;
+                    }
                 }
                 if (CardID != String.Empty)
                 {
@@ -883,14 +910,14 @@ namespace Xr.RtManager.Pages.triage
             }
             else
             {
-                System.Threading.Thread.Sleep(3000);
-                if (backgroundWorker1.IsBusy)
-                {
-                    CardID = "000675493100";
-                    Result.WorkType = AsynchronousWorks.ReadSocialcard;
-                    Result.obj = CardID;
-                }
-                /*
+                /*System.Threading.Thread.Sleep(3000);
+               if (backgroundWorker1.IsBusy)
+               {
+                   CardID = "000675493100";
+                   Result.WorkType = AsynchronousWorks.ReadSocialcard;
+                   Result.obj = CardID;
+               }
+               */
                 while (!CancelFlag)
                 {
                     SocialCard carMes = new SocialCard();
@@ -900,14 +927,16 @@ namespace Xr.RtManager.Pages.triage
                         CancelFlag = true;
                         //patientId = carMes.user_id;
                         LogClass.WriteLog("读取社保卡成功，卡号：" + carMes.user_id);
-                        if(backgroundWorker1.IsBusy)
-                          {
+                        if (backgroundWorker1.IsBusy)
+                        {
                             CardID = carMes.user_id;
+                            Result.WorkType = AsynchronousWorks.ReadSocialcard;
                             Result.obj = CardID;
-                          }
+                        }
+                        break;
                     }
                 }
-                 */
+                 
                 //result.obj = null;
                 //result.result = true;
                 //result.msg = "成功";
@@ -947,32 +976,34 @@ namespace Xr.RtManager.Pages.triage
                             return;
                         }
                         //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
-              
-                        JObject objT = result.obj as JObject;
-                        List<DeptEntity> list = objT["result"].ToObject<List<DeptEntity>>();
-                            List<Item> itemList = new List<Item>();
-                            if (list.Count > 0)
-                            {
-                                foreach (DeptEntity dept in list)
-                                {
-                                    Item item = new Item();
-                                    item.name = dept.name;
-                                    item.value = dept.id;
-                                    item.tag = dept.id;
-                                    item.parentId = dept.parentId;
-                                    itemList.Add(item);
-                                }
-                                mcDept.setDataSource(itemList);
-                                mcDept.EditValue(itemList[0].value);
-                                SelectDeptid = itemList[0].value;
 
-                                NeedWaitingFrm = false;
-                                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctor, Argument = new String[] { SelectDeptid } });
+                        //JObject objT = result.obj as JObject;
+                        //List<DeptEntity> list = objT["result"].ToObject<List<DeptEntity>>();
+
+                        List<DeptEntity> list = AppContext.Session.deptList;
+                        List<Item> itemList = new List<Item>();
+                        if (list.Count > 0)
+                        {
+                            foreach (DeptEntity dept in list)
+                            {
+                                Item item = new Item();
+                                item.name = dept.name;
+                                item.value = dept.id;
+                                item.tag = dept.id;
+                                item.parentId = dept.parentId;
+                                itemList.Add(item);
                             }
-                            else
-                            { 
-                                mcDept.setDataSource(itemList); 
-                            }
+                            mcDept.setDataSource(itemList);
+                            mcDept.EditValue(itemList[0].value);
+                            SelectDeptid = itemList[0].value;
+
+                            NeedWaitingFrm = false;
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctor, Argument = new String[] { SelectDeptid } });
+                        }
+                        else
+                        {
+                            mcDept.setDataSource(itemList);
+                        }
 
                         /*
                         //panel_depts.Controls.Clear();
@@ -1032,14 +1063,14 @@ namespace Xr.RtManager.Pages.triage
                             return;
                         }
                         //jsonStr = @"{""code"":200,""message"":""操作成功"",""result"":[{""id"":2,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科1"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000011""},{""id"":9,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科2"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""10000111""},{""id"":10,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""急诊科3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-30/=1315643547,2434956224"",""code"":""10000112""},{""id"":15,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室二"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""001""},{""id"":14,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1234566789""},{""id"":16,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室3"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""003""},{""id"":17,""parentId"":2,""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""测试科室4444444444"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""004""},{""id"":11,""parentId"":"""",""pictureUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""name"":""儿科"",""hospitalId"":12,""logoUrl"":""http://192.168.11.43:8080/yyfz/uploadFileDir/user_1/2019-01-24/01bdf6a27f013a5060.jpg"",""code"":""1000012""}],""state"":true}";
-              
+
                         JObject objT = result.obj as JObject;
                         List<DoctorInfoEntity> doctorList = objT["result"]["list"].ToObject<List<DoctorInfoEntity>>();
                         List<Item> itemList = new List<Item>();
                         if (doctorList.Count > 0)
                         {
                             //设置医生列表
-                           
+
                             foreach (DoctorInfoEntity doctor in doctorList)
                             {
                                 Item item = new Item();
@@ -1056,7 +1087,7 @@ namespace Xr.RtManager.Pages.triage
                             Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryDoctorAvailableDate, Argument = new String[] { SelectDeptid, SelectDoctorid } });
                         }
                         else
-                        { 
+                        {
                             mcDoctor.setDataSource(itemList);
                         }
                         /*
@@ -1175,7 +1206,7 @@ namespace Xr.RtManager.Pages.triage
                         {
                             //list.Reverse();
                             String Period = list[0].period;
-                            
+
                             foreach (TimeSpanEntity timeSpan in list)
                             {
                                 if (Period != timeSpan.period)//按照午别分组 添加个空按钮分隔
@@ -1389,7 +1420,14 @@ namespace Xr.RtManager.Pages.triage
                         _waitForm.Close();
                          */
                         //workType = AsynchronousWorks.QueryID;
-                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
+                        if (!JLIdCardInfoClass.CancelFlag)
+                        {
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString(),"4" } });
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                        }
                         //Asynchronous();
                     }
                     #endregion
@@ -1397,7 +1435,7 @@ namespace Xr.RtManager.Pages.triage
                     else if (workType == AsynchronousWorks.ReadSocialcard)
                     {
                         //workType = AsynchronousWorks.QueryID;
-                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString(),"3" } });
                         //Asynchronous();
                     }
                     #endregion
@@ -1422,7 +1460,10 @@ namespace Xr.RtManager.Pages.triage
                     #endregion
                 }
                 else
+                {
                     MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    cmd.HideOpaqueLayer();
+                }
                 //MessageBoxUtils.Hint(result.msg);
 
             }
@@ -1433,6 +1474,7 @@ namespace Xr.RtManager.Pages.triage
                     MessageBoxUtils.Hint(ex.Message, MainForm);
                 else
                     MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                cmd.HideOpaqueLayer();
             }
             finally
             {

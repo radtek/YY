@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -75,13 +74,13 @@
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
-            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panelEx12 = new Xr.Common.Controls.PanelEx();
+            this.panelEx15 = new Xr.Common.Controls.PanelEx();
+            this.panelEx16 = new Xr.Common.Controls.PanelEx();
+            this.panelEx17 = new Xr.Common.Controls.PanelEx();
+            this.panelEx13 = new Xr.Common.Controls.PanelEx();
+            this.panelEx14 = new Xr.Common.Controls.PanelEx();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcAppointmentInfo)).BeginInit();

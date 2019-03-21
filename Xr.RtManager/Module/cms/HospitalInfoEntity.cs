@@ -80,5 +80,10 @@ namespace Xr.RtManager
         /// </summary>
         [Required]
         public String information { get; set; }
+
+        /// <summary>
+        /// 临时坐诊数量
+        /// </summary>
+        public String temporaryNumSite { get; set; }
     }
 }

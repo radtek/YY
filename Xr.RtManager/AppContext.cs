@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Xr.RtManager
 {
@@ -25,6 +28,7 @@ namespace Xr.RtManager
         {
             //AppContext.Client = new ClientInfo();
             Session = new SessionInfo();
+            updateAppConfig();
             loadAppConfig();
             //updateAppConfig();
             //AppContext.CommandLineArgs = new AppCommandLineArgs();
@@ -40,14 +44,18 @@ namespace Xr.RtManager
         /// </summary>
         private static void loadAppConfig()
         {
+            String file = System.Windows.Forms.Application.StartupPath + "\\Xr.RtManager.exe";
+            WebConfigHelper appConfig = new WebConfigHelper(file, ConfigType.ExeConfig);
+
             AppConfig = new AppConfigEntity();
-            AppConfig.serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
-            AppConfig.hospitalCode = ConfigurationManager.AppSettings["hospitalCode"].ToString();
-            AppConfig.deptCode = ConfigurationManager.AppSettings["deptCode"].ToString();
+            AppConfig.serverUrl = appConfig.GetValueByKey("serverUrl");
+            AppConfig.hospitalCode = appConfig.GetValueByKey("hospitalCode"); 
+            AppConfig.PrinterName = appConfig.GetValueByKey("PrinterName"); 
+            AppConfig.firstStart = appConfig.GetValueByKey("firstStart"); 
         }
 
         /// <summary>
-        /// 修改配置文件
+        /// 自动更新修改配置文件
         /// </summary>
         private static void updateAppConfig()
         {
@@ -66,6 +74,17 @@ namespace Xr.RtManager
             //获取本应用程序的配置文件并根据版本号进行修改
             file = System.Windows.Forms.Application.StartupPath + "\\Xr.RtManager.exe";
             WebConfigHelper appConfig = new WebConfigHelper(file, ConfigType.ExeConfig);
+
+            int bbh = int.Parse(X.ToString()+Y.ToString()+Z.ToString());
+            if (bbh>109)
+            {
+                //添加应用程序配置节点，如果已经存在此节点，则不做操作
+                appConfig.AddAppSetting("firstStart", "1");
+                appConfig.AddAppSetting("PrinterName", "");
+                appConfig.AddAppSetting("PrinterName", "AutoRefreshTimeSpan");
+                //保存所作的修改  
+                appConfig.Save();
+            }
             //if (X >= 1 && Y >= 1 && Z >=1)
             //{
             //    //添加应用程序配置节点，如果已经存在此节点，则不做操作
@@ -80,11 +99,45 @@ namespace Xr.RtManager
         }
 
         /// <summary>
+        /// 修改配置文件的方法
+        /// </summary>
+        /// <param name="config"></param>
+        public static void updateAppConfig(AppConfigEntity config)
+        {
+            string file = System.Windows.Forms.Application.StartupPath + "\\Xr.RtManager.exe";
+            WebConfigHelper appConfig = new WebConfigHelper(file, ConfigType.ExeConfig);
+            appConfig.ModifyAppSetting("hospitalCode", config.hospitalCode);
+            appConfig.ModifyAppSetting("PrinterName", config.PrinterName);
+            appConfig.ModifyAppSetting("firstStart", config.firstStart);
+            appConfig.Save();
+        }
+
+        /// <summary>
         /// 卸载应用程序上下文信息
         /// </summary>
         public static void Unload()
         {
             //AppContext.Configuration.Save();
+        }
+
+
+        /// <summary>
+        /// 重启程序
+        /// </summary>
+        public static void Restart()
+        {
+            Application.ExitThread();
+            Thread thtmp = new Thread(new ParameterizedThreadStart(run));
+            object appName = Application.ExecutablePath;
+            Thread.Sleep(2000);
+            thtmp.Start(appName);
+        }
+
+        private static void run(Object obj)
+        {
+            Process ps = new Process();
+            ps.StartInfo.FileName = obj.ToString();
+            ps.Start();
         }
     }
 }

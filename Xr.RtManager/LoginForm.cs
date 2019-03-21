@@ -61,9 +61,12 @@ namespace Xr.RtManager
                     AppContext.Session.UserId = objT["result"]["id"].ToString(); //用户id
                     AppContext.Session.userType = objT["result"]["userType"].ToString(); 
                     AppContext.Session.loginDate = objT["result"]["loginDate"].ToString(); //登录时间，目前没作用
-                    //获取所有科室
-                    param = "hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
-                    url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?" + param;
+                    AppContext.Session.deptIds = objT["result"]["deptIds"].ToString();
+                    AppContext.Session.deptNames = objT["result"]["deptNames"].ToString();
+                    AppContext.Session.deptList = objT["result"]["deptList"].ToObject<List<DeptEntity>>();
+                    //获取医院id
+                    param = "code=" + AppContext.AppConfig.hospitalCode;
+                    url = AppContext.AppConfig.serverUrl + "cms/hospital/findByCode?" + param;
                     this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
                         data = HttpClass.httpPost(url);
@@ -74,30 +77,8 @@ namespace Xr.RtManager
                         objT = JObject.Parse(data2.ToString());
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
-                            AppContext.Session.deptList = objT["result"].ToObject<List<DeptEntity>>();
-                            //配置文件中的科室编码为""，默认为全院
-                            if (AppContext.AppConfig.deptCode == null || AppContext.AppConfig.deptCode.Trim().Length == 0)
-                            {
-                                if (AppContext.Session.deptList.Count > 0)
-                                {
-                                    AppContext.Session.hospitalId = AppContext.Session.deptList[0].hospitalId;
-                                    AppContext.Session.deptId = "";
-                                    AppContext.Session.deptName = "全院";
-                                }
-                            }
-                            else
-                            {
-                                foreach (DeptEntity dept in AppContext.Session.deptList)
-                                {
-                                    if (AppContext.AppConfig.deptCode.Equals(dept.code))
-                                    {
-                                        AppContext.Session.hospitalId = dept.hospitalId;
-                                        AppContext.Session.deptId = dept.id;
-                                        AppContext.Session.deptName = dept.name;
-                                        break;
-                                    }
-                                }
-                            }
+                            HospitalInfoEntity hospitalInfo = objT["result"].ToObject<HospitalInfoEntity>();
+                            AppContext.Session.hospitalId = hospitalInfo.id;
                             cmd.HideOpaqueLayer();
                             this.DialogResult = DialogResult.OK;
                         }
@@ -168,7 +149,10 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if(ex.InnerException!=null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 

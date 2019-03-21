@@ -37,14 +37,13 @@
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.teName = new DevExpress.XtraEditors.TextEdit();
-            this.teID = new DevExpress.XtraEditors.TextEdit();
             this.teType = new DevExpress.XtraEditors.TextEdit();
             this.radioGroup2 = new DevExpress.XtraEditors.RadioGroup();
             this.treeWKe = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.groupBox1 = new Xr.Common.Controls.GroupBorderPanel();
-            this.menuControl1 = new Xr.Common.Controls.MenuControl();
+            this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.gc_Clinic = new DevExpress.XtraGrid.GridControl();
             this.gv_Clinic = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,13 +58,15 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox3 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.butContronl = new Xr.Common.Controls.ButtonControl();
             this.butClose = new Xr.Common.Controls.ButtonControl();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.teID = new DevExpress.XtraEditors.TextEdit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.butContronl = new Xr.Common.Controls.ButtonControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox4 = new Xr.Common.Controls.GroupBorderPanel();
@@ -76,7 +77,6 @@
             this.borderPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWKe.Properties)).BeginInit();
@@ -90,6 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBox3)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -203,36 +205,24 @@
             this.teName.Size = new System.Drawing.Size(342, 30);
             this.teName.TabIndex = 118;
             // 
-            // teID
-            // 
-            this.dcClinc.SetDataMember(this.teID, "code");
-            this.teID.Dock = System.Windows.Forms.DockStyle.Left;
-            this.teID.Location = new System.Drawing.Point(90, 76);
-            this.teID.Name = "teID";
-            this.teID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teID.Properties.Appearance.Options.UseFont = true;
-            this.teID.Properties.AutoHeight = false;
-            this.teID.Size = new System.Drawing.Size(342, 31);
-            this.teID.TabIndex = 119;
-            // 
             // teType
             // 
             this.dcClinc.SetDataMember(this.teType, "prefix");
-            this.teType.Dock = System.Windows.Forms.DockStyle.Left;
-            this.teType.Location = new System.Drawing.Point(527, 3);
+            this.teType.Location = new System.Drawing.Point(64, 0);
             this.teType.Name = "teType";
             this.teType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teType.Properties.Appearance.Options.UseFont = true;
             this.teType.Properties.AutoHeight = false;
-            this.teType.Size = new System.Drawing.Size(343, 31);
+            this.teType.Size = new System.Drawing.Size(43, 31);
             this.teType.TabIndex = 122;
+            this.teType.Visible = false;
             // 
             // radioGroup2
             // 
             this.dcClinc.SetDataMember(this.radioGroup2, "isUse");
             this.radioGroup2.Dock = System.Windows.Forms.DockStyle.Left;
             this.radioGroup2.EditValue = "1";
-            this.radioGroup2.Location = new System.Drawing.Point(527, 40);
+            this.radioGroup2.Location = new System.Drawing.Point(527, 3);
             this.radioGroup2.Name = "radioGroup2";
             this.radioGroup2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioGroup2.Properties.Appearance.Options.UseFont = true;
@@ -241,7 +231,7 @@
             this.radioGroup2.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "启用"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "禁用")});
-            this.radioGroup2.Size = new System.Drawing.Size(343, 30);
+            this.radioGroup2.Size = new System.Drawing.Size(343, 31);
             this.radioGroup2.TabIndex = 123;
             // 
             // treeWKe
@@ -288,7 +278,7 @@
             // 
             this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBox1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.groupBox1.Controls.Add(this.menuControl1);
+            this.groupBox1.Controls.Add(this.treeMenuControl1);
             this.groupBox1.CornerRadius.All = 5;
             this.groupBox1.CornerRadius.BottomLeft = 5;
             this.groupBox1.CornerRadius.BottomRight = 5;
@@ -304,19 +294,28 @@
             this.groupBox1.Size = new System.Drawing.Size(169, 282);
             this.groupBox1.TabIndex = 45;
             // 
-            // menuControl1
+            // treeMenuControl1
             // 
-            this.menuControl1.BackColor = System.Drawing.Color.Transparent;
-            this.menuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuControl1.itemName = null;
-            this.menuControl1.itemTag = null;
-            this.menuControl1.itemText = null;
-            this.menuControl1.Location = new System.Drawing.Point(3, 20);
-            this.menuControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.menuControl1.Name = "menuControl1";
-            this.menuControl1.Size = new System.Drawing.Size(163, 259);
-            this.menuControl1.TabIndex = 0;
-            this.menuControl1.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.menuControl1_MenuItemClick);
+            this.treeMenuControl1.AutoScroll = true;
+            this.treeMenuControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
+            this.treeMenuControl1.BorderSize = 1;
+            this.treeMenuControl1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.DataSource = null;
+            this.treeMenuControl1.DisplayMember = "name";
+            this.treeMenuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeMenuControl1.EditValue = null;
+            this.treeMenuControl1.KeyFieldName = "id";
+            this.treeMenuControl1.Location = new System.Drawing.Point(3, 20);
+            this.treeMenuControl1.Name = "treeMenuControl1";
+            this.treeMenuControl1.ParentFieldName = "parentId";
+            this.treeMenuControl1.Size = new System.Drawing.Size(163, 259);
+            this.treeMenuControl1.TabIndex = 1;
+            this.treeMenuControl1.UseZoom = false;
+            this.treeMenuControl1.ValueMember = "value";
+            this.treeMenuControl1.MenuItemClick += new Xr.Common.Controls.TreeMenuControl.ItemClick(this.treeMenuControl1_MenuItemClick);
             // 
             // gc_Clinic
             // 
@@ -421,8 +420,6 @@
             this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
             this.gridColumn3.Width = 91;
             // 
             // gridColumn4
@@ -436,8 +433,6 @@
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
             this.gridColumn4.Width = 105;
             // 
             // gridColumn9
@@ -448,7 +443,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 4;
+            this.gridColumn9.VisibleIndex = 2;
             this.gridColumn9.Width = 104;
             // 
             // repositoryItemComboBox1
@@ -473,7 +468,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 3;
             this.gridColumn6.Width = 136;
             // 
             // gridColumn7
@@ -488,7 +483,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.VisibleIndex = 4;
             this.gridColumn7.Width = 150;
             // 
             // gridView1
@@ -527,18 +522,16 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel2.Controls.Add(this.label6, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.teID, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.teType, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.teName, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.radioGroup2, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.treeWKe, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.butContronl, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.butClose, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radioGroup2, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.butContronl, 3, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 26);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
@@ -547,18 +540,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(877, 110);
             this.tableLayoutPanel2.TabIndex = 127;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(444, 5);
-            this.label6.Margin = new System.Windows.Forms.Padding(1, 5, 1, 1);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 31);
-            this.label6.TabIndex = 125;
-            this.label6.Text = "分诊标识：";
             // 
             // label3
             // 
@@ -571,18 +552,7 @@
             this.label3.Size = new System.Drawing.Size(77, 31);
             this.label3.TabIndex = 121;
             this.label3.Text = "诊  室 号：";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(444, 42);
-            this.label1.Margin = new System.Windows.Forms.Padding(1, 5, 1, 1);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 30);
-            this.label1.TabIndex = 124;
-            this.label1.Text = "状      态 ：";
+            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -608,20 +578,6 @@
             this.label5.TabIndex = 120;
             this.label5.Text = "所属科室：";
             // 
-            // butContronl
-            // 
-            this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.butContronl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
-            this.butContronl.Location = new System.Drawing.Point(527, 76);
-            this.butContronl.Name = "butContronl";
-            this.butContronl.Size = new System.Drawing.Size(343, 31);
-            this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
-            this.butContronl.TabIndex = 116;
-            this.butContronl.Text = "保存";
-            this.butContronl.Click += new System.EventHandler(this.butContronl_Click);
-            // 
             // butClose
             // 
             this.butClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
@@ -634,6 +590,66 @@
             this.butClose.TabIndex = 117;
             this.butClose.Text = "关闭";
             this.butClose.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.teID);
+            this.panel2.Controls.Add(this.teType);
+            this.panel2.Location = new System.Drawing.Point(90, 76);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(344, 31);
+            this.panel2.TabIndex = 127;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(122, 5);
+            this.label6.Margin = new System.Windows.Forms.Padding(1, 5, 1, 1);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 20);
+            this.label6.TabIndex = 125;
+            this.label6.Text = "分诊标识：";
+            this.label6.Visible = false;
+            // 
+            // teID
+            // 
+            this.dcClinc.SetDataMember(this.teID, "code");
+            this.teID.Location = new System.Drawing.Point(20, 0);
+            this.teID.Name = "teID";
+            this.teID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teID.Properties.Appearance.Options.UseFont = true;
+            this.teID.Properties.AutoHeight = false;
+            this.teID.Size = new System.Drawing.Size(38, 31);
+            this.teID.TabIndex = 120;
+            this.teID.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(444, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 5, 1, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 31);
+            this.label1.TabIndex = 124;
+            this.label1.Text = "状      态 ：";
+            // 
+            // butContronl
+            // 
+            this.butContronl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.butContronl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
+            this.butContronl.Location = new System.Drawing.Point(527, 40);
+            this.butContronl.Name = "butContronl";
+            this.butContronl.Size = new System.Drawing.Size(343, 30);
+            this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.butContronl.TabIndex = 116;
+            this.butContronl.Text = "保存";
+            this.butContronl.Click += new System.EventHandler(this.butContronl_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -712,7 +728,6 @@
             this.borderPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWKe.Properties)).EndInit();
@@ -727,6 +742,9 @@
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -762,7 +780,6 @@
         private DevExpress.XtraEditors.TextEdit teType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.TextEdit teID;
         private DevExpress.XtraEditors.TextEdit teName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -772,7 +789,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private Xr.Common.Controls.PageControl pageControl1;
-        private Xr.Common.Controls.MenuControl menuControl1;
         private Xr.Common.Controls.GroupBorderPanel groupBox4;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.TreeListLookUpEdit treeWKe;
@@ -780,6 +796,9 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Xr.Common.Controls.DataController dcClinc;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.TextEdit teID;
+        private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
        //private Xr.Common.Controls.GroupBorderPanel groupBox4;
     }
 }

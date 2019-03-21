@@ -65,18 +65,26 @@ namespace Xr.RtManager.Pages.booking
         void getLuesInfo()
         {
             //查询科室下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            treeDeptId.Properties.DataSource = AppContext.Session.deptList;
+            treeDeptId.Properties.TreeList.KeyFieldName = "id";
+            treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
+            treeDeptId.Properties.DisplayMember = "name";
+            treeDeptId.Properties.ValueMember = "id";
+            //默认选择选择第一个
+            treeDeptId.EditValue = AppContext.Session.deptList[0].id;
+
+            /*String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
                 List<DeptEntity> deptList = new List<DeptEntity>() { new DeptEntity { id = " ", parentId = "", name = "请选择" } };
                 deptList.AddRange(objT["result"].ToObject<List<DeptEntity>>());
-                /*DeptEntity dept = new DeptEntity();
-                dept.id = "0";
-                dept.name = "无";
-                deptList.Insert(0, dept);
-                 */
+                //DeptEntity dept = new DeptEntity();
+                //dept.id = "0";
+                //dept.name = "无";
+                //deptList.Insert(0, dept);
+                
                 treeDeptId.Properties.DataSource = deptList;
                 treeDeptId.Properties.TreeList.KeyFieldName = "id";
                 treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
@@ -98,13 +106,13 @@ namespace Xr.RtManager.Pages.booking
                 
                 treeDeptId.EditValue = AppContext.Session.deptId;
             }
-
+             */
             //预约状态下拉框数据
             String param = "type={0}";
             param = String.Format(param, "register_status_type");
 
-            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
-             objT = new JObject();
+            String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
+            JObject objT = new JObject();
             objT = JObject.Parse(HttpClass.httpPost(url));
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
@@ -122,6 +130,28 @@ namespace Xr.RtManager.Pages.booking
                 MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                 return;
             }
+
+            //卡类型下拉框数据
+            param = "type={0}";
+            param = String.Format(param, "card_type");
+
+            url = String.Empty;
+            url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?" + param;
+            objT = new JObject();
+            objT = JObject.Parse(HttpClass.httpPost(url));
+            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+            {
+                lueCardTypeQuery.Properties.DataSource = objT["result"].ToObject<List<DictEntity>>();
+                lueCardTypeQuery.Properties.DisplayMember = "label";
+                lueCardTypeQuery.Properties.ValueMember = "value";
+                lueCardTypeQuery.ItemIndex = 1;
+            }
+            else
+            {
+                MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                return;
+            }
+
             //预约途径下拉框数据
             param = "type={0}";
             param = String.Format(param, "register_way_type");
@@ -148,7 +178,11 @@ namespace Xr.RtManager.Pages.booking
         {
             if (e.KeyChar != '\b')//这是允许输入退格键  
             {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                if ((e.KeyChar == 'X'))//这是允许输入"X"  
+                {
+
+                }
+                else if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                 {
                     e.Handled = true;
                 }
@@ -188,7 +222,7 @@ namespace Xr.RtManager.Pages.booking
                 if (e.KeyCode == Keys.Control || e.KeyCode == Keys.Enter)
                 {
                     CardID = txt_cardNoQuery.Text;
-                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID, lueCardTypeQuery.EditValue.ToString() } });
                     txt_cardNoQuery.Text = String.Empty;
                     gcAppointmentInfo.Focus();
                 }
@@ -202,7 +236,7 @@ namespace Xr.RtManager.Pages.booking
             //cmd.IsShowCancelBtn = false;
             //cmd.ShowOpaqueLayer();
             CardID = "000675493100";
-            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID } });
+            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID,"2" } });
         }
         private void btn_readSocialcard_Click(object sender, EventArgs e)
         {
@@ -386,7 +420,7 @@ namespace Xr.RtManager.Pages.booking
                  if (ars.WorkType == AsynchronousWorks.ReadzlCard)
                 {
                     cmd.IsShowCancelBtn = false;
-                    cmd.ShowOpaqueLayer();
+                    cmd.ShowOpaqueLayer(0.56f, "请稍后...");
                 }
 
                 else if (ars.WorkType == AsynchronousWorks.ReadIdCard || ars.WorkType == AsynchronousWorks.ReadSocialcard)
@@ -406,7 +440,7 @@ namespace Xr.RtManager.Pages.booking
                      if (NeedWaitingFrm)
                     {
                         cmd.IsShowCancelBtn = false;
-                        cmd.ShowOpaqueLayer();
+                        cmd.ShowOpaqueLayer(0.56f, "请稍后...");
                     }
                 }
             }
@@ -441,6 +475,7 @@ namespace Xr.RtManager.Pages.booking
                     String param = "";
                     //获取患者信息
                     Dictionary<string, string> prament = new Dictionary<string, string>();
+                    /*
                     //prament.Add("cardNo", CardID);
                     prament.Add("cardNo", Pras[0]);
 
@@ -454,6 +489,19 @@ namespace Xr.RtManager.Pages.booking
                     url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByCardNo?" + param;
                     String jsonStr = HttpClass.httpPost(url);
                     JObject objT = JObject.Parse(jsonStr);
+                     */
+
+                    prament.Add("cardNo", Pras[0]);
+                    prament.Add("cardType", Pras[1]);
+                    if (prament.Count != 0)
+                    {
+                        param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                    }
+                    String url = AppContext.AppConfig.serverUrl + "patmi/findPatMiByTyptAndCardNo?" + param;
+                    String jsonStr = HttpClass.httpPost(url);
+                    JObject objT = JObject.Parse(jsonStr);
+
+
                     List<JObject> objTs = new List<JObject>();
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
@@ -520,6 +568,7 @@ namespace Xr.RtManager.Pages.booking
 
                 try
                 {
+                    JLIdCardInfoClass.CancelFlag = false;
                     BackgroundWorker bgworker = sender as BackgroundWorker;
                     //绑定委托要执行的方法 
                     ReadCardDelegate work = new ReadCardDelegate(ReturnReadCardData);
@@ -597,6 +646,7 @@ namespace Xr.RtManager.Pages.booking
                             //如何是  马上取消backgroundwork操作(这个地方才是真正取消) 
                             SocialCard cardMes = new SocialCard();
                             cardMes.cancelReadCard();
+                            CancelFlag = true;
                             e.Cancel = true;
                             return;
                         }
@@ -608,6 +658,7 @@ namespace Xr.RtManager.Pages.booking
                     result.obj = null;
                     result.result = false;
                     result.msg = "读取社保卡失败:" + ee.Message;
+                    CancelFlag = true;
                     e.Result = result;
                 }
             }
@@ -728,7 +779,7 @@ namespace Xr.RtManager.Pages.booking
                 System.Threading.Thread.Sleep(3000);
                 if (backgroundWorker1.IsBusy)
                 {
-                    CardID = "000675493100";
+                    CardID = "45032219871222151X";
                     Result.WorkType = AsynchronousWorks.ReadIdCard;
                     Result.obj = CardID;
                 }
@@ -737,7 +788,10 @@ namespace Xr.RtManager.Pages.booking
                 if (idCardInfo != null)
                 {
                  if(backgroundWorker1.IsBusy)
+                   {
                     CardID = idCardInfo.Code.ToString();
+                    Result.WorkType = AsynchronousWorks.ReadIdCard;
+                   }
                 }
                 if (CardID != String.Empty)
                 {
@@ -752,14 +806,14 @@ namespace Xr.RtManager.Pages.booking
             }
             else
             {
-                System.Threading.Thread.Sleep(3000);
+                /*System.Threading.Thread.Sleep(3000);
                 if (backgroundWorker1.IsBusy)
                 {
                     CardID = "000675493100";
                     Result.WorkType = AsynchronousWorks.ReadSocialcard;
                     Result.obj = CardID;
                 }
-                /*
+                */
                 while (!CancelFlag)
                 {
                     SocialCard carMes = new SocialCard();
@@ -769,14 +823,16 @@ namespace Xr.RtManager.Pages.booking
                         CancelFlag = true;
                         //patientId = carMes.user_id;
                         LogClass.WriteLog("读取社保卡成功，卡号：" + carMes.user_id);
-                        if(backgroundWorker1.IsBusy)
-                          {
+                        if (backgroundWorker1.IsBusy)
+                        {
                             CardID = carMes.user_id;
+                            Result.WorkType = AsynchronousWorks.ReadSocialcard;
                             Result.obj = CardID;
-                          }
+                        }
+                        break;
                     }
                 }
-                 */
+                 
                 //result.obj = null;
                 //result.result = true;
                 //result.msg = "成功";
@@ -832,7 +888,14 @@ namespace Xr.RtManager.Pages.booking
                         _waitForm.Close();
                          */
                         //workType = AsynchronousWorks.QueryID;
-                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
+                        if (!JLIdCardInfoClass.CancelFlag)
+                        {
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString(),"4" } });
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                        }
                         //Asynchronous();
                     }
                     #endregion
@@ -840,7 +903,7 @@ namespace Xr.RtManager.Pages.booking
                     else if (workType == AsynchronousWorks.ReadSocialcard)
                     {
                         //workType = AsynchronousWorks.QueryID;
-                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString() } });
+                        Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.QueryID, Argument = new String[] { result.obj.ToString(),"3" } });
                         //Asynchronous();
                     }
                     #endregion
@@ -909,14 +972,16 @@ namespace Xr.RtManager.Pages.booking
                 }
                 else
                 {
-                    
+                    ClearUIInfo();
                     MessageBoxUtils.Show(result.msg, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                    cmd.HideOpaqueLayer();
                 }
                 //MessageBoxUtils.Hint(result.msg);
 
             }
             catch (Exception ex)
             {
+                ClearUIInfo();
                 cmd.HideOpaqueLayer();
                 if (ex.Message == "操作被取消。")
                     MessageBoxUtils.Hint(ex.Message, HintMessageBoxIcon.Error, MainForm);

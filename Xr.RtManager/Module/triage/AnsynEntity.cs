@@ -22,6 +22,7 @@ namespace Xr.RtManager.Module.triage
         public bool result { get; set; }
         public string msg { get; set; }
         public object obj { get; set; }
+        public object args { get; set; }
     }
     /// <summary>
     /// 异步操作枚举
@@ -48,6 +49,10 @@ namespace Xr.RtManager.Module.triage
         /// 查询患者
         /// </summary>
         QueryID,
+        /// <summary>
+        /// 查询患者预约信息
+        /// </summary>
+        QueryPatientReservation,
         /// <summary>
         /// 读取诊疗卡
         /// </summary>
@@ -108,6 +113,10 @@ namespace Xr.RtManager.Module.triage
         /// 取消现场预约
         /// </summary>
         CancelReservation,
+        /// <summary>
+        /// 患者转诊
+        /// </summary>
+        PatientTranDoc,
         Null
     }
 }

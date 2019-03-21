@@ -65,6 +65,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Show.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -82,9 +85,8 @@
     <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="HPSocketCS, Version=4.3.1.25945, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>RtScreenSocket\HPSocketCS.dll</HintPath>
+    <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
     </Reference>
     <Reference Include="Interop.SpeechLib, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -104,6 +106,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Net">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Remoting" />
@@ -159,6 +164,12 @@
     <Compile Include="RtUserContronl\ScrollingTexts.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Xr.ScreenSettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Xr.ScreenSettingFrm.Designer.cs">
+      <DependentUpon>Xr.ScreenSettingFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VoiceCall\CallPrint.cs" />
     <Compile Include="VoiceCall\SpeakVoicemainFrom.cs">
       <SubType>Form</SubType>
@@ -202,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Xr.RtScreenClick.resx">
       <DependentUpon>Xr.RtScreenClick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xr.ScreenSettingFrm.resx">
+      <DependentUpon>Xr.ScreenSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -253,15 +267,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Show.ico" />
     <None Include="bin\Debug\man.png" />
     <Content Include="man.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\loading3.gif" />
-    <Content Include="RtScreenSocket\HPSocket4C-SSL_U.dll" />
-    <Content Include="RtScreenSocket\HPSocket4C_U.dll" />
-    <Content Include="RtScreenSocket\HPSocketCS.dll" />
-    <Content Include="RtScreenSocket\HPSocketCS.pdb" />
     <Content Include="RtScreenSocket\Interop.SpeechLib.dll" />
     <Content Include="RtScreenSocket\Newtonsoft.Json.dll" />
   </ItemGroup>

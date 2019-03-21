@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBorderPanel6 = new Xr.Common.Controls.GroupBorderPanel();
@@ -126,9 +126,10 @@
             this.btn_zlk = new Xr.Common.Controls.ButtonControl();
             this.txt_cardNoQuery = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.lueCardTypeQuery = new DevExpress.XtraEditors.LookUpEdit();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.加急ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -175,6 +176,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCardTypeQuery.Properties)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1375,6 +1377,7 @@
             this.borderPanel1.Controls.Add(this.tableLayoutPanel2);
             this.borderPanel1.Controls.Add(this.txt_cardNoQuery);
             this.borderPanel1.Controls.Add(this.label8);
+            this.borderPanel1.Controls.Add(this.lueCardTypeQuery);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
             this.borderPanel1.CornerRadius.BottomRight = 4;
@@ -1385,7 +1388,7 @@
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.Location = new System.Drawing.Point(0, 0);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Padding = new System.Windows.Forms.Padding(0, 10, 20, 10);
+            this.borderPanel1.Padding = new System.Windows.Forms.Padding(10, 10, 20, 10);
             this.borderPanel1.Size = new System.Drawing.Size(910, 50);
             this.borderPanel1.TabIndex = 0;
             // 
@@ -1399,7 +1402,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btn_readSocialCard, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btn_zlk, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(202, 10);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(370, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -1456,10 +1459,10 @@
             // 
             this.txt_cardNoQuery.Dock = System.Windows.Forms.DockStyle.Left;
             this.txt_cardNoQuery.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.txt_cardNoQuery.Location = new System.Drawing.Point(56, 10);
+            this.txt_cardNoQuery.Location = new System.Drawing.Point(180, 10);
             this.txt_cardNoQuery.Multiline = true;
             this.txt_cardNoQuery.Name = "txt_cardNoQuery";
-            this.txt_cardNoQuery.Size = new System.Drawing.Size(146, 30);
+            this.txt_cardNoQuery.Size = new System.Drawing.Size(190, 30);
             this.txt_cardNoQuery.TabIndex = 90;
             this.txt_cardNoQuery.Enter += new System.EventHandler(this.txt_cardNoQuery_Enter);
             this.txt_cardNoQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cardNoQuery_KeyPress);
@@ -1469,12 +1472,41 @@
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Left;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(0, 10);
+            this.label8.Location = new System.Drawing.Point(134, 10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 30);
+            this.label8.Size = new System.Drawing.Size(46, 30);
             this.label8.TabIndex = 84;
             this.label8.Text = " 卡号";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lueCardTypeQuery
+            // 
+            this.lueCardTypeQuery.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lueCardTypeQuery.Location = new System.Drawing.Point(10, 10);
+            this.lueCardTypeQuery.Name = "lueCardTypeQuery";
+            this.lueCardTypeQuery.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.lueCardTypeQuery.Properties.Appearance.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceFocused.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCardTypeQuery.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.AutoHeight = false;
+            serializableAppearanceObject3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject3.Options.UseFont = true;
+            this.lueCardTypeQuery.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            this.lueCardTypeQuery.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
+            this.lueCardTypeQuery.Properties.NullText = "";
+            this.lueCardTypeQuery.Size = new System.Drawing.Size(124, 30);
+            this.lueCardTypeQuery.TabIndex = 179;
             // 
             // timer1
             // 
@@ -1557,6 +1589,7 @@
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lueCardTypeQuery.Properties)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1663,6 +1696,7 @@
         private System.Windows.Forms.Label lab_timespan;
         private Xr.Common.Controls.BorderPanel borderPanel2;
         private System.Windows.Forms.Label lab_reservationDate;
+        private DevExpress.XtraEditors.LookUpEdit lueCardTypeQuery;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

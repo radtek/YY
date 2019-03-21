@@ -102,7 +102,6 @@ namespace Xr.RtManager
         /// <summary>
         /// 加号数量
         /// </summary>
-        [Required]
         public String addNum { get; set; }
 
         /// <summary>
@@ -114,7 +113,6 @@ namespace Xr.RtManager
         /// <summary>
         /// 挂号价格
         /// </summary>
-        [Required]
         public String price { get; set; }
 
         /// <summary>

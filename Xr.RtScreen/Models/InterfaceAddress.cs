@@ -8,8 +8,12 @@ namespace Xr.RtScreen.Models
     /// <summary>
     /// 接口地址
     /// </summary>
-   public static class InterfaceAddress
+   public class InterfaceAddress
     {
+        /// <summary>
+        /// 医院列表接口地址
+        /// </summary>
+        public const String hostalInfo = "itf/intro/hospital/findAll";//itf/intro/hospital/findAll
        /// <summary>
         /// 医院接口地址
        /// </summary>
@@ -22,6 +26,10 @@ namespace Xr.RtScreen.Models
        /// 诊室接口地址
        /// </summary>
        public const String clin = "itf/triage/findClinicIdByCode";
+       /// <summary>
+       /// 诊室列表接口
+       /// </summary>
+       public const String ClincInfo = "itf/intro/findCliniList";
        /// <summary>
        /// 公共大屏接口地址
        /// </summary>

@@ -34,7 +34,14 @@ namespace Xr.RtScreen
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Xr.RtScreen.Models.AppContext.Load();
-                    Application.Run(new Form1());
+                    if (System.Configuration.ConfigurationManager.AppSettings["Setting"] == "1")
+                    {
+                        Application.Run(new Form1());
+                    }
+                    else
+                    {
+                        Application.Run(new SettingFrm());
+                    }
                 }
             }
             catch (Exception ex)

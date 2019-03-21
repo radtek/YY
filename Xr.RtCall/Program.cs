@@ -10,6 +10,8 @@ namespace Xr.RtCall
 {
     static class Program
     {
+        public static ApplicationContext context;
+        private static Form mainForm;
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -31,16 +33,65 @@ namespace Xr.RtCall
                 }
                 else
                 {
+                    //Application.EnableVisualStyles();
+                    //Application.SetCompatibleTextRenderingDefault(false);
+                    //context = new ApplicationContext();
+                    //Application.Idle += Application_Idle; //注册程序运行空闲去执行主程序窗体相应初始化代码
+                    //Application.Run(context);
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Xr.RtCall.Model.AppContext.Load();
-                    Application.Run(new Form1());
+                    if (System.Configuration.ConfigurationManager.AppSettings["Setting"] == "1")
+                    {
+                        Application.Run(new Form1());
+                    }
+                    else
+                    {
+                        Application.Run(new SettingFrm());
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Log4net.LogHelper.Error("Main:" + ex);
                 // MessageBox.Show("系统出现异常：" + (ex.Message + " " + (ex.InnerException != null && ex.InnerException.Message != null && ex.Message != ex.InnerException.Message ? ex.InnerException.Message : "")) + ",请重启程序。");
+            }
+        }
+        private static void Application_Idle(object sender, EventArgs e)
+        {
+            Application.Idle -= Application_Idle;
+            if (context.MainForm == null)
+            {
+                Xr.RtCall.Model.AppContext.Load();
+                bool jxFlag = true;
+                if (System.Configuration.ConfigurationManager.AppSettings["Setting"].Equals("1"))
+                {
+                    SettingFrm setUp = new SettingFrm();
+                    setUp.ShowDialog();
+                    if (setUp.DialogResult != DialogResult.OK)
+                    {
+                        jxFlag = false;
+                    }
+                }
+                if (jxFlag)
+                {
+                    //Form1 login = new Form1();
+                    //login.ShowDialog();
+                    //if (login.DialogResult == DialogResult.OK)
+                    //{
+                    mainForm = new Form1();
+                    context.MainForm = mainForm;
+                    mainForm.Show();
+                    //  }
+                    //else
+                    //{
+                    //    Application.Exit();
+                    //}
+                }
+                else
+                {
+                    Application.Exit();
+                }
             }
         }
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)

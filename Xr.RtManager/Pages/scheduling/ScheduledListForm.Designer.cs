@@ -413,6 +413,7 @@
             this.treeListColumn9.AppearanceHeader.Options.UseFont = true;
             this.treeListColumn9.Caption = "科室";
             this.treeListColumn9.FieldName = "name";
+            this.treeListColumn9.MinWidth = 32;
             this.treeListColumn9.Name = "treeListColumn9";
             this.treeListColumn9.Visible = true;
             this.treeListColumn9.VisibleIndex = 0;

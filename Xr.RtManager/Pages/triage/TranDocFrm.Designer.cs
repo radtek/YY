@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.select = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.label5 = new System.Windows.Forms.Label();
@@ -40,16 +39,28 @@
             this.Gc_patients = new DevExpress.XtraGrid.GridControl();
             this.gv_patients = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
+            this.treeDeptId = new DevExpress.XtraEditors.TreeListLookUpEdit();
+            this.treeList2 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueIntoDoctor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueStopDoctor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gc_patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
             this.SuspendLayout();
             // 
             // select
@@ -66,7 +77,7 @@
             this.select.Name = "select";
             this.select.Visible = true;
             this.select.VisibleIndex = 0;
-            this.select.Width = 44;
+            this.select.Width = 20;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -80,7 +91,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(12, 9);
+            this.label5.Location = new System.Drawing.Point(197, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 30);
             this.label5.TabIndex = 40;
@@ -90,7 +101,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(253, 9);
+            this.label7.Location = new System.Drawing.Point(438, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 30);
             this.label7.TabIndex = 42;
@@ -99,7 +110,7 @@
             // 
             // lueIntoDoctor
             // 
-            this.lueIntoDoctor.Location = new System.Drawing.Point(338, 9);
+            this.lueIntoDoctor.Location = new System.Drawing.Point(523, 9);
             this.lueIntoDoctor.Name = "lueIntoDoctor";
             this.lueIntoDoctor.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueIntoDoctor.Properties.Appearance.Options.UseFont = true;
@@ -117,15 +128,16 @@
             this.lueIntoDoctor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueIntoDoctor.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "级别")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("doctorId", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("doctorName", "级别")});
             this.lueIntoDoctor.Properties.NullText = "";
             this.lueIntoDoctor.Size = new System.Drawing.Size(150, 30);
             this.lueIntoDoctor.TabIndex = 6;
+            this.lueIntoDoctor.EditValueChanged += new System.EventHandler(this.lueIntoDoctor_EditValueChanged);
             // 
             // lueStopDoctor
             // 
-            this.lueStopDoctor.Location = new System.Drawing.Point(97, 9);
+            this.lueStopDoctor.Location = new System.Drawing.Point(282, 9);
             this.lueStopDoctor.Name = "lueStopDoctor";
             this.lueStopDoctor.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueStopDoctor.Properties.Appearance.Options.UseFont = true;
@@ -145,18 +157,19 @@
             this.lueStopDoctor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.lueStopDoctor.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "类型")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("doctorId", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("doctorName", "类型")});
             this.lueStopDoctor.Properties.NullText = "";
             this.lueStopDoctor.Size = new System.Drawing.Size(150, 30);
             this.lueStopDoctor.TabIndex = 5;
+            this.lueStopDoctor.EditValueChanged += new System.EventHandler(this.lueStopDoctor_EditValueChanged);
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(502, 9);
+            this.btnSave.Location = new System.Drawing.Point(685, 9);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(70, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -173,7 +186,7 @@
             this.Gc_patients.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemPopupContainerEdit1});
-            this.Gc_patients.Size = new System.Drawing.Size(560, 404);
+            this.Gc_patients.Size = new System.Drawing.Size(745, 410);
             this.Gc_patients.TabIndex = 43;
             this.Gc_patients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_patients});
@@ -182,24 +195,25 @@
             // 
             this.gv_patients.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_patients.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gv_patients.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gv_patients.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_patients.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.gv_patients.Appearance.OddRow.Options.UseBackColor = true;
             this.gv_patients.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_patients.Appearance.Row.Options.UseFont = true;
+            this.gv_patients.Appearance.Row.Options.UseTextOptions = true;
+            this.gv_patients.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gv_patients.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.select,
             this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
             this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn11});
-            styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(207)))), ((int)(((byte)(181)))));
-            styleFormatCondition1.Appearance.Options.UseBackColor = true;
-            styleFormatCondition1.ApplyToRow = true;
-            styleFormatCondition1.Column = this.select;
-            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition1.Value1 = "1";
-            this.gv_patients.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1});
+            this.gridColumn11,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn8});
+            this.gv_patients.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gv_patients.GridControl = this.Gc_patients;
             this.gv_patients.Name = "gv_patients";
             this.gv_patients.OptionsCustomization.AllowColumnMoving = false;
@@ -221,24 +235,30 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn1.Caption = "患者ID";
             this.gridColumn1.FieldName = "name";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
             this.gridColumn1.Width = 165;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "医生姓名";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "候诊号";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 3;
             // 
             // gridColumn7
             // 
-            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn7.Caption = "患者姓名";
             this.gridColumn7.FieldName = "spe";
             this.gridColumn7.Name = "gridColumn7";
@@ -247,26 +267,8 @@
             this.gridColumn7.VisibleIndex = 2;
             this.gridColumn7.Width = 200;
             // 
-            // gridColumn8
-            // 
-            this.gridColumn8.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn8.Caption = "年龄";
-            this.gridColumn8.FieldName = "num";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 3;
-            this.gridColumn8.Width = 78;
-            // 
             // gridColumn11
             // 
-            this.gridColumn11.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn11.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn11.Caption = "性别";
             this.gridColumn11.FieldName = "patientName";
             this.gridColumn11.Name = "gridColumn11";
@@ -275,6 +277,30 @@
             this.gridColumn11.VisibleIndex = 4;
             this.gridColumn11.Width = 71;
             // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "就诊日期";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 5;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "就诊时段";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 6;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "年龄";
+            this.gridColumn8.FieldName = "num";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.Width = 78;
+            // 
             // repositoryItemPopupContainerEdit1
             // 
             this.repositoryItemPopupContainerEdit1.AutoHeight = false;
@@ -282,12 +308,73 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemPopupContainerEdit1.Name = "repositoryItemPopupContainerEdit1";
             // 
+            // treeDeptId
+            // 
+            this.treeDeptId.EditValue = "";
+            this.treeDeptId.Location = new System.Drawing.Point(66, 9);
+            this.treeDeptId.Name = "treeDeptId";
+            this.treeDeptId.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeDeptId.Properties.Appearance.Options.UseFont = true;
+            this.treeDeptId.Properties.AutoHeight = false;
+            this.treeDeptId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.treeDeptId.Properties.NullText = "";
+            this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
+            this.treeDeptId.Properties.TreeList = this.treeList2;
+            this.treeDeptId.Size = new System.Drawing.Size(125, 30);
+            this.treeDeptId.TabIndex = 190;
+            this.treeDeptId.EditValueChanged += new System.EventHandler(this.treeDeptId_EditValueChanged);
+            // 
+            // treeList2
+            // 
+            this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn9,
+            this.treeListColumn10});
+            this.treeList2.Location = new System.Drawing.Point(345, -37);
+            this.treeList2.Name = "treeList2";
+            this.treeList2.OptionsBehavior.EnableFiltering = true;
+            this.treeList2.OptionsView.AllowHtmlDrawHeaders = true;
+            this.treeList2.OptionsView.ShowIndentAsRowStyle = true;
+            this.treeList2.RowHeight = 30;
+            this.treeList2.Size = new System.Drawing.Size(400, 150);
+            this.treeList2.TabIndex = 0;
+            // 
+            // treeListColumn9
+            // 
+            this.treeListColumn9.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn9.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn9.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn9.Caption = "科室";
+            this.treeListColumn9.FieldName = "name";
+            this.treeListColumn9.Name = "treeListColumn9";
+            this.treeListColumn9.Visible = true;
+            this.treeListColumn9.VisibleIndex = 0;
+            // 
+            // treeListColumn10
+            // 
+            this.treeListColumn10.Caption = "id";
+            this.treeListColumn10.FieldName = "id";
+            this.treeListColumn10.Name = "treeListColumn10";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(-14, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 30);
+            this.label3.TabIndex = 189;
+            this.label3.Text = "科室：";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // TranDocFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(584, 461);
+            this.ClientSize = new System.Drawing.Size(768, 465);
+            this.Controls.Add(this.treeDeptId);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.Gc_patients);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lueStopDoctor);
@@ -307,6 +394,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Gc_patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -327,5 +416,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
+        private DevExpress.XtraTreeList.TreeList treeList2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
+        private System.Windows.Forms.Label label3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
     }
 }

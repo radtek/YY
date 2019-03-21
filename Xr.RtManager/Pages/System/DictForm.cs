@@ -39,7 +39,7 @@ namespace Xr.RtManager
 
         public void SearchData(bool flag, int pageNo, int pageSize)
         {
-            String param = "?type=" + cbType.SelectedValue
+            String param = "?type=" + cbType.Text
                 + "&&description=" + tbDescription.Text + "&&pageNo=" + pageNo
                 + "&&pageSize=" + pageSize;
             String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findAll" + param;

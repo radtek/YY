@@ -115,7 +115,7 @@ namespace Xr.RtManager.Pages.cms
 
         public void SearchData(int pageNo, int pageSize)
         {
-            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
+            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.code=" + AppContext.AppConfig.hospitalCode + "&deptIds=" + AppContext.Session.deptIds;
             String url = AppContext.AppConfig.serverUrl + "cms/dept/list?"+param;
             this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
@@ -319,6 +319,7 @@ namespace Xr.RtManager.Pages.cms
             List<DictEntity> isUseList = lueIsUse.Properties.DataSource as List<DictEntity>;
             if(isUseList.Count>0)
                 lueIsUse.EditValue = isUseList[0].value;
+            lueHospital.EditValue = AppContext.Session.hospitalId;
         }
 
 
@@ -512,19 +513,16 @@ namespace Xr.RtManager.Pages.cms
             }
             HospitalInfoEntity hospitalInfo = lueHospital.GetSelectedDataRow() as HospitalInfoEntity;
             //查询上级科室下拉框数据
-            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code + "&code=" + AppContext.AppConfig.deptCode;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + hospitalInfo.code;// +"&deptIds=" + AppContext.Session.deptIds;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
                 List<DeptEntity> deptLsit = objT["result"].ToObject<List<DeptEntity>>();
-                if ((deptInfo.id != null && deptInfo.parent == null) || AppContext.AppConfig.deptCode.Trim().Length==0)
-                {
-                    DeptEntity dept = new DeptEntity();
-                    dept.id = "0";
-                    dept.name = "无";
-                    deptLsit.Insert(0, dept);
-                }
+                DeptEntity dept = new DeptEntity();
+                dept.id = "0";
+                dept.name = "无";
+                deptLsit.Insert(0, dept);
                 
                 treeParentId.Properties.DataSource = deptLsit;
                 treeParentId.Properties.TreeList.KeyFieldName = "id";
