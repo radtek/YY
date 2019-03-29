@@ -16,6 +16,7 @@ namespace Xr.RtScreen.Models
        public String signInNum { get; set; }
        public String bespeakNum { get; set; }
        public String visitPatient { get; set; }
+       public String isStop { get; set; }
     }
     public class SmallScreenClass
     {

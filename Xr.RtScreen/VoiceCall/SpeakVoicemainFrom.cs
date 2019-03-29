@@ -45,8 +45,14 @@ namespace Xr.RtScreen.VoiceCall
         {
             foreach (var callpatient in list)
             {
-                _voice.Speak(callpatient.CallVoiceString(), _spFlags);
-                _voice.Speak(callpatient.CallVoiceString(), _spFlags);//播放两次
+                try
+                {
+                    _voice.Speak(callpatient.CallVoiceString(), _spFlags);
+                    _voice.Speak(callpatient.CallVoiceString(), _spFlags);//播放两次
+                }
+                catch 
+                {
+                }
                 LogPrint(callpatient.LogString());
                 succeedCount++;
             }

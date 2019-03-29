@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -39,6 +39,8 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -53,7 +55,7 @@
             this.mcDoctor = new Xr.Common.Controls.MenuControl();
             this.groupBorderPanel3 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel_depts = new System.Windows.Forms.Panel();
-            this.mcDept = new Xr.Common.Controls.MenuControl();
+            this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel5 = new Xr.Common.Controls.GroupBorderPanel();
             this.mcTimeSpan = new Xr.Common.Controls.MenuControl();
@@ -98,7 +100,6 @@
             this.rBtn_isCyfzT = new System.Windows.Forms.RadioButton();
             this.panel10 = new System.Windows.Forms.Panel();
             this.rBtn_isCyfzF = new System.Windows.Forms.RadioButton();
-            this.lueNote = new DevExpress.XtraEditors.LookUpEdit();
             this.lueCardType = new DevExpress.XtraEditors.LookUpEdit();
             this.label17 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -116,6 +117,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.borderPanel2 = new Xr.Common.Controls.BorderPanel();
             this.lab_reservationDate = new System.Windows.Forms.Label();
+            this.lueNote = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBorderPanel2 = new Xr.Common.Controls.GroupBorderPanel();
             this.reservationCalendar1 = new Xr.Common.Controls.ReservationCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -128,8 +130,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lueCardTypeQuery = new DevExpress.XtraEditors.LookUpEdit();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.加急ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -166,10 +168,10 @@
             this.panel13.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lueNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCardType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).BeginInit();
             this.borderPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).BeginInit();
             this.groupBorderPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -239,7 +241,7 @@
             // 
             this.gv_patient.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.gv_patient.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gv_patient.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gv_patient.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.gv_patient.Appearance.HeaderPanel.Options.UseFont = true;
             this.gv_patient.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gv_patient.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -247,7 +249,7 @@
             this.gv_patient.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gv_patient.Appearance.OddRow.BackColor = System.Drawing.Color.White;
             this.gv_patient.Appearance.OddRow.Options.UseBackColor = true;
-            this.gv_patient.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gv_patient.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.gv_patient.Appearance.Row.Options.UseFont = true;
             this.gv_patient.Appearance.Row.Options.UseTextOptions = true;
             this.gv_patient.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -257,6 +259,8 @@
             this.gridColumn5,
             this.gridColumn7,
             this.gridColumn10,
+            this.gridColumn8,
+            this.gridColumn6,
             this.gridColumn11,
             this.gridColumn12,
             this.gridColumn13,
@@ -270,8 +274,10 @@
             this.gv_patient.OptionsBehavior.ReadOnly = true;
             this.gv_patient.OptionsCustomization.AllowFilter = false;
             this.gv_patient.OptionsCustomization.AllowSort = false;
+            this.gv_patient.OptionsDetail.ShowDetailTabs = false;
             this.gv_patient.OptionsMenu.EnableColumnMenu = false;
             this.gv_patient.OptionsView.AllowHtmlDrawHeaders = true;
+            this.gv_patient.OptionsView.ColumnAutoWidth = false;
             this.gv_patient.OptionsView.EnableAppearanceEvenRow = true;
             this.gv_patient.OptionsView.EnableAppearanceOddRow = true;
             this.gv_patient.OptionsView.RowAutoHeight = true;
@@ -294,11 +300,11 @@
             this.gridColumn7.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn7.Caption = "日期";
             this.gridColumn7.FieldName = "workDate";
-            this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 0;
+            this.gridColumn7.Width = 83;
             // 
             // gridColumn10
             // 
@@ -308,11 +314,29 @@
             this.gridColumn10.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn10.Caption = "时间";
             this.gridColumn10.FieldName = "time";
-            this.gridColumn10.MinWidth = 25;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 1;
+            this.gridColumn10.Width = 108;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "患者ID";
+            this.gridColumn8.FieldName = "patientId";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 3;
+            this.gridColumn8.Width = 104;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "预约卡号";
+            this.gridColumn6.FieldName = "cardNo";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 4;
+            this.gridColumn6.Width = 147;
             // 
             // gridColumn11
             // 
@@ -327,6 +351,7 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 2;
+            this.gridColumn11.Width = 112;
             // 
             // gridColumn12
             // 
@@ -339,8 +364,7 @@
             this.gridColumn12.MinWidth = 25;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 3;
+            this.gridColumn12.Width = 57;
             // 
             // gridColumn13
             // 
@@ -349,7 +373,8 @@
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 4;
+            this.gridColumn13.VisibleIndex = 5;
+            this.gridColumn13.Width = 99;
             // 
             // gridColumn14
             // 
@@ -363,16 +388,18 @@
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 5;
+            this.gridColumn14.VisibleIndex = 6;
+            this.gridColumn14.Width = 71;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "预约途径";
+            this.gridColumn1.Caption = "类型";
             this.gridColumn1.FieldName = "registerWayTxt";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 6;
+            this.gridColumn1.VisibleIndex = 7;
+            this.gridColumn1.Width = 70;
             // 
             // gridColumn2
             // 
@@ -381,7 +408,8 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 7;
+            this.gridColumn2.VisibleIndex = 8;
+            this.gridColumn2.Width = 71;
             // 
             // gridColumn3
             // 
@@ -390,7 +418,8 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 8;
+            this.gridColumn3.VisibleIndex = 9;
+            this.gridColumn3.Width = 154;
             // 
             // gridColumn4
             // 
@@ -399,7 +428,8 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 9;
+            this.gridColumn4.VisibleIndex = 10;
+            this.gridColumn4.Width = 101;
             // 
             // tableLayoutPanel3
             // 
@@ -494,7 +524,7 @@
             // 
             this.panel_depts.AutoScroll = true;
             this.panel_depts.BackColor = System.Drawing.Color.White;
-            this.panel_depts.Controls.Add(this.mcDept);
+            this.panel_depts.Controls.Add(this.treeMenuControl1);
             this.panel_depts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_depts.Location = new System.Drawing.Point(10, 20);
             this.panel_depts.Margin = new System.Windows.Forms.Padding(0);
@@ -502,17 +532,28 @@
             this.panel_depts.Size = new System.Drawing.Size(170, 426);
             this.panel_depts.TabIndex = 177;
             // 
-            // mcDept
+            // treeMenuControl1
             // 
-            this.mcDept.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mcDept.itemName = null;
-            this.mcDept.itemTag = null;
-            this.mcDept.itemText = null;
-            this.mcDept.Location = new System.Drawing.Point(0, 0);
-            this.mcDept.Name = "mcDept";
-            this.mcDept.Size = new System.Drawing.Size(170, 426);
-            this.mcDept.TabIndex = 2;
-            this.mcDept.MenuItemClick += new Xr.Common.Controls.MenuControl.ItemClick(this.mcDept_MenuItemClick);
+            this.treeMenuControl1.AutoScroll = true;
+            this.treeMenuControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
+            this.treeMenuControl1.BorderSize = 1;
+            this.treeMenuControl1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.DataSource = null;
+            this.treeMenuControl1.DisplayMember = "name";
+            this.treeMenuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeMenuControl1.EditValue = null;
+            this.treeMenuControl1.KeyFieldName = "id";
+            this.treeMenuControl1.Location = new System.Drawing.Point(0, 0);
+            this.treeMenuControl1.Name = "treeMenuControl1";
+            this.treeMenuControl1.ParentFieldName = "parentId";
+            this.treeMenuControl1.Size = new System.Drawing.Size(170, 426);
+            this.treeMenuControl1.TabIndex = 0;
+            this.treeMenuControl1.UseZoom = false;
+            this.treeMenuControl1.ValueMember = "value";
+            this.treeMenuControl1.MenuItemClick += new Xr.Common.Controls.TreeMenuControl.ItemClick(this.treeMenuControl1_MenuItemClick);
             // 
             // tableLayoutPanel6
             // 
@@ -608,7 +649,6 @@
             this.tableLayoutPanel1.Controls.Add(this.panel13, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel11, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.panel9, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.lueNote, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.lueCardType, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label17, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 6);
@@ -625,6 +665,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label7, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.borderPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lueNote, 3, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 15);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -958,11 +999,13 @@
             // rBtn_visitType1
             // 
             this.rBtn_visitType1.AutoSize = true;
+            this.rBtn_visitType1.Checked = true;
             this.rBtn_visitType1.Dock = System.Windows.Forms.DockStyle.Left;
             this.rBtn_visitType1.Location = new System.Drawing.Point(65, 0);
             this.rBtn_visitType1.Name = "rBtn_visitType1";
             this.rBtn_visitType1.Size = new System.Drawing.Size(47, 28);
             this.rBtn_visitType1.TabIndex = 1;
+            this.rBtn_visitType1.TabStop = true;
             this.rBtn_visitType1.Text = "复诊";
             this.rBtn_visitType1.UseVisualStyleBackColor = true;
             // 
@@ -977,13 +1020,11 @@
             // rBtn_visitType0
             // 
             this.rBtn_visitType0.AutoSize = true;
-            this.rBtn_visitType0.Checked = true;
             this.rBtn_visitType0.Dock = System.Windows.Forms.DockStyle.Left;
             this.rBtn_visitType0.Location = new System.Drawing.Point(0, 0);
             this.rBtn_visitType0.Name = "rBtn_visitType0";
             this.rBtn_visitType0.Size = new System.Drawing.Size(47, 28);
             this.rBtn_visitType0.TabIndex = 0;
-            this.rBtn_visitType0.TabStop = true;
             this.rBtn_visitType0.Text = "初诊";
             this.rBtn_visitType0.UseVisualStyleBackColor = true;
             // 
@@ -1074,35 +1115,6 @@
             this.rBtn_isCyfzF.TabStop = true;
             this.rBtn_isCyfzF.Text = "否";
             this.rBtn_isCyfzF.UseVisualStyleBackColor = true;
-            // 
-            // lueNote
-            // 
-            this.lueNote.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lueNote.Location = new System.Drawing.Point(273, 105);
-            this.lueNote.Name = "lueNote";
-            this.lueNote.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.lueNote.Properties.Appearance.Options.UseFont = true;
-            this.lueNote.Properties.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueNote.Properties.AppearanceDisabled.Options.UseFont = true;
-            this.lueNote.Properties.AppearanceDropDown.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueNote.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.lueNote.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueNote.Properties.AppearanceDropDownHeader.Options.UseFont = true;
-            this.lueNote.Properties.AppearanceFocused.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueNote.Properties.AppearanceFocused.Options.UseFont = true;
-            this.lueNote.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueNote.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.lueNote.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
-            this.lueNote.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.lueNote.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
-            this.lueNote.Properties.NullText = "";
-            this.lueNote.Size = new System.Drawing.Size(116, 28);
-            this.lueNote.TabIndex = 179;
             // 
             // lueCardType
             // 
@@ -1325,6 +1337,19 @@
             this.lab_reservationDate.TabIndex = 90;
             this.lab_reservationDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lueNote
+            // 
+            this.lueNote.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lueNote.Location = new System.Drawing.Point(273, 105);
+            this.lueNote.Name = "lueNote";
+            this.lueNote.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lueNote.Properties.Appearance.Options.UseFont = true;
+            this.lueNote.Properties.AutoHeight = false;
+            this.lueNote.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueNote.Size = new System.Drawing.Size(128, 28);
+            this.lueNote.TabIndex = 194;
+            // 
             // groupBorderPanel2
             // 
             this.groupBorderPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
@@ -1476,7 +1501,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 30);
             this.label8.TabIndex = 84;
-            this.label8.Text = " 卡号";
+            this.label8.Text = " 号码";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lueCardTypeQuery
@@ -1578,10 +1603,10 @@
             this.panel11.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lueNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCardType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel2)).EndInit();
             this.borderPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lueNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel2)).EndInit();
             this.groupBorderPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -1669,7 +1694,6 @@
         private System.Windows.Forms.RadioButton rBtn_isCyfzT;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.RadioButton rBtn_isCyfzF;
-        private DevExpress.XtraEditors.LookUpEdit lueNote;
         private DevExpress.XtraEditors.LookUpEdit lueCardType;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Timer timer1;
@@ -1678,11 +1702,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Xr.Common.Controls.ButtonControl btn_readIdcard;
         private Xr.Common.Controls.ButtonControl btn_readSocialCard;
-        private Xr.Common.Controls.ButtonControl btn_zlk;
         private System.Windows.Forms.TextBox txt_cardNoQuery;
         private System.Windows.Forms.Label label8;
         private Xr.Common.Controls.MenuControl mcDoctor;
-        private Xr.Common.Controls.MenuControl mcDept;
         private Xr.Common.Controls.MenuControl mcTimeSpan;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 加急ToolStripMenuItem;
@@ -1697,6 +1719,14 @@
         private Xr.Common.Controls.BorderPanel borderPanel2;
         private System.Windows.Forms.Label lab_reservationDate;
         private DevExpress.XtraEditors.LookUpEdit lueCardTypeQuery;
+        private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
+
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+
+        private Xr.Common.Controls.ButtonControl btn_zlk;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraEditors.ComboBoxEdit lueNote;
+
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

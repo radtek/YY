@@ -53,12 +53,12 @@ namespace Xr.RtScreen
                 Xr.Common.MessageBoxUtils.Show("请选择科室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 return;
             }
-            if (treeClinc.EditValue == "")
-            {
-                Xr.Common.MessageBoxUtils.Show("请选择诊室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                return;
-            }
-            SaveConfigSeting(treeHostile.EditValue.ToString(), treeClinc.EditValue.ToString(), treeKeshi.EditValue.ToString(), "1");
+            //if (treeClinc.EditValue == "")
+            //{
+            //    Xr.Common.MessageBoxUtils.Show("请选择诊室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+            //    return;
+            //}
+            SaveConfigSeting(treeHostile.EditValue.ToString(), treeClinc.EditValue.ToString(), treeKeshi.EditValue.ToString(), UpStard, "1");
             Application.ExitThread();
             Application.Exit();
             Application.Restart();
@@ -69,7 +69,7 @@ namespace Xr.RtScreen
         /// <summary>
         /// 保存信息到本地配置文件中
         /// </summary>
-        private void SaveConfigSeting(string hostalCode,string ClincCode, string deptCode, string Setting)
+        private void SaveConfigSeting(string hostalCode, string ClincCode, string deptCode, string StartupScreen, string Setting)
         {
             try
             {
@@ -81,11 +81,12 @@ namespace Xr.RtScreen
                 Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
                 config.AppSettings.Settings["hospitalCode"].Value = hostalCode;
                 config.AppSettings.Settings["deptCode"].Value = deptCode;
-                config.AppSettings.Settings["clinicCode"].Value = ClincCode;
+                config.AppSettings.Settings["clinicID"].Value = ClincCode;
+                config.AppSettings.Settings["StartupScreen"].Value = StartupScreen;
                 config.AppSettings.Settings["Setting"].Value = Setting;
                 config.Save(ConfigurationSaveMode.Full);
                 System.Configuration.ConfigurationManager.RefreshSection("appSettings");//重新加载新的配置文件
-                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalCode + "科室编码：" + deptCode + "诊室编码" + ClincCode + "并且修改Setting值为1标识为不是第一次启动了");
+                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalCode + "科室编码：" + deptCode + "诊室id" + ClincCode + "并且修改Setting值为1标识为不是第一次启动了");
             }
             catch (Exception ex)
             {
@@ -204,11 +205,26 @@ namespace Xr.RtScreen
                     List<dynamic> list = objTs["result"].ToObject<List<dynamic>>();
                     this.treeClinc.Properties.DataSource = list;
                     treeClinc.Properties.DisplayMember = "name";
-                    treeClinc.Properties.ValueMember = "code";
+                    treeClinc.Properties.ValueMember = "id";
                     treeClinc.EditValue = "";
                 }
             }
         }
         #endregion 
+        string UpStard = "1";
+        private void Postoperative_Properties_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Postoperative.EditValue=="1")
+            {
+                this.label5.Visible = false;
+                this.treeClinc.Visible = false;
+            }
+            else
+            {
+                this.label5.Visible = true;
+                this.treeClinc.Visible = true;
+            }
+            UpStard = Postoperative.EditValue.ToString();
+        }
     }
 }

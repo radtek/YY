@@ -24,6 +24,7 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
             MainForm = (Form)this.Parent;
             pageControl1.MainForm = MainForm;
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             First();
@@ -349,7 +350,7 @@ namespace Xr.RtManager.Pages.cms
                     item.parentId = dept.parentId;
                     itemList.Add(item);
                 }
-              //listoffice.Insert(0,new TreeList { id = "", parentId = "", name = "全部" });
+                //itemList.Insert(0, Xr.Common.Controls.Item { value = "", parentId = "", name = "全部" });
                 treeKeshi.Properties.DataSource = itemList;
                 treeKeshi.Properties.TreeList.KeyFieldName = "value";
                 treeKeshi.Properties.TreeList.ParentFieldName = "parentId";

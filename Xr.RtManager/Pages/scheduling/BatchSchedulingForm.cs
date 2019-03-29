@@ -445,7 +445,11 @@ namespace Xr.RtManager.Pages.scheduling
         {
             DateTime dt = DateTime.ParseExact(lueDate.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
             String zj = e.Column.Caption.Substring(0,2);//周几
-            if (zj.Equals("周一"))
+            if (zj.Equals("名称"))
+            {
+                return;
+            }
+            else if (zj.Equals("周一"))
             {
             }
             else if (zj.Equals("周二"))
@@ -810,7 +814,10 @@ namespace Xr.RtManager.Pages.scheduling
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException != null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 

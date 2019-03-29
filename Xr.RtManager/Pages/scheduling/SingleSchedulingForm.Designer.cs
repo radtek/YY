@@ -61,6 +61,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -69,7 +70,6 @@
             this.btnQuery = new Xr.Common.Controls.ButtonControl();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.dataController1 = new Xr.Common.Controls.DataController(this.components);
-            this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelEx3.SuspendLayout();
@@ -140,7 +140,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(0, 160);
             this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.panel9.Padding = new System.Windows.Forms.Padding(10, 0, 0, 10);
             this.panel9.Size = new System.Drawing.Size(805, 263);
             this.panel9.TabIndex = 1;
             // 
@@ -497,6 +497,29 @@
             this.panel2.Size = new System.Drawing.Size(150, 423);
             this.panel2.TabIndex = 0;
             // 
+            // treeMenuControl1
+            // 
+            this.treeMenuControl1.AutoScroll = true;
+            this.treeMenuControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
+            this.treeMenuControl1.BorderSize = 1;
+            this.treeMenuControl1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.DataSource = null;
+            this.treeMenuControl1.DisplayMember = "name";
+            this.treeMenuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeMenuControl1.EditValue = null;
+            this.treeMenuControl1.KeyFieldName = "id";
+            this.treeMenuControl1.Location = new System.Drawing.Point(0, 34);
+            this.treeMenuControl1.Name = "treeMenuControl1";
+            this.treeMenuControl1.ParentFieldName = "parentId";
+            this.treeMenuControl1.Size = new System.Drawing.Size(150, 389);
+            this.treeMenuControl1.TabIndex = 5;
+            this.treeMenuControl1.UseZoom = false;
+            this.treeMenuControl1.ValueMember = "value";
+            this.treeMenuControl1.MenuItemClick += new Xr.Common.Controls.TreeMenuControl.ItemClick(this.treeMenuControl1_MenuItemClick);
+            // 
             // panelEx1
             // 
             this.panelEx1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
@@ -594,29 +617,6 @@
             this.btnSave.TabIndex = 75;
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // treeMenuControl1
-            // 
-            this.treeMenuControl1.AutoScroll = true;
-            this.treeMenuControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
-            this.treeMenuControl1.BorderSize = 1;
-            this.treeMenuControl1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.DataSource = null;
-            this.treeMenuControl1.DisplayMember = "name";
-            this.treeMenuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeMenuControl1.EditValue = null;
-            this.treeMenuControl1.KeyFieldName = "id";
-            this.treeMenuControl1.Location = new System.Drawing.Point(0, 34);
-            this.treeMenuControl1.Name = "treeMenuControl1";
-            this.treeMenuControl1.ParentFieldName = "parentId";
-            this.treeMenuControl1.Size = new System.Drawing.Size(150, 389);
-            this.treeMenuControl1.TabIndex = 5;
-            this.treeMenuControl1.UseZoom = false;
-            this.treeMenuControl1.ValueMember = "value";
-            this.treeMenuControl1.MenuItemClick += new Xr.Common.Controls.TreeMenuControl.ItemClick(this.treeMenuControl1_MenuItemClick);
             // 
             // SingleSchedulingForm
             // 

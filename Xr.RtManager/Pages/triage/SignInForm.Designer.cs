@@ -29,23 +29,24 @@ namespace Xr.RtManager.Pages.triage
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.加急ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.排号作废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过号重排ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.panelEx12 = new Xr.Common.Controls.PanelEx();
-            this.panelEx15 = new Xr.Common.Controls.PanelEx();
-            this.panelEx16 = new Xr.Common.Controls.PanelEx();
-            this.panelEx17 = new Xr.Common.Controls.PanelEx();
-            this.panelEx13 = new Xr.Common.Controls.PanelEx();
-            this.panelEx14 = new Xr.Common.Controls.PanelEx();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx17 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
+            this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.ReservationInfo_Panel = new Xr.Common.Controls.BorderPanel();
@@ -108,30 +109,21 @@ namespace Xr.RtManager.Pages.triage
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBorderPanel1 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.borderPanel20 = new Xr.Common.Controls.BorderPanel();
-            this.lab_sfz = new System.Windows.Forms.Label();
             this.borderPanel19 = new Xr.Common.Controls.BorderPanel();
             this.lab_tel = new System.Windows.Forms.Label();
-            this.borderPanel18 = new Xr.Common.Controls.BorderPanel();
-            this.lab_sbk = new System.Windows.Forms.Label();
             this.borderPanel17 = new Xr.Common.Controls.BorderPanel();
             this.lab_birthday = new System.Windows.Forms.Label();
-            this.borderPanel16 = new Xr.Common.Controls.BorderPanel();
-            this.lab_jkt = new System.Windows.Forms.Label();
             this.borderPanel14 = new Xr.Common.Controls.BorderPanel();
             this.lab_sex = new System.Windows.Forms.Label();
-            this.borderPanel13 = new Xr.Common.Controls.BorderPanel();
-            this.lab_zlk = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.borderPanel12 = new Xr.Common.Controls.BorderPanel();
             this.lab_name = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.borderPanel13 = new Xr.Common.Controls.BorderPanel();
+            this.lab_Card = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -148,6 +140,15 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBorderPanel4 = new Xr.Common.Controls.GroupBorderPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.borderPanel3 = new Xr.Common.Controls.BorderPanel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_refreshPatient = new Xr.Common.Controls.ButtonControl();
+            this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
+            this.rBtn_donePatient = new Xr.Common.Controls.BorderPanelButton();
+            this.rBtn_reservationPatient = new Xr.Common.Controls.BorderPanelButton();
+            this.rBtn_waittingPatient = new Xr.Common.Controls.BorderPanelButton();
+            this.rBtn_allPatient = new Xr.Common.Controls.BorderPanelButton();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.gc_Patients = new DevExpress.XtraGrid.GridControl();
             this.gv_Patients = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -158,14 +159,7 @@ namespace Xr.RtManager.Pages.triage
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.borderPanel3 = new Xr.Common.Controls.BorderPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_refreshPatient = new Xr.Common.Controls.ButtonControl();
-            this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
-            this.rBtn_waittingPatient = new Xr.Common.Controls.BorderPanelButton();
-            this.rBtn_reservationPatient = new Xr.Common.Controls.BorderPanelButton();
-            this.rBtn_allPatient = new Xr.Common.Controls.BorderPanelButton();
-            this.rBtn_donePatient = new Xr.Common.Controls.BorderPanelButton();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBorderPanel5 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.borderPanel15 = new Xr.Common.Controls.BorderPanel();
@@ -178,8 +172,6 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton16 = new Xr.RtManager.Control.RoomPanelButton();
             this.roomPanelButton17 = new Xr.RtManager.Control.RoomPanelButton();
             this.roomPanelButton18 = new Xr.RtManager.Control.RoomPanelButton();
-            this.roomPanelButton19 = new Xr.RtManager.Control.RoomPanelButton();
-            this.roomPanelButton20 = new Xr.RtManager.Control.RoomPanelButton();
             this.borderPanel6 = new Xr.Common.Controls.BorderPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -196,7 +188,7 @@ namespace Xr.RtManager.Pages.triage
             this.de_date = new DevExpress.XtraEditors.DateEdit();
             this.label11 = new System.Windows.Forms.Label();
             this.lueDept_1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.contextMenuStrip_waitingList = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip_waitingList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -255,22 +247,16 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).BeginInit();
             this.groupBorderPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel20)).BeginInit();
-            this.borderPanel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel19)).BeginInit();
             this.borderPanel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel18)).BeginInit();
-            this.borderPanel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel17)).BeginInit();
             this.borderPanel17.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel16)).BeginInit();
-            this.borderPanel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel14)).BeginInit();
             this.borderPanel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel13)).BeginInit();
-            this.borderPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel12)).BeginInit();
             this.borderPanel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel13)).BeginInit();
+            this.borderPanel13.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
@@ -284,17 +270,18 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).BeginInit();
             this.groupBorderPanel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gc_Patients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_Patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel3)).BeginInit();
             this.borderPanel3.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).BeginInit();
             this.borderPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_waittingPatient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_reservationPatient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_allPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_donePatient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_reservationPatient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_waittingPatient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_allPatient)).BeginInit();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gc_Patients)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Patients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).BeginInit();
             this.groupBorderPanel5.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -309,8 +296,6 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel6)).BeginInit();
             this.borderPanel6.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -504,7 +489,7 @@ namespace Xr.RtManager.Pages.triage
             this.ReservationInfo_Panel.FillColor2 = System.Drawing.Color.Transparent;
             this.ReservationInfo_Panel.Location = new System.Drawing.Point(10, 187);
             this.ReservationInfo_Panel.Name = "ReservationInfo_Panel";
-            this.ReservationInfo_Panel.Size = new System.Drawing.Size(1023, 10);
+            this.ReservationInfo_Panel.Size = new System.Drawing.Size(1023, 110);
             this.ReservationInfo_Panel.TabIndex = 1;
             // 
             // groupBorderPanel6
@@ -529,7 +514,7 @@ namespace Xr.RtManager.Pages.triage
             this.groupBorderPanel6.Location = new System.Drawing.Point(0, 0);
             this.groupBorderPanel6.Name = "groupBorderPanel6";
             this.groupBorderPanel6.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.groupBorderPanel6.Size = new System.Drawing.Size(1023, 10);
+            this.groupBorderPanel6.Size = new System.Drawing.Size(1023, 110);
             this.groupBorderPanel6.TabIndex = 178;
             // 
             // tableLayoutPanel11
@@ -544,7 +529,7 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(1003, 0);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(1003, 80);
             this.tableLayoutPanel11.TabIndex = 1;
             // 
             // flPanel_ReservationInfo
@@ -558,7 +543,7 @@ namespace Xr.RtManager.Pages.triage
             this.flPanel_ReservationInfo.Location = new System.Drawing.Point(3, 3);
             this.flPanel_ReservationInfo.Name = "flPanel_ReservationInfo";
             this.flPanel_ReservationInfo.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.flPanel_ReservationInfo.Size = new System.Drawing.Size(997, 1);
+            this.flPanel_ReservationInfo.Size = new System.Drawing.Size(997, 74);
             this.flPanel_ReservationInfo.TabIndex = 0;
             // 
             // reservationInfoPanel1
@@ -567,6 +552,7 @@ namespace Xr.RtManager.Pages.triage
             this.reservationInfoPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.reservationInfoPanel1.Location = new System.Drawing.Point(3, 7);
             this.reservationInfoPanel1.Name = "reservationInfoPanel1";
+            this.reservationInfoPanel1.obj = null;
             this.reservationInfoPanel1.Padding = new System.Windows.Forms.Padding(3);
             this.reservationInfoPanel1.Size = new System.Drawing.Size(800, 60);
             this.reservationInfoPanel1.TabIndex = 0;
@@ -577,6 +563,7 @@ namespace Xr.RtManager.Pages.triage
             this.reservationInfoPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.reservationInfoPanel2.Location = new System.Drawing.Point(3, 73);
             this.reservationInfoPanel2.Name = "reservationInfoPanel2";
+            this.reservationInfoPanel2.obj = null;
             this.reservationInfoPanel2.Padding = new System.Windows.Forms.Padding(3);
             this.reservationInfoPanel2.Size = new System.Drawing.Size(800, 60);
             this.reservationInfoPanel2.TabIndex = 1;
@@ -587,6 +574,7 @@ namespace Xr.RtManager.Pages.triage
             this.reservationInfoPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.reservationInfoPanel3.Location = new System.Drawing.Point(3, 139);
             this.reservationInfoPanel3.Name = "reservationInfoPanel3";
+            this.reservationInfoPanel3.obj = null;
             this.reservationInfoPanel3.Padding = new System.Windows.Forms.Padding(3);
             this.reservationInfoPanel3.Size = new System.Drawing.Size(800, 60);
             this.reservationInfoPanel3.TabIndex = 2;
@@ -597,6 +585,7 @@ namespace Xr.RtManager.Pages.triage
             this.reservationInfoPanel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.reservationInfoPanel4.Location = new System.Drawing.Point(3, 205);
             this.reservationInfoPanel4.Name = "reservationInfoPanel4";
+            this.reservationInfoPanel4.obj = null;
             this.reservationInfoPanel4.Padding = new System.Windows.Forms.Padding(3);
             this.reservationInfoPanel4.Size = new System.Drawing.Size(800, 60);
             this.reservationInfoPanel4.TabIndex = 3;
@@ -650,9 +639,9 @@ namespace Xr.RtManager.Pages.triage
             // 
             this.panel2.Controls.Add(this.groupBorderPanel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(10, 247);
+            this.panel2.Location = new System.Drawing.Point(10, 207);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1023, 369);
+            this.panel2.Size = new System.Drawing.Size(1023, 409);
             this.panel2.TabIndex = 1;
             // 
             // groupBorderPanel3
@@ -674,7 +663,7 @@ namespace Xr.RtManager.Pages.triage
             this.groupBorderPanel3.Location = new System.Drawing.Point(0, 0);
             this.groupBorderPanel3.Name = "groupBorderPanel3";
             this.groupBorderPanel3.Padding = new System.Windows.Forms.Padding(10, 23, 10, 10);
-            this.groupBorderPanel3.Size = new System.Drawing.Size(1023, 369);
+            this.groupBorderPanel3.Size = new System.Drawing.Size(1023, 409);
             this.groupBorderPanel3.TabIndex = 179;
             // 
             // panel10
@@ -684,7 +673,7 @@ namespace Xr.RtManager.Pages.triage
             this.panel10.Location = new System.Drawing.Point(10, 67);
             this.panel10.Name = "panel10";
             this.panel10.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.panel10.Size = new System.Drawing.Size(1003, 292);
+            this.panel10.Size = new System.Drawing.Size(1003, 332);
             this.panel10.TabIndex = 176;
             // 
             // borderPanel9
@@ -705,7 +694,7 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel9.Location = new System.Drawing.Point(0, 5);
             this.borderPanel9.Name = "borderPanel9";
             this.borderPanel9.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.borderPanel9.Size = new System.Drawing.Size(1003, 287);
+            this.borderPanel9.Size = new System.Drawing.Size(1003, 327);
             this.borderPanel9.TabIndex = 177;
             // 
             // flowLayoutPanel1
@@ -727,7 +716,7 @@ namespace Xr.RtManager.Pages.triage
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 281);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 321);
             this.flowLayoutPanel1.TabIndex = 175;
             // 
             // roomPanelButton1
@@ -1142,7 +1131,7 @@ namespace Xr.RtManager.Pages.triage
             // 
             this.panel6.Controls.Add(this.groupBorderPanel2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(10, 117);
+            this.panel6.Location = new System.Drawing.Point(10, 77);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.panel6.Size = new System.Drawing.Size(1023, 130);
@@ -1162,7 +1151,7 @@ namespace Xr.RtManager.Pages.triage
             this.groupBorderPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBorderPanel2.FillColor1 = System.Drawing.Color.Transparent;
             this.groupBorderPanel2.FillColor2 = System.Drawing.Color.Transparent;
-            this.groupBorderPanel2.GroupText = "预约信息";
+            this.groupBorderPanel2.GroupText = "预约信息|分诊信息";
             this.groupBorderPanel2.GroupTextFont = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.groupBorderPanel2.Location = new System.Drawing.Point(0, 10);
             this.groupBorderPanel2.Name = "groupBorderPanel2";
@@ -1453,7 +1442,7 @@ namespace Xr.RtManager.Pages.triage
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(10, 10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1023, 107);
+            this.panel5.Size = new System.Drawing.Size(1023, 67);
             this.panel5.TabIndex = 179;
             // 
             // groupBorderPanel1
@@ -1478,80 +1467,50 @@ namespace Xr.RtManager.Pages.triage
             this.groupBorderPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupBorderPanel1.Name = "groupBorderPanel1";
             this.groupBorderPanel1.Padding = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.groupBorderPanel1.Size = new System.Drawing.Size(1023, 107);
+            this.groupBorderPanel1.Size = new System.Drawing.Size(1023, 67);
             this.groupBorderPanel1.TabIndex = 177;
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 8;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.Controls.Add(this.borderPanel20, 7, 1);
+            this.tableLayoutPanel3.ColumnCount = 10;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.307223F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.59715F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.391658F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.493388F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.257376F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.05595F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.307223F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.8352F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.595117F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.05799F));
             this.tableLayoutPanel3.Controls.Add(this.borderPanel19, 7, 0);
-            this.tableLayoutPanel3.Controls.Add(this.borderPanel18, 5, 1);
             this.tableLayoutPanel3.Controls.Add(this.borderPanel17, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.borderPanel16, 3, 1);
             this.tableLayoutPanel3.Controls.Add(this.borderPanel14, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.borderPanel13, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label20, 6, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label19, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label15, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label12, 4, 1);
             this.tableLayoutPanel3.Controls.Add(this.label9, 4, 0);
             this.tableLayoutPanel3.Controls.Add(this.label7, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.label6, 6, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.borderPanel12, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label19, 8, 0);
+            this.tableLayoutPanel3.Controls.Add(this.borderPanel13, 9, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(20, 20);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(983, 77);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(983, 37);
             this.tableLayoutPanel3.TabIndex = 0;
-            // 
-            // borderPanel20
-            // 
-            this.borderPanel20.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel20.Controls.Add(this.lab_sfz);
-            this.borderPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel20.Location = new System.Drawing.Point(810, 43);
-            this.borderPanel20.Margin = new System.Windows.Forms.Padding(5);
-            this.borderPanel20.Name = "borderPanel20";
-            this.borderPanel20.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel20.Size = new System.Drawing.Size(168, 29);
-            this.borderPanel20.TabIndex = 109;
-            // 
-            // lab_sfz
-            // 
-            this.lab_sfz.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lab_sfz.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lab_sfz.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_sfz.Location = new System.Drawing.Point(1, 1);
-            this.lab_sfz.Margin = new System.Windows.Forms.Padding(5);
-            this.lab_sfz.Name = "lab_sfz";
-            this.lab_sfz.Size = new System.Drawing.Size(166, 27);
-            this.lab_sfz.TabIndex = 106;
-            this.lab_sfz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // borderPanel19
             // 
             this.borderPanel19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanel19.Controls.Add(this.lab_tel);
             this.borderPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel19.Location = new System.Drawing.Point(810, 5);
+            this.borderPanel19.Location = new System.Drawing.Point(589, 5);
             this.borderPanel19.Margin = new System.Windows.Forms.Padding(5);
             this.borderPanel19.Name = "borderPanel19";
             this.borderPanel19.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel19.Size = new System.Drawing.Size(168, 28);
+            this.borderPanel19.Size = new System.Drawing.Size(126, 27);
             this.borderPanel19.TabIndex = 108;
             // 
             // lab_tel
@@ -1562,44 +1521,20 @@ namespace Xr.RtManager.Pages.triage
             this.lab_tel.Location = new System.Drawing.Point(1, 1);
             this.lab_tel.Margin = new System.Windows.Forms.Padding(5);
             this.lab_tel.Name = "lab_tel";
-            this.lab_tel.Size = new System.Drawing.Size(166, 26);
+            this.lab_tel.Size = new System.Drawing.Size(124, 25);
             this.lab_tel.TabIndex = 106;
             this.lab_tel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // borderPanel18
-            // 
-            this.borderPanel18.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel18.Controls.Add(this.lab_sbk);
-            this.borderPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel18.Location = new System.Drawing.Point(565, 43);
-            this.borderPanel18.Margin = new System.Windows.Forms.Padding(5);
-            this.borderPanel18.Name = "borderPanel18";
-            this.borderPanel18.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel18.Size = new System.Drawing.Size(165, 29);
-            this.borderPanel18.TabIndex = 107;
-            // 
-            // lab_sbk
-            // 
-            this.lab_sbk.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lab_sbk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lab_sbk.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_sbk.Location = new System.Drawing.Point(1, 1);
-            this.lab_sbk.Margin = new System.Windows.Forms.Padding(5);
-            this.lab_sbk.Name = "lab_sbk";
-            this.lab_sbk.Size = new System.Drawing.Size(163, 27);
-            this.lab_sbk.TabIndex = 106;
-            this.lab_sbk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // borderPanel17
             // 
             this.borderPanel17.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanel17.Controls.Add(this.lab_birthday);
             this.borderPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel17.Location = new System.Drawing.Point(565, 5);
+            this.borderPanel17.Location = new System.Drawing.Point(379, 5);
             this.borderPanel17.Margin = new System.Windows.Forms.Padding(5);
             this.borderPanel17.Name = "borderPanel17";
             this.borderPanel17.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel17.Size = new System.Drawing.Size(165, 28);
+            this.borderPanel17.Size = new System.Drawing.Size(138, 27);
             this.borderPanel17.TabIndex = 106;
             // 
             // lab_birthday
@@ -1610,44 +1545,20 @@ namespace Xr.RtManager.Pages.triage
             this.lab_birthday.Location = new System.Drawing.Point(1, 1);
             this.lab_birthday.Margin = new System.Windows.Forms.Padding(5);
             this.lab_birthday.Name = "lab_birthday";
-            this.lab_birthday.Size = new System.Drawing.Size(163, 26);
+            this.lab_birthday.Size = new System.Drawing.Size(136, 25);
             this.lab_birthday.TabIndex = 106;
             this.lab_birthday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // borderPanel16
-            // 
-            this.borderPanel16.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel16.Controls.Add(this.lab_jkt);
-            this.borderPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel16.Location = new System.Drawing.Point(320, 43);
-            this.borderPanel16.Margin = new System.Windows.Forms.Padding(5);
-            this.borderPanel16.Name = "borderPanel16";
-            this.borderPanel16.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel16.Size = new System.Drawing.Size(165, 29);
-            this.borderPanel16.TabIndex = 105;
-            // 
-            // lab_jkt
-            // 
-            this.lab_jkt.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lab_jkt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lab_jkt.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_jkt.Location = new System.Drawing.Point(1, 1);
-            this.lab_jkt.Margin = new System.Windows.Forms.Padding(5);
-            this.lab_jkt.Name = "lab_jkt";
-            this.lab_jkt.Size = new System.Drawing.Size(163, 27);
-            this.lab_jkt.TabIndex = 106;
-            this.lab_jkt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // borderPanel14
             // 
             this.borderPanel14.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanel14.Controls.Add(this.lab_sex);
             this.borderPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel14.Location = new System.Drawing.Point(320, 5);
+            this.borderPanel14.Location = new System.Drawing.Point(234, 5);
             this.borderPanel14.Margin = new System.Windows.Forms.Padding(5);
             this.borderPanel14.Name = "borderPanel14";
             this.borderPanel14.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel14.Size = new System.Drawing.Size(165, 28);
+            this.borderPanel14.Size = new System.Drawing.Size(44, 27);
             this.borderPanel14.TabIndex = 103;
             // 
             // lab_sex
@@ -1658,90 +1569,18 @@ namespace Xr.RtManager.Pages.triage
             this.lab_sex.Location = new System.Drawing.Point(1, 1);
             this.lab_sex.Margin = new System.Windows.Forms.Padding(5);
             this.lab_sex.Name = "lab_sex";
-            this.lab_sex.Size = new System.Drawing.Size(163, 26);
+            this.lab_sex.Size = new System.Drawing.Size(42, 25);
             this.lab_sex.TabIndex = 179;
             this.lab_sex.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // borderPanel13
-            // 
-            this.borderPanel13.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel13.Controls.Add(this.lab_zlk);
-            this.borderPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel13.Location = new System.Drawing.Point(75, 43);
-            this.borderPanel13.Margin = new System.Windows.Forms.Padding(5);
-            this.borderPanel13.Name = "borderPanel13";
-            this.borderPanel13.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel13.Size = new System.Drawing.Size(165, 29);
-            this.borderPanel13.TabIndex = 102;
-            // 
-            // lab_zlk
-            // 
-            this.lab_zlk.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lab_zlk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lab_zlk.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_zlk.Location = new System.Drawing.Point(1, 1);
-            this.lab_zlk.Margin = new System.Windows.Forms.Padding(5);
-            this.lab_zlk.Name = "lab_zlk";
-            this.lab_zlk.Size = new System.Drawing.Size(163, 27);
-            this.lab_zlk.TabIndex = 179;
-            this.lab_zlk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label20
-            // 
-            this.label20.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label20.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(740, 43);
-            this.label20.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(65, 29);
-            this.label20.TabIndex = 100;
-            this.label20.Text = "身份证";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label19
-            // 
-            this.label19.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label19.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(5, 43);
-            this.label19.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 29);
-            this.label19.TabIndex = 99;
-            this.label19.Text = "诊疗卡";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label15
-            // 
-            this.label15.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label15.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(250, 43);
-            this.label15.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 29);
-            this.label15.TabIndex = 95;
-            this.label15.Text = "健康通";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label12
-            // 
-            this.label12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label12.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(495, 43);
-            this.label12.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 29);
-            this.label12.TabIndex = 92;
-            this.label12.Text = "社 保 卡 ";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label9
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Right;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(495, 5);
+            this.label9.Location = new System.Drawing.Point(309, 5);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 28);
+            this.label9.Size = new System.Drawing.Size(65, 27);
             this.label9.TabIndex = 89;
             this.label9.Text = "出生日期";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1750,36 +1589,36 @@ namespace Xr.RtManager.Pages.triage
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Right;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(250, 5);
+            this.label7.Location = new System.Drawing.Point(191, 5);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 28);
+            this.label7.Size = new System.Drawing.Size(38, 27);
             this.label7.TabIndex = 87;
-            this.label7.Text = "性    别";
+            this.label7.Text = "性别";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Right;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(740, 5);
+            this.label6.Location = new System.Drawing.Point(545, 5);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 28);
+            this.label6.Size = new System.Drawing.Size(39, 27);
             this.label6.TabIndex = 86;
-            this.label6.Text = "电    话";
+            this.label6.Text = "电话";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Right;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(5, 5);
+            this.label1.Location = new System.Drawing.Point(6, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 28);
+            this.label1.Size = new System.Drawing.Size(56, 27);
             this.label1.TabIndex = 85;
-            this.label1.Text = "姓    名";
+            this.label1.Text = "姓名";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // borderPanel12
@@ -1787,11 +1626,11 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel12.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanel12.Controls.Add(this.lab_name);
             this.borderPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel12.Location = new System.Drawing.Point(75, 5);
+            this.borderPanel12.Location = new System.Drawing.Point(67, 5);
             this.borderPanel12.Margin = new System.Windows.Forms.Padding(5);
             this.borderPanel12.Name = "borderPanel12";
             this.borderPanel12.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel12.Size = new System.Drawing.Size(165, 28);
+            this.borderPanel12.Size = new System.Drawing.Size(104, 27);
             this.borderPanel12.TabIndex = 101;
             // 
             // lab_name
@@ -1802,9 +1641,45 @@ namespace Xr.RtManager.Pages.triage
             this.lab_name.Location = new System.Drawing.Point(1, 1);
             this.lab_name.Margin = new System.Windows.Forms.Padding(5);
             this.lab_name.Name = "lab_name";
-            this.lab_name.Size = new System.Drawing.Size(163, 26);
+            this.lab_name.Size = new System.Drawing.Size(102, 25);
             this.lab_name.TabIndex = 179;
             this.lab_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label19
+            // 
+            this.label19.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label19.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label19.Location = new System.Drawing.Point(725, 5);
+            this.label19.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 27);
+            this.label19.TabIndex = 99;
+            this.label19.Text = "卡号";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // borderPanel13
+            // 
+            this.borderPanel13.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel13.Controls.Add(this.lab_Card);
+            this.borderPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borderPanel13.Location = new System.Drawing.Point(780, 5);
+            this.borderPanel13.Margin = new System.Windows.Forms.Padding(5);
+            this.borderPanel13.Name = "borderPanel13";
+            this.borderPanel13.Padding = new System.Windows.Forms.Padding(1);
+            this.borderPanel13.Size = new System.Drawing.Size(198, 27);
+            this.borderPanel13.TabIndex = 102;
+            // 
+            // lab_Card
+            // 
+            this.lab_Card.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lab_Card.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lab_Card.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lab_Card.Location = new System.Drawing.Point(1, 1);
+            this.lab_Card.Margin = new System.Windows.Forms.Padding(5);
+            this.lab_Card.Name = "lab_Card";
+            this.lab_Card.Size = new System.Drawing.Size(196, 25);
+            this.lab_Card.TabIndex = 107;
+            this.lab_Card.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -1925,7 +1800,7 @@ namespace Xr.RtManager.Pages.triage
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 30);
             this.label3.TabIndex = 84;
-            this.label3.Text = " 卡号";
+            this.label3.Text = " 号码";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lueCardTypeQuery
@@ -2021,7 +1896,7 @@ namespace Xr.RtManager.Pages.triage
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 403F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 373F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Controls.Add(this.groupBorderPanel4, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.groupBorderPanel5, 0, 0);
@@ -2049,11 +1924,11 @@ namespace Xr.RtManager.Pages.triage
             this.groupBorderPanel4.FillColor2 = System.Drawing.Color.Transparent;
             this.groupBorderPanel4.GroupText = "患者列表";
             this.groupBorderPanel4.GroupTextFont = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.groupBorderPanel4.Location = new System.Drawing.Point(403, 0);
+            this.groupBorderPanel4.Location = new System.Drawing.Point(373, 0);
             this.groupBorderPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.groupBorderPanel4.Name = "groupBorderPanel4";
             this.groupBorderPanel4.Padding = new System.Windows.Forms.Padding(5, 20, 5, 10);
-            this.groupBorderPanel4.Size = new System.Drawing.Size(620, 611);
+            this.groupBorderPanel4.Size = new System.Drawing.Size(650, 611);
             this.groupBorderPanel4.TabIndex = 180;
             // 
             // tableLayoutPanel8
@@ -2061,163 +1936,16 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Controls.Add(this.gc_Patients, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.borderPanel3, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.panel12, 0, 1);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(5, 20);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 2;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(610, 581);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(640, 581);
             this.tableLayoutPanel8.TabIndex = 177;
-            // 
-            // gc_Patients
-            // 
-            this.gc_Patients.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_Patients.Location = new System.Drawing.Point(3, 43);
-            this.gc_Patients.MainView = this.gv_Patients;
-            this.gc_Patients.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.gc_Patients.Name = "gc_Patients";
-            this.gc_Patients.Size = new System.Drawing.Size(604, 538);
-            this.gc_Patients.TabIndex = 179;
-            this.gc_Patients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gv_Patients});
-            // 
-            // gv_Patients
-            // 
-            this.gv_Patients.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.gv_Patients.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gv_Patients.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gv_Patients.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gv_Patients.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gv_Patients.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gv_Patients.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gv_Patients.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gv_Patients.Appearance.OddRow.BackColor = System.Drawing.Color.White;
-            this.gv_Patients.Appearance.OddRow.Options.UseBackColor = true;
-            this.gv_Patients.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.gv_Patients.Appearance.Row.Options.UseFont = true;
-            this.gv_Patients.Appearance.Row.Options.UseTextOptions = true;
-            this.gv_Patients.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gv_Patients.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
-            this.gv_Patients.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gv_Patients.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn8,
-            this.gridColumn2,
-            this.gridColumn1,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn9,
-            this.gridColumn6,
-            this.gridColumn5});
-            this.gv_Patients.GridControl = this.gc_Patients;
-            this.gv_Patients.Name = "gv_Patients";
-            this.gv_Patients.OptionsBehavior.ReadOnly = true;
-            this.gv_Patients.OptionsCustomization.AllowFilter = false;
-            this.gv_Patients.OptionsCustomization.AllowSort = false;
-            this.gv_Patients.OptionsMenu.EnableColumnMenu = false;
-            this.gv_Patients.OptionsView.AllowHtmlDrawHeaders = true;
-            this.gv_Patients.OptionsView.EnableAppearanceEvenRow = true;
-            this.gv_Patients.OptionsView.EnableAppearanceOddRow = true;
-            this.gv_Patients.OptionsView.RowAutoHeight = true;
-            this.gv_Patients.OptionsView.ShowGroupPanel = false;
-            this.gv_Patients.OptionsView.ShowIndicator = false;
-            this.gv_Patients.RowHeight = 30;
-            this.gv_Patients.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gv_patients_MouseDown);
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "id";
-            this.gridColumn8.FieldName = "id";
-            this.gridColumn8.Name = "gridColumn8";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn2.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn2.Caption = "排队号";
-            this.gridColumn2.FieldName = "queueNum";
-            this.gridColumn2.MinWidth = 25;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn1.Caption = "姓名";
-            this.gridColumn1.FieldName = "patientName";
-            this.gridColumn1.MinWidth = 25;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn3.Caption = "卡号";
-            this.gridColumn3.FieldName = "cardNo";
-            this.gridColumn3.MinWidth = 25;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn4.Caption = "预约途径";
-            this.gridColumn4.FieldName = "registerWayTxt";
-            this.gridColumn4.MinWidth = 25;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "状态";
-            this.gridColumn9.FieldName = "status";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 4;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn6.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn6.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn6.Caption = "预约时间";
-            this.gridColumn6.FieldName = "regVisitTime";
-            this.gridColumn6.MinWidth = 25;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "分诊时间";
-            this.gridColumn5.FieldName = "triageTime";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 6;
             // 
             // borderPanel3
             // 
@@ -2236,7 +1964,7 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.borderPanel3.Name = "borderPanel3";
             this.borderPanel3.Padding = new System.Windows.Forms.Padding(20, 5, 20, 5);
-            this.borderPanel3.Size = new System.Drawing.Size(610, 38);
+            this.borderPanel3.Size = new System.Drawing.Size(640, 38);
             this.borderPanel3.TabIndex = 177;
             // 
             // tableLayoutPanel9
@@ -2278,37 +2006,40 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel5.Appearance.Options.UseBackColor = true;
             this.borderPanel5.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel5.Controls.Add(this.rBtn_waittingPatient);
-            this.borderPanel5.Controls.Add(this.rBtn_reservationPatient);
-            this.borderPanel5.Controls.Add(this.rBtn_allPatient);
             this.borderPanel5.Controls.Add(this.rBtn_donePatient);
+            this.borderPanel5.Controls.Add(this.rBtn_reservationPatient);
+            this.borderPanel5.Controls.Add(this.rBtn_waittingPatient);
+            this.borderPanel5.Controls.Add(this.rBtn_allPatient);
             this.borderPanel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.borderPanel5.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel5.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel5.Location = new System.Drawing.Point(0, 0);
             this.borderPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.borderPanel5.Name = "borderPanel5";
-            this.borderPanel5.Size = new System.Drawing.Size(167, 28);
+            this.borderPanel5.Size = new System.Drawing.Size(180, 28);
             this.borderPanel5.TabIndex = 175;
             // 
-            // rBtn_waittingPatient
+            // rBtn_donePatient
             // 
-            this.rBtn_waittingPatient.BorderColor = System.Drawing.Color.DimGray;
-            this.rBtn_waittingPatient.BorderSides = ((Xr.Common.Controls.BorderSides)((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Bottom)));
-            this.rBtn_waittingPatient.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.rBtn_waittingPatient.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.rBtn_waittingPatient.BtnText = "候诊中";
-            this.rBtn_waittingPatient.CenterText = true;
-            this.rBtn_waittingPatient.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rBtn_waittingPatient.FillColor1 = System.Drawing.Color.White;
-            this.rBtn_waittingPatient.FillColor2 = System.Drawing.Color.White;
-            this.rBtn_waittingPatient.Location = new System.Drawing.Point(76, 0);
-            this.rBtn_waittingPatient.Margin = new System.Windows.Forms.Padding(0);
-            this.rBtn_waittingPatient.Name = "rBtn_waittingPatient";
-            this.rBtn_waittingPatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_waittingPatient.Size = new System.Drawing.Size(53, 28);
-            this.rBtn_waittingPatient.TabIndex = 175;
-            this.rBtn_waittingPatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
+            this.rBtn_donePatient.BorderColor = System.Drawing.Color.DimGray;
+            this.rBtn_donePatient.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Right) 
+            | Xr.Common.Controls.BorderSides.Bottom)));
+            this.rBtn_donePatient.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.rBtn_donePatient.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.rBtn_donePatient.BtnText = "完成";
+            this.rBtn_donePatient.CenterText = true;
+            this.rBtn_donePatient.CornerRadius.BottomRight = 8;
+            this.rBtn_donePatient.CornerRadius.TopRight = 8;
+            this.rBtn_donePatient.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rBtn_donePatient.FillColor1 = System.Drawing.Color.White;
+            this.rBtn_donePatient.FillColor2 = System.Drawing.Color.White;
+            this.rBtn_donePatient.Location = new System.Drawing.Point(132, 0);
+            this.rBtn_donePatient.Margin = new System.Windows.Forms.Padding(0);
+            this.rBtn_donePatient.Name = "rBtn_donePatient";
+            this.rBtn_donePatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_donePatient.Size = new System.Drawing.Size(42, 28);
+            this.rBtn_donePatient.TabIndex = 173;
+            this.rBtn_donePatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
             // 
             // rBtn_reservationPatient
             // 
@@ -2319,15 +2050,39 @@ namespace Xr.RtManager.Pages.triage
             this.rBtn_reservationPatient.BtnText = "预约";
             this.rBtn_reservationPatient.CenterText = true;
             this.rBtn_reservationPatient.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rBtn_reservationPatient.FillColor1 = System.Drawing.Color.White;
-            this.rBtn_reservationPatient.FillColor2 = System.Drawing.Color.White;
-            this.rBtn_reservationPatient.Location = new System.Drawing.Point(38, 0);
+            this.rBtn_reservationPatient.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_reservationPatient.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_reservationPatient.IsCheck = true;
+            this.rBtn_reservationPatient.Location = new System.Drawing.Point(94, 0);
             this.rBtn_reservationPatient.Margin = new System.Windows.Forms.Padding(0);
             this.rBtn_reservationPatient.Name = "rBtn_reservationPatient";
             this.rBtn_reservationPatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
             this.rBtn_reservationPatient.Size = new System.Drawing.Size(38, 28);
             this.rBtn_reservationPatient.TabIndex = 174;
             this.rBtn_reservationPatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
+            // 
+            // rBtn_waittingPatient
+            // 
+            this.rBtn_waittingPatient.BorderColor = System.Drawing.Color.DimGray;
+            this.rBtn_waittingPatient.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Left | Xr.Common.Controls.BorderSides.Top) 
+            | Xr.Common.Controls.BorderSides.Bottom)));
+            this.rBtn_waittingPatient.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.rBtn_waittingPatient.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.rBtn_waittingPatient.BtnText = "候诊中";
+            this.rBtn_waittingPatient.CenterText = true;
+            this.rBtn_waittingPatient.CornerRadius.BottomLeft = 8;
+            this.rBtn_waittingPatient.CornerRadius.TopLeft = 8;
+            this.rBtn_waittingPatient.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rBtn_waittingPatient.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_waittingPatient.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_waittingPatient.IsCheck = true;
+            this.rBtn_waittingPatient.Location = new System.Drawing.Point(41, 0);
+            this.rBtn_waittingPatient.Margin = new System.Windows.Forms.Padding(0);
+            this.rBtn_waittingPatient.Name = "rBtn_waittingPatient";
+            this.rBtn_waittingPatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_waittingPatient.Size = new System.Drawing.Size(53, 28);
+            this.rBtn_waittingPatient.TabIndex = 175;
+            this.rBtn_waittingPatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
             // 
             // rBtn_allPatient
             // 
@@ -2341,38 +2096,192 @@ namespace Xr.RtManager.Pages.triage
             this.rBtn_allPatient.CornerRadius.BottomLeft = 8;
             this.rBtn_allPatient.CornerRadius.TopLeft = 8;
             this.rBtn_allPatient.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rBtn_allPatient.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_allPatient.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_allPatient.IsCheck = true;
+            this.rBtn_allPatient.EnableCheck = false;
+            this.rBtn_allPatient.Enabled = false;
+            this.rBtn_allPatient.FillColor1 = System.Drawing.Color.White;
+            this.rBtn_allPatient.FillColor2 = System.Drawing.Color.White;
             this.rBtn_allPatient.Location = new System.Drawing.Point(0, 0);
             this.rBtn_allPatient.Margin = new System.Windows.Forms.Padding(0);
             this.rBtn_allPatient.Name = "rBtn_allPatient";
             this.rBtn_allPatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_allPatient.Size = new System.Drawing.Size(38, 28);
+            this.rBtn_allPatient.Size = new System.Drawing.Size(41, 28);
             this.rBtn_allPatient.TabIndex = 172;
+            this.rBtn_allPatient.Visible = false;
             this.rBtn_allPatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
             // 
-            // rBtn_donePatient
+            // panel12
             // 
-            this.rBtn_donePatient.BorderColor = System.Drawing.Color.DimGray;
-            this.rBtn_donePatient.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Right) 
-            | Xr.Common.Controls.BorderSides.Bottom)));
-            this.rBtn_donePatient.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.rBtn_donePatient.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.rBtn_donePatient.BtnText = "完成";
-            this.rBtn_donePatient.CenterText = true;
-            this.rBtn_donePatient.CornerRadius.BottomRight = 8;
-            this.rBtn_donePatient.CornerRadius.TopRight = 8;
-            this.rBtn_donePatient.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rBtn_donePatient.FillColor1 = System.Drawing.Color.White;
-            this.rBtn_donePatient.FillColor2 = System.Drawing.Color.White;
-            this.rBtn_donePatient.Location = new System.Drawing.Point(129, 0);
-            this.rBtn_donePatient.Margin = new System.Windows.Forms.Padding(0);
-            this.rBtn_donePatient.Name = "rBtn_donePatient";
-            this.rBtn_donePatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_donePatient.Size = new System.Drawing.Size(38, 28);
-            this.rBtn_donePatient.TabIndex = 173;
-            this.rBtn_donePatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
+            this.panel12.AutoScroll = true;
+            this.panel12.Controls.Add(this.gc_Patients);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel12.Location = new System.Drawing.Point(3, 41);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(634, 537);
+            this.panel12.TabIndex = 178;
+            // 
+            // gc_Patients
+            // 
+            this.gc_Patients.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gc_Patients.Location = new System.Drawing.Point(0, 0);
+            this.gc_Patients.MainView = this.gv_Patients;
+            this.gc_Patients.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.gc_Patients.Name = "gc_Patients";
+            this.gc_Patients.Size = new System.Drawing.Size(634, 537);
+            this.gc_Patients.TabIndex = 179;
+            this.gc_Patients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv_Patients});
+            // 
+            // gv_Patients
+            // 
+            this.gv_Patients.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gv_Patients.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gv_Patients.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gv_Patients.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gv_Patients.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gv_Patients.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gv_Patients.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gv_Patients.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gv_Patients.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            this.gv_Patients.Appearance.OddRow.Options.UseBackColor = true;
+            this.gv_Patients.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.gv_Patients.Appearance.Row.Options.UseFont = true;
+            this.gv_Patients.Appearance.Row.Options.UseTextOptions = true;
+            this.gv_Patients.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gv_Patients.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gv_Patients.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gv_Patients.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn8,
+            this.gridColumn2,
+            this.gridColumn1,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn9,
+            this.gridColumn6,
+            this.gridColumn5,
+            this.gridColumn7});
+            this.gv_Patients.GridControl = this.gc_Patients;
+            this.gv_Patients.Name = "gv_Patients";
+            this.gv_Patients.OptionsBehavior.ReadOnly = true;
+            this.gv_Patients.OptionsCustomization.AllowFilter = false;
+            this.gv_Patients.OptionsCustomization.AllowSort = false;
+            this.gv_Patients.OptionsMenu.EnableColumnMenu = false;
+            this.gv_Patients.OptionsView.AllowHtmlDrawHeaders = true;
+            this.gv_Patients.OptionsView.ColumnAutoWidth = false;
+            this.gv_Patients.OptionsView.EnableAppearanceEvenRow = true;
+            this.gv_Patients.OptionsView.EnableAppearanceOddRow = true;
+            this.gv_Patients.OptionsView.RowAutoHeight = true;
+            this.gv_Patients.OptionsView.ShowGroupPanel = false;
+            this.gv_Patients.OptionsView.ShowIndicator = false;
+            this.gv_Patients.RowHeight = 30;
+            this.gv_Patients.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gv_patients_MouseDown);
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "id";
+            this.gridColumn8.FieldName = "id";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn2.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn2.Caption = "排队号";
+            this.gridColumn2.FieldName = "queueNum";
+            this.gridColumn2.MinWidth = 25;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 84;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn1.Caption = "姓名";
+            this.gridColumn1.FieldName = "patientName";
+            this.gridColumn1.MinWidth = 25;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.Width = 96;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn3.Caption = "卡号";
+            this.gridColumn3.FieldName = "cardNo";
+            this.gridColumn3.MinWidth = 25;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 150;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn4.Caption = "类型";
+            this.gridColumn4.FieldName = "registerWayTxt";
+            this.gridColumn4.MinWidth = 25;
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 83;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "状态";
+            this.gridColumn9.FieldName = "status";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 4;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn6.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn6.Caption = "预约时间";
+            this.gridColumn6.FieldName = "regVisitTime";
+            this.gridColumn6.MinWidth = 25;
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.Width = 120;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "分诊时间";
+            this.gridColumn5.FieldName = "triageTime";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 6;
+            this.gridColumn5.Width = 113;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "就诊时间";
+            this.gridColumn7.FieldName = "visitTime";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 7;
+            this.gridColumn7.Width = 98;
             // 
             // groupBorderPanel5
             // 
@@ -2394,7 +2303,7 @@ namespace Xr.RtManager.Pages.triage
             this.groupBorderPanel5.Margin = new System.Windows.Forms.Padding(0, 0, 10, 10);
             this.groupBorderPanel5.Name = "groupBorderPanel5";
             this.groupBorderPanel5.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.groupBorderPanel5.Size = new System.Drawing.Size(393, 611);
+            this.groupBorderPanel5.Size = new System.Drawing.Size(362, 611);
             this.groupBorderPanel5.TabIndex = 179;
             // 
             // panel11
@@ -2404,7 +2313,7 @@ namespace Xr.RtManager.Pages.triage
             this.panel11.Location = new System.Drawing.Point(10, 58);
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.panel11.Size = new System.Drawing.Size(373, 543);
+            this.panel11.Size = new System.Drawing.Size(342, 543);
             this.panel11.TabIndex = 177;
             // 
             // borderPanel15
@@ -2425,7 +2334,7 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel15.Location = new System.Drawing.Point(0, 5);
             this.borderPanel15.Name = "borderPanel15";
             this.borderPanel15.Padding = new System.Windows.Forms.Padding(3);
-            this.borderPanel15.Size = new System.Drawing.Size(373, 538);
+            this.borderPanel15.Size = new System.Drawing.Size(342, 538);
             this.borderPanel15.TabIndex = 177;
             // 
             // flowLayoutPanel2
@@ -2440,14 +2349,11 @@ namespace Xr.RtManager.Pages.triage
             this.flowLayoutPanel2.Controls.Add(this.roomPanelButton16);
             this.flowLayoutPanel2.Controls.Add(this.roomPanelButton17);
             this.flowLayoutPanel2.Controls.Add(this.roomPanelButton18);
-            this.flowLayoutPanel2.Controls.Add(this.roomPanelButton19);
-            this.flowLayoutPanel2.Controls.Add(this.roomPanelButton20);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(367, 532);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(336, 532);
             this.flowLayoutPanel2.TabIndex = 182;
             // 
             // roomPanelButton11
@@ -2460,7 +2366,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton11.Enabled = false;
             this.roomPanelButton11.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton11.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton11.Location = new System.Drawing.Point(8, 3);
+            this.roomPanelButton11.Location = new System.Drawing.Point(3, 3);
             this.roomPanelButton11.Name = "roomPanelButton11";
             this.roomPanelButton11.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
             this.roomPanelButton11.RoomText = "A1诊室";
@@ -2478,7 +2384,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton12.CenterText = true;
             this.roomPanelButton12.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton12.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton12.Location = new System.Drawing.Point(176, 3);
+            this.roomPanelButton12.Location = new System.Drawing.Point(171, 3);
             this.roomPanelButton12.Name = "roomPanelButton12";
             this.roomPanelButton12.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
             this.roomPanelButton12.RoomText = "A1诊室";
@@ -2497,7 +2403,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton13.Enabled = false;
             this.roomPanelButton13.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton13.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton13.Location = new System.Drawing.Point(8, 119);
+            this.roomPanelButton13.Location = new System.Drawing.Point(3, 119);
             this.roomPanelButton13.Name = "roomPanelButton13";
             this.roomPanelButton13.Noon = Xr.RtManager.Control.RoomPanelButton.NoonSpan.Afternoon;
             this.roomPanelButton13.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
@@ -2516,7 +2422,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton14.CenterText = true;
             this.roomPanelButton14.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton14.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton14.Location = new System.Drawing.Point(176, 119);
+            this.roomPanelButton14.Location = new System.Drawing.Point(171, 119);
             this.roomPanelButton14.Name = "roomPanelButton14";
             this.roomPanelButton14.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
             this.roomPanelButton14.RoomText = "A1诊室";
@@ -2534,7 +2440,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton15.CenterText = true;
             this.roomPanelButton15.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton15.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton15.Location = new System.Drawing.Point(8, 235);
+            this.roomPanelButton15.Location = new System.Drawing.Point(3, 235);
             this.roomPanelButton15.Name = "roomPanelButton15";
             this.roomPanelButton15.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
             this.roomPanelButton15.RoomText = "A1诊室";
@@ -2552,7 +2458,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton16.CenterText = true;
             this.roomPanelButton16.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton16.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton16.Location = new System.Drawing.Point(176, 235);
+            this.roomPanelButton16.Location = new System.Drawing.Point(171, 235);
             this.roomPanelButton16.Name = "roomPanelButton16";
             this.roomPanelButton16.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
             this.roomPanelButton16.RoomText = "A1诊室";
@@ -2571,7 +2477,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton17.Enabled = false;
             this.roomPanelButton17.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton17.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton17.Location = new System.Drawing.Point(8, 351);
+            this.roomPanelButton17.Location = new System.Drawing.Point(3, 351);
             this.roomPanelButton17.Name = "roomPanelButton17";
             this.roomPanelButton17.Noon = Xr.RtManager.Control.RoomPanelButton.NoonSpan.Afternoon;
             this.roomPanelButton17.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
@@ -2590,7 +2496,7 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton18.CenterText = true;
             this.roomPanelButton18.FillColor1 = System.Drawing.Color.White;
             this.roomPanelButton18.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton18.Location = new System.Drawing.Point(176, 351);
+            this.roomPanelButton18.Location = new System.Drawing.Point(171, 351);
             this.roomPanelButton18.Name = "roomPanelButton18";
             this.roomPanelButton18.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
             this.roomPanelButton18.RoomText = "A1诊室";
@@ -2598,42 +2504,6 @@ namespace Xr.RtManager.Pages.triage
             this.roomPanelButton18.Size = new System.Drawing.Size(162, 110);
             this.roomPanelButton18.TabIndex = 19;
             this.roomPanelButton18.TipFont = new System.Drawing.Font("微软雅黑", 12F);
-            // 
-            // roomPanelButton19
-            // 
-            this.roomPanelButton19.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton19.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton19.BtnText = "桂琴";
-            this.roomPanelButton19.CenterText = true;
-            this.roomPanelButton19.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton19.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton19.Location = new System.Drawing.Point(8, 467);
-            this.roomPanelButton19.Name = "roomPanelButton19";
-            this.roomPanelButton19.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton19.RoomText = "A1诊室";
-            this.roomPanelButton19.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton19.Size = new System.Drawing.Size(162, 110);
-            this.roomPanelButton19.TabIndex = 20;
-            this.roomPanelButton19.TipFont = new System.Drawing.Font("微软雅黑", 12F);
-            // 
-            // roomPanelButton20
-            // 
-            this.roomPanelButton20.BorderColor = System.Drawing.Color.Aqua;
-            this.roomPanelButton20.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roomPanelButton20.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
-            this.roomPanelButton20.BtnText = "桂琴";
-            this.roomPanelButton20.CenterText = true;
-            this.roomPanelButton20.FillColor1 = System.Drawing.Color.White;
-            this.roomPanelButton20.FillColor2 = System.Drawing.Color.White;
-            this.roomPanelButton20.Location = new System.Drawing.Point(176, 467);
-            this.roomPanelButton20.Name = "roomPanelButton20";
-            this.roomPanelButton20.RoomFont = new System.Drawing.Font("微软雅黑", 16F);
-            this.roomPanelButton20.RoomText = "A1诊室";
-            this.roomPanelButton20.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.roomPanelButton20.Size = new System.Drawing.Size(162, 110);
-            this.roomPanelButton20.TabIndex = 21;
-            this.roomPanelButton20.TipFont = new System.Drawing.Font("微软雅黑", 12F);
             // 
             // borderPanel6
             // 
@@ -2652,7 +2522,7 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel6.Location = new System.Drawing.Point(10, 20);
             this.borderPanel6.Name = "borderPanel6";
             this.borderPanel6.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.borderPanel6.Size = new System.Drawing.Size(373, 38);
+            this.borderPanel6.Size = new System.Drawing.Size(342, 38);
             this.borderPanel6.TabIndex = 175;
             // 
             // tableLayoutPanel10
@@ -2672,7 +2542,7 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(230, 28);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(199, 28);
             this.tableLayoutPanel10.TabIndex = 174;
             // 
             // label2
@@ -2691,7 +2561,7 @@ namespace Xr.RtManager.Pages.triage
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Left;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.label8.Location = new System.Drawing.Point(150, 0);
+            this.label8.Location = new System.Drawing.Point(119, 0);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 28);
@@ -2716,12 +2586,12 @@ namespace Xr.RtManager.Pages.triage
             // 
             // lab_countNum_1
             // 
-            this.lab_countNum_1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lab_countNum_1.Dock = System.Windows.Forms.DockStyle.Left;
             this.lab_countNum_1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.lab_countNum_1.Location = new System.Drawing.Point(105, 0);
             this.lab_countNum_1.Margin = new System.Windows.Forms.Padding(0);
             this.lab_countNum_1.Name = "lab_countNum_1";
-            this.lab_countNum_1.Size = new System.Drawing.Size(45, 28);
+            this.lab_countNum_1.Size = new System.Drawing.Size(14, 28);
             this.lab_countNum_1.TabIndex = 175;
             this.lab_countNum_1.Text = "0";
             this.lab_countNum_1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3014,22 +2884,16 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel1)).EndInit();
             this.groupBorderPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel20)).EndInit();
-            this.borderPanel20.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel19)).EndInit();
             this.borderPanel19.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel18)).EndInit();
-            this.borderPanel18.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel17)).EndInit();
             this.borderPanel17.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel16)).EndInit();
-            this.borderPanel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel14)).EndInit();
             this.borderPanel14.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.borderPanel13)).EndInit();
-            this.borderPanel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel12)).EndInit();
             this.borderPanel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.borderPanel13)).EndInit();
+            this.borderPanel13.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
@@ -3044,17 +2908,18 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel4)).EndInit();
             this.groupBorderPanel4.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gc_Patients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_Patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel3)).EndInit();
             this.borderPanel3.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).EndInit();
             this.borderPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_waittingPatient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_reservationPatient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_allPatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_donePatient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_reservationPatient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_waittingPatient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_allPatient)).EndInit();
+            this.panel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gc_Patients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Patients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBorderPanel5)).EndInit();
             this.groupBorderPanel5.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
@@ -3069,8 +2934,6 @@ namespace Xr.RtManager.Pages.triage
             ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomPanelButton20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel6)).EndInit();
             this.borderPanel6.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
@@ -3141,10 +3004,7 @@ namespace Xr.RtManager.Pages.triage
         private System.Windows.Forms.Panel panel5;
         private Xr.Common.Controls.GroupBorderPanel groupBorderPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -3169,7 +3029,6 @@ namespace Xr.RtManager.Pages.triage
         private Xr.Common.Controls.BorderPanel borderPanel5;
         private Xr.Common.Controls.BorderPanelButton rBtn_waittingPatient;
         private Xr.Common.Controls.BorderPanelButton rBtn_reservationPatient;
-        private Xr.Common.Controls.BorderPanelButton rBtn_allPatient;
         private Xr.Common.Controls.BorderPanelButton rBtn_donePatient;
         private Xr.Common.Controls.GroupBorderPanel groupBorderPanel5;
         private Xr.Common.Controls.BorderPanel borderPanel6;
@@ -3209,20 +3068,13 @@ namespace Xr.RtManager.Pages.triage
         private System.Windows.Forms.Label lab_state;
         private BorderPanel borderPanel10;
         private System.Windows.Forms.Label lab_cardNo;
-        private BorderPanel borderPanel20;
-        private System.Windows.Forms.Label lab_sfz;
         private BorderPanel borderPanel19;
         private System.Windows.Forms.Label lab_tel;
-        private BorderPanel borderPanel18;
-        private System.Windows.Forms.Label lab_sbk;
         private BorderPanel borderPanel17;
         private System.Windows.Forms.Label lab_birthday;
-        private BorderPanel borderPanel16;
-        private System.Windows.Forms.Label lab_jkt;
         private BorderPanel borderPanel14;
         private System.Windows.Forms.Label lab_sex;
         private BorderPanel borderPanel13;
-        private System.Windows.Forms.Label lab_zlk;
         private BorderPanel borderPanel12;
         private System.Windows.Forms.Label lab_name;
         private DevExpress.XtraGrid.GridControl gc_Patients;
@@ -3245,8 +3097,6 @@ namespace Xr.RtManager.Pages.triage
         private Control.RoomPanelButton roomPanelButton16;
         private Control.RoomPanelButton roomPanelButton17;
         private Control.RoomPanelButton roomPanelButton18;
-        private Control.RoomPanelButton roomPanelButton19;
-        private Control.RoomPanelButton roomPanelButton20;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private BorderPanel ReservationInfo_Panel;
         private GroupBorderPanel groupBorderPanel6;
@@ -3260,6 +3110,10 @@ namespace Xr.RtManager.Pages.triage
         private ReservationInfoPanel reservationInfoPanel4;
         private DevExpress.XtraEditors.LookUpEdit lueCardTypeQuery;
         private DevExpress.XtraEditors.LookUpEdit lueDept;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private System.Windows.Forms.Label lab_Card;
+        private System.Windows.Forms.Panel panel12;
+        private BorderPanelButton rBtn_allPatient;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

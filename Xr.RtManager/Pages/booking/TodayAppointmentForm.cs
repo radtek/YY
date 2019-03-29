@@ -216,6 +216,10 @@ namespace Xr.RtManager.Pages.booking
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     List<AppointmentEntity> list = objT["result"]["list"].ToObject<List<AppointmentEntity>>();
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        list[i].beginTime = list[i].beginTime + "-" + list[i].endTime;
+                    }
                     this.gcAppointmentInfo.DataSource = list;
                     this.lab_count.Text = list.Count.ToString();
                 }

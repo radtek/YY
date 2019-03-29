@@ -59,19 +59,12 @@ namespace Xr.RtCall
                 Xr.Common.MessageBoxUtils.Show("请选择诊室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 return;
             }
-            //SaveConfigSeting("", "", "", "1");
             SaveConfigSeting(treeHostile.EditValue.ToString(), treeClinc.EditValue.ToString(), treeKeshi.EditValue.ToString(), "1");
-            //this.Hide();
-            //Form1 f = new Form1();
-            //f.Show();
-            //System.Threading.Tasks.Task.Factory.StartNew(() =>
-           // {
-               // Application.Run(new Form1());
-            //});
+            UpdateClincQuery(treeClinc.EditValue.ToString(), "1");
             Application.ExitThread();
             Application.Exit();
             Application.Restart();
-            System.Diagnostics.Process.GetCurrentProcess().Kill(); 
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
         #endregion 
         #region 保存信息到本地配置文件中
@@ -90,11 +83,11 @@ namespace Xr.RtCall
                 Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
                 config.AppSettings.Settings["hospitalCode"].Value = hostalcode;
                 config.AppSettings.Settings["deptCode"].Value = deptCode;
-                config.AppSettings.Settings["ClincCode"].Value = ClincCode;
+                config.AppSettings.Settings["ClincID"].Value = ClincCode;
                 config.AppSettings.Settings["Setting"].Value = Setting;
-                config.Save(ConfigurationSaveMode.Full);
-                System.Configuration.ConfigurationManager.RefreshSection("appSettings");//重新加载新的配置文件
-                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalcode + "科室编码：" + deptCode + "诊室编码" + ClincCode + "并且修改Setting值为1标识为不是第一次启动了");
+                config.Save();
+                ConfigurationManager.RefreshSection("appSettings");//重新加载新的配置文件
+                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalcode + "" + "科室编码：" + deptCode + "" + "诊室id" + ClincCode + "" + "并且修改Setting值为1标识为不是第一次启动了");
             }
             catch (Exception ex)
             {
@@ -118,6 +111,7 @@ namespace Xr.RtCall
                     List<dynamic> list = objTs["result"].ToObject<List<dynamic>>();
                     HostalList = new List<dynamic>();
                     HostalList = list;
+                    //string id = string.Join(",",from a in list where a.name=="中山市博爱医院" select a.code);
                     this.treeHostile.Properties.DataSource = list;
                     //treeKeshi.Properties.TreeList.KeyFieldName = "id";
                     //treeKeshi.Properties.TreeList.ParentFieldName = "parentId";
@@ -193,7 +187,7 @@ namespace Xr.RtCall
             {
                 string hospitalid =string.Join(",",from a in HostalList where a.code==treeHostile.EditValue select a.id);
                 string deptid = string.Join(",", from s in DeptList where s.code == treeKeshi.EditValue select s.id);
-                String urls = AppContext.AppConfig.serverUrl + InterfaceAddress.ClincInfo + "?hospital.id=" + hospitalid + "&dept.id="+deptid;
+                String urls = AppContext.AppConfig.serverUrl + InterfaceAddress.ClincInfo + "?hospital.id=" + hospitalid + "&dept.id=" + deptid;
                 String datas = HttpClass.httpPost(urls);
                 JObject objTs = JObject.Parse(datas);
                 if (string.Compare(objTs["state"].ToString(), "true", true) == 0)
@@ -201,7 +195,7 @@ namespace Xr.RtCall
                     List<dynamic> list = objTs["result"].ToObject<List<dynamic>>();
                     this.treeClinc.Properties.DataSource = list;
                     treeClinc.Properties.DisplayMember = "name";
-                    treeClinc.Properties.ValueMember = "code";
+                    treeClinc.Properties.ValueMember = "id";
                     treeClinc.EditValue = "";
                 }
             }
@@ -212,6 +206,84 @@ namespace Xr.RtCall
         private void button3_Click(object sender, EventArgs e)
         {
             System.Environment.Exit(0);
+        }
+        #endregion 
+        #region 查询诊室是否占用和修改占用情况
+        /// <summary>
+        /// 根据诊室ID查询诊室是否被占用
+        /// </summary>
+        /// <param name="id"></param>
+        public void SelectClincIsQuery(string id)
+        {
+            try
+            {
+                String url = AppContext.AppConfig.serverUrl + "itf/triage/getClinic?id=" + id;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    String isQccery = objT["result"]["isOccupy"].ToString();
+                    if (isQccery == "0")
+                    {
+                        Xr.Common.MessageBoxUtils.Show("当前诊室可用,请确认信息无误后保存", MessageBoxButtons.OK,
+                        MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this);
+                    }
+                    else
+                    {
+                        if (Xr.Common.MessageBoxUtils.Show("当前诊室不可用,是否继续启动", MessageBoxButtons.OKCancel,
+                       MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this) == DialogResult.OK)
+                        {
+                            UpdateClincQuery(id, "0");
+                        }
+                    }
+                }
+                else
+                {
+                    Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("查询诊室占用错误信息：" + ex.Message);
+            }
+        }
+        /// <summary>
+        /// 根据诊室ID修改诊室占用情况
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="isOccupy">isOccupy：0未用、1占用</param>
+        public void UpdateClincQuery(string id, string isOccupy)
+        {
+            try
+            {
+                String url = AppContext.AppConfig.serverUrl + "itf/triage/updateClinic?id=" + id + "&isOccupy=" + isOccupy;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    Xr.Common.MessageBoxUtils.Show("修改诊室状态成功,请确认信息无误后保存", MessageBoxButtons.OK,
+                      MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this);
+                }
+                else
+                {
+                    Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("修改诊室状态错误信息：" + ex.Message);
+            }
+        }
+        #endregion 
+        #region 验证是否可用
+        private void treeClinc_EditValueChanged(object sender, EventArgs e)
+        {
+            if (treeClinc.EditValue!="")
+            {
+                SelectClincIsQuery(treeClinc.EditValue.ToString());
+            }
         }
         #endregion 
     }

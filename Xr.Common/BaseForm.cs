@@ -116,7 +116,7 @@ namespace Xr.Common
                 //this.KeyPreview = hotkeysManager.Count > 0;  //这种写法，如果窗体的KeyPreview为true，可能会被改成false，造成程序错误
                 if (hotkeysManager.Count > 0) this.KeyPreview = true;
 
-                if (!this.Tag.Equals("bdw"))
+                if (this.Tag==null || !this.Tag.Equals("bdw"))
                 {
                     //将弹出窗体设置到软件工作区域（不包括软件头部区域，其高度为70）的中间进行显示
                     var workingArea = Screen.GetWorkingArea(this);

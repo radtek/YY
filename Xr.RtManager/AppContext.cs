@@ -30,7 +30,6 @@ namespace Xr.RtManager
             Session = new SessionInfo();
             updateAppConfig();
             loadAppConfig();
-            //updateAppConfig();
             //AppContext.CommandLineArgs = new AppCommandLineArgs();
             //AppContext.Directories = new AppDirectories();
             //AppContext.Configuration = new ConfigurationManager();
@@ -51,7 +50,8 @@ namespace Xr.RtManager
             AppConfig.serverUrl = appConfig.GetValueByKey("serverUrl");
             AppConfig.hospitalCode = appConfig.GetValueByKey("hospitalCode"); 
             AppConfig.PrinterName = appConfig.GetValueByKey("PrinterName"); 
-            AppConfig.firstStart = appConfig.GetValueByKey("firstStart"); 
+            AppConfig.firstStart = appConfig.GetValueByKey("firstStart");
+            AppConfig.pagesize = appConfig.GetValueByKey("pagesize");
         }
 
         /// <summary>
@@ -63,30 +63,24 @@ namespace Xr.RtManager
             string file = System.Windows.Forms.Application.StartupPath + "\\Xr.AutoUpdate.exe";
             WebConfigHelper config = new WebConfigHelper(file, ConfigType.ExeConfig);
             String version = config.GetValueByKey("version");
-            string[] sArray = version.Split('.');
-            //X.Y正式(1.0, 1.1)；X.YZ修改(1.0.1, 1.0.2)
-            int X = int.Parse(sArray[0]);
-            int Y = int.Parse(sArray[1]);
-            int Z = 0;
-            if (sArray.Length > 2)
-                Z = int.Parse(sArray[2]);
 
             //获取本应用程序的配置文件并根据版本号进行修改
             file = System.Windows.Forms.Application.StartupPath + "\\Xr.RtManager.exe";
             WebConfigHelper appConfig = new WebConfigHelper(file, ConfigType.ExeConfig);
 
-            int bbh = int.Parse(X.ToString()+Y.ToString()+Z.ToString());
-            if (bbh>109)
+            if (string.Compare(version,"1.0.9")==1)
             {
                 //添加应用程序配置节点，如果已经存在此节点，则不做操作
                 appConfig.AddAppSetting("firstStart", "1");
                 appConfig.AddAppSetting("PrinterName", "");
-                appConfig.AddAppSetting("PrinterName", "AutoRefreshTimeSpan");
-                //保存所作的修改  
-                appConfig.Save();
             }
-            //if (X >= 1 && Y >= 1 && Z >=1)
-            //{
+            if (string.Compare(version, "1.1.10") == 1)
+            {
+                //1.1.11版本添加分页控件的默认每页行数的设置
+                appConfig.AddAppSetting("pagesize", "10");
+            }
+            //保存所作的修改  
+            appConfig.Save();
             //    //添加应用程序配置节点，如果已经存在此节点，则不做操作
             //    appConfig.AddAppSetting("test", "测试");
             //    //添加应用程序配置节点，如果已经存在此节点，则会修改该节点的值  
@@ -95,7 +89,6 @@ namespace Xr.RtManager
             //    appConfig.ModifyAppSetting("test2", "测试");
             //    //保存所作的修改  
             //    appConfig.Save();
-            //}
         }
 
         /// <summary>
@@ -126,11 +119,33 @@ namespace Xr.RtManager
         /// </summary>
         public static void Restart()
         {
-            Application.ExitThread();
-            Thread thtmp = new Thread(new ParameterizedThreadStart(run));
-            object appName = Application.ExecutablePath;
-            Thread.Sleep(2000);
-            thtmp.Start(appName);
+            //启动程序
+            System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
+            //设置外部程序名  
+            Info.FileName = "Xr.AutoUpdate.exe";
+            //设置外部程序工作目录为   C:\  
+            Info.WorkingDirectory = "Xr.AutoUpdate.exe";
+            //最小化方式启动
+            Info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            //声明一个程序类  
+            System.Diagnostics.Process Proc;
+            try
+            {
+                Proc = System.Diagnostics.Process.Start(Info);
+                System.Threading.Thread.Sleep(500);
+                Console.WriteLine();
+                System.Environment.Exit(0);
+            }
+            catch (System.ComponentModel.Win32Exception x)
+            {
+                MessageBox.Show(x.ToString());
+            }
+
+            //System.Environment.Exit(0);
+            //Thread thtmp = new Thread(new ParameterizedThreadStart(run));
+            //object appName = Application.ExecutablePath;
+            ////Thread.Sleep(2000);
+            //thtmp.Start(appName);
         }
 
         private static void run(Object obj)

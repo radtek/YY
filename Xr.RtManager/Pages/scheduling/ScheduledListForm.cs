@@ -7,6 +7,8 @@ using Newtonsoft.Json.Linq;
 using Xr.Common;
 using System.Threading;
 using System.ComponentModel;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Xr.RtManager.Pages.scheduling
 {
@@ -20,6 +22,11 @@ namespace Xr.RtManager.Pages.scheduling
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 窗口加载事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScheduledListForm_Load(object sender, EventArgs e)
         {
             MainForm = (Form)this.Parent;
@@ -27,9 +34,12 @@ namespace Xr.RtManager.Pages.scheduling
             deEnd.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
 
-            List<DeptEntity> deptList = AppContext.Session.deptList;
+            List<DeptEntity> deptList = Clone<List<DeptEntity>>(AppContext.Session.deptList);
             DeptEntity dept = new DeptEntity();
-            dept.id = " ";
+            if (AppContext.Session.deptIds.Length==0)
+                dept.id = "`";
+            else
+                dept.id = AppContext.Session.deptIds;
             dept.name = "全部";
             deptList.Insert(0, dept);
             treeDept.Properties.DataSource = deptList;
@@ -37,8 +47,9 @@ namespace Xr.RtManager.Pages.scheduling
             treeDept.Properties.TreeList.ParentFieldName = "parentId";
             treeDept.Properties.DisplayMember = "name";
             treeDept.Properties.ValueMember = "id";
-            treeDept.EditValue = deptList[0].id;
+            treeDept.EditValue = dept.id;
 
+            //合并值相同的单元格
             gridView1.OptionsView.AllowCellMerge = true;
             //设置表格中状态下拉框的数据
             List<DictEntity> dictList = new List<DictEntity>();
@@ -58,9 +69,17 @@ namespace Xr.RtManager.Pages.scheduling
             SearchData();
         }
 
+        /// <summary>
+        /// 科室选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeDept_EditValueChanged(object sender, EventArgs e)
         {
-            String param = "pageNo=1&pageSize=10000&hospital.id=" + AppContext.Session.hospitalId + "&dept.id=" + treeDept.EditValue;
+            Object deptId = treeDept.EditValue;
+            if (deptId.Equals("`"))
+                deptId = "";
+            String param = "pageNo=1&pageSize=10000&hospital.id=" + AppContext.Session.hospitalId + "&dept.id=" + deptId;
             String url = AppContext.AppConfig.serverUrl + "cms/doctor/list?" + param;
             String data = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(data);
@@ -83,16 +102,27 @@ namespace Xr.RtManager.Pages.scheduling
             }
         }
 
+        /// <summary>
+        /// 查询按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnQuery_Click(object sender, EventArgs e)
         {
             cmd.ShowOpaqueLayer();
             SearchData();
         }
 
+        /// <summary>
+        /// 查询方法
+        /// </summary>
         private void SearchData()
         {
+            Object deptId = treeDept.EditValue;
+            if (deptId.Equals("`"))
+                deptId = "";
             String param = "beginDate=" + deBegin.Text + "&endDate=" + deEnd.Text
-    + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + treeDept.EditValue
+    + "&hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + deptId
     + "&doctorId=" + lueDoctor.EditValue;
             String url = AppContext.AppConfig.serverUrl + "sch/doctorScheduPlan/findByPropertys?" + param;
             this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
@@ -133,6 +163,11 @@ namespace Xr.RtManager.Pages.scheduling
             });
         }
 
+        /// <summary>
+        /// 表格单元格合并事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gridView1_CellMerge(object sender, DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs e)
         {
             int rowHandle1 = e.RowHandle1;
@@ -168,6 +203,8 @@ namespace Xr.RtManager.Pages.scheduling
         {
             var edit = new RemarksEdit();
             edit.deptId = treeDept.EditValue.ToString();
+            if (edit.deptId.Equals("`"))
+                edit.deptId = "";
             edit.doctorId = lueDoctor.EditValue.ToString();
             edit.beginDate = deBegin.Text;
             edit.endDate = deEnd.Text;
@@ -195,13 +232,13 @@ namespace Xr.RtManager.Pages.scheduling
             {
                 var selectedRow = gridView1.GetFocusedRow() as ScheduledEntity;
                 String period = "";
-                if (selectedRow.am.Equals("√"))
+                if (selectedRow.am!=null&&selectedRow.am.Equals("√"))
                     period = "0";
-                else if (selectedRow.pm.Equals("√"))
+                else if (selectedRow.pm != null && selectedRow.pm.Equals("√"))
                     period = "1";
-                else if (selectedRow.night.Equals("√"))
+                else if (selectedRow.night != null && selectedRow.night.Equals("√"))
                     period = "2";
-                else if (selectedRow.allday.Equals("√"))
+                else if (selectedRow.allday != null && selectedRow.allday.Equals("√"))
                     period = "3";
                 String param = "deptId=" + selectedRow.deptId + "&doctorId=" + selectedRow.doctorId
                     + "&period=" + period + "&workDate=" + selectedRow.workDate
@@ -261,7 +298,10 @@ namespace Xr.RtManager.Pages.scheduling
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException != null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 
@@ -304,6 +344,22 @@ namespace Xr.RtManager.Pages.scheduling
                 //});
             }
         }
-        
+
+        /// <summary>
+        /// 深克隆方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="RealObject"></param>
+        /// <returns></returns>
+        public static T Clone<T>(T RealObject)
+        {
+            using (Stream stream = new MemoryStream())
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                serializer.Serialize(stream, RealObject);
+                stream.Seek(0, SeekOrigin.Begin);
+                return (T)serializer.Deserialize(stream);
+            }
+        }
     }
 }

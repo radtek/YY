@@ -142,7 +142,10 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException != null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 

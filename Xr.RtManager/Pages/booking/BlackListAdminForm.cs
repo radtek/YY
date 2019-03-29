@@ -35,6 +35,7 @@ namespace Xr.RtManager.Pages.booking
         {
             MainForm = (Form)this.Parent;
             pageControl1.MainForm = MainForm;
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             QueryInfo(1,10);
 
@@ -44,7 +45,6 @@ namespace Xr.RtManager.Pages.booking
         private void QueryInfo(int pageNo, int pageSize)
         {
             currPageNo = pageNo;
-            this.pageSize = pageSize;
             // 弹出加载提示框
             //DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(typeof(WaitingForm));
             cmd.ShowOpaqueLayer(225, true);

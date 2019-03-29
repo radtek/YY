@@ -42,10 +42,8 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             this.treeDeptId = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeList2 = new DevExpress.XtraTreeList.TreeList();
@@ -209,10 +207,8 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn7,
-            this.gridColumn11,
             this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn8});
+            this.gridColumn5});
             this.gv_patients.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gv_patients.GridControl = this.Gc_patients;
             this.gv_patients.Name = "gv_patients";
@@ -232,11 +228,12 @@
             this.gv_patients.OptionsView.ShowGroupPanel = false;
             this.gv_patients.OptionsView.ShowIndicator = false;
             this.gv_patients.RowHeight = 30;
+            this.gv_patients.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gv_patients_MouseDown);
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "患者ID";
-            this.gridColumn1.FieldName = "name";
+            this.gridColumn1.Caption = "预约ID";
+            this.gridColumn1.FieldName = "triageId";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Width = 165;
@@ -244,6 +241,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "医生姓名";
+            this.gridColumn2.FieldName = "doctorName";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
@@ -252,6 +250,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "候诊号";
+            this.gridColumn3.FieldName = "queueNum";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
@@ -260,46 +259,30 @@
             // gridColumn7
             // 
             this.gridColumn7.Caption = "患者姓名";
-            this.gridColumn7.FieldName = "spe";
+            this.gridColumn7.FieldName = "patientName";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 2;
             this.gridColumn7.Width = 200;
             // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "性别";
-            this.gridColumn11.FieldName = "patientName";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.OptionsColumn.AllowEdit = false;
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 4;
-            this.gridColumn11.Width = 71;
-            // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "就诊日期";
+            this.gridColumn4.FieldName = "workDate";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 5;
+            this.gridColumn4.VisibleIndex = 4;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "就诊时段";
+            this.gridColumn5.FieldName = "workTime";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 6;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "年龄";
-            this.gridColumn8.FieldName = "num";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.Width = 78;
+            this.gridColumn5.VisibleIndex = 5;
             // 
             // repositoryItemPopupContainerEdit1
             // 
@@ -413,8 +396,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1;
         private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
         private DevExpress.XtraTreeList.TreeList treeList2;

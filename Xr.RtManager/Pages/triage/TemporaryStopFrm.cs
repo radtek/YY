@@ -134,13 +134,13 @@ namespace Xr.RtManager.Pages.triage
             try
             {
                 List<ClinicInfoEntity> clinicInfo = new List<ClinicInfoEntity>();
-                String url = AppContext.AppConfig.serverUrl + "cms/clinic/list?hospital.id=" + hospitalId + "&dept.id=" + deptId;
+                String url = AppContext.AppConfig.serverUrl + "cms/clinic/findClinicList?hospitalId=" + hospitalId + "&deptId=" + deptId + "&workDate=" + DateTime.Now.ToString("yyyy-MM-dd");
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     clinicInfo = new List<ClinicInfoEntity>();
-                    clinicInfo = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
+                    clinicInfo = objT["result"].ToObject<List<ClinicInfoEntity>>();
                     ClinicInfoEntity dept = new ClinicInfoEntity();
                     dept.id = "";
                     dept.name = "选择诊室";

@@ -60,6 +60,21 @@ namespace Xr.RtCall.pages
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
                                     List<Patient> a = objT["result"].ToObject<List<Patient>>();
+                                    //if (Postoperative.EditValue != "3")
+                                    //{
+                                    //    for (int i = 0; i <a.Count; i++)
+                                    //    {
+                                    //        a[i].workTime = "";
+                                    //    }
+                                    //}
+                                    //if (Postoperative.EditValue=="3")
+                                    //{
+                                    //   _context.Send((s) =>this.gv_Pateion.Columns["workTime"].Visible = true,null);  //设置列为不显示
+                                    //}
+                                    //else
+                                    //{
+                                    //    _context.Send((s) => this.gv_Pateion.Columns["workTime"].Visible = false, null);  //设置列为不显示
+                                    //}
                                     _context.Send((s) => this.gc_Pateion.DataSource = a,null);
                                     _context.Send((s) => label1.Text=a.Count+"人", null);
                                 }
@@ -101,24 +116,6 @@ namespace Xr.RtCall.pages
                Log4net.LogHelper.Error("复诊预约错误信息："+ex.Message);
             }
         }
-        /// <summary>
-        /// 延后
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 延后ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var selectedRow = this.gv_Pateion.GetFocusedRow() as Patient;
-                if (selectedRow == null)
-                    return;
-            }
-            catch (Exception ex)
-            {
-                Log4net.LogHelper.Error("患者延后错误信息：" + ex.Message);
-            }
-        }
         #endregion 
         #region 刷新按钮
         /// <summary>
@@ -130,9 +127,18 @@ namespace Xr.RtCall.pages
         {
             this.skinbutNew.Text = "查询中";
             PatientList();
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             this.skinbutNew.Text = "刷新";
         }
-        #endregion 
+        /// <summary>
+        /// 单击选择刷新
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Postoperative_Properties_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PatientList();
+        }
+        #endregion
     }
 }

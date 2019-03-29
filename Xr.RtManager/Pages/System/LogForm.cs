@@ -38,6 +38,7 @@ namespace Xr.RtManager
             pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             String url = AppContext.AppConfig.serverUrl + "sys/sysOffice/findAll";
             this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
@@ -178,7 +179,10 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException != null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 

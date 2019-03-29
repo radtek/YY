@@ -43,6 +43,8 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.buttonControl5 = new Xr.Common.Controls.ButtonControl();
             this.tbVersion = new DevExpress.XtraEditors.TextEdit();
             this.tbTitle = new DevExpress.XtraEditors.TextEdit();
@@ -59,6 +61,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVersion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTitle.Properties)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +74,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1037, 481);
+            this.panel3.Size = new System.Drawing.Size(1257, 481);
             this.panel3.TabIndex = 62;
             // 
             // panel4
@@ -81,7 +85,7 @@
             this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
-            this.panel4.Size = new System.Drawing.Size(1037, 421);
+            this.panel4.Size = new System.Drawing.Size(1257, 421);
             this.panel4.TabIndex = 63;
             // 
             // gcDict
@@ -95,7 +99,7 @@
             this.gcDict.Location = new System.Drawing.Point(10, 10);
             this.gcDict.MainView = this.gridView1;
             this.gcDict.Name = "gcDict";
-            this.gcDict.Size = new System.Drawing.Size(1017, 372);
+            this.gcDict.Size = new System.Drawing.Size(1237, 372);
             this.gcDict.TabIndex = 13;
             this.gcDict.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -221,7 +225,7 @@
             this.pageControl1.Name = "pageControl1";
             this.pageControl1.PageSize = 10;
             this.pageControl1.Record = 0;
-            this.pageControl1.Size = new System.Drawing.Size(1017, 39);
+            this.pageControl1.Size = new System.Drawing.Size(1237, 39);
             this.pageControl1.TabIndex = 12;
             this.pageControl1.Query += new Xr.Common.Controls.PageControl.QueryDelegate(this.pageControl1_Query);
             // 
@@ -232,7 +236,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
-            this.panel1.Size = new System.Drawing.Size(1037, 60);
+            this.panel1.Size = new System.Drawing.Size(1257, 60);
             this.panel1.TabIndex = 8;
             // 
             // borderPanel1
@@ -241,6 +245,8 @@
             this.borderPanel1.Appearance.Options.UseBackColor = true;
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.textEdit2);
+            this.borderPanel1.Controls.Add(this.textEdit1);
             this.borderPanel1.Controls.Add(this.buttonControl5);
             this.borderPanel1.Controls.Add(this.tbVersion);
             this.borderPanel1.Controls.Add(this.tbTitle);
@@ -260,8 +266,24 @@
             this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(1017, 50);
+            this.borderPanel1.Size = new System.Drawing.Size(1237, 50);
             this.borderPanel1.TabIndex = 0;
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.Location = new System.Drawing.Point(1070, 10);
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.AutoHeight = false;
+            this.textEdit2.Size = new System.Drawing.Size(77, 27);
+            this.textEdit2.TabIndex = 95;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(969, 12);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.AutoHeight = false;
+            this.textEdit1.Size = new System.Drawing.Size(80, 27);
+            this.textEdit1.TabIndex = 94;
             // 
             // buttonControl5
             // 
@@ -274,7 +296,6 @@
             this.buttonControl5.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl5.TabIndex = 93;
             this.buttonControl5.Text = "测试";
-            this.buttonControl5.Visible = false;
             this.buttonControl5.Click += new System.EventHandler(this.buttonControl5_Click_1);
             // 
             // tbVersion
@@ -372,7 +393,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel3);
             this.Name = "ClientVersionForm";
-            this.Size = new System.Drawing.Size(1037, 481);
+            this.Size = new System.Drawing.Size(1257, 481);
             this.Load += new System.EventHandler(this.UserForm_Load);
             this.Resize += new System.EventHandler(this.ClientVersionForm_Resize);
             this.panel3.ResumeLayout(false);
@@ -383,6 +404,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVersion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTitle.Properties)).EndInit();
             this.ResumeLayout(false);
@@ -413,6 +436,8 @@
         private DevExpress.XtraEditors.TextEdit tbVersion;
         private DevExpress.XtraEditors.TextEdit tbTitle;
         private Xr.Common.Controls.ButtonControl buttonControl5;
+        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

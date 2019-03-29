@@ -235,8 +235,13 @@ namespace Xr.RtManager.Pages.booking
             //WorkType = AsynchronousWorks.ReadzlCard;
             //cmd.IsShowCancelBtn = false;
             //cmd.ShowOpaqueLayer();
-            CardID = "000675493100";
-            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID,"2" } });
+            lueCardTypeQuery.EditValue = "2";
+            if (txt_cardNoQuery.Text != String.Empty)
+            {
+                CardID = txt_cardNoQuery.Text;
+                //CardID = "000675493100";
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReadzlCard, Argument = new String[] { CardID, "2" } });
+            }
         }
         private void btn_readSocialcard_Click(object sender, EventArgs e)
         {
@@ -375,6 +380,10 @@ namespace Xr.RtManager.Pages.booking
                     if (list.Count == 0)
                     {
                         MessageBoxUtils.Hint("预约信息为空", HintMessageBoxIcon.Error, MainForm);
+                    }
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        list[i].beginTime=list[i].beginTime+"-"+list[i].endTime;
                     }
                     this.gcAppointmentInfo.DataSource = list;
                 }
@@ -927,6 +936,10 @@ namespace Xr.RtManager.Pages.booking
                             { 
                                 MessageBoxUtils.Hint("预约信息为空", HintMessageBoxIcon.Error, MainForm); 
                             }
+                            for (int i = 0; i < list.Count; i++)
+                            {
+                                list[i].beginTime = list[i].beginTime + "-" + list[i].endTime;   
+                            }
                             this.gcAppointmentInfo.DataSource = list;
                         }
                         else
@@ -1308,6 +1321,7 @@ namespace Xr.RtManager.Pages.booking
         /// 预约时间
         /// </summary>
         public String beginTime { get; set; }
+        public String endTime { get; set; }
         /// <summary>
         /// 科室名称
         /// </summary>

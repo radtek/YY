@@ -29,6 +29,9 @@ namespace Xr.RtScreen.pages
             _context = new SynchronizationContext();
             pictureBox1.ImageLocation = "man.png";
             GetDoctorSmallScreenInfo();
+            //Xr.RtScreen.VoiceCall.SpeakVoicemainFrom speakVoiceform = new Xr.RtScreen.VoiceCall.SpeakVoicemainFrom();//语音播放窗体
+            //speakVoiceform.setFormTextValue += new Xr.RtScreen.VoiceCall.SpeakVoicemainFrom.setTextValue(form2_setFormTextValue);
+            //speakVoiceform.Show(this);
             time();
         }
         #region 

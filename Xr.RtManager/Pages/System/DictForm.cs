@@ -33,6 +33,7 @@ namespace Xr.RtManager
             //this.BackColor = Color.FromArgb(243, 243, 243);
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             SearchData(true, 1, pageControl1.PageSize);
 
         }
@@ -205,7 +206,10 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException != null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 

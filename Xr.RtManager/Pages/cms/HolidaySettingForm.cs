@@ -21,6 +21,7 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
             MainForm = (Form)this.Parent;
             pageControl1.MainForm = MainForm;
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
             HolidaySettingList(1,pageControl1.PageSize);
@@ -326,7 +327,7 @@ namespace Xr.RtManager.Pages.cms
         private void pageControl1_Query(int CurrentPage, int PageSize)
         {
             cmd.ShowOpaqueLayer(225, false);
-            HolidaySettingList(CurrentPage,PageSize);
+            HolidaySettingList(CurrentPage, PageSize);
         }
         #endregion 
     }

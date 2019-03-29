@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingFrm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Postoperative = new DevExpress.XtraEditors.RadioGroup();
             this.GreenFrmPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,8 +47,10 @@
             this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).BeginInit();
             this.GreenFrmPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeHostile.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList3)).BeginInit();
@@ -59,6 +62,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Postoperative);
             this.panel1.Controls.Add(this.GreenFrmPanel);
             this.panel1.Controls.Add(this.treeHostile);
             this.panel1.Controls.Add(this.treeClinc);
@@ -67,12 +71,33 @@
             this.panel1.Controls.Add(this.buttonControl2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(340, 290);
+            this.panel1.Size = new System.Drawing.Size(340, 324);
             this.panel1.TabIndex = 127;
+            // 
+            // Postoperative
+            // 
+            this.Postoperative.EditValue = "1";
+            this.Postoperative.Location = new System.Drawing.Point(121, 145);
+            this.Postoperative.Margin = new System.Windows.Forms.Padding(1);
+            this.Postoperative.Name = "Postoperative";
+            this.Postoperative.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Postoperative.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Postoperative.Properties.Appearance.Options.UseBackColor = true;
+            this.Postoperative.Properties.Appearance.Options.UseFont = true;
+            this.Postoperative.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.Postoperative.Properties.Columns = 3;
+            this.Postoperative.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "大屏"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("2", "科室屏"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("3", "医生屏")});
+            this.Postoperative.Properties.SelectedIndexChanged += new System.EventHandler(this.Postoperative_Properties_SelectedIndexChanged);
+            this.Postoperative.Size = new System.Drawing.Size(195, 35);
+            this.Postoperative.TabIndex = 184;
             // 
             // GreenFrmPanel
             // 
@@ -124,7 +149,7 @@
             // treeHostile
             // 
             this.treeHostile.EditValue = "全部";
-            this.treeHostile.Location = new System.Drawing.Point(128, 63);
+            this.treeHostile.Location = new System.Drawing.Point(121, 55);
             this.treeHostile.Name = "treeHostile";
             this.treeHostile.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeHostile.Properties.Appearance.Options.UseFont = true;
@@ -166,7 +191,7 @@
             // treeClinc
             // 
             this.treeClinc.EditValue = "";
-            this.treeClinc.Location = new System.Drawing.Point(128, 169);
+            this.treeClinc.Location = new System.Drawing.Point(121, 192);
             this.treeClinc.Name = "treeClinc";
             this.treeClinc.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeClinc.Properties.Appearance.Options.UseFont = true;
@@ -177,8 +202,9 @@
             this.treeClinc.Properties.PopupFormMinSize = new System.Drawing.Size(30, 0);
             this.treeClinc.Properties.PopupFormSize = new System.Drawing.Size(160, 0);
             this.treeClinc.Properties.TreeList = this.treeList2;
-            this.treeClinc.Size = new System.Drawing.Size(147, 27);
+            this.treeClinc.Size = new System.Drawing.Size(145, 25);
             this.treeClinc.TabIndex = 126;
+            this.treeClinc.Visible = false;
             // 
             // treeList2
             // 
@@ -207,7 +233,7 @@
             // treeKeshi
             // 
             this.treeKeshi.EditValue = "";
-            this.treeKeshi.Location = new System.Drawing.Point(128, 115);
+            this.treeKeshi.Location = new System.Drawing.Point(121, 107);
             this.treeKeshi.Name = "treeKeshi";
             this.treeKeshi.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeKeshi.Properties.Appearance.Options.UseFont = true;
@@ -251,7 +277,7 @@
             this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(108, 223);
+            this.buttonControl1.Location = new System.Drawing.Point(107, 240);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 30);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -264,7 +290,7 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(202, 223);
+            this.buttonControl2.Location = new System.Drawing.Point(188, 240);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Return;
@@ -276,7 +302,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(41, 66);
+            this.label3.Location = new System.Drawing.Point(34, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 21);
             this.label3.TabIndex = 0;
@@ -286,27 +312,38 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(41, 117);
+            this.label1.Location = new System.Drawing.Point(34, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "科室名称：";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(34, 193);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 21);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "诊室名称：";
+            this.label5.Visible = false;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(41, 171);
+            this.label2.Location = new System.Drawing.Point(34, 149);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 21);
             this.label2.TabIndex = 1;
-            this.label2.Text = "诊室名称：";
+            this.label2.Text = "启动屏幕：";
             // 
             // SettingFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 290);
+            this.ClientSize = new System.Drawing.Size(340, 324);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -315,6 +352,7 @@
             this.Text = "程序设置";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Postoperative.Properties)).EndInit();
             this.GreenFrmPanel.ResumeLayout(false);
             this.GreenFrmPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeHostile.Properties)).EndInit();
@@ -347,5 +385,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private DevExpress.XtraEditors.RadioGroup Postoperative;
     }
 }

@@ -178,7 +178,7 @@
             this.treeListColumn2.AppearanceCell.Options.UseFont = true;
             this.treeListColumn2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeListColumn2.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn2.Caption = "科室列表";
+            this.treeListColumn2.Caption = "医生列表";
             this.treeListColumn2.FieldName = "name";
             this.treeListColumn2.Name = "treeListColumn2";
             this.treeListColumn2.Visible = true;
@@ -217,7 +217,7 @@
             this.treeListColumn3.AppearanceCell.Options.UseFont = true;
             this.treeListColumn3.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeListColumn3.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn3.Caption = "科室列表";
+            this.treeListColumn3.Caption = "诊室列表";
             this.treeListColumn3.FieldName = "name";
             this.treeListColumn3.Name = "treeListColumn3";
             this.treeListColumn3.Visible = true;

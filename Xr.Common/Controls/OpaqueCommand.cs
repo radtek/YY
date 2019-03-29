@@ -85,7 +85,45 @@ namespace Xr.Common.Controls
                 _text = text;
             CreateWaitingBox();
         }
+        /// <summary>
+        /// 改变等待框大小
+        /// </summary>
+        /// <param name="control"></param>
+        public void ChangeSize(Control control)
+        {
+            Control = control;
+            Rectangle rect = Control.DisplayRectangle;
+            if (rectDisplay == new Rectangle())
+            {
+                rect = Control.DisplayRectangle;
+            }
 
+            else
+            {
+                rect = rectDisplay;
+                pe.Location = new Point((rect.Width - _Loading.Width) / 2, (rect.Height - _Loading.Height) / 2);//居中
+                buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
+            }
+            if (waitingBox!=null)
+            {
+                waitingBox.Width = rect.Width;
+                waitingBox.Height = rect.Height;
+                waitingBox.Location = new Point(rect.X, rect.Y);
+                if (IsShowtransparencyBG)
+                {
+
+                    waitingBox.BackgroundImage = this.CreateBacgroundImage();
+                    //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
+                    waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
+                }
+                if (_alpha != 0f)
+                {
+                    waitingBox.BackgroundImage = this.CreateBacgroundImage();
+                    //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
+                    waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
+                }
+            }
+        }
         /// <summary>
         /// Creates the waiting box.
         /// </summary>

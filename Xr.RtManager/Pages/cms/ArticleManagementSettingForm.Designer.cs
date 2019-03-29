@@ -628,7 +628,7 @@
             this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnQuery.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnQuery.Location = new System.Drawing.Point(449, 4);
+            this.btnQuery.Location = new System.Drawing.Point(428, 6);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 30);
             this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -641,7 +641,7 @@
             this.buttonControl5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl5.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl5.Location = new System.Drawing.Point(449, 45);
+            this.buttonControl5.Location = new System.Drawing.Point(428, 47);
             this.buttonControl5.Name = "buttonControl5";
             this.buttonControl5.Size = new System.Drawing.Size(75, 30);
             this.buttonControl5.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -664,7 +664,7 @@
             this.buttonControl6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl6.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl6.Location = new System.Drawing.Point(539, 4);
+            this.buttonControl6.Location = new System.Drawing.Point(516, 6);
             this.buttonControl6.Name = "buttonControl6";
             this.buttonControl6.Size = new System.Drawing.Size(75, 30);
             this.buttonControl6.Style = Xr.Common.Controls.ButtonStyle.Query;
@@ -676,7 +676,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(224, 52);
+            this.label14.Location = new System.Drawing.Point(212, 52);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(51, 19);
             this.label14.TabIndex = 100;
@@ -684,7 +684,7 @@
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(281, 47);
+            this.txtTitle.Location = new System.Drawing.Point(269, 47);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitle.Properties.Appearance.Options.UseFont = true;
@@ -696,7 +696,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(223, 11);
+            this.label13.Location = new System.Drawing.Point(211, 11);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(51, 19);
             this.label13.TabIndex = 98;
@@ -774,7 +774,7 @@
             // treeKeshi
             // 
             this.treeKeshi.EditValue = "全部";
-            this.treeKeshi.Location = new System.Drawing.Point(281, 7);
+            this.treeKeshi.Location = new System.Drawing.Point(269, 7);
             this.treeKeshi.Name = "treeKeshi";
             this.treeKeshi.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeKeshi.Properties.Appearance.Options.UseFont = true;

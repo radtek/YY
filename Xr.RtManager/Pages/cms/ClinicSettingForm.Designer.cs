@@ -46,13 +46,14 @@
             this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.gc_Clinic = new DevExpress.XtraGrid.GridControl();
             this.gv_Clinic = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -63,7 +64,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.butClose = new Xr.Common.Controls.ButtonControl();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.teID = new DevExpress.XtraEditors.TextEdit();
             this.label1 = new System.Windows.Forms.Label();
             this.butContronl = new Xr.Common.Controls.ButtonControl();
@@ -208,12 +208,12 @@
             // teType
             // 
             this.dcClinc.SetDataMember(this.teType, "prefix");
-            this.teType.Location = new System.Drawing.Point(64, 0);
+            this.teType.Location = new System.Drawing.Point(261, 5);
             this.teType.Name = "teType";
             this.teType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teType.Properties.Appearance.Options.UseFont = true;
             this.teType.Properties.AutoHeight = false;
-            this.teType.Size = new System.Drawing.Size(43, 31);
+            this.teType.Size = new System.Drawing.Size(43, 26);
             this.teType.TabIndex = 122;
             this.teType.Visible = false;
             // 
@@ -351,12 +351,13 @@
             this.gv_Clinic.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gv_Clinic.ColumnPanelRowHeight = 30;
             this.gv_Clinic.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn8,
             this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn8,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn9,
+            this.gridColumn5,
             this.gridColumn6,
             this.gridColumn7});
             this.gv_Clinic.GridControl = this.gc_Clinic;
@@ -372,12 +373,6 @@
             this.gv_Clinic.OptionsView.ShowGroupPanel = false;
             this.gv_Clinic.RowHeight = 30;
             this.gv_Clinic.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gv_Clinic_CustomColumnDisplayText);
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "id";
-            this.gridColumn8.FieldName = "id";
-            this.gridColumn8.Name = "gridColumn8";
             // 
             // gridColumn1
             // 
@@ -408,6 +403,14 @@
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 98;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "诊室id";
+            this.gridColumn8.FieldName = "id";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 2;
             // 
             // gridColumn3
             // 
@@ -443,7 +446,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 2;
+            this.gridColumn9.VisibleIndex = 3;
             this.gridColumn9.Width = 104;
             // 
             // repositoryItemComboBox1
@@ -455,6 +458,14 @@
             "正常",
             "停用"});
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "是否占用";
+            this.gridColumn5.FieldName = "isOccupy";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
             // 
             // gridColumn6
             // 
@@ -468,7 +479,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 3;
+            this.gridColumn6.VisibleIndex = 5;
             this.gridColumn6.Width = 136;
             // 
             // gridColumn7
@@ -483,7 +494,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
+            this.gridColumn7.VisibleIndex = 6;
             this.gridColumn7.Width = 150;
             // 
             // gridView1
@@ -593,35 +604,23 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.teID);
             this.panel2.Controls.Add(this.teType);
+            this.panel2.Controls.Add(this.teID);
             this.panel2.Location = new System.Drawing.Point(90, 76);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(344, 31);
             this.panel2.TabIndex = 127;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(122, 5);
-            this.label6.Margin = new System.Windows.Forms.Padding(1, 5, 1, 1);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 20);
-            this.label6.TabIndex = 125;
-            this.label6.Text = "分诊标识：";
-            this.label6.Visible = false;
-            // 
             // teID
             // 
             this.dcClinc.SetDataMember(this.teID, "code");
-            this.teID.Location = new System.Drawing.Point(20, 0);
+            this.teID.Dock = System.Windows.Forms.DockStyle.Left;
+            this.teID.Location = new System.Drawing.Point(0, 0);
             this.teID.Name = "teID";
             this.teID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teID.Properties.Appearance.Options.UseFont = true;
             this.teID.Properties.AutoHeight = false;
-            this.teID.Size = new System.Drawing.Size(38, 31);
+            this.teID.Size = new System.Drawing.Size(95, 31);
             this.teID.TabIndex = 120;
             this.teID.Visible = false;
             // 
@@ -743,7 +742,6 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -778,7 +776,6 @@
         private Xr.Common.Controls.GroupBorderPanel groupBox3;
         private DevExpress.XtraEditors.RadioGroup radioGroup2;
         private DevExpress.XtraEditors.TextEdit teType;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.TextEdit teName;
         private System.Windows.Forms.Label label3;
@@ -799,6 +796,7 @@
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.TextEdit teID;
         private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
        //private Xr.Common.Controls.GroupBorderPanel groupBox4;
     }
 }

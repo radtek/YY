@@ -267,6 +267,7 @@
             this.treeClinc.Properties.TreeList = this.treeList1;
             this.treeClinc.Size = new System.Drawing.Size(157, 27);
             this.treeClinc.TabIndex = 126;
+            this.treeClinc.EditValueChanged += new System.EventHandler(this.treeClinc_EditValueChanged);
             // 
             // treeList1
             // 

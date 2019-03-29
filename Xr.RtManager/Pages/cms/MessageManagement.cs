@@ -24,6 +24,7 @@ namespace Xr.RtManager.Pages.cms
             pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             MessageContentTemplateList(1,pageControl1.PageSize);
             TemplateType();
             Thread.Sleep(500);

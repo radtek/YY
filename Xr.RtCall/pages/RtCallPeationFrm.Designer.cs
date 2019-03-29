@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -40,13 +39,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gc_Pateion = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.复诊预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gv_Pateion = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -105,8 +105,8 @@
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 4;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel9.Controls.Add(this.borderPanel5, 0, 0);
@@ -117,7 +117,7 @@
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(353, 45);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(469, 45);
             this.tableLayoutPanel9.TabIndex = 175;
             // 
             // borderPanel5
@@ -134,7 +134,7 @@
             this.borderPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.borderPanel5.Name = "borderPanel5";
             this.borderPanel5.Padding = new System.Windows.Forms.Padding(5);
-            this.borderPanel5.Size = new System.Drawing.Size(167, 45);
+            this.borderPanel5.Size = new System.Drawing.Size(237, 45);
             this.borderPanel5.TabIndex = 175;
             // 
             // Postoperative
@@ -149,20 +149,22 @@
             this.Postoperative.Properties.Appearance.Options.UseBackColor = true;
             this.Postoperative.Properties.Appearance.Options.UseFont = true;
             this.Postoperative.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.Postoperative.Properties.Columns = 2;
+            this.Postoperative.Properties.Columns = 3;
             this.Postoperative.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "候诊中"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("2", "已就诊")});
-            this.Postoperative.Size = new System.Drawing.Size(157, 35);
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("2", "已就诊"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("3", "预约")});
+            this.Postoperative.Properties.SelectedIndexChanged += new System.EventHandler(this.Postoperative_Properties_SelectedIndexChanged);
+            this.Postoperative.Size = new System.Drawing.Size(227, 35);
             this.Postoperative.TabIndex = 183;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.skinbutNew);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(183, 3);
+            this.panel1.Location = new System.Drawing.Point(243, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(104, 39);
+            this.panel1.Size = new System.Drawing.Size(174, 39);
             this.panel1.TabIndex = 176;
             // 
             // skinbutNew
@@ -246,6 +248,7 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
+            this.gridColumn7,
             this.gridColumn5,
             this.gridColumn6});
             this.gv_Pateion.GridControl = this.gc_Pateion;
@@ -274,7 +277,7 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 112;
+            this.gridColumn1.Width = 87;
             // 
             // gridColumn2
             // 
@@ -292,7 +295,7 @@
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 108;
+            this.gridColumn2.Width = 86;
             // 
             // gridColumn3
             // 
@@ -310,7 +313,7 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 116;
+            this.gridColumn3.Width = 80;
             // 
             // gridColumn4
             // 
@@ -328,7 +331,24 @@
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 148;
+            this.gridColumn4.Width = 186;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.gridColumn7.AppearanceCell.Options.UseFont = true;
+            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn7.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.gridColumn7.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn7.Caption = "预约时间";
+            this.gridColumn7.FieldName = "workTime";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 4;
+            this.gridColumn7.Width = 134;
             // 
             // gridColumn5
             // 
@@ -341,12 +361,12 @@
             this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn5.Caption = "分诊时间";
-            this.gridColumn5.FieldName = "workTime";
+            this.gridColumn5.FieldName = "triageTime";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 174;
+            this.gridColumn5.VisibleIndex = 5;
+            this.gridColumn5.Width = 118;
             // 
             // gridColumn6
             // 
@@ -359,12 +379,12 @@
             this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.Caption = "就诊时间";
-            this.gridColumn6.FieldName = "triageTime";
+            this.gridColumn6.FieldName = "visitWinTime";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
-            this.gridColumn6.Width = 158;
+            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.Width = 125;
             // 
             // RtCallPeationFrm
             // 
@@ -415,5 +435,6 @@
         private Common.Controls.BorderPanel borderPanel5;
         private DevExpress.XtraEditors.RadioGroup Postoperative;
         private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

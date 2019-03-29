@@ -507,7 +507,8 @@ namespace Xr.Common.Controls
             p3.Visible = !p3.Visible;
         }
 
-        Color MouseOriginally = Color.Transparent;//菜单原色
+        Color LabMouseOriginally = Color.Transparent;//菜单原色
+        Color PanMouseOriginally = Color.Transparent;//菜单原色
 
         /// <summary>
         /// 菜单鼠标悬停事件（label）
@@ -518,7 +519,8 @@ namespace Xr.Common.Controls
         {
             Label label = (Label)sender;
             PanelEx selectionPanel = (PanelEx)label.Parent;
-            MouseOriginally = selectionPanel.BackColor;
+            LabMouseOriginally = selectionPanel.BackColor;
+            //Log4net.LogHelper.Info("1" + LabMouseOriginally.Name);
             selectionPanel.BackColor = Color.FromArgb(26, 179, 148);
             label.ForeColor = Color.White;
             tp.SetToolTip(label, label.Text.Replace("\r\n", ""));
@@ -536,7 +538,7 @@ namespace Xr.Common.Controls
             //不是选中的菜单背景就恢复原色
             if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137))
             {
-                selectionPanel.BackColor = MouseOriginally;
+                selectionPanel.BackColor = LabMouseOriginally;
             }
             //不是选中并且鼠标悬浮菜单背景就恢复原色(黑色)
             if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137)
@@ -544,6 +546,7 @@ namespace Xr.Common.Controls
             {
                 label.ForeColor = Color.Black;
             }
+            //Log4net.LogHelper.Info("11" + LabMouseOriginally.Name);
         }
 
         /// <summary>
@@ -555,7 +558,8 @@ namespace Xr.Common.Controls
         {
             PanelEx selectionPanel = (PanelEx)sender;
             Label label = (Label)selectionPanel.Controls[0];
-            MouseOriginally = selectionPanel.BackColor;
+            PanMouseOriginally = selectionPanel.BackColor;
+            //Log4net.LogHelper.Info("1" + PanMouseOriginally.Name);
             selectionPanel.BackColor = Color.FromArgb(26, 179, 148);
             label.ForeColor = Color.White;
             tp.SetToolTip(label, label.Text.Replace("\r\n", ""));
@@ -573,7 +577,7 @@ namespace Xr.Common.Controls
             //不是选中的菜单背景就恢复原色
             if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137))
             {
-                selectionPanel.BackColor = MouseOriginally;
+                selectionPanel.BackColor = PanMouseOriginally;
             }
             //不是选中并且鼠标悬浮菜单背景就恢复原色(黑色)
             if (selectionPanel.BackColor != Color.FromArgb(24, 166, 137)
@@ -581,6 +585,7 @@ namespace Xr.Common.Controls
             {
                 label.ForeColor = Color.Black;
             }
+            //Log4net.LogHelper.Info("22" + LabMouseOriginally.Name);
         }
 
         /// <summary>

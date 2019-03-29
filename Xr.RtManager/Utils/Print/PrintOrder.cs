@@ -78,8 +78,8 @@ namespace Xr.RtManager.Utils
                 if (tempList[i].IsDrawBitMap)
                 {
                     SizeF tempSf = g.MeasureString(tempList[i].Context, tempList[i].DrawFont);
-                    //居中
                     int startX = (pageWidth - (int)tempSf.Width - tempList[i].Bmp.Width) / 2;
+
                     g.DrawString(tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, startX, tempList[i].DrawHeight);// tempList[i].DrawFont,  tempList[i].DrawBrush,startX,tempList[i].DrawHeight
                     //这里绘制图片 这个需要根据图片的大小进行细微的调整 主要是高度
                     g.DrawImage(tempList[i].Bmp, tempSf.Width + startX, tempList[i].DrawHeight);
@@ -87,7 +87,22 @@ namespace Xr.RtManager.Utils
                 }
                 else
                 {
-                    g.DrawString(tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, sf);//tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, sf
+                    if (tempList[i].Alignment != null)
+                        g.DrawString(tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, tempList[i].Alignment);//tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, sf
+                    else
+                    {
+                        if (tempList[i].MarginLeft!=0)
+                        {
+                            drawRect = new Rectangle(tempList[i].MarginLeft, tempList[i].DrawHeight, pageWidth, tempList[i].DrawFont.Height*2);
+                            sf.Alignment = StringAlignment.Near;
+                            g.DrawString(tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, sf);//tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, sf
+                        }
+                        else
+                        {
+                            sf.Alignment = StringAlignment.Center;
+                            g.DrawString(tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, sf);//tempList[i].Context, tempList[i].DrawFont, tempList[i].DrawBrush, drawRect, sf
+                        }
+                    }
                 }
             }
         }

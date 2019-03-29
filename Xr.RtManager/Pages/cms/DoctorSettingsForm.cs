@@ -41,6 +41,8 @@ namespace Xr.RtManager.Pages.cms
 
         private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
+            labelControl1.Font = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
+            labelControl1.ForeColor = Color.FromArgb(255, 0, 0);
             MainForm = (Form)this.Parent;
             pageControl1.MainForm = MainForm;
             //把这行删了，再显示分页控件，就是分页了，不过宽度不够显示分页控件
@@ -58,6 +60,8 @@ namespace Xr.RtManager.Pages.cms
             treeMenuControl1.DisplayMember = "name";
             treeMenuControl1.ValueMember = "id";
             treeMenuControl1.DataSource = deptList;
+            treeMenuControl1.EditValue = deptList[0].id;
+            deptId = deptList[0].id;
 
             //查询医院下拉框数据
             String url2 = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
@@ -194,12 +198,14 @@ namespace Xr.RtManager.Pages.cms
                     return;
                 }
             });
+            SearchData(1, pageControl1.PageSize);
         }
 
         public void SearchData(int pageNo, int pageSize)
         {
             //缩小后宽度不够分页控件显示，所以这里不显示分页了，当前页传10000条，以后要分页的话，把这个10000条去掉就行了
-            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.id=" + hospitalId + "&dept.id=" + deptId;
+            String param = "pageNo=" + pageNo + "&pageSize=" + pageSize + "&hospital.id=" + hospitalId 
+                + "&dept.id=" + deptId + "&pyCode=" + tbPyCode.Text;
             String url = AppContext.AppConfig.serverUrl + "cms/doctor/list?"+param;
             this.DoWorkAsync(500, (o) =>
             {
@@ -399,6 +405,8 @@ namespace Xr.RtManager.Pages.cms
             if (sexList.Count > 0)
                 lueSex.EditValue = sexList[0].value;
             lueHospital.EditValue = AppContext.Session.hospitalId;
+            treeDeptId.EditValue = deptId;
+
         }
 
 
@@ -443,20 +451,30 @@ namespace Xr.RtManager.Pages.cms
                     dcDoctorInfo.SetValue(doctorInfo);
                     //显示图片
                     pictureServiceFilePath = doctorInfo.pictureUrl;
-                    WebClient web;
-                    if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
+                    //医院的机子有些请求不到路径的时候，会卡的1分钟左右，所以下载图片用异步
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
-                        try
+                        if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
                         {
-                            web = new WebClient();
-                            var bytes = web.DownloadData(pictureServiceFilePath);
-                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                            try
+                            {
+                                WebClient web = new WebClient();
+                                var bytes = web.DownloadData(pictureServiceFilePath);
+                                return bytes;
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Xr.Log4net.LogHelper.Error(ex.Message);
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            Xr.Log4net.LogHelper.Error(ex.Message);
-                        }
-                    }
+                        return null;
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        if (data != null)
+                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(data2 as byte[]));
+                    });
+
                     groupBox1.Enabled = true;
                     setDefaultVisit();
                     tableLayoutPanel4.Enabled = true;
@@ -1670,7 +1688,10 @@ namespace Xr.RtManager.Pages.cms
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException != null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 
@@ -1702,6 +1723,10 @@ namespace Xr.RtManager.Pages.cms
             pv.Show();
         }
 
-
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+            cmd.ShowOpaqueLayer();
+            SearchData(1, pageControl1.PageSize);
+        }
     }
 }

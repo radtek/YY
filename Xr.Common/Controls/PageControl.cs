@@ -26,6 +26,7 @@ namespace Xr.Common.Controls
 
         private void ExecuteQuery(int CurrentPage)
         {
+            teJumpPage.Text = currentPage.ToString();
             if (Query != null)
             {
                 if (tePageSize.Text.Length > 0)
@@ -60,8 +61,16 @@ namespace Xr.Common.Controls
         /// </summary>
         public int PageSize
         {
-            get { return pageSize; }
-            set { pageSize = value; }
+            get 
+            {
+                pageSize = int.Parse(tePageSize.Text);
+                return pageSize; 
+            }
+            set 
+            { 
+                pageSize = value;
+                setPageSize();
+            }
         }
 
         private int currentPage = 1;
@@ -103,6 +112,15 @@ namespace Xr.Common.Controls
             }
 
         }
+
+        /// <summary>
+        /// 修改界面显示的每页最大行数
+        /// </summary>
+        private void setPageSize()
+        {
+            tePageSize.Text = pageSize.ToString();
+        }
+
         /// <summary>
         /// 首页
         /// </summary>
@@ -203,7 +221,7 @@ namespace Xr.Common.Controls
         /// 赋值总记录数、总页数、当前页
         /// </summary>
         /// <param name="Record">总记录数</param>
-        /// <param name="PageNum">总页数</param>
+        /// <param name="PageSize">每页显示的行数</param>
         /// <param name="CurrentPage">当前页</param>
         public void setData(int Record, int PageSize, int CurrentPage)
         {

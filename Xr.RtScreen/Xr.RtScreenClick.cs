@@ -114,21 +114,22 @@ namespace Xr.RtScreen
                     MessageBoxUtils.Show(objTs["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                     System.Environment.Exit(0);
                 }
+                HelperClass.clincId = AppContext.AppConfig.clinicCode;
                 //查询诊室数据
-                String urlss = AppContext.AppConfig.serverUrl + InterfaceAddress.clin + "?code=" + AppContext.AppConfig.clinicCode;
-                String datass = HttpClass.httpPost(urlss);
-                JObject objTss = JObject.Parse(datass);
-                if (string.Compare(objTss["state"].ToString(), "true", true) == 0)
-                {
-                    //Clinc clinc = Newtonsoft.Json.JsonConvert.DeserializeObject<Clinc>(objT["result"].ToString());
-                    HelperClass.clincId = objTss["result"]["clinicId"].ToString();
-                }
-                else
-                {
-                    loading.CloseWaitForm();
-                    MessageBoxUtils.Show(objTss["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                    System.Environment.Exit(0);
-                }
+                //String urlss = AppContext.AppConfig.serverUrl + InterfaceAddress.clin + "?code=" + AppContext.AppConfig.clinicCode;
+                //String datass = HttpClass.httpPost(urlss);
+                //JObject objTss = JObject.Parse(datass);
+                //if (string.Compare(objTss["state"].ToString(), "true", true) == 0)
+                //{
+                //    //Clinc clinc = Newtonsoft.Json.JsonConvert.DeserializeObject<Clinc>(objT["result"].ToString());
+                //    HelperClass.clincId = objTss["result"]["clinicId"].ToString();
+                //}
+                //else
+                //{
+                //    loading.CloseWaitForm();
+                //    MessageBoxUtils.Show(objTss["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                //    System.Environment.Exit(0);
+                //}
             }
             catch (Exception ex)
             {

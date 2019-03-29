@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace Xr.AutoUpdate
 {
@@ -21,11 +22,14 @@ namespace Xr.AutoUpdate
             InitializeComponent();
         }
 
+        Thread t;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             label2.Text = "当前版本：" + ConfigurationManager.AppSettings["version"].ToString();
             //用子线程工作
-            new System.Threading.Thread(new System.Threading.ThreadStart(StartUpdate)).Start();
+            t = new System.Threading.Thread(new System.Threading.ThreadStart(StartUpdate));
+            t.Start();
         }
 
         //开始更新
@@ -35,21 +39,33 @@ namespace Xr.AutoUpdate
             downloader.onDownLoadProgress += new Downloader.dDownloadProgress(downloader_onDownLoadProgress);
             downloader.Start();
         }
-        //同步更新UI
-        void downloader_onDownLoadProgress(long total, long current, String msg, String version)
+        /// <summary>
+        /// 同步更新UI
+        /// </summary>
+        /// <param name="total">总进度</param>
+        /// <param name="current">当前进度</param>
+        /// <param name="msg">信息</param>
+        /// <param name="version">版本号</param>
+        /// <param name="flag">true：正常的更新进度；false：错误信息</param>
+        void downloader_onDownLoadProgress(long total, long current, String msg, String version, bool flag)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Downloader.dDownloadProgress(downloader_onDownLoadProgress), new object[] { total, current, msg, version });
+                this.Invoke(new Downloader.dDownloadProgress(downloader_onDownLoadProgress), new object[] { total, current, msg, version, flag });
             }
             else
             {
                 this.progressBar1.Maximum = (int)total;
                 this.progressBar1.Value = (int)current;
+                if (flag)
+                    label1.ForeColor = Color.Black;
+                else
+                    label1.ForeColor = Color.Red;
                 label1.Text = msg;
                 if (current == 100)
                 {
                     this.Close();
+                    System.Environment.Exit(0);
                 }
                 if (version != null)
                 {
@@ -65,7 +81,7 @@ namespace Xr.AutoUpdate
         {
             public String FileName { get; set; }
             //委托
-            public delegate void dDownloadProgress(long total, long current, String msg, String version);
+            public delegate void dDownloadProgress(long total, long current, String msg, String version, bool flag);
             //事件
             public event dDownloadProgress onDownLoadProgress;
             //开始模拟工作
@@ -74,10 +90,13 @@ namespace Xr.AutoUpdate
                 try
                 {
                     int speedOfProgress = 0; //进度
-                    onDownLoadProgress(100, speedOfProgress, "", null);
+                    onDownLoadProgress(100, speedOfProgress, "", null, true);
 
-                    //获取和设置当前目录（即该进程从中启动的目录）的完全限定路径
-                    string localPath = System.Environment.CurrentDirectory;
+                    //System.Environment.CurrentDirectory获取和设置当前目录（即该进程从中启动的目录）的完全限定路径
+                    //下载到本地的路径
+                    string localPath = System.Environment.CurrentDirectory + "\\Download\\UpdatePackage";
+                    //解压路径
+                    string decPath = System.Environment.CurrentDirectory;
 
                     string serverUrl = ConfigurationManager.AppSettings["serverUrl"].ToString();
                     string version = ConfigurationManager.AppSettings["version"].ToString();
@@ -92,27 +111,29 @@ namespace Xr.AutoUpdate
                         if (cvList.Count > 0)
                         {
                             string zxVersion = cvList[cvList.Count() - 1].version;
-                            onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件", zxVersion);
+                            onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件", zxVersion, true);
                             int documentProgress = 90 / cvList.Count; //每个文件所拥有的进度
                             for (int i = 0; i < cvList.Count; i++)
                             {
                                 String[] strArr = cvList[i].updateFilePath.Split(new char[] { '/' });
                                 String fileName = strArr[strArr.Length - 1];
                                 //下载
-                                onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件，正在下载第1个文件:" + fileName, null);
+                                onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件，正在下载第" + (i + 1) + "个文件:" + fileName, null, true);
                                 downfile(cvList[i].updateFilePath, fileName, localPath);
                                 speedOfProgress += documentProgress / 2;
                                 //解压
-                                onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件，第1个文件:" + fileName + "下载成功，正在解压", null);
-                                ZipHelper.UnpackFileRarOrZip(localPath + "/" + fileName, localPath);
+                                onDownLoadProgress(100, speedOfProgress, "共需下载" + cvList.Count + "个文件，第" + (i + 1) + "个文件:" + fileName + "下载成功，正在解压", null, true);
+                                ZipHelper.UnpackFileRarOrZip(localPath + "/" + fileName, decPath);
                                 speedOfProgress += documentProgress / 2;
-                                File.Delete(fileName);
+                                File.Delete(localPath + "/" + fileName);
+                                Thread.Sleep(1000);
                             }
                             //修改本地配置文件中的版本号
                             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                             configuration.AppSettings.Settings["version"].Value = cvList[cvList.Count - 1].version;
                             configuration.Save(ConfigurationSaveMode.Modified);
                             ConfigurationManager.RefreshSection("appSettings");
+                            Thread.Sleep(1000);
                         }
                         //启动程序
                         System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
@@ -134,13 +155,12 @@ namespace Xr.AutoUpdate
                         {
                             MessageBox.Show(x.ToString());
                         }
-                        onDownLoadProgress(100, 100, "检查更新完成", null);
-                        System.Environment.Exit(0);
+                        onDownLoadProgress(100, 100, "检查更新完成", null, true);
+                        
                     }
                     else
                     {
-                        onDownLoadProgress(100, 100, objT["message"].ToString(), null);
-                        System.Environment.Exit(0);
+                        onDownLoadProgress(100, 0, objT["message"].ToString(), null, false);
                     }
                 }
                 catch (Exception e)
@@ -225,7 +245,7 @@ namespace Xr.AutoUpdate
             }
             catch (Exception e)
             {
-                result = e.Message;
+                result = "{'state': false, 'message':'" + e.Message + "'}";
                 Log4net.LogHelper.Error(e.Message);
             }
             finally
@@ -236,6 +256,11 @@ namespace Xr.AutoUpdate
                 if (request != null) request.Abort();
             }
             return result;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
     }
 }

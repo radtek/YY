@@ -23,12 +23,13 @@ namespace Xr.RtManager.Pages.cms
             InitializeComponent();
             MainForm = (Form)this.Parent;
             pageControl1.MainForm = MainForm;
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(225, false);
+            GetKeShiList();
             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptList[0].id);
             cmd.HideOpaqueLayer();
             deptId = "";
-            GetKeShiList();
         }
         #region 查询科室列表
         public void GetKeShiList()
@@ -70,6 +71,7 @@ namespace Xr.RtManager.Pages.cms
                 treeMenuControl1.ValueMember = "id";
                 this.treeMenuControl1.DataSource = AppContext.Session.deptList;
                 treeMenuControl1.EditValue = AppContext.Session.deptList[0].id;
+                treeMenuControl1.selectText = AppContext.Session.deptList[0].name;
                 treeWKe.Properties.DataSource = itemList;
                 treeWKe.Properties.TreeList.KeyFieldName = "value";
                 treeWKe.Properties.TreeList.ParentFieldName = "parentId";
@@ -107,8 +109,9 @@ namespace Xr.RtManager.Pages.cms
                     clinicInfo = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
                     for (int i = 0; i < clinicInfo.Count; i++)//Convert.ToInt32(objT["result"]["count"])
                     {
-                        String name = objT["result"]["list"][i]["dept"]["name"].ToString();
-                        clinicInfo[i].deptname = name;
+                        //String name = objT["result"]["list"][i]["dept"]["name"].ToString();
+                        //string asss = treeMenuControl1.EditValue;
+                        clinicInfo[i].deptname = treeMenuControl1.selectText;//string.Join(",",from a  in AppContext.Session.deptList where a.id==asss select a.name);
                     }
                     this.gc_Clinic.DataSource = clinicInfo;
                    
@@ -186,7 +189,7 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow = this.gv_Clinic.GetFocusedRow() as ClinicInfoEntity;
                 if (selectedRow == null)
                     return;
-                selectedRow.deptId =string.Join(",", from n in AppContext.Session.deptList where n.name == selectedRow.deptname select n.id);
+                selectedRow.deptId = treeMenuControl1.EditValue;
                 dcClinc.SetValue(selectedRow);
                 groupBox3.Enabled = true;
             }
@@ -334,6 +337,18 @@ namespace Xr.RtManager.Pages.cms
                         break;
                     case "1":
                         e.DisplayText = "禁用";//
+                        break;
+                }
+            }//isOccupy
+            if (e.Column.FieldName == "isOccupy")
+            {
+                switch (e.Value.ToString().Trim())
+                {
+                    case "0":
+                        e.DisplayText = "未占用";//
+                        break;
+                    case "1":
+                        e.DisplayText = "占用";//
                         break;
                 }
             }

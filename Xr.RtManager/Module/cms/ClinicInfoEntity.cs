@@ -34,5 +34,7 @@ namespace Xr.RtManager
         public String createDate { get; set; }
         [IgnoreParam]
         public String updateDate { get; set; }
+        [IgnoreParam]
+        public String isOccupy { get; set; }
     }
 }

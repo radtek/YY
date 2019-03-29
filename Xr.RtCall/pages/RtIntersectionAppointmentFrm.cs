@@ -40,13 +40,14 @@ namespace Xr.RtCall.pages
         {
             try
             {
-                //1患者ID、2诊疗卡、3社保卡、4健康卡、5健康虚拟卡
+                //卡类型：1患者ID、2诊疗卡、3社保卡、4身份证、5健康卡、6健康虚拟卡
                 List<CardType> listCard = new List<CardType>();
                 listCard.Add(new CardType { value = "1", label = "患者ID" });
                 listCard.Add(new CardType { value = "2", label = "诊疗卡" });
                 listCard.Add(new CardType { value = "3", label = "社保卡" });
-                listCard.Add(new CardType { value = "4", label = "健康卡" });
-                listCard.Add(new CardType { value = "5", label = "健康虚拟卡" });
+                listCard.Add(new CardType { value = "4", label = "身份证" });
+                listCard.Add(new CardType { value = "5", label = "健康卡" });
+                listCard.Add(new CardType { value = "6", label = "健康虚拟卡" });
                 lueIsUse.Properties.DataSource = listCard;
                 lueIsUse.Properties.DisplayMember = "label";
                 lueIsUse.Properties.ValueMember = "value";
@@ -89,7 +90,7 @@ namespace Xr.RtCall.pages
                                    Dictionary<int, DateTime> dc1 = new Dictionary<int, DateTime>();
                                    if (list.Count == 0)
                                    {
-                                       _context.Send((s) => Xr.Common.MessageBoxUtils.Show("当前选择医生没有排班日期", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,Form1.pCurrentWin), null);
+                                       _context.Send((s) => Xr.Common.MessageBoxUtils.Show("当前选择医生没有排班日期", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1,Form1.pCurrentWin), null);
                                        _context.Send((s) => reservationCalendar1.ChangeValidDate(dcs), null);
                                        return;
                                    }

@@ -74,10 +74,10 @@ namespace Xr.RtScreen.pages
                                     if (clinicInfo.Count != a)
                                     {
                                         _context.Send((s) => DynamicLayout(this.tableLayoutPanel1, clinicInfo.Count + 1, 6), null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[0].Width = 25, null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[1].Width = 55, null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[2].Width = 50, null);
-                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[3].Width = 80, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[0].Width = 45, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[1].Width = 45, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[2].Width = 45, null);
+                                        _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[3].Width = 75, null);
                                         _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[4].Width = 35, null);
                                         _context.Send((s) => this.tableLayoutPanel1.ColumnStyles[5].Width = 30, null);
                                     }
@@ -118,7 +118,16 @@ namespace Xr.RtScreen.pages
                                 {
                                     if (c.Name == "label" + (g + 1) + 0)//诊室
                                     {
-                                        c.Text = clinicInfo[g].name;
+                                        if (clinicInfo[g].isStop=="1")
+                                        {
+                                            c.Text = clinicInfo[g].name + "(停诊)";
+                                            c.ForeColor = Color.Red;
+                                        }
+                                        else
+                                        {
+                                            c.Text = clinicInfo[g].name + "(正常)";
+                                            c.ForeColor = Color.Yellow;
+                                        }
                                         g = g + 1;
                                         break;
                                     }
@@ -380,121 +389,71 @@ namespace Xr.RtScreen.pages
             try
             {
 
-                ControlPaint.DrawBorder(e.Graphics,
-                             this.panelControl2.ClientRectangle,
-                             Color.Red,//7f9db9
-                             1,
-                             ButtonBorderStyle.Solid,
-                             Color.Red,
-                             1,
-                             ButtonBorderStyle.Solid,
-                             Color.Red,
-                             1,
-                             ButtonBorderStyle.Solid,
-                             Color.Red,
-                             1,
-                             ButtonBorderStyle.Solid);
+                ControlPaint.DrawBorder(e.Graphics,this.panelControl2.ClientRectangle, Color.White,
+                             1,ButtonBorderStyle.Solid,Color.White,
+                             1,ButtonBorderStyle.Solid,Color.White,
+                             1,ButtonBorderStyle.Solid,Color.White,
+                             1,ButtonBorderStyle.Solid);
 
             }
             catch
             {
             }
         }
-
-
         private void panelControl1_Paint(object sender, PaintEventArgs e)
         {
             try
             {
-                ControlPaint.DrawBorder(e.Graphics,
-                            this.panelControl1.ClientRectangle,
-                            Color.Red,//7f9db9
-                            1,
-                            ButtonBorderStyle.Solid,
-                            Color.Red,
-                            1,
-                            ButtonBorderStyle.Solid,
-                            Color.Red,
-                            1,
-                            ButtonBorderStyle.Solid,
-                            Color.Transparent,
-                            1,
-                            ButtonBorderStyle.Solid);
+                ControlPaint.DrawBorder(e.Graphics,this.panelControl1.ClientRectangle,Color.White,
+                            1,ButtonBorderStyle.Solid,Color.White,
+                            1,ButtonBorderStyle.Solid,Color.White,
+                            1,ButtonBorderStyle.Solid,Color.Transparent,
+                            1,ButtonBorderStyle.Solid);
 
             }
             catch 
             {
             }
         }
-
         private void panelControl3_Paint(object sender, PaintEventArgs e)
         {
             try
             {
-                ControlPaint.DrawBorder(e.Graphics,
-                            this.panelControl3.ClientRectangle,
-                            Color.Red,//7f9db9
-                            1,
-                            ButtonBorderStyle.Solid,
-                            Color.Red,
-                            1,
-                            ButtonBorderStyle.Solid,
-                            Color.Red,
-                            1,
-                            ButtonBorderStyle.Solid,
-                            Color.Transparent,
-                            1,
-                            ButtonBorderStyle.Solid);
+                ControlPaint.DrawBorder(e.Graphics,this.panelControl3.ClientRectangle,Color.White,
+                            1,ButtonBorderStyle.Solid,Color.White,
+                            1,ButtonBorderStyle.Solid,Color.White,
+                            1,ButtonBorderStyle.Solid,Color.Transparent,
+                            1,ButtonBorderStyle.Solid);
 
             }
             catch
             {
             }
         }
-
         private void scrollingText1_Paint(object sender, PaintEventArgs e)
         {
             try
             {
-                ControlPaint.DrawBorder(e.Graphics,
-                           this.panelControl1.ClientRectangle,
-                           Color.Red,//7f9db9
-                           1,
-                           ButtonBorderStyle.Solid,
-                           Color.Red,
-                           1,
-                           ButtonBorderStyle.Solid,
-                           Color.Red,
-                           1,
-                           ButtonBorderStyle.Solid,
-                           Color.Transparent,
-                           1,
-                           ButtonBorderStyle.Solid);
+                ControlPaint.DrawBorder(e.Graphics,this.panelControl1.ClientRectangle,Color.White,
+                           1,ButtonBorderStyle.Solid,Color.White,
+                           1,ButtonBorderStyle.Solid,Color.White,
+                           1,ButtonBorderStyle.Solid,Color.Transparent,
+                           1,ButtonBorderStyle.Solid);
 
             }
             catch
             {
             }
         }
-
         private void scrollingTexts1_Paint(object sender, PaintEventArgs e)
         {
             try
             {
-                ControlPaint.DrawBorder(e.Graphics,
-                          this.panelControl3.ClientRectangle,
-                          Color.Red,//7f9db9
-                          1,
-                          ButtonBorderStyle.Solid,
-                          Color.Transparent,
-                          1,
-                          ButtonBorderStyle.Solid,
-                          Color.Red,
-                          1,
-                          ButtonBorderStyle.Solid,
-                          Color.Red,
-                          1,
-                          ButtonBorderStyle.Solid);
+                ControlPaint.DrawBorder(e.Graphics,this.panelControl3.ClientRectangle,Color.Transparent,
+                          1,ButtonBorderStyle.Solid,Color.Transparent,
+                          1,ButtonBorderStyle.Solid,Color.White,
+                          1,ButtonBorderStyle.Solid,Color.White,
+                          1,ButtonBorderStyle.Solid);
 
             }
             catch
@@ -505,32 +464,22 @@ namespace Xr.RtScreen.pages
         {
             try
             {
-                ControlPaint.DrawBorder(e.Graphics,
-                         this.panel1.ClientRectangle,
-                         Color.Red,//7f9db9
-                         1,
-                         ButtonBorderStyle.Solid,
-                         Color.Transparent,
-                         1,
-                         ButtonBorderStyle.Solid,
-                         Color.Red,
-                         1,
-                         ButtonBorderStyle.Solid,
-                         Color.Red,
-                         1,
-                         ButtonBorderStyle.Solid);
+                ControlPaint.DrawBorder(e.Graphics,this.panel1.ClientRectangle,Color.White,
+                         1,ButtonBorderStyle.Solid,Color.Transparent,
+                         1,ButtonBorderStyle.Solid,Color.White,
+                         1,ButtonBorderStyle.Solid,Color.White,
+                         1,ButtonBorderStyle.Solid);
 
             }
             catch
             {
             }
         }
-
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
             try
             {
-                Pen pp = new Pen(Color.Red);
+                Pen pp = new Pen(Color.White);
                 e.Graphics.DrawRectangle(pp, e.ClipRectangle.X - 1, e.ClipRectangle.Y - 1, e.ClipRectangle.X + e.ClipRectangle.Width - 0, e.ClipRectangle.Y + e.ClipRectangle.Height - 0);
 
             }
@@ -538,12 +487,11 @@ namespace Xr.RtScreen.pages
             {
             }
         }
-
         private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
             try
             {
-                Pen pp = new Pen(Color.Red);
+                Pen pp = new Pen(Color.White);
                 e.Graphics.DrawRectangle(pp, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.X + this.Width - 1, e.CellBounds.Y + this.Height - 1);
 
             }

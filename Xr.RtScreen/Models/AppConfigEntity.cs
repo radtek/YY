@@ -14,22 +14,18 @@ namespace Xr.RtScreen.Models
         /// 服务器测试库ip+端口
         /// </summary>
         public String serverUrl { get; set; }
-
         /// <summary>
         /// 医院编码
         /// </summary>
         public String hospitalCode { get; set; }
-
         /// <summary>
         /// 科室编码
         /// </summary>
         public String deptCode { get; set; }
-
         /// <summary>
-        /// 诊室编码
+        /// 诊室ID
         /// </summary>
         public String clinicCode { get; set; }
-
         /// <summary>
         /// 启动对应的屏幕窗口1（公共大屏）2（科室小屏）3（医生小屏）
         /// </summary>
@@ -38,7 +34,13 @@ namespace Xr.RtScreen.Models
         /// 是否启动Socket
         /// </summary>
         public String StartUpSocket { get; set; }
-
+        /// <summary>
+        /// 刷新时间
+        /// </summary>
         public String RefreshTime { get; set; }
+        /// <summary>
+        /// 标识是否是第一次启动
+        /// </summary>
+        public String Setting { get; set; }
     }
 }

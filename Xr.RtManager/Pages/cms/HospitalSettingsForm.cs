@@ -30,11 +30,16 @@ namespace Xr.RtManager.Pages.cms
 
         private void HospitalSettingsForm_Load(object sender, EventArgs e)
         {
+            labelControl1.Font = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
+            labelControl1.ForeColor = Color.FromArgb(255, 0, 0);
+            labelControl2.Font = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
+            labelControl2.ForeColor = Color.FromArgb(255, 0, 0);
             MainForm = (Form)this.Parent;
             pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
             dcHospitalInfo.DataType = typeof(HospitalInfoEntity);
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             //查询医院类型下拉框数据
             String url = AppContext.AppConfig.serverUrl + "sys/sysDict/findByType?type=hospital_type";
             this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
@@ -88,7 +93,7 @@ namespace Xr.RtManager.Pages.cms
 
         public void SearchData(int pageNo, int pageSize)
         {
-            String url = AppContext.AppConfig.serverUrl + "cms/hospital/list?pageNo="+pageNo;
+            String url = AppContext.AppConfig.serverUrl + "cms/hospital/list?pageNo="+pageNo + "&pageSize=" +pageSize;
             this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
             {
                 String data = HttpClass.httpPost(url);
@@ -338,34 +343,58 @@ namespace Xr.RtManager.Pages.cms
                     //显示图片
                     logoServiceFilePath = hospitalInfo.logoUrl;
                     pictureServiceFilePath = hospitalInfo.pictureUrl;
-                    WebClient web;
-                    if (logoServiceFilePath != null && logoServiceFilePath.Length > 0)
+
+                    //医院的机子有些请求不到路径的时候，会卡的1分钟左右，所以下载图片用异步
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
-                        try
+                        if (logoServiceFilePath != null && logoServiceFilePath.Length > 0)
                         {
-                            web = new WebClient();
-                            var bytes = web.DownloadData(logoServiceFilePath);
-                            this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                            try
+                            {
+                                WebClient web = new WebClient();
+                                Log4net.LogHelper.Info("1");
+                                var bytes = web.DownloadData(logoServiceFilePath);
+                                return bytes;
+                                
+                            }
+                            catch (Exception ex)
+                            {
+                                Log4net.LogHelper.Info("2");
+                                Xr.Log4net.LogHelper.Error(ex.Message);
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            Xr.Log4net.LogHelper.Error(ex.Message);
-                        }
-                        
-                    }
-                    if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
+                        return null;
+                    }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                     {
-                        try
+                        if (data != null)
+                            this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(data as byte[]));
+                    });
+
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
                         {
-                            web = new WebClient();
-                            var bytes = web.DownloadData(pictureServiceFilePath);
-                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                            try
+                            {
+                                WebClient web = new WebClient();
+                                Log4net.LogHelper.Info("3");
+                                var bytes = web.DownloadData(pictureServiceFilePath);
+                                this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                                return bytes;
+                            }
+                            catch (Exception ex)
+                            {
+                                Log4net.LogHelper.Info("4");
+                                Xr.Log4net.LogHelper.Error(ex.Message);
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            Xr.Log4net.LogHelper.Error(ex.Message);
-                        }
-                    }
+                        return null;
+                    }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        if (data != null)
+                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(data as byte[]));
+                    });
+
                     groupBox1.Enabled = true;
                 }
                 else
@@ -510,7 +539,10 @@ namespace Xr.RtManager.Pages.cms
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException.Message!=null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 

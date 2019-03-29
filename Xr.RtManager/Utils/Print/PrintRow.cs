@@ -75,6 +75,26 @@ namespace Xr.RtManager.Utils
             get { return bmp; }
             //set { bmp = value; }
         }
+
+        /// <summary>
+        /// 文字位置
+        /// </summary>
+        private StringFormat alignment;
+        public StringFormat Alignment
+        {
+            get { return alignment; }
+            set { alignment = value; }
+        }
+
+        /// <summary>
+        /// 行右外边距
+        /// </summary>
+        private int marginLeft;
+        public int MarginLeft
+        {
+            get { return marginLeft; }
+            set { marginLeft = value; }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -102,6 +122,47 @@ namespace Xr.RtManager.Utils
             this.drawHeight = drawHeight;
             isDrawBitMap = true;
             this.bmp = bmp;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="context"></param>
+        /// <param name="penFont"></param>
+        /// <param name="drawBrush"></param>
+        /// <param name="drawHeight"></param>
+        public PrintRow(int index, string context, Font penFont, Brush drawBrush, int drawHeight, int marginLeft)
+        {
+            this.printIndex = index;
+            this.context = context;
+            this.drawFont = penFont;
+            this.drawBrush = drawBrush;
+            this.drawHeight = drawHeight;
+            this.marginLeft = marginLeft;
+            isDrawBitMap = false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="context"></param>
+        /// <param name="penFont"></param>
+        /// <param name="drawBrush"></param>
+        /// <param name="drawHeight"></param>
+        public PrintRow(int index, string context, Font penFont, Brush drawBrush, int drawHeight, StringFormat alignment = null)
+        {
+            this.printIndex = index;
+            this.context = context;
+            this.drawFont = penFont;
+            this.drawBrush = drawBrush;
+            this.drawHeight = drawHeight;
+            if (alignment != null)
+            {
+                this.alignment = alignment;
+            }
+            isDrawBitMap = false;
         }
 
     }

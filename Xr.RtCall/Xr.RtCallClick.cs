@@ -41,7 +41,14 @@ namespace Xr.RtCall
             pCurrentWin = this;
             IsMax = false;
             GetDoctorAndClinc();
-            IsStop(EncryptionClass.UserOrPassWordInfor(System.Windows.Forms.Application.StartupPath + "\\doctorCode.txt"));
+            Log4net.LogHelper.Info("程序启动成功");
+            if (isStop == "1")
+            {
+                this.skinbutLook.Text = "继续开诊";
+                skinbutLook.BaseColor = Color.Red;
+            }
+            time();
+            //IsStop(EncryptionClass.UserOrPassWordInfor(System.Windows.Forms.Application.StartupPath + "\\doctorCode.txt"));
         }
         #region 判断是否启动叫号
         /// <summary>
@@ -57,11 +64,33 @@ namespace Xr.RtCall
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     Log4net.LogHelper.Info("程序启动成功");
+                    if (isStop == "1")
+                    {
+                        this.skinbutLook.Text = "继续开诊";
+                    }
                 }
                 else
                 {
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                    System.Environment.Exit(0);
+                    if (MessageBoxUtils.Show(objT["message"].ToString() + "！是否强制使用？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
+                    {
+                        Log4net.LogHelper.Info("程序启动成功,强制使用诊室");
+                        if (isStop == "1")
+                        {
+                            this.skinbutLook.Text = "继续开诊";
+                        }
+                    }
+                    else
+                    {
+                        SaveConfigSeting("0");
+                        Application.ExitThread();
+                        Application.Exit();
+                        Application.Restart();
+                        System.Diagnostics.Process.GetCurrentProcess().Kill();
+                    }
+                    //} MessageBoxUtils.Show(objT["message"].ToString() + "是否强制使用", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                   
+                    //System.Environment.Exit(0);
+                    //Application.Run(new SettingFrm());
                 }
             }
             catch (Exception ex)
@@ -71,14 +100,34 @@ namespace Xr.RtCall
                 Log4net.LogHelper.Error("是否启动叫号程序错误信息："+ex.Message);
             }
         }
+        #region 保存信息到本地配置文件中
+        /// <summary>
+        /// 保存信息到本地配置文件中
+        /// </summary>
+        private void SaveConfigSeting(string Setting)
+        {
+            try
+            {
+                ExeConfigurationFileMap map = new ExeConfigurationFileMap()
+                {
+                    ExeConfigFilename = Environment.CurrentDirectory +
+                        @"\Xr.RtCall.exe.config"
+                };
+                Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+                config.AppSettings.Settings["Setting"].Value = Setting;
+                config.Save();
+                ConfigurationManager.RefreshSection("appSettings");//重新加载新的配置文件
+            }
+            catch (Exception ex)
+            {
+                Xr.Common.MessageBoxUtils.Show("保存配置时出错" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, null);
+                Log4net.LogHelper.Error("保存配置文件错误信息：" + ex.Message);
+            }
+        }
+        #endregion
         #endregion 
         #region 帮助事件
         #region 键盘按Esc关闭窗体
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
-
-        [DllImport("user32")]
-        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
         /// <summary>
         /// 重写按键监视方法，用于操作窗体
         /// </summary>
@@ -99,6 +148,7 @@ namespace Xr.RtCall
                             if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
                             {
                                 Log4net.LogHelper.Info("退出系统成功");
+                                StopDoctor("1");
                                 System.Environment.Exit(0);
                             }
                         }
@@ -107,6 +157,7 @@ namespace Xr.RtCall
                             if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, Form1.pCurrentWin) == DialogResult.OK)
                             {
                                 Log4net.LogHelper.Info("退出系统成功");
+                                StopDoctor("1");
                                 System.Environment.Exit(0);
                             }
                         }
@@ -129,6 +180,7 @@ namespace Xr.RtCall
                 if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null) == DialogResult.OK)
                 {
                     Log4net.LogHelper.Info("退出系统成功");
+                    StopDoctor("1");
                     System.Environment.Exit(0);
                 }
             }
@@ -137,6 +189,7 @@ namespace Xr.RtCall
                 if (MessageBoxUtils.Show("您确定要退出程序吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, Form1.pCurrentWin) == DialogResult.OK)
                 {
                     Log4net.LogHelper.Info("退出系统成功");
+                    StopDoctor("1");
                     System.Environment.Exit(0);
                 }
             }
@@ -274,7 +327,12 @@ namespace Xr.RtCall
                             {
                                 _context.Send((s) => HelperClass.triageId = objT["result"][0]["triageId"].ToString(), null);
                                 _context.Send((s) => label2.Text = "[" + objT["result"][0]["smallCellShow"].ToString() + "]", null);
-                                _context.Send((s) => CallNextPatient(objT["result"][0]["smallCellShow"].ToString()), null);
+                                if (Convert.ToBoolean(AppContext.AppConfig.WhetherToAssign))
+                                {
+                                    string patientId = objT["result"][0]["patientId"].ToString();
+                                    _context.Send((s) => Assignment(patientId), null);//把患者ID传给医生工作站并让医生工作站回车
+                                }
+                                //_context.Send((s) => CallNextPatient(label2.Text.Trim()), null);
                             }
                             else
                             {
@@ -307,14 +365,55 @@ namespace Xr.RtCall
             HostingForm f = new HostingForm();
             f.Height = rcf.Height;
             f.Width = rcf.Width;
-            f.Controls.Add(rcf);
             f.StartPosition = FormStartPosition.CenterScreen;
-            if (this.Size.Height != 28)
-            {
-                f.Location = new Point((this.Width - this.Width) / 2 + this.Location.X,
-                   (this.Height - this.Height) / 2 + this.Location.Y);//相对程序居中
-            }
+            f.TopMost = true;
+            f.Controls.Add(rcf);
             f.ShowDialog();
+        }
+        #endregion 
+        #region 把ID传给医生工作站
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        private readonly int MOUSEEVENTF_LEFTDOWN = 0x0002;//模拟鼠标移动
+        private readonly int MOUSEEVENTF_MOVE = 0x0001;//模拟鼠标左键按下
+        private readonly int MOUSEEVENTF_LEFTUP = 0x0004;//模拟鼠标左键抬起
+        private readonly int MOUSEEVENTF_ABSOLUTE = 0x8000;//鼠标绝对位置
+        private readonly int MOUSEEVENTF_RIGHTDOWN = 0x0008; //模拟鼠标右键按下 
+        private readonly int MOUSEEVENTF_RIGHTUP = 0x0010; //模拟鼠标右键抬起 
+        private readonly int MOUSEEVENTF_MIDDLEDOWN = 0x0020; //模拟鼠标中键按下 
+        private readonly int MOUSEEVENTF_MIDDLEUP = 0x0040;// 模拟鼠标中键抬起 
+
+        [DllImport("user32")]
+        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        /// <summary>
+        /// 把患者ID传给医生工作站(利用鼠标的复制和粘贴)
+        /// </summary>
+        /// <param name="id"></param>
+        public void Assignment(string id)
+        {
+            string printid = id;
+            int cx = Cursor.Position.X + 1;
+            int cy = Cursor.Position.Y + 1;
+            if (AppContext.AppConfig.OutPutLocationX != "" || AppContext.AppConfig.OutPutLocationY != "")
+            {
+                int x = Int32.Parse(AppContext.AppConfig.OutPutLocationX);
+                int y = Int32.Parse(AppContext.AppConfig.OutPutLocationY);
+                Clipboard.SetDataObject(printid);
+                //绝对位置
+                mouse_event(MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//移动到需要点击的位置
+                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//点击
+                mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//抬起
+                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//点击
+                mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE, x * 65535 / Screen.PrimaryScreen.Bounds.Width, y * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//抬起
+                mouse_event(MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE, cx * 65535 / Screen.PrimaryScreen.Bounds.Width, cy * 65535 / Screen.PrimaryScreen.Bounds.Height, 0, 0);//移回到点击前的位置
+                System.Threading.Thread.Sleep(Int32.Parse(AppContext.AppConfig.sleepOutPutTime));
+                keybd_event((byte)Keys.ControlKey, 0, 0, 0);//按下
+                keybd_event((byte)Keys.V, 0, 0, 0);
+                keybd_event((byte)Keys.ControlKey, 0, 0x2, 0);//松开
+                keybd_event((byte)Keys.V, 0, 0x2, 0);
+                keybd_event((byte)Keys.Enter, 0, 0, 0);//按下
+                keybd_event((byte)Keys.Enter, 0, 0x2, 0);//松开
+            }
         }
         #endregion 
         #region 窗体Load事件
@@ -343,6 +442,26 @@ namespace Xr.RtCall
         }
         #endregion 
         #region 诊按钮  0：开诊，1：停诊
+        public void StopDoctor(string isStop)
+        {
+            try
+            {
+                String url = AppContext.AppConfig.serverUrl + InterfaceAddress.openStop + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId + "&clinicId=" + HelperClass.clinicId + "&doctorId=" + HelperClass.doctorId + "&isStop=" + isStop;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    Log4net.LogHelper.Info("退出程序设置医生临时停诊成功,医生ID为：" + HelperClass.doctorId);
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
         /// <summary>
         /// 停诊和开诊按钮
         /// </summary>
@@ -384,15 +503,15 @@ namespace Xr.RtCall
                                    {
                                        _context.Send((s) => MessageBoxUtils.Hint("操作成功!",this), null);
                                        _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
-                                       _context.Send((s) => skinButNext.Enabled=false, null);
-                                       _context.Send((s) => skinButNext.BaseColor=Color.Gray, null);
+                                      // _context.Send((s) => skinButNext.Enabled=false, null);
+                                       _context.Send((s) => skinbutLook.BaseColor = Color.Red, null);
                                    }
                                    else
                                    {
                                        _context.Send((s) => MessageBoxUtils.Hint("操作成功!",this), null);
                                        _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
-                                       _context.Send((s) => skinButNext.Enabled = true, null);
-                                       _context.Send((s) => skinButNext.BaseColor = Color.FromArgb(59, 175, 218), null);
+                                      // _context.Send((s) => skinButNext.Enabled = true, null);
+                                       _context.Send((s) => skinbutLook.BaseColor = Color.FromArgb(59, 175, 218), null);
                                    }
                                }
                                else
@@ -419,15 +538,19 @@ namespace Xr.RtCall
         #endregion 
         #region 获取主键
         /// <summary>
+        /// 获取当前医生是否临时停诊
+        /// </summary>
+        public String isStop { get; set; }
+        /// <summary>
         /// 获取主键
         /// </summary>
         public void GetDoctorAndClinc()
         {
             try
             {
-                if (AppContext.AppConfig.hospitalCode=="")
+                if (AppContext.AppConfig.hospitalCode == "")
                 {
-                       Xr.Common.MessageBoxUtils.Show("请检查配置的医院编码是否正确", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,null);
+                    Xr.Common.MessageBoxUtils.Show("请检查配置的医院编码是否正确", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, null);
                     System.Environment.Exit(0);
                     return;
                 }
@@ -444,7 +567,7 @@ namespace Xr.RtCall
                 }
                 else
                 {
-                    Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,null);
+                    Xr.Common.MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, null);
                     System.Environment.Exit(0);
                     return;
                 }
@@ -457,13 +580,14 @@ namespace Xr.RtCall
                     HelperClass.Departmentlist = objTs["result"].ToObject<List<HelperClassDoctorID>>();
                 }
                 //查询诊室数据
-                String urlss = AppContext.AppConfig.serverUrl + InterfaceAddress.clinc + "?code=" + AppContext.AppConfig.ClincCode;
-                String datass = HttpClass.httpPost(urlss);
-                JObject objTss = JObject.Parse(datass);
-                if (string.Compare(objTss["state"].ToString(), "true", true) == 0)
-                {
-                    HelperClass.clinicId = objTss["result"]["clinicId"].ToString();
-                }
+                //String urlss = AppContext.AppConfig.serverUrl + InterfaceAddress.ClincInfo + "?hospital.id=" + HelperClass.hospitalId + "&dept.id=" + HelperClass.deptId;
+                //String datass = HttpClass.httpPost(urlss);
+                //JObject objTss = JObject.Parse(datass);
+                //if (string.Compare(objTss["state"].ToString(), "true", true) == 0)
+                //{
+                //    HelperClass.clinicId = objTss["result"]["clinicId"].ToString();
+                HelperClass.clinicId = AppContext.AppConfig.ClincCode;
+                //}
                 //查询医生ID
                 String curls = AppContext.AppConfig.serverUrl + InterfaceAddress.doctor + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId + "&clinicId=" + HelperClass.clinicId;
                 String cdatas = HttpClass.httpPost(curls);
@@ -471,6 +595,7 @@ namespace Xr.RtCall
                 if (string.Compare(cobjTs["state"].ToString(), "true", true) == 0)
                 {
                     HelperClass.doctorId = cobjTs["result"]["doctorId"].ToString();
+                    isStop = cobjTs["result"]["isStop"].ToString();
                 }
             }
             catch (Exception ex)
@@ -485,6 +610,57 @@ namespace Xr.RtCall
             if (m.Msg == 0x0014) // 禁掉清除背景消息
                 return;
             base.WndProc(ref m);
+        }
+        #endregion 
+        #region 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StopDoctor("1");
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            StopDoctor("1");
+        }
+        #endregion 
+        #region 循环来查询医生的开诊状态
+        public void time()
+        {
+            if (!timer1.Enabled)
+            {
+                timer1.Interval = 1*60*1000;//一分钟去查询一次
+                timer1.Start();
+            }
+            else
+            {
+                timer1.Stop();
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            GetDoctorStart();
+        }
+        public void GetDoctorStart()
+        {
+            try
+            {
+                 String curls = AppContext.AppConfig.serverUrl + InterfaceAddress.doctor + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId + "&clinicId=" + HelperClass.clinicId;
+                String cdatas = HttpClass.httpPost(curls);
+                JObject cobjTs = JObject.Parse(cdatas);
+                if (string.Compare(cobjTs["state"].ToString(), "true", true) == 0)
+                {
+                  String DoctorisStop = cobjTs["result"]["isStop"].ToString();
+                  if (DoctorisStop=="1")
+                  {
+                      this.skinbutLook.Text = "继续开诊";
+                      skinbutLook.BaseColor = Color.Red;
+                  }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("循环获取医生的开诊状态错误信息："+ex.Message);
+            }
         }
         #endregion 
     }

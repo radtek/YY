@@ -34,7 +34,8 @@ namespace Xr.RtScreen
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Xr.RtScreen.Models.AppContext.Load();
-                    if (System.Configuration.ConfigurationManager.AppSettings["Setting"] == "1")
+                    Xr.Log4net.LogHelper.InitLog();
+                    if (Xr.RtScreen.Models.AppContext.AppConfig.Setting== "1")
                     {
                         Application.Run(new Form1());
                     }

@@ -34,6 +34,7 @@ namespace Xr.RtManager
             pageControl1.MainForm = MainForm;
             //this.BackColor = Color.FromArgb(243, 243, 243);
             cmd = new OpaqueCommand(AppContext.Session.waitControl);
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             cmd.ShowOpaqueLayer(0f);
             // 开始异步
             BackgroundWorkerUtil.start_run(bw_DoWork, bw_RunWorkerCompleted, null, false);
@@ -97,7 +98,7 @@ namespace Xr.RtManager
         public void SearchData(int pageNo, int pageSize)
         {
             currPageNo = pageNo;
-            this.pageSize = pageSize;
+            this.pageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             BackgroundWorkerUtil.start_run(grid_bw_DoWork, grid_bw_RunWorkerCompleted, null, false);
         }
 

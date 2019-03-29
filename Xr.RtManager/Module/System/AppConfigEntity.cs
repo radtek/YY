@@ -31,5 +31,9 @@ namespace Xr.RtManager
         /// 第一次启动 1：是 0：否
         /// </summary>
         public String firstStart { get; set; }
+        /// <summary>
+        /// 每页数量
+        /// </summary>
+        public String pagesize { get; set; }
     }
 }

@@ -13,6 +13,128 @@ namespace Xr.Log4net
     {
         private static ILog log = LogManager.GetLogger("FileLogger");//一般的日志信息
         private static ILog logs = LogManager.GetLogger("ErrorLogger");//错误的日志信息
+        #region 删除文件
+        private static log4net.ILog _log = null;
+        /// <summary>
+        /// 日志文件过期时间(单位:天)，默认半年=180天
+        /// </summary>
+        private static int outdate_days = 30;
+
+        private static object lockHelper = new object();
+        private static log4net.ILog InnerLog
+        {
+            get
+            {
+                if (null == _log)
+                {
+                    lock (lockHelper)
+                    {
+                        if (null == _log)
+                        {
+                            try
+                            {
+                                string cfgfile = "Log4net//log4net.config";//当前(exe文件所在)目录
+                                log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(cfgfile));
+                                _log = LogManager.GetLogger("Logging");
+
+                                #region 删除过期的日期文件
+                                System.Threading.Thread th = new System.Threading.Thread(() =>
+                                {
+                                    try
+                                    {
+                                        DeleteOutdatefiles(_log, cfgfile);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                    }
+                                });
+                                th.IsBackground = true;
+                                th.Start();
+                                #endregion
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+                        }
+                    }
+                }
+                return _log;
+            }
+        }
+        /// <summary>
+        /// 删除过期的日志文件
+        /// </summary>
+        private static void DeleteOutdatefiles(ILog log, string cfgfile)
+        {
+            if (log == null ||
+                !log.IsInfoEnabled ||
+                !log.IsErrorEnabled)
+            {
+                return;
+            }
+
+            try
+            {
+                System.Xml.XmlDocument xdoc = new System.Xml.XmlDocument();
+                xdoc.Load(cfgfile);
+                var node = xdoc.SelectSingleNode("log4net");
+                //附带属性到log4net.config，只能在根节点设置添加。
+                //这个附带属性设置还不能放到其它节点，放到其它节点log4net解析会报错（虽未影响结果，但看着不舒服）
+                if (null != node || node.Attributes != null || node.Attributes.Count > 0)
+                {
+                    outdate_days = int.Parse(node.Attributes["outdate_days"].Value);
+                }
+            }
+            catch (Exception exx)
+            {
+            }
+            var apps = log.Logger.Repository.GetAppenders();
+            if (apps.Length <= 0)
+            {
+                return;
+            }
+            var now = DateTime.Now;
+            foreach (var item in apps)
+            {
+                if (item is log4net.Appender.RollingFileAppender)
+                {
+                    log4net.Appender.RollingFileAppender roll = item as log4net.Appender.RollingFileAppender;
+                    var dir = System.IO.Path.GetDirectoryName(roll.File);
+                    var files = System.IO.Directory.GetFiles(dir, "*.log");
+                   // var sample = "log.txt2017-10-23.txt";
+                    foreach (var file in files)
+                    {
+                        var name = System.IO.Path.GetFileName(file);
+                        //if (name.Length != sample.Length)
+                        //{
+                        //    continue;
+                        //}
+                        var ss = name.Substring(0,10).Split('-');
+                        int year = int.Parse(ss[0]);
+                        int month = int.Parse(ss[1]);
+                        int day = int.Parse(ss[2]);
+                        var date = new DateTime(year, month, day);
+                        //TimeZone、TimeZoneInfo
+                        TimeSpan ts = now - date;
+                        if (ts.Days >= outdate_days)
+                        {
+                            try
+                            {
+                                System.IO.File.Delete(file);
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public static void InitLog()
+        {
+            ILog l = InnerLog;
+        }
+        #endregion 
         /// <summary>
         /// 一般信息的日志
         /// </summary>

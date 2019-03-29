@@ -23,7 +23,7 @@ namespace Xr.RtCall.Model
         /// </summary>
         public String deptCode { get; set; }
         /// <summary>
-        /// 诊室编码
+        /// 诊室ID
         /// </summary>
         public String ClincCode { get; set; }
         /// <summary>
@@ -46,5 +46,9 @@ namespace Xr.RtCall.Model
         /// 是否启动注入患者ID(true , false)
         /// </summary>
         public String WhetherToAssign { get; set; }
+        /// <summary>
+        /// 标识是否是第一次启动
+        /// </summary>
+        public String Setting { get; set; }
     }
 }

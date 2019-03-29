@@ -32,6 +32,7 @@ namespace Xr.RtManager
             pageControl1.MainForm = MainForm;
             cmd = new OpaqueCommand(AppContext.Session.waitControl);
             cmd.ShowOpaqueLayer(0f);
+            pageControl1.PageSize = Convert.ToInt32(AppContext.AppConfig.pagesize);
             //this.BackColor = Color.FromArgb(243, 243, 243);
             SearchData(true, 1, pageControl1.PageSize);
         }
@@ -185,7 +186,10 @@ namespace Xr.RtManager
                 catch (Exception ex)
                 {
                     cmd.HideOpaqueLayer();
-                    throw new Exception(ex.InnerException.Message);
+                    if (ex.InnerException != null)
+                        throw new Exception(ex.InnerException.Message);
+                    else
+                        throw new Exception(ex.Message);
                 }
             };
 
@@ -315,7 +319,9 @@ namespace Xr.RtManager
 
         private void buttonControl5_Click_1(object sender, EventArgs e)
         {
-            MessageBoxUtils.Show("123", MessageBoxButtons.OK, MainForm);
+            tbVersion.Text = string.Compare(textEdit1.Text, textEdit2.Text).ToString();
+            
+            //MessageBoxUtils.Show("123", MessageBoxButtons.OK, MainForm);
         }
 
     }
