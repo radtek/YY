@@ -25,7 +25,11 @@ namespace Xr.RtCall.Model
        /// <summary>
        /// 医生接口地址
        /// </summary>
-       public const String doctor = "itf/triage/findDoctorIdByClinicId";
+       public const String doctor = "itf/call/callLoginRoom";
+       /// <summary>
+       /// 循环获取医生的状态
+       /// </summary>
+       public const String GetIsStop = "itf/call/findIsStop";
        /// <summary>
        /// 诊室接口地址
        /// </summary>
@@ -33,7 +37,7 @@ namespace Xr.RtCall.Model
        /// <summary>
        /// 诊室列表接口
        /// </summary>
-       public const String ClincInfo = "itf/intro/findCliniList";
+       public const String ClincInfo = "itf/call/findCliniList";
        /// <summary>
        /// 下一位接口地址
        /// </summary>
@@ -82,5 +86,9 @@ namespace Xr.RtCall.Model
        /// 确认是否启动
        /// </summary>
        public const String IsStop = "itf/call/transferRoom";
+       /// <summary>
+       ///完成就诊接口地址
+       /// </summary>
+       public const String visitWin = "itf/triage/visitWin";
     }
 }

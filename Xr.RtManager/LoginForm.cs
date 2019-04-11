@@ -24,6 +24,8 @@ namespace Xr.RtManager
         {
             InitializeComponent();
             cmd = new Xr.Common.Controls.OpaqueCommand(this);
+            tbLoginName.Focus();
+            tbLoginName.Select(tbLoginName.TextLength, 0); // 光标移动到最后
         }
 
         Xr.Common.Controls.OpaqueCommand cmd;
@@ -172,8 +174,20 @@ namespace Xr.RtManager
         {
             if (e.KeyCode == Keys.Enter)//如果输入的是回车键  
             {
-                this.btnLogin_Click(sender, e);//触发button事件  
+                e.Handled = true;
+                tbPassword.Focus();
+                tbPassword.Select(tbPassword.TextLength, 0); // 光标移动到最后
             }  
+        }
+
+        /// <summary>
+        /// 清除换行符，使用回车键切到密码行会使账号框触发回车换行，导致看不到账号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbLoginName_TextChanged(object sender, EventArgs e)
+        {
+            tbLoginName.Text = tbLoginName.Text.Trim().Replace("\r\n", "");
         }
 
         private void tbPassword_KeyDown(object sender, KeyEventArgs e)
@@ -188,5 +202,7 @@ namespace Xr.RtManager
         {
             cmd.rectDisplay = this.DisplayRectangle;
         }
+
+
     }
 }

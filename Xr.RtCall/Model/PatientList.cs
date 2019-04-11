@@ -62,6 +62,7 @@ namespace Xr.RtCall.Model
         /// 电话号码
         /// </summary>
         public string telPhone { get;set;}
+        public bool showRegTime { get; set; }
     }
     /// <summary>
     /// 卡类型
@@ -87,5 +88,13 @@ namespace Xr.RtCall.Model
     {
         public String id { get; set; }
         public String name { get; set; }
+    }
+    public class StardIsFrom
+    {
+        public String hospitalId { get; set; }
+        public String deptId { get; set; }
+        public String doctorId { get; set; }
+        public String clinicId { get; set; }
+        public String isStop { get; set; }
     }
 }

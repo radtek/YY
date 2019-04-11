@@ -162,6 +162,7 @@ namespace Xr.RtManager.Pages.cms
                 var selectedRow =new ClinicInfoEntity();
                 selectedRow.deptId = treeMenuControl1.EditValue;
                 selectedRow.isUse="0";
+                selectedRow.isOccupy = "0";
                 dcClinc.SetValue(selectedRow);
 
             }
@@ -232,6 +233,7 @@ namespace Xr.RtManager.Pages.cms
                         {
                             SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptList[0].id);
                         }
+                        this.dcClinc.ClearValue();
                         //SearchData(1, pageControl1.PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
                     }
                     else
@@ -405,6 +407,23 @@ namespace Xr.RtManager.Pages.cms
           //  SearchData(CurrentPage,PageSize, AppContext.Session.hospitalId, AppContext.Session.deptId);
         }
         #endregion 
+
+        private void gc_Clinic_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedRow = this.gv_Clinic.GetFocusedRow() as ClinicInfoEntity;
+                if (selectedRow == null)
+                    return;
+                selectedRow.deptId = treeMenuControl1.EditValue;
+                dcClinc.SetValue(selectedRow);
+                groupBox3.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("诊室修改错误信息：" + ex.Message);
+            }
+        }
         #endregion
     }
 }

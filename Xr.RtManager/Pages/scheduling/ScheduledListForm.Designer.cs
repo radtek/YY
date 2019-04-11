@@ -434,11 +434,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deEnd.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
             this.deEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
             this.deEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.deEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.deEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.deEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.deEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.deEnd.Size = new System.Drawing.Size(100, 26);
             this.deEnd.TabIndex = 110;
             // 

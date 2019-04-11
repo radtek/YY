@@ -200,5 +200,27 @@ namespace Xr.RtManager
         {
             cmd.rectDisplay = this.DisplayRectangle;
         }
+
+        private void gvRole_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            if (e.Column.Caption!="操作")
+            {
+                 var selectedRow = gvRole.GetFocusedRow() as RoleEntity;
+            if (selectedRow == null)
+                return;
+            var edit = new RoleEdit();
+            RoleEntity role = new RoleEntity();
+            role.id = selectedRow.id;
+            edit.role = role;
+            edit.Text = "角色修改";
+            if (edit.ShowDialog() == DialogResult.OK)
+            {
+                Thread.Sleep(300);
+                cmd.ShowOpaqueLayer();
+                SearchData();
+                MessageBoxUtils.Hint("修改成功!", MainForm);
+            }
+            }
+        }
     }
 }

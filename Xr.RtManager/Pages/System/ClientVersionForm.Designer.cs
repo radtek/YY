@@ -43,8 +43,6 @@
             this.pageControl1 = new Xr.Common.Controls.PageControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.buttonControl5 = new Xr.Common.Controls.ButtonControl();
             this.tbVersion = new DevExpress.XtraEditors.TextEdit();
             this.tbTitle = new DevExpress.XtraEditors.TextEdit();
@@ -61,8 +59,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVersion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTitle.Properties)).BeginInit();
             this.SuspendLayout();
@@ -103,6 +99,7 @@
             this.gcDict.TabIndex = 13;
             this.gcDict.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcDict.Click += new System.EventHandler(this.gcDict_Click);
             // 
             // gridView1
             // 
@@ -245,8 +242,6 @@
             this.borderPanel1.Appearance.Options.UseBackColor = true;
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel1.Controls.Add(this.textEdit2);
-            this.borderPanel1.Controls.Add(this.textEdit1);
             this.borderPanel1.Controls.Add(this.buttonControl5);
             this.borderPanel1.Controls.Add(this.tbVersion);
             this.borderPanel1.Controls.Add(this.tbTitle);
@@ -269,33 +264,18 @@
             this.borderPanel1.Size = new System.Drawing.Size(1237, 50);
             this.borderPanel1.TabIndex = 0;
             // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(1070, 10);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.AutoHeight = false;
-            this.textEdit2.Size = new System.Drawing.Size(77, 27);
-            this.textEdit2.TabIndex = 95;
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(969, 12);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.AutoHeight = false;
-            this.textEdit1.Size = new System.Drawing.Size(80, 27);
-            this.textEdit1.TabIndex = 94;
-            // 
             // buttonControl5
             // 
             this.buttonControl5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl5.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl5.Location = new System.Drawing.Point(888, 10);
+            this.buttonControl5.Location = new System.Drawing.Point(798, 9);
             this.buttonControl5.Name = "buttonControl5";
             this.buttonControl5.Size = new System.Drawing.Size(75, 30);
             this.buttonControl5.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl5.TabIndex = 93;
             this.buttonControl5.Text = "测试";
+            this.buttonControl5.Visible = false;
             this.buttonControl5.Click += new System.EventHandler(this.buttonControl5_Click_1);
             // 
             // tbVersion
@@ -319,7 +299,7 @@
             this.buttonControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl4.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl4.Location = new System.Drawing.Point(790, 10);
+            this.buttonControl4.Location = new System.Drawing.Point(699, 10);
             this.buttonControl4.Name = "buttonControl4";
             this.buttonControl4.Size = new System.Drawing.Size(75, 30);
             this.buttonControl4.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -332,12 +312,13 @@
             this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl3.Location = new System.Drawing.Point(700, 10);
+            this.buttonControl3.Location = new System.Drawing.Point(879, 8);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
             this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl3.TabIndex = 88;
             this.buttonControl3.Text = "修改";
+            this.buttonControl3.Visible = false;
             this.buttonControl3.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // buttonControl2
@@ -404,8 +385,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
             this.borderPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVersion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTitle.Properties)).EndInit();
             this.ResumeLayout(false);
@@ -436,8 +415,6 @@
         private DevExpress.XtraEditors.TextEdit tbVersion;
         private DevExpress.XtraEditors.TextEdit tbTitle;
         private Xr.Common.Controls.ButtonControl buttonControl5;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

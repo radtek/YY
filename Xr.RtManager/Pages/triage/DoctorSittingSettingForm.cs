@@ -30,15 +30,24 @@ namespace Xr.RtManager.Pages.triage
             GetDoctorAndDepartment(AppContext.Session.deptIds);
             Doc = 0;
             //SelectDoctor(AppContext.Session.deptIds);
-            DoctorSittingSelect(1, pageControl1.PageSize,DateTime.Now.ToString("yyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd"));
-            this.beginDate.Text = DateTime.Now.ToString("yyy-MM-dd");
-            this.endDate.Text = DateTime.Now.ToString("yyy-MM-dd");
+            DoctorSittingSelect(1, pageControl1.PageSize,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd"));
+            this.beginDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            this.endDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             #endregion 
             cmd.HideOpaqueLayer();
             dateEdit3.Properties.MinValue = DateTime.Now;
             dateEdit3.Properties.MaxValue = DateTime.Now.AddDays(90);
             dateEdit4.Properties.MinValue = DateTime.Now;
             dateEdit4.Properties.MaxValue = DateTime.Now.AddDays(90);
+            dateEdit3.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            dateEdit4.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            //List<ClinicInfoEntity> clinicInfos = new List<ClinicInfoEntity>();
+            //clinicInfos.Add(new ClinicInfoEntity {id="",name="选择诊室"});
+            //repositoryItemLookUpEdit3.DataSource = clinicInfos;
+            //repositoryItemLookUpEdit3.DisplayMember = "name";
+            //repositoryItemLookUpEdit3.ValueMember = "id";
+            //repositoryItemLookUpEdit3.ShowHeader = false;
+            //repositoryItemLookUpEdit3.ShowFooter = false;
         }
         #region 医生坐诊分页查询
         /// <summary>
@@ -263,13 +272,13 @@ namespace Xr.RtManager.Pages.triage
             try
             {
                 clinicInfo = new List<ClinicInfoEntity>();
-                String url = AppContext.AppConfig.serverUrl + "cms/clinic/findAll?hospital.id=" + hospitalId + "&dept.id=" + deptId + "&isOccupy=0";
+                String url = AppContext.AppConfig.serverUrl + "cms/clinic/list?hospital.id=" + hospitalId + "&dept.id=" + deptId;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     clinicInfo = new List<ClinicInfoEntity>();
-                    clinicInfo = objT["result"].ToObject<List<ClinicInfoEntity>>();
+                    clinicInfo = objT["result"]["list"].ToObject<List<ClinicInfoEntity>>();
                     ClinicInfoEntity dept = new ClinicInfoEntity();
                     dept.id = "";
                     dept.name = "选择诊室";
@@ -655,11 +664,12 @@ namespace Xr.RtManager.Pages.triage
         }
         #endregion 
         #region 获取当前医院当前科室下没有被坐诊的诊室
+        #region 注释方法
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
             {
-                if (e.Column.FieldName != "period")
+                if (e.Column.FieldName != "clinicId")
                 {
                     return;
                 }
@@ -669,7 +679,7 @@ namespace Xr.RtManager.Pages.triage
                 string workDate = this.gridView1.GetRowCellValue(selectRow, "workDate").ToString();//时间
                 string doctorId = lookUpEdit1.EditValue.ToString();//医生ID
                 string deptId = treeListLookUpEdit2.EditValue.ToString();//科室ID
-                String url = AppContext.AppConfig.serverUrl + "cms/clinic/findClinicList?hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + deptId + "&workDate=" + workDate;
+                String url = AppContext.AppConfig.serverUrl + "cms/clinic/findClinicList?hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + deptId + "&period=" + period + "&workDate=" + workDate;
                 String data = HttpClass.httpPost(url);
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
@@ -698,5 +708,50 @@ namespace Xr.RtManager.Pages.triage
             }
         }
         #endregion 
+        string TimeSlot = "";
+        private void repositoryItemLookUpEdit3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ClinicInfoEntity> clinicInfos = new List<ClinicInfoEntity>();
+                int selectRow = gridView1.GetSelectedRows()[0];
+                string period = this.gridView1.GetRowCellValue(selectRow, "period").ToString();//时段
+                if (period==TimeSlot)
+                {
+                    return;
+                }
+                TimeSlot = period;
+                string workDate = this.gridView1.GetRowCellValue(selectRow, "workDate").ToString();//时间
+                string doctorId = lookUpEdit1.EditValue.ToString();//医生ID
+                string deptId = treeListLookUpEdit2.EditValue.ToString();//科室ID
+                String url = AppContext.AppConfig.serverUrl + "cms/clinic/findClinicList?hospitalId=" + AppContext.Session.hospitalId + "&deptId=" + deptId + "&period=" + period + "&workDate=" + workDate;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    clinicInfos = new List<ClinicInfoEntity>();
+                    clinicInfos = objT["result"].ToObject<List<ClinicInfoEntity>>();
+                    ClinicInfoEntity dept = new ClinicInfoEntity();
+                    dept.id = "";
+                    dept.name = "选择诊室";
+                    clinicInfos.Insert(0, dept);
+                    repositoryItemLookUpEdit3.DataSource = clinicInfos;
+                    repositoryItemLookUpEdit3.DisplayMember = "name";
+                    repositoryItemLookUpEdit3.ValueMember = "id";
+                    repositoryItemLookUpEdit3.ShowHeader = false;
+                    repositoryItemLookUpEdit3.ShowFooter = false;
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtils.Show(ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                Log4net.LogHelper.Error("获取诊室列表错误信息：" + ex.Message);
+            }
+        }
+        #endregion
     }
 }

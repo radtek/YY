@@ -1,0 +1,11 @@
+﻿  注：这里只是配置文件的说明,如有更改请到 Xr.RtScreen.exe.config 打开 进行修改
+  所有的配置内容都需要写在value的双引号里面
+  <add key="ServerUrl" value="http://192.168.200.42:97/yyfz/api/"/>
+  <add key="hospitalCode" value=""/><!-- 医院编码 -->
+  <add key="deptCode" value=""/><!-- 科室编码 -->
+  <add key="clinicName" value=""/><!-- 诊室名称 -->
+  <add key="StartupScreen" value="1"/><!--配置文件设置启动的屏幕 1（公共大屏）2（科室小屏）3（医生小屏）-->
+  <add key="Setting" value="0"/><!--标识是否是第一次启动 0(代表程序第一次启动) 1(表示不是第一次启动) 因为第一次启动需要配置信息-->
+  <add key="RefreshTime" value="5000" /><!--大屏信息刷新时间 5秒一次-->
+  <add key="CallNextSpan" value="3000" /><!--叫号信息刷新时间 3秒一次-->
+  <add key="VoicePackage" value="2" /><!--设置播放语音的语音包的位置,可以先用语音测试程序取出要设置语音播放的语音包的位置-->

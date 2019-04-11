@@ -97,16 +97,21 @@ namespace Xr.RtManager.Pages.triage
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         RefreshData();
+                        String tipMsg = "";
+                        if (objT["result"]["tipMsg"] != null && objT["result"]["tipMsg"].ToString().Length != 0)
+                        {
+                            tipMsg = objT["result"]["tipMsg"].ToString() + ",";
+                        }
                         //打印小票
-                        PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), pr.patientName, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString());
+                        PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), pr.patientName, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString(), objT["result"]["regVisitTime"].ToString());
                         string message = "";
                         if (!print.Print(ref message))
                         {
-                            MessageBoxUtils.Show("打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                            MessageBoxUtils.Show(tipMsg + "打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                         }
                         else
                         {
-                            MessageBoxUtils.Hint("打印小票完成", this);
+                            MessageBoxUtils.Hint(tipMsg + "打印小票完成", this);
                         }
                     }
                     else
@@ -160,16 +165,21 @@ namespace Xr.RtManager.Pages.triage
                     if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                     {
                         RefreshData();
+                        String tipMsg = "";
+                        if (objT["result"]["tipMsg"] != null && objT["result"]["tipMsg"].ToString().Length != 0)
+                        {
+                            tipMsg = objT["result"]["tipMsg"].ToString() + ",";
+                        }
                         //打印小票
-                        PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), pr.patientName, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString());
+                        PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), pr.patientName, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString(), objT["result"]["regVisitTime"].ToString());
                         string message = "";
                         if (!print.Print(ref message))
                         {
-                            MessageBoxUtils.Show("打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                            MessageBoxUtils.Show(tipMsg + "打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                         }
                         else
                         {
-                            MessageBoxUtils.Hint("打印小票完成", this);
+                            MessageBoxUtils.Hint(tipMsg + "打印小票完成", this);
                         }
                     }
                     else
@@ -184,6 +194,11 @@ namespace Xr.RtManager.Pages.triage
             {
                 this.registerId = pr.registerId;
                 DialogResult = DialogResult.No;
+            }
+            else if (pr.status == "7") //该复诊患者预约的医生已停诊，请选择其他医生签到
+            {
+                this.registerId = pr.registerId;
+                DialogResult = DialogResult.Retry;
             }
         }
 
@@ -208,15 +223,20 @@ namespace Xr.RtManager.Pages.triage
                 JObject objT = JObject.Parse(data.ToString());
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), pr.patientName, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString());
+                    String tipMsg = "";
+                    if (objT["result"]["tipMsg"] != null && objT["result"]["tipMsg"].ToString().Length != 0)
+                    {
+                        tipMsg = objT["result"]["tipMsg"].ToString() + ",";
+                    }
+                    PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), pr.patientName, objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString(), objT["result"]["regVisitTime"].ToString());
                     string message = "";
                     if (!print.Print(ref message))
                     {
-                        MessageBoxUtils.Show("打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                        MessageBoxUtils.Show(tipMsg + "打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
                     }
                     else
                     {
-                        MessageBoxUtils.Hint("打印小票完成", this);
+                        MessageBoxUtils.Hint(tipMsg + "打印小票完成", this);
                     }
                 }
                 else

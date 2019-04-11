@@ -43,6 +43,7 @@ namespace Xr.RtScreen.VoiceCall
         int a = 0;
         public void UpdateForeach(List<CallPrint> list)
         {
+            FuZhi = 0;
             foreach (var callpatient in list)
             {
                 try
@@ -53,8 +54,13 @@ namespace Xr.RtScreen.VoiceCall
                 catch 
                 {
                 }
+                setFormTextValue(callpatient.LogString());
                 LogPrint(callpatient.LogString());
                 succeedCount++;
+                do
+                {
+                    FuZhi++;
+                } while (FuZhi != 3000);
             }
             lab_succeedCount.Text = "正常次数：" + succeedCount;
             lab_failedCount.Text = "失败次数：" + failedCount;
@@ -65,9 +71,6 @@ namespace Xr.RtScreen.VoiceCall
         {
             List<CallPrint> cpList = new List<CallPrint>();
             listPrint = new List<CallPrint>();
-            //Dictionary<string, string> pa = new Dictionary<string, string>();
-            //pa.Add("hospitalId", HelperClass.hospitalId);
-            //pa.Add("deptId", HelperClass.deptId);
             string Url = "";
             if (Form1.ScreenType == "1")
             {
@@ -77,7 +80,6 @@ namespace Xr.RtScreen.VoiceCall
             {
                 Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId + "&clinicId=" + HelperClass.clincId;
             }
-           // string Url = AppContext.AppConfig.serverUrl + InterfaceAddress.findCallList + "?" + string.Join("&", pa.Select(x => x.Key + "=" + x.Value).ToArray());
             string result = HttpClass.httpPost(Url);
             Log4net.LogHelper.Info("呼号请求地址：" + Url);
             try
@@ -181,23 +183,25 @@ namespace Xr.RtScreen.VoiceCall
         }
         #endregion
         #region 把数据写入到界面
+        int FuZhi = 0;
         private delegate void LogPrintDelegate(string log);
         public void LogPrint(string log)
         {
+            FuZhi = 0;
             if (txt_log.InvokeRequired)
             {
                 //   this.txtreceive.BeginInvoke(new ShowDelegate(Show), strshow);//这个也可以
                 txt_log.Invoke(new LogPrintDelegate(LogPrint), log);
-                setFormTextValue(log);
+                //setFormTextValue(log);
             }
             else
             {
-                setFormTextValue(log);
                 //txt_log.AppendText(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "==>" + log + "\n");
                 string newLine = String.Format("{0:yyyy-MM-dd HH:mm:ss}==>{1}\n{2}", DateTime.Now, log, Environment.NewLine);
                 // 将textBox1的内容插入到第一行
                 // 索引0是 richText1 第一行位置
                 txt_log.Text = txt_log.Text.Insert(0, newLine);
+                //setFormTextValue(log);
             }
         }
         private void SpeakVoicemainFrom_FormClosing(object sender, FormClosingEventArgs e)

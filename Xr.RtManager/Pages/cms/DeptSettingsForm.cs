@@ -30,10 +30,6 @@ namespace Xr.RtManager.Pages.cms
 
         private void DeptSettingsForm_Load(object sender, EventArgs e)
         {
-            labelControl1.Font = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
-            labelControl1.ForeColor = Color.FromArgb(255, 0, 0);
-            labelControl2.Font = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
-            labelControl2.ForeColor = Color.FromArgb(255, 0, 0);
             MainForm = (Form)this.Parent;
             pageControl1.MainForm = MainForm;
             cmd = new Xr.Common.Controls.OpaqueCommand(AppContext.Session.waitControl);
@@ -314,6 +310,8 @@ namespace Xr.RtManager.Pages.cms
             pbPicture.Image = null;
             pbPicture.Refresh();
             pictureServiceFilePath = null;
+            logoFilePath = "";
+            pictureFilePath = "";
 
             groupBox1.Enabled = true;
             deptInfo = new DeptInfoEntity();
@@ -337,6 +335,8 @@ namespace Xr.RtManager.Pages.cms
             pbPicture.Image = null;
             pbPicture.Refresh();
             pictureServiceFilePath = null;
+            logoFilePath = "";
+            pictureFilePath = "";
 
             deptInfo = new DeptInfoEntity();
             String id = Convert.ToString(treeList1.FocusedNode.GetValue("id"));
@@ -386,7 +386,7 @@ namespace Xr.RtManager.Pages.cms
                         return null;
                     }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                     {
-                        if (data != null)
+                        if (data2 != null)
                             this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(data2 as byte[]));
                     });
 
@@ -409,7 +409,7 @@ namespace Xr.RtManager.Pages.cms
                         return null;
                     }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                     {
-                        if (data != null)
+                        if (data3 != null)
                             this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(data3 as byte[]));
                     });
                     groupBox1.Enabled = true;
@@ -431,18 +431,15 @@ namespace Xr.RtManager.Pages.cms
             }
             dcDeptInfo.GetValue(deptInfo);
 
-            if (logoServiceFilePath == null || logoServiceFilePath.Length == 0)
+            if (logoServiceFilePath != null && logoServiceFilePath.Length != 0)
             {
-                dcDeptInfo.ShowError(pbLogo, "请先上传文件");
-                return;
+                deptInfo.logoUrl = logoServiceFilePath;
             }
-            deptInfo.logoUrl = logoServiceFilePath;
-            if (pictureServiceFilePath == null || pictureServiceFilePath.Length == 0)
+            
+            if (pictureServiceFilePath != null && pictureServiceFilePath.Length != 0)
             {
-                dcDeptInfo.ShowError(pbPicture, "请先上传文件");
-                return;
+                deptInfo.pictureUrl = pictureServiceFilePath;
             }
-            deptInfo.pictureUrl = pictureServiceFilePath;
             //文本编辑框的内容要转编码，不然后台获取的时候会不对
             deptInfo.synopsis = HttpUtility.UrlEncode(deptInfo.synopsis, Encoding.UTF8);
             //请求接口
@@ -471,6 +468,8 @@ namespace Xr.RtManager.Pages.cms
                     pbPicture.Image = null;
                     pbPicture.Refresh();
                     pictureServiceFilePath = null;
+                    logoFilePath = "";
+                    pictureFilePath = "";
                     MessageBoxUtils.Hint("保存成功!", MainForm);
                 }
                 else
@@ -630,6 +629,103 @@ namespace Xr.RtManager.Pages.cms
         private void DeptSettingsForm_Resize(object sender, EventArgs e)
         {
             cmd.rectDisplay = this.DisplayRectangle;
+        }
+
+        private void treeList1_Click(object sender, EventArgs e)
+        {
+            //清除值
+            dcDeptInfo.ClearValue();
+            pbLogo.Image = null;
+            pbLogo.Refresh();
+            logoServiceFilePath = null;
+            pbPicture.Image = null;
+            pbPicture.Refresh();
+            pictureServiceFilePath = null;
+            logoFilePath = "";
+            pictureFilePath = "";
+
+            deptInfo = new DeptInfoEntity();
+            String id = Convert.ToString(treeList1.FocusedNode.GetValue("id"));
+            if (id == null)
+                return;
+            String url = AppContext.AppConfig.serverUrl + "cms/dept/findById?id=" + id;
+
+            cmd.ShowOpaqueLayer();
+            this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+            {
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+            {
+                cmd.HideOpaqueLayer();
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    deptInfo = objT["result"].ToObject<DeptInfoEntity>();
+                    deptInfo.hospitalId = deptInfo.hospital.id;
+                    if (deptInfo.parent != null)
+                        deptInfo.parentId = deptInfo.parent.id;
+                    dcDeptInfo.SetValue(deptInfo);
+                    if (deptInfo.parent == null) //没有父级元素的时候，默认选中"无"选项
+                        treeParentId.EditValue = "0";
+                    //显示图片
+                    logoServiceFilePath = deptInfo.logoUrl;
+                    pictureServiceFilePath = deptInfo.pictureUrl;
+                    //医院的机子有些请求不到路径的时候，会卡的1分钟左右，所以下载图片用异步
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        if (logoServiceFilePath != null && logoServiceFilePath.Length > 0)
+                        {
+                            try
+                            {
+                                WebClient web = new WebClient();
+                                var bytes = web.DownloadData(logoServiceFilePath);
+                                return bytes;
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Xr.Log4net.LogHelper.Error(ex.Message);
+                            }
+                        }
+                        return null;
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        if (data2 != null)
+                            this.pbLogo.Image = Bitmap.FromStream(new MemoryStream(data2 as byte[]));
+                    });
+
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
+                        {
+                            try
+                            {
+                                WebClient web = new WebClient();
+                                var bytes = web.DownloadData(pictureServiceFilePath);
+                                this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(bytes));
+                                return bytes;
+                            }
+                            catch (Exception ex)
+                            {
+                                Xr.Log4net.LogHelper.Error(ex.Message);
+                            }
+                        }
+                        return null;
+                    }, null, (data3) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        if (data3 != null)
+                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(data3 as byte[]));
+                    });
+                    groupBox1.Enabled = true;
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                }
+            });
         }
     
     }

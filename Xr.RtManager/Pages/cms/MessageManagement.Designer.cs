@@ -410,6 +410,8 @@
             // 
             // borderPanel1
             // 
+            this.borderPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.borderPanel1.Appearance.Options.UseBackColor = true;
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.borderPanel1.Controls.Add(this.btnDel);
@@ -421,8 +423,8 @@
             this.borderPanel1.CornerRadius.TopLeft = 4;
             this.borderPanel1.CornerRadius.TopRight = 4;
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel1.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel1.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Size = new System.Drawing.Size(900, 50);

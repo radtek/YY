@@ -165,11 +165,8 @@ namespace Xr.RtManager.Pages.scheduling
                 CheckState allDay = cbAllAay.CheckState;
 
                 List<String> periodList = new List<String>();
-                if (morning == CheckState.Checked) periodList.Add("0");
-                if (afternoon == CheckState.Checked) periodList.Add("1");
-                if (night == CheckState.Checked) periodList.Add("2");
-                if (allDay == CheckState.Checked) periodList.Add("3");
-                if (periodList.Count == 0)
+                if (morning != CheckState.Checked && afternoon != CheckState.Checked
+                    && night != CheckState.Checked && allDay != CheckState.Checked)
                 {
                     dataController1.ShowError(cbAllAay, "至少选一个");
                     return;
@@ -181,6 +178,21 @@ namespace Xr.RtManager.Pages.scheduling
                 cmd.ShowOpaqueLayer();
                 this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                 {
+                    if (allDay == CheckState.Checked)
+                    {
+                        //全天
+                        periodList.Clear();
+                        periodList.Add("0");
+                        periodList.Add("1");
+                        periodList.Add("2");
+                        periodList.Add("3");
+                    }else{
+                        if (morning == CheckState.Checked) periodList.Add("0");
+                        if (afternoon == CheckState.Checked) periodList.Add("1");
+                        if (night == CheckState.Checked) periodList.Add("2");
+                        periodList.Add("3");
+                    }
+                    String ts = "";
                     for (int i = 0; i < periodList.Count; i++)
                     {
                         param = "deptId=" + treeMenuControl1.EditValue + "&doctorId=" + mcDoctor.itemName
@@ -198,14 +210,18 @@ namespace Xr.RtManager.Pages.scheduling
                                 else if (periodList[i] == "1") sd = "下午";
                                 else if (periodList[i] == "2") sd = "晚上";
                                 else if (periodList[i] == "3") sd = "全天";
-                                //labMsg.Text = "该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
-                                return "1|该日期" + sd + "已有排班，请先在【排班列表中停诊或者删除】";
+                                ts += sd + ",";
                             }
                         }
                         else
                         {
                             return "2|" + objT["message"].ToString();
                         }
+                    }
+                    if (ts.Length > 0)
+                    {
+                        ts = ts.Substring(0, ts.Length-1);
+                        return "1|该日期" + ts + "已有排班，请先在【排班列表中停诊或者删除】";
                     }
                     return "0|0";
 
@@ -229,6 +245,13 @@ namespace Xr.RtManager.Pages.scheduling
                     {
                         labMsg.Text = "";
                     }
+
+                    periodList.Clear();
+                    if (morning == CheckState.Checked) periodList.Add("0");
+                    if (afternoon == CheckState.Checked) periodList.Add("1");
+                    if (night == CheckState.Checked) periodList.Add("2");
+                    if (allDay == CheckState.Checked)  periodList.Add("3");
+
                     List<List<WorkingDayEntity>> sList = new List<List<WorkingDayEntity>>();
                     this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
                     {
@@ -678,6 +701,12 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void cbMorning_CheckStateChanged(object sender, EventArgs e)
         {
+            if (cbAllAay.CheckState == CheckState.Checked)
+            {
+                cbMorning.CheckState = CheckState.Unchecked;
+                dataController1.ShowError(cbAllAay, "选择了全天就不能选择上午、下午、晚上");
+                return;
+            }
             setScheduling();
             //CheckBox cb = (CheckBox)sender;
             //if (cb.CheckState == CheckState.Checked)
@@ -688,6 +717,12 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void cbAfternoon_CheckStateChanged(object sender, EventArgs e)
         {
+            if (cbAllAay.CheckState == CheckState.Checked)
+            {
+                cbAfternoon.CheckState = CheckState.Unchecked;
+                dataController1.ShowError(cbAllAay, "选择了全天就不能选择上午、下午、晚上");
+                return;
+            }
             setScheduling();
             //CheckBox cb = (CheckBox)sender;
             //if (cb.CheckState == CheckState.Checked)
@@ -698,6 +733,12 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void cbNight_CheckStateChanged(object sender, EventArgs e)
         {
+            if (cbAllAay.CheckState == CheckState.Checked)
+            {
+                cbAllAay.CheckState = CheckState.Unchecked;
+                dataController1.ShowError(cbAllAay, "选择了全天就不能选择上午、下午、晚上");
+                return;
+            }
             setScheduling();
             //CheckBox cb = (CheckBox)sender;
             //if (cb.CheckState == CheckState.Checked)
@@ -708,6 +749,14 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void cbAllAay_CheckStateChanged(object sender, EventArgs e)
         {
+            if (cbMorning.CheckState == CheckState.Checked
+                || cbAfternoon.CheckState == CheckState.Checked
+                || cbNight.CheckState == CheckState.Checked)
+            {
+                cbAllAay.CheckState = CheckState.Unchecked;
+                dataController1.ShowError(cbAllAay, "选择了上午、下午、晚上就不能选择全天");
+                return;
+            }
             setScheduling();
             //CheckBox cb = (CheckBox)sender;
             //if (cb.CheckState == CheckState.Checked)
@@ -780,7 +829,5 @@ namespace Xr.RtManager.Pages.scheduling
         {
             cmd.rectDisplay = this.DisplayRectangle;
         }
-
-
     }
 }

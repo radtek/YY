@@ -269,6 +269,14 @@ namespace Xr.Common.Internal
             {
                 this.Width = Math.Max(lcMessage.Left + lcMessage.Width + MessageMargin, MinWidth);
                 this.Height = MinHeight;
+                String[] arr = lcMessage.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                if (arr.Length - 2 > 0)//默认是有两行的，所以要超过一个换行符才加高度
+                {
+                    Graphics vGraphics = CreateGraphics();
+                    SizeF vSizeF = vGraphics.MeasureString("测试", lcMessage.Font);
+                    int wzHeight = Convert.ToInt32(Math.Ceiling(vSizeF.Height));
+                    this.Height = MinHeight + wzHeight * (arr.Length - 2);
+                }
             }
 
             //计算按钮区域占据的宽度

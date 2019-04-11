@@ -34,9 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnLogin = new Xr.Common.Controls.ButtonControl();
-            this.btnQuit = new Xr.Common.Controls.ButtonControl();
             this.btnUp = new Xr.Common.Controls.ButtonControl();
+            this.btnQuit = new Xr.Common.Controls.ButtonControl();
+            this.btnLogin = new Xr.Common.Controls.ButtonControl();
             this.tbPassword = new Xr.RtManager.MyTextBox();
             this.tbLoginName = new Xr.RtManager.MyTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -73,18 +73,18 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // btnLogin
+            // btnUp
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.btnLogin.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnLogin.Location = new System.Drawing.Point(74, 215);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 30);
-            this.btnLogin.Style = Xr.Common.Controls.ButtonStyle.Query;
-            this.btnLogin.TabIndex = 164;
-            this.btnLogin.Text = "登录";
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnUp.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnUp.Location = new System.Drawing.Point(276, 215);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(75, 30);
+            this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Save;
+            this.btnUp.TabIndex = 166;
+            this.btnUp.Text = "修改密码";
+            this.btnUp.Click += new System.EventHandler(this.skinButton2_Click);
             // 
             // btnQuit
             // 
@@ -99,18 +99,18 @@
             this.btnQuit.Text = "退出";
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
-            // btnUp
+            // btnLogin
             // 
-            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.btnUp.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnUp.Location = new System.Drawing.Point(276, 215);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(75, 30);
-            this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Save;
-            this.btnUp.TabIndex = 166;
-            this.btnUp.Text = "修改密码";
-            this.btnUp.Click += new System.EventHandler(this.skinButton2_Click);
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnLogin.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnLogin.Location = new System.Drawing.Point(74, 215);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(75, 30);
+            this.btnLogin.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.btnLogin.TabIndex = 164;
+            this.btnLogin.Text = "登录";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // tbPassword
             // 
@@ -142,6 +142,7 @@
             this.tbLoginName.TabIndex = 144;
             this.tbLoginName.Text = "system_admin";
             this.tbLoginName.TextMargin = new System.Windows.Forms.Padding(1, -1, 1, 1);
+            this.tbLoginName.TextChanged += new System.EventHandler(this.tbLoginName_TextChanged);
             this.tbLoginName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbLoginName_KeyDown);
             // 
             // LoginForm

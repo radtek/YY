@@ -43,12 +43,12 @@ namespace Xr.RtScreen
         /// <param name="e"></param>
         private void buttonControl1_Click(object sender, EventArgs e)
         {
-            if (this.treeHostile.EditValue == "")
+            if (this.treeHostile.EditValue.ToString() == "")
             {
                 Xr.Common.MessageBoxUtils.Show("请选择医院", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 return;
             }
-            if (treeKeshi.EditValue == "")
+            if (treeKeshi.EditValue.ToString() == "")
             {
                 Xr.Common.MessageBoxUtils.Show("请选择科室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 return;
@@ -58,7 +58,7 @@ namespace Xr.RtScreen
             //    Xr.Common.MessageBoxUtils.Show("请选择诊室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
             //    return;
             //}
-            SaveConfigSeting(treeHostile.EditValue.ToString(), treeClinc.EditValue.ToString(), treeKeshi.EditValue.ToString(), UpStard, "1");
+            SaveConfigSeting(treeHostile.EditValue.ToString(), treeClinc.Text.Trim(), treeKeshi.EditValue.ToString(), UpStard, "1");
             Application.ExitThread();
             Application.Exit();
             Application.Restart();
@@ -69,7 +69,7 @@ namespace Xr.RtScreen
         /// <summary>
         /// 保存信息到本地配置文件中
         /// </summary>
-        private void SaveConfigSeting(string hostalCode, string ClincCode, string deptCode, string StartupScreen, string Setting)
+        private void SaveConfigSeting(string hostalCode, string ClincName, string deptCode, string StartupScreen, string Setting)
         {
             try
             {
@@ -81,12 +81,12 @@ namespace Xr.RtScreen
                 Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
                 config.AppSettings.Settings["hospitalCode"].Value = hostalCode;
                 config.AppSettings.Settings["deptCode"].Value = deptCode;
-                config.AppSettings.Settings["clinicID"].Value = ClincCode;
+                config.AppSettings.Settings["clinicName"].Value = ClincName;
                 config.AppSettings.Settings["StartupScreen"].Value = StartupScreen;
                 config.AppSettings.Settings["Setting"].Value = Setting;
                 config.Save(ConfigurationSaveMode.Full);
                 System.Configuration.ConfigurationManager.RefreshSection("appSettings");//重新加载新的配置文件
-                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalCode + "科室编码：" + deptCode + "诊室id" + ClincCode + "并且修改Setting值为1标识为不是第一次启动了");
+                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalCode + "科室编码：" + deptCode + "诊室名称" + ClincName + "并且修改Setting值为1标识为不是第一次启动了");
             }
             catch (Exception ex)
             {
@@ -136,7 +136,7 @@ namespace Xr.RtScreen
         /// <param name="e"></param>
         private void treeHostile_EditValueChanged(object sender, EventArgs e)
         {
-            if (treeHostile.EditValue != "")
+            if (treeHostile.EditValue.ToString() != "")
             {
                 GetInforSetting(treeHostile.EditValue.ToString());
             }
@@ -179,12 +179,6 @@ namespace Xr.RtScreen
             }
         }
         #endregion 
-        #region 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            System.Environment.Exit(0);
-        }
-        #endregion 
         #region 诊室列表
         /// <summary>
         /// 诊室列表
@@ -193,7 +187,7 @@ namespace Xr.RtScreen
         /// <param name="e"></param>
         private void treeKeshi_EditValueChanged(object sender, EventArgs e)
         {
-            if (treeKeshi.EditValue != "")
+            if (treeKeshi.EditValue.ToString() != "")
             {
                 string hospitalid = string.Join(",", from a in HostalList where a.code == treeHostile.EditValue select a.id);
                 string deptid = string.Join(",", from s in DeptList where s.code == treeKeshi.EditValue select s.id);
@@ -211,10 +205,11 @@ namespace Xr.RtScreen
             }
         }
         #endregion 
+        #region 
         string UpStard = "1";
         private void Postoperative_Properties_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Postoperative.EditValue=="1")
+            if (Postoperative.EditValue.ToString() == "1")
             {
                 this.label5.Visible = false;
                 this.treeClinc.Visible = false;
@@ -226,5 +221,6 @@ namespace Xr.RtScreen
             }
             UpStard = Postoperative.EditValue.ToString();
         }
+        #endregion 
     }
 }

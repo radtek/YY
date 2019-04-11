@@ -60,8 +60,11 @@ namespace Xr.RtManager.Pages.cms
             treeMenuControl1.DisplayMember = "name";
             treeMenuControl1.ValueMember = "id";
             treeMenuControl1.DataSource = deptList;
-            treeMenuControl1.EditValue = deptList[0].id;
-            deptId = deptList[0].id;
+            if (deptList.Count > 0)
+            {
+                treeMenuControl1.EditValue = deptList[0].id;
+                deptId = deptList[0].id;
+            }
 
             //查询医院下拉框数据
             String url2 = AppContext.AppConfig.serverUrl + "cms/hospital/findAll";
@@ -382,6 +385,7 @@ namespace Xr.RtManager.Pages.cms
             pbPicture.Image = null;
             pbPicture.Refresh();
             pictureServiceFilePath = null;
+            pictureFilePath = "";
             //清除排班数据
             dcDefaultVisit.ClearValue();
             tableLayoutPanel4.Enabled = false;
@@ -419,6 +423,7 @@ namespace Xr.RtManager.Pages.cms
             pbPicture.Image = null;
             pbPicture.Refresh();
             pictureServiceFilePath = null;
+            pictureFilePath = "";
             //清除排班数据
             dcDefaultVisit.ClearValue();
             tableLayoutPanel4.Enabled = false;
@@ -471,7 +476,7 @@ namespace Xr.RtManager.Pages.cms
                         return null;
                     }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
                     {
-                        if (data != null)
+                        if (data2 != null)
                             this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(data2 as byte[]));
                     });
 
@@ -634,6 +639,7 @@ namespace Xr.RtManager.Pages.cms
                     pbPicture.Image = null;
                     pbPicture.Refresh();
                     pictureServiceFilePath = null;
+                    pictureFilePath = "";
                     //清除排班数据
                     dcDefaultVisit.ClearValue();
                     tableLayoutPanel4.Enabled = false;
@@ -1251,6 +1257,10 @@ namespace Xr.RtManager.Pages.cms
                                     checkBox.Font = new Font("微软雅黑", 10);
                                     checkBox.ForeColor = Color.FromArgb(255, 153, 102);
                                     checkBox.Text = "自动排班";
+                                    if (tlpMorning.Enabled)
+                                    {
+                                        checkBox.CheckState = CheckState.Checked;//默认选择
+                                    }
                                     tlpMorning.SetRowSpan(checkBox, 2);
                                     tlpMorning.Controls.Add(checkBox, c, r);
                                 }
@@ -1727,6 +1737,134 @@ namespace Xr.RtManager.Pages.cms
         {
             cmd.ShowOpaqueLayer();
             SearchData(1, pageControl1.PageSize);
+        }
+
+        private void cbAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            int days = tabControl1.Controls.Count; //排班天数
+            if (days > 0)
+            {
+                for (int i = 0; i < days; i++)
+                {
+                    TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
+                    for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
+                    {
+                        if (tabPage.Controls.Count == 0) break;
+                        TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
+                        if (tlp.Enabled)
+                        {
+                            CheckBox cbAutoSd = (CheckBox)tlp.GetControlFromPosition(0, 2);//自动更新
+                            cbAutoSd.CheckState = cbAuto.CheckState;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void gcDoctor_Click(object sender, EventArgs e)
+        {
+            //本来保存成功后清除一次就行了，不过为了预防新增或修改事件触发的过程中出现异常
+            //导致面板有数据却无法编辑,导致新增的时候有默认数据，所以这里需要再清一次
+            //清除医生数据
+            dcDoctorInfo.ClearValue();
+            pbPicture.Image = null;
+            pbPicture.Refresh();
+            pictureServiceFilePath = null;
+            pictureFilePath = "";
+            //清除排班数据
+            dcDefaultVisit.ClearValue();
+            tableLayoutPanel4.Enabled = false;
+            pbDispose();
+
+            doctorInfo = new DoctorInfoEntity();
+            var selectedRow = gridView1.GetFocusedRow() as DoctorInfoEntity;
+            if (selectedRow == null)
+                return;
+
+            cmd.ShowOpaqueLayer();
+            String url = AppContext.AppConfig.serverUrl + "cms/doctor/findById?id=" + selectedRow.id;
+            this.DoWorkAsync(250, (o) =>
+            {
+                String data = HttpClass.httpPost(url);
+                return data;
+
+            }, null, (data) =>
+            {
+                JObject objT = JObject.Parse(data.ToString());
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    doctorInfo = objT["result"].ToObject<DoctorInfoEntity>();
+                    doctorInfo.hospitalId = doctorInfo.dept.hospital.id;
+                    doctorInfo.deptId = doctorInfo.dept.id;
+                    if (doctorInfo.ignoreHoliday.Equals("1"))
+                        cbIgnoreHoliday.CheckState = CheckState.Checked;
+                    if (doctorInfo.ignoreYear.Equals("1"))
+                        cbIgnoreYear.CheckState = CheckState.Checked;
+                    dcDoctorInfo.SetValue(doctorInfo);
+                    //显示图片
+                    pictureServiceFilePath = doctorInfo.pictureUrl;
+                    //医院的机子有些请求不到路径的时候，会卡的1分钟左右，所以下载图片用异步
+                    this.DoWorkAsync(0, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        if (pictureServiceFilePath != null && pictureServiceFilePath.Length > 0)
+                        {
+                            try
+                            {
+                                WebClient web = new WebClient();
+                                var bytes = web.DownloadData(pictureServiceFilePath);
+                                return bytes;
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Xr.Log4net.LogHelper.Error(ex.Message);
+                            }
+                        }
+                        return null;
+                    }, null, (data2) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        if (data2 != null)
+                            this.pbPicture.Image = Bitmap.FromStream(new MemoryStream(data2 as byte[]));
+                    });
+
+                    groupBox1.Enabled = true;
+                    setDefaultVisit();
+                    tableLayoutPanel4.Enabled = true;
+
+                    //获取已排班信息
+                    url = AppContext.AppConfig.serverUrl + "cms/doctor/findDoctorVisitingList?deptId=" + doctorInfo.dept.id + "&doctorId=" + selectedRow.id;
+                    this.DoWorkAsync(250, (o) =>
+                    {
+                        data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (data2) =>
+                    {
+                        cmd.HideOpaqueLayer();
+                        objT = JObject.Parse(data2.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            List<WorkingDayEntity> workingDayList = objT["result"].ToObject<List<WorkingDayEntity>>();
+                            if (workingDayList.Count > 0)
+                            {
+                                setWorkingDay(workingDayList);
+                            }
+                            cmd.HideOpaqueLayer();
+                        }
+                        else
+                        {
+                            cmd.HideOpaqueLayer();
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                        }
+                    });
+                }
+                else
+                {
+                    cmd.HideOpaqueLayer();
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                }
+            });
+
         }
     }
 }

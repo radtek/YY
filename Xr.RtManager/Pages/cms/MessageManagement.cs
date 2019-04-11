@@ -210,6 +210,7 @@ namespace Xr.RtManager.Pages.cms
                     {
                         Xr.Common.MessageBoxUtils.Hint("删除成功", MainForm);
                         MessageContentTemplateList(1, pageControl1.PageSize);
+                        this.dcMessage.ClearValue();
                     }
                     else
                     {

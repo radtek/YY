@@ -125,7 +125,7 @@ namespace Xr.RtCall.pages
         #endregion
         #region 日期排班号源
         List<string> list;
-        dynamic listNum;
+        //dynamic listNum;
         /// <summary>
         /// 日期排班号源
         /// </summary>
@@ -154,7 +154,6 @@ namespace Xr.RtCall.pages
                                 JObject objT = JObject.Parse(string.Join(",", result.Data.ToArray()));
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
-
                                     List<TimeNum> timenum = objT["result"].ToObject<List<TimeNum>>();
                                     List<Xr.Common.Controls.Item> listitem = new List<Common.Controls.Item>();
                                     foreach (var item in timenum)

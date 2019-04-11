@@ -161,23 +161,6 @@
             this.bandedGridColumn28 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn29 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
-            this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
-            this.btnQuery = new Xr.Common.Controls.ButtonControl();
-            this.deEnd = new DevExpress.XtraEditors.DateEdit();
-            this.label2 = new System.Windows.Forms.Label();
-            this.deStart = new DevExpress.XtraEditors.DateEdit();
-            this.label3 = new System.Windows.Forms.Label();
-            this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
-            this.rBtn_day = new Xr.Common.Controls.BorderPanelButton();
-            this.rBtn_month = new Xr.Common.Controls.BorderPanelButton();
-            this.treeDeptId = new DevExpress.XtraEditors.TreeListLookUpEdit();
-            this.treeList2 = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
             this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
             this.panelEx16 = new Xr.Common.Controls.PanelEx(this.components);
@@ -190,6 +173,23 @@
             this.排号后移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.排号作废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.现场预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.treeDeptId = new DevExpress.XtraEditors.TreeListLookUpEdit();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
+            this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
+            this.rBtn_day = new Xr.Common.Controls.BorderPanelButton();
+            this.rBtn_month = new Xr.Common.Controls.BorderPanelButton();
+            this.deEnd = new DevExpress.XtraEditors.DateEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.deStart = new DevExpress.XtraEditors.DateEdit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
+            this.buttonControl2 = new Xr.Common.Controls.ButtonControl();
+            this.btnQuery = new Xr.Common.Controls.ButtonControl();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -221,20 +221,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.gc_deptInfoNCD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_deptInfoNCD)).BeginInit();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).BeginInit();
             this.borderPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_day)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_month)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // select
@@ -2002,276 +2002,6 @@
             this.panel1.Size = new System.Drawing.Size(1049, 60);
             this.panel1.TabIndex = 8;
             // 
-            // borderPanel1
-            // 
-            this.borderPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.borderPanel1.Appearance.Options.UseBackColor = true;
-            this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel1.Controls.Add(this.tableLayoutPanel2);
-            this.borderPanel1.Controls.Add(this.deEnd);
-            this.borderPanel1.Controls.Add(this.label2);
-            this.borderPanel1.Controls.Add(this.deStart);
-            this.borderPanel1.Controls.Add(this.label3);
-            this.borderPanel1.Controls.Add(this.borderPanel5);
-            this.borderPanel1.Controls.Add(this.treeDeptId);
-            this.borderPanel1.Controls.Add(this.label1);
-            this.borderPanel1.CornerRadius.All = 4;
-            this.borderPanel1.CornerRadius.BottomLeft = 4;
-            this.borderPanel1.CornerRadius.BottomRight = 4;
-            this.borderPanel1.CornerRadius.TopLeft = 4;
-            this.borderPanel1.CornerRadius.TopRight = 4;
-            this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
-            this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Padding = new System.Windows.Forms.Padding(10, 10, 20, 10);
-            this.borderPanel1.Size = new System.Drawing.Size(1029, 50);
-            this.borderPanel1.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
-            this.tableLayoutPanel2.Controls.Add(this.buttonControl1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.buttonControl2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnQuery, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(579, 10);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(289, 30);
-            this.tableLayoutPanel2.TabIndex = 190;
-            // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(164, 0);
-            this.buttonControl1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(114, 30);
-            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Green;
-            this.buttonControl1.TabIndex = 92;
-            this.buttonControl1.Text = "导出平均候诊时间";
-            this.buttonControl1.Click += new System.EventHandler(this.btn_exportWaitTime_Click);
-            // 
-            // buttonControl2
-            // 
-            this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.buttonControl2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(85, 0);
-            this.buttonControl2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(69, 30);
-            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Green;
-            this.buttonControl2.TabIndex = 91;
-            this.buttonControl2.Text = "导出Excel";
-            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
-            // 
-            // btnQuery
-            // 
-            this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnQuery.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
-            this.btnQuery.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnQuery.Location = new System.Drawing.Point(5, 0);
-            this.btnQuery.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(70, 30);
-            this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
-            this.btnQuery.TabIndex = 89;
-            this.btnQuery.Text = "查询";
-            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
-            // 
-            // deEnd
-            // 
-            this.deEnd.Dock = System.Windows.Forms.DockStyle.Left;
-            this.deEnd.EditValue = null;
-            this.deEnd.Location = new System.Drawing.Point(449, 10);
-            this.deEnd.Name = "deEnd";
-            this.deEnd.Properties.AutoHeight = false;
-            this.deEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deEnd.Size = new System.Drawing.Size(130, 30);
-            this.deEnd.TabIndex = 189;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label2.Location = new System.Drawing.Point(435, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 30);
-            this.label2.TabIndex = 188;
-            this.label2.Text = "-";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // deStart
-            // 
-            this.deStart.Dock = System.Windows.Forms.DockStyle.Left;
-            this.deStart.EditValue = null;
-            this.deStart.Location = new System.Drawing.Point(305, 10);
-            this.deStart.Name = "deStart";
-            this.deStart.Properties.AutoHeight = false;
-            this.deStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deStart.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.deStart.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearView)));
-            this.deStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.deStart.Size = new System.Drawing.Size(130, 30);
-            this.deStart.TabIndex = 187;
-            this.deStart.EditValueChanged += new System.EventHandler(this.deStart_EditValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(235, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 30);
-            this.label3.TabIndex = 186;
-            this.label3.Text = "预约日期";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // borderPanel5
-            // 
-            this.borderPanel5.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.borderPanel5.Appearance.Options.UseBackColor = true;
-            this.borderPanel5.BorderColor = System.Drawing.Color.Transparent;
-            this.borderPanel5.BorderSides = Xr.Common.Controls.BorderSides.None;
-            this.borderPanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel5.Controls.Add(this.rBtn_day);
-            this.borderPanel5.Controls.Add(this.rBtn_month);
-            this.borderPanel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.borderPanel5.FillColor1 = System.Drawing.Color.Transparent;
-            this.borderPanel5.FillColor2 = System.Drawing.Color.Transparent;
-            this.borderPanel5.Location = new System.Drawing.Point(154, 10);
-            this.borderPanel5.Margin = new System.Windows.Forms.Padding(1);
-            this.borderPanel5.Name = "borderPanel5";
-            this.borderPanel5.Padding = new System.Windows.Forms.Padding(1);
-            this.borderPanel5.Size = new System.Drawing.Size(81, 30);
-            this.borderPanel5.TabIndex = 185;
-            // 
-            // rBtn_day
-            // 
-            this.rBtn_day.BorderColor = System.Drawing.Color.DarkGray;
-            this.rBtn_day.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Left | Xr.Common.Controls.BorderSides.Top) 
-            | Xr.Common.Controls.BorderSides.Bottom)));
-            this.rBtn_day.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.rBtn_day.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.rBtn_day.BtnText = "日";
-            this.rBtn_day.CenterText = true;
-            this.rBtn_day.CornerRadius.BottomLeft = 8;
-            this.rBtn_day.CornerRadius.TopLeft = 8;
-            this.rBtn_day.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rBtn_day.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_day.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_day.IsCheck = true;
-            this.rBtn_day.Location = new System.Drawing.Point(20, 1);
-            this.rBtn_day.Margin = new System.Windows.Forms.Padding(0);
-            this.rBtn_day.Name = "rBtn_day";
-            this.rBtn_day.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_day.Size = new System.Drawing.Size(30, 28);
-            this.rBtn_day.TabIndex = 174;
-            this.rBtn_day.Click += new System.EventHandler(this.rBtn_Click);
-            // 
-            // rBtn_month
-            // 
-            this.rBtn_month.BorderColor = System.Drawing.Color.DarkGray;
-            this.rBtn_month.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Right) 
-            | Xr.Common.Controls.BorderSides.Bottom)));
-            this.rBtn_month.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.rBtn_month.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.rBtn_month.BtnText = "月";
-            this.rBtn_month.CenterText = true;
-            this.rBtn_month.CornerRadius.BottomRight = 8;
-            this.rBtn_month.CornerRadius.TopRight = 8;
-            this.rBtn_month.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rBtn_month.FillColor1 = System.Drawing.Color.White;
-            this.rBtn_month.FillColor2 = System.Drawing.Color.White;
-            this.rBtn_month.Location = new System.Drawing.Point(50, 1);
-            this.rBtn_month.Margin = new System.Windows.Forms.Padding(0);
-            this.rBtn_month.Name = "rBtn_month";
-            this.rBtn_month.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_month.Size = new System.Drawing.Size(30, 28);
-            this.rBtn_month.TabIndex = 173;
-            this.rBtn_month.Click += new System.EventHandler(this.rBtn_Click);
-            // 
-            // treeDeptId
-            // 
-            this.treeDeptId.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeDeptId.EditValue = "";
-            this.treeDeptId.Location = new System.Drawing.Point(50, 10);
-            this.treeDeptId.Name = "treeDeptId";
-            this.treeDeptId.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeDeptId.Properties.Appearance.Options.UseFont = true;
-            this.treeDeptId.Properties.AutoHeight = false;
-            this.treeDeptId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.treeDeptId.Properties.NullText = "";
-            this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
-            this.treeDeptId.Properties.TreeList = this.treeList2;
-            this.treeDeptId.Size = new System.Drawing.Size(104, 30);
-            this.treeDeptId.TabIndex = 191;
-            // 
-            // treeList2
-            // 
-            this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn9,
-            this.treeListColumn10});
-            this.treeList2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList2.Location = new System.Drawing.Point(314, -75);
-            this.treeList2.Name = "treeList2";
-            this.treeList2.OptionsBehavior.EnableFiltering = true;
-            this.treeList2.OptionsView.AllowHtmlDrawHeaders = true;
-            this.treeList2.OptionsView.ShowIndentAsRowStyle = true;
-            this.treeList2.RowHeight = 30;
-            this.treeList2.Size = new System.Drawing.Size(400, 150);
-            this.treeList2.TabIndex = 0;
-            // 
-            // treeListColumn9
-            // 
-            this.treeListColumn9.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn9.AppearanceCell.Options.UseFont = true;
-            this.treeListColumn9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn9.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn9.Caption = "科室";
-            this.treeListColumn9.FieldName = "name";
-            this.treeListColumn9.Name = "treeListColumn9";
-            this.treeListColumn9.Visible = true;
-            this.treeListColumn9.VisibleIndex = 0;
-            // 
-            // treeListColumn10
-            // 
-            this.treeListColumn10.Caption = "id";
-            this.treeListColumn10.FieldName = "id";
-            this.treeListColumn10.Name = "treeListColumn10";
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(10, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 30);
-            this.label1.TabIndex = 184;
-            this.label1.Text = "科室";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // panelEx12
             // 
             this.panelEx12.BorderColor = System.Drawing.Color.Aqua;
@@ -2409,6 +2139,274 @@
             this.现场预约ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.现场预约ToolStripMenuItem.Text = "现场预约";
             // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 30);
+            this.label1.TabIndex = 184;
+            this.label1.Text = "科室";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // treeDeptId
+            // 
+            this.treeDeptId.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeDeptId.EditValue = "";
+            this.treeDeptId.Location = new System.Drawing.Point(50, 10);
+            this.treeDeptId.Name = "treeDeptId";
+            this.treeDeptId.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeDeptId.Properties.Appearance.Options.UseFont = true;
+            this.treeDeptId.Properties.AutoHeight = false;
+            this.treeDeptId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.treeDeptId.Properties.NullText = "";
+            this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
+            this.treeDeptId.Properties.TreeList = this.treeList1;
+            this.treeDeptId.Size = new System.Drawing.Size(102, 30);
+            this.treeDeptId.TabIndex = 191;
+            // 
+            // treeList1
+            // 
+            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn1,
+            this.treeListColumn2});
+            this.treeList1.Location = new System.Drawing.Point(314, -75);
+            this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsBehavior.EnableFiltering = true;
+            this.treeList1.OptionsView.AllowHtmlDrawHeaders = true;
+            this.treeList1.OptionsView.ShowIndentAsRowStyle = true;
+            this.treeList1.RowHeight = 30;
+            this.treeList1.Size = new System.Drawing.Size(400, 200);
+            this.treeList1.TabIndex = 0;
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn1.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn1.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn1.Caption = "科室";
+            this.treeListColumn1.FieldName = "name";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 0;
+            // 
+            // treeListColumn2
+            // 
+            this.treeListColumn2.Caption = "id";
+            this.treeListColumn2.FieldName = "id";
+            this.treeListColumn2.Name = "treeListColumn2";
+            // 
+            // borderPanel1
+            // 
+            this.borderPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.borderPanel1.Appearance.Options.UseBackColor = true;
+            this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel1.Controls.Add(this.tableLayoutPanel2);
+            this.borderPanel1.Controls.Add(this.deEnd);
+            this.borderPanel1.Controls.Add(this.label2);
+            this.borderPanel1.Controls.Add(this.deStart);
+            this.borderPanel1.Controls.Add(this.label3);
+            this.borderPanel1.Controls.Add(this.borderPanel5);
+            this.borderPanel1.Controls.Add(this.treeDeptId);
+            this.borderPanel1.Controls.Add(this.label1);
+            this.borderPanel1.CornerRadius.All = 4;
+            this.borderPanel1.CornerRadius.BottomLeft = 4;
+            this.borderPanel1.CornerRadius.BottomRight = 4;
+            this.borderPanel1.CornerRadius.TopLeft = 4;
+            this.borderPanel1.CornerRadius.TopRight = 4;
+            this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
+            this.borderPanel1.Name = "borderPanel1";
+            this.borderPanel1.Padding = new System.Windows.Forms.Padding(10, 10, 20, 10);
+            this.borderPanel1.Size = new System.Drawing.Size(1029, 50);
+            this.borderPanel1.TabIndex = 0;
+            // 
+            // borderPanel5
+            // 
+            this.borderPanel5.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.borderPanel5.Appearance.Options.UseBackColor = true;
+            this.borderPanel5.BorderColor = System.Drawing.Color.Transparent;
+            this.borderPanel5.BorderSides = Xr.Common.Controls.BorderSides.None;
+            this.borderPanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.borderPanel5.Controls.Add(this.rBtn_day);
+            this.borderPanel5.Controls.Add(this.rBtn_month);
+            this.borderPanel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.borderPanel5.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel5.FillColor2 = System.Drawing.Color.Transparent;
+            this.borderPanel5.Location = new System.Drawing.Point(152, 10);
+            this.borderPanel5.Margin = new System.Windows.Forms.Padding(1);
+            this.borderPanel5.Name = "borderPanel5";
+            this.borderPanel5.Padding = new System.Windows.Forms.Padding(1);
+            this.borderPanel5.Size = new System.Drawing.Size(81, 30);
+            this.borderPanel5.TabIndex = 192;
+            // 
+            // rBtn_day
+            // 
+            this.rBtn_day.BorderColor = System.Drawing.Color.DarkGray;
+            this.rBtn_day.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Left | Xr.Common.Controls.BorderSides.Top) 
+            | Xr.Common.Controls.BorderSides.Bottom)));
+            this.rBtn_day.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.rBtn_day.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.rBtn_day.BtnText = "日";
+            this.rBtn_day.CenterText = true;
+            this.rBtn_day.CornerRadius.BottomLeft = 8;
+            this.rBtn_day.CornerRadius.TopLeft = 8;
+            this.rBtn_day.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rBtn_day.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_day.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_day.IsCheck = true;
+            this.rBtn_day.Location = new System.Drawing.Point(20, 1);
+            this.rBtn_day.Margin = new System.Windows.Forms.Padding(0);
+            this.rBtn_day.Name = "rBtn_day";
+            this.rBtn_day.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_day.Size = new System.Drawing.Size(30, 28);
+            this.rBtn_day.TabIndex = 174;
+            this.rBtn_day.Click += new System.EventHandler(this.rBtn_Click);
+            // 
+            // rBtn_month
+            // 
+            this.rBtn_month.BorderColor = System.Drawing.Color.DarkGray;
+            this.rBtn_month.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Right) 
+            | Xr.Common.Controls.BorderSides.Bottom)));
+            this.rBtn_month.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.rBtn_month.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.rBtn_month.BtnText = "月";
+            this.rBtn_month.CenterText = true;
+            this.rBtn_month.CornerRadius.BottomRight = 8;
+            this.rBtn_month.CornerRadius.TopRight = 8;
+            this.rBtn_month.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rBtn_month.FillColor1 = System.Drawing.Color.White;
+            this.rBtn_month.FillColor2 = System.Drawing.Color.White;
+            this.rBtn_month.Location = new System.Drawing.Point(50, 1);
+            this.rBtn_month.Margin = new System.Windows.Forms.Padding(0);
+            this.rBtn_month.Name = "rBtn_month";
+            this.rBtn_month.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_month.Size = new System.Drawing.Size(30, 28);
+            this.rBtn_month.TabIndex = 173;
+            this.rBtn_month.Click += new System.EventHandler(this.rBtn_Click);
+            // 
+            // deEnd
+            // 
+            this.deEnd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.deEnd.EditValue = null;
+            this.deEnd.Location = new System.Drawing.Point(447, 10);
+            this.deEnd.Name = "deEnd";
+            this.deEnd.Properties.AutoHeight = false;
+            this.deEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deEnd.Size = new System.Drawing.Size(130, 30);
+            this.deEnd.TabIndex = 196;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label2.Location = new System.Drawing.Point(433, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 30);
+            this.label2.TabIndex = 195;
+            this.label2.Text = "-";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // deStart
+            // 
+            this.deStart.Dock = System.Windows.Forms.DockStyle.Left;
+            this.deStart.EditValue = null;
+            this.deStart.Location = new System.Drawing.Point(303, 10);
+            this.deStart.Name = "deStart";
+            this.deStart.Properties.AutoHeight = false;
+            this.deStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deStart.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
+            this.deStart.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearView)));
+            this.deStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.deStart.Size = new System.Drawing.Size(130, 30);
+            this.deStart.TabIndex = 194;
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(233, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 30);
+            this.label3.TabIndex = 193;
+            this.label3.Text = "预约日期";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
+            this.tableLayoutPanel2.Controls.Add(this.buttonControl1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.buttonControl2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnQuery, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(577, 10);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(289, 30);
+            this.tableLayoutPanel2.TabIndex = 197;
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl1.Location = new System.Drawing.Point(164, 0);
+            this.buttonControl1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(114, 30);
+            this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Green;
+            this.buttonControl1.TabIndex = 92;
+            this.buttonControl1.Text = "导出平均候诊时间";
+            this.buttonControl1.Click += new System.EventHandler(this.btn_exportWaitTime_Click);
+            // 
+            // buttonControl2
+            // 
+            this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.buttonControl2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
+            this.buttonControl2.Location = new System.Drawing.Point(85, 0);
+            this.buttonControl2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.buttonControl2.Name = "buttonControl2";
+            this.buttonControl2.Size = new System.Drawing.Size(69, 30);
+            this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Green;
+            this.buttonControl2.TabIndex = 91;
+            this.buttonControl2.Text = "导出Excel";
+            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnQuery.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
+            this.btnQuery.HoverBackColor = System.Drawing.Color.Empty;
+            this.btnQuery.Location = new System.Drawing.Point(5, 0);
+            this.btnQuery.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(70, 30);
+            this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
+            this.btnQuery.TabIndex = 89;
+            this.btnQuery.Text = "查询";
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
             // AppointmentStatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2449,20 +2447,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.gc_deptInfoNCD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_deptInfoNCD)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).EndInit();
             this.borderPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_day)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_month)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deEnd.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deStart.Properties)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2472,7 +2470,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
-        private Xr.Common.Controls.BorderPanel borderPanel1;
         private Xr.Common.Controls.PanelEx panelEx12;
         private Xr.Common.Controls.PanelEx panelEx15;
         private Xr.Common.Controls.PanelEx panelEx16;
@@ -2489,17 +2486,6 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Xr.Common.Controls.ButtonControl buttonControl2;
-        private Xr.Common.Controls.ButtonControl btnQuery;
-        private DevExpress.XtraEditors.DateEdit deEnd;
-        private System.Windows.Forms.Label label2;
-        private DevExpress.XtraEditors.DateEdit deStart;
-        private System.Windows.Forms.Label label3;
-        private Xr.Common.Controls.BorderPanel borderPanel5;
-        private Xr.Common.Controls.BorderPanelButton rBtn_day;
-        private Xr.Common.Controls.BorderPanelButton rBtn_month;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel2;
@@ -2622,12 +2608,24 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn28;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn29;
         private System.Windows.Forms.Label label17;
-        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
-        private DevExpress.XtraTreeList.TreeList treeList2;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
         private System.Windows.Forms.Label label4;
+        private Xr.Common.Controls.BorderPanel borderPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Xr.Common.Controls.ButtonControl buttonControl1;
+        private Xr.Common.Controls.ButtonControl buttonControl2;
+        private Xr.Common.Controls.ButtonControl btnQuery;
+        private DevExpress.XtraEditors.DateEdit deEnd;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.DateEdit deStart;
+        private System.Windows.Forms.Label label3;
+        private Xr.Common.Controls.BorderPanel borderPanel5;
+        private Xr.Common.Controls.BorderPanelButton rBtn_day;
+        private Xr.Common.Controls.BorderPanelButton rBtn_month;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
+        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
+        private System.Windows.Forms.Label label1;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

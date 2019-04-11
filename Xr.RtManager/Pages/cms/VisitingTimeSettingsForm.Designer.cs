@@ -118,6 +118,8 @@
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.panel14 = new System.Windows.Forms.Panel();
             this.buttonControl1 = new Xr.Common.Controls.ButtonControl();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.cbAuto = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new Xr.Common.Controls.GroupBorderPanel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -314,6 +316,7 @@
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.panel14.SuspendLayout();
+            this.panel18.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -394,9 +397,9 @@
             this.panScheduling.AutoScroll = true;
             this.panScheduling.Controls.Add(this.tabControl1);
             this.panScheduling.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panScheduling.Location = new System.Drawing.Point(3, 220);
+            this.panScheduling.Location = new System.Drawing.Point(3, 250);
             this.panScheduling.Name = "panScheduling";
-            this.panScheduling.Size = new System.Drawing.Size(388, 326);
+            this.panScheduling.Size = new System.Drawing.Size(388, 296);
             this.panScheduling.TabIndex = 3;
             // 
             // tabControl1
@@ -414,7 +417,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(9, 3);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(388, 326);
+            this.tabControl1.Size = new System.Drawing.Size(388, 296);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -423,7 +426,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(380, 294);
+            this.tabPage1.Size = new System.Drawing.Size(380, 264);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "周一";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -434,7 +437,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(380, 294);
+            this.tabPage2.Size = new System.Drawing.Size(380, 264);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "周二";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -445,7 +448,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(380, 294);
+            this.tabPage3.Size = new System.Drawing.Size(380, 264);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "周三";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -456,7 +459,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(380, 294);
+            this.tabPage4.Size = new System.Drawing.Size(380, 264);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "周四";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -467,7 +470,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(380, 294);
+            this.tabPage5.Size = new System.Drawing.Size(380, 264);
             this.tabPage5.TabIndex = 3;
             this.tabPage5.Text = "周五";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -478,7 +481,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 28);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(380, 294);
+            this.tabPage6.Size = new System.Drawing.Size(380, 264);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "周六";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -489,7 +492,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 28);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(380, 294);
+            this.tabPage7.Size = new System.Drawing.Size(380, 264);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "周日";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -507,7 +510,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(3, 20);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(388, 200);
+            this.panelEx1.Size = new System.Drawing.Size(388, 230);
             this.panelEx1.TabIndex = 2;
             // 
             // tableLayoutPanel4
@@ -521,7 +524,6 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.panel13, 7, 4);
             this.tableLayoutPanel4.Controls.Add(this.panel12, 6, 4);
             this.tableLayoutPanel4.Controls.Add(this.panel11, 5, 4);
@@ -562,18 +564,20 @@
             this.tableLayoutPanel4.Controls.Add(this.label8, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel29, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.panel7, 1, 4);
-            this.tableLayoutPanel4.Controls.Add(this.panel14, 0, 5);
+            this.tableLayoutPanel4.Controls.Add(this.panel14, 0, 6);
+            this.tableLayoutPanel4.Controls.Add(this.panel18, 0, 5);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 6;
+            this.tableLayoutPanel4.RowCount = 7;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(387, 200);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(387, 230);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // panel13
@@ -1432,7 +1436,7 @@
             this.tableLayoutPanel4.SetColumnSpan(this.panel14, 8);
             this.panel14.Controls.Add(this.buttonControl1);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(3, 163);
+            this.panel14.Location = new System.Drawing.Point(3, 193);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(381, 34);
             this.panel14.TabIndex = 42;
@@ -1450,6 +1454,31 @@
             this.buttonControl1.TabIndex = 1;
             this.buttonControl1.Text = "更新";
             this.buttonControl1.Click += new System.EventHandler(this.buttonControl2_Click);
+            // 
+            // panel18
+            // 
+            this.tableLayoutPanel4.SetColumnSpan(this.panel18, 2);
+            this.panel18.Controls.Add(this.cbAuto);
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel18.Location = new System.Drawing.Point(3, 163);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(106, 24);
+            this.panel18.TabIndex = 43;
+            // 
+            // cbAuto
+            // 
+            this.cbAuto.AutoSize = true;
+            this.cbAuto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbAuto.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.cbAuto.Location = new System.Drawing.Point(0, 0);
+            this.cbAuto.Margin = new System.Windows.Forms.Padding(0);
+            this.cbAuto.Name = "cbAuto";
+            this.cbAuto.Size = new System.Drawing.Size(106, 24);
+            this.cbAuto.TabIndex = 49;
+            this.cbAuto.Text = "自动排班";
+            this.cbAuto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbAuto.UseVisualStyleBackColor = true;
+            this.cbAuto.CheckedChanged += new System.EventHandler(this.cbAuto_CheckedChanged);
             // 
             // panel2
             // 
@@ -2980,6 +3009,8 @@
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.panel14.ResumeLayout(false);
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -3218,5 +3249,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn31;
         private System.Windows.Forms.Panel panel4;
         private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.CheckBox cbAuto;
     }
 }

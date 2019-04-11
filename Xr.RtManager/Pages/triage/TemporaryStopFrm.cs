@@ -149,6 +149,9 @@ namespace Xr.RtManager.Pages.triage
                     treeClinc.Properties.DisplayMember = "name";
                     treeClinc.Properties.ValueMember = "id";
                 }
+                else {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, this);
+                }
             }
             catch (Exception ex)
             {

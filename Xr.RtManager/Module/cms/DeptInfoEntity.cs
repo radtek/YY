@@ -57,31 +57,26 @@ namespace Xr.RtManager
         /// <summary>
         /// 联系电话
         /// </summary>
-        [Required]
         public String telPhoneNo { get; set; }
 
         /// <summary>
         /// 排序号
         /// </summary>
-        [Required]
         public String showSort { get; set; }
 
         /// <summary>
         /// 打印顺序
         /// </summary>
-        [Required]
         public String printSort { get; set; }
 
         /// <summary>
         /// 关键字
         /// </summary>
-        [Required]
         public String kayword { get; set; }
 
         /// <summary>
         /// 地址
         /// </summary>
-        [Required]
         public String address { get; set; }
 
         /// <summary>
@@ -93,13 +88,11 @@ namespace Xr.RtManager
         /// <summary>
         /// logoUrl
         /// </summary>
-        [Required]
         public String logoUrl { get; set; }
 
         /// <summary>
         /// 宣传图Url
         /// </summary>
-        [Required]
         public String pictureUrl { get; set; }
 
         /// <summary>

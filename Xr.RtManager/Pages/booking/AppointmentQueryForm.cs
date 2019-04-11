@@ -785,15 +785,15 @@ namespace Xr.RtManager.Pages.booking
             //System.Threading.Thread.Sleep(10000);
             if (parm == "IdCard")
             {
-                System.Threading.Thread.Sleep(3000);
-                if (backgroundWorker1.IsBusy)
-                {
-                    CardID = "45032219871222151X";
-                    Result.WorkType = AsynchronousWorks.ReadIdCard;
-                    Result.obj = CardID;
-                }
+                //System.Threading.Thread.Sleep(3000);
+                //if (backgroundWorker1.IsBusy)
+                //{
+                //    CardID = "45032219871222151X";
+                //    Result.WorkType = AsynchronousWorks.ReadIdCard;
+                //    Result.obj = CardID;
+                //}
 
-                /*JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
+                JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
                 if (idCardInfo != null)
                 {
                  if(backgroundWorker1.IsBusy)
@@ -806,9 +806,9 @@ namespace Xr.RtManager.Pages.booking
                 {
                     //patientId = carMes.user_id;
                     Result.obj = CardID;
-                    LogClass.WriteLog("读取身份证成功，身份证号：" + IDCardID);
+                    LogClass.WriteLog("读取身份证成功，身份证号：" + CardID);
                 }
-                 */
+                 
                 //result.obj = null;
                 //result.result = true;
                 //result.msg = "成功

@@ -49,7 +49,7 @@ namespace Xr.RtManager
         /// 排序
         /// </summary>
         [Required]
-        public String sort { get; set; }
+        public int sort { get; set; }
 
         /// <summary>
         /// 是否在菜单中显示（1：显示；0：不显示）

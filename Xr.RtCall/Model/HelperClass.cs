@@ -25,23 +25,21 @@ namespace Xr.RtCall.Model
         /// <summary>
         /// 医院主键
         /// </summary>
-        public static String hospitalId
-        {
-            get
-            {
-                return string.Join(",", from w in list where w.code == AppContext.AppConfig.hospitalCode select w.id);
-            }
-        }
+        public static String hospitalId { get; set; }
+            //get
+            //{
+            //    return string.Join(",", from w in list where w.code == AppContext.AppConfig.hospitalCode select w.id);
+            //}
+        
         /// <summary>
         /// 科室主键
         /// </summary>
-        public static String deptId
-        {
-            get
-            {
-                return string.Join(",", from d in Departmentlist where d.code == AppContext.AppConfig.deptCode select d.id);
-            }
-        }
+        public static String deptId { get; set; }
+            //get
+            //{
+            //    return string.Join(",", from d in Departmentlist where d.code == AppContext.AppConfig.deptCode select d.id);
+            //}
+        
         /// <summary>
         /// 医生主键
         /// </summary>

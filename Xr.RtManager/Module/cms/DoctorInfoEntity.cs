@@ -53,7 +53,6 @@ namespace Xr.RtManager
         /// <summary>
         /// 职位
         /// </summary>
-        [Required]
         public String job { get; set; }
 
         /// <summary>
@@ -96,7 +95,6 @@ namespace Xr.RtManager
         /// <summary>
         /// 手机号码
         /// </summary>
-        [Required]
         public String mobile { get; set; }
 
         /// <summary>
@@ -118,19 +116,16 @@ namespace Xr.RtManager
         /// <summary>
         /// 出诊地址
         /// </summary>
-        [Required]
         public String address { get; set; }
 
         /// <summary>
         /// 专业
         /// </summary>
-        [Required]
         public String specialty { get; set; }
 
         /// <summary>
         /// 特长
         /// </summary>
-        [Required]
         public String excellence { get; set; }
 
         /// <summary>

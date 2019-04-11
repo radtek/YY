@@ -36,10 +36,7 @@ namespace Xr.RtManager.Pages.scheduling
 
             List<DeptEntity> deptList = Clone<List<DeptEntity>>(AppContext.Session.deptList);
             DeptEntity dept = new DeptEntity();
-            if (AppContext.Session.deptIds.Length==0)
-                dept.id = "`";
-            else
-                dept.id = AppContext.Session.deptIds;
+            dept.id = "`";
             dept.name = "全部";
             deptList.Insert(0, dept);
             treeDept.Properties.DataSource = deptList;

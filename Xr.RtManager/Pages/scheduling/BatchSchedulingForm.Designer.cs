@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -38,6 +38,7 @@
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.姓名 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.monday = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.mondayMorning = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -106,25 +107,25 @@
             this.gridColumn31 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.panelEx1 = new Xr.Common.Controls.PanelEx(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelEx2 = new Xr.Common.Controls.PanelEx(this.components);
             this.lueDate = new DevExpress.XtraEditors.LookUpEdit();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnNxvWk = new Xr.Common.Controls.ButtonControl();
             this.btnTswk = new Xr.Common.Controls.ButtonControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
             this.btnSave = new Xr.Common.Controls.ButtonControl();
             this.dataController1 = new Xr.Common.Controls.DataController(this.components);
-            this.treeMenuControl1 = new Xr.Common.Controls.TreeMenuControl();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panelEx3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDoctor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panelEx1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -161,9 +162,9 @@
             // 
             this.panel6.Controls.Add(this.panelEx3);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(184, 10);
+            this.panel6.Location = new System.Drawing.Point(123, 10);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(907, 423);
+            this.panel6.Size = new System.Drawing.Size(968, 423);
             this.panel6.TabIndex = 2;
             // 
             // panelEx3
@@ -180,16 +181,18 @@
             this.panelEx3.Location = new System.Drawing.Point(0, 0);
             this.panelEx3.Name = "panelEx3";
             this.panelEx3.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.panelEx3.Size = new System.Drawing.Size(907, 423);
+            this.panelEx3.Size = new System.Drawing.Size(968, 423);
             this.panelEx3.TabIndex = 5;
             // 
             // gcDoctor
             // 
-            this.gcDoctor.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gcDoctor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcDoctor.Location = new System.Drawing.Point(0, 0);
             this.gcDoctor.MainView = this.bandedGridView1;
             this.gcDoctor.Name = "gcDoctor";
-            this.gcDoctor.Size = new System.Drawing.Size(1480, 405);
+            this.gcDoctor.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemMemoEdit1});
+            this.gcDoctor.Size = new System.Drawing.Size(967, 422);
             this.gcDoctor.TabIndex = 52;
             this.gcDoctor.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridView1});
@@ -198,6 +201,10 @@
             // 
             this.bandedGridView1.Appearance.BandPanel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bandedGridView1.Appearance.BandPanel.Options.UseFont = true;
+            this.bandedGridView1.Appearance.BandPanel.Options.UseTextOptions = true;
+            this.bandedGridView1.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridView1.Appearance.BandPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.bandedGridView1.Appearance.BandPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.bandedGridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.bandedGridView1.Appearance.EvenRow.Options.UseBackColor = true;
             this.bandedGridView1.Appearance.FocusedRow.BackColor = System.Drawing.Color.LightSkyBlue;
@@ -216,7 +223,6 @@
             this.bandedGridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.bandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridView1.BandPanelRowHeight = 30;
             this.bandedGridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.姓名,
             this.monday,
@@ -269,6 +275,7 @@
             this.bandedGridView1.OptionsView.AllowHtmlDrawHeaders = true;
             this.bandedGridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.bandedGridView1.OptionsView.EnableAppearanceOddRow = true;
+            this.bandedGridView1.OptionsView.RowAutoHeight = true;
             this.bandedGridView1.OptionsView.ShowColumnHeaders = false;
             this.bandedGridView1.OptionsView.ShowGroupPanel = false;
             this.bandedGridView1.OptionsView.ShowIndicator = false;
@@ -281,8 +288,10 @@
             this.姓名.AppearanceHeader.Options.UseTextOptions = true;
             this.姓名.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.姓名.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.姓名.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.姓名.Caption = "姓名";
             this.姓名.Columns.Add(this.gridColumn1);
+            this.姓名.MinWidth = 50;
             this.姓名.Name = "姓名";
             this.姓名.VisibleIndex = 0;
             this.姓名.Width = 80;
@@ -294,11 +303,16 @@
             this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn1.Caption = "名称";
+            this.gridColumn1.ColumnEdit = this.repositoryItemMemoEdit1;
             this.gridColumn1.FieldName = "doctorName";
-            this.gridColumn1.MinWidth = 25;
+            this.gridColumn1.MinWidth = 40;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.Width = 80;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // monday
             // 
@@ -1002,7 +1016,7 @@
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(181, 10);
+            this.panel5.Location = new System.Drawing.Point(120, 10);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(3, 423);
             this.panel5.TabIndex = 1;
@@ -1015,8 +1029,31 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(10, 10);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(171, 423);
+            this.panel2.Size = new System.Drawing.Size(110, 423);
             this.panel2.TabIndex = 0;
+            // 
+            // treeMenuControl1
+            // 
+            this.treeMenuControl1.AutoScroll = true;
+            this.treeMenuControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
+            this.treeMenuControl1.BorderSize = 1;
+            this.treeMenuControl1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.treeMenuControl1.DataSource = null;
+            this.treeMenuControl1.DisplayMember = "name";
+            this.treeMenuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeMenuControl1.EditValue = null;
+            this.treeMenuControl1.KeyFieldName = "id";
+            this.treeMenuControl1.Location = new System.Drawing.Point(0, 134);
+            this.treeMenuControl1.Name = "treeMenuControl1";
+            this.treeMenuControl1.ParentFieldName = "parentId";
+            this.treeMenuControl1.Size = new System.Drawing.Size(110, 289);
+            this.treeMenuControl1.TabIndex = 4;
+            this.treeMenuControl1.UseZoom = false;
+            this.treeMenuControl1.ValueMember = "value";
+            this.treeMenuControl1.MenuItemClick += new Xr.Common.Controls.TreeMenuControl.ItemClick(this.treeMenuControl1_MenuItemClick);
             // 
             // panelEx1
             // 
@@ -1030,7 +1067,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(0, 100);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(171, 34);
+            this.panelEx1.Size = new System.Drawing.Size(110, 34);
             this.panelEx1.TabIndex = 3;
             // 
             // tableLayoutPanel1
@@ -1045,7 +1082,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(171, 34);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(110, 34);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -1055,7 +1092,7 @@
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 34);
+            this.label1.Size = new System.Drawing.Size(104, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "科室";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1069,18 +1106,17 @@
             this.panelEx2.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.panelEx2.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.panelEx2.Controls.Add(this.lueDate);
-            this.panelEx2.Controls.Add(this.label2);
             this.panelEx2.Controls.Add(this.btnNxvWk);
             this.panelEx2.Controls.Add(this.btnTswk);
             this.panelEx2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx2.Location = new System.Drawing.Point(0, 0);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(171, 100);
+            this.panelEx2.Size = new System.Drawing.Size(110, 100);
             this.panelEx2.TabIndex = 2;
             // 
             // lueDate
             // 
-            this.lueDate.Location = new System.Drawing.Point(60, 54);
+            this.lueDate.Location = new System.Drawing.Point(5, 57);
             this.lueDate.Name = "lueDate";
             this.lueDate.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueDate.Properties.Appearance.Options.UseFont = true;
@@ -1095,36 +1131,27 @@
             this.lueDate.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueDate.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.lueDate.Properties.AutoHeight = false;
-            serializableAppearanceObject1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            serializableAppearanceObject2.Options.UseFont = true;
             this.lueDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.lueDate.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "键值", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "日期")});
             this.lueDate.Properties.NullText = "";
-            this.lueDate.Size = new System.Drawing.Size(103, 26);
+            this.lueDate.Size = new System.Drawing.Size(100, 26);
             this.lueDate.TabIndex = 103;
             this.lueDate.EditValueChanged += new System.EventHandler(this.lueDate_EditValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(3, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
-            this.label2.TabIndex = 80;
-            this.label2.Text = "起始日";
             // 
             // btnNxvWk
             // 
             this.btnNxvWk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnNxvWk.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.btnNxvWk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnNxvWk.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnNxvWk.Location = new System.Drawing.Point(88, 12);
+            this.btnNxvWk.Location = new System.Drawing.Point(60, 12);
             this.btnNxvWk.Name = "btnNxvWk";
-            this.btnNxvWk.Size = new System.Drawing.Size(75, 30);
+            this.btnNxvWk.Size = new System.Drawing.Size(45, 30);
             this.btnNxvWk.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnNxvWk.TabIndex = 79;
             this.btnNxvWk.Text = "下一周";
@@ -1133,11 +1160,12 @@
             // btnTswk
             // 
             this.btnTswk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnTswk.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.btnTswk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnTswk.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnTswk.Location = new System.Drawing.Point(7, 12);
+            this.btnTswk.Location = new System.Drawing.Point(5, 12);
             this.btnTswk.Name = "btnTswk";
-            this.btnTswk.Size = new System.Drawing.Size(75, 30);
+            this.btnTswk.Size = new System.Drawing.Size(45, 30);
             this.btnTswk.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnTswk.TabIndex = 78;
             this.btnTswk.Text = "上一周";
@@ -1184,29 +1212,6 @@
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // treeMenuControl1
-            // 
-            this.treeMenuControl1.AutoScroll = true;
-            this.treeMenuControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(160)))), ((int)(((byte)(170)))));
-            this.treeMenuControl1.BorderSize = 1;
-            this.treeMenuControl1.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.BorderStyleLeft = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.BorderStyleRight = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.BorderStyleTop = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.treeMenuControl1.DataSource = null;
-            this.treeMenuControl1.DisplayMember = "name";
-            this.treeMenuControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeMenuControl1.EditValue = null;
-            this.treeMenuControl1.KeyFieldName = "id";
-            this.treeMenuControl1.Location = new System.Drawing.Point(0, 134);
-            this.treeMenuControl1.Name = "treeMenuControl1";
-            this.treeMenuControl1.ParentFieldName = "parentId";
-            this.treeMenuControl1.Size = new System.Drawing.Size(171, 289);
-            this.treeMenuControl1.TabIndex = 4;
-            this.treeMenuControl1.UseZoom = false;
-            this.treeMenuControl1.ValueMember = "value";
-            this.treeMenuControl1.MenuItemClick += new Xr.Common.Controls.TreeMenuControl.ItemClick(this.treeMenuControl1_MenuItemClick);
-            // 
             // BatchSchedulingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1222,12 +1227,12 @@
             this.panelEx3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcDoctor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panelEx2.ResumeLayout(false);
-            this.panelEx2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueDate.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
@@ -1250,7 +1255,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private Xr.Common.Controls.PanelEx panelEx2;
-        private System.Windows.Forms.Label label2;
         private Xr.Common.Controls.ButtonControl btnNxvWk;
         private Xr.Common.Controls.ButtonControl btnTswk;
         private DevExpress.XtraEditors.LookUpEdit lueDate;
@@ -1290,6 +1294,8 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn30;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn40;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn31;
+        private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand 姓名;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand monday;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand mondayMorning;
@@ -1326,6 +1332,5 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand sundayAfternoon;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand sundayNight;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand sundayAllDay;
-        private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
     }
 }

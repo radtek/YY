@@ -319,9 +319,33 @@ namespace Xr.RtManager
 
         private void buttonControl5_Click_1(object sender, EventArgs e)
         {
-            tbVersion.Text = string.Compare(textEdit1.Text, textEdit2.Text).ToString();
+            //tbVersion.Text = string.Compare(textEdit1.Text, textEdit2.Text).ToString();
             
             //MessageBoxUtils.Show("123", MessageBoxButtons.OK, MainForm);
+        }
+
+        private void gcDict_Click(object sender, EventArgs e)
+        {
+            var selectedRow = gridView1.GetFocusedRow() as ClientVersionEntity;
+            if (selectedRow == null)
+                return;
+            var edit = new ClientVersionEdit();
+            edit.clientVersion = selectedRow;
+            edit.Text = "版本修改";
+            if (edit.ShowDialog() == DialogResult.OK)
+            {
+                MessageBoxUtils.Hint("修改成功!", MainForm);
+                this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                {
+                    Thread.Sleep(2700);
+                    return null;
+
+                }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                {
+                    cmd.ShowOpaqueLayer(255, true);
+                    SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                });
+            }
         }
 
     }

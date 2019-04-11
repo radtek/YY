@@ -142,6 +142,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Appearance.Options.UseBackColor = true;
             this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBox1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox1.Controls.Add(this.panelEx2);
@@ -315,6 +317,8 @@
             this.borderPanel1.CornerRadius.BottomRight = 4;
             this.borderPanel1.CornerRadius.TopLeft = 4;
             this.borderPanel1.CornerRadius.TopRight = 4;
+            this.borderPanel1.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel1.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel1.Location = new System.Drawing.Point(10, 3);
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Padding = new System.Windows.Forms.Padding(10);
@@ -551,6 +555,7 @@
             // 
             this.panelEx3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEx3.BackColor = System.Drawing.Color.Transparent;
             this.panelEx3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.panelEx3.BorderSize = 1;
             this.panelEx3.BorderStyleBottom = System.Windows.Forms.ButtonBorderStyle.None;
@@ -576,6 +581,8 @@
             this.borderPanel2.CornerRadius.TopLeft = 4;
             this.borderPanel2.CornerRadius.TopRight = 4;
             this.borderPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borderPanel2.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel2.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel2.Location = new System.Drawing.Point(0, 0);
             this.borderPanel2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.borderPanel2.Name = "borderPanel2";
@@ -815,6 +822,8 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Appearance.Options.UseBackColor = true;
             this.groupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.groupBox3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupBox3.Controls.Add(this.tableLayoutPanel1);

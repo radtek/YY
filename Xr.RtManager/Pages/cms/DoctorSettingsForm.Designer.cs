@@ -94,6 +94,8 @@
             this.cbNight = new System.Windows.Forms.CheckBox();
             this.panel34 = new System.Windows.Forms.Panel();
             this.cbAllAay = new System.Windows.Forms.CheckBox();
+            this.panel35 = new System.Windows.Forms.Panel();
+            this.cbAuto = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
             this.groupBox3 = new Xr.Common.Controls.GroupBorderPanel();
@@ -159,11 +161,6 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.btnEdit = new Xr.Common.Controls.ButtonControl();
             this.label9 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.treeDeptId = new DevExpress.XtraEditors.TreeListLookUpEdit();
-            this.treeList2 = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
@@ -179,6 +176,7 @@
             this.btnUpload = new Xr.Common.Controls.ButtonControl();
             this.btnSelect = new Xr.Common.Controls.ButtonControl();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -191,6 +189,11 @@
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.panel106 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.treeDeptId = new DevExpress.XtraEditors.TreeListLookUpEdit();
+            this.treeList2 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -204,7 +207,6 @@
             this.btnAdd = new Xr.Common.Controls.ButtonControl();
             this.dcDoctorInfo = new Xr.Common.Controls.DataController(this.components);
             this.dcDefaultVisit = new Xr.Common.Controls.DataController(this.components);
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel15.SuspendLayout();
@@ -246,6 +248,7 @@
             this.panel29.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
+            this.panel35.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox3)).BeginInit();
@@ -290,9 +293,6 @@
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.panel17.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             this.panel6.SuspendLayout();
@@ -303,6 +303,9 @@
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.panel11.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).BeginInit();
             this.borderPanel1.SuspendLayout();
@@ -370,9 +373,9 @@
             this.panScheduling.AutoScroll = true;
             this.panScheduling.Controls.Add(this.tabControl1);
             this.panScheduling.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panScheduling.Location = new System.Drawing.Point(3, 245);
+            this.panScheduling.Location = new System.Drawing.Point(3, 275);
             this.panScheduling.Name = "panScheduling";
-            this.panScheduling.Size = new System.Drawing.Size(393, 281);
+            this.panScheduling.Size = new System.Drawing.Size(393, 251);
             this.panScheduling.TabIndex = 3;
             // 
             // tabControl1
@@ -390,7 +393,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(9, 3);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(393, 281);
+            this.tabControl1.Size = new System.Drawing.Size(393, 251);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -400,7 +403,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(385, 249);
+            this.tabPage1.Size = new System.Drawing.Size(385, 219);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "周一";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -412,7 +415,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(385, 249);
+            this.tabPage2.Size = new System.Drawing.Size(385, 219);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "周二";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -424,7 +427,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(385, 249);
+            this.tabPage3.Size = new System.Drawing.Size(385, 219);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "周三";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -436,7 +439,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(385, 249);
+            this.tabPage4.Size = new System.Drawing.Size(385, 219);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "周四";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -448,7 +451,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(385, 249);
+            this.tabPage5.Size = new System.Drawing.Size(385, 219);
             this.tabPage5.TabIndex = 3;
             this.tabPage5.Text = "周五";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -460,7 +463,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 28);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(385, 249);
+            this.tabPage6.Size = new System.Drawing.Size(385, 219);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "周六";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -472,7 +475,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 28);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(385, 249);
+            this.tabPage7.Size = new System.Drawing.Size(385, 219);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "周日";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -490,7 +493,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(3, 20);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(393, 225);
+            this.panelEx1.Size = new System.Drawing.Size(393, 255);
             this.panelEx1.TabIndex = 2;
             // 
             // tableLayoutPanel4
@@ -533,7 +536,7 @@
             this.tableLayoutPanel4.Controls.Add(this.teNStart, 1, 3);
             this.tableLayoutPanel4.Controls.Add(this.teAStart, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.teMStart, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.buttonControl1, 0, 5);
+            this.tableLayoutPanel4.Controls.Add(this.buttonControl1, 0, 6);
             this.tableLayoutPanel4.Controls.Add(this.label30, 7, 0);
             this.tableLayoutPanel4.Controls.Add(this.label29, 6, 0);
             this.tableLayoutPanel4.Controls.Add(this.label28, 5, 0);
@@ -546,19 +549,21 @@
             this.tableLayoutPanel4.Controls.Add(this.panel29, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.panel33, 0, 3);
             this.tableLayoutPanel4.Controls.Add(this.panel34, 0, 4);
+            this.tableLayoutPanel4.Controls.Add(this.panel35, 0, 5);
             this.tableLayoutPanel4.Enabled = false;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 7;
+            this.tableLayoutPanel4.RowCount = 8;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(392, 200);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(392, 230);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // textEdit21
@@ -988,7 +993,7 @@
             this.buttonControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(3, 163);
+            this.buttonControl1.Location = new System.Drawing.Point(3, 193);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(386, 34);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -1190,6 +1195,33 @@
             this.cbAllAay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbAllAay.UseVisualStyleBackColor = true;
             // 
+            // panel35
+            // 
+            this.tableLayoutPanel4.SetColumnSpan(this.panel35, 2);
+            this.panel35.Controls.Add(this.cbAuto);
+            this.panel35.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel35.Location = new System.Drawing.Point(0, 160);
+            this.panel35.Margin = new System.Windows.Forms.Padding(0);
+            this.panel35.Name = "panel35";
+            this.panel35.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panel35.Size = new System.Drawing.Size(112, 30);
+            this.panel35.TabIndex = 79;
+            // 
+            // cbAuto
+            // 
+            this.cbAuto.AutoSize = true;
+            this.cbAuto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbAuto.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.cbAuto.Location = new System.Drawing.Point(5, 0);
+            this.cbAuto.Margin = new System.Windows.Forms.Padding(0);
+            this.cbAuto.Name = "cbAuto";
+            this.cbAuto.Size = new System.Drawing.Size(107, 30);
+            this.cbAuto.TabIndex = 48;
+            this.cbAuto.Text = "自动排班";
+            this.cbAuto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbAuto.UseVisualStyleBackColor = true;
+            this.cbAuto.CheckedChanged += new System.EventHandler(this.cbAuto_CheckedChanged);
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.panel25);
@@ -1242,6 +1274,7 @@
             this.gcDoctor.TabIndex = 50;
             this.gcDoctor.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcDoctor.Click += new System.EventHandler(this.gcDoctor_Click);
             // 
             // gridView1
             // 
@@ -1506,7 +1539,6 @@
             this.tableLayoutPanel3.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.panel17, 1, 7);
             this.tableLayoutPanel3.Controls.Add(this.label9, 0, 7);
-            this.tableLayoutPanel3.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.label6, 2, 9);
             this.tableLayoutPanel3.Controls.Add(this.panel7, 5, 0);
             this.tableLayoutPanel3.Controls.Add(this.label3, 4, 0);
@@ -1526,6 +1558,7 @@
             this.tableLayoutPanel3.Controls.Add(this.label46, 4, 6);
             this.tableLayoutPanel3.Controls.Add(this.label47, 4, 7);
             this.tableLayoutPanel3.Controls.Add(this.panel106, 5, 7);
+            this.tableLayoutPanel3.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(13, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -1581,6 +1614,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel19.Location = new System.Drawing.Point(503, 131);
             this.panel19.Name = "panel19";
+            this.panel19.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.panel19.Size = new System.Drawing.Size(94, 26);
             this.panel19.TabIndex = 84;
             // 
@@ -1588,12 +1622,12 @@
             // 
             this.dcDoctorInfo.SetDataMember(this.textEdit7, "address");
             this.textEdit7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit7.Location = new System.Drawing.Point(0, 0);
+            this.textEdit7.Location = new System.Drawing.Point(8, 0);
             this.textEdit7.Name = "textEdit7";
             this.textEdit7.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit7.Properties.Appearance.Options.UseFont = true;
             this.textEdit7.Properties.AutoHeight = false;
-            this.textEdit7.Size = new System.Drawing.Size(94, 26);
+            this.textEdit7.Size = new System.Drawing.Size(86, 26);
             this.textEdit7.TabIndex = 1;
             // 
             // panel26
@@ -1797,6 +1831,7 @@
             this.panel28.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel28.Location = new System.Drawing.Point(103, 163);
             this.panel28.Name = "panel28";
+            this.panel28.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.panel28.Size = new System.Drawing.Size(94, 26);
             this.panel28.TabIndex = 68;
             // 
@@ -1804,12 +1839,12 @@
             // 
             this.dcDoctorInfo.SetDataMember(this.textEdit18, "excellence");
             this.textEdit18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit18.Location = new System.Drawing.Point(0, 0);
+            this.textEdit18.Location = new System.Drawing.Point(8, 0);
             this.textEdit18.Name = "textEdit18";
             this.textEdit18.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit18.Properties.Appearance.Options.UseFont = true;
             this.textEdit18.Properties.AutoHeight = false;
-            this.textEdit18.Size = new System.Drawing.Size(94, 26);
+            this.textEdit18.Size = new System.Drawing.Size(86, 26);
             this.textEdit18.TabIndex = 2;
             // 
             // label23
@@ -1863,6 +1898,7 @@
             this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel20.Location = new System.Drawing.Point(103, 131);
             this.panel20.Name = "panel20";
+            this.panel20.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.panel20.Size = new System.Drawing.Size(94, 26);
             this.panel20.TabIndex = 61;
             // 
@@ -1870,12 +1906,12 @@
             // 
             this.dcDoctorInfo.SetDataMember(this.textEdit15, "specialty");
             this.textEdit15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit15.Location = new System.Drawing.Point(0, 0);
+            this.textEdit15.Location = new System.Drawing.Point(8, 0);
             this.textEdit15.Name = "textEdit15";
             this.textEdit15.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit15.Properties.Appearance.Options.UseFont = true;
             this.textEdit15.Properties.AutoHeight = false;
-            this.textEdit15.Size = new System.Drawing.Size(94, 26);
+            this.textEdit15.Size = new System.Drawing.Size(86, 26);
             this.textEdit15.TabIndex = 2;
             // 
             // label20
@@ -1959,6 +1995,7 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel14.Location = new System.Drawing.Point(103, 99);
             this.panel14.Name = "panel14";
+            this.panel14.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.panel14.Size = new System.Drawing.Size(94, 26);
             this.panel14.TabIndex = 55;
             // 
@@ -1966,12 +2003,12 @@
             // 
             this.dcDoctorInfo.SetDataMember(this.textEdit4, "job");
             this.textEdit4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit4.Location = new System.Drawing.Point(0, 0);
+            this.textEdit4.Location = new System.Drawing.Point(8, 0);
             this.textEdit4.Name = "textEdit4";
             this.textEdit4.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit4.Properties.Appearance.Options.UseFont = true;
             this.textEdit4.Properties.AutoHeight = false;
-            this.textEdit4.Size = new System.Drawing.Size(94, 26);
+            this.textEdit4.Size = new System.Drawing.Size(86, 26);
             this.textEdit4.TabIndex = 4;
             // 
             // panel13
@@ -2127,66 +2164,6 @@
             this.label9.Text = "简介:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.treeDeptId);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(103, 35);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(94, 26);
-            this.panel2.TabIndex = 29;
-            // 
-            // treeDeptId
-            // 
-            this.dcDoctorInfo.SetDataMember(this.treeDeptId, "deptId");
-            this.treeDeptId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeDeptId.EditValue = "";
-            this.treeDeptId.Location = new System.Drawing.Point(0, 0);
-            this.treeDeptId.Name = "treeDeptId";
-            this.treeDeptId.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeDeptId.Properties.Appearance.Options.UseFont = true;
-            this.treeDeptId.Properties.AutoHeight = false;
-            this.treeDeptId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.treeDeptId.Properties.NullText = "";
-            this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
-            this.treeDeptId.Properties.TreeList = this.treeList2;
-            this.treeDeptId.Size = new System.Drawing.Size(94, 26);
-            this.treeDeptId.TabIndex = 4;
-            // 
-            // treeList2
-            // 
-            this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn9,
-            this.treeListColumn10});
-            this.treeList2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList2.Location = new System.Drawing.Point(-183, -87);
-            this.treeList2.Name = "treeList2";
-            this.treeList2.OptionsBehavior.EnableFiltering = true;
-            this.treeList2.OptionsView.AllowHtmlDrawHeaders = true;
-            this.treeList2.OptionsView.ShowIndentAsRowStyle = true;
-            this.treeList2.RowHeight = 30;
-            this.treeList2.Size = new System.Drawing.Size(400, 200);
-            this.treeList2.TabIndex = 0;
-            // 
-            // treeListColumn9
-            // 
-            this.treeListColumn9.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn9.AppearanceCell.Options.UseFont = true;
-            this.treeListColumn9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.treeListColumn9.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn9.Caption = "科室";
-            this.treeListColumn9.FieldName = "name";
-            this.treeListColumn9.Name = "treeListColumn9";
-            this.treeListColumn9.Visible = true;
-            this.treeListColumn9.VisibleIndex = 0;
-            // 
-            // treeListColumn10
-            // 
-            this.treeListColumn10.Caption = "id";
-            this.treeListColumn10.FieldName = "id";
-            this.treeListColumn10.Name = "treeListColumn10";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -2206,6 +2183,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(503, 3);
             this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.panel7.Size = new System.Drawing.Size(94, 26);
             this.panel7.TabIndex = 5;
             // 
@@ -2213,12 +2191,12 @@
             // 
             this.dcDoctorInfo.SetDataMember(this.textEdit3, "mobile");
             this.textEdit3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEdit3.Location = new System.Drawing.Point(0, 0);
+            this.textEdit3.Location = new System.Drawing.Point(8, 0);
             this.textEdit3.Name = "textEdit3";
             this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit3.Properties.Appearance.Options.UseFont = true;
             this.textEdit3.Properties.AutoHeight = false;
-            this.textEdit3.Size = new System.Drawing.Size(94, 26);
+            this.textEdit3.Size = new System.Drawing.Size(86, 26);
             this.textEdit3.TabIndex = 0;
             // 
             // label3
@@ -2395,6 +2373,14 @@
             this.panel10.Size = new System.Drawing.Size(47, 62);
             this.panel10.TabIndex = 93;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(0, 24);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(7, 14);
+            this.labelControl1.TabIndex = 105;
+            this.labelControl1.Text = "*";
+            // 
             // pbPicture
             // 
             this.pbPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -2535,6 +2521,65 @@
             this.panel106.Size = new System.Drawing.Size(94, 26);
             this.panel106.TabIndex = 88;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.treeDeptId);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(103, 35);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(94, 26);
+            this.panel2.TabIndex = 90;
+            // 
+            // treeDeptId
+            // 
+            this.dcDoctorInfo.SetDataMember(this.treeDeptId, "deptId");
+            this.treeDeptId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeDeptId.EditValue = "";
+            this.treeDeptId.Location = new System.Drawing.Point(0, 0);
+            this.treeDeptId.Name = "treeDeptId";
+            this.treeDeptId.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeDeptId.Properties.Appearance.Options.UseFont = true;
+            this.treeDeptId.Properties.AutoHeight = false;
+            this.treeDeptId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.treeDeptId.Properties.NullText = "";
+            this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
+            this.treeDeptId.Properties.TreeList = this.treeList2;
+            this.treeDeptId.Size = new System.Drawing.Size(94, 26);
+            this.treeDeptId.TabIndex = 109;
+            // 
+            // treeList2
+            // 
+            this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn3,
+            this.treeListColumn4});
+            this.treeList2.Location = new System.Drawing.Point(17, -87);
+            this.treeList2.Name = "treeList2";
+            this.treeList2.OptionsBehavior.EnableFiltering = true;
+            this.treeList2.OptionsView.AllowHtmlDrawHeaders = true;
+            this.treeList2.OptionsView.ShowIndentAsRowStyle = true;
+            this.treeList2.RowHeight = 30;
+            this.treeList2.Size = new System.Drawing.Size(400, 200);
+            this.treeList2.TabIndex = 0;
+            // 
+            // treeListColumn3
+            // 
+            this.treeListColumn3.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn3.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn3.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.treeListColumn3.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn3.Caption = "科室";
+            this.treeListColumn3.FieldName = "name";
+            this.treeListColumn3.Name = "treeListColumn3";
+            this.treeListColumn3.Visible = true;
+            this.treeListColumn3.VisibleIndex = 0;
+            // 
+            // treeListColumn4
+            // 
+            this.treeListColumn4.Caption = "id";
+            this.treeListColumn4.FieldName = "id";
+            this.treeListColumn4.Name = "treeListColumn4";
+            // 
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2621,12 +2666,13 @@
             this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnUp.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnUp.Location = new System.Drawing.Point(450, 10);
+            this.btnUp.Location = new System.Drawing.Point(627, 10);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 30);
             this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnUp.TabIndex = 77;
             this.btnUp.Text = "修改";
+            this.btnUp.Visible = false;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnDel
@@ -2634,7 +2680,7 @@
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(630, 10);
+            this.btnDel.Location = new System.Drawing.Point(538, 10);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -2647,7 +2693,7 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(540, 10);
+            this.btnSave.Location = new System.Drawing.Point(448, 10);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -2667,14 +2713,6 @@
             this.btnAdd.TabIndex = 74;
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(0, 24);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(7, 14);
-            this.labelControl1.TabIndex = 105;
-            this.labelControl1.Text = "*";
             // 
             // DoctorSettingsForm
             // 
@@ -2731,6 +2769,8 @@
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
+            this.panel35.ResumeLayout(false);
+            this.panel35.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel25.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBox3)).EndInit();
@@ -2777,9 +2817,6 @@
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.panel17.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             this.panel6.ResumeLayout(false);
@@ -2792,6 +2829,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeDeptId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel1)).EndInit();
             this.borderPanel1.ResumeLayout(false);
@@ -2939,11 +2979,6 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel8;
         private DevExpress.XtraEditors.TextEdit textEdit1;
-        private System.Windows.Forms.Panel panel2;
-        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
-        private DevExpress.XtraTreeList.TreeList treeList2;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
         private System.Windows.Forms.Panel panel7;
         private DevExpress.XtraEditors.TextEdit textEdit3;
         private System.Windows.Forms.Panel panel9;
@@ -2974,5 +3009,12 @@
         private System.Windows.Forms.Label label25;
         private Xr.Common.Controls.ButtonControl btnQuery;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.Panel panel35;
+        private System.Windows.Forms.CheckBox cbAuto;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
+        private DevExpress.XtraTreeList.TreeList treeList2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn4;
     }
 }

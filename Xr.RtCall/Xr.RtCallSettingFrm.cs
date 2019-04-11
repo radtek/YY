@@ -44,22 +44,22 @@ namespace Xr.RtCall
         private void buttonControl1_Click(object sender, EventArgs e)
         {
             //System.Environment.Exit(0);
-            if (this.treeHostile.EditValue == "")
+            if (this.treeHostile.EditValue.ToString() == "")
             {
                 Xr.Common.MessageBoxUtils.Show("请选择医院", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 return;
             }
-            if (treeKeshi.EditValue == "")
+            if (treeKeshi.EditValue.ToString() == "")
             {
                 Xr.Common.MessageBoxUtils.Show("请选择科室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 return;
             }
-            if (treeClinc.EditValue == "")
+            if (treeClinc.EditValue.ToString() == "")
             {
                 Xr.Common.MessageBoxUtils.Show("请选择诊室", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 return;
             }
-            SaveConfigSeting(treeHostile.EditValue.ToString(), treeClinc.EditValue.ToString(), treeKeshi.EditValue.ToString(), "1");
+            SaveConfigSeting(treeHostile.EditValue.ToString(), treeClinc.Text.Trim(), treeKeshi.EditValue.ToString(), "1");
             UpdateClincQuery(treeClinc.EditValue.ToString(), "1");
             Application.ExitThread();
             Application.Exit();
@@ -71,7 +71,7 @@ namespace Xr.RtCall
         /// <summary>
         /// 保存信息到本地配置文件中
         /// </summary>
-        private void SaveConfigSeting(string hostalcode,string ClincCode, string deptCode, string Setting)
+        private void SaveConfigSeting(string hostalcode,string ClincName, string deptCode, string Setting)
         {
             try
             {
@@ -83,11 +83,11 @@ namespace Xr.RtCall
                 Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
                 config.AppSettings.Settings["hospitalCode"].Value = hostalcode;
                 config.AppSettings.Settings["deptCode"].Value = deptCode;
-                config.AppSettings.Settings["ClincID"].Value = ClincCode;
+                config.AppSettings.Settings["ClincName"].Value = ClincName;
                 config.AppSettings.Settings["Setting"].Value = Setting;
                 config.Save();
                 ConfigurationManager.RefreshSection("appSettings");//重新加载新的配置文件
-                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalcode + "" + "科室编码：" + deptCode + "" + "诊室id" + ClincCode + "" + "并且修改Setting值为1标识为不是第一次启动了");
+                Log4net.LogHelper.Info("保存配置文件内容成功：" + "医院编码：" + hostalcode + "" + "科室编码：" + deptCode + "" + "诊室名称" + ClincName + "" + "并且修改Setting值为1标识为不是第一次启动了");
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace Xr.RtCall
                     List<dynamic> list = objTs["result"].ToObject<List<dynamic>>();
                     HostalList = new List<dynamic>();
                     HostalList = list;
-                    //string id = string.Join(",",from a in list where a.name=="中山市博爱医院" select a.code);
+                    string code = string.Join(",",from a in list where a.name=="中山市博爱医院" select a.code);
                     this.treeHostile.Properties.DataSource = list;
                     //treeKeshi.Properties.TreeList.KeyFieldName = "id";
                     //treeKeshi.Properties.TreeList.ParentFieldName = "parentId";
@@ -140,7 +140,7 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void treeHostile_EditValueChanged(object sender, EventArgs e)
         {
-            if (treeHostile.EditValue != "")
+            if (treeHostile.EditValue.ToString() != "")
             {
                 GetInforSetting(treeHostile.EditValue.ToString());
             }
@@ -183,7 +183,7 @@ namespace Xr.RtCall
         /// <param name="e"></param>
         private void treeKeshi_EditValueChanged(object sender, EventArgs e)
         {
-            if (treeKeshi.EditValue!="")
+            if (treeKeshi.EditValue.ToString() != "")
             {
                 string hospitalid =string.Join(",",from a in HostalList where a.code==treeHostile.EditValue select a.id);
                 string deptid = string.Join(",", from s in DeptList where s.code == treeKeshi.EditValue select s.id);
@@ -280,7 +280,7 @@ namespace Xr.RtCall
         #region 验证是否可用
         private void treeClinc_EditValueChanged(object sender, EventArgs e)
         {
-            if (treeClinc.EditValue!="")
+            if (treeClinc.EditValue.ToString() != "")
             {
                 SelectClincIsQuery(treeClinc.EditValue.ToString());
             }

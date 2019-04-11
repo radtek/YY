@@ -23,9 +23,9 @@ namespace Xr.RtCall.Model
         /// </summary>
         public String deptCode { get; set; }
         /// <summary>
-        /// 诊室ID
+        /// 诊室名称
         /// </summary>
-        public String ClincCode { get; set; }
+        public String ClincName { get; set; }
         /// <summary>
         /// 是否启动Socket(true , false)
         /// </summary>
@@ -50,5 +50,9 @@ namespace Xr.RtCall.Model
         /// 标识是否是第一次启动
         /// </summary>
         public String Setting { get; set; }
+        /// <summary>
+        /// 是否显示完成就诊按钮
+        /// </summary>
+        public String WhetherToDisplay { get; set; }
     }
 }

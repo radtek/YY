@@ -41,13 +41,12 @@ namespace Xr.RtScreen.pages
         //第五步：实现事件
         void form2_setFormTextValue(string textValue)
         {
-            //具体实现。
-           scrollingText1.ScrollText=textValue;
+            scrollingText1.ScrollText = textValue;
         }
         #endregion 
         #region 医生坐诊诊间列表（定时自动查询）
         List<ScreenClass> clinicInfo;
-        int a = 0;
+        int a = -1;
         /// <summary>
         /// 医生坐诊诊间列表
         /// </summary>
@@ -145,13 +144,13 @@ namespace Xr.RtScreen.pages
                                     }
                                     if (c.Name == "label" + (g + 1) + 4)//预约
                                     {
-                                        c.Text = clinicInfo[g].signInNum;
+                                        c.Text = clinicInfo[g].bespeakNum;
                                         g = g + 1;
                                         break;
                                     }
-                                    if (c.Name == "label" + (g + 1) + 5)//签到
+                                    if (c.Name == "label" + (g + 1) + 5)
                                     {
-                                        c.Text = clinicInfo[g].bespeakNum;
+                                        c.Text = clinicInfo[g].waitNum;
                                         g = g + 1;
                                         break;
                                     }
@@ -309,6 +308,9 @@ namespace Xr.RtScreen.pages
                 layoutPanel.RowStyles.Clear();
                 layoutPanel.ColumnStyles.Clear();
                 layoutPanel.RowCount = row;    //设置分成几行  
+                panelControl2.Height = row * 45;
+                this.panelControl2.Dock = DockStyle.Top;
+                this.panelControl3.Dock = DockStyle.Fill;
                 for (int i = 0; i < row; i++)
                 {
                     layoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -376,10 +378,30 @@ namespace Xr.RtScreen.pages
                         #endregion
                     }
                 }
+                #region 
+                //switch (row)
+                //{
+                //    case 1:
+                //    case 2:
+                //    case 3:
+                //    case 4:
+                //    case 5:
+                //case 6:
+                //case 7:
+                //panelControl2.Height = row * 40;
+                //this.panelControl2.Dock = DockStyle.Top;
+                //this.panelControl3.Dock = DockStyle.Fill;
+                //        break;
+                //    default:
+                //        this.panelControl2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+                //        this.panelControl3.Dock = DockStyle.Bottom;
+                //        break;
+                //}
+                #endregion 
             }
             catch (Exception ex)
             {
-                Log4net.LogHelper.Error("绘制控件时出现错误："+ex.Message);
+                Log4net.LogHelper.Error("绘制控件时出现错误：" + ex.Message);
             }
         }
         #endregion

@@ -443,6 +443,7 @@ namespace Xr.RtManager.Pages.scheduling
 
         private void bandedGridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
+            if (e.CellValue == null) return;
             DateTime dt = DateTime.ParseExact(lueDate.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture);
             String zj = e.Column.Caption.Substring(0,2);//周几
             if (zj.Equals("名称"))
@@ -482,7 +483,97 @@ namespace Xr.RtManager.Pages.scheduling
                 return;
             }
 
-            if (e.CellValue == null) return;
+            String ts = "";
+            if(e.Column.Caption.Equals("周一上午")||e.Column.Caption.Equals("周一下午")||e.Column.Caption.Equals("周一晚上")){
+                string strName = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "mondayAllAay");
+                if(strName.Equals("√")){
+                    ts = "选中了全天就不能选择上午、下午、晚上";
+                }
+            }else if(e.Column.Caption.Equals("周二上午")||e.Column.Caption.Equals("周二下午")||e.Column.Caption.Equals("周二晚上")){
+                string strName = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "tuesdayAllAay");
+                if(strName.Equals("√")){
+                    ts = "选中了全天就不能选择上午、下午、晚上";
+                }
+            }else if(e.Column.Caption.Equals("周三上午")||e.Column.Caption.Equals("周三下午")||e.Column.Caption.Equals("周三晚上")){
+                string strName = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "wednesdayAllAay");
+                if(strName.Equals("√")){
+                    ts = "选中了全天就不能选择上午、下午、晚上";
+                }
+            }else if(e.Column.Caption.Equals("周四上午")||e.Column.Caption.Equals("周四下午")||e.Column.Caption.Equals("周四晚上")){
+                string strName = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "thursdayAllAay");
+                if(strName.Equals("√")){
+                    ts = "选中了全天就不能选择上午、下午、晚上";
+                }
+            }else if(e.Column.Caption.Equals("周五上午")||e.Column.Caption.Equals("周五下午")||e.Column.Caption.Equals("周五晚上")){
+                string strName = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "fridayAllAay");
+                if(strName.Equals("√")){
+                    ts = "选中了全天就不能选择上午、下午、晚上";
+                }
+            }else if(e.Column.Caption.Equals("周六上午")||e.Column.Caption.Equals("周六下午")||e.Column.Caption.Equals("周六晚上")){
+                string strName = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "saturdayAllAay");
+                if(strName.Equals("√")){
+                    ts = "选中了全天就不能选择上午、下午、晚上";
+                }
+            }else if(e.Column.Caption.Equals("周日上午")||e.Column.Caption.Equals("周日下午")||e.Column.Caption.Equals("周日晚上")){
+                string strName = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "sundayAllAay");
+                if(strName.Equals("√")){
+                    ts = "选中了全天就不能选择上午、下午、晚上";
+                }
+            }else if(e.Column.Caption.Equals("周一全天")){
+                string morning = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "mondayMorning");
+                string afternoon = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "mondayAfternoon");
+                string night = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "mondayNight");
+                if(morning.Equals("√")||afternoon.Equals("√")||afternoon.Equals("√")){
+                    ts = "选中了上午、下午、晚上就不能选择全天";
+                }
+            }else if(e.Column.Caption.Equals("周二全天")){
+                string morning = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "tuesdayMorning");
+                string afternoon = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "tuesdayAfternoon");
+                string night = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "tuesdayNight");
+                if(morning.Equals("√")||afternoon.Equals("√")||afternoon.Equals("√")){
+                    ts = "选中了上午、下午、晚上就不能选择全天";
+                }
+            }else if(e.Column.Caption.Equals("周三全天")){
+                string morning = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "wednesdayMorning");
+                string afternoon = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "wednesdayAfternoon");
+                string night = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "wednesdayNigh");
+                if(morning.Equals("√")||afternoon.Equals("√")||afternoon.Equals("√")){
+                    ts = "选中了上午、下午、晚上就不能选择全天";
+                }
+            }else if(e.Column.Caption.Equals("周四全天")){
+                string morning = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "thursdayMorning");
+                string afternoon = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "thursdayAfternoon");
+                string night = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "thursdayNight");
+                if(morning.Equals("√")||afternoon.Equals("√")||afternoon.Equals("√")){
+                    ts = "选中了上午、下午、晚上就不能选择全天";
+                }
+            }else if(e.Column.Caption.Equals("周五全天")){
+                string morning = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "fridayMorning");
+                string afternoon = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "fridayAfternoon");
+                string night = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "fridayNight");
+                if(morning.Equals("√")||afternoon.Equals("√")||afternoon.Equals("√")){
+                    ts = "选中了上午、下午、晚上就不能选择全天";
+                }
+            }else if(e.Column.Caption.Equals("周六全天")){
+                string morning = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "saturdayMorning");
+                string afternoon = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "saturdayAfternoon ");
+                string night = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "saturdayNight");
+                if(morning.Equals("√")||afternoon.Equals("√")||afternoon.Equals("√")){
+                    ts = "选中了上午、下午、晚上就不能选择全天";
+                }
+            }else if(e.Column.Caption.Equals("周日全天")){
+                string morning = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "sundayMorning");
+                string afternoon = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "sundayAfternoon");
+                string night = bandedGridView1.GetRowCellDisplayText(e.RowHandle, "sundayNight");
+                if(morning.Equals("√")||afternoon.Equals("√")||afternoon.Equals("√")){
+                    ts = "选中了上午、下午、晚上就不能选择全天";
+                }
+            }
+            if(ts.Length>0){
+                MessageBoxUtils.Hint(ts, HintMessageBoxIcon.Error, MainForm);
+                return;
+            }
+            
             if (e.CellValue.Equals("√"))
             {
                 bandedGridView1.SetRowCellValue(e.RowHandle, e.Column.FieldName, "口");
@@ -836,9 +927,80 @@ namespace Xr.RtManager.Pages.scheduling
         private void BatchSchedulingForm_Resize(object sender, EventArgs e)
         {
             cmd.rectDisplay = this.DisplayRectangle;
+            if (gcDoctor.Width < 1080)
+            {
+                mondayMorning.Caption = "上";
+                mondayAfternoon.Caption = "下";
+                mondayNight.Caption = "晚";
+                mondayAllDay.Caption = "全";
+
+                tuesdayMorning.Caption = "上";
+                tuesdayAfternoon.Caption = "下";
+                tuesdayNight.Caption = "晚";
+                tuesdayAllDay.Caption = "全";
+
+                wednesdayMorning.Caption = "上";
+                wednesdayAfternoon.Caption = "下";
+                wednesdayNight.Caption = "晚";
+                wednesdayAllDay.Caption = "全";
+
+                thursdayMorning.Caption = "上";
+                thursdayAfternoon.Caption = "下";
+                thursdayNight.Caption = "晚";
+                thursdayAllDay.Caption = "全";
+
+                fridayMorning.Caption = "上";
+                fridayAfternoon.Caption = "下";
+                fridayNight.Caption = "晚";
+                fridayAllDay.Caption = "全";
+
+                saturdayMorning.Caption = "上";
+                saturdayAfternoon.Caption = "下";
+                saturdayNight.Caption = "晚";
+                saturdayAllDay.Caption = "全";
+
+                sundayMorning.Caption = "上";
+                sundayAfternoon.Caption = "下";
+                sundayNight.Caption = "晚";
+                sundayAllDay.Caption = "全";
+            }
+            else
+            {
+                mondayMorning.Caption = "上午";
+                mondayAfternoon.Caption = "下午";
+                mondayNight.Caption = "晚上";
+                mondayAllDay.Caption = "全天";
+
+                tuesdayMorning.Caption = "上午";
+                tuesdayAfternoon.Caption = "下午";
+                tuesdayNight.Caption = "晚上";
+                tuesdayAllDay.Caption = "全天";
+
+                wednesdayMorning.Caption = "上午";
+                wednesdayAfternoon.Caption = "下午";
+                wednesdayNight.Caption = "晚上";
+                wednesdayAllDay.Caption = "全天";
+
+                thursdayMorning.Caption = "上午";
+                thursdayAfternoon.Caption = "下午";
+                thursdayNight.Caption = "晚上";
+                thursdayAllDay.Caption = "全天";
+
+                fridayMorning.Caption = "上午";
+                fridayAfternoon.Caption = "下午";
+                fridayNight.Caption = "晚上";
+                fridayAllDay.Caption = "全天";
+
+                saturdayMorning.Caption = "上午";
+                saturdayAfternoon.Caption = "下午";
+                saturdayNight.Caption = "晚上";
+                saturdayAllDay.Caption = "全天";
+
+                sundayMorning.Caption = "上午";
+                sundayAfternoon.Caption = "下午";
+                sundayNight.Caption = "晚上";
+                sundayAllDay.Caption = "全天";
+            }
         }
-
-
-        
     }
 }

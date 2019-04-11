@@ -238,6 +238,28 @@ namespace Xr.RtManager
             cmd.rectDisplay = this.DisplayRectangle;
         }
 
+        private void treeList1_Click(object sender, EventArgs e)
+        {
+            if (treeList1.FocusedColumn.Caption != "操作")
+            {
+                String id = Convert.ToString(treeList1.FocusedNode.GetValue("id"));
+                var selectedRow = new MenuEntity();
+                if (id == null)
+                    return;
+                selectedRow.id = id;
+                var form = new MenuEdit();
+                form.menu = selectedRow;
+                form.Text = "菜单修改";
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Thread.Sleep(300);
+                    cmd.ShowOpaqueLayer();
+                    SearchData();
+                    MessageBoxUtils.Hint("修改菜单成功!", MainForm);
+                }
+            }
+        }
+
 
     
     }

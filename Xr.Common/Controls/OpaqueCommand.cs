@@ -104,7 +104,7 @@ namespace Xr.Common.Controls
                 pe.Location = new Point((rect.Width - _Loading.Width) / 2, (rect.Height - _Loading.Height) / 2);//居中
                 buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
             }
-            if (waitingBox!=null)
+            if (waitingBox!=null&& waitingBox.Visible)
             {
                 waitingBox.Width = rect.Width;
                 waitingBox.Height = rect.Height;
@@ -215,36 +215,38 @@ namespace Xr.Common.Controls
                     pe.Size = new System.Drawing.Size(223, 52);
                 }
             }
-            Rectangle rect = Control.DisplayRectangle;
-            if (rectDisplay == new Rectangle())
+            if (status == false)
             {
-                rect = Control.DisplayRectangle;
-            }
+                Rectangle rect = Control.DisplayRectangle;
+                if (rectDisplay == new Rectangle())
+                {
+                    rect = Control.DisplayRectangle;
+                }
 
-            else
-            {
-                rect = rectDisplay;
-                pe.Location = new Point((rect.Width - _Loading.Width) / 2, (rect.Height - _Loading.Height) / 2);//居中
-                buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
-            }
-            waitingBox.Width = rect.Width;
-            waitingBox.Height = rect.Height;
-            waitingBox.Location = new Point(rect.X, rect.Y);
+                else
+                {
+                    rect = rectDisplay;
+                    pe.Location = new Point((rect.Width - _Loading.Width) / 2, (rect.Height - _Loading.Height) / 2);//居中
+                    buttonControl.Location = new Point((pe.Width - buttonControl.Width) / 2 + 10, _Loading.Height);//居中
+                }
+                waitingBox.Width = rect.Width;
+                waitingBox.Height = rect.Height;
+                waitingBox.Location = new Point(rect.X, rect.Y);
 
-            if (IsShowtransparencyBG)
-            {
-                
-                waitingBox.BackgroundImage = this.CreateBacgroundImage();
-                //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
-                waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
-            }
-            if (_alpha != 0f)
-            {
-                waitingBox.BackgroundImage = this.CreateBacgroundImage();
-                //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
-                waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
-            }
+                if (IsShowtransparencyBG)
+                {
 
+                    waitingBox.BackgroundImage = this.CreateBacgroundImage();
+                    //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
+                    waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
+                }
+                if (_alpha != 0f)
+                {
+                    waitingBox.BackgroundImage = this.CreateBacgroundImage();
+                    //waitingBox.BackgroundImage = Properties.Resources.logo_mini;
+                    waitingBox.BackgroundImageLayout = ImageLayout.Stretch;
+                }
+            }
 
             waitingBox.Visible = true;
             waitingBox.BringToFront();

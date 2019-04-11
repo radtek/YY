@@ -78,59 +78,75 @@ namespace Xr.RtScreen
             try
             {
                 //查询医院数据
-                String url = AppContext.AppConfig.serverUrl + InterfaceAddress.hostal + "?code=" + AppContext.AppConfig.hospitalCode;
-                String data = HttpClass.httpPost(url);
-                JObject objT = JObject.Parse(data);
-                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
-                {
-                    List<HelperClassDoctor> list = new List<HelperClassDoctor>();
-                    HelperClassDoctor two = Newtonsoft.Json.JsonConvert.DeserializeObject<HelperClassDoctor>(objT["result"].ToString());
-                    list.Add(two);
-                    if (list[0] == null)
-                    {
-                        loading.CloseWaitForm();
-                        MessageBoxUtils.Show("未查询到医院信息，请检查后重启", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                        System.Environment.Exit(0);
-                    }
-                    HelperClass.list = list;
-                }
-                else
-                {
-                    loading.CloseWaitForm();
-                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                    System.Environment.Exit(0);
-                }
-                //查询科室数据
-                String urls = AppContext.AppConfig.serverUrl + InterfaceAddress.dept + "?hospital.code=" + AppContext.AppConfig.hospitalCode;
-                String datas = HttpClass.httpPost(urls);
-                JObject objTs = JObject.Parse(datas);
-                if (string.Compare(objTs["state"].ToString(), "true", true) == 0)
-                {
-                    HelperClass.DepartmentList = objTs["result"].ToObject<List<HelperClinc>>();
-                }
-                else
-                {
-                    loading.CloseWaitForm();
-                    MessageBoxUtils.Show(objTs["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
-                    System.Environment.Exit(0);
-                }
-                HelperClass.clincId = AppContext.AppConfig.clinicCode;
-                //查询诊室数据
-                //String urlss = AppContext.AppConfig.serverUrl + InterfaceAddress.clin + "?code=" + AppContext.AppConfig.clinicCode;
-                //String datass = HttpClass.httpPost(urlss);
-                //JObject objTss = JObject.Parse(datass);
-                //if (string.Compare(objTss["state"].ToString(), "true", true) == 0)
+                //String url = AppContext.AppConfig.serverUrl + InterfaceAddress.hostal + "?code=" + AppContext.AppConfig.hospitalCode;
+                //String data = HttpClass.httpPost(url);
+                //JObject objT = JObject.Parse(data);
+                //if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 //{
-                //    //Clinc clinc = Newtonsoft.Json.JsonConvert.DeserializeObject<Clinc>(objT["result"].ToString());
-                //    HelperClass.clincId = objTss["result"]["clinicId"].ToString();
+                //    List<HelperClassDoctor> list = new List<HelperClassDoctor>();
+                //    HelperClassDoctor two = Newtonsoft.Json.JsonConvert.DeserializeObject<HelperClassDoctor>(objT["result"].ToString());
+                //    list.Add(two);
+                //    if (list[0] == null)
+                //    {
+                //        loading.CloseWaitForm();
+                //        MessageBoxUtils.Show("未查询到医院信息，请检查后重启", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                //        System.Environment.Exit(0);
+                //    }
+                //    HelperClass.list = list;
                 //}
                 //else
                 //{
                 //    loading.CloseWaitForm();
-                //    MessageBoxUtils.Show(objTss["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                //    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 //    System.Environment.Exit(0);
                 //}
-            }
+                ////查询科室数据
+                //String urls = AppContext.AppConfig.serverUrl + InterfaceAddress.dept + "?hospital.code=" + AppContext.AppConfig.hospitalCode;
+                //String datas = HttpClass.httpPost(urls);
+                //JObject objTs = JObject.Parse(datas);
+                //if (string.Compare(objTs["state"].ToString(), "true", true) == 0)
+                //{
+                //    HelperClass.DepartmentList = objTs["result"].ToObject<List<HelperClinc>>();
+                //}
+                //else
+                //{
+                //    loading.CloseWaitForm();
+                //    MessageBoxUtils.Show(objTs["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                //    System.Environment.Exit(0);
+                //}
+                String urls = "";
+                if (AppContext.AppConfig.StartupScreen != "1")
+                {
+                    urls = AppContext.AppConfig.serverUrl + InterfaceAddress.screenLogin + "?hospitalCode=" + AppContext.AppConfig.hospitalCode+ "&deptCode=" + AppContext.AppConfig.deptCode+ "&clinicName=" + AppContext.AppConfig.clinicName;
+                }
+                else
+                {
+                    urls = AppContext.AppConfig.serverUrl + InterfaceAddress.screenLogin + "?hospitalCode=" + AppContext.AppConfig.hospitalCode + "&deptCode=" + AppContext.AppConfig.deptCode + "&clinicName=" + "";
+                }
+                    String datass = HttpClass.httpPost(urls);
+                    JObject objTss = JObject.Parse(datass);
+                    if (string.Compare(objTss["state"].ToString(), "true", true) == 0)
+                    {
+                        List<StardIsFrom> list = objTss["result"].ToObject<List<StardIsFrom>>();
+                        HelperClass.hospitalId = list[0].hospitalId;
+                        HelperClass.deptId = list[0].deptId;
+                        if (list[0].clinicId == null)
+                        {
+                            HelperClass.clincId = "";
+                        }
+                        else
+                        {
+                            HelperClass.clincId = list[0].clinicId;
+                        }
+                    }
+                    else
+                    {
+                        loading.CloseWaitForm();
+                        MessageBoxUtils.Show(objTss["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
+                        System.Environment.Exit(0);
+                    }
+                }
+            
             catch (Exception ex)
             {
                 loading.CloseWaitForm();

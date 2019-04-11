@@ -60,13 +60,11 @@ namespace Xr.RtManager
         /// <summary>
         /// logoUrl
         /// </summary>
-        [Required]
         public String logoUrl { get; set; }
 
         /// <summary>
         /// 宣传图Url
         /// </summary>
-        [Required]
         public String pictureUrl { get; set; }
 
         /// <summary>

@@ -102,6 +102,7 @@
             this.treeList1.RowHeight = 30;
             this.treeList1.Size = new System.Drawing.Size(1071, 401);
             this.treeList1.TabIndex = 0;
+            this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
             // 
             // treeListColumn1
             // 
@@ -221,7 +222,7 @@
             this.buttonControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl3.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl3.Location = new System.Drawing.Point(300, 10);
+            this.buttonControl3.Location = new System.Drawing.Point(208, 10);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(75, 30);
             this.buttonControl3.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -234,12 +235,13 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(210, 10);
+            this.buttonControl2.Location = new System.Drawing.Point(289, 10);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl2.TabIndex = 1;
             this.buttonControl2.Text = "修改";
+            this.buttonControl2.Visible = false;
             this.buttonControl2.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // buttonControl1

@@ -23,9 +23,9 @@ namespace Xr.RtScreen.Models
         /// </summary>
         public String deptCode { get; set; }
         /// <summary>
-        /// 诊室ID
+        /// 诊室名称
         /// </summary>
-        public String clinicCode { get; set; }
+        public String clinicName { get; set; }
         /// <summary>
         /// 启动对应的屏幕窗口1（公共大屏）2（科室小屏）3（医生小屏）
         /// </summary>

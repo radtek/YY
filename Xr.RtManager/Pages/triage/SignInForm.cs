@@ -124,6 +124,8 @@ namespace Xr.RtManager.Pages.triage
             Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.RoomListQuery });
 
             ReservationInfo_Panel.Visible = false;
+            //获取患者列表状态
+            GetPatientListStatus();
 
         }
         /// <summary>
@@ -310,7 +312,7 @@ namespace Xr.RtManager.Pages.triage
         /// <summary>
         /// 患者列表状态：0预约、1候诊中、2已就诊、3全部
         /// </summary>
-        private String PatientListStatus = "3";
+        private String PatientListStatus = "1";//默认状态
         private void Asynchronous(AsyncEntity ars)
         {
             //异步操作
@@ -505,10 +507,6 @@ namespace Xr.RtManager.Pages.triage
                     String url = String.Empty;
                     String jsonStr = String.Empty;
 
-
-                    //hospitalId=12&deptId=2&patientId=000675493100
-                    prament.Add("hospitalId", AppContext.Session.hospitalId);
-                    prament.Add("deptIds", AppContext.Session.deptIds);
                     prament.Add("patientId", Patientid);
                     //prament.Add("patientId", CardID);
                     //prament.Add("pageSize", "10000");
@@ -517,15 +515,40 @@ namespace Xr.RtManager.Pages.triage
                     {
                         param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
                     }
-                    url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/patCurrentRegsiter?" + param;
-                    //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
-                    jsonStr = HttpClass.httpPost(url);//{"code":204,"message":"没有可以签到的预约记录","result":"","state":false}
+                    url = AppContext.AppConfig.serverUrl + "itf/patient/queryArrears?" + param;
+                    jsonStr = HttpClass.httpPost(url);//{"code":405,"message":"有未交费的处方，请到窗口或自助机交费后再签到。\r\n \r\n儿科急诊/全院/2016-11-24/一次性消毒药袋(纸塑)/0.09元。\r\n急诊科/付东明/2016-03-21/消毒药袋(电子)(纸塑)/0.18元。\r\n急诊科/洪海斌★/2015-11-26/消毒药袋(电子)(纸塑)/0.09元。\r\n急诊科/洪海斌★/2016-03-29/消毒药袋(电子)(纸塑)/0.18元。\r\n急诊科/洪海斌★/2016-07-17/消毒药袋(电子)(纸塑)/0.09元。\r\n急诊科/黄日华/2016-06-29/消毒药袋(电子)(纸塑)/0.18元。\r\n急诊科/李海忠●/2015-12-04/消毒药袋(电子)(纸塑)/0.09元。\r\n急诊科/庄炯宇/2015-11-16/消毒药袋(电子)(纸塑)/0.09元。\r\n","result":"","state":false}
                     objT = JObject.Parse(jsonStr);
-                    result.obj = objT;
-                    result.result = true;
-                    //result.msg = "成功";
-                    result.msg = objT["message"].ToString();
-                    e.Result = result;
+                    if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                    {
+                        prament = new Dictionary<string, string>();
+                        //hospitalId=12&deptId=2&patientId=000675493100
+                        prament.Add("hospitalId", AppContext.Session.hospitalId);
+                        prament.Add("deptIds", AppContext.Session.deptIds);
+                        prament.Add("patientId", Patientid);
+                        //prament.Add("patientId", CardID);
+                        //prament.Add("pageSize", "10000");
+
+                        if (prament.Count != 0)
+                        {
+                            param = string.Join("&", prament.Select(x => x.Key + "=" + x.Value).ToArray());
+                        }
+                        url = AppContext.AppConfig.serverUrl + "sch/doctorScheduRegister/patCurrentRegsiter?" + param;
+                        //{"code":200,"message":"操作成功","result":{"registerId":9,"registerWay":"0","cardType":"1 ","cardNo":"02102337","status":"0","statusTxt":"待签到","triageId":""},"state":true}
+                        jsonStr = HttpClass.httpPost(url);//{"code":204,"message":"没有可以签到的预约记录","result":"","state":false}
+                        objT = JObject.Parse(jsonStr);
+                        result.obj = objT;
+                        result.result = true;
+                        //result.msg = "成功";
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
+                    else
+                    {
+                        result.obj = objT;
+                        result.result = false;
+                        result.msg = objT["message"].ToString();
+                        e.Result = result;
+                    }
 
                 }
                 #endregion
@@ -714,6 +737,7 @@ namespace Xr.RtManager.Pages.triage
                     //预约挂号
                     prament.Add("hospitalId", Pras[0]);
                     prament.Add("deptId", Pras[1]);
+                    prament.Add("period", Pras[2]);
                     prament.Add("doctorId", Doctorid);
                     prament.Add("patientId", Patientid);
                     prament.Add("patientName", lab_name.Text);
@@ -846,9 +870,17 @@ namespace Xr.RtManager.Pages.triage
                     String param = "";
                     //请求复诊签到
                     Dictionary<string, string> prament = new Dictionary<string, string>();
-                    prament.Add("triageId", Pras[0]);
-                    //prament.Add("triageId", TriageId);
-                    //prament.Add("pageSize", "10000");
+                    if (Pras.Length == 1)
+                    {
+                        prament.Add("triageId", Pras[0]);
+                        //prament.Add("triageId", TriageId);
+                        //prament.Add("pageSize", "10000");
+                    }
+                    else //复诊医生停诊转诊
+                    {
+                        prament.Add("triageId", Pras[0]);
+                        prament.Add("doctorId", Pras[1]);
+                    }
 
                     String url = String.Empty;
                     if (prament.Count != 0)
@@ -1026,15 +1058,15 @@ namespace Xr.RtManager.Pages.triage
             //System.Threading.Thread.Sleep(10000);
             if (parm == "IdCard")
             {
-                System.Threading.Thread.Sleep(3000);
-                if (backgroundWorker1.IsBusy)
-                {
-                    CardID = "45032219871222151X";
-                    Result.WorkType = AsynchronousWorks.ReadIdCard;
-                    Result.obj = CardID;
-                }
+                //System.Threading.Thread.Sleep(3000);
+                //if (backgroundWorker1.IsBusy)
+                //{
+                //    CardID = "45032219871222151X";
+                //    Result.WorkType = AsynchronousWorks.ReadIdCard;
+                //    Result.obj = CardID;
+                //}
 
-                /*JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
+                JLIdCardInfoClass idCardInfo = JLIdCardInfoClass.getCardInfo();
                 if (idCardInfo != null)
                 {
                  if(backgroundWorker1.IsBusy)
@@ -1047,9 +1079,9 @@ namespace Xr.RtManager.Pages.triage
                 {
                     //patientId = carMes.user_id;
                     Result.obj = CardID;
-                    LogClass.WriteLog("读取身份证成功，身份证号：" + IDCardID);
+                    LogClass.WriteLog("读取身份证成功，身份证号：" + CardID);
                 }
-                 */
+                 
                 //result.obj = null;
                 //result.result = true;
                 //result.msg = "成功
@@ -1137,7 +1169,7 @@ namespace Xr.RtManager.Pages.triage
                             Control.RoomPanelButton btn = new Control.RoomPanelButton();
                             if (item.isStop == "1")
                                 btn.IsStop = true;
-                            btn.noonName = item.period;
+                            btn.noonName = item.periodTxt;
                             btn.BorderColor = System.Drawing.Color.Gray;
                             btn.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
                             btn.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
@@ -1150,7 +1182,7 @@ namespace Xr.RtManager.Pages.triage
                             btn.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
                             btn.Size = new System.Drawing.Size(195, 110);
                             btn.TipFont = new System.Drawing.Font("微软雅黑", 12F);
-                            btn.Tag = new List<String>() { item.period, item.doctorId, item.period + item.doctorId, item.period, item.hospitalId, item.deptId };// item.period + item.doctorId;
+                            btn.Tag = new List<String>() { item.periodTxt, item.doctorId, item.periodTxt + item.doctorId, item.periodTxt, item.hospitalId, item.deptId,item.period };// item.period + item.doctorId;
                             btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.roomPanelButton3_MouseClick);
                             this.flowLayoutPanel1.Controls.Add(btn);
                         }
@@ -1159,7 +1191,7 @@ namespace Xr.RtManager.Pages.triage
                             Control.RoomPanelButton btn = new Control.RoomPanelButton();
                             if (item.isStop == "1")
                                 btn.IsStop = true;
-                            btn.noonName = item.period;
+                            btn.noonName = item.periodTxt;
                             btn.BorderColor = System.Drawing.Color.Gray;
                             btn.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
                             btn.BtnFont = new System.Drawing.Font("微软雅黑", 18F);
@@ -1172,7 +1204,7 @@ namespace Xr.RtManager.Pages.triage
                             btn.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
                             btn.Size = new System.Drawing.Size(162, 110);
                             btn.TipFont = new System.Drawing.Font("微软雅黑", 12F);
-                            btn.Tag = new List<String>() { item.period, item.doctorId, item.period + item.doctorId, item.period, item.hospitalId, item.deptId };// item.period + item.doctorId;
+                            btn.Tag = new List<String>() { item.periodTxt, item.doctorId, item.periodTxt + item.doctorId, item.periodTxt, item.hospitalId, item.deptId, item.period };// item.period + item.doctorId;
                             btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.roomPanelButtonWaiting_MouseClick);
                             List<String> prams = btn.Tag as List<String>;
                             if (SelectDoctorSchema != String.Empty && SelectDoctorSchema == prams[2])
@@ -1351,6 +1383,16 @@ namespace Xr.RtManager.Pages.triage
                                     Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.RoomListQuery });
                                     MessageBoxUtils.Hint(objT["result"]["statusTxt"].ToString(), HintMessageBoxIcon.Error, MainForm);
                                 }
+                                else if (BookingStatus == "7") //该复诊患者的医生已停诊，请选择其他医生签到
+                                {
+                                    btn_more.Enabled = false;
+                                    btn_print.Enabled = false;
+                                    //MessageBoxUtils.Hint("该患者预约的医生已停诊，请选择其他医生签到");
+
+                                    cmd.HideOpaqueLayer();
+                                    Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.RoomListQuery });
+                                    MessageBoxUtils.Hint(objT["result"]["statusTxt"].ToString(), HintMessageBoxIcon.Error, MainForm);
+                                }
                                 else //默认已就诊状态
                                 {
                                     btn_more.Enabled = false;
@@ -1362,7 +1404,7 @@ namespace Xr.RtManager.Pages.triage
                                     MessageBoxUtils.Hint("该患者已就诊", MainForm);
                                 }
                             }
-                            else//多条记录
+                            else if (list.Count>1)//多条记录
                             {
                                 RegisterRecordForm rr = new RegisterRecordForm();
                                 rr.list = list;
@@ -1382,6 +1424,13 @@ namespace Xr.RtManager.Pages.triage
                                     this.BookingStatus = "6";
                                     this.RegisterId = rr.registerId;
                                 }
+                                else if (rr.DialogResult == DialogResult.Retry)
+                                {
+                                    //复诊患者的医生已停诊，转诊
+                                    this.BookingStatus = "7";
+                                    this.RegisterId = rr.registerId;
+                                }
+                                
                                 return;
                             }
                         }
@@ -1444,16 +1493,21 @@ namespace Xr.RtManager.Pages.triage
                             //更新诊室状态
                             NeedCloseWaitingFrm = false;
                             Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.RoomListQuery });
+                            String tipMsg = "";
+                            if (objT["result"]["tipMsg"] != null && objT["result"]["tipMsg"].ToString().Length != 0)
+                            {
+                                tipMsg = objT["result"]["tipMsg"].ToString() + ",";
+                            }
                             //打印小票
-                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["patientName"].ToString(), objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString());
+                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["patientName"].ToString(), objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString(), objT["result"]["regVisitTime"].ToString());
                             string message = "";
                             if (!print.Print(ref message))
                             {
-                                MessageBoxUtils.Show("打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                                MessageBoxUtils.Show(tipMsg + "打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             }
                             else
                             {
-                                MessageBoxUtils.Hint("打印小票完成", MainForm);
+                                MessageBoxUtils.Hint(tipMsg + "打印小票完成", MainForm);
                             }
                             //MessageBoxUtils.Hint(result.msg, MainForm);
                         }
@@ -1507,15 +1561,20 @@ namespace Xr.RtManager.Pages.triage
                         if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                         {
                             //打印小票
-                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["patientName"].ToString(), objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString());
+                            String tipMsg = "";
+                            if (objT["result"]["tipMsg"] != null && objT["result"]["tipMsg"].ToString().Length != 0)
+                            {
+                                tipMsg = objT["result"]["tipMsg"].ToString() + ",";
+                            }
+                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["patientName"].ToString(), objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString(), objT["result"]["regVisitTime"].ToString());
                             string message = "";
                             if (!print.Print(ref message))
                             {
-                                MessageBoxUtils.Show("打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                                MessageBoxUtils.Show(tipMsg + "打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             }
                             else
                             {
-                                MessageBoxUtils.Hint("打印小票完成", MainForm);
+                                MessageBoxUtils.Hint(tipMsg + "打印小票完成", MainForm);
                             }
                             //刷新候诊患者列表
                             if (SelectDoctorid != String.Empty)
@@ -1583,17 +1642,21 @@ namespace Xr.RtManager.Pages.triage
                             //lab_sfz.Text = objT["result"]["waitingNum"].ToString();
                             //lab_zlk.Text = objT["result"]["currentTime"].ToString();
                             //lab_jkt.Text = objT["result"]["tipMsg"].ToString();
-
+                            String tipMsg = "";
+                            if (objT["result"]["tipMsg"] != null && objT["result"]["tipMsg"].ToString().Length != 0)
+                            {
+                                tipMsg = objT["result"]["tipMsg"].ToString() + ",";
+                            }
                             //打印小票
-                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["patientName"].ToString(), objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString());
+                            PrintNote print = new PrintNote(objT["result"]["hospitalName"].ToString(), objT["result"]["deptName"].ToString(), objT["result"]["clinicName"].ToString(), objT["result"]["queueNum"].ToString(), objT["result"]["patientName"].ToString(), objT["result"]["waitingNum"].ToString(), objT["result"]["currentTime"].ToString(), objT["result"]["tipMsg"].ToString(), objT["result"]["doctorTip"].ToString(), objT["result"]["regVisitTime"].ToString());
                             string message = "";
                             if (!print.Print(ref message))
                             {
-                                MessageBoxUtils.Show("打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                                MessageBoxUtils.Show(tipMsg + "打印小票失败：" + message, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
                             }
                             else
                             {
-                                MessageBoxUtils.Hint("打印小票完成", MainForm);
+                                MessageBoxUtils.Hint(tipMsg + "打印小票完成", MainForm);
                             }
                         }
                         else
@@ -1804,6 +1867,15 @@ namespace Xr.RtManager.Pages.triage
         }
         private void rBtn_PatientListStatus_Click(object sender, EventArgs e)
         {
+            GetPatientListStatus();
+            if (SelectDoctorid != String.Empty)
+            {
+                //WorkType = AsynchronousWorks.WaitingPatientList;
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
+            }
+        }
+        private void GetPatientListStatus()
+        {
             if (rBtn_allPatient.IsCheck)
             {
                 PatientListStatus = "3";
@@ -1819,11 +1891,6 @@ namespace Xr.RtManager.Pages.triage
             else
             {
                 PatientListStatus = "2";
-            }
-            if (SelectDoctorid != String.Empty)
-            {
-                //WorkType = AsynchronousWorks.WaitingPatientList;
-                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.WaitingPatientList });
             }
         }
         private void lueDept_EditValueChanged(object sender, EventArgs e)
@@ -1865,14 +1932,23 @@ namespace Xr.RtManager.Pages.triage
                         //WorkType = AsynchronousWorks.SingIn;
                         Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.SingIn });
                     }
+                    else if (BookingStatus == "7")//复诊医生停诊换医生
+                    {
+                        if (MessageBoxUtils.Show("确定为该复诊患者签到" + btn.BtnText + "的号吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
+                        {
+                            //WorkType = AsynchronousWorks.Register;
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.ReviewSignIn, Argument = new String[] { TriageId, prams[1] } });
+                        }
+                    }
                     else if (BookingStatus == "RegisterNow")//选择医生为该患者现场挂号
                     {
                         if (MessageBoxUtils.Show("确定为该患者现场挂" + btn.BtnText + "的号吗？", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
                         {
                             //WorkType = AsynchronousWorks.Register;
-                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.Register, Argument = new String[] { prams[4], prams[5] } });
+                            Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.Register, Argument = new String[] { prams[4], prams[5], prams[6] } });
                         }
                     }
+
                     else if (BookingStatus == "Finshed")
                     {
                         MessageBoxUtils.Hint("该患者已完成分诊，无须现场挂号", HintMessageBoxIcon.Error, MainForm);
@@ -2092,34 +2168,55 @@ namespace Xr.RtManager.Pages.triage
         private void SetNoonCode()
         {
             string url = AppContext.AppConfig.serverUrl + "sch/registerTriage/getCurrentPeriod";
-            //{"code":200,"message":"操作成功","result":"","state":true}
+            //{"code": 200,"message": "操作成功","result": {"period": "2"},"state": true}
             string jsonStr = HttpClass.httpPost(url);
             JObject objT = JObject.Parse(jsonStr);
-            if (string.Compare(objT["state"].ToString(), "true", true) == 0) { }
-            int hour = System.DateTime.Now.Hour;
-            if (hour <= 7)
+            if (string.Compare(objT["state"].ToString(), "true", true) == 0)
             {
-                rBtn_night.IsCheck = true;
-                rBtn_night_1.IsCheck = true;
-                Period = "2";
-            }
-            else if (hour > 7 && hour <= 13)
-            {
-                rBtn_noon.IsCheck = true;
-                rBtn_noon_1.IsCheck = true;
-                Period = "0";
-            }
-            else if (hour > 13 && hour <= 18)
-            {
-                rBtn_afternoon.IsCheck = true;
-                rBtn_afternoon_1.IsCheck = true;
-                Period = "1";
+                Period = objT["result"]["period"].ToString();
+                if (Period =="0")
+                {
+                    rBtn_noon.IsCheck = true;
+                    rBtn_noon_1.IsCheck = true;
+                }
+                else if (Period == "1")
+                {
+                    rBtn_afternoon.IsCheck = true;
+                    rBtn_afternoon_1.IsCheck = true;
+                }
+                else if (Period == "2")
+                {
+                    rBtn_night.IsCheck = true;
+                    rBtn_night_1.IsCheck = true;
+                }
             }
             else
             {
-                rBtn_night.IsCheck = true;
-                rBtn_night_1.IsCheck = true;
-                Period = "2";
+                int hour = System.DateTime.Now.Hour;
+                if (hour <= 7)
+                {
+                    rBtn_night.IsCheck = true;
+                    rBtn_night_1.IsCheck = true;
+                    Period = "2";
+                }
+                else if (hour > 7 && hour <= 13)
+                {
+                    rBtn_noon.IsCheck = true;
+                    rBtn_noon_1.IsCheck = true;
+                    Period = "0";
+                }
+                else if (hour > 13 && hour <= 18)
+                {
+                    rBtn_afternoon.IsCheck = true;
+                    rBtn_afternoon_1.IsCheck = true;
+                    Period = "1";
+                }
+                else
+                {
+                    rBtn_night.IsCheck = true;
+                    rBtn_night_1.IsCheck = true;
+                    Period = "2";
+                }
             }
         }
         /// <summary>
@@ -2196,6 +2293,10 @@ namespace Xr.RtManager.Pages.triage
         public String doctorName { get; set; }
         /// <summary>
         /// 午别
+        /// </summary>
+        public String periodTxt { get; set; }
+        /// <summary>
+        /// 午别代码
         /// </summary>
         public String period { get; set; }
         /// <summary>

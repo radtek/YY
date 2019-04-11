@@ -144,8 +144,8 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_refreshPatient = new Xr.Common.Controls.ButtonControl();
             this.borderPanel5 = new Xr.Common.Controls.BorderPanel();
-            this.rBtn_donePatient = new Xr.Common.Controls.BorderPanelButton();
             this.rBtn_reservationPatient = new Xr.Common.Controls.BorderPanelButton();
+            this.rBtn_donePatient = new Xr.Common.Controls.BorderPanelButton();
             this.rBtn_waittingPatient = new Xr.Common.Controls.BorderPanelButton();
             this.rBtn_allPatient = new Xr.Common.Controls.BorderPanelButton();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -275,8 +275,8 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).BeginInit();
             this.borderPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_donePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_reservationPatient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_donePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_waittingPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_allPatient)).BeginInit();
             this.panel12.SuspendLayout();
@@ -931,8 +931,8 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel2.CornerRadius.TopLeft = 4;
             this.borderPanel2.CornerRadius.TopRight = 4;
             this.borderPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanel2.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel2.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel2.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel2.Location = new System.Drawing.Point(10, 23);
             this.borderPanel2.Name = "borderPanel2";
             this.borderPanel2.Padding = new System.Windows.Forms.Padding(20, 6, 20, 6);
@@ -1708,8 +1708,8 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel1.CornerRadius.TopLeft = 4;
             this.borderPanel1.CornerRadius.TopRight = 4;
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel1.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel1.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
@@ -1958,8 +1958,8 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel3.CornerRadius.TopLeft = 4;
             this.borderPanel3.CornerRadius.TopRight = 4;
             this.borderPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanel3.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel3.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel3.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel3.Location = new System.Drawing.Point(0, 0);
             this.borderPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.borderPanel3.Name = "borderPanel3";
@@ -2006,8 +2006,8 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel5.Appearance.Options.UseBackColor = true;
             this.borderPanel5.BorderSides = Xr.Common.Controls.BorderSides.None;
             this.borderPanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel5.Controls.Add(this.rBtn_donePatient);
             this.borderPanel5.Controls.Add(this.rBtn_reservationPatient);
+            this.borderPanel5.Controls.Add(this.rBtn_donePatient);
             this.borderPanel5.Controls.Add(this.rBtn_waittingPatient);
             this.borderPanel5.Controls.Add(this.rBtn_allPatient);
             this.borderPanel5.Dock = System.Windows.Forms.DockStyle.Left;
@@ -2019,47 +2019,46 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel5.Size = new System.Drawing.Size(180, 28);
             this.borderPanel5.TabIndex = 175;
             // 
-            // rBtn_donePatient
-            // 
-            this.rBtn_donePatient.BorderColor = System.Drawing.Color.DimGray;
-            this.rBtn_donePatient.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Right) 
-            | Xr.Common.Controls.BorderSides.Bottom)));
-            this.rBtn_donePatient.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.rBtn_donePatient.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
-            this.rBtn_donePatient.BtnText = "完成";
-            this.rBtn_donePatient.CenterText = true;
-            this.rBtn_donePatient.CornerRadius.BottomRight = 8;
-            this.rBtn_donePatient.CornerRadius.TopRight = 8;
-            this.rBtn_donePatient.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rBtn_donePatient.FillColor1 = System.Drawing.Color.White;
-            this.rBtn_donePatient.FillColor2 = System.Drawing.Color.White;
-            this.rBtn_donePatient.Location = new System.Drawing.Point(132, 0);
-            this.rBtn_donePatient.Margin = new System.Windows.Forms.Padding(0);
-            this.rBtn_donePatient.Name = "rBtn_donePatient";
-            this.rBtn_donePatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_donePatient.Size = new System.Drawing.Size(42, 28);
-            this.rBtn_donePatient.TabIndex = 173;
-            this.rBtn_donePatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
-            // 
             // rBtn_reservationPatient
             // 
             this.rBtn_reservationPatient.BorderColor = System.Drawing.Color.DimGray;
-            this.rBtn_reservationPatient.BorderSides = ((Xr.Common.Controls.BorderSides)((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Bottom)));
+            this.rBtn_reservationPatient.BorderSides = ((Xr.Common.Controls.BorderSides)(((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Right) 
+            | Xr.Common.Controls.BorderSides.Bottom)));
             this.rBtn_reservationPatient.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.rBtn_reservationPatient.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
             this.rBtn_reservationPatient.BtnText = "预约";
             this.rBtn_reservationPatient.CenterText = true;
+            this.rBtn_reservationPatient.CornerRadius.BottomRight = 8;
+            this.rBtn_reservationPatient.CornerRadius.TopRight = 8;
             this.rBtn_reservationPatient.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rBtn_reservationPatient.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_reservationPatient.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
-            this.rBtn_reservationPatient.IsCheck = true;
-            this.rBtn_reservationPatient.Location = new System.Drawing.Point(94, 0);
+            this.rBtn_reservationPatient.FillColor1 = System.Drawing.Color.White;
+            this.rBtn_reservationPatient.FillColor2 = System.Drawing.Color.White;
+            this.rBtn_reservationPatient.Location = new System.Drawing.Point(136, 0);
             this.rBtn_reservationPatient.Margin = new System.Windows.Forms.Padding(0);
             this.rBtn_reservationPatient.Name = "rBtn_reservationPatient";
             this.rBtn_reservationPatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
             this.rBtn_reservationPatient.Size = new System.Drawing.Size(38, 28);
             this.rBtn_reservationPatient.TabIndex = 174;
             this.rBtn_reservationPatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
+            // 
+            // rBtn_donePatient
+            // 
+            this.rBtn_donePatient.BorderColor = System.Drawing.Color.DimGray;
+            this.rBtn_donePatient.BorderSides = ((Xr.Common.Controls.BorderSides)((Xr.Common.Controls.BorderSides.Top | Xr.Common.Controls.BorderSides.Bottom)));
+            this.rBtn_donePatient.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.rBtn_donePatient.BtnFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.rBtn_donePatient.BtnText = "完成";
+            this.rBtn_donePatient.CenterText = true;
+            this.rBtn_donePatient.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rBtn_donePatient.FillColor1 = System.Drawing.Color.White;
+            this.rBtn_donePatient.FillColor2 = System.Drawing.Color.White;
+            this.rBtn_donePatient.Location = new System.Drawing.Point(94, 0);
+            this.rBtn_donePatient.Margin = new System.Windows.Forms.Padding(0);
+            this.rBtn_donePatient.Name = "rBtn_donePatient";
+            this.rBtn_donePatient.SelctedColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(195)))), ((int)(((byte)(245)))));
+            this.rBtn_donePatient.Size = new System.Drawing.Size(42, 28);
+            this.rBtn_donePatient.TabIndex = 173;
+            this.rBtn_donePatient.Click += new System.EventHandler(this.rBtn_PatientListStatus_Click);
             // 
             // rBtn_waittingPatient
             // 
@@ -2517,8 +2516,8 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel6.CornerRadius.TopLeft = 4;
             this.borderPanel6.CornerRadius.TopRight = 4;
             this.borderPanel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.borderPanel6.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel6.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel6.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel6.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel6.Location = new System.Drawing.Point(10, 20);
             this.borderPanel6.Name = "borderPanel6";
             this.borderPanel6.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
@@ -2723,8 +2722,8 @@ namespace Xr.RtManager.Pages.triage
             this.borderPanel8.CornerRadius.TopLeft = 4;
             this.borderPanel8.CornerRadius.TopRight = 4;
             this.borderPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel8.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel8.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel8.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel8.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel8.Location = new System.Drawing.Point(10, 10);
             this.borderPanel8.Name = "borderPanel8";
             this.borderPanel8.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
@@ -2913,8 +2912,8 @@ namespace Xr.RtManager.Pages.triage
             this.tableLayoutPanel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.borderPanel5)).EndInit();
             this.borderPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.rBtn_donePatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_reservationPatient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtn_donePatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_waittingPatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtn_allPatient)).EndInit();
             this.panel12.ResumeLayout(false);

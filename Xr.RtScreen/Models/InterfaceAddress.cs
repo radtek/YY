@@ -25,11 +25,15 @@ namespace Xr.RtScreen.Models
        /// <summary>
        /// 诊室接口地址
        /// </summary>
-       public const String clin = "itf/triage/findClinicIdByCode";
+       public const String clin = "itf/triage/findDoctorIdByClinicName";
+       /// <summary>
+       /// 获取候诊屏的主键
+       /// </summary>
+       public const String screenLogin = "itf/screen/screenLogin";
        /// <summary>
        /// 诊室列表接口
        /// </summary>
-       public const String ClincInfo = "itf/intro/findCliniList";
+       public const String ClincInfo = "itf/call/findCliniList";
        /// <summary>
        /// 公共大屏接口地址
        /// </summary>

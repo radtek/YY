@@ -34,25 +34,37 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.gcAppointmentInfo = new DevExpress.XtraGrid.GridControl();
             this.gvAppointmentInfo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.就诊状态 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.gridBand4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand13 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.性别 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.年龄 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand9 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand10 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn11 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand11 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn12 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn13 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lab_count = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.borderPanel1 = new Xr.Common.Controls.BorderPanel();
-            this.cb_AutoRefresh = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonControl3 = new Xr.Common.Controls.ButtonControl();
             this.lueState = new DevExpress.XtraEditors.LookUpEdit();
@@ -61,6 +73,7 @@
             this.treeList2 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn9 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.cb_AutoRefresh = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panelEx12 = new Xr.Common.Controls.PanelEx(this.components);
             this.panelEx15 = new Xr.Common.Controls.PanelEx(this.components);
@@ -69,19 +82,6 @@
             this.panelEx13 = new Xr.Common.Controls.PanelEx(this.components);
             this.panelEx14 = new Xr.Common.Controls.PanelEx(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.就诊状态 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand13 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.性别 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.年龄 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand9 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand10 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand11 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcAppointmentInfo)).BeginInit();
@@ -198,6 +198,19 @@
             this.gvAppointmentInfo.OptionsView.ShowIndicator = false;
             this.gvAppointmentInfo.RowHeight = 30;
             // 
+            // gridBand2
+            // 
+            this.gridBand2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand2.AppearanceHeader.Options.UseFont = true;
+            this.gridBand2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridBand2.Caption = "序号";
+            this.gridBand2.Columns.Add(this.gridColumn2);
+            this.gridBand2.Name = "gridBand2";
+            this.gridBand2.Visible = false;
+            this.gridBand2.VisibleIndex = -1;
+            this.gridBand2.Width = 38;
+            // 
             // gridColumn2
             // 
             this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
@@ -209,6 +222,14 @@
             this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Width = 38;
+            // 
+            // 就诊状态
+            // 
+            this.就诊状态.Caption = "就诊状态";
+            this.就诊状态.Columns.Add(this.gridColumn1);
+            this.就诊状态.Name = "就诊状态";
+            this.就诊状态.VisibleIndex = 0;
+            this.就诊状态.Width = 78;
             // 
             // gridColumn1
             // 
@@ -224,6 +245,29 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.Width = 78;
             // 
+            // gridBand5
+            // 
+            this.gridBand5.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand5.AppearanceHeader.Options.UseFont = true;
+            this.gridBand5.Caption = "预约信息";
+            this.gridBand5.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.gridBand4,
+            this.gridBand1,
+            this.gridBand6});
+            this.gridBand5.Name = "gridBand5";
+            this.gridBand5.VisibleIndex = 1;
+            this.gridBand5.Width = 364;
+            // 
+            // gridBand4
+            // 
+            this.gridBand4.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand4.AppearanceHeader.Options.UseFont = true;
+            this.gridBand4.Caption = "医生";
+            this.gridBand4.Columns.Add(this.gridColumn3);
+            this.gridBand4.Name = "gridBand4";
+            this.gridBand4.VisibleIndex = 0;
+            this.gridBand4.Width = 113;
+            // 
             // gridColumn3
             // 
             this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
@@ -237,6 +281,17 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.Width = 113;
+            // 
+            // gridBand1
+            // 
+            this.gridBand1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand1.AppearanceHeader.Options.UseFont = true;
+            this.gridBand1.Caption = "日期";
+            this.gridBand1.Columns.Add(this.gridColumn8);
+            this.gridBand1.Columns.Add(this.gridColumn4);
+            this.gridBand1.Name = "gridBand1";
+            this.gridBand1.VisibleIndex = 1;
+            this.gridBand1.Width = 128;
             // 
             // gridColumn8
             // 
@@ -258,6 +313,16 @@
             this.gridColumn4.Visible = true;
             this.gridColumn4.Width = 128;
             // 
+            // gridBand6
+            // 
+            this.gridBand6.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand6.AppearanceHeader.Options.UseFont = true;
+            this.gridBand6.Caption = "时间";
+            this.gridBand6.Columns.Add(this.gridColumn9);
+            this.gridBand6.Name = "gridBand6";
+            this.gridBand6.VisibleIndex = 2;
+            this.gridBand6.Width = 123;
+            // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "时间";
@@ -266,6 +331,16 @@
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.Width = 123;
+            // 
+            // gridBand13
+            // 
+            this.gridBand13.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand13.AppearanceHeader.Options.UseFont = true;
+            this.gridBand13.Caption = "姓名";
+            this.gridBand13.Columns.Add(this.gridColumn6);
+            this.gridBand13.Name = "gridBand13";
+            this.gridBand13.VisibleIndex = 2;
+            this.gridBand13.Width = 101;
             // 
             // gridColumn6
             // 
@@ -281,6 +356,16 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.Width = 101;
             // 
+            // 性别
+            // 
+            this.性别.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.性别.AppearanceHeader.Options.UseFont = true;
+            this.性别.Caption = "性别";
+            this.性别.Columns.Add(this.gridColumn5);
+            this.性别.Name = "性别";
+            this.性别.VisibleIndex = 3;
+            this.性别.Width = 48;
+            // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "性别";
@@ -289,6 +374,16 @@
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.Width = 48;
+            // 
+            // 年龄
+            // 
+            this.年龄.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.年龄.AppearanceHeader.Options.UseFont = true;
+            this.年龄.Caption = "年龄";
+            this.年龄.Columns.Add(this.gridColumn7);
+            this.年龄.Name = "年龄";
+            this.年龄.VisibleIndex = 4;
+            this.年龄.Width = 74;
             // 
             // gridColumn7
             // 
@@ -299,6 +394,16 @@
             this.gridColumn7.Visible = true;
             this.gridColumn7.Width = 74;
             // 
+            // gridBand9
+            // 
+            this.gridBand9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand9.AppearanceHeader.Options.UseFont = true;
+            this.gridBand9.Caption = "电话号码";
+            this.gridBand9.Columns.Add(this.gridColumn10);
+            this.gridBand9.Name = "gridBand9";
+            this.gridBand9.VisibleIndex = 5;
+            this.gridBand9.Width = 123;
+            // 
             // gridColumn10
             // 
             this.gridColumn10.Caption = "电话号码";
@@ -307,6 +412,16 @@
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
             this.gridColumn10.Width = 123;
+            // 
+            // gridBand10
+            // 
+            this.gridBand10.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand10.AppearanceHeader.Options.UseFont = true;
+            this.gridBand10.Caption = "预约卡类型";
+            this.gridBand10.Columns.Add(this.gridColumn11);
+            this.gridBand10.Name = "gridBand10";
+            this.gridBand10.VisibleIndex = 6;
+            this.gridBand10.Width = 101;
             // 
             // gridColumn11
             // 
@@ -317,6 +432,16 @@
             this.gridColumn11.Visible = true;
             this.gridColumn11.Width = 101;
             // 
+            // gridBand11
+            // 
+            this.gridBand11.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand11.AppearanceHeader.Options.UseFont = true;
+            this.gridBand11.Caption = "预约卡号";
+            this.gridBand11.Columns.Add(this.gridColumn12);
+            this.gridBand11.Name = "gridBand11";
+            this.gridBand11.VisibleIndex = 7;
+            this.gridBand11.Width = 133;
+            // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "预约卡号";
@@ -325,6 +450,16 @@
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.Width = 133;
+            // 
+            // gridBand12
+            // 
+            this.gridBand12.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.gridBand12.AppearanceHeader.Options.UseFont = true;
+            this.gridBand12.Caption = "备注";
+            this.gridBand12.Columns.Add(this.gridColumn13);
+            this.gridBand12.Name = "gridBand12";
+            this.gridBand12.VisibleIndex = 8;
+            this.gridBand12.Width = 109;
             // 
             // gridColumn13
             // 
@@ -386,11 +521,11 @@
             this.borderPanel1.Appearance.Options.UseBackColor = true;
             this.borderPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.borderPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.borderPanel1.Controls.Add(this.cb_AutoRefresh);
             this.borderPanel1.Controls.Add(this.tableLayoutPanel2);
             this.borderPanel1.Controls.Add(this.lueState);
             this.borderPanel1.Controls.Add(this.label1);
             this.borderPanel1.Controls.Add(this.treeDeptId);
+            this.borderPanel1.Controls.Add(this.cb_AutoRefresh);
             this.borderPanel1.Controls.Add(this.label3);
             this.borderPanel1.CornerRadius.All = 4;
             this.borderPanel1.CornerRadius.BottomLeft = 4;
@@ -406,19 +541,6 @@
             this.borderPanel1.Size = new System.Drawing.Size(1019, 50);
             this.borderPanel1.TabIndex = 0;
             // 
-            // cb_AutoRefresh
-            // 
-            this.cb_AutoRefresh.AutoSize = true;
-            this.cb_AutoRefresh.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cb_AutoRefresh.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.cb_AutoRefresh.Location = new System.Drawing.Point(915, 10);
-            this.cb_AutoRefresh.Name = "cb_AutoRefresh";
-            this.cb_AutoRefresh.Size = new System.Drawing.Size(84, 30);
-            this.cb_AutoRefresh.TabIndex = 180;
-            this.cb_AutoRefresh.Text = "自动刷新";
-            this.cb_AutoRefresh.UseVisualStyleBackColor = true;
-            this.cb_AutoRefresh.CheckedChanged += new System.EventHandler(this.cb_AutoRefresh_CheckedChanged);
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
@@ -427,13 +549,13 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel2.Controls.Add(this.buttonControl3, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(369, 10);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(346, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(91, 30);
-            this.tableLayoutPanel2.TabIndex = 175;
+            this.tableLayoutPanel2.TabIndex = 182;
             // 
             // buttonControl3
             // 
@@ -453,7 +575,7 @@
             // lueState
             // 
             this.lueState.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lueState.Location = new System.Drawing.Point(245, 10);
+            this.lueState.Location = new System.Drawing.Point(222, 10);
             this.lueState.Name = "lueState";
             this.lueState.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lueState.Properties.Appearance.Options.UseFont = true;
@@ -477,16 +599,16 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label", "状态")});
             this.lueState.Properties.NullText = "";
             this.lueState.Size = new System.Drawing.Size(124, 30);
-            this.lueState.TabIndex = 177;
+            this.lueState.TabIndex = 183;
             // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(195, 10);
+            this.label1.Location = new System.Drawing.Point(172, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 30);
-            this.label1.TabIndex = 178;
+            this.label1.TabIndex = 184;
             this.label1.Text = "状态";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -504,22 +626,21 @@
             this.treeDeptId.Properties.NullText = "";
             this.treeDeptId.Properties.PopupFormSize = new System.Drawing.Size(232, 0);
             this.treeDeptId.Properties.TreeList = this.treeList2;
-            this.treeDeptId.Size = new System.Drawing.Size(125, 30);
-            this.treeDeptId.TabIndex = 188;
+            this.treeDeptId.Size = new System.Drawing.Size(102, 30);
+            this.treeDeptId.TabIndex = 181;
             // 
             // treeList2
             // 
             this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn9,
             this.treeListColumn10});
-            this.treeList2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList2.Location = new System.Drawing.Point(309, -75);
+            this.treeList2.Location = new System.Drawing.Point(-10, -75);
             this.treeList2.Name = "treeList2";
             this.treeList2.OptionsBehavior.EnableFiltering = true;
             this.treeList2.OptionsView.AllowHtmlDrawHeaders = true;
             this.treeList2.OptionsView.ShowIndentAsRowStyle = true;
             this.treeList2.RowHeight = 30;
-            this.treeList2.Size = new System.Drawing.Size(400, 150);
+            this.treeList2.Size = new System.Drawing.Size(400, 200);
             this.treeList2.TabIndex = 0;
             // 
             // treeListColumn9
@@ -539,6 +660,19 @@
             this.treeListColumn10.Caption = "id";
             this.treeListColumn10.FieldName = "id";
             this.treeListColumn10.Name = "treeListColumn10";
+            // 
+            // cb_AutoRefresh
+            // 
+            this.cb_AutoRefresh.AutoSize = true;
+            this.cb_AutoRefresh.Dock = System.Windows.Forms.DockStyle.Right;
+            this.cb_AutoRefresh.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.cb_AutoRefresh.Location = new System.Drawing.Point(915, 10);
+            this.cb_AutoRefresh.Name = "cb_AutoRefresh";
+            this.cb_AutoRefresh.Size = new System.Drawing.Size(84, 30);
+            this.cb_AutoRefresh.TabIndex = 180;
+            this.cb_AutoRefresh.Text = "自动刷新";
+            this.cb_AutoRefresh.UseVisualStyleBackColor = true;
+            this.cb_AutoRefresh.CheckedChanged += new System.EventHandler(this.cb_AutoRefresh_CheckedChanged);
             // 
             // label3
             // 
@@ -652,141 +786,6 @@
             this.timer1.Interval = 30000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // gridBand2
-            // 
-            this.gridBand2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand2.AppearanceHeader.Options.UseFont = true;
-            this.gridBand2.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand2.Caption = "序号";
-            this.gridBand2.Columns.Add(this.gridColumn2);
-            this.gridBand2.Name = "gridBand2";
-            this.gridBand2.Visible = false;
-            this.gridBand2.VisibleIndex = -1;
-            this.gridBand2.Width = 38;
-            // 
-            // 就诊状态
-            // 
-            this.就诊状态.Caption = "就诊状态";
-            this.就诊状态.Columns.Add(this.gridColumn1);
-            this.就诊状态.Name = "就诊状态";
-            this.就诊状态.VisibleIndex = 0;
-            this.就诊状态.Width = 78;
-            // 
-            // gridBand5
-            // 
-            this.gridBand5.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand5.AppearanceHeader.Options.UseFont = true;
-            this.gridBand5.Caption = "预约信息";
-            this.gridBand5.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.gridBand4,
-            this.gridBand1,
-            this.gridBand6});
-            this.gridBand5.Name = "gridBand5";
-            this.gridBand5.VisibleIndex = 1;
-            this.gridBand5.Width = 364;
-            // 
-            // gridBand4
-            // 
-            this.gridBand4.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand4.AppearanceHeader.Options.UseFont = true;
-            this.gridBand4.Caption = "医生";
-            this.gridBand4.Columns.Add(this.gridColumn3);
-            this.gridBand4.Name = "gridBand4";
-            this.gridBand4.VisibleIndex = 0;
-            this.gridBand4.Width = 113;
-            // 
-            // gridBand1
-            // 
-            this.gridBand1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand1.AppearanceHeader.Options.UseFont = true;
-            this.gridBand1.Caption = "日期";
-            this.gridBand1.Columns.Add(this.gridColumn8);
-            this.gridBand1.Columns.Add(this.gridColumn4);
-            this.gridBand1.Name = "gridBand1";
-            this.gridBand1.VisibleIndex = 1;
-            this.gridBand1.Width = 128;
-            // 
-            // gridBand6
-            // 
-            this.gridBand6.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand6.AppearanceHeader.Options.UseFont = true;
-            this.gridBand6.Caption = "时间";
-            this.gridBand6.Columns.Add(this.gridColumn9);
-            this.gridBand6.Name = "gridBand6";
-            this.gridBand6.VisibleIndex = 2;
-            this.gridBand6.Width = 123;
-            // 
-            // gridBand13
-            // 
-            this.gridBand13.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand13.AppearanceHeader.Options.UseFont = true;
-            this.gridBand13.Caption = "姓名";
-            this.gridBand13.Columns.Add(this.gridColumn6);
-            this.gridBand13.Name = "gridBand13";
-            this.gridBand13.VisibleIndex = 2;
-            this.gridBand13.Width = 101;
-            // 
-            // 性别
-            // 
-            this.性别.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.性别.AppearanceHeader.Options.UseFont = true;
-            this.性别.Caption = "性别";
-            this.性别.Columns.Add(this.gridColumn5);
-            this.性别.Name = "性别";
-            this.性别.VisibleIndex = 3;
-            this.性别.Width = 48;
-            // 
-            // 年龄
-            // 
-            this.年龄.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.年龄.AppearanceHeader.Options.UseFont = true;
-            this.年龄.Caption = "年龄";
-            this.年龄.Columns.Add(this.gridColumn7);
-            this.年龄.Name = "年龄";
-            this.年龄.VisibleIndex = 4;
-            this.年龄.Width = 74;
-            // 
-            // gridBand9
-            // 
-            this.gridBand9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand9.AppearanceHeader.Options.UseFont = true;
-            this.gridBand9.Caption = "电话号码";
-            this.gridBand9.Columns.Add(this.gridColumn10);
-            this.gridBand9.Name = "gridBand9";
-            this.gridBand9.VisibleIndex = 5;
-            this.gridBand9.Width = 123;
-            // 
-            // gridBand10
-            // 
-            this.gridBand10.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand10.AppearanceHeader.Options.UseFont = true;
-            this.gridBand10.Caption = "预约卡类型";
-            this.gridBand10.Columns.Add(this.gridColumn11);
-            this.gridBand10.Name = "gridBand10";
-            this.gridBand10.VisibleIndex = 6;
-            this.gridBand10.Width = 101;
-            // 
-            // gridBand11
-            // 
-            this.gridBand11.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand11.AppearanceHeader.Options.UseFont = true;
-            this.gridBand11.Caption = "预约卡号";
-            this.gridBand11.Columns.Add(this.gridColumn12);
-            this.gridBand11.Name = "gridBand11";
-            this.gridBand11.VisibleIndex = 7;
-            this.gridBand11.Width = 133;
-            // 
-            // gridBand12
-            // 
-            this.gridBand12.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.gridBand12.AppearanceHeader.Options.UseFont = true;
-            this.gridBand12.Caption = "备注";
-            this.gridBand12.Columns.Add(this.gridColumn13);
-            this.gridBand12.Name = "gridBand12";
-            this.gridBand12.VisibleIndex = 8;
-            this.gridBand12.Width = 109;
-            // 
             // TodayAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -820,8 +819,6 @@
         private System.Windows.Forms.Panel panel1;
         private Xr.Common.Controls.BorderPanel borderPanel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private DevExpress.XtraEditors.LookUpEdit lueState;
         private Xr.Common.Controls.PanelEx panelEx12;
         private Xr.Common.Controls.PanelEx panelEx15;
         private Xr.Common.Controls.PanelEx panelEx16;
@@ -844,16 +841,10 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn12;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn13;
         private System.Windows.Forms.CheckBox cb_AutoRefresh;
-        private Xr.Common.Controls.ButtonControl buttonControl3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lab_count;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
-        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
-        private DevExpress.XtraTreeList.TreeList treeList2;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand 就诊状态;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
@@ -867,6 +858,14 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand10;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand11;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeDeptId;
+        private DevExpress.XtraTreeList.TreeList treeList2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn9;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Xr.Common.Controls.ButtonControl buttonControl3;
+        private DevExpress.XtraEditors.LookUpEdit lueState;
+        private System.Windows.Forms.Label label1;
         //private Xr.Common.Controls.TXButton txButton3;
         //private Xr.Common.Controls.TXButton txButton2;
         //private Xr.Common.Controls.TXButton txButton1;

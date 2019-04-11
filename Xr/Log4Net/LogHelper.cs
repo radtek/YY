@@ -44,7 +44,7 @@ namespace Xr.Log4net
                                     {
                                         DeleteOutdatefiles(_log, cfgfile);
                                     }
-                                    catch (Exception ex)
+                                    catch (Exception)
                                     {
                                     }
                                 });
@@ -52,7 +52,7 @@ namespace Xr.Log4net
                                 th.Start();
                                 #endregion
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                             }
                         }
@@ -85,7 +85,7 @@ namespace Xr.Log4net
                     outdate_days = int.Parse(node.Attributes["outdate_days"].Value);
                 }
             }
-            catch (Exception exx)
+            catch (Exception)
             {
             }
             var apps = log.Logger.Repository.GetAppenders();
@@ -122,7 +122,7 @@ namespace Xr.Log4net
                             {
                                 System.IO.File.Delete(file);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                             }
                         }

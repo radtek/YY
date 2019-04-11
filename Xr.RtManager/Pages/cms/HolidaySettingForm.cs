@@ -218,6 +218,7 @@ namespace Xr.RtManager.Pages.cms
                     {
                         Xr.Common.MessageBoxUtils.Hint("删除成功", MainForm);
                         HolidaySettingList(1, pageControl1.PageSize);
+                        this.dcHodily.ClearValue();
                     }
                     else
                     {
@@ -330,5 +331,21 @@ namespace Xr.RtManager.Pages.cms
             HolidaySettingList(CurrentPage, PageSize);
         }
         #endregion 
+
+        private void gc_Holiday_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedRow = gv_Holiday.GetFocusedRow() as HolidayInfoEntity;
+                if (selectedRow == null)
+                    return;
+                dcHodily.SetValue(selectedRow);
+                groupBox1.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("节假日修改错误信息：" + ex.Message);
+            }
+        }
     }
 }

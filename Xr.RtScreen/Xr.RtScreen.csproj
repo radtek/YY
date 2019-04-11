@@ -268,6 +268,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Show.ico" />
+    <Content Include="大屏配置文件说明.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="bin\Debug\man.png" />
     <Content Include="man.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

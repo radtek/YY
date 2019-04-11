@@ -666,6 +666,10 @@ namespace Xr.RtManager.Pages.cms
                                     checkBox.Font = new Font("微软雅黑", 10);
                                     checkBox.ForeColor = Color.FromArgb(255, 153, 102);
                                     checkBox.Text = "自动排班";
+                                    if (tlpMorning.Enabled)
+                                    {
+                                        checkBox.CheckState = CheckState.Checked;//默认选择
+                                    }
                                     tlpMorning.SetRowSpan(checkBox, 2);
                                     tlpMorning.Controls.Add(checkBox, c, r);
                                 }
@@ -1727,6 +1731,28 @@ namespace Xr.RtManager.Pages.cms
         private void VisitingTimeSettingsForm_Resize(object sender, EventArgs e)
         {
             cmd.rectDisplay = this.DisplayRectangle;
+        }
+
+        private void cbAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            int days = tabControl1.Controls.Count; //排班天数
+            if (days > 0)
+            {
+                for (int i = 0; i < days; i++)
+                {
+                    TabPage tabPage = (TabPage)tabControl1.Controls[i];//周几的面板
+                    for (int period = 0; period < 4; period++)//循环上午、下午、晚上、全天
+                    {
+                        if (tabPage.Controls.Count == 0) break;
+                        TableLayoutPanel tlp = (TableLayoutPanel)tabPage.Controls[period];//排班
+                        if (tlp.Enabled)
+                        {
+                            CheckBox cbAutoSd = (CheckBox)tlp.GetControlFromPosition(0, 2);//自动更新
+                            cbAutoSd.CheckState = cbAuto.CheckState;
+                        }
+                    }
+                }
+            }
         }
 
 

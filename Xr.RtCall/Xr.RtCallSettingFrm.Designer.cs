@@ -37,20 +37,18 @@
             this.treeListLookUpEdit1TreeList = new DevExpress.XtraTreeList.TreeList();
             this.treeListColunm1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.GreenFrmPanel = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.treeHostile = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeList2 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeClinc = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.treeKeshi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).BeginInit();
             this.panel1.SuspendLayout();
-            this.GreenFrmPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeHostile.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeClinc.Properties)).BeginInit();
@@ -61,7 +59,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(31, 125);
+            this.label1.Location = new System.Drawing.Point(40, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 21);
             this.label1.TabIndex = 0;
@@ -71,7 +69,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(31, 179);
+            this.label2.Location = new System.Drawing.Point(40, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 21);
             this.label2.TabIndex = 1;
@@ -82,7 +80,7 @@
             this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(98, 226);
+            this.buttonControl1.Location = new System.Drawing.Point(119, 178);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 30);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Save;
@@ -95,7 +93,7 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(192, 226);
+            this.buttonControl2.Location = new System.Drawing.Point(213, 178);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Return;
@@ -106,7 +104,7 @@
             // treeKeshi
             // 
             this.treeKeshi.EditValue = "";
-            this.treeKeshi.Location = new System.Drawing.Point(110, 124);
+            this.treeKeshi.Location = new System.Drawing.Point(131, 75);
             this.treeKeshi.Name = "treeKeshi";
             this.treeKeshi.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeKeshi.Properties.Appearance.Options.UseFont = true;
@@ -147,72 +145,45 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.GreenFrmPanel);
-            this.panel1.Controls.Add(this.treeHostile);
-            this.panel1.Controls.Add(this.treeClinc);
-            this.panel1.Controls.Add(this.buttonControl1);
-            this.panel1.Controls.Add(this.treeKeshi);
-            this.panel1.Controls.Add(this.buttonControl2);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(340, 290);
+            this.panel1.Size = new System.Drawing.Size(340, 246);
             this.panel1.TabIndex = 126;
             // 
-            // GreenFrmPanel
+            // panel2
             // 
-            this.GreenFrmPanel.BackColor = System.Drawing.Color.Silver;
-            this.GreenFrmPanel.Controls.Add(this.button3);
-            this.GreenFrmPanel.Controls.Add(this.label3);
-            this.GreenFrmPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.GreenFrmPanel.Location = new System.Drawing.Point(0, 0);
-            this.GreenFrmPanel.Name = "GreenFrmPanel";
-            this.GreenFrmPanel.Size = new System.Drawing.Size(340, 30);
-            this.GreenFrmPanel.TabIndex = 128;
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.treeHostile);
+            this.panel2.Controls.Add(this.buttonControl1);
+            this.panel2.Controls.Add(this.buttonControl2);
+            this.panel2.Controls.Add(this.treeClinc);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.treeKeshi);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(340, 246);
+            this.panel2.TabIndex = 129;
             // 
-            // button3
+            // label4
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(310, 2);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(29, 26);
-            this.button3.TabIndex = 0;
-            this.button3.TabStop = false;
-            this.button3.Text = "×";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 21);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "初始设置";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(40, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 21);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "医院名称：";
             // 
             // treeHostile
             // 
             this.treeHostile.EditValue = "";
-            this.treeHostile.Location = new System.Drawing.Point(110, 73);
+            this.treeHostile.Location = new System.Drawing.Point(131, 25);
             this.treeHostile.Name = "treeHostile";
             this.treeHostile.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeHostile.Properties.Appearance.Options.UseFont = true;
@@ -254,7 +225,7 @@
             // treeClinc
             // 
             this.treeClinc.EditValue = "";
-            this.treeClinc.Location = new System.Drawing.Point(110, 177);
+            this.treeClinc.Location = new System.Drawing.Point(131, 124);
             this.treeClinc.Name = "treeClinc";
             this.treeClinc.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeClinc.Properties.Appearance.Options.UseFont = true;
@@ -293,33 +264,23 @@
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 0;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(31, 74);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 21);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "医院名称：";
-            // 
             // SettingFrm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(340, 290);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(340, 246);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SettingFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "程序设置";
+            this.Text = "初始设置";
             ((System.ComponentModel.ISupportInitialize)(this.treeKeshi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.GreenFrmPanel.ResumeLayout(false);
-            this.GreenFrmPanel.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeHostile.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeClinc.Properties)).EndInit();
@@ -341,12 +302,10 @@
         private DevExpress.XtraEditors.TreeListLookUpEdit treeClinc;
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-        private System.Windows.Forms.Label label3;
         private DevExpress.XtraEditors.TreeListLookUpEdit treeHostile;
         private DevExpress.XtraTreeList.TreeList treeList2;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
-        public System.Windows.Forms.Panel GreenFrmPanel;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel2;
     }
 }

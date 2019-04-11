@@ -38,7 +38,6 @@ namespace Xr.RtScreen.pages
         //第五步：实现事件
         void form2_setFormTextValue(string textValue)
         {
-            //具体实现。
             scrollingText1.ScrollText = textValue;
         }
         #endregion 

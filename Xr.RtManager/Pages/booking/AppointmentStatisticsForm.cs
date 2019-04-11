@@ -20,6 +20,8 @@ using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraEditors;
 using System.Globalization;
 using System.Net;
+using System.IO;
+using System.Xml.Serialization;
 
 
 namespace Xr.RtManager.Pages.booking
@@ -46,13 +48,19 @@ namespace Xr.RtManager.Pages.booking
             gridBand3.Caption = gridBand15.Caption = gridBand32.Caption = gridBand13.Caption = "开放总额\r\n(预约+现场)";
 
             //查询科室下拉框数据
-            treeDeptId.Properties.DataSource = AppContext.Session.deptList;
+            List<DeptEntity> deptList = Clone<List<DeptEntity>>(AppContext.Session.deptList);
+            DeptEntity dept = new DeptEntity();
+            dept.id = " ";
+            dept.name = "全部";
+            deptList.Insert(0, dept);
+            treeDeptId.Properties.DataSource = deptList;
             treeDeptId.Properties.TreeList.KeyFieldName = "id";
             treeDeptId.Properties.TreeList.ParentFieldName = "parentId";
             treeDeptId.Properties.DisplayMember = "name";
             treeDeptId.Properties.ValueMember = "id";
             //默认选择选择第一个
-            treeDeptId.EditValue = AppContext.Session.deptList[0].id;
+            if (deptList.Count>0)
+                treeDeptId.EditValue = deptList[0].id;
 
             /*String url = AppContext.AppConfig.serverUrl + "cms/dept/findAll?hospital.code=" + AppContext.AppConfig.hospitalCode + "&code=" + AppContext.AppConfig.deptCode;
             String data = HttpClass.httpPost(url);
@@ -129,7 +137,7 @@ namespace Xr.RtManager.Pages.booking
         { 
             //deStart.Text,
             //deEnd.Text
-            if (treeDeptId.EditValue == " ")
+            if (treeDeptId.EditValue == null)
             {
                 MessageBoxUtils.Hint("请选择科室", HintMessageBoxIcon.Error, MainForm);
                 return false;
@@ -665,6 +673,7 @@ namespace Xr.RtManager.Pages.booking
                 this.deStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
                 this.deStart.Properties.Mask.EditMask = "yyyy-MM-dd";
                 this.deStart.Properties.VistaCalendarInitialViewStyle = VistaCalendarInitialViewStyle.MonthView;
+                this.deStart.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearView)));
                 this.deStart.EditValue = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, 1);
 
                 this.deEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
@@ -830,7 +839,7 @@ namespace Xr.RtManager.Pages.booking
                     
                     Thread.Sleep(500);
                     cmd.ShowOpaqueLayer(225, true);
-                    String param = @"thospitalId={0}&deptId={1}&reportType={2}&startDate={3}&endDate={4}";
+                    String param = @"hospitalId={0}&deptId={1}&reportType={2}&startDate={3}&endDate={4}";
 
 
                     param = String.Format(
@@ -851,7 +860,22 @@ namespace Xr.RtManager.Pages.booking
 
         }
 
-
+        /// <summary>
+        /// 深克隆方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="RealObject"></param>
+        /// <returns></returns>
+        public static T Clone<T>(T RealObject)
+        {
+            using (Stream stream = new MemoryStream())
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                serializer.Serialize(stream, RealObject);
+                stream.Seek(0, SeekOrigin.Begin);
+                return (T)serializer.Deserialize(stream);
+            }
+        }
 
 
 

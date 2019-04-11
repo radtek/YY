@@ -125,6 +125,7 @@
             this.gvRole.OptionsView.RowAutoHeight = true;
             this.gvRole.OptionsView.ShowGroupPanel = false;
             this.gvRole.RowHeight = 30;
+            this.gvRole.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvRole_RowCellClick);
             // 
             // gridColumn1
             // 
@@ -229,7 +230,7 @@
             this.buttonControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl1.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl1.Location = new System.Drawing.Point(300, 10);
+            this.buttonControl1.Location = new System.Drawing.Point(209, 11);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 30);
             this.buttonControl1.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -242,12 +243,13 @@
             this.buttonControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.buttonControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.buttonControl2.HoverBackColor = System.Drawing.Color.Empty;
-            this.buttonControl2.Location = new System.Drawing.Point(210, 10);
+            this.buttonControl2.Location = new System.Drawing.Point(290, 11);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(75, 30);
             this.buttonControl2.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.buttonControl2.TabIndex = 4;
             this.buttonControl2.Text = "修改";
+            this.buttonControl2.Visible = false;
             this.buttonControl2.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // buttonControl3

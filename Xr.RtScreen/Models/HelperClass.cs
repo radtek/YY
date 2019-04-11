@@ -24,20 +24,24 @@ namespace Xr.RtScreen.Models
         /// </summary>
         public static String hospitalId
         {
-            get
-            {
-                return string.Join(",", from w in list where w.code == AppContext.AppConfig.hospitalCode select w.id);
-            }
+            get;
+            set;
+            //get
+            //{
+            //    return string.Join(",", from w in list where w.code == AppContext.AppConfig.hospitalCode select w.id);
+            //}
         }
         /// <summary>
         /// 科室主键
         /// </summary>
         public static String deptId
-        { 
-            get
-            {
-                return string.Join(",", from d in DepartmentList where d.code == AppContext.AppConfig.deptCode select d.id);
-            }
+        {
+            get;
+            set;
+            //get
+            //{
+            //    return string.Join(",", from d in DepartmentList where d.code == AppContext.AppConfig.deptCode select d.id);
+            //}
         }
         /// <summary>
         /// 科室列表集合

@@ -43,9 +43,9 @@ namespace Xr.RtCall.pages
             try
             {
                 Dictionary<string, string> prament = new Dictionary<string, string>();
-                prament.Add("hospitalId", HelperClass.hospitalId);//医院主键
-                prament.Add("deptId", HelperClass.deptId);//科室主键
-                prament.Add("clinicId", HelperClass.clinicId);//HelperClass.clinicId
+                prament.Add("hospitalId", HelperClass.hospitalId);//医院ID
+                prament.Add("deptId", HelperClass.deptId);//科室ID
+                prament.Add("doctorId", HelperClass.doctorId);//医生ID
                 prament.Add("status", Postoperative.EditValue.ToString());
                 RestSharpHelper.ReturnResult<List<string>>(InterfaceAddress.findPatientListByDoctor, prament, Method.POST,
                  result =>
@@ -60,21 +60,14 @@ namespace Xr.RtCall.pages
                                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                                 {
                                     List<Patient> a = objT["result"].ToObject<List<Patient>>();
-                                    //if (Postoperative.EditValue != "3")
-                                    //{
-                                    //    for (int i = 0; i <a.Count; i++)
-                                    //    {
-                                    //        a[i].workTime = "";
-                                    //    }
-                                    //}
-                                    //if (Postoperative.EditValue=="3")
-                                    //{
-                                    //   _context.Send((s) =>this.gv_Pateion.Columns["workTime"].Visible = true,null);  //设置列为不显示
-                                    //}
-                                    //else
-                                    //{
-                                    //    _context.Send((s) => this.gv_Pateion.Columns["workTime"].Visible = false, null);  //设置列为不显示
-                                    //}
+                                   // a.Add(new Patient {  triageId ="1", queueNum ="101", patientId="010", patientName="lisi", workTime="1" , triageTime="101", visitWinTime="101", sex ="1", statusTxt ="1", cardType ="2", cardTypeTxt="101", cardNo="101001" , telPhone ="10101", showRegTime =true });
+                                    for (int i = 0; i < a.Count; i++)
+                                    {
+                                        if (a[i].showRegTime != true)
+                                        {
+                                            a[i].workTime = "";
+                                        }
+                                    }
                                     _context.Send((s) => this.gc_Pateion.DataSource = a,null);
                                     _context.Send((s) => label1.Text=a.Count+"人", null);
                                 }

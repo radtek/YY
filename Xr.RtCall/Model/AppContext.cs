@@ -31,8 +31,9 @@ namespace Xr.RtCall.Model
             AppConfig.OutPutLocationY = ConfigurationManager.AppSettings["OutPutLocationY"].ToString();
             AppConfig.sleepOutPutTime = ConfigurationManager.AppSettings["sleepOutPutTime"].ToString();
             AppConfig.WhetherToAssign = ConfigurationManager.AppSettings["WhetherToAssign"].ToString();
-            AppConfig.ClincCode = ConfigurationManager.AppSettings["ClincID"].ToString();
+            AppConfig.ClincName = ConfigurationManager.AppSettings["ClincName"].ToString();
             AppConfig.Setting = ConfigurationManager.AppSettings["Setting"].ToString();
+            AppConfig.WhetherToDisplay = ConfigurationManager.AppSettings["WhetherToDisplay"].ToString();
         }
         /// <summary>
         /// 修改配置文件

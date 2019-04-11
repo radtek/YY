@@ -67,6 +67,8 @@
             this.teID = new DevExpress.XtraEditors.TextEdit();
             this.label1 = new System.Windows.Forms.Label();
             this.butContronl = new Xr.Common.Controls.ButtonControl();
+            this.label4 = new System.Windows.Forms.Label();
+            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox4 = new Xr.Common.Controls.GroupBorderPanel();
@@ -92,6 +94,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -123,8 +126,8 @@
             this.borderPanel1.CornerRadius.TopLeft = 4;
             this.borderPanel1.CornerRadius.TopRight = 4;
             this.borderPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.borderPanel1.FillColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.borderPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.borderPanel1.FillColor1 = System.Drawing.Color.Transparent;
+            this.borderPanel1.FillColor2 = System.Drawing.Color.Transparent;
             this.borderPanel1.Location = new System.Drawing.Point(10, 10);
             this.borderPanel1.Name = "borderPanel1";
             this.borderPanel1.Size = new System.Drawing.Size(900, 50);
@@ -135,7 +138,7 @@
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnDel.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnDel.Location = new System.Drawing.Point(300, 10);
+            this.btnDel.Location = new System.Drawing.Point(207, 10);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 30);
             this.btnDel.Style = Xr.Common.Controls.ButtonStyle.Del;
@@ -148,12 +151,13 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(210, 10);
+            this.btnSave.Location = new System.Drawing.Point(291, 10);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnSave.TabIndex = 75;
             this.btnSave.Text = "修改";
+            this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // butSelect
@@ -330,6 +334,7 @@
             this.gc_Clinic.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_Clinic,
             this.gridView1});
+            this.gc_Clinic.Click += new System.EventHandler(this.gc_Clinic_Click);
             // 
             // gv_Clinic
             // 
@@ -409,6 +414,7 @@
             this.gridColumn8.Caption = "诊室id";
             this.gridColumn8.FieldName = "id";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 2;
             // 
@@ -464,6 +470,7 @@
             this.gridColumn5.Caption = "是否占用";
             this.gridColumn5.FieldName = "isOccupy";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             // 
@@ -542,7 +549,9 @@
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.radioGroup2, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.butContronl, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.butContronl, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label4, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.radioGroup1, 3, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 26);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
@@ -642,13 +651,42 @@
             this.butContronl.Dock = System.Windows.Forms.DockStyle.Left;
             this.butContronl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.butContronl.HoverBackColor = System.Drawing.Color.Empty;
-            this.butContronl.Location = new System.Drawing.Point(527, 40);
+            this.butContronl.Location = new System.Drawing.Point(527, 76);
             this.butContronl.Name = "butContronl";
-            this.butContronl.Size = new System.Drawing.Size(343, 30);
+            this.butContronl.Size = new System.Drawing.Size(343, 31);
             this.butContronl.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.butContronl.TabIndex = 116;
             this.butContronl.Text = "保存";
             this.butContronl.Click += new System.EventHandler(this.butContronl_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(444, 42);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 5, 1, 1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 30);
+            this.label4.TabIndex = 121;
+            this.label4.Text = "是否占用：";
+            // 
+            // radioGroup1
+            // 
+            this.dcClinc.SetDataMember(this.radioGroup1, "isOccupy");
+            this.radioGroup1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radioGroup1.EditValue = "0";
+            this.radioGroup1.Location = new System.Drawing.Point(527, 40);
+            this.radioGroup1.Name = "radioGroup1";
+            this.radioGroup1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioGroup1.Properties.Appearance.Options.UseFont = true;
+            this.radioGroup1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.radioGroup1.Properties.Columns = 2;
+            this.radioGroup1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "占用"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "未占用")});
+            this.radioGroup1.Size = new System.Drawing.Size(343, 30);
+            this.radioGroup1.TabIndex = 123;
             // 
             // tableLayoutPanel1
             // 
@@ -692,7 +730,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.FillColor1 = System.Drawing.Color.Transparent;
             this.groupBox4.FillColor2 = System.Drawing.Color.Transparent;
-            this.groupBox4.GroupText = "诊断列表";
+            this.groupBox4.GroupText = "诊室列表";
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 20, 3, 3);
@@ -743,6 +781,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -797,6 +836,8 @@
         private DevExpress.XtraEditors.TextEdit teID;
         private Xr.Common.Controls.TreeMenuControl treeMenuControl1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private System.Windows.Forms.Label label4;
+        private DevExpress.XtraEditors.RadioGroup radioGroup1;
        //private Xr.Common.Controls.GroupBorderPanel groupBox4;
     }
 }

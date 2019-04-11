@@ -263,5 +263,25 @@ namespace Xr.RtManager
         {
             cmd.rectDisplay = this.DisplayRectangle;
         }
+
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            if (e.Column.Caption != "操作")
+            {
+                var selectedRow = gridView1.GetFocusedRow() as UserEntity;
+                if (selectedRow == null)
+                    return;
+                var edit = new UserEdit();
+                edit.user = selectedRow;
+                edit.Text = "用户修改";
+                if (edit.ShowDialog() == DialogResult.OK)
+                {
+                    Thread.Sleep(300);
+                    cmd.ShowOpaqueLayer();
+                    SearchData(1, pageControl1.PageSize);
+                    MessageBoxUtils.Hint("修改用户成功!", MainForm);
+                }
+            }
+        }
     }
 }
