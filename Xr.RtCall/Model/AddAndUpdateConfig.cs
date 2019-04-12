@@ -24,8 +24,12 @@ namespace Xr.RtCall.Model
                     @"\"+ConfigName
             };
             Configuration cfa = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-            //添加
-            cfa.AppSettings.Settings.Add(name, Value);
+            var appSetting = (AppSettingsSection)cfa.GetSection("appSettings");
+            if (appSetting.Settings[name] != null)
+            {
+                //添加
+                cfa.AppSettings.Settings.Add(name, Value);
+            }
             // 最后调用 
             cfa.Save();
             //当前的配置文件更新成功。

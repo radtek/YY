@@ -483,54 +483,54 @@ namespace Xr.RtManager.Pages.cms
                         tlpMorning.ColumnCount = 7;
                         tlpMorning.RowCount = row;
 
-                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+                        tlpMorning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 
                         for (int n = 0; n < row; n++)
                         {
                             tlpMorning.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
                         }
-                        tlpMorning.Size = new System.Drawing.Size(342, row * 30);
+                        tlpMorning.Size = new System.Drawing.Size(294, row * 30);
                         //标题栏
                         Label label = new Label();
                         label.Dock = DockStyle.Fill;
                         label.TextAlign = ContentAlignment.BottomCenter;
-                        label.Font = new Font("微软雅黑", 10);
+                        label.Font = new Font("宋体", 9);
                         label.Text = "开始";
                         tlpMorning.Controls.Add(label, 1, 0);
                         label = new Label();
                         label.Dock = DockStyle.Fill;
                         label.TextAlign = ContentAlignment.BottomCenter;
-                        label.Font = new Font("微软雅黑", 10);
+                        label.Font = new Font("宋体", 9);
                         label.Text = "结束";
                         tlpMorning.Controls.Add(label, 2, 0);
                         label = new Label();
                         label.Dock = DockStyle.Fill;
                         label.TextAlign = ContentAlignment.BottomCenter;
-                        label.Font = new Font("微软雅黑", 10);
+                        label.Font = new Font("宋体", 9);
                         label.Text = "现场";
                         tlpMorning.Controls.Add(label, 3, 0);
                         label = new Label();
                         label.Dock = DockStyle.Fill;
                         label.TextAlign = ContentAlignment.BottomCenter;
-                        label.Font = new Font("微软雅黑", 10);
+                        label.Font = new Font("宋体", 9);
                         label.Text = "公开";
                         tlpMorning.Controls.Add(label, 4, 0);
                         label = new Label();
                         label.Dock = DockStyle.Fill;
                         label.TextAlign = ContentAlignment.BottomCenter;
-                        label.Font = new Font("微软雅黑", 10);
+                        label.Font = new Font("宋体", 9);
                         label.Text = "诊间";
                         tlpMorning.Controls.Add(label, 5, 0);
                         label = new Label();
                         label.Dock = DockStyle.Fill;
                         label.TextAlign = ContentAlignment.BottomCenter;
-                        label.Font = new Font("微软雅黑", 10);
+                        label.Font = new Font("宋体", 9);
                         label.Text = "应急";
                         tlpMorning.Controls.Add(label, 6, 0);
 
@@ -655,6 +655,7 @@ namespace Xr.RtManager.Pages.cms
                                     checkBox.Text = timeInterval;
                                     checkBox.CheckState = checkState;
                                     checkBox.CheckStateChanged += new EventHandler(this.checkBox_CheckStateChanged);
+                                    checkBox.Margin = new System.Windows.Forms.Padding(3,3,0,3);
                                     tlpMorning.Controls.Add(checkBox, 0, 1);
                                 }
                                 else if (r == 2 && c == 0)
@@ -668,8 +669,9 @@ namespace Xr.RtManager.Pages.cms
                                     checkBox.Text = "自动排班";
                                     if (tlpMorning.Enabled)
                                     {
-                                        checkBox.CheckState = CheckState.Checked;//默认选择
+                                        checkBox.CheckState = cbAuto.CheckState;
                                     }
+                                    checkBox.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
                                     tlpMorning.SetRowSpan(checkBox, 2);
                                     tlpMorning.Controls.Add(checkBox, c, r);
                                 }
@@ -689,6 +691,7 @@ namespace Xr.RtManager.Pages.cms
                                         textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                         textEdit.Text = start;
                                         textEdit.Enabled = teEnabled;
+                                        textEdit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
                                         tlpMorning.Controls.Add(textEdit, c, r);
                                     }
                                     else if (c == 2)
@@ -701,6 +704,7 @@ namespace Xr.RtManager.Pages.cms
                                         textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                         textEdit.Text = end;
                                         textEdit.Enabled = teEnabled;
+                                        textEdit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
                                         tlpMorning.Controls.Add(textEdit, c, r);
                                     }
                                     else if (c == 3)
@@ -713,6 +717,7 @@ namespace Xr.RtManager.Pages.cms
                                         textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                         textEdit.Text = scene;
                                         textEdit.Enabled = teEnabled;
+                                        textEdit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
                                         tlpMorning.Controls.Add(textEdit, c, r);
                                     }
                                     else if (c == 4)
@@ -725,6 +730,7 @@ namespace Xr.RtManager.Pages.cms
                                         textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                         textEdit.Text = open;
                                         textEdit.Enabled = teEnabled;
+                                        textEdit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
                                         tlpMorning.Controls.Add(textEdit, c, r);
                                     }
                                     else if (c == 5)
@@ -737,6 +743,7 @@ namespace Xr.RtManager.Pages.cms
                                         textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                         textEdit.Text = room;
                                         textEdit.Enabled = teEnabled;
+                                        textEdit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
                                         tlpMorning.Controls.Add(textEdit, c, r);
                                     }
                                     else if (c == 6)
@@ -749,6 +756,7 @@ namespace Xr.RtManager.Pages.cms
                                         textEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                                         textEdit.Text = emergency;
                                         textEdit.Enabled = teEnabled;
+                                        textEdit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
                                         tlpMorning.Controls.Add(textEdit, c, r);
                                     }
                                 }
@@ -1731,6 +1739,80 @@ namespace Xr.RtManager.Pages.cms
         private void VisitingTimeSettingsForm_Resize(object sender, EventArgs e)
         {
             cmd.rectDisplay = this.DisplayRectangle;
+            if (gcDoctor.Width < 1080)
+            {
+                mondayMorning.Caption = "上";
+                mondayAfternoon.Caption = "下";
+                mondayNight.Caption = "晚";
+                mondayAllDay.Caption = "全";
+
+                tuesdayMorning.Caption = "上";
+                tuesdayAfternoon.Caption = "下";
+                tuesdayNight.Caption = "晚";
+                tuesdayAllDay.Caption = "全";
+
+                wednesdayMorning.Caption = "上";
+                wednesdayAfternoon.Caption = "下";
+                wednesdayNight.Caption = "晚";
+                wednesdayAllDay.Caption = "全";
+
+                thursdayMorning.Caption = "上";
+                thursdayAfternoon.Caption = "下";
+                thursdayNight.Caption = "晚";
+                thursdayAllDay.Caption = "全";
+
+                fridayMorning.Caption = "上";
+                fridayAfternoon.Caption = "下";
+                fridayNight.Caption = "晚";
+                fridayAllDay.Caption = "全";
+
+                saturdayMorning.Caption = "上";
+                saturdayAfternoon.Caption = "下";
+                saturdayNight.Caption = "晚";
+                saturdayAllDay.Caption = "全";
+
+                sundayMorning.Caption = "上";
+                sundayAfternoon.Caption = "下";
+                sundayNight.Caption = "晚";
+                sundayAllDay.Caption = "全";
+            }
+            else
+            {
+                mondayMorning.Caption = "上午";
+                mondayAfternoon.Caption = "下午";
+                mondayNight.Caption = "晚上";
+                mondayAllDay.Caption = "全天";
+
+                tuesdayMorning.Caption = "上午";
+                tuesdayAfternoon.Caption = "下午";
+                tuesdayNight.Caption = "晚上";
+                tuesdayAllDay.Caption = "全天";
+
+                wednesdayMorning.Caption = "上午";
+                wednesdayAfternoon.Caption = "下午";
+                wednesdayNight.Caption = "晚上";
+                wednesdayAllDay.Caption = "全天";
+
+                thursdayMorning.Caption = "上午";
+                thursdayAfternoon.Caption = "下午";
+                thursdayNight.Caption = "晚上";
+                thursdayAllDay.Caption = "全天";
+
+                fridayMorning.Caption = "上午";
+                fridayAfternoon.Caption = "下午";
+                fridayNight.Caption = "晚上";
+                fridayAllDay.Caption = "全天";
+
+                saturdayMorning.Caption = "上午";
+                saturdayAfternoon.Caption = "下午";
+                saturdayNight.Caption = "晚上";
+                saturdayAllDay.Caption = "全天";
+
+                sundayMorning.Caption = "上午";
+                sundayAfternoon.Caption = "下午";
+                sundayNight.Caption = "晚上";
+                sundayAllDay.Caption = "全天";
+            }
         }
 
         private void cbAuto_CheckedChanged(object sender, EventArgs e)

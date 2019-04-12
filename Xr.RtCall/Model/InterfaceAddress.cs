@@ -90,5 +90,9 @@ namespace Xr.RtCall.Model
        ///完成就诊接口地址
        /// </summary>
        public const String visitWin = "itf/triage/visitWin";
+       /// <summary>
+       /// 定时查询当前就诊是否完成及下一位候诊接口
+       /// </summary>
+       public const String checkCurrTriageIsWin = "itf/call/checkCurrTriageIsWin";
     }
 }

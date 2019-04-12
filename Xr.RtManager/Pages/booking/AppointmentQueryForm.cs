@@ -38,9 +38,18 @@ namespace Xr.RtManager.Pages.booking
         /// 患者主键
         /// </summary>
         private string Patientid = String.Empty;
+        /// <summary>
         ///预约记录主键 
         /// </summary>
-        private String RegisterId = String.Empty;
+        private String RegisterId = String.Empty; //用于列表鼠标右键取消候诊的
+        /// <summary>
+        ///预约记录主键 
+        /// </summary>
+        private String registerId = String.Empty; //用于取消待签到的
+        /// <summary>
+        ///状态
+        /// </summary>
+        private String status = String.Empty; 
         bool NeedWaitingFrm = true;
         bool isFirstload = true;
         private void UserForm_Load(object sender, EventArgs e)
@@ -1056,6 +1065,9 @@ namespace Xr.RtManager.Pages.booking
             lab_cancelTime.Text = CurrentrowItem.cancelTime;
             lab_cancelWayTxt.Text = CurrentrowItem.cancelWayTxt;
 
+            registerId = CurrentrowItem.id;
+            status = CurrentrowItem.status;
+
             //鼠标右键点击
             System.Threading.Thread.Sleep(10);
             if (e.Button == MouseButtons.Right)
@@ -1092,6 +1104,9 @@ namespace Xr.RtManager.Pages.booking
                 lab_cancelOperaName.Text = CurrentrowItem.cancelOperaName;
                 lab_cancelTime.Text = CurrentrowItem.cancelTime;
                 lab_cancelWayTxt.Text = CurrentrowItem.cancelWayTxt;
+
+                registerId = CurrentrowItem.id;
+                status = CurrentrowItem.status;
             }
         }
         //取消预约
@@ -1231,10 +1246,20 @@ namespace Xr.RtManager.Pages.booking
             lab_cancelWayTxt.Text = String.Empty;
         }
 
-
-
-
-
+        private void buttonControl2_Click(object sender, EventArgs e)
+        {
+            if (registerId == null) return;
+            if (!status.Equals("0"))
+            {
+                MessageBoxUtils.Hint("只能取消待签到的预约记录", HintMessageBoxIcon.Error, MainForm);
+                return;
+            }
+            if (MessageBoxUtils.Show("确定为该患者取消预约吗?", MessageBoxButtons.OKCancel,
+                       MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
+            {
+                Asynchronous(new AsyncEntity() { WorkType = AsynchronousWorks.CancelReservation, Argument = new String[] { registerId } });
+            }
+        }
     }
     /// <summary>
     /// 下拉框数据

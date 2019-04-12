@@ -217,12 +217,12 @@ namespace Xr.RtManager.Pages.scheduling
         {
             int selectRow = gridView1.GetSelectedRows()[0];
 
-            if (e.OldValue.Equals("1"))
-            {
-                this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue);
-                MessageBoxUtils.Hint("不能修改停诊状态的排班", MainForm);
-                return;
-            }
+            //if (e.OldValue.Equals("1"))
+            //{
+            //    this.gridView1.SetRowCellValue(selectRow, gridView1.Columns["status"], e.OldValue);
+            //    MessageBoxUtils.Hint("不能修改停诊状态的排班", MainForm);
+            //    return;
+            //}
 
             if (MessageBoxUtils.Show("确定要修改状态吗?", MessageBoxButtons.OKCancel,
                  MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)

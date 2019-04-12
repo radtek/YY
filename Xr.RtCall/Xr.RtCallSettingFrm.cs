@@ -223,13 +223,13 @@ namespace Xr.RtCall
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
                     String isQccery = objT["result"]["isOccupy"].ToString();
-                    if (isQccery == "0")
+                    if (isQccery != "0")
                     {
-                        Xr.Common.MessageBoxUtils.Show("当前诊室可用,请确认信息无误后保存", MessageBoxButtons.OK,
-                        MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this);
-                    }
-                    else
-                    {
+                        //    Xr.Common.MessageBoxUtils.Show("当前诊室可用,请确认信息无误后保存", MessageBoxButtons.OK,
+                        //    MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this);
+                        //}
+                        //else
+                        //{
                         if (Xr.Common.MessageBoxUtils.Show("当前诊室不可用,是否继续启动", MessageBoxButtons.OKCancel,
                        MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this) == DialogResult.OK)
                         {
@@ -262,8 +262,8 @@ namespace Xr.RtCall
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
-                    Xr.Common.MessageBoxUtils.Show("修改诊室状态成功,请确认信息无误后保存", MessageBoxButtons.OK,
-                      MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this);
+                    //Xr.Common.MessageBoxUtils.Show("修改诊室状态成功,请确认信息无误后保存", MessageBoxButtons.OK,
+                    //  MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, this);
                 }
                 else
                 {

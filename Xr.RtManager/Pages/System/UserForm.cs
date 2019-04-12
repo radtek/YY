@@ -283,5 +283,30 @@ namespace Xr.RtManager
                 }
             }
         }
+
+        private void repositoryItemButtonEdit2_Click(object sender, EventArgs e)
+        {
+            var selectedRow = gridView1.GetFocusedRow() as UserEntity;
+            if (selectedRow == null)
+                return;
+
+            if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
+                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
+            {
+                String url = AppContext.AppConfig.serverUrl + "sys/sysUser/delete?id=" + selectedRow.id;
+                String data = HttpClass.httpPost(url);
+                JObject objT = JObject.Parse(data);
+                if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                {
+                    SearchData(1, pageControl1.PageSize);
+                    MessageBoxUtils.Hint("删除用户成功!", MainForm);
+                }
+                else
+                {
+                    MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                }
+            }
+        }
     }
 }

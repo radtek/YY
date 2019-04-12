@@ -33,10 +33,9 @@ namespace Xr.RtCall
             IsMax = false;
             GetDoctorAndClinc();
             #region 
-            Log4net.LogHelper.Info("程序启动成功");
             if (isStop == "1")
             {
-                this.skinbutLook.Text = "继续开诊";
+                this.skinbutLook.Text = "开";
                 skinbutLook.BaseColor = Color.Red;
             }
             if (Convert.ToBoolean(AppContext.AppConfig.WhetherToDisplay))
@@ -50,7 +49,9 @@ namespace Xr.RtCall
                 this.skinButton1.Visible = false;
             }
             #endregion 
+            Log4net.LogHelper.Info("程序启动成功");
             time();
+            TimeGet();
         }
         #region 判断是否启动叫号
         /// <summary>
@@ -333,8 +334,8 @@ namespace Xr.RtCall
                             if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                             {
                                 _context.Send((s) => HelperClass.triageId = objT["result"][0]["triageId"].ToString(), null);
-                                _context.Send((s) => label2.Text = "[" + objT["result"][0]["smallCellShow"].ToString() + "]", null);
-                                if (label2.Text.Length > 12)
+                                _context.Send((s) => label2.Text = objT["result"][0]["smallCellShow"].ToString()+ objT["result"][0]["nextCellShow"].ToString(), null);
+                                if (label2.Text.Length > 25)
                                 {
                                     _context.Send((s) => timer2.Enabled = true, null);
                                 }
@@ -347,6 +348,7 @@ namespace Xr.RtCall
                                 if (Convert.ToBoolean(AppContext.AppConfig.WhetherToDisplay))
                                 {
                                       _context.Send((s) =>this.skinButton1.Enabled = true,null);
+                                      _context.Send((s) => this.skinButton1.BackColor = Color.PaleGreen, null);
                                 }
                                 _context.Send((s) => ShuaXin(), null);
                             }
@@ -354,13 +356,12 @@ namespace Xr.RtCall
                             {
                                 if (this.Size.Height == 28)
                                 {
-                                    _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null), null);
+                                    _context.Send((s) => MessageBoxUtils.Hint(objT["message"].ToString(), null), null);
                                 }
                                 else
                                 {
-                                    _context.Send((s) => MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, Form1.pCurrentWin), null);
+                                    _context.Send((s) => MessageBoxUtils.Hint(objT["message"].ToString(), Form1.pCurrentWin), null);
                                 }
-                                _context.Send((s) => label2.Text = "等待呼叫病人 [请稍候...]", null);
                             }
                         }
                     }
@@ -504,7 +505,7 @@ namespace Xr.RtCall
                 prament.Add("clinicId", HelperClass.clinicId);//诊室ID
                 prament.Add("doctorId", HelperClass.doctorId);//医生ID
                 int isStop = 0;
-                if (skinbutLook.Text == "临时停诊")
+                if (skinbutLook.Text == "停")
                 {
                     prament.Add("isStop", "1");//临时停诊 0：开诊，1：停诊
                     isStop = 1;
@@ -529,14 +530,14 @@ namespace Xr.RtCall
                                    if (isStop == 1)
                                    {
                                        _context.Send((s) => MessageBoxUtils.Hint("操作成功!",this), null);
-                                       _context.Send((s) => this.skinbutLook.Text = "继续开诊", null);
+                                       _context.Send((s) => this.skinbutLook.Text = "开", null);
                                       // _context.Send((s) => skinButNext.Enabled=false, null);
                                        _context.Send((s) => skinbutLook.BaseColor = Color.Red, null);
                                    }
                                    else
                                    {
                                        _context.Send((s) => MessageBoxUtils.Hint("操作成功!",this), null);
-                                       _context.Send((s) => this.skinbutLook.Text = "临时停诊", null);
+                                       _context.Send((s) => this.skinbutLook.Text = "停", null);
                                       // _context.Send((s) => skinButNext.Enabled = true, null);
                                        _context.Send((s) => skinbutLook.BaseColor = Color.FromArgb(59, 175, 218), null);
                                    }
@@ -581,7 +582,7 @@ namespace Xr.RtCall
                     System.Environment.Exit(0);
                     return;
                 }
-                #region 
+                #region
                 //查询医院数据
                 //String url = AppContext.AppConfig.serverUrl + InterfaceAddress.hostal + "?code=" + AppContext.AppConfig.hospitalCode;
                 //String data = HttpClass.httpPost(url);
@@ -607,10 +608,10 @@ namespace Xr.RtCall
                 //{
                 //    HelperClass.Departmentlist = objTs["result"].ToObject<List<HelperClassDoctorID>>();
                 //}
-                #endregion 
+                #endregion
                 //查询医院ID,科室ID,诊室ID,医生ID,医生停开诊状态
                 HelperClass.Code = EncryptionClass.UserOrPassWordInfor(System.Windows.Forms.Application.StartupPath + "\\doctorCode.txt");
-                String curls = AppContext.AppConfig.serverUrl + InterfaceAddress.doctor + "?hospitalCode=" + AppContext.AppConfig.hospitalCode + "&deptCode=" + AppContext .AppConfig.deptCode+ "&clinicName=" + AppContext.AppConfig.ClincName + "&doctorCode=" + HelperClass.Code;
+                String curls = AppContext.AppConfig.serverUrl + InterfaceAddress.doctor + "?hospitalCode=" + AppContext.AppConfig.hospitalCode + "&deptCode=" + AppContext.AppConfig.deptCode + "&clinicName=" + AppContext.AppConfig.ClincName + "&doctorCode=" + HelperClass.Code;
                 String cdatas = HttpClass.httpPost(curls);
                 JObject cobjTs = JObject.Parse(cdatas);
                 if (string.Compare(cobjTs["state"].ToString(), "true", true) == 0)
@@ -621,6 +622,7 @@ namespace Xr.RtCall
                     HelperClass.clinicId = list[0].clinicId;
                     HelperClass.doctorId = list[0].doctorId;
                     isStop = list[0].isStop;
+                    this.label2.Text = list[0].nextCellShow;
                 }
                 else
                 {
@@ -714,9 +716,9 @@ namespace Xr.RtCall
                 JObject objT = JObject.Parse(data);
                 if (string.Compare(objT["state"].ToString(), "true", true) == 0)
                 {
+                    this.skinButton1.BackColor = Color.Gray;
+                    this.skinButton1.BorderColor = Color.Gray;
                     this.skinButton1.Enabled = false;
-                    label2.Text = "等待呼叫病人[请稍候...]";
-                    //MessageBoxUtils.Show("当前患者已完成就诊！", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1, null);
                 }
                 else
                 {
@@ -726,6 +728,51 @@ namespace Xr.RtCall
             catch (Exception ex)
             {
                 Log4net.LogHelper.Error("完成就诊按钮错误信息："+ex.Message);
+            }
+        }
+        #endregion 
+        #region 定时查询当前就诊是否完成及下一位候诊接口
+        /// <summary>
+        /// 定时查询当前就诊是否完成及下一位候诊接口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void TimeGet()
+        {
+            if (!timer3.Enabled)
+            {
+                timer3.Interval =3000;
+                timer3.Start();
+            }
+            else
+            {
+                timer3.Stop();
+            }
+        }
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            GetPatientInfo();
+        }
+        public void GetPatientInfo()
+        {
+            try
+            {
+                  String curls = AppContext.AppConfig.serverUrl + InterfaceAddress.checkCurrTriageIsWin + "?hospitalId=" + HelperClass.hospitalId + "&deptId=" + HelperClass.deptId+ "&doctorId=" + HelperClass.doctorId + "&triageId=" + HelperClass.triageId;
+                String cdatas = HttpClass.httpPost(curls);
+                JObject cobjTs = JObject.Parse(cdatas);
+                if (string.Compare(cobjTs["state"].ToString(), "true", true) == 0)
+                {
+                    label2.Text = cobjTs["result"][0]["smallCellShow"].ToString() + cobjTs["result"][0]["nextCellShow"].ToString();
+                }
+                else
+                {
+                    Log4net.LogHelper.Info("定时查询当前就诊是否完成及下一位候诊接口错误信息："+cobjTs["message"].ToString());
+                   // MessageBoxUtils.Hint(cobjTs["message"].ToString(), null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log4net.LogHelper.Error("定时查询当前就诊是否完成及下一位候诊接口错误信息："+ex.Message);
             }
         }
         #endregion 

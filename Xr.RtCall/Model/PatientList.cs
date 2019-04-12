@@ -96,5 +96,6 @@ namespace Xr.RtCall.Model
         public String doctorId { get; set; }
         public String clinicId { get; set; }
         public String isStop { get; set; }
+        public String nextCellShow { get; set; }
     }
 }

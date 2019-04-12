@@ -348,5 +348,64 @@ namespace Xr.RtManager
             }
         }
 
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            if (e.Column.Caption == "操作")
+            {
+                var selectedRow = gridView1.GetFocusedRow() as ClientVersionEntity;
+                if (selectedRow == null)
+                    return;
+                if (MessageBoxUtils.Show("确定要删除吗?", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MainForm) == DialogResult.OK)
+                {
+                    cmd.ShowOpaqueLayer(225, true);
+                    String param = "?id=" + selectedRow.id;
+                    String url = AppContext.AppConfig.serverUrl + "sys/clientVersion/delete" + param;
+                    this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        String data = HttpClass.httpPost(url);
+                        return data;
+
+                    }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        JObject objT = JObject.Parse(r.ToString());
+                        if (string.Compare(objT["state"].ToString(), "true", true) == 0)
+                        {
+                            SearchData(false, pageControl1.CurrentPage, pageControl1.PageSize);
+                            MessageBoxUtils.Hint("删除成功!", MainForm);
+                        }
+                        else
+                        {
+                            MessageBoxUtils.Show(objT["message"].ToString(), MessageBoxButtons.OK,
+                                MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MainForm);
+                        }
+                    });
+                }
+            }
+            else
+            {
+                var selectedRow = gridView1.GetFocusedRow() as ClientVersionEntity;
+                if (selectedRow == null)
+                    return;
+                var edit = new ClientVersionEdit();
+                edit.clientVersion = selectedRow;
+                edit.Text = "版本修改";
+                if (edit.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBoxUtils.Hint("修改成功!", MainForm);
+                    this.DoWorkAsync(500, (o) => //耗时逻辑处理(此处不能操作UI控件，因为是在异步中)
+                    {
+                        Thread.Sleep(2700);
+                        return null;
+
+                    }, null, (r) => //显示结果（此处用于对上面结果的处理，比如显示到界面上）
+                    {
+                        cmd.ShowOpaqueLayer(255, true);
+                        SearchData(true, pageControl1.CurrentPage, pageControl1.PageSize);
+                    });
+                }
+            }
+        }
+
     }
 }
