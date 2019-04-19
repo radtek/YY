@@ -381,10 +381,10 @@ namespace Xr.RtManager.Pages.triage
                     MessageBoxUtils.Hint(objT["message"].ToString(), MainForm);
                     DoctorSittingSelect(1, pageControl1.PageSize, DateTime.Now.ToString("yyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd"));
                     this.gcScheduled.DataSource = null;
-                    dateEdit4.Text = "";
-                    dateEdit3.Text = "";
-                    lookUpEdit1.EditValue = "";
-                    treeListLookUpEdit2.EditValue = "";
+                    //dateEdit4.Text = "";
+                    //dateEdit3.Text = "";
+                    //lookUpEdit1.EditValue = "";
+                    //treeListLookUpEdit2.EditValue = "";
                 }
                 else
                 {

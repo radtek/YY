@@ -392,7 +392,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.panelControl1);
             this.Name = "RtCallPeationFrm";
             this.Size = new System.Drawing.Size(515, 468);

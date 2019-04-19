@@ -335,7 +335,7 @@ namespace Xr.RtCall
                             {
                                 _context.Send((s) => HelperClass.triageId = objT["result"][0]["triageId"].ToString(), null);
                                 _context.Send((s) => label2.Text = objT["result"][0]["smallCellShow"].ToString()+ objT["result"][0]["nextCellShow"].ToString(), null);
-                                if (label2.Text.Length > 25)
+                                if (label2.Text.Length > 17)
                                 {
                                     _context.Send((s) => timer2.Enabled = true, null);
                                 }
@@ -672,6 +672,9 @@ namespace Xr.RtCall
         {
             GetDoctorStart();
         }
+        /// <summary>
+        /// 定时来检查当前医生的停开诊状态
+        /// </summary>
         public void GetDoctorStart()
         {
             try
@@ -753,6 +756,9 @@ namespace Xr.RtCall
         {
             GetPatientInfo();
         }
+        /// <summary>
+        /// 定时来检查当前患者是否完成就诊
+        /// </summary>
         public void GetPatientInfo()
         {
             try
@@ -767,7 +773,6 @@ namespace Xr.RtCall
                 else
                 {
                     Log4net.LogHelper.Info("定时查询当前就诊是否完成及下一位候诊接口错误信息："+cobjTs["message"].ToString());
-                   // MessageBoxUtils.Hint(cobjTs["message"].ToString(), null);
                 }
             }
             catch (Exception ex)

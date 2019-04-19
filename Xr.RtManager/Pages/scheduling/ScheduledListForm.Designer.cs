@@ -366,12 +366,12 @@
             this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnUp.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnUp.Location = new System.Drawing.Point(798, 10);
+            this.btnUp.Location = new System.Drawing.Point(735, 10);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(130, 30);
+            this.btnUp.Size = new System.Drawing.Size(100, 30);
             this.btnUp.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btnUp.TabIndex = 112;
-            this.btnUp.Text = "修改排班号源数量";
+            this.btnUp.Text = "修改号源数量";
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // treeDept
@@ -427,7 +427,7 @@
             // deEnd
             // 
             this.deEnd.EditValue = null;
-            this.deEnd.Location = new System.Drawing.Point(505, 11);
+            this.deEnd.Location = new System.Drawing.Point(477, 11);
             this.deEnd.Name = "deEnd";
             this.deEnd.Properties.AutoHeight = false;
             this.deEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -447,7 +447,7 @@
             // deBegin
             // 
             this.deBegin.EditValue = null;
-            this.deBegin.Location = new System.Drawing.Point(399, 11);
+            this.deBegin.Location = new System.Drawing.Point(371, 11);
             this.deBegin.Name = "deBegin";
             this.deBegin.Properties.AutoHeight = false;
             this.deBegin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -467,9 +467,9 @@
             this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnQuery.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnQuery.Location = new System.Drawing.Point(611, 10);
+            this.btnQuery.Location = new System.Drawing.Point(583, 10);
             this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(75, 30);
+            this.btnQuery.Size = new System.Drawing.Size(60, 30);
             this.btnQuery.Style = Xr.Common.Controls.ButtonStyle.Query;
             this.btnQuery.TabIndex = 108;
             this.btnQuery.Text = "查询";
@@ -481,9 +481,9 @@
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label3.Location = new System.Drawing.Point(325, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 20);
+            this.label3.Size = new System.Drawing.Size(40, 20);
             this.label3.TabIndex = 104;
-            this.label3.Text = "排班日期:";
+            this.label3.Text = "日期:";
             // 
             // lueDoctor
             // 
@@ -538,12 +538,12 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(131)))), ((int)(((byte)(113)))));
             this.btnSave.HoverBackColor = System.Drawing.Color.Empty;
-            this.btnSave.Location = new System.Drawing.Point(692, 10);
+            this.btnSave.Location = new System.Drawing.Point(649, 10);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 30);
+            this.btnSave.Size = new System.Drawing.Size(80, 30);
             this.btnSave.Style = Xr.Common.Controls.ButtonStyle.Save;
             this.btnSave.TabIndex = 75;
-            this.btnSave.Text = "批量添加备注";
+            this.btnSave.Text = "批量备注";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // ScheduledListForm
